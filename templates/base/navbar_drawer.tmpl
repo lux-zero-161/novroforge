@@ -18,7 +18,6 @@
 			</div>
 			<div class="navbar-drawer-group navbar-drawer-links">
 				<a href="{{AppSubUrl}}/explore/{{if .IsLandingPageOrganizations}}organizations{{else}}repos{{end}}">{{svg "octicon-telescope" 16}}<span>{{ctx.Locale.Tr "explore"}}</span></a>
-				<a href="{{AppDocsURL "/"}}" target="_blank" rel="noopener noreferrer">{{svg "octicon-question" 16}}<span>{{ctx.Locale.Tr "help"}}</span></a>
 			</div>
 		{{end}}
 		<div id="navbar-drawer-extra-links" class="navbar-drawer-group navbar-drawer-links" hidden></div>
