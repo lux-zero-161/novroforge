@@ -1,0 +1,54 @@
+{{template "base/head" .}}
+<div role="main" aria-label="{{.Title}}" class="page-content legal">
+	<div class="ui container legal-page">
+		<nav class="legal-nav" aria-label="Legal">
+			<a href="{{AppSubUrl}}/legal/imprint" class="active" aria-current="page">Imprint</a>
+			<a href="{{AppSubUrl}}/legal/privacy">Privacy</a>
+			<a href="{{AppSubUrl}}/legal/tos">Terms of Service</a>
+		</nav>
+		<p class="legal-kicker">Legal</p>
+		<h1>Imprint</h1>
+		<p class="legal-meta">Information pursuant to Section 5 DDG (German Digital Services Act)</p>
+
+		<div class="legal-notice">
+			<strong>Notice:</strong> The full business address and contact email address are still being added. A legally complete imprint requires a valid business address and a reachable email address. Placeholders are marked accordingly.
+		</div>
+
+		<h2>Provider</h2>
+		<address>
+			Lukas Güttler<br>
+			Sole proprietor<br>
+			<span class="legal-placeholder">[Street and house number]</span><br>
+			<span class="legal-placeholder">[Postal code] [City]</span> – Coming soon<br>
+			Germany
+		</address>
+
+		<h2>Contact</h2>
+		<p>
+			Email: <a href="mailto:zero@novroforge.xyz">zero@novroforge.xyz</a><br>
+			Phone: <span class="legal-placeholder">[phone number, optional]</span>
+		</p>
+
+		<h2>VAT identification number</h2>
+		<p>VAT identification number pursuant to Section 27a of the German VAT Act: <span class="legal-placeholder">[VAT ID, if available]</span></p>
+
+		<h2>Responsible for content pursuant to Section 18(2) MStV</h2>
+		<p>Lukas Güttler, address as above.</p>
+
+		<h2>Consumer dispute resolution</h2>
+		<p>We are neither obliged nor willing to participate in dispute resolution proceedings before a consumer arbitration board.</p>
+
+		<h2>Liability for content</h2>
+		<p>As a service provider, we are responsible for our own content on these pages in accordance with general law pursuant to Section 7(1) DDG. However, pursuant to Sections 8 to 10 DDG, we are not obliged to monitor transmitted or stored third-party information or to investigate circumstances that indicate unlawful activity. Obligations to remove or block the use of information under general law remain unaffected. Liability in this respect is only possible from the time we become aware of a specific legal violation. Upon becoming aware of corresponding legal violations, we will remove such content immediately.</p>
+
+		<h2>Liability for links</h2>
+		<p>Our website contains links to external third-party websites over whose content we have no influence. We therefore cannot assume any liability for such third-party content. The respective provider or operator of the linked pages is always responsible for their content. The linked pages were checked for possible legal violations at the time of linking. Unlawful content was not recognisable at the time of linking. However, permanent monitoring of the linked pages without concrete indications of a legal violation is not reasonable. Upon becoming aware of legal violations, we will remove such links immediately.</p>
+
+		<h2>Copyright</h2>
+		<p>The content and works created by the site operators on these pages are subject to German copyright law. Reproduction, editing, distribution and any kind of exploitation outside the limits of copyright law require the written consent of the respective author or creator. Downloads and copies of this site are permitted only for private, non-commercial use. Where the content on this site was not created by the operator, the copyrights of third parties are respected. Third-party content is identified as such. If you nevertheless become aware of a copyright infringement, please notify us. Upon becoming aware of legal violations, we will remove such content immediately.</p>
+
+		<h2>Source code and licence</h2>
+		<p>NovroForge is based on Forgejo. Forgejo is licensed under the GNU General Public License Version 3 (GPLv3). The NovroForge source code is available in the <a href="https://github.com/lux-zero-161/novroforge">lux-zero-161/novroforge</a> repository.</p>
+	</div>
+</div>
+{{template "base/footer" .}}

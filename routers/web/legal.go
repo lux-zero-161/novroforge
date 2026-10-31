@@ -5,31 +5,42 @@ package web
 
 import (
 	"net/http"
+	"strings"
 
 	"forgejo.org/modules/base"
 	"forgejo.org/services/context"
 )
 
-const (
-	tplLegalPrivacy base.TplName = "legal/privacy"
-	tplLegalTOS     base.TplName = "legal/tos"
-	tplLegalImprint base.TplName = "legal/imprint"
-)
+func legalTemplate(ctx *context.Context, name string) base.TplName {
+	if strings.HasPrefix(ctx.Locale.Language(), "de") {
+		return base.TplName("legal/" + name)
+	}
+	return base.TplName("legal/" + name + "_en")
+}
 
 func LegalPrivacy(ctx *context.Context) {
-	ctx.Data["Title"] = "Datenschutzerklärung"
+	ctx.Data["Title"] = "Privacy Policy"
+	if strings.HasPrefix(ctx.Locale.Language(), "de") {
+		ctx.Data["Title"] = "Datenschutzerklärung"
+	}
 	ctx.Data["PageIsLegal"] = true
-	ctx.HTML(http.StatusOK, tplLegalPrivacy)
+	ctx.HTML(http.StatusOK, legalTemplate(ctx, "privacy"))
 }
 
 func LegalTOS(ctx *context.Context) {
-	ctx.Data["Title"] = "Nutzungsbedingungen"
+	ctx.Data["Title"] = "Terms of Service"
+	if strings.HasPrefix(ctx.Locale.Language(), "de") {
+		ctx.Data["Title"] = "Nutzungsbedingungen"
+	}
 	ctx.Data["PageIsLegal"] = true
-	ctx.HTML(http.StatusOK, tplLegalTOS)
+	ctx.HTML(http.StatusOK, legalTemplate(ctx, "tos"))
 }
 
 func LegalImprint(ctx *context.Context) {
-	ctx.Data["Title"] = "Impressum"
+	ctx.Data["Title"] = "Imprint"
+	if strings.HasPrefix(ctx.Locale.Language(), "de") {
+		ctx.Data["Title"] = "Impressum"
+	}
 	ctx.Data["PageIsLegal"] = true
-	ctx.HTML(http.StatusOK, tplLegalImprint)
+	ctx.HTML(http.StatusOK, legalTemplate(ctx, "imprint"))
 }

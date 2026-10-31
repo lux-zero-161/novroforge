@@ -148,9 +148,9 @@ var UI = struct {
 		Description string
 		Keywords    string
 	}{
-		Author:      "Forgejo – Beyond coding. We forge.",
-		Description: "Forgejo is a self-hosted lightweight software forge. Easy to install and low maintenance, it just does the job.",
-		Keywords:    "git,forge,forgejo",
+		Author:      "NovroForge",
+		Description: "NovroForge is a self-hosted Git service.",
+		Keywords:    "git,forge,novroforge",
 	},
 }
 

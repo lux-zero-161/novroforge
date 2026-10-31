@@ -1,22 +1,16 @@
 import fastGlob from 'fast-glob';
-import wrapAnsi from 'wrap-ansi';
-import {init as licenseChecker} from 'license-checker-rseidelsohn';
 import {VueLoaderPlugin} from 'vue-loader';
 import {EsbuildPlugin} from 'esbuild-loader';
 import {parse} from 'node:path';
 import webpack, {type Configuration} from 'webpack';
 import {fileURLToPath} from 'node:url';
-import {readFileSync, writeFileSync} from 'node:fs';
 import {env} from 'node:process';
 import tailwindcss from 'tailwindcss';
 import tailwindConfig from './tailwind.config.ts';
 import tailwindcssNesting from 'tailwindcss/nesting/index.js';
 import postcssNesting from 'postcss-nesting';
-import goJson from './assets/go-licenses.json' with {type: 'json'};
 
 const {SourceMapDevToolPlugin, DefinePlugin, ProgressPlugin, ProvidePlugin} = webpack;
-
-const formatLicenseText = (licenseText: string) => wrapAnsi(licenseText || '', 80).trim();
 
 const baseDirectory = import.meta.dirname;
 const glob = (pattern: string): string[] => fastGlob.sync(pattern, {
@@ -30,39 +24,6 @@ for (const path of glob('web_src/css/themes/*.css')) {
 }
 
 const isProduction = env.NODE_ENV !== 'development';
-
-if (isProduction) {
-  licenseChecker({
-    start: baseDirectory,
-    production: true,
-    onlyAllow: 'Apache-2.0; 0BSD; BSD-2-Clause; BSD-3-Clause; BlueOak-1.0.0; MIT; ISC; Unlicense; CC-BY-4.0',
-    // argparse@2.0.1 - Python-2.0. It's used in the CLI file of markdown-it and js-yaml and not in the library code.
-    // idiomorph@0.3.0. See https://github.com/bigskysoftware/idiomorph/pull/37
-    excludePackages: 'argparse@2.0.1;idiomorph@0.3.0',
-  }, (err, dependencies) => {
-    if (err) {
-      throw err;
-    }
-
-    const line = '-'.repeat(80);
-    const goModules = goJson.map(({name, licenseText}) => {
-      return {name, licenseName: '', body: formatLicenseText(licenseText)};
-    });
-    const jsModules = Object.keys(dependencies).map((packageName) => {
-      const {licenses, licenseFile} = dependencies[packageName];
-      const licenseText = (licenseFile && !licenseFile?.toLowerCase().includes('readme')) ? readFileSync(licenseFile, 'utf-8') : '[no license file]';
-      return {name: packageName, licenseName: licenses, body: formatLicenseText(licenseText)};
-    });
-    const modules = [...goModules, ...jsModules];
-    const licenseTxt = modules.map(({name, licenseName, body}) => {
-      const title = licenseName ? `${name} - ${licenseName}` : name;
-      return `${line}\n${title}\n${line}\n${body}`;
-    }).join('\n');
-    writeFileSync('public/assets/licenses.txt', licenseTxt);
-  });
-} else {
-  writeFileSync('public/assets/licenses.txt', 'Licenses are disabled during development');
-}
 
 // ENABLE_SOURCEMAP accepts the following values:
 // true - all enabled, the default in development
@@ -251,9 +212,6 @@ export default {
     chunksSort: 'name',
     colors: true,
     entrypoints: false,
-    excludeAssets: [
-      !isProduction && /^licenses.txt$/,
-    ].filter(Boolean),
     groupAssetsByChunk: false,
     groupAssetsByEmitStatus: false,
     groupAssetsByInfo: false,
