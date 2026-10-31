@@ -8,7 +8,10 @@
 <div role="main" aria-label="{{.Title}}" class="page-content dashboard feeds theme-sidebar-layout github-home" data-theme-sidebar="dashboard_sidebar_collapsed">
 	<aside class="theme-sidebar github-home-sidebar" aria-label="{{ctx.Locale.Tr "dashboard"}}">
 		<div class="theme-sidebar-content">
-			<a class="github-home-logo" href="{{AppSubUrl}}/" aria-label="{{ctx.Locale.Tr "home"}}">{{svg "octicon-mark-github" 32}}</a>
+			<a class="github-home-logo" href="{{AppSubUrl}}/" aria-label="{{AppName}}">
+				{{svg "octicon-mark-github" 32}}
+				<span class="github-home-logo-name">{{AppName}}</span>
+			</a>
 			<nav class="github-home-nav" aria-label="{{ctx.Locale.Tr "dashboard"}}">
 				<a class="active" href="{{if $isOrg}}{{$user.DashboardLink}}{{$teamPath}}{{else}}{{AppSubUrl}}/{{end}}">{{svg "octicon-home" 16}}<span>{{ctx.Locale.Tr "home"}}</span></a>
 				{{if not .UnitIssuesGlobalDisabled}}<a href="{{$base}}/issues{{$teamPath}}">{{svg "octicon-issue-opened" 16}}<span>{{ctx.Locale.Tr "issues"}}</span></a>{{end}}

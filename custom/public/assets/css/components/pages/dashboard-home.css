@@ -19,7 +19,7 @@ body:has(.github-home) .page-footer {
 }
 
 .page-content.github-home.theme-sidebar-layout[data-theme-sidebar] {
-  grid-template-columns: 280px minmax(0, 1fr);
+  grid-template-columns: 260px minmax(0, 1fr);
   min-height: 100dvh;
   background: var(--color-body);
 }
@@ -37,7 +37,8 @@ body:has(.github-home) .page-footer {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  min-height: 48px;
+  gap: 10px;
+  min-height: 56px;
   padding: 0 8px;
   margin-bottom: 8px;
   color: var(--color-text);
@@ -45,6 +46,22 @@ body:has(.github-home) .page-footer {
 
 .github-home-logo:hover {
   color: var(--color-text);
+}
+
+.github-home-logo > .svg {
+  flex: none;
+  color: var(--color-text-light-1);
+}
+
+.github-home-logo-name {
+  overflow: hidden;
+  color: var(--color-text);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 28px;
+  letter-spacing: -0.02em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .github-home-nav {
