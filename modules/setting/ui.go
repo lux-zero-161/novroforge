@@ -91,7 +91,7 @@ var UI = struct {
 	MaxDisplayFileSize:  8388608,
 	FontPreviewEnabled:  true,
 	FontPreviewPangram:  "The quick brown fox jumps over the lazy dog",
-	DefaultTheme:        `github-auto`,
+	DefaultTheme:        `github-dark`,
 	Themes:              []string{`github-auto`, `github-light`, `github-dark`, `github-soft-dark`},
 	Reactions:           []string{`+1`, `-1`, `laugh`, `hooray`, `confused`, `heart`, `rocket`, `eyes`},
 	CustomEmojis:        []string{`git`, `gitea`, `codeberg`, `gitlab`, `github`, `gogs`, `forgejo`},

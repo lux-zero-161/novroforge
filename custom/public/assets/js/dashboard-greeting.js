@@ -4,5 +4,5 @@
   if (!heading) return;
   const hour = new Date().getHours();
   const part = hour < 5 ? "evening" : hour < 12 ? "morning" : hour < 18 ? "afternoon" : "evening";
-  heading.textContent = `Good ${part}, ${heading.dataset.name}!`;
+  heading.textContent = `Good ${part}, ${heading.dataset.name}! 👋`;
 })();

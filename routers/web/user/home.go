@@ -48,6 +48,12 @@ const (
 	tplProfile    base.TplName = "user/profile"
 )
 
+type dashboardProject struct {
+	Title    string
+	Link     string
+	Progress int
+}
+
 // getDashboardContextUser finds out which context user dashboard is being viewed as .
 func getDashboardContextUser(ctx *context.Context) *user_model.User {
 	ctxUser := ctx.Doer
@@ -137,6 +143,75 @@ func Dashboard(ctx *context.Context) {
 	pager := context.NewPagination(int(count), setting.UI.FeedPagingNum, page, 5)
 	pager.AddParam(ctx, "date", "Date")
 	ctx.Data["Page"] = pager
+
+	pinnedRepos, _, err := repo_model.SearchRepository(ctx, &repo_model.SearchRepoOptions{
+		ListOptions: db.ListOptions{Page: 1, PageSize: 6},
+		Actor:       ctx.Doer,
+		OwnerID:     ctxUser.ID,
+		Private:     true,
+		AllPublic:   true,
+		Archived:    optional.Some(false),
+		OrderBy:     db.SearchOrderByRecentUpdated,
+	})
+	if err != nil {
+		ctx.ServerError("SearchRepository", err)
+		return
+	}
+	if err := pinnedRepos.LoadAttributes(ctx); err != nil {
+		ctx.ServerError("LoadAttributes", err)
+		return
+	}
+	ctx.Data["DashboardPinnedRepos"] = pinnedRepos
+
+	publicRepos, _, err := repo_model.SearchRepository(ctx, &repo_model.SearchRepoOptions{
+		ListOptions: db.ListOptions{Page: 1, PageSize: 3},
+		Actor:       ctx.Doer,
+		AllPublic:   true,
+		IsPrivate:   optional.Some(false),
+		Archived:    optional.Some(false),
+		OrderBy:     db.SearchOrderByStarsReverse,
+	})
+	if err != nil {
+		ctx.ServerError("SearchRepository", err)
+		return
+	}
+	if err := publicRepos.LoadAttributes(ctx); err != nil {
+		ctx.ServerError("LoadAttributes", err)
+		return
+	}
+	ctx.Data["DashboardRecommendedRepos"] = publicRepos
+	ctx.Data["DashboardExploreRepos"] = publicRepos
+
+	projectType := project_module.TypeIndividual
+	if ctxUser.IsOrganization() {
+		projectType = project_module.TypeOrganization
+	}
+	projects, err := db.Find[project_model.Project](ctx, project_model.SearchOptions{
+		ListOptions: db.ListOptions{Page: 1, PageSize: 3},
+		OwnerID:     ctxUser.ID,
+		IsClosed:    optional.Some(false),
+		Type:        projectType,
+		OrderBy:     db.SearchOrderByRecentUpdated,
+	})
+	if err != nil {
+		ctx.ServerError("GetProjects", err)
+		return
+	}
+	dashboardProjects := make([]dashboardProject, 0, len(projects))
+	for _, project := range projects {
+		open := project.NumOpenIssues(ctx)
+		closed := project.NumClosedIssues(ctx)
+		progress := 0
+		if total := open + closed; total > 0 {
+			progress = closed * 100 / total
+		}
+		dashboardProjects = append(dashboardProjects, dashboardProject{
+			Title:    project.Title,
+			Link:     project.Link(ctx),
+			Progress: progress,
+		})
+	}
+	ctx.Data["DashboardProjects"] = dashboardProjects
 
 	ctx.HTML(http.StatusOK, tplDashboard)
 }
