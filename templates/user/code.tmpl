@@ -7,18 +7,11 @@
 		</div>
 	</div>
 {{else}}
-	<div role="main" aria-label="{{.Title}}" class="page-content user profile">
-		<div class="ui container">
-			<div class="ui stackable grid">
-				<div class="ui four wide column">
-					{{template "shared/user/profile_big_avatar" .}}
-				</div>
-				<div class="ui twelve wide column">
-					{{template "user/overview/header" .}}
-					{{template "shared/search/code/search" .}}
-				</div>
-			</div>
-		</div>
-	</div>
+	{{template "user/profile_layout_start" .}}
+	<section class="profile-code">
+	<h2 class="profile-subpage-title">{{ctx.Locale.Tr "user.code"}}</h2>
+	{{template "shared/search/code/search" .}}
+	</section>
+	{{template "user/profile_layout_end" .}}
 {{end}}
 {{template "base/footer" .}}

@@ -38,16 +38,18 @@
 									{{ctx.AvatarUtils.Avatar .Issue.Poster 24}}
 								</a>
 								<span class="text grey muted-links">
-									{{template "shared/user/authorlink" .Issue.Poster}}
-									{{ctx.Locale.Tr "repo.issues.commented_at" .Issue.HashTag $createdStr}}
+									{{if .Issue.IsPull}}
+										{{template "shared/user/authorlink" .Issue.Poster}}
+										{{ctx.Locale.Tr "repo.issues.commented_at" .Issue.HashTag $createdStr}}
+									{{else}}
+										{{/* GitHub says an issue was opened; Forgejo's translation places the author itself. */}}
+										{{ctx.Locale.Tr "repo.issues.opened_by" (HTMLFormat `<a href="#%s">%s</a>` .Issue.HashTag $createdStr) .Issue.Poster.HomeLink .Issue.Poster.GetDisplayName}}
+									{{end}}
 								</span>
 							{{end}}
 						</div>
 						<div class="comment-header-right actions tw-flex tw-items-center">
 							{{template "repo/issue/view_content/show_role" dict "ShowRole" .Issue.ShowRole "IgnorePoster" true "IsPull" .Issue.IsPull}}
-							{{if not $.Repository.IsArchived}}
-								{{template "repo/issue/view_content/add_reaction" dict "ctxData" $ "ActionURL" (printf "%s/issues/%d/reactions" $.RepoLink .Issue.Index)}}
-							{{end}}
 							{{template "repo/issue/view_content/context_menu" dict "ctxData" $ "item" .Issue "delete" false "issue" true "diff" false "IsCommentPoster" $.IsIssuePoster}}
 						</div>
 					</div>
@@ -63,6 +65,9 @@
 						<div class="edit-content-zone tw-hidden" data-update-url="{{$.RepoLink}}/issues/{{.Issue.Index}}/content" data-content-version="{{.Issue.ContentVersion}}" data-context="{{.RepoLink}}" data-attachment-url="{{$.RepoLink}}/issues/{{.Issue.Index}}/attachments" data-view-attachment-url="{{$.RepoLink}}/issues/{{.Issue.Index}}/view-attachments"></div>
 						{{if .Issue.Attachments}}
 							{{template "repo/issue/view_content/attachments" dict "Attachments" .Issue.Attachments "RenderedContent" .Issue.RenderedContent}}
+						{{end}}
+						{{if not $.Repository.IsArchived}}
+							{{template "repo/issue/view_content/body_actions" dict "ctxData" $ "ActionURL" (printf "%s/issues/%d/reactions" $.RepoLink .Issue.Index)}}
 						{{end}}
 					</div>
 					{{$reactions := .Issue.Reactions.GroupByType}}
@@ -93,6 +98,7 @@
 				</div>
 			{{else if .IsSigned}}
 				<div class="timeline-item comment form">
+					<h2 class="comment-editor-heading">Add a comment</h2>
 					<a class="timeline-avatar" href="{{.SignedUser.HomeLink}}">
 						{{ctx.AvatarUtils.Avatar .SignedUser 40}}
 					</a>
@@ -149,7 +155,6 @@
 				"MarkdownPreviewContext" .RepoLink
 				"TextareaName" "content"
 				"DropzoneParentContainer" ".ui.form"
-				"SuggestionButton" true
 			)}}
 		</div>
 
@@ -169,8 +174,6 @@
 </template>
 
 {{template "repo/issue/view_content/reference_issue_dialog" .}}
-
-{{if .HeadBranchIsEditable}}{{template "repo/diff/suggestion_apply_modal" .}}{{end}}
 
 <div class="tw-hidden" id="no-content">
 	<span class="no-content">{{ctx.Locale.Tr "repo.issues.no_content"}}</span>

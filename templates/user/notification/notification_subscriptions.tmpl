@@ -1,82 +1,43 @@
+{{/* Subscriptions and watched repositories in the notifications sidebar layout, as the inbox: the heading, then the
+subscribed issues in a box headed by All, Open and Closed with Type and Sort, or the watched repositories. */}}
 {{template "base/head" .}}
-<div role="main" aria-label="{{.Title}}" class="page-content user notification">
-	<div class="ui container">
-		<div class="tw-flex tw-items-center tw-justify-between tw-mb-4 tw-gap-2">
-			<div class="switch">
-				<a href="{{AppSubUrl}}/notifications/subscriptions" class="{{if eq .Status 1}}active {{end}}item">
-					{{ctx.Locale.Tr "notification.subscriptions"}}
-				</a>
-				<a href="{{AppSubUrl}}/notifications/watching" class="{{if eq .Status 2}}active {{end}}item">
-					{{ctx.Locale.Tr "notification.watching"}}
-				</a>
+{{$current := "subscriptions"}}{{if eq .Status 2}}{{$current = "watching"}}{{end}}
+<div role="main" aria-label="{{.Title}}" class="page-content user notification theme-sidebar-layout github-notifications github-subscriptions" data-theme-sidebar="notification_sidebar_collapsed">
+	{{template "user/notification/sidebar" dict "Data" . "Current" $current}}
+	<div class="ui container theme-sidebar-main">
+		<div class="theme-list-heading">
+			<div class="theme-list-title">
+				<button type="button" class="theme-icon-button" data-theme-sidebar-toggle data-theme-sidebar-expand aria-expanded="false" aria-label="Expand sidebar">{{svg "octicon-sidebar-expand" 16}}</button>
+				<h1>{{if eq .Status 1}}{{ctx.Locale.Tr "notification.subscriptions"}}{{else}}{{ctx.Locale.Tr "notification.watching"}}{{end}}</h1>
 			</div>
-			<a class="secondary button" href="{{AppSubUrl}}/notifications">
-				{{ctx.Locale.Tr "notifications"}}
-			</a>
 		</div>
-		<div class="ui bottom active tab segment">
-			{{if eq .Status 1}}
-				<div class="tw-flex tw-justify-between tw-flex-wrap tw-gap-y-4 tw-gap-x-2">
-					<div class="switch">
-						<a class="{{if eq .State "all"}}active {{end}}item" href="?sort={{$.SortType}}&state=all&issueType={{$.IssueType}}&labels={{$.Labels}}">
-							{{ctx.Locale.Tr "all"}}
-						</a>
-						<a class="{{if eq .State "open"}}active {{end}}item" href="?sort={{$.SortType}}&state=open&issueType={{$.IssueType}}&labels={{$.Labels}}">
-							{{svg "octicon-issue-opened" 16}}
-							{{ctx.Locale.Tr "repo.issues.open_title"}}
-						</a>
-						<a class="{{if eq .State "closed"}}active {{end}}item" href="?sort={{$.SortType}}&state=closed&issueType={{$.IssueType}}&labels={{$.Labels}}">
-							{{svg "octicon-issue-closed" 16}}
-							{{ctx.Locale.Tr "repo.issues.closed_title"}}
-						</a>
-					</div>
-					<div class="tw-flex">
-						<div class="ui right aligned secondary filter menu">
-							<!-- Type -->
-								<div class="ui dropdown type jump item">
-									<span class="text">
-										{{ctx.Locale.Tr "repo.issues.filter_type"}}
-									</span>
-									{{svg "octicon-triangle-down" 14 "dropdown icon"}}
-									<div class="menu">
-										<a class="{{if or (eq .IssueType "all") (not .IssueType)}}active {{end}}item" href="?sort={{$.SortType}}&state={{$.State}}&issueType=all&labels={{$.Labels}}">{{ctx.Locale.Tr "all"}}</a>
-										<a class="{{if eq .IssueType "issues"}}active {{end}}item" href="?sort={{$.SortType}}&state={{$.State}}&issueType=issues&labels={{$.Labels}}">{{ctx.Locale.Tr "issues"}}</a>
-										<a class="{{if eq .IssueType "pulls"}}active {{end}}item" href="?sort={{$.SortType}}&state={{$.State}}&issueType=pulls&labels={{$.Labels}}">{{ctx.Locale.Tr "pull_requests"}}</a>
-									</div>
-								</div>
-
-							<!-- Sort -->
-							<div class="ui dropdown type jump item">
-								<span class="text">
-									{{ctx.Locale.Tr "repo.issues.filter_sort"}}
-								</span>
-								{{svg "octicon-triangle-down" 14 "dropdown icon"}}
-								<div class="menu">
-									<a class="{{if or (eq .SortType "latest") (not .SortType)}}active {{end}}item" href="?sort=latest&state={{$.State}}&issueType={{$.IssueType}}&labels={{$.Labels}}">{{ctx.Locale.Tr "issues.search.sort.latest"}}</a>
-									<a class="{{if eq .SortType "oldest"}}active {{end}}item" href="?sort=oldest&state={{$.State}}&issueType={{$.IssueType}}&labels={{$.Labels}}">{{ctx.Locale.Tr "issues.search.sort.oldest"}}</a>
-									<a class="{{if eq .SortType "recentupdate"}}active {{end}}item" href="?sort=recentupdate&state={{$.State}}&issueType={{$.IssueType}}&labels={{$.Labels}}">{{ctx.Locale.Tr "issues.search.sort.recentupdate"}}</a>
-									<a class="{{if eq .SortType "leastupdate"}}active {{end}}item" href="?sort=leastupdate&state={{$.State}}&issueType={{$.IssueType}}&labels={{$.Labels}}">{{ctx.Locale.Tr "issues.search.sort.leastupdate"}}</a>
-									<a class="{{if eq .SortType "mostcomment"}}active {{end}}item" href="?sort=mostcomment&state={{$.State}}&issueType={{$.IssueType}}&labels={{$.Labels}}">{{ctx.Locale.Tr "issues.search.sort.mostcomment"}}</a>
-									<a class="{{if eq .SortType "leastcomment"}}active {{end}}item" href="?sort=leastcomment&state={{$.State}}&issueType={{$.IssueType}}&labels={{$.Labels}}">{{ctx.Locale.Tr "issues.search.sort.leastcomment"}}</a>
-									<a class="{{if eq .SortType "nearduedate"}}active {{end}}item" href="?sort=nearduedate&state={{$.State}}&issueType={{$.IssueType}}&labels={{$.Labels}}">{{ctx.Locale.Tr "issues.search.sort.nearduedate"}}</a>
-									<a class="{{if eq .SortType "farduedate"}}active {{end}}item" href="?sort=farduedate&state={{$.State}}&issueType={{$.IssueType}}&labels={{$.Labels}}">{{ctx.Locale.Tr "issues.search.sort.farduedate"}}</a>
-								</div>
-							</div>
-						</div>
+		{{if eq .Status 1}}
+			<div class="theme-box-list">
+				<div class="theme-box-list-header">
+					<nav class="theme-box-list-states" aria-label="{{ctx.Locale.Tr "notification.subscriptions"}}">
+						<a href="?sort={{$.SortType}}&state=all&issueType={{$.IssueType}}&labels={{$.Labels}}"{{if eq .State "all"}} aria-current="page"{{end}}>{{ctx.Locale.Tr "all"}}</a>
+						<a href="?sort={{$.SortType}}&state=open&issueType={{$.IssueType}}&labels={{$.Labels}}"{{if eq .State "open"}} aria-current="page"{{end}}>{{ctx.Locale.Tr "repo.issues.open_title"}}</a>
+						<a href="?sort={{$.SortType}}&state=closed&issueType={{$.IssueType}}&labels={{$.Labels}}"{{if eq .State "closed"}} aria-current="page"{{end}}>{{ctx.Locale.Tr "repo.issues.closed_title"}}</a>
+					</nav>
+					<div class="theme-box-list-filters">
+						{{template "components/common/dropdown/dropdown" dict "Kind" "actions" "Label" (ctx.Locale.Tr "repo.issues.filter_type") "Quiet" true "Items" "user/notification/subscriptions_type" "Data" .}}
+						{{template "components/common/dropdown/dropdown" dict "Kind" "actions" "Label" (ctx.Locale.Tr "repo.issues.filter_sort") "Quiet" true "Items" "user/notification/subscriptions_sort" "Data" .}}
 					</div>
 				</div>
-				<div class="divider"></div>
-				{{if not .Issues}}
-					{{ctx.Locale.Tr "notification.no_subscriptions"}}
-				{{else}}
+				{{if .Issues}}
 					{{template "shared/issuelist" dict "." . "listType" "dashboard"}}
+				{{else}}
+					<div class="theme-empty theme-empty-compact">
+						{{svg "octicon-bell" 24}}
+						<h3>{{ctx.Locale.Tr "notification.no_subscriptions"}}</h3>
+					</div>
 				{{end}}
-			{{else}}
-				{{template "shared/repo_search" .}}
-				{{template "explore/repo_list" .}}
-				{{template "base/paginate" .}}
-			{{end}}
-		</div>
+			</div>
+		{{else}}
+			{{template "shared/repo_search" .}}
+			{{template "explore/repo_list" .}}
+			{{template "base/paginate" .}}
+		{{end}}
 	</div>
 </div>
 {{template "base/footer" .}}

@@ -1,17 +1,16 @@
+{{/* GitHub's order: reviewers, assignees, labels, projects, milestone, development, notifications, participants. */}}
 <div class="issue-content-right ui segment">
-	{{template "repo/issue/view_content/sidebar/branch_selector_field" .}}
 	{{if .Issue.IsPull}}
 		{{template "repo/issue/view_content/sidebar/pull_review" .}}
 		{{template "repo/issue/view_content/sidebar/pull_wip" .}}
 		<div class="divider"></div>
 	{{end}}
 
-	{{template "repo/issue/labels/labels_selector_field" .}}
-	{{template "repo/issue/labels/labels_sidebar" dict "root" $}}
-
+	{{template "repo/issue/view_content/sidebar/assignees" dict "isExistingIssue" true "." .}}
 	<div class="divider"></div>
 
-	{{template "repo/issue/view_content/sidebar/milestones" .}}
+	{{template "repo/issue/labels/labels_selector_field" .}}
+	{{template "repo/issue/labels/labels_sidebar" dict "root" $}}
 	<div class="divider"></div>
 
 	{{if or .IsProjectsEnabled (and .OwnerHasProjects .IsOwnerProjectsEnabled)}}
@@ -19,17 +18,26 @@
 		<div class="divider"></div>
 	{{end}}
 
-	{{template "repo/issue/view_content/sidebar/assignees" dict "isExistingIssue" true "." .}}
+	{{template "repo/issue/view_content/sidebar/milestones" .}}
 	<div class="divider"></div>
 
-	{{if .Participants}}
-		{{template "repo/issue/view_content/sidebar/participants" .}}
+	{{if .Repository.IsDependenciesEnabled $.Context}}
+		{{template "repo/issue/view_content/sidebar/dependencies" .}}
+		<div class="divider"></div>
+	{{end}}
+
+	{{if not .Issue.IsPull}}
+		{{template "repo/issue/view_content/sidebar/branch_selector_field" .}}
+		<div class="divider"></div>
 	{{end}}
 
 	{{if and $.IssueWatch (not .Repository.IsArchived)}}
-		<div class="divider"></div>
-
 		{{template "repo/issue/view_content/sidebar/watch" .}}
+		{{if .Participants}}<div class="divider"></div>{{end}}
+	{{end}}
+
+	{{if .Participants}}
+		{{template "repo/issue/view_content/sidebar/participants" .}}
 	{{end}}
 
 	{{if .Repository.IsTimetrackerEnabled $.Context}}
@@ -38,12 +46,6 @@
 
 	<div class="divider"></div>
 	{{template "repo/issue/view_content/sidebar/due_deadline" .}}
-
-	{{if .Repository.IsDependenciesEnabled $.Context}}
-		<div class="divider"></div>
-
-		{{template "repo/issue/view_content/sidebar/dependencies" .}}
-	{{end}}
 
 	<div class="divider"></div>
 	{{template "repo/issue/view_content/sidebar/reference" .}}

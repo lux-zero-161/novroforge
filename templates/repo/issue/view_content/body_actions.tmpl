@@ -1,0 +1,6 @@
+{{/* GitHub puts the reaction picker below the comment body rather than in its header. */}}
+{{if .ctxData.IsSigned}}
+<div class="conversation-body-actions">
+	{{template "repo/issue/view_content/add_reaction" dict "ctxData" .ctxData "ActionURL" .ActionURL "Footer" true}}
+</div>
+{{end}}

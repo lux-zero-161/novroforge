@@ -1,0 +1,11 @@
+{{- /* The dashboard's pages for the account in context: Home, issues, pull requests and milestones, keeping an
+organization's team. Data is the page context; Current names the page shown (home, issues, pulls or milestones). */ -}}
+{{$data := .Data}}{{$current := .Current}}
+{{$teamPath := ""}}{{if $data.Team}}{{$teamPath = print "/" (PathEscape $data.Team.Name)}}{{end}}
+{{$base := AppSubUrl}}{{if $data.ContextUser.IsOrganization}}{{$base = $data.ContextUser.OrganisationLink}}{{end}}
+<nav aria-label="{{ctx.Locale.Tr "dashboard"}}">
+	<a class="{{if eq $current "home"}}active{{end}}" href="{{if $data.ContextUser.IsOrganization}}{{$data.ContextUser.DashboardLink}}{{$teamPath}}{{else}}{{AppSubUrl}}/{{end}}">{{svg "octicon-home" 16}}<span>{{ctx.Locale.Tr "home"}}</span></a>
+	{{if not $data.UnitIssuesGlobalDisabled}}<a class="{{if eq $current "issues"}}active{{end}}" href="{{$base}}/issues{{$teamPath}}">{{svg "octicon-issue-opened" 16}}<span>{{ctx.Locale.Tr "issues"}}</span></a>{{end}}
+	{{if not $data.UnitPullsGlobalDisabled}}<a class="{{if eq $current "pulls"}}active{{end}}" href="{{$base}}/pulls{{$teamPath}}">{{svg "octicon-git-pull-request" 16}}<span>{{ctx.Locale.Tr "pull_requests"}}</span></a>{{end}}
+	{{if and $data.ShowMilestonesDashboardPage (not (and $data.UnitIssuesGlobalDisabled $data.UnitPullsGlobalDisabled))}}<a class="{{if eq $current "milestones"}}active{{end}}" href="{{$base}}/milestones{{$teamPath}}">{{svg "octicon-milestone" 16}}<span>{{ctx.Locale.Tr "milestones"}}</span></a>{{end}}
+</nav>

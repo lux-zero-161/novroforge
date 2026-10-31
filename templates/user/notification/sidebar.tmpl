@@ -1,0 +1,17 @@
+{{/* The notifications sidebar, shared by the inbox and the subscription pages. Data is the page context; Current names
+the page (unread, read, subscriptions or watching). */}}
+{{$notificationUnreadCount := call .Data.NotificationUnreadCount}}
+<aside class="theme-sidebar" aria-label="{{ctx.Locale.Tr "notifications"}}">
+	<div class="theme-sidebar-content">
+		<nav aria-label="{{ctx.Locale.Tr "notifications"}}">
+			<a class="{{if eq .Current "unread"}}active{{end}}" href="{{AppSubUrl}}/notifications?q=unread">{{svg "octicon-inbox" 16}}<span>{{ctx.Locale.Tr "notification.unread"}}</span><span class="theme-counter notifications-unread-count{{if not $notificationUnreadCount}} tw-hidden{{end}}">{{$notificationUnreadCount}}</span></a>
+			<a class="{{if eq .Current "read"}}active{{end}}" href="{{AppSubUrl}}/notifications?q=read">{{svg "octicon-check" 16}}<span>{{ctx.Locale.Tr "notification.read"}}</span></a>
+		</nav>
+		<hr>
+		<nav aria-label="{{ctx.Locale.Tr "notification.subscriptions"}}">
+			<a class="{{if eq .Current "subscriptions"}}active{{end}}" href="{{AppSubUrl}}/notifications/subscriptions">{{svg "octicon-bell" 16}}<span>{{ctx.Locale.Tr "notification.subscriptions"}}</span></a>
+			<a class="{{if eq .Current "watching"}}active{{end}}" href="{{AppSubUrl}}/notifications/watching">{{svg "octicon-eye" 16}}<span>{{ctx.Locale.Tr "notification.watching"}}</span></a>
+		</nav>
+	</div>
+	{{template "components/common/sidebar/toggle" .Data}}
+</aside>

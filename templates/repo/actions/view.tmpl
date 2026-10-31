@@ -1,7 +1,8 @@
 {{template "base/head" .}}
 
-<div class="page-content repository">
-	{{template "repo/header" .}}
+<div class="page-content repository github-actions-run">
+<link rel="stylesheet" href="{{AssetUrlPrefix}}/css/actions-run.css?v=41610b3486">
+
 	<div id="repo-action-view"
 		data-run-index="{{.RunIndex}}"
 		data-run-id="{{.RunID}}"
@@ -43,4 +44,7 @@
 	</div>
 </div>
 
+<template id="actions-nav-icons"><span data-icon="home">{{svg "octicon-home" 16}}</span><span data-icon="file">{{svg "octicon-file-code" 16}}</span><span data-icon="kebab">{{svg "octicon-kebab-horizontal" 16}}</span><span data-icon="back">{{svg "octicon-arrow-left" 16}}</span></template>
+<script src="{{AssetUrlPrefix}}/js/actions-run-graph.js?v=dc505ebc26" defer></script>
+<script src="{{AssetUrlPrefix}}/js/actions-run.js?v=30e33058b1" defer></script>
 {{template "base/footer" .}}

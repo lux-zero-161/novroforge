@@ -1,0 +1,5 @@
+{{$query := print "?state=" .State "&q=" .Keyword}}
+<a class="theme-dropdown-action" href="{{$query}}&sort=newest"{{if or (eq .SortType "newest") (not .SortType)}} aria-current="true"{{end}}>{{svg "octicon-check" 16 "theme-box-list-check"}}{{ctx.Locale.Tr "issues.search.sort.latest"}}</a>
+<a class="theme-dropdown-action" href="{{$query}}&sort=oldest"{{if eq .SortType "oldest"}} aria-current="true"{{end}}>{{svg "octicon-check" 16 "theme-box-list-check"}}{{ctx.Locale.Tr "issues.search.sort.oldest"}}</a>
+<a class="theme-dropdown-action" href="{{$query}}&sort=recentupdate"{{if eq .SortType "recentupdate"}} aria-current="true"{{end}}>{{svg "octicon-check" 16 "theme-box-list-check"}}{{ctx.Locale.Tr "issues.search.sort.recentupdate"}}</a>
+<a class="theme-dropdown-action" href="{{$query}}&sort=leastupdate"{{if eq .SortType "leastupdate"}} aria-current="true"{{end}}>{{svg "octicon-check" 16 "theme-box-list-check"}}{{ctx.Locale.Tr "issues.search.sort.leastupdate"}}</a>

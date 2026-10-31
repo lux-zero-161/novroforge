@@ -1,18 +1,13 @@
 {{if $.IsSigned}}
-	<div class="dialog-dropdown" id="watch-button">
-		<button class="ui labeled button" command="toggle-popover" commandfor="watch-options-dropdown">
-			<div class="ui compact small button">
-				{{svg "octicon-eye" 16}}
-				<span class="text not-mobile">{{if $.RepoWatchSelection.IsWatching}}{{ctx.Locale.Tr "repo.watching"}}{{else}}{{ctx.Locale.Tr "repo.watch"}}{{end}}</span>
-				{{svg "octicon-triangle-down" 14}}
-			</div>
-			<a class="ui basic label" href="{{.RepoLink}}/watchers"
-				aria-label="{{ctx.Locale.TrPluralString .Repository.NumWatches "watch.n_watchers" (printf "%d" .Repository.NumWatches)}}"
-				>
-				{{CountFmt .Repository.NumWatches}}
-			</a>
-		</button>
-		<dialog popover id="watch-options-dropdown">
+	<details class="dropdown" id="watch-button">
+		{{/* GitHub's Watch button: one control with the count inside, opening the notification choices. */}}
+		<summary class="button theme-control theme-control-small repo-header-control">
+			{{svg "octicon-eye" 16}}
+			<span class="text not-mobile">{{if $.RepoWatchSelection.IsWatching}}{{ctx.Locale.Tr "repo.watching"}}{{else}}{{ctx.Locale.Tr "repo.watch"}}{{end}}</span>
+			<span class="theme-counter theme-counter-tab" aria-label="{{ctx.Locale.TrPluralString .Repository.NumWatches "watch.n_watchers" (printf "%d" .Repository.NumWatches)}}">{{CountFmt .Repository.NumWatches}}</span>
+			{{svg "octicon-triangle-down" 16}}
+		</summary>
+		<div class="content">
 			<form class="ui form tw-p-3" hx-target="#watch-button" method="post" hx-post="{{$.RepoLink}}/action/watch/select" action="{{$.RepoLink}}/action/watch/select" hx-swap="outerHTML">
 				<fieldset>
 					<label>
@@ -41,18 +36,12 @@
 					</div>
 				</fieldset>
 			</form>
-		</dialog>
-	</div>
+		</div>
+	</details>
 {{else}}
 	{{/* not logged-in user */}}
-	<div class="ui disabled labeled button" data-tooltip-content="{{ctx.Locale.Tr "repo.watch_guest_user"}}">
-		<div class="ui compact small basic button">
-			{{svg "octicon-eye"}}<span class="text not-mobile">{{ctx.Locale.Tr "repo.watch"}}</span>
-		</div>
-		<a class="ui basic label" href="{{.RepoLink}}/watchers"
-			aria-label="{{ctx.Locale.TrPluralString .Repository.NumWatches "watch.n_watchers" (printf "%d" .Repository.NumWatches)}}"
-			>
-			{{CountFmt .Repository.NumWatches}}
-		</a>
-	</div>
+	<a class="button theme-control theme-control-small repo-header-control" href="{{.RepoLink}}/watchers" data-tooltip-content="{{ctx.Locale.Tr "repo.watch_guest_user"}}">
+		{{svg "octicon-eye" 16}}<span class="text not-mobile">{{ctx.Locale.Tr "repo.watch"}}</span>
+		<span class="theme-counter theme-counter-tab" aria-label="{{ctx.Locale.TrPluralString .Repository.NumWatches "watch.n_watchers" (printf "%d" .Repository.NumWatches)}}">{{CountFmt .Repository.NumWatches}}</span>
+	</a>
 {{end}}

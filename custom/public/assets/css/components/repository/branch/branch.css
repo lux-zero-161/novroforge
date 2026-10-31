@@ -1,0 +1,240 @@
+/* GitHub's branch tables: a 14px heading over a box whose header names the columns, and a 48px row per branch. */
+.github-branches-search {
+  margin-bottom: 16px;
+}
+
+.github-branches-search .theme-search-field {
+  width: 100%;
+}
+
+.theme-branch-section + .theme-branch-section {
+  margin-top: 24px;
+}
+
+.theme-branch-section-title {
+  margin: 0 0 8px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 21px;
+}
+
+.theme-branch-box {
+  border: 1px solid var(--color-light-border);
+  border-radius: var(--border-radius);
+}
+
+.theme-branch-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: 14px;
+}
+
+/* The box does not clip, so the row menus can open past it; the header rounds its own corners. */
+.theme-branch-table th:first-child {
+  border-top-left-radius: var(--border-radius);
+}
+
+.theme-branch-table th:last-child {
+  border-top-right-radius: var(--border-radius);
+}
+
+.theme-branch-table th {
+  height: 40px;
+  padding: 0 8px;
+  border-bottom: 1px solid var(--color-light-border);
+  background: var(--color-box-header);
+  color: var(--color-text-light-1);
+  font-size: 12px;
+  font-weight: 600;
+  text-align: left;
+}
+
+.theme-branch-table td {
+  height: 48px;
+  padding: 0 8px;
+  border-top: 1px solid var(--color-light-border);
+  vertical-align: middle;
+}
+
+.theme-branch-table tbody tr:first-child td {
+  border-top: 0;
+}
+
+.theme-branch-table :is(th, td):first-child {
+  padding-left: 16px;
+}
+
+.theme-branch-table :is(th, td):last-child {
+  padding-right: 16px;
+}
+
+.theme-branch-table .theme-branch-updated {
+  width: 160px;
+}
+
+.theme-branch-table .theme-branch-status {
+  width: 104px;
+}
+
+.theme-branch-table .theme-branch-divergence {
+  width: 144px;
+}
+
+.theme-branch-table .theme-branch-pull {
+  width: 136px;
+}
+
+.theme-branch-table .theme-branch-actions {
+  width: 88px;
+}
+
+.theme-branch-name-row,
+.theme-branch-updated-inner,
+.theme-branch-actions-inner {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+}
+
+.theme-branch-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.theme-branch-copy {
+  flex: none;
+  color: var(--color-text-light-1);
+}
+
+.theme-branch-protected {
+  display: inline-flex;
+  color: var(--color-text-light-1);
+}
+
+.theme-branch-updated {
+  color: var(--color-text-light-1);
+  font-size: 12px;
+}
+
+.theme-branch-updated-inner {
+  gap: 8px;
+}
+
+.theme-branch-updated-inner img.ui.avatar {
+  border-radius: 50%;
+}
+
+.theme-branch-deleted .theme-branch-name {
+  color: var(--color-text-light-1);
+  text-decoration: line-through;
+}
+
+/* Behind and ahead: the counts meet at a divider, each bar growing away from it in proportion to the commits. */
+.theme-branch-table th.theme-branch-divergence {
+  text-align: center;
+}
+
+.theme-branch-table th.theme-branch-divergence > span + span::before {
+  content: "|";
+  margin: 0 6px;
+  color: var(--color-light-border);
+}
+
+.theme-branch-divergence-graph {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  font-size: 12px;
+}
+
+.theme-branch-behind,
+.theme-branch-ahead {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 0 6px;
+}
+
+.theme-branch-behind {
+  align-items: flex-end;
+  border-right: 1px solid var(--color-light-border);
+}
+
+.theme-branch-bar {
+  display: block;
+  width: 0;
+  max-width: 100%;
+  height: 4px;
+  background: var(--github-progressBar-track-bgColor);
+}
+
+.theme-branch-behind .theme-branch-bar {
+  border-radius: 6px 0 0 6px;
+}
+
+.theme-branch-ahead .theme-branch-bar {
+  border-radius: 0 6px 6px 0;
+}
+
+.theme-branch-pull-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--color-text-light-1);
+}
+
+.theme-branch-pull-open .svg {
+  color: var(--github-fgColor-success);
+}
+
+.theme-branch-pull-merged .svg {
+  color: var(--github-fgColor-done);
+}
+
+.theme-branch-pull-closed .svg {
+  color: var(--color-red);
+}
+
+.theme-branch-pull-draft .svg {
+  color: var(--color-text-light-1);
+}
+
+.theme-branch-included {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--color-text-light-1);
+  font-size: 12px;
+}
+
+.theme-branch-actions-inner {
+  justify-content: flex-end;
+}
+
+.theme-branch-delete:hover {
+  color: var(--color-red);
+}
+
+.theme-branch-actions .theme-dropdown > summary.theme-control {
+  width: 32px;
+  padding: 0;
+  justify-content: center;
+  color: var(--color-text-light-1);
+}
+
+.theme-branch-actions .theme-dropdown-panel {
+  width: 224px;
+}
+
+/* Phones keep the name, the pull request and the actions; GitHub drops the other columns too. */
+@media (max-width: 767.98px) {
+  .theme-branch-table :is(.theme-branch-updated, .theme-branch-status, .theme-branch-divergence) {
+    display: none;
+  }
+
+  .theme-branch-table .theme-branch-pull {
+    width: 88px;
+  }
+}

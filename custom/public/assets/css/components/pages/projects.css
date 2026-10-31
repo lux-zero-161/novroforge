@@ -1,0 +1,477 @@
+/* Project board in GitHub's layout, and the side panel that opens a card's issue. Kept as a page stylesheet, outside
+   the size-limited theme files. */
+
+/* Page: GitHub shows a project at full width. */
+.full.height > .page-content.github-project-page {
+  margin-top: 0;
+  padding-top: 0;
+}
+.full.height > .page-content.github-project-page > .github-project-container {
+  margin-top: 0;
+}
+.github-project-container {
+  padding: 0 16px;
+}
+.github-project-header {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  justify-content: space-between;
+  padding: 16px 0 8px;
+}
+.github-project-title {
+  align-items: center;
+  display: flex;
+  font-size: 20px;
+  font-weight: 600;
+  gap: 8px;
+  line-height: 30px;
+  margin: 0;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.github-project-title > svg {
+  color: var(--color-text-light-2);
+  flex-shrink: 0;
+}
+.github-project-actions {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.github-project-actions .ui.primary.button.theme-control {
+  border-color: transparent;
+  color: var(--color-primary-contrast);
+}
+/* Edit, Close and Delete join into one segmented control, like GitHub's Insights and Workflows. */
+.github-project-button-group {
+  display: flex;
+}
+.github-project-button-group > .theme-control:not(:first-child) {
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  margin-left: -1px;
+}
+.github-project-button-group > .theme-control:not(:last-child) {
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+}
+.github-project-button-group > .theme-control > svg {
+  color: var(--color-text-light-2);
+}
+/* New issue in an organization or user project: a repository picker, like GitHub's "Create new issue" dialog. */
+.github-project-new-issue > summary > svg {
+  margin-right: -4px;
+}
+.github-project-new-issue .theme-menu-popover {
+  max-height: min(400px, calc(100vh - 160px));
+  overflow-y: auto;
+  width: 320px;
+}
+.github-project-new-issue .theme-menu-popover > a > svg {
+  color: var(--color-text-light-2);
+  flex-shrink: 0;
+}
+.github-project-repo-filter {
+  margin: 4px 0 8px;
+}
+.github-project-repo-status {
+  color: var(--color-text-light-2);
+  font-size: 12px;
+  margin: 0;
+  padding: 4px 8px;
+}
+.github-project-description {
+  color: var(--color-text-light-2);
+  font-size: 14px;
+  margin: 0 0 8px;
+}
+.github-project-description > :last-child {
+  margin-bottom: 0;
+}
+.github-project-filter {
+  margin: 8px 0 16px;
+}
+.github-project-filter .theme-search-field {
+  width: 100%;
+}
+
+/* Board: columns fill the rest of the viewport and scroll on their own, as on GitHub. The board script sets
+   --project-board-top to where the board starts. */
+#project-board .board {
+  align-items: stretch;
+  display: flex;
+  gap: 8px;
+  height: max(360px, calc(100vh - var(--project-board-top, 240px) - 16px));
+  margin: 0;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+#project-board .project-column {
+  background: var(--color-project-column-bg) !important;
+  border: 1px solid var(--color-light-border) !important;
+  border-radius: 6px;
+  color: var(--color-text) !important;
+  display: flex;
+  flex: 0 0 350px;
+  flex-direction: column;
+  height: auto;
+  margin: 0 !important;
+  max-width: 85vw;
+  min-height: 0;
+  padding: 0 !important;
+  width: 350px;
+}
+#project-board .project-column:first-child,
+#project-board .project-column:last-child {
+  margin-inline: 0 !important;
+}
+#project-board .project-column-header {
+  align-items: center;
+  display: flex;
+  flex-shrink: 0;
+  gap: 8px;
+  justify-content: flex-start;
+  min-height: 44px;
+  padding: 8px 8px 4px 16px;
+}
+/* GitHub's default statuses and their colours, for columns without a colour of their own. */
+#project-board .project-column[data-column-title="backlog" i] {
+  --project-column-status-color: var(--github-fgColor-success, var(--color-green));
+}
+#project-board
+  .project-column:is([data-column-title="ready" i], [data-column-title="to do" i], [data-column-title="todo" i]) {
+  --project-column-status-color: var(--github-fgColor-accent, var(--color-blue));
+}
+#project-board .project-column[data-column-title="in progress" i] {
+  --project-column-status-color: var(--color-yellow);
+}
+#project-board .project-column[data-column-title="in review" i] {
+  --project-column-status-color: var(--github-fgColor-done, var(--color-purple));
+}
+#project-board .project-column[data-column-title="done" i] {
+  --project-column-status-color: var(--color-orange);
+}
+#project-board .project-column-dot {
+  border: 2px solid var(--project-column-color, var(--project-column-status-color, var(--color-text-light-2)));
+  border-radius: 50%;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  height: 14px;
+  width: 14px;
+}
+#project-board .project-column-title-label {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+#project-board .project-column-issue-count {
+  flex-shrink: 0;
+}
+#project-board .project-column-default {
+  color: var(--color-text-light-2);
+  display: inline-flex;
+}
+#project-board .project-column-menu {
+  margin-left: auto;
+}
+#project-board .project-column-menu > .theme-icon-button {
+  height: 28px;
+  width: 28px;
+}
+#project-board .project-column > .cards {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  flex-wrap: nowrap !important;
+  gap: 8px;
+  margin: 0 !important;
+  min-height: 48px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 0 8px 8px !important;
+}
+#project-board .github-project-add-column {
+  flex-shrink: 0;
+}
+
+/* Cards */
+#project-board .issue-card {
+  background: var(--color-box-body);
+  border: 1px solid var(--color-light-border);
+  border-radius: 6px;
+  box-shadow: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  margin: 0;
+  padding: 8px 12px 12px;
+  width: auto;
+}
+#project-board .issue-card.tw-cursor-grab {
+  cursor: pointer;
+}
+#project-board .issue-card:hover {
+  border-color: var(--github-borderColor-emphasis, var(--color-secondary-dark-2));
+}
+#project-board .issue-card[data-project-filtered] {
+  display: none;
+}
+#project-board .issue-card.card-ghost {
+  background: none !important;
+}
+.github-project-card {
+  min-width: 0;
+}
+.github-project-card-meta {
+  align-items: center;
+  color: var(--color-text-light-2);
+  display: flex;
+  font-size: 12px;
+  gap: 4px;
+  line-height: 20px;
+  min-height: 20px;
+}
+.github-project-card-meta .issue-card-icon {
+  display: inline-flex;
+}
+.github-project-card-meta .issue-card-icon > svg {
+  height: 14px;
+  width: 14px;
+}
+.github-project-card-ref {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.github-project-card-assignees {
+  display: flex;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+.github-project-card-assignees > a + a {
+  margin-left: -4px;
+}
+.github-project-card-assignees img {
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px var(--color-box-body);
+  display: block;
+  height: 20px;
+  width: 20px;
+}
+#project-board .github-project-card-title {
+  color: var(--color-text);
+  display: block;
+  font-size: 14px;
+  line-height: 1.3;
+  margin-top: 2px;
+}
+/* GitHub's card menu sits after the reference and shows while the card is hovered, focused or the menu is open. The
+   board script pins its panel to the viewport, outside the scrolling column. */
+@media (hover: hover) {
+  .github-project-card-meta > .theme-dropdown {
+    opacity: 0;
+  }
+}
+#project-board .issue-card:is(:hover, :focus-within) .github-project-card-meta > .theme-dropdown,
+.github-project-card-meta > .theme-dropdown[open] {
+  opacity: 1;
+}
+.github-project-card-meta > .theme-dropdown > summary.theme-control.theme-control-small {
+  color: var(--color-text-light-2);
+  height: 20px;
+  min-height: 20px;
+  width: 24px;
+}
+.github-project-card-meta .theme-dropdown-panel {
+  position: fixed;
+  width: 240px;
+}
+.github-project-card-meta .theme-dropdown-group {
+  color: var(--color-text-light-2);
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 18px;
+  padding: 8px 16px 4px;
+}
+.github-project-card-meta .theme-dropdown-action > span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+#project-board .github-project-card-title:hover {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+.github-project-card .labels-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 8px;
+}
+.github-project-card-details {
+  color: var(--color-text-light-2);
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+  gap: 4px;
+  line-height: 18px;
+  margin-top: 8px;
+}
+.github-project-card-details > * {
+  align-items: flex-start;
+  display: flex;
+  gap: 4px;
+}
+.github-project-card-details svg {
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+.github-project-card-details .text {
+  display: inline-flex;
+}
+
+/* Side panel: the issue page in a frame, sliding in from the right like GitHub's item panel. */
+.github-project-panel {
+  inset: var(--project-panel-top, 0) 0 0;
+  position: fixed;
+  z-index: 1000;
+}
+.github-project-panel[hidden] {
+  display: none;
+}
+.github-project-panel-backdrop {
+  background: var(--color-overlay-backdrop);
+  inset: 0;
+  position: absolute;
+}
+/* A floating sheet with rounded corners. Its buttons sit on the issue title's row, which the embedded page leaves
+   free for them (see the end of this file). */
+.github-project-panel-sheet {
+  background: var(--color-body);
+  border: 1px solid var(--color-light-border);
+  border-radius: 12px;
+  box-shadow: var(--github-shadow-floating-small);
+  inset: 8px 8px 8px auto;
+  max-width: calc(100vw - 16px);
+  overflow: hidden;
+  position: absolute;
+  width: min(1280px, 66vw);
+}
+.github-project-panel-toolbar {
+  align-items: center;
+  display: flex;
+  gap: 4px;
+  position: absolute;
+  right: 24px;
+  top: 24px;
+  z-index: 1;
+}
+.github-project-panel-sheet > iframe {
+  border: 0;
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+/* While an issue loads, hide the frame and show a loader like Forgejo's .is-loading. That class would block the
+   panel's buttons, so the loader is drawn here with Forgejo's spin animation. */
+.github-project-panel[data-loading] .github-project-panel-sheet > iframe {
+  visibility: hidden;
+}
+.github-project-panel[data-loading] .github-project-panel-sheet::after {
+  animation: isloadingspin 1000ms infinite linear;
+  aspect-ratio: 1;
+  border: 4px solid;
+  border-color: var(--color-secondary) var(--color-secondary) var(--color-secondary-dark-8)
+    var(--color-secondary-dark-8);
+  border-radius: var(--border-radius-full);
+  content: "";
+  height: 32px;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.github-project-panel.is-opening .github-project-panel-sheet {
+  animation: github-project-panel-in 200ms cubic-bezier(0.33, 1, 0.68, 1);
+}
+.github-project-panel.is-opening .github-project-panel-backdrop {
+  animation: github-project-backdrop-in 200ms ease-out;
+}
+@keyframes github-project-panel-in {
+  from {
+    transform: translateX(100%);
+  }
+}
+@keyframes github-project-backdrop-in {
+  from {
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .github-project-panel.is-opening :is(.github-project-panel-sheet, .github-project-panel-backdrop),
+  .github-project-panel[data-loading] .github-project-panel-sheet::after {
+    animation: none;
+  }
+}
+@media (max-width: 767.98px) {
+  .github-project-panel-sheet {
+    width: calc(100vw - 16px);
+  }
+}
+
+/* A page opened inside the side panel drops the site chrome. */
+/* Plain selectors: a :is() list on the right would be tested against every element of every page. */
+.github-embedded #navbar,
+.github-embedded #navbar-drawer,
+.github-embedded .repository-tab-nav,
+.github-embedded .secondary-nav,
+.github-embedded .page-footer {
+  display: none !important;
+}
+.github-embedded .page-content {
+  padding-top: 0;
+}
+/* Room for the panel's buttons on the title row. */
+.github-embedded .issue-title-header .issue-title > .button-row {
+  margin-right: 72px;
+}
+/* Organization and user projects mix repositories: name the issue's one next to its state, as GitHub does. */
+.github-issue-repository {
+  display: none;
+}
+.github-embedded-owner .github-issue-repository {
+  align-items: center;
+  border: 1px solid var(--color-light-border);
+  border-radius: 2em;
+  color: var(--color-text-light-2);
+  display: inline-flex;
+  flex-shrink: 0;
+  font-size: 12px;
+  gap: 6px;
+  line-height: 18px;
+  margin-left: 8px;
+  padding: 6px 12px;
+}
+.github-embedded-owner .issue-new-heading {
+  align-items: center;
+  display: flex;
+}
+.github-embedded-owner .github-issue-repository:hover {
+  color: var(--color-text);
+  text-decoration: none;
+}
+.github-issue-repository-private {
+  border: 1px solid var(--color-light-border);
+  border-radius: 2em;
+  font-weight: 500;
+  padding: 0 7px;
+}

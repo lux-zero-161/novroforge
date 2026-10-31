@@ -1,0 +1,188 @@
+/* Home's activity feed: compact rows under day headings, the event's icon in a 24px circle on the left. */
+.theme-feed-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.theme-feed-day {
+  padding: 8px 16px 4px;
+  border-top: 1px solid var(--color-light-border);
+  color: var(--color-text-light-1);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 18px;
+}
+
+.theme-feed-day:first-child {
+  border-top: 0;
+}
+
+.theme-feed-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 8px 16px;
+  border-top: 1px solid var(--color-secondary-alpha-40, var(--color-light-border));
+}
+
+.theme-feed-day + .theme-feed-item {
+  border-top: 0;
+}
+
+.theme-feed-icon {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--color-secondary-alpha-40, var(--color-box-header));
+  color: var(--color-text-light-1);
+}
+
+.theme-feed-icon-issue-opened,
+.theme-feed-icon-git-pull-request {
+  color: var(--github-fgColor-success, var(--color-green));
+}
+
+.theme-feed-icon-issue-closed,
+.theme-feed-icon-git-merge {
+  color: var(--github-fgColor-done, var(--color-purple));
+}
+
+.theme-feed-icon-tag {
+  color: var(--github-borderColor-attention-emphasis, var(--color-yellow));
+}
+
+.theme-feed-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.theme-feed-summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 4px;
+  margin: 2px 0 0;
+  color: var(--color-text-light-1);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.theme-feed-summary > img.ui.avatar {
+  width: 16px;
+  height: 16px;
+  margin-right: 2px;
+  border-radius: 50%;
+}
+
+.theme-feed-summary a {
+  color: var(--color-text);
+}
+
+.theme-feed-summary a:hover {
+  color: var(--github-fgColor-accent);
+}
+
+.theme-feed-actor {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.theme-feed-time {
+  margin-left: auto;
+  padding-left: 8px;
+  color: var(--color-text-light-1);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+/* On a phone the time follows the sentence instead of taking a line of its own. */
+@media (max-width: 767.98px) {
+  .theme-feed-time {
+    margin-left: 0;
+    padding-left: 4px;
+  }
+}
+
+.theme-feed-detail {
+  margin: 2px 0 0;
+  overflow: hidden;
+  color: var(--color-text-light-1);
+  font-size: 12px;
+  line-height: 18px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.theme-feed-title {
+  color: var(--color-text);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+.theme-feed-title a {
+  color: inherit;
+}
+
+.theme-feed-commit {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.theme-feed-sha {
+  flex: none;
+  color: var(--color-text-light-1);
+  font-family: var(--fonts-monospace);
+}
+
+.theme-feed-message {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.theme-feed-message a {
+  color: inherit;
+}
+
+.theme-feed-more {
+  flex: none;
+  color: var(--color-text-light-1);
+}
+
+.theme-feed-comment {
+  display: -webkit-box;
+  max-height: 36px;
+  white-space: normal;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.theme-feed-comment > * {
+  margin: 0 !important;
+  font-size: 12px;
+}
+
+.theme-feed-older {
+  display: block;
+  padding: 8px 16px;
+  border-top: 1px solid var(--color-light-border);
+  color: var(--color-text-light-1);
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.theme-feed-older:hover {
+  color: var(--github-fgColor-accent);
+}
+
+.theme-feed-older[aria-busy="true"] {
+  opacity: 0.6;
+  pointer-events: none;
+}

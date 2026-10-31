@@ -1,3 +1,5 @@
+{{/* Forgejo's patch page in GitHub's file editor: what is patched with the branch, Cancel changes and Commit changes…
+at the top right, the patch in the editor box, and the commit dialog of repo/editor/commit_form. */}}
 {{template "base/head" .}}
 <div role="main" aria-label="{{.Title}}" class="page-content repository file editor edit">
 	{{template "repo/header" .}}
@@ -8,14 +10,13 @@
 			<input type="hidden" name="page_has_posted" value="{{.PageHasPosted}}">
 			<div class="repo-editor-header">
 				<div class="ui breadcrumb field {{if .Err_TreePath}}error{{end}}">
-					{{ctx.Locale.Tr "repo.editor.patching"}}
+					<span class="theme-editor-intro">{{ctx.Locale.Tr "repo.editor.patching"}}</span>
 					<a class="section" href="{{$.RepoLink}}">{{.Repository.FullName}}</a>
-					<div class="breadcrumb-divider">:</div>
-					<a class="section" href="{{$.BranchLink}}">{{.BranchName}}</a>
-					<span>{{ctx.Locale.Tr "repo.editor.or"}} <a href="{{$.BranchLink}}">{{ctx.Locale.Tr "repo.editor.cancel_lower"}}</a></span>
+					{{template "components/repository/editor/branch" .}}
 					<input type="hidden" id="tree_path" name="tree_path" value="patch" required>
 					<input id="file-name" maxlength="500" type="hidden" value="diff.patch">
 				</div>
+				{{template "components/repository/editor/actions" dict "CancelLink" $.BranchLink}}
 			</div>
 			<div class="field">
 				<div id="editor-bar">
@@ -36,7 +37,7 @@
 		</form>
 	</div>
 
-	<dialog class="modal" id="edit-empty-content-modal">
+	<dialog id="edit-empty-content-modal">
 		<article>
 			<header>
 				{{svg "octicon-file"}}

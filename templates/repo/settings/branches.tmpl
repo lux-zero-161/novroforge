@@ -1,3 +1,4 @@
+{{/* Forgejo's branch settings with GitHub's description, inline default-branch form and empty state. */}}
 {{template "repo/settings/layout_head" (dict "ctxData" . "pageClass" "repository settings edit")}}
 	<div class="repo-setting-content">
 		{{if .Repository.IsArchived}}
@@ -9,16 +10,16 @@
 				{{ctx.Locale.Tr "repo.default_branch"}}
 			</h4>
 			<div class="ui attached segment">
-				<p>
+				<p class="theme-settings-description">
 					{{ctx.Locale.Tr "repo.settings.default_branch_desc"}}
 				</p>
-				<form class="tw-flex" action="{{.Link}}" method="post">
+				<form class="ui form theme-settings-inline-form" action="{{.Link}}" method="post">
 					<input type="hidden" name="action" value="default_branch">
 					{{if not .Repository.IsEmpty}}
 						<div class="ui dropdown selection search tw-flex-1 tw-mr-2 tw-max-w-96">
 							{{svg "octicon-triangle-down" 14 "dropdown icon"}}
 							<input type="hidden" name="branch" value="{{.Repository.DefaultBranch}}">
-							<div class="default text">{{.Repository.DefaultBranch}}</div>
+							<div class="text">{{.Repository.DefaultBranch}}</div>
 							<div class="menu">
 								{{range .Branches}}
 									<div class="item" data-value="{{.}}">{{.}}</div>
@@ -38,6 +39,7 @@
 			</h4>
 
 			<div class="ui attached segment">
+				{{if .ProtectedBranches}}
 				<div class="flex-list">
 					{{range .ProtectedBranches}}
 						<div class="flex-item tw-items-center">
@@ -53,12 +55,11 @@
 								</button>
 							</div>
 						</div>
-					{{else}}
-						<div class="flex-item center aligned">
-							{{ctx.Locale.Tr "repo.settings.no_protected_branch"}}
-						</div>
 					{{end}}
 				</div>
+				{{else}}
+					{{template "components/common/settings/blankslate" dict "Title" (ctx.Locale.Tr "repo.settings.no_protected_branch")}}
+				{{end}}
 			</div>
 		{{end}}
 	</div>

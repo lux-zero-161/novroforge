@@ -1,0 +1,5 @@
+<section class="profile-projects">
+<h2 class="profile-subpage-title">{{ctx.Locale.Tr "user.projects"}}</h2>
+{{template "base/alert" .}}
+{{template "components/project/list/list" dict "Data" .}}
+</section>

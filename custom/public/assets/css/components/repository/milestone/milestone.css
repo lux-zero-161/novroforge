@@ -1,0 +1,101 @@
+/* GitHub's milestone row: the title, dates and description on the left; on the right a third of the row for the
+   progress bar, the completion and issue counts, and the writer's Edit, Close and Delete. */
+.theme-milestone-row {
+  align-items: flex-start;
+  gap: 24px;
+  padding: 16px 0;
+}
+
+.theme-milestone-row .theme-box-list-main h3 {
+  font-weight: 600;
+}
+
+.theme-milestone-repo {
+  margin-right: 8px;
+  color: var(--color-text-light-1);
+  font-weight: 400;
+}
+
+.theme-milestone-row .theme-box-list-meta {
+  margin-top: 4px;
+}
+
+.theme-milestone-row .theme-box-list-meta .svg {
+  vertical-align: text-bottom;
+}
+
+.theme-milestone-overdue {
+  color: var(--color-red);
+}
+
+.theme-milestone-row .theme-box-list-description {
+  margin-top: 8px;
+  color: var(--color-text);
+  font-size: 14px;
+  line-height: 21px;
+}
+
+.theme-milestone-progress {
+  flex: 0 0 33%;
+  min-width: 0;
+  padding-top: 4px;
+}
+
+.theme-milestone-stats,
+.theme-milestone-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  margin: 8px 0 0;
+  color: var(--color-text-light-1);
+  font-size: 14px;
+  line-height: 21px;
+}
+
+.theme-milestone-stats strong {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.theme-milestone-actions > a {
+  color: var(--github-fgColor-accent);
+}
+
+.theme-milestone-actions > .theme-milestone-delete {
+  color: var(--color-red);
+}
+
+@media (max-width: 767.98px) {
+  .theme-milestone-row {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .theme-milestone-progress {
+    flex-basis: auto;
+    width: 100%;
+  }
+}
+
+/* One milestone's page: its due date, description and progress between the heading and the issue list. */
+.theme-milestone-summary {
+  margin-bottom: 16px;
+}
+
+.theme-milestone-summary-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  margin: 0 0 8px;
+  color: var(--color-text-light-1);
+  font-size: 14px;
+  line-height: 21px;
+}
+
+.theme-milestone-summary-meta .svg {
+  vertical-align: text-bottom;
+}
+
+.theme-milestone-summary > .markup {
+  margin-bottom: 16px;
+}

@@ -1,22 +1,22 @@
-<div class="ui six wide column">
-	<h4 class="ui top attached header">
-		<strong>{{.Team.Name}}</strong>
-		<div class="ui right">
-			{{if .Team.IsMember ctx $.SignedUser.ID}}
-				<form>
-					<button class="ui red tiny button delete-button" data-modal-id="leave-team-sidebar"
-						data-url="{{.OrgLink}}/teams/{{.Team.LowerName | PathEscape}}/action/leave" data-datauid="{{$.SignedUser.ID}}"
-						data-name="{{.Team.Name}}">{{ctx.Locale.Tr "org.teams.leave"}}</button>
-				</form>
-			{{else if .IsOrganizationOwner}}
-				<form method="post" action="{{.OrgLink}}/teams/{{.Team.LowerName | PathEscape}}/action/join">
-					<input type="hidden" name="page" value="team">
-					<button type="submit" class="ui primary tiny button" name="uid" value="{{$.SignedUser.ID}}">{{ctx.Locale.Tr "org.teams.join"}}</button>
-				</form>
-			{{end}}
-		</div>
-	</h4>
-	<div class="ui attached table segment detail">
+{{/* Forgejo 17's team summary as a GitHub sidebar: the team's name with Leave or Join, its description and
+permissions, then Settings as a default button. */}}
+<div class="ui six wide column theme-team-sidebar">
+	<div class="theme-team-header">
+		<h2>{{.Team.Name}}</h2>
+		{{if .Team.IsMember ctx $.SignedUser.ID}}
+			<form>
+				<button class="ui button theme-control theme-control-small theme-team-leave delete-button" data-modal-id="leave-team-sidebar"
+					data-url="{{.OrgLink}}/teams/{{.Team.LowerName | PathEscape}}/action/leave" data-datauid="{{$.SignedUser.ID}}"
+					data-name="{{.Team.Name}}">{{ctx.Locale.Tr "org.teams.leave"}}</button>
+			</form>
+		{{else if .IsOrganizationOwner}}
+			<form method="post" action="{{.OrgLink}}/teams/{{.Team.LowerName | PathEscape}}/action/join">
+				<input type="hidden" name="page" value="team">
+				<button type="submit" class="ui primary button theme-control theme-control-small" name="uid" value="{{$.SignedUser.ID}}">{{ctx.Locale.Tr "org.teams.join"}}</button>
+			</form>
+		{{end}}
+	</div>
+	<div class="theme-team-detail">
 		<div class="item">
 			{{if .Team.Description}}
 				{{.Team.Description}}
@@ -45,7 +45,7 @@
 				{{if (eq .Team.AccessMode 3)}}
 					{{ctx.Locale.Tr "org.teams.admin_permission_desc"}}
 				{{else}}
-					<table class="ui table">
+					<table class="ui unstackable table">
 						<thead>
 							<tr>
 								<th>{{ctx.Locale.Tr "units.unit"}}</th>
@@ -74,9 +74,7 @@
 		{{end}}
 	</div>
 	{{if .IsOrganizationOwner}}
-		<div class="ui bottom attached segment">
-			<a class="ui teal small button" href="{{.OrgLink}}/teams/{{.Team.LowerName | PathEscape}}/edit">{{svg "octicon-gear"}} {{ctx.Locale.Tr "org.teams.settings"}}</a>
-		</div>
+		<a class="ui button theme-control theme-team-settings" href="{{.OrgLink}}/teams/{{.Team.LowerName | PathEscape}}/edit">{{svg "octicon-gear" 16}}{{ctx.Locale.Tr "org.teams.settings"}}</a>
 	{{end}}
 </div>
 <div class="ui g-modal-confirm delete modal" id="leave-team-sidebar">

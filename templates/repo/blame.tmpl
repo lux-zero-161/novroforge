@@ -1,3 +1,6 @@
+{{/* GitHub's blame view in the theme's code view: the file header with the Code and Blame switch and the age legend,
+then per hunk the commit's date, author and title, a button to the blame before that commit and an age bar beside
+the line numbers. blame-age.js colours the bars from the hunks' dates. */}}
 {{if or .UsesIgnoreRevs .FaultyIgnoreRevsFile}}
 	{{$revsFileLink := URLJoin .RepoLink "src" .BranchNameSubURL "/.git-blame-ignore-revs"}}
 	{{if .UsesIgnoreRevs}}
@@ -10,24 +13,36 @@
 		</div>
 	{{end}}
 {{end}}
-<div class="{{TabSizeClass .Editorconfig .FileName}} non-diff-file-content">
+{{$escaped := and .EscapeStatus .EscapeStatus.Escaped}}
+<div class="{{TabSizeClass .Editorconfig .FileName}} non-diff-file-content theme-blame">
 	<h4 class="file-header ui top attached header tw-flex tw-items-center tw-justify-between tw-flex-wrap">
-		<div class="file-header-left tw-flex tw-items-center tw-py-2 tw-pr-4">
+		<div class="file-header-left tw-flex tw-items-center tw-pr-4 tw-flex-wrap tw-gap-2">
+			<nav class="repo-file-view-tabs" aria-label="{{ctx.Locale.Tr "repo.code"}}">
+				<a href="{{.RepoLink}}/src/{{.BranchNameSubURL}}/{{.TreePath | PathEscapeSegments}}">{{ctx.Locale.Tr "repo.code"}}</a>
+				<a class="active" aria-current="page" href="{{.RepoLink}}/blame/{{.BranchNameSubURL}}/{{.TreePath | PathEscapeSegments}}">{{ctx.Locale.Tr "repo.blame"}}</a>
+			</nav>
 			{{template "repo/file_info" .}}
 		</div>
 		<div class="file-header-right file-actions tw-flex tw-items-center tw-flex-wrap">
+			{{if .BlameRows}}
+				<div class="theme-blame-legend" aria-hidden="true">
+					<span>{{ctx.Locale.Tr "issues.search.sort.oldest"}}</span>
+					<span class="theme-blame-legend-scale"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span>
+					<span>{{ctx.Locale.Tr "issues.search.sort.latest"}}</span>
+				</div>
+			{{end}}
 			<div class="ui buttons">
-				<a class="ui tiny button" href="{{$.RawFileLink}}">{{ctx.Locale.Tr "repo.file_raw"}}</a>
+				<a class="ui mini basic button" href="{{$.RawFileLink}}">{{ctx.Locale.Tr "repo.file_raw"}}</a>
 				{{if not .IsViewCommit}}
-					<a class="ui tiny button" href="{{.RepoLink}}/src/commit/{{.CommitID | PathEscape}}/{{.TreePath | PathEscapeSegments}}">{{ctx.Locale.Tr "repo.file_permalink"}}</a>
+					<a class="ui mini basic button" href="{{.RepoLink}}/src/commit/{{.CommitID | PathEscape}}/{{.TreePath | PathEscapeSegments}}">{{ctx.Locale.Tr "repo.file_permalink"}}</a>
 				{{end}}
-				<a class="ui tiny button" href="{{.RepoLink}}/src/{{.BranchNameSubURL}}/{{.TreePath | PathEscapeSegments}}">{{ctx.Locale.Tr "repo.normal_view"}}</a>
-				<a class="ui tiny button" href="{{.RepoLink}}/commits/{{.BranchNameSubURL}}/{{.TreePath | PathEscapeSegments}}">{{ctx.Locale.Tr "repo.file_history"}}</a>
-				{{if $.EscapeStatus.Escaped}}
-					<button class="ui tiny button unescape-button">{{ctx.Locale.Tr "repo.unescape_control_characters"}}</button>
-					<button class="ui tiny button escape-button tw-hidden">{{ctx.Locale.Tr "repo.escape_control_characters"}}</button>
+				{{if $escaped}}
+					<button class="ui mini basic button unescape-button">{{ctx.Locale.Tr "repo.unescape_control_characters"}}</button>
+					<button class="ui mini basic button escape-button tw-hidden">{{ctx.Locale.Tr "repo.escape_control_characters"}}</button>
 				{{end}}
 			</div>
+			<a class="ui mini basic button theme-blame-history" href="{{.RepoLink}}/commits/{{.BranchNameSubURL}}/{{.TreePath | PathEscapeSegments}}">{{svg "octicon-history" 16}}{{ctx.Locale.Tr "repo.file_history"}}</a>
+			<a download class="btn-octicon" href="{{$.RawFileLink}}" data-tooltip-content="{{ctx.Locale.Tr "repo.download_file"}}" aria-label="{{ctx.Locale.Tr "repo.download_file"}}">{{svg "octicon-download"}}</a>
 		</div>
 	</h4>
 	<div class="ui bottom attached table unstackable segment">
@@ -44,27 +59,20 @@
 			<table>
 				<tbody>
 					{{range $row := .BlameRows}}
-						<tr class="{{if and (gt $.CommitCnt 1) ($row.CommitMessage)}}top-line-blame{{end}}">
+						<tr class="{{if and (gt $.CommitCnt 1) $row.CommitURL}}top-line-blame{{end}}">
 							<td class="lines-commit">
-								<div class="blame-info">
-									<div class="blame-data">
-										<div class="blame-avatar">
-											{{$row.Avatar}}
-										</div>
-										<div class="blame-message">
-											<a class="suppressed tw-text-text" href="{{$row.CommitURL}}" title="{{$row.CommitMessage}}">
-												{{template "repo/commit_message" dict "root" . "commitMessage" $row.CommitMessage "commitURL" $row.CommitURL}}
-											</a>
-										</div>
-										<div class="blame-time not-mobile">
-											{{$row.CommitSince}}
-										</div>
+								{{if $row.CommitURL}}
+									{{$subject := index (StringUtils.Cut $row.CommitMessage "\n") 0}}
+									<div class="blame-info">
+										<span class="blame-time">{{$row.CommitSince}}</span>
+										<span class="blame-avatar">{{$row.Avatar}}</span>
+										<a class="blame-message" href="{{$row.CommitURL}}" title="{{$row.CommitMessage}}">{{if $subject}}{{$subject}}{{else}}<i>{{ctx.Locale.Tr "repo.empty_commit_message"}}</i>{{end}}</a>
 									</div>
-								</div>
+								{{end}}
 							</td>
 							<td class="lines-blame-btn">
 								{{if $row.PreviousSha}}
-									<a role="button" class="muted" href="{{$row.PreviousShaURL}}" data-tooltip-content='{{ctx.Locale.Tr "repo.blame_prior"}}'>
+									<a role="button" class="muted" href="{{$row.PreviousShaURL}}" data-tooltip-content="{{ctx.Locale.Tr "repo.blame_prior"}}" aria-label="{{ctx.Locale.Tr "repo.blame_prior"}}">
 										{{svg "octicon-versions"}}
 									</a>
 								{{end}}
@@ -72,7 +80,7 @@
 							<td class="lines-num">
 								<span id="L{{$row.RowNumber}}" data-line-number="{{$row.RowNumber}}"></span>
 							</td>
-							{{if $.EscapeStatus.Escaped}}
+							{{if $escaped}}
 								<td class="lines-escape">
 									{{if $row.EscapeStatus.Escaped}}
 										<button class="toggle-escape-button btn interact-bg" title="{{template "repo/diff/escape_title" dict "diff" $row}}"></button>
@@ -96,3 +104,4 @@
 		</div>
 	</div>
 </div>
+<script src="{{AssetUrlPrefix}}/js/blame-age.js?v=6e0831ac9d" defer></script>

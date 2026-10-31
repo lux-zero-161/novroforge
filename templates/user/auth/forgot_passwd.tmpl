@@ -1,11 +1,12 @@
+{{/* Forgejo 17's password recovery page in the sign-in page's layout: the logo and title over the form. */}}
 {{template "base/head" .}}
 <div role="main" aria-label="{{.Title}}" class="page-content user forgot password">
-	<div class="ui middle very relaxed page grid">
-		<div class="column">
+	<div class="registration-panel">
 			<form class="ui form ignore-dirty" action="{{.Link}}" method="post">
-				<h2 class="ui top attached header">
-					{{ctx.Locale.Tr "auth.forgot_password_title"}}
-				</h2>
+				<div class="signin-branding">
+					<img class="signin-logo" width="48" height="48" src="{{AssetUrlPrefix}}/img/logo.svg" alt="{{ctx.Locale.Tr "logo"}}">
+					<h1 class="signin-title">{{ctx.Locale.Tr "auth.forgot_password_title"}}</h1>
+				</div>
 				<div class="ui attached segment">
 					{{template "base/alert" .}}
 					{{if .IsResetSent}}
@@ -32,7 +33,6 @@
 					{{end}}
 				</div>
 			</form>
-		</div>
 	</div>
 </div>
 {{template "base/footer" .}}

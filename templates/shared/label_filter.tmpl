@@ -1,3 +1,4 @@
+{{- /* Forgejo's label filter, with the labels as components/repository/label/label. */ -}}
 <!-- Label -->
 <div class="ui {{if not .Labels}}disabled{{end}} dropdown jump item label-filter">
 	<span class="text">
@@ -40,7 +41,7 @@
 					{{end}}
 				{{end}}
 				<a rel="nofollow" class="label-filter-item tw-flex tw-items-center tw-flex-1" {{if .IsArchived}}data-is-archived{{end}} href="?q={{$.Keyword}}&type={{$.ViewType}}&sort={{$.SortType}}&labels={{.QueryString}}&state={{$.State}}&milestone={{$.MilestoneID}}&project={{$.ProjectID}}&assignee={{$.AssigneeID}}&poster={{$.PosterID}}{{if $.ShowArchivedLabels}}&archived=true{{end}}" data-label-id="{{.ID}}">
-					{{RenderLabel ctx .}}
+					{{template "components/repository/label/label" .}}
 				</a>
 				{{template "repo/issue/labels/label_archived" .}}
 

@@ -1,3 +1,5 @@
+{{/* GitHub's team members: the user search and Add team member above a box that counts the members, with a row per
+member (avatar, name and username, Remove for owners), then Forgejo's invitations. */}}
 {{template "base/head" .}}
 <div role="main" aria-label="{{.Title}}" class="page-content organization teams">
 	{{template "org/header" .}}
@@ -8,56 +10,54 @@
 			<div class="ui ten wide column">
 				{{template "org/team/navbar" .}}
 				{{if .IsOrganizationOwner}}
-					<div class="ui attached segment">
-						<form class="ui form ignore-dirty tw-flex tw-flex-wrap tw-gap-2" action="{{$.OrgLink}}/teams/{{$.Team.LowerName | PathEscape}}/action/add" method="post">
-							<input type="hidden" name="uid" value="{{.SignedUser.ID}}">
-							<div id="search-user-box" class="ui search tw-mr-2"{{if .IsEmailInviteEnabled}} data-allow-email="true" data-allow-email-description="{{ctx.Locale.Tr "org.teams.invite_team_member" $.Team.Name}}"{{end}}>
-								<div class="ui input">
-									<input class="prompt" name="uname" placeholder="{{ctx.Locale.Tr "search.user_kind"}}" autocomplete="off" required>
-								</div>
+					<form class="ui form ignore-dirty theme-box-list-toolbar theme-team-toolbar" action="{{$.OrgLink}}/teams/{{$.Team.LowerName | PathEscape}}/action/add" method="post">
+						<input type="hidden" name="uid" value="{{.SignedUser.ID}}">
+						<div id="search-user-box" class="ui search theme-team-search"{{if .IsEmailInviteEnabled}} data-allow-email="true" data-allow-email-description="{{ctx.Locale.Tr "org.teams.invite_team_member" $.Team.Name}}"{{end}}>
+							<div class="ui input">
+								<input class="prompt" name="uname" placeholder="{{ctx.Locale.Tr "search.user_kind"}}" aria-label="{{ctx.Locale.Tr "search.user_kind"}}" autocomplete="off" required>
 							</div>
-							<button class="ui primary button">
-								{{if $.AddMembersByInvitations}}
-									{{ctx.Locale.Tr "members.invite_team_member"}}
-								{{else}}
-									{{ctx.Locale.Tr "org.teams.add_team_member"}}
-								{{end}}
-							</button>
-						</form>
-					</div>
+						</div>
+						<button class="ui primary button theme-control">
+							{{if $.AddMembersByInvitations}}
+								{{ctx.Locale.Tr "members.invite_team_member"}}
+							{{else}}
+								{{ctx.Locale.Tr "org.teams.add_team_member"}}
+							{{end}}
+						</button>
+					</form>
 				{{end}}
-				<div class="ui attached segment">
-					<div class="flex-list">
-						{{range $.Memberships}}
-							<div class="flex-item tw-items-center">
-								<div class="flex-item-leading">
-									<a href="{{.User.HomeLink}}">{{ctx.AvatarUtils.Avatar .User 32}}</a>
-								</div>
-								<div class="flex-item-main">
-									<div class="flex-item-title">
-										{{template "shared/user/name" .User}}
-									</div>
-									{{template "org/team/membership_origin" .}}
-								</div>
-								<div class="flex-item-trailing">
-									{{if and $.IsOrganizationOwner (not (and ($.Team.IsOwnerTeam) (eq (len $.Team.Members) 1)))}}
-										<form>
-											<button class="danger button delete-button" data-modal-id="remove-team-member"
-												data-url="{{$.OrgLink}}/teams/{{$.Team.LowerName | PathEscape}}/action/remove" data-datauid="{{.User.ID}}"
-												data-name="{{.User.DisplayName}}"
-												data-data-team-name="{{$.Team.Name}}">{{ctx.Locale.Tr "org.members.remove"}}</button>
-										</form>
-									{{end}}
-								</div>
-							</div>
-						{{else}}
-							<div class="flex-item">
-								<span class="text grey tw-italic">{{ctx.Locale.Tr "org.teams.members.none"}}</span>
-							</div>
-						{{end}}
+				<div class="theme-box-list theme-team-list">
+					<div class="theme-box-list-header">
+						<h2 class="theme-box-list-title">{{ctx.Locale.Tr "org.members"}} <span class="theme-counter">{{ctx.Locale.PrettyNumber .Team.NumMembers}}</span></h2>
 					</div>
-					{{template "base/paginate" .}}
+					{{if .Team.Members}}
+					<ul class="theme-box-list-rows">
+						{{range .Team.Members}}
+							<li class="theme-box-list-row theme-team-row">
+								<a href="{{.HomeLink}}">{{ctx.AvatarUtils.Avatar . 32}}</a>
+								<div class="theme-box-list-main">
+									<h3><a href="{{.HomeLink}}">{{.DisplayName}}</a></h3>
+									{{if .FullName}}<p class="theme-box-list-meta">{{.Name}}</p>{{end}}
+								</div>
+								{{if and $.IsOrganizationOwner (not (and ($.Team.IsOwnerTeam) (eq (len $.Team.Members) 1)))}}
+									<form>
+										<button class="ui red button theme-control theme-control-small delete-button" data-modal-id="remove-team-member"
+											data-url="{{$.OrgLink}}/teams/{{$.Team.LowerName | PathEscape}}/action/remove" data-datauid="{{.ID}}"
+											data-name="{{.DisplayName}}"
+											data-data-team-name="{{$.Team.Name}}">{{ctx.Locale.Tr "org.members.remove"}}</button>
+									</form>
+								{{end}}
+							</li>
+						{{end}}
+					</ul>
+					{{else}}
+					<div class="theme-empty theme-empty-compact">
+						{{svg "octicon-people" 24}}
+						<h3>{{ctx.Locale.Tr "org.teams.members.none"}}</h3>
+					</div>
+					{{end}}
 				</div>
+				{{template "base/paginate" .}}
 				{{if and .PendingInvites $.IsOrganizationOwner}}
 				<h4 class="ui top attached header">{{ctx.Locale.Tr "org.teams.invite_team_member.list"}}</h4>
 				<div class="ui attached segment">

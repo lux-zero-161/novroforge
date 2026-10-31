@@ -1,17 +1,17 @@
 {{template "base/head" .}}
 <div role="main" aria-label="{{.Title}}" class="page-content repository new migrate">
 	<div class="ui container">
-		<h2 class="tw-mt-4">{{ctx.Locale.Tr "migrate.select.title"}}</h1>
+		{{template "components/common/form/header" dict "Title" (ctx.Locale.Tr "migrate.select.title")}}
 		{{template "repo/migrate/helper" .}}
 		<div class="migrate-entries">
 			{{range .Services}}
-				<a class="migrate-entry tw-items-center" href="{{AppSubUrl}}/repo/migrate?service_type={{.}}&org={{$.Org}}&mirror={{$.Mirror}}">
+				<a class="migrate-entry" href="{{AppSubUrl}}/repo/migrate?service_type={{.}}&org={{$.Org}}&mirror={{$.Mirror}}">
 					{{if eq .Name "github"}}
-						{{svg "octicon-mark-github" 184}}
+						{{svg "octicon-mark-github" 32}}
 					{{else if eq .Name "bitbucketdc"}}
-						{{svg "bitbucketdc" 184}}
+						{{svg "bitbucketdc" 32}}
 					{{else}}
-						{{svg (printf "gitea-%s" .Name) 184}}
+						{{svg (printf "gitea-%s" .Name) 32}}
 					{{end}}
 					<div class="content">
 						<h3>

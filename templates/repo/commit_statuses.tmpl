@@ -1,6 +1,11 @@
 {{if .Statuses}}
 	{{if and (eq (len .Statuses) 1) .Status.TargetURL}}
-		<a class="tw-align-middle {{.AdditionalClasses}} tw-no-underline" data-tippy="commit-statuses" href="{{.Status.TargetURL}}">
+		{{$label := ""}}
+		{{if .StatusLabel}}
+			{{/* GitHub names the overall result; Forgejo's merge box has the same sentences. */}}
+			{{if eq .Status.State "pending"}}{{$label = ctx.Locale.Tr "repo.pulls.status_checking"}}{{else if eq .Status.State "success"}}{{$label = ctx.Locale.Tr "repo.pulls.status_checks_success"}}{{else if eq .Status.State "warning"}}{{$label = ctx.Locale.Tr "repo.pulls.status_checks_warning"}}{{else if eq .Status.State "failure"}}{{$label = ctx.Locale.Tr "repo.pulls.status_checks_failure"}}{{else if eq .Status.State "error"}}{{$label = ctx.Locale.Tr "repo.pulls.status_checks_error"}}{{end}}
+		{{end}}
+		<a class="tw-align-middle {{.AdditionalClasses}} tw-no-underline" data-tippy="commit-statuses" href="{{.Status.TargetURL}}"{{if $label}} aria-label="{{$label}}"{{end}}>
 			{{template "repo/commit_status" .Status}}
 		</a>
 	{{else}}

@@ -1,0 +1,83 @@
+/* GitHub's dashboard context: a 32px avatar, the account's name over what it is, and the switch button on the right. */
+.theme-dashboard-context {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+}
+
+.theme-dashboard-context > img.ui.avatar {
+  flex: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+.theme-dashboard-context-title {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.theme-dashboard-context-title > a {
+  overflow: hidden;
+  color: var(--color-text);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.theme-dashboard-context-title > span {
+  color: var(--color-text-light-1);
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.theme-dashboard-context > .theme-dropdown > summary.theme-control {
+  color: var(--color-text-light-1);
+}
+
+.theme-dashboard-context .theme-dropdown-panel {
+  width: 280px;
+}
+
+.theme-dashboard-context-item > img.ui.avatar {
+  flex: none;
+  border-radius: 50%;
+}
+
+.theme-dashboard-context-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 4px;
+  padding: 8px;
+  border-top: 1px solid var(--color-light-border);
+}
+
+.theme-dashboard-context-actions > .button {
+  justify-content: center;
+}
+
+/* An organization's team filter, under its name. */
+.theme-dashboard-team {
+  padding: 0 8px 8px;
+}
+
+.theme-dashboard-team > .theme-dropdown > summary.theme-control {
+  width: 100%;
+  justify-content: flex-start;
+}
+
+/* Label on the left, caret at the right edge, as GitHub's full-width select buttons. */
+.theme-dashboard-team > .theme-dropdown > summary.theme-control > span {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

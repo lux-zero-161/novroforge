@@ -3,16 +3,18 @@
 	{{template "org/header" .}}
 	<div class="ui container">
 		{{template "base/alert" .}}
+		<div class="org-page-toolbar">
+		<h1 class="org-page-title">{{ctx.Locale.Tr "org.teams"}}</h1>
 		{{if .IsOrganizationOwner}}
 			<div class="text right">
 				<a class="ui primary button" href="{{.OrgLink}}/teams/new">{{svg "octicon-plus"}} {{ctx.Locale.Tr "org.create_new_team"}}</a>
 			</div>
-			<div class="divider"></div>
 		{{end}}
+		</div>
 
-		<div class="ui two column stackable grid">
+		<div class="org-team-list">
 			{{range .Teams}}
-				<div class="column">
+				<div class="org-team-card">
 					<div class="ui top attached header">
 						{{if or (index $.DoerIsMember .ID) $.IsOrganizationOwner}}
 							<a class="text black" href="{{$.OrgLink}}/teams/{{.LowerName | PathEscape}}"><strong>{{.Name}}</strong></a>
@@ -36,6 +38,7 @@
 							{{end}}
 						</div>
 					</div>
+					{{/* Only the team's members and the owners see who is in it; the others get its description. */}}
 					{{if or (index $.DoerIsMember .ID) $.IsOrganizationOwner}}
 					<div class="ui attached segment members">
 						{{range .Members}}
@@ -46,7 +49,7 @@
 						<p class="team-meta"><a class="muted" href="{{$.OrgLink}}/teams/{{.LowerName | PathEscape}}">{{.NumMembers}} {{ctx.Locale.Tr "org.lower_members"}}</a> · <a class="muted" href="{{$.OrgLink}}/teams/{{.LowerName | PathEscape}}/repositories">{{.NumRepos}} {{ctx.Locale.Tr "org.lower_repositories"}}</a></p>
 					</div>
 					{{else}}
-					<div class="ui attached segment">
+					<div class="ui attached segment team-description">
 						{{if .Description}}
 							{{.Description}}
 						{{else}}

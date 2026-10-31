@@ -1,16 +1,14 @@
 {{with .Repository}}
 {{if and (not .IsEmpty) ($.Permission.CanRead $.UnitTypeCode)}}
-	<div class="ui labeled button
-		{{if or (not $.IsSigned) (and (not $.CanSignedUserFork) (not $.UserAndOrgForks))}}
-			disabled
-		{{end}}"
-		{{if not $.IsSigned}}
-			data-tooltip-content="{{ctx.Locale.Tr "repo.fork_guest_user"}}"
-		{{else if and (not $.CanSignedUserFork) (not $.UserAndOrgForks)}}
-			data-tooltip-content="{{ctx.Locale.Tr "repo.fork_from_self"}}"
-		{{end}}
-	>
-		<a class="ui compact{{if $.ShowForkModal}} show-modal{{end}} small basic button"
+	{{/* GitHub's Fork button: the count inside, and a menu for existing forks and a new fork beside it. */}}
+	{{$disabled := or (not $.IsSigned) (and (not $.CanSignedUserFork) (not $.UserAndOrgForks))}}
+	<div class="theme-control-split repo-header-fork">
+		<a class="button theme-control theme-control-small repo-header-control{{if $.ShowForkModal}} show-modal{{end}}{{if $disabled}} disabled{{end}}"
+			{{if not $.IsSigned}}
+				data-tooltip-content="{{ctx.Locale.Tr "repo.fork_guest_user"}}"
+			{{else if and (not $.CanSignedUserFork) (not $.UserAndOrgForks)}}
+				data-tooltip-content="{{ctx.Locale.Tr "repo.fork_from_self"}}"
+			{{end}}
 			{{if not $.CanSignedUserFork}}
 				{{if gt (len $.UserAndOrgForks) 1}}
 					href="#" data-modal="#fork-repo-modal"
@@ -25,8 +23,10 @@
 			{{end}}
 		>
 			{{svg "octicon-repo-forked"}}<span class="text not-mobile">{{ctx.Locale.Tr "repo.fork"}}</span>
+			<span class="theme-counter theme-counter-tab" aria-label="{{ctx.Locale.TrPluralString .NumForks "fork.n_forks" (printf "%d" .NumForks)}}">{{CountFmt .NumForks}}</span>
 		</a>
-		<dialog class="modal" id="fork-repo-modal">
+		{{template "components/common/dropdown/dropdown" dict "Kind" "actions" "Icon" "octicon-triangle-down" "IconOnly" true "Small" true "Label" (ctx.Locale.Tr "repo.forks") "Items" "repo/header_fork_menu" "Data" $}}
+		<dialog id="fork-repo-modal">
 			<article>
 				<header>{{ctx.Locale.Tr "repo.already_forked" .Name}}</header>
 				<div class="content tw-text-left">
@@ -44,11 +44,6 @@
 				</div>
 			</article>
 		</dialog>
-		<a class="ui basic label" href="{{.Link}}/forks"
-			aria-label="{{ctx.Locale.TrPluralString .NumForks "fork.n_forks" (printf "%d" .NumForks)}}"
-			>
-			{{CountFmt .NumForks}}
-		</a>
 	</div>
 {{end}}
 {{end}}

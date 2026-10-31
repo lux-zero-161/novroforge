@@ -1,13 +1,17 @@
+{{/* GitHub's branch protection rule: the title in one line (the branch name stays inside it), the options that depend
+	on the one above them indented under its title (theme-settings-nested), and the recent status checks in a box. */}}
 {{template "repo/settings/layout_head" (dict "ctxData" . "pageClass" "repository settings branches")}}
 	<div class="repo-setting-content">
 		<h4 class="ui top attached header">
+			<span>
 			{{if .Rule.RuleName}}
 				{{ctx.Locale.Tr "repo.settings.branch_protection" .Rule.RuleName}}
 			{{else}}
 				{{ctx.Locale.Tr "repo.settings.protect_new_rule"}}
 			{{end}}
+			</span>
 		</h4>
-		<form class="ui form attached segment" action="{{.Link}}" method="post">
+		<form class="ui form attached segment theme-settings-branch-rule" action="{{.Link}}" method="post">
 			<input name="rule_id" type="hidden" value="{{.Rule.ID}}">
 			<fieldset class="branch-protection">
 				<legend>{{ctx.Locale.Tr "repo.settings.protect_patterns"}}</legend>
@@ -42,7 +46,7 @@
 					{{ctx.Locale.Tr "repo.settings.protect_whitelist_committers"}}
 					<span class="help">{{ctx.Locale.Tr "repo.settings.protect_whitelist_committers_desc"}}</span>
 				</label>
-					<div id="whitelist_box" class="grouped fields {{if not .Rule.EnableWhitelist}}disabled{{end}}">
+					<div id="whitelist_box" class="grouped fields theme-settings-nested {{if not .Rule.EnableWhitelist}}disabled{{end}}">
 						<div class="checkbox-sub-item field">
 							<label>{{ctx.Locale.Tr "repo.settings.protect_whitelist_users"}}</label>
 							<div class="ui multiple search selection dropdown">
@@ -100,7 +104,7 @@
 						{{ctx.Locale.Tr "repo.settings.protect_approvals_whitelist_enabled"}}
 						<span class="help">{{ctx.Locale.Tr "repo.settings.protect_approvals_whitelist_enabled_desc"}}</span>
 					</label>
-					<div id="approvals_whitelist_box" class="grouped fields {{if not .Rule.EnableApprovalsWhitelist}}disabled{{end}}">
+					<div id="approvals_whitelist_box" class="grouped fields theme-settings-nested {{if not .Rule.EnableApprovalsWhitelist}}disabled{{end}}">
 						<div class="checkbox-sub-item field">
 							<label>{{ctx.Locale.Tr "repo.settings.protect_approvals_whitelist_users"}}</label>
 							<div class="ui multiple search selection dropdown">
@@ -139,7 +143,7 @@
 					{{ctx.Locale.Tr "repo.settings.dismiss_stale_approvals"}}
 					<span class="help">{{ctx.Locale.Tr "repo.settings.dismiss_stale_approvals_desc"}}</span>
 				</label>
-				<div id="ignore_stale_approvals_box" class="field {{if .Rule.DismissStaleApprovals}}disabled{{end}}">
+				<div id="ignore_stale_approvals_box" class="field theme-settings-nested {{if .Rule.DismissStaleApprovals}}disabled{{end}}">
 					<div class="ui checkbox">
 						<input id="ignore_stale_approvals" name="ignore_stale_approvals" type="checkbox" {{if .Rule.IgnoreStaleApprovals}}checked{{end}}>
 						<label>{{ctx.Locale.Tr "repo.settings.ignore_stale_approvals"}}</label>
@@ -154,11 +158,11 @@
 							<p class="help">{{ctx.Locale.Tr "repo.settings.protect_check_status_contexts_desc"}}</p>
 						</div>
 					</div>
-					<div id="statuscheck_contexts_box" class="checkbox-sub-item field {{if not .Rule.EnableStatusCheck}}disabled{{end}}">
+					<div id="statuscheck_contexts_box" class="checkbox-sub-item field theme-settings-nested {{if not .Rule.EnableStatusCheck}}disabled{{end}}">
 						<label>{{ctx.Locale.Tr "repo.settings.protect_status_check_patterns"}}</label>
 						<textarea id="status_check_contexts" name="status_check_contexts" rows="3">{{.status_check_contexts}}</textarea>
 						<p class="help">{{ctx.Locale.Tr "repo.settings.protect_status_check_patterns_desc"}}</p>
-						<table class="ui celled table">
+						<table class="ui celled table theme-settings-table">
 							<thead>
 								<tr>
 									<th>{{ctx.Locale.Tr "repo.settings.protect_check_status_contexts_list"}}</th>
@@ -197,7 +201,7 @@
 							<p class="help">{{ctx.Locale.Tr "repo.settings.protect_merge_whitelist_committers_desc"}}</p>
 						</div>
 					</div>
-					<div id="merge_whitelist_box" class="grouped fields {{if not .Rule.EnableMergeWhitelist}}disabled{{end}}">
+					<div id="merge_whitelist_box" class="grouped fields theme-settings-nested {{if not .Rule.EnableMergeWhitelist}}disabled{{end}}">
 						<div class="checkbox-sub-item field">
 							<label>{{ctx.Locale.Tr "repo.settings.protect_merge_whitelist_users"}}</label>
 							<div class="ui multiple search selection dropdown">

@@ -1,0 +1,120 @@
+/* Home's work rail: a stack of boxes in the shared box-list style, each with up to three rows and View all. */
+.theme-work {
+  display: flex;
+  position: sticky;
+  top: 16px;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+.theme-work[hidden],
+.theme-work-panel[hidden] {
+  display: none;
+}
+
+.theme-work-panel > .theme-box-list-header {
+  min-height: 40px;
+  padding: 0 16px;
+}
+
+.theme-work-panel > .theme-box-list-header > h2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+.theme-work-panel > .theme-box-list-header > h2 > .svg {
+  flex: none;
+  color: var(--color-text-light-1);
+}
+
+.theme-work-rows {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.theme-work-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 8px 16px;
+}
+
+.theme-work-row + .theme-work-row {
+  border-top: 1px solid var(--color-secondary-alpha-40, var(--color-light-border));
+}
+
+.theme-work-icon {
+  flex: none;
+  margin-top: 2px;
+  color: var(--color-text-light-1);
+}
+
+.theme-work-icon-open {
+  color: var(--github-fgColor-success, var(--color-green));
+}
+
+.theme-work-icon-overdue {
+  color: var(--color-red);
+}
+
+.theme-work-icon-tag {
+  color: var(--github-borderColor-attention-emphasis, var(--color-yellow));
+}
+
+.theme-work-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.theme-work-title {
+  display: block;
+  overflow: hidden;
+  color: var(--color-text);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.theme-work-title:hover {
+  color: var(--github-fgColor-accent);
+}
+
+.theme-work-meta {
+  margin: 0;
+  overflow: hidden;
+  color: var(--color-text-light-1);
+  font-size: 12px;
+  line-height: 18px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.theme-work-progress {
+  display: block;
+  width: 100%;
+  height: 6px;
+  margin-top: 6px;
+}
+
+.theme-work-all {
+  display: block;
+  padding: 8px 16px;
+  border-top: 1px solid var(--color-light-border);
+  color: var(--color-text-light-1);
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.theme-work-all:hover {
+  color: var(--github-fgColor-accent);
+}

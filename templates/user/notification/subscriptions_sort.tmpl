@@ -1,0 +1,9 @@
+{{$query := print "?state=" .State "&issueType=" .IssueType "&labels=" .Labels}}
+<a class="theme-dropdown-action" href="{{$query}}&sort=latest"{{if or (eq .SortType "latest") (not .SortType)}} aria-current="true"{{end}}>{{svg "octicon-check" 16 "theme-box-list-check"}}{{ctx.Locale.Tr "issues.search.sort.latest"}}</a>
+<a class="theme-dropdown-action" href="{{$query}}&sort=oldest"{{if eq .SortType "oldest"}} aria-current="true"{{end}}>{{svg "octicon-check" 16 "theme-box-list-check"}}{{ctx.Locale.Tr "issues.search.sort.oldest"}}</a>
+<a class="theme-dropdown-action" href="{{$query}}&sort=recentupdate"{{if eq .SortType "recentupdate"}} aria-current="true"{{end}}>{{svg "octicon-check" 16 "theme-box-list-check"}}{{ctx.Locale.Tr "issues.search.sort.recentupdate"}}</a>
+<a class="theme-dropdown-action" href="{{$query}}&sort=leastupdate"{{if eq .SortType "leastupdate"}} aria-current="true"{{end}}>{{svg "octicon-check" 16 "theme-box-list-check"}}{{ctx.Locale.Tr "issues.search.sort.leastupdate"}}</a>
+<a class="theme-dropdown-action" href="{{$query}}&sort=mostcomment"{{if eq .SortType "mostcomment"}} aria-current="true"{{end}}>{{svg "octicon-check" 16 "theme-box-list-check"}}{{ctx.Locale.Tr "issues.search.sort.mostcomment"}}</a>
+<a class="theme-dropdown-action" href="{{$query}}&sort=leastcomment"{{if eq .SortType "leastcomment"}} aria-current="true"{{end}}>{{svg "octicon-check" 16 "theme-box-list-check"}}{{ctx.Locale.Tr "issues.search.sort.leastcomment"}}</a>
+<a class="theme-dropdown-action" href="{{$query}}&sort=nearduedate"{{if eq .SortType "nearduedate"}} aria-current="true"{{end}}>{{svg "octicon-check" 16 "theme-box-list-check"}}{{ctx.Locale.Tr "issues.search.sort.nearduedate"}}</a>
+<a class="theme-dropdown-action" href="{{$query}}&sort=farduedate"{{if eq .SortType "farduedate"}} aria-current="true"{{end}}>{{svg "octicon-check" 16 "theme-box-list-check"}}{{ctx.Locale.Tr "issues.search.sort.farduedate"}}</a>

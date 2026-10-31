@@ -1,0 +1,90 @@
+/* GitHub's commit history: a timeline of days, each a box of commit rows (the shared commit row) under "Commits on
+   <date>". The repository history, a pull request's commits and the compare page use it. */
+.theme-commit-group {
+  position: relative;
+  margin-left: 16px;
+  padding: 0 0 16px 24px;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 32px;
+    bottom: 8px;
+    left: -1px;
+    width: 2px;
+    background: var(--color-secondary);
+  }
+  & > h3 {
+    margin: 0 0 8px;
+    padding: 4px 0;
+    font-size: 14px;
+    line-height: 21px;
+    font-weight: 400;
+    color: var(--color-text-light-1);
+    & > svg {
+      position: absolute;
+      top: 6px;
+      left: -8px;
+    }
+  }
+  & > ul {
+    border: 1px solid var(--color-secondary);
+    border-radius: var(--border-radius);
+    & > li.gitea-github-theme-commit {
+      min-width: 0;
+      min-height: 64px;
+      grid-template-columns: minmax(0, 1fr) max-content max-content;
+      grid-template-areas: "primary metadata actions" "secondary metadata actions";
+      gap: 4px 8px;
+      & .message {
+        min-width: 0;
+      }
+      /* Inline text, so a title with an issue link wraps like a sentence; the shared row's inline-flex would stack its
+         pieces side by side. As specific as that rule, and loaded after it. */
+      & .message > .commit-summary {
+        display: inline;
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: 600;
+        white-space: normal;
+        overflow-wrap: anywhere;
+      }
+      & .metadata {
+        line-height: 18px;
+        flex-wrap: wrap;
+      }
+      & .metadata img.ui.avatar {
+        width: 16px;
+        height: 16px;
+        margin: 0;
+      }
+      & .extra a.commit-id-short {
+        border: 0;
+        padding: 0;
+        background: transparent;
+        color: var(--color-text-light-1);
+        font-size: 12px;
+      }
+      & .actions svg {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+}
+@media (max-width: 767.98px) {
+  .theme-commit-group {
+    margin-left: 8px;
+    padding-left: 16px;
+    & > ul > li.gitea-github-theme-commit {
+      grid-template-areas: "primary primary" "secondary secondary" "metadata actions";
+      grid-template-columns: minmax(0, 1fr) auto;
+      padding: 8px;
+      & .extra {
+        justify-content: flex-start;
+      }
+      & .actions {
+        justify-content: flex-end;
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{{- /* GitHub's label list: a box headed by the label count and Sort, with a row per label holding the label, its
+description, its open issues and, for writers, a menu with Edit and Delete. The repository labels page and the
+organization's label settings both render it; Forgejo's label scripts find the edit and delete buttons by class. */ -}}
+{{$canWrite := or .PageIsOrgSettingsLabels (and (not .Repository.IsArchived) (or .CanWriteIssues .CanWritePulls))}}
+{{$issuesLink := print .RepoLink "/issues"}}{{if .PageIsOrgSettingsLabels}}{{$issuesLink = print AppSubUrl "/issues"}}{{end}}
+<div class="theme-box-list theme-label-list">
+	<div class="theme-box-list-header">
+		<h2 class="theme-box-list-title">{{ctx.Locale.Tr "repo.issues.label_count" .NumLabels}}</h2>
+		{{template "components/common/dropdown/dropdown" dict "Kind" "actions" "Label" (ctx.Locale.Tr "repo.issues.filter_sort") "Quiet" true "Items" "components/repository/label/sort" "Data" .}}
+	</div>
+	{{if and $canWrite (eq .NumLabels 0) (or .PageIsOrgSettingsLabels (not .OrgLabels))}}
+		<div class="theme-label-list-template">{{template "repo/issue/labels/label_load_template" .}}</div>
+	{{end}}
+	<ul class="theme-box-list-rows">
+		{{range .Labels}}
+			{{template "components/repository/label/row" dict "Context" $.Context "Label" . "IssuesLink" $issuesLink "OpenIssues" .NumOpenIssues "CanWrite" $canWrite "DeleteLink" (print $.Link "/delete")}}
+		{{end}}
+		{{if and (not .PageIsOrgSettingsLabels) .OrgLabels}}
+			<li class="theme-box-list-row theme-label-list-note">
+				{{ctx.Locale.Tr "repo.org_labels_desc"}}
+				{{if .IsOrganizationOwner}}<a href="{{.OrganizationLink}}/settings/labels">{{ctx.Locale.Tr "repo.org_labels_desc_manage"}}</a>{{end}}
+			</li>
+			{{range .OrgLabels}}
+				{{template "components/repository/label/row" dict "Context" $.Context "Label" . "IssuesLink" $issuesLink "OpenIssues" .NumOpenRepoIssues}}
+			{{end}}
+		{{end}}
+	</ul>
+</div>

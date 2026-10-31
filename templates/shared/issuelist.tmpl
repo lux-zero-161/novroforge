@@ -21,7 +21,7 @@
 						{{end}}
 						<span class="labels-list tw-ml-1">
 							{{range .Labels}}
-								<a href="?q={{$.Keyword}}&type={{$.ViewType}}&state={{$.State}}&labels={{.ID}}{{if ne $.listType "milestone"}}&milestone={{$.MilestoneID}}{{end}}&assignee={{$.AssigneeID}}&poster={{$.PosterID}}{{if $.ShowArchivedLabels}}&archived=true{{end}}" rel="nofollow">{{RenderLabel ctx .}}</a>
+								<a href="?q={{$.Keyword}}&type={{$.ViewType}}&state={{$.State}}&labels={{.ID}}{{if ne $.listType "milestone"}}&milestone={{$.MilestoneID}}{{end}}&assignee={{$.AssigneeID}}&poster={{$.PosterID}}{{if $.ShowArchivedLabels}}&archived=true{{end}}" rel="nofollow">{{template "components/repository/label/label" .}}</a>
 							{{end}}
 						</span>
 					</div>
@@ -152,7 +152,8 @@
 			</div>
 		</div>
 	{{else}}
-		<div class="tw-text-center tw-p-8">
+		<div class="tw-text-center tw-p-8{{if $.themeList}} theme-empty theme-empty-compact{{end}}">
+			{{if eq $.themeList "pulls"}}{{svg "octicon-git-pull-request" 24}}{{else if eq $.themeList "issues"}}{{svg "octicon-issue-opened" 24}}{{end}}
 			<h3 class="tw-my-4">{{ctx.Locale.Tr "issues.search.no_results.title"}}</h3>
 			<p class="tw-text-placeholder-text">{{ctx.Locale.Tr "issues.search.no_results.hint"}}</p>
 		</div>

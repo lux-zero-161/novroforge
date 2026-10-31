@@ -1,0 +1,5 @@
+{{$query := print "?state=" .State}}
+<a class="theme-dropdown-action" href="{{$query}}&sort=alphabetically"{{if or (eq .SortType "alphabetically") (not .SortType)}} aria-current="true"{{end}}>{{svg "octicon-check" 16 "theme-box-list-check"}}{{ctx.Locale.Tr "repo.issues.label.filter_sort.alphabetically"}}</a>
+<a class="theme-dropdown-action" href="{{$query}}&sort=reversealphabetically"{{if eq .SortType "reversealphabetically"}} aria-current="true"{{end}}>{{svg "octicon-check" 16 "theme-box-list-check"}}{{ctx.Locale.Tr "repo.issues.label.filter_sort.reverse_alphabetically"}}</a>
+<a class="theme-dropdown-action" href="{{$query}}&sort=leastissues"{{if eq .SortType "leastissues"}} aria-current="true"{{end}}>{{svg "octicon-check" 16 "theme-box-list-check"}}{{ctx.Locale.Tr "milestone.filter_sort.least_issues"}}</a>
+<a class="theme-dropdown-action" href="{{$query}}&sort=mostissues"{{if eq .SortType "mostissues"}} aria-current="true"{{end}}>{{svg "octicon-check" 16 "theme-box-list-check"}}{{ctx.Locale.Tr "milestone.filter_sort.most_issues"}}</a>

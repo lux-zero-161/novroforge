@@ -1,0 +1,91 @@
+/* Home, GitHub's signed-in dashboard: the sidebar's top repositories, and the greeting over the activity feed with the
+   work rail beside it; the feed takes the width when the rail has nothing to show, and the rail moves under the feed
+   on narrow screens. Kept as a page stylesheet, outside the size-limited theme files. */
+.github-home-repositories {
+  padding: 0 8px;
+}
+
+.github-home-repositories-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: 32px;
+  margin-bottom: 4px;
+}
+
+.github-home-repositories-heading > h2 {
+  margin: 0;
+  color: var(--color-text-light-1);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 18px;
+}
+
+.github-home-repositories-heading > .theme-icon-button {
+  color: var(--color-text-light-1);
+}
+
+.page-content.theme-sidebar-layout[data-theme-sidebar] > .ui.container.theme-sidebar-main.github-home-main {
+  max-width: 1280px !important;
+}
+
+/* Two tracks always, so the rail's column can open and close smoothly: the feed grows into it when the rail is empty. */
+.github-home-columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 0px;
+  column-gap: 0;
+  row-gap: 24px;
+  align-items: start;
+  transition:
+    grid-template-columns 200ms cubic-bezier(0.33, 1, 0.68, 1),
+    column-gap 200ms cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.github-home-columns:has(> .theme-work:not([hidden])) {
+  grid-template-columns: minmax(0, 1fr) 320px;
+  column-gap: 24px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .github-home-columns {
+    transition: none;
+  }
+}
+
+/* Narrow screens stack the rail under the feed; above it, the boxes arriving would push the feed down. */
+@media (max-width: 1011.98px) {
+  .github-home-columns,
+  .github-home-columns:has(> .theme-work:not([hidden])) {
+    grid-template-columns: minmax(0, 1fr);
+    column-gap: 0;
+  }
+
+  .github-home-columns > .theme-work {
+    position: static;
+  }
+}
+
+.github-home-main > .theme-list-heading {
+  margin-bottom: 24px;
+}
+
+.github-home-main > .theme-list-heading h1 {
+  font-size: 20px;
+}
+
+.github-home-feed > .theme-box-list > .theme-box-list-header {
+  min-height: 40px;
+  padding: 0 16px;
+}
+
+.github-home-section-title {
+  margin: 0 0 8px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 21px;
+}
+
+.theme-box-list-header > .github-home-section-title {
+  margin: 0;
+}

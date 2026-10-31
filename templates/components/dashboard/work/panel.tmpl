@@ -1,0 +1,11 @@
+{{- /* One box of Home's work rail, hidden until work.js finds something for it. Kind is search (Query is the issue
+search's parameters), milestones (Query is the dashboard milestone list to read) or releases (read from the feed).
+Link opens the full list. */ -}}
+<section class="theme-box-list theme-work-panel" data-theme-work-panel="{{.Kind}}"{{if .Query}} data-query="{{.Query}}"{{end}} hidden>
+	<div class="theme-box-list-header">
+		<h2>{{svg .Icon 16}}<span>{{.Title}}</span></h2>
+		<span class="theme-counter" data-theme-work-count></span>
+	</div>
+	<ul class="theme-work-rows" data-theme-work-rows></ul>
+	{{if .Link}}<a class="theme-work-all" href="{{.Link}}">View all</a>{{end}}
+</section>

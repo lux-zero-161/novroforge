@@ -1,24 +1,8 @@
 {{template "base/head" .}}
-<div role="main" aria-label="{{.Title}}" class="page-content repository issue-list">
-	{{template "repo/header" .}}
-	<div class="ui container">
-	{{if .PageIsIssueList}}
-		{{if eq .State "open"}}
-		<h1>{{ctx.Locale.Tr "repo.issues.open.heading"}}</h1>
-		{{else if eq .State "closed"}}
-		<h1>{{ctx.Locale.Tr "repo.issues.closed.heading"}}</h1>
-		{{else if eq .State "all"}}
-		<h1>{{ctx.Locale.Tr "repo.issues.all.heading"}}</h1>
-		{{end}}
-	{{else if .PageIsPullList}}
-		{{if eq .State "open"}}
-		<h1>{{ctx.Locale.Tr "repo.pulls.open.heading"}}</h1>
-		{{else if eq .State "closed"}}
-		<h1>{{ctx.Locale.Tr "repo.pulls.closed.heading"}}</h1>
-		{{else if eq .State "all"}}
-		<h1>{{ctx.Locale.Tr "repo.pulls.all.heading"}}</h1>
-		{{end}}
-	{{end}}
+{{$themeList := "pulls"}}{{if .PageIsIssueList}}{{$themeList = "issues"}}{{end}}
+<div role="main" aria-label="{{.Title}}" class="page-content repository issue-list theme-sidebar-layout{{if .PageIsIssueList}} github-issues{{else}} github-pull-list{{end}}" data-theme-sidebar="{{if .PageIsIssueList}}issue_sidebar_collapsed{{else}}pull_sidebar_collapsed{{end}}">
+	{{template "repo/issue/sidebar" .}}
+	<div class="ui container issue-list-main theme-sidebar-main">
 	{{template "base/alert" .}}
 
 	{{if .PinnedIssues}}
@@ -31,9 +15,8 @@
 		</div>
 	{{end}}
 
-		<div class="list-header list-header-issues">
-			{{template "repo/issue/navbar" .}}
-			{{template "repo/issue/search" .}}
+		<div class="list-header list-header-issues theme-list-heading">
+			<div class="theme-list-title"><button type="button" class="theme-icon-button" data-theme-sidebar-toggle data-theme-sidebar-expand aria-expanded="false" aria-label="Expand sidebar">{{svg "octicon-sidebar-expand" 16}}</button><h1>{{if eq .ViewType "assigned"}}Assigned to me{{else if eq .ViewType "created_by"}}Created by me{{else if eq .ViewType "mentioned"}}Mentioned{{else if eq .ViewType "review_requested"}}Review requested{{else if .PageIsIssueList}}All issues{{else}}All pull requests{{end}}</h1></div>
 			{{if not .Repository.IsArchived}}
 				{{if .PageIsIssueList}}
 					<a class="primary button issue-list-new" href="{{.RepoLink}}/issues/new{{if .NewIssueChooseTemplate}}/choose{{end}}">{{ctx.Locale.Tr "repo.issues.new"}}</a>
@@ -47,7 +30,9 @@
 			{{end}}
 		</div>
 
-		{{template "repo/issue/filters" .}}
+		{{template "repo/issue/search" .}}
+
+		{{template "repo/issue/filters" dict "." . "themeList" $themeList}}
 
 		<div id="issue-actions" class="issue-list-toolbar tw-hidden">
 			<div class="issue-list-toolbar-left">
@@ -66,7 +51,7 @@
 				{{template "repo/issue/filter_actions" .}}
 			</div>
 		</div>
-		{{template "shared/issuelist" dict "." . "listType" "repo"}}
+		{{template "shared/issuelist" dict "." . "listType" "repo" "themeList" $themeList}}
 	</div>
 </div>
 {{template "base/footer" .}}

@@ -1,0 +1,15 @@
+{{$page := .Page}}{{$branch := .Branch}}
+{{if .CanWrite}}
+	<button class="theme-dropdown-action show-create-branch-modal" data-branch-from="{{$branch.Name}}">{{svg "octicon-git-branch" 16}}{{ctx.Locale.Tr "repo.branch.new_branch"}}</button>
+	<button class="theme-dropdown-action show-rename-branch-modal" data-is-default-branch="{{if .IsDefault}}true{{else}}false{{end}}" data-old-branch-name="{{$branch.Name}}">{{svg "octicon-pencil" 16}}{{ctx.Locale.Tr "repo.settings.rename_branch"}}</button>
+{{end}}
+{{if and .IsDefault $page.Permission.IsAdmin (not $page.Repository.IsArchived)}}
+	<a class="theme-dropdown-action" href="{{$page.RepoLink}}/settings/branches">{{svg "octicon-arrow-switch" 16}}{{ctx.Locale.Tr "repo.settings.branches.switch_default_branch"}}</a>
+{{end}}
+{{if not $page.DisableDownloadSourceArchives}}
+	<a class="theme-dropdown-action archive-link" href="{{$page.RepoLink}}/archive/{{PathEscapeSegments $branch.Name}}.zip" rel="nofollow">{{svg "octicon-file-zip" 16}}{{ctx.Locale.Tr "repo.download_zip"}}</a>
+	<a class="theme-dropdown-action archive-link" href="{{$page.RepoLink}}/archive/{{PathEscapeSegments $branch.Name}}.tar.gz" rel="nofollow">{{svg "octicon-file-zip" 16}}{{ctx.Locale.Tr "repo.download_tar"}}</a>
+{{end}}
+{{if $page.EnableFeed}}
+	<a class="theme-dropdown-action" href="{{$page.FeedURL}}/rss/branch/{{PathEscapeSegments $branch.Name}}">{{svg "octicon-rss" 16}}{{ctx.Locale.Tr "rss_feed"}}</a>
+{{end}}

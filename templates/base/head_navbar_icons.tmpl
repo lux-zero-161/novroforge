@@ -1,0 +1,46 @@
+{{/* Forgejo 15 navbar actions using the native route and data contracts. */}}
+{{- $itemExtraClass := .ItemExtraClass -}}
+{{- $data := .Data -}}
+{{if not (and $data.IsSigned $data.HideNavbarLinks)}}
+	{{/* Below 1012px GitHub's header search collapses to this button. */}}
+	<a class="item navbar-search-button {{$itemExtraClass}}" href="{{AppSubUrl}}/explore/repos" data-tooltip-content="{{ctx.Locale.Tr "search.repo_kind"}}" aria-label="{{ctx.Locale.Tr "search.repo_kind"}}">
+		{{svg "octicon-search"}}
+	</a>
+{{end}}
+{{if and $data $data.IsSigned}}
+	{{- $notificationUnreadCount := 0 -}}
+	{{- if $data.NotificationUnreadCount -}}
+		{{- $notificationUnreadCount = call $data.NotificationUnreadCount -}}
+	{{- end -}}
+	{{/* Forgejo's stopwatch.js binds only the first trigger and shows or hides it itself, also when a stopwatch starts
+	     in another tab, so only the desktop icons render one, hidden while none runs; phones get it in the drawer. */}}
+	{{if and .Stopwatch EnableTimetracking}}
+	<a class="item active-stopwatch-trigger {{$itemExtraClass}}{{if not $data.ActiveStopwatch}} tw-hidden{{end}}" href="{{$data.ActiveStopwatch.IssueLink}}" data-tippy-content="{{ctx.Locale.Tr "active_stopwatch"}}" aria-label="{{ctx.Locale.Tr "active_stopwatch"}}">
+		<div class="tw-relative flex-text-block">
+			{{svg "octicon-stopwatch"}}
+			<span class="header-stopwatch-dot"></span>
+		</div>
+	</a>
+	{{end}}
+	{{if not $data.UnitIssuesGlobalDisabled}}
+	<a class="item navbar-dashboard-link {{$itemExtraClass}}" href="{{AppSubUrl}}/issues" data-tooltip-content="{{ctx.Locale.Tr "issues"}}" aria-label="{{ctx.Locale.Tr "issues"}}">
+		{{svg "octicon-issue-opened"}}
+	</a>
+	{{end}}
+	{{if not $data.UnitPullsGlobalDisabled}}
+	<a class="item navbar-dashboard-link {{$itemExtraClass}}" href="{{AppSubUrl}}/pulls" data-tooltip-content="{{ctx.Locale.Tr "pull_requests"}}" aria-label="{{ctx.Locale.Tr "pull_requests"}}">
+		{{svg "octicon-git-pull-request"}}
+	</a>
+	{{end}}
+	{{if and (not (and $data.UnitIssuesGlobalDisabled $data.UnitPullsGlobalDisabled)) $data.ShowMilestonesDashboardPage}}
+	<a class="item navbar-dashboard-link {{$itemExtraClass}}" href="{{AppSubUrl}}/milestones" data-tooltip-content="{{ctx.Locale.Tr "milestones"}}" aria-label="{{ctx.Locale.Tr "milestones"}}">
+		{{svg "octicon-milestone"}}
+	</a>
+	{{end}}
+	<a class="item {{$itemExtraClass}}" href="{{AppSubUrl}}/notifications" data-tooltip-content="{{ctx.Locale.Tr "notifications"}}" aria-label="{{ctx.Locale.Tr "notifications"}}">
+		<div class="tw-relative flex-text-block">
+			{{svg "octicon-inbox"}}
+			<span class="notification_count{{if not $notificationUnreadCount}} tw-hidden{{end}}">{{$notificationUnreadCount}}</span>
+		</div>
+	</a>
+{{end}}

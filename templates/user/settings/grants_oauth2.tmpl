@@ -1,31 +1,28 @@
+{{/* GitHub's authorized OAuth apps: the description, then the applications in a box with Revoke on each row. */}}
 <h4 class="ui top attached header">
 	{{ctx.Locale.Tr "settings.authorized_oauth2_applications"}}
 </h4>
 <div class="ui attached segment">
-	<div class="flex-list">
-		<div class="flex-item">
-			{{ctx.Locale.Tr "settings.authorized_oauth2_applications_description"}}
-		</div>
+	<p class="theme-settings-description">{{ctx.Locale.Tr "settings.authorized_oauth2_applications_description"}}</p>
+	{{if .Grants}}
+	<ul class="theme-settings-box">
 		{{range .Grants}}
-			<div class="flex-item">
-				<div class="flex-item-leading">
-					{{svg "octicon-key" 32}}
+			<li class="theme-settings-box-row">
+				<span class="theme-settings-box-icon">{{svg "octicon-apps"}}</span>
+				<div class="theme-settings-box-main">
+					<span class="theme-settings-box-title">{{.Application.Name}}</span>
+					<p class="theme-settings-box-meta">{{ctx.Locale.Tr "settings.added_on" (DateUtils.AbsoluteShort .CreatedUnix)}}</p>
 				</div>
-				<div class="flex-item-main">
-					<div class="flex-item-title">{{.Application.Name}}</div>
-					<div class="flex-item-body">
-						<p>{{ctx.Locale.Tr "settings.added_on" (DateUtils.AbsoluteShort .CreatedUnix)}}</p>
-					</div>
-				</div>
-				<div class="flex-item-trailing">
+				<div class="theme-settings-box-actions">
 					<button class="ui red tiny button delete-button" data-modal-id="revoke-gitea-oauth2-grant"
 							data-url="{{AppSubUrl}}/user/settings/applications/oauth2/{{.ApplicationID}}/revoke/{{.ID}}">
 						{{ctx.Locale.Tr "settings.revoke_key"}}
 					</button>
 				</div>
-			</div>
+			</li>
 		{{end}}
-	</div>
+	</ul>
+	{{end}}
 
 	<div class="ui g-modal-confirm delete modal" id="revoke-gitea-oauth2-grant">
 		<div class="header">

@@ -1,0 +1,20 @@
+{{- /* GitHub's README box header: README first, then the repository's community files in its order. Those files are
+not rendered on this page, so their tabs open the file itself. */ -}}
+<nav class="repo-readme-tabs" aria-label="{{ctx.Locale.Tr "repo.readme"}}">
+	<a class="active" href="#readme" aria-current="true">{{svg "octicon-book" 16}}<span>{{ctx.Locale.Tr "repo.readme"}}</span></a>
+	{{if not .TreePath}}
+		{{range $kind := StringUtils.Split "CODE_OF_CONDUCT,CONTRIBUTING,LICENSE,LICENCE,SECURITY" ","}}
+			{{range $.Files}}
+				{{$name := .Entry.Name}}
+				{{if and (not .Entry.IsDir) (StringUtils.HasPrefix (StringUtils.ToUpper $name) $kind)}}
+					<a href="{{$.TreeLink}}/{{PathEscapeSegments $name}}">
+						{{if eq $kind "CODE_OF_CONDUCT"}}{{svg "octicon-code-of-conduct" 16}}<span>Code of conduct</span>
+						{{else if eq $kind "CONTRIBUTING"}}{{svg "octicon-people" 16}}<span>Contributing</span>
+						{{else if eq $kind "SECURITY"}}{{svg "octicon-law" 16}}<span>Security</span>
+						{{else}}{{svg "octicon-law" 16}}<span>{{ctx.Locale.Tr "repo.license"}}</span>{{end}}
+					</a>
+				{{end}}
+			{{end}}
+		{{end}}
+	{{end}}
+</nav>

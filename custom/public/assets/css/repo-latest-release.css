@@ -1,0 +1,96 @@
+/* GitHub's latest release: tag icon, name and Latest badge on one 21px row, the date beneath the name. */
+.page-content.repository.file.list .repo-latest-release {
+  display: block;
+  margin: 0;
+  padding: 0;
+  color: var(--color-text);
+}
+.page-content.repository.file.list .repo-latest-release:hover {
+  text-decoration: none;
+}
+.page-content.repository.file.list .repo-latest-release-heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  line-height: 21px;
+}
+.page-content.repository.file.list .repo-latest-release-heading > svg {
+  color: var(--color-green);
+  flex: 0 0 auto;
+}
+.page-content.repository.file.list .repo-latest-release-title {
+  overflow: hidden;
+  color: var(--color-text);
+  font-size: 14px;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.page-content.repository.file.list .repo-latest-release-badge {
+  flex: 0 0 auto;
+  padding: 0 6px;
+  border: 1px solid var(--github-borderColor-success-emphasis);
+  border-radius: 2em;
+  color: var(--color-green);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+}
+/* The date arrives with the release; its line is kept from the start, so Packages and Languages do not move down. */
+.page-content.repository.file.list .repo-latest-release-date {
+  display: block;
+  min-height: 18px;
+  margin-left: 24px;
+  color: var(--color-text-light-1);
+  font-size: 12px;
+  line-height: 18px;
+}
+
+/* GitHub's empty Releases and Packages states: a muted line and, for people who can publish, a first-step link. */
+.repo-home-sidebar-empty {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  color: var(--color-text-light-1);
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.repo-home-sidebar-empty > a {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+.repo-home-packages {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* While the owner's package list loads, the list keeps the height of the rows it will show (up to five). */
+.repo-home-packages[aria-busy="true"] {
+  min-height: calc(var(--repo-home-packages) * 29px - 8px);
+}
+
+.repo-home-packages a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-text);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.repo-home-packages a > svg {
+  flex: none;
+  color: var(--color-text-light-1);
+}
+
+.repo-home-packages-all {
+  color: var(--color-primary);
+  font-size: 12px;
+}

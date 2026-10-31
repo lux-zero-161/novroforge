@@ -1,0 +1,7 @@
+<a class="theme-dropdown-action" href="{{.Link}}/edit">{{svg "octicon-pencil" 16}}{{ctx.Locale.Tr "repo.issues.label_edit"}}</a>
+{{if .IsClosed}}
+	<a class="theme-dropdown-action link-action" href data-url="{{.Link}}/open">{{svg "octicon-issue-reopened" 16}}{{ctx.Locale.Tr "repo.projects.open"}}</a>
+{{else}}
+	<a class="theme-dropdown-action link-action" href data-url="{{.Link}}/close">{{svg "octicon-issue-closed" 16}}{{ctx.Locale.Tr "repo.projects.close"}}</a>
+{{end}}
+<a class="theme-dropdown-action theme-dropdown-danger delete-button" href="#" data-url="{{.Link}}/delete" data-modal-id="delete-project">{{svg "octicon-trash" 16}}{{ctx.Locale.Tr "repo.issues.label_delete"}}</a>

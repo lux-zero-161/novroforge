@@ -8,7 +8,6 @@
 	<div id="profile-avatar" class="content tw-flex">
 	{{if eq .SignedUserID .ContextUser.ID}}
 		<a class="image" href="{{AppSubUrl}}/user/settings#avatar-settings" data-tooltip-content="{{ctx.Locale.Tr "user.change_avatar"}}">
-			{{/* the size doesn't take affect (and no need to take affect), image size(width) should be controlled by the parent container since this is not a flex layout*/}}
 			{{ctx.AvatarUtils.Avatar .ContextUser 256}}
 		</a>
 	{{else}}
@@ -17,32 +16,43 @@
 		</span>
 	{{end}}
 	</div>
-	<div class="content tw-break-anywhere profile-avatar-name">
-		{{if .ContextUser.FullName}}<span class="header text center">{{.ContextUser.FullName}}</span>{{end}}
-		<span class="username">{{.ContextUser.Name}} {{if .ContextUser.GetPronouns .IsSigned}} · {{.ContextUser.GetPronouns .IsSigned}}{{end}}</span>
-		<div class="tw-mt-2 tw-flex tw-items-center tw-gap-2 tw-justify-center">
-			<span>
-				<a class="muted" href="{{.ContextUser.HomeLink}}?tab=followers">{{svg "octicon-people" 18 "tw-mr-1"}}{{ctx.Locale.TrPluralString .NumFollowers "counters.n_followers" .NumFollowers}}</a> · <a class="muted" href="{{.ContextUser.HomeLink}}?tab=following">{{ctx.Locale.TrPluralString .NumFollowing "counters.n_following" .NumFollowing}}</a>
-			</span>
-			{{if not $showFollow}}
-				{{template "shared/user/actions_menu" .}}
-			{{end}}
-		</div>
-	</div>
-	{{if $showFollow}}
-		<div class="main-actions button-row">
-			{{if .IsFollowing}}
-				<button class="secondary button tw-w-full" hx-post="{{.ContextUser.HomeLink}}?action=unfollow" hx-target="#profile-avatar-card" hx-indicator="#profile-avatar-card">
-					{{svg "octicon-person"}} {{ctx.Locale.Tr "user.unfollow"}}
-				</button>
-			{{else}}
-				<button class="primary button tw-w-full" hx-post="{{.ContextUser.HomeLink}}?action=follow" hx-target="#profile-avatar-card" hx-indicator="#profile-avatar-card">
-					{{svg "octicon-person"}} {{ctx.Locale.Tr "user.follow"}}
-				</button>
-			{{end}}
-			{{template "shared/user/actions_menu" .}}
-		</div>
+	<h1 class="content tw-break-anywhere profile-avatar-name">
+		{{if .ContextUser.FullName}}<span class="profile-full-name">{{.ContextUser.FullName}}</span>{{end}}
+		<span class="username">{{.ContextUser.Name}}{{if .ContextUser.GetPronouns .IsSigned}}<span class="profile-pronouns"> · {{.ContextUser.GetPronouns .IsSigned}}</span>{{end}}</span>
+	</h1>
+	{{if .RenderedDescription}}
+		<div class="profile-bio markup">{{.RenderedDescription}}</div>
 	{{end}}
+	<div class="actions button-row">
+		{{/* GitHub's Sponsor beside Follow: the heart opens Forgejo's list of the profile's funding links. */}}
+		{{if .Funding}}
+			<button type="button" class="secondary button profile-sponsor" command="show-modal" commandfor="funding-modal" aria-label="{{ctx.Locale.Tr "funding.action.title" .FundingTarget}}">
+				{{svg "octicon-heart"}} {{ctx.Locale.Tr "funding.action.button"}}
+			</button>
+		{{end}}
+		{{if $showFollow}}
+			<div class="primary-action" hx-target="#profile-avatar-card" hx-indicator="#profile-avatar-card">
+				{{if .IsFollowing}}
+					<button hx-post="{{.ContextUser.HomeLink}}?action=unfollow" class="secondary button tw-w-full">
+						{{svg "octicon-person"}} {{ctx.Locale.Tr "user.unfollow"}}
+					</button>
+				{{else}}
+					<button hx-post="{{.ContextUser.HomeLink}}?action=follow" class="secondary button tw-w-full">
+						{{svg "octicon-person"}} {{ctx.Locale.Tr "user.follow"}}
+					</button>
+				{{end}}
+			</div>
+		{{else if eq .SignedUserID .ContextUser.ID}}
+			<a class="secondary button profile-edit" href="{{AppSubUrl}}/user/settings">{{ctx.Locale.Tr "profile.edit.link"}}</a>
+		{{end}}
+		{{template "shared/user/actions_menu" .}}
+	</div>
+
+	<div class="profile-followers">
+		<span>
+			<a class="muted" href="{{.ContextUser.HomeLink}}?tab=followers">{{svg "octicon-people" 18 "tw-mr-1"}}{{ctx.Locale.TrPluralString .NumFollowers "counters.n_followers" .NumFollowers}}</a> · <a class="muted" href="{{.ContextUser.HomeLink}}?tab=following">{{ctx.Locale.TrPluralString .NumFollowing "counters.n_following" .NumFollowing}}</a>
+		</span>
+	</div>
 	<div class="extra content tw-break-anywhere">
 		<ul>
 			{{if .ContextUser.Location}}
@@ -75,11 +85,6 @@
 					<a target="_blank" rel="noopener noreferrer me" href="{{.ContextUser.Website}}">{{.ContextUser.Website}}</a>
 				</li>
 			{{end}}
-			{{if $.RenderedDescription}}
-				<li>
-					<div class="render-content markup">{{$.RenderedDescription}}</div>
-				</li>
-			{{end}}
 			{{range .OpenIDs}}
 				{{if .Show}}
 					<li>
@@ -92,13 +97,9 @@
 				{{svg "octicon-calendar"}}
 				<span>{{ctx.Locale.Tr "user.joined_on" (DateUtils.AbsoluteShort .ContextUser.CreatedUnix)}}</span>
 			</li>
-			{{if .Funding}}
-			<li>
-				{{template "shared/donation_button" .}}
-			</li>
-			{{end}}
 			{{if and .Orgs .HasOrgsVisible}}
 			<li>
+				<h2 class="profile-section-title">{{ctx.Locale.Tr "settings.orgs"}}</h2>
 				<ul class="user-orgs">
 				{{range .Orgs}}
 					{{if (or .Visibility.IsPublic (and ($.SignedUser) (or .Visibility.IsLimited (and (.HasMemberWithUserID ctx $.SignedUserID) .Visibility.IsPrivate) ($.IsAdmin))))}}

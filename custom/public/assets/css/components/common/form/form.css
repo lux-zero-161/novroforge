@@ -1,0 +1,509 @@
+/* GitHub's form groups, in settings, on the create pages (repository, organization, migration, fork, milestone) and on
+   the abuse report, whose fields stay Forgejo's. The label sits on its own line (14px semibold, 6px above the
+   control), controls are 32px and no wider than 440px with an inset shadow and an accent focus ring, notes are muted
+   12px. Forgejo writes fields as .field with a label beside the control, or as a label wrapping its control inside a
+   fieldset or straight in the form; all get the same look. */
+:is(
+    .page-content > .ui.container.flex-container.theme-settings > .flex-container-main,
+    .page-content.new:is(.repo, .org, .migrate, .fork, .milestone),
+    .page-content.moderation.new-report
+  )
+  .ui.form {
+  & .field,
+  & fieldset > label,
+  & > label {
+    margin: 0 0 15px;
+  }
+  & .field > label,
+  & fieldset > label,
+  & > label {
+    display: block;
+    color: var(--color-text);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 21px;
+  }
+  & .field > label {
+    margin-bottom: 6px;
+  }
+  &
+    :is(.field, fieldset > label)
+    > :is(
+      input:not([type="checkbox"], [type="radio"], [type="file"], [type="hidden"], [type="color"]),
+      select,
+      textarea,
+      .ui.selection.dropdown
+    ),
+  &
+    > label
+    > :is(
+      input:not([type="checkbox"], [type="radio"], [type="file"], [type="hidden"], [type="color"]),
+      select,
+      textarea,
+      .ui.selection.dropdown
+    ) {
+    display: block;
+    width: 100%;
+    max-width: 440px;
+    font-weight: 400;
+  }
+  &
+    fieldset
+    > label
+    > :is(
+      input:not([type="checkbox"], [type="radio"], [type="file"], [type="hidden"], [type="color"]),
+      select,
+      textarea,
+      .ui.selection.dropdown
+    ) {
+    margin-top: 6px;
+  }
+  &
+    :is(
+      input:not([type="checkbox"], [type="radio"], [type="file"], [type="hidden"], [type="color"]),
+      select:not(.theme-select),
+      textarea
+    ) {
+    border: 1px solid var(--color-light-border);
+    border-radius: var(--border-radius);
+    background: var(--color-input-background);
+    box-shadow: var(--github-shadow-inset);
+    color: var(--color-text);
+    font-size: 14px;
+    &:focus {
+      border-color: var(--github-bgColor-accent-emphasis);
+      outline: none;
+      box-shadow: inset 0 0 0 1px var(--github-bgColor-accent-emphasis);
+    }
+  }
+  /* A field the server rejected keeps GitHub's red border, which the border above would otherwise replace. */
+  & .field.error > :is(input, textarea) {
+    border-color: var(--color-error-border);
+  }
+  & input:not([type="checkbox"], [type="radio"], [type="file"], [type="hidden"], [type="color"]) {
+    height: 32px;
+    min-height: 32px;
+    padding: 5px 12px;
+    line-height: 20px;
+  }
+  & textarea {
+    padding: 8px 12px;
+    line-height: 21px;
+  }
+  /* A field Forgejo marks invalid keeps a danger border, the shared select's too; the look above would otherwise hide
+     Forgejo's own. */
+  &
+    :is(.field.error, label.error)
+    > :is(
+      input:not([type="checkbox"], [type="radio"], [type="file"], [type="hidden"], [type="color"]),
+      select,
+      textarea
+    ),
+  & :is(.field.error, label.error) > .theme-select-wrap > select {
+    border-color: var(--color-error-border);
+  }
+
+  /* Selects look like GitHub's: the default button surface with a caret. Fomantic sizes its selection dropdown with
+     a more specific rule. */
+  & select:not(.theme-select),
+  & .ui.selection.dropdown {
+    min-height: 32px;
+    padding: 5px 24px 5px 12px;
+    border: 1px solid var(--color-light-border);
+    border-radius: var(--border-radius);
+    background-color: var(--color-button);
+    box-shadow: var(--github-shadow-inset);
+    font-size: 14px;
+    line-height: 20px;
+  }
+  /* The shared select (components/common/select) keeps its own look in a field, as wide as the other controls. */
+  & .field > .theme-select-wrap {
+    display: flex;
+    width: 100%;
+    max-width: 440px;
+    & > .theme-select {
+      width: 100%;
+    }
+  }
+  /* Fields wrapped in Fomantic's search or input containers get the same 440px limit. */
+  & .field > :is(.ui.search, .ui.input) {
+    max-width: 440px;
+    & .ui.input,
+    & input {
+      width: 100%;
+    }
+  }
+  /* Multiple-choice dropdowns (allowed users and teams) are 32px until they hold chosen items. */
+  & .ui.multiple.selection.dropdown {
+    min-height: 32px !important;
+    padding: 2px 24px 2px 8px !important;
+    & > input.search,
+    & > .default.text {
+      margin: 3px 0 3px 4px;
+      padding: 0;
+      line-height: 20px;
+    }
+    /* The placeholder Fomantic lays over a search dropdown starts where typing does. */
+    &.search > .default.text {
+      top: 2px;
+      left: 8px;
+    }
+    /* The search input inside is a line of text, not a 32px control of its own. */
+    & > input.search {
+      height: 20px;
+      min-height: 0;
+      border: 0;
+      background: transparent;
+      box-shadow: none;
+    }
+  }
+  & .ui.selection.dropdown:not(.multiple) {
+    padding: 5px 24px 5px 12px !important;
+    line-height: 20px !important;
+    & > .dropdown.icon {
+      right: 8px;
+    }
+  }
+
+  & :is(.help, p.help) {
+    display: block;
+    margin: 4px 0 2px;
+    color: var(--color-text-light-1);
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+  }
+
+  /* Checkboxes and radios: the browser's own 13px box in a 20px gutter, a semibold title beside it and any note
+     beneath the title. Fomantic's drawn box and check mark go. */
+  & input[type="checkbox"] {
+    appearance: auto;
+    flex: none;
+    width: 13px;
+    height: 13px;
+    margin: 4px 7px 0 0;
+    /* Forgejo zeroes the top margin with !important; the box lines up with the 21px title line. */
+    margin-block-start: 4px !important;
+    border-radius: 3px;
+    accent-color: var(--github-bgColor-accent-emphasis);
+    vertical-align: top;
+  }
+  /* Radios are the browser's 13px circle in the same gutter (the push rule of a protected branch, a webhook's
+     trigger). The icon choices of the create forms (.theme-form-choice) draw Primer's radio instead. */
+  & input[type="radio"]:not(.theme-form-choice > input) {
+    appearance: auto;
+    flex: none;
+    width: 13px;
+    height: 13px;
+    margin: 4px 7px 0 0;
+    margin-block-start: 4px !important;
+    accent-color: var(--github-bgColor-accent-emphasis);
+    vertical-align: top;
+  }
+  /* Forgejo draws its own check mark as the input's ::after; the browser's box draws it instead. */
+  & input:is([type="checkbox"], [type="radio"])::after {
+    display: none;
+  }
+  /* GitHub's toggle switch (Primer's small ToggleSwitch) for a checkbox with .theme-toggle-switch: a 48 by 24px
+     track with a knob that slides right and turns the track blue when on. The theme's check mark (::before) becomes
+     the knob. */
+  & input[type="checkbox"].theme-toggle-switch {
+    appearance: none;
+    position: relative;
+    box-sizing: border-box;
+    display: block;
+    width: 48px;
+    height: 24px;
+    margin: 0;
+    margin-block-start: 0 !important;
+    border: 1px solid var(--color-light-border);
+    border-radius: var(--border-radius);
+    background: var(--github-controlTrack-bgColor-rest);
+    transition: background-color 80ms linear;
+    &::before {
+      content: "";
+      position: absolute;
+      top: -1px;
+      left: -1px;
+      box-sizing: border-box;
+      width: 24px;
+      height: 24px;
+      border: 1px solid var(--github-borderColor-emphasis);
+      border-radius: var(--border-radius);
+      background: var(--github-controlKnob-bgColor-rest);
+      clip-path: none;
+      box-shadow: var(--github-shadow-resting-small);
+      transition: transform 80ms linear;
+      visibility: visible;
+    }
+    &:checked {
+      border-color: var(--github-bgColor-accent-emphasis);
+      background: var(--github-bgColor-accent-emphasis);
+    }
+    &:checked::before {
+      border-color: var(--github-bgColor-accent-emphasis);
+      background: var(--github-fgColor-onEmphasis);
+      transform: translateX(24px);
+    }
+    &:disabled {
+      opacity: 0.5;
+    }
+  }
+  /* A label wrapping its checkbox or radio (the hidden comment types, a protected branch's rules, a webhook's
+     events): the box in the gutter, the text beside it, the note under the text. The icon choices of the create
+     forms lay out their own row. */
+  & label:not(.theme-form-choice):has(> input:is([type="checkbox"], [type="radio"])) {
+    display: grid;
+    grid-template-columns: 20px minmax(0, 1fr);
+    align-items: start;
+    font-weight: 600;
+    & > input:is([type="checkbox"], [type="radio"]) {
+      grid-column: 1;
+      grid-row: 1;
+      margin: 4px 0 0;
+    }
+    & > :not(input) {
+      grid-column: 2;
+    }
+    & > .help {
+      display: block;
+    }
+    & + .help {
+      margin-left: 20px;
+    }
+  }
+  & .ui.checkbox {
+    display: grid;
+    grid-template-columns: 20px minmax(0, 1fr);
+    align-items: start;
+    & > input {
+      position: static;
+      grid-column: 1;
+      grid-row: 1;
+      width: 13px;
+      height: 13px;
+      margin: 4px 0 0;
+      opacity: 1;
+    }
+    & > label {
+      grid-column: 2;
+      grid-row: 1;
+      margin: 0;
+      padding: 0;
+      color: var(--color-text);
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 21px;
+      &::before,
+      &::after {
+        display: none;
+      }
+    }
+    &.disabled > label {
+      color: var(--color-text-light-1);
+    }
+    /* Notes Forgejo puts inside the checkbox (the signing trust models) sit under the title, not in the box's
+       gutter. */
+    & > :not(input, label) {
+      grid-column: 2;
+      margin: 0;
+    }
+  }
+
+  /* A field that only shows a value (Forgejo's repository size) keeps label and value on one line. */
+  & .inline.field:not(:has(input, select, textarea, .ui.checkbox, .ui.dropdown)) {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    & > label {
+      margin: 0;
+    }
+  }
+  /* Forgejo separates some labels from their choices with a line break; the field spacing does that. */
+  & .field > br {
+    display: none;
+  }
+
+  /* Radio groups Forgejo lays out in a row (.inline.fields) become GitHub's list: the group label above, one choice
+     per line. */
+  & .inline.fields {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin: 0 0 15px;
+    & > label {
+      margin: 0;
+      color: var(--color-text);
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 21px;
+    }
+    & > .field {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0 8px;
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  /* Forgejo keeps an empty label in front of some controls to line them up with its label column (the migration
+     items, the create buttons); the stacked layout has no such column. */
+  & .inline.field > label:first-child:empty {
+    display: none;
+  }
+
+  /* Forgejo's checkbox fields join one grid without changing their markup (scripts rely on it): the box in the
+     gutter, the title beside it, notes beneath. A field label in front of the checkbox (Forgejo's "Issues" before
+     "Enable repository issues") becomes the title and the checkbox's own label its note, as in GitHub's feature
+     list. */
+  & .inline.field:has(> label:first-child + .ui.checkbox),
+  & .field:has(> .ui.checkbox:first-child) {
+    display: grid;
+    grid-template-columns: 20px minmax(0, 1fr);
+    align-items: start;
+    margin: 15px 0;
+    & > .ui.checkbox {
+      display: contents;
+    }
+    & > *:not(.ui.checkbox) {
+      grid-column: 2;
+    }
+    & > .help {
+      margin: 0;
+    }
+  }
+  & .inline.field:has(> label:first-child:not(:empty) + .ui.checkbox) {
+    & > label:first-child {
+      grid-row: 1;
+      width: auto;
+      margin: 0;
+      padding: 0;
+    }
+    & > .ui.checkbox > label {
+      grid-row: 2;
+      color: var(--color-text-light-1);
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 18px;
+    }
+  }
+}
+
+/* Choices inside a radio group sit 8px apart; the checkbox-field margin above does not apply to them. */
+:is(
+    .page-content > .ui.container.flex-container.theme-settings > .flex-container-main,
+    .page-content.new:is(.repo, .org, .migrate, .fork, .milestone),
+    .page-content.moderation.new-report
+  )
+  .ui.form
+  .inline.fields
+  > .field:has(> .ui.checkbox) {
+  margin: 0;
+}
+
+@media (max-width: 767.98px) {
+  :is(
+      .page-content > .ui.container.flex-container.theme-settings > .flex-container-main,
+      .page-content.new:is(.repo, .org, .migrate, .fork, .milestone),
+      .page-content.moderation.new-report
+    )
+    .ui.form
+    .field
+    > :is(input, select, textarea, .ui.selection.dropdown) {
+    max-width: none;
+  }
+}
+
+/* GitHub's header over a create form (header.tmpl): the 24px title and a muted lead over a divider. */
+.theme-form-header {
+  margin: 0 0 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--color-light-border);
+  & > h1 {
+    margin: 0;
+    color: var(--color-text);
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 36px;
+  }
+  & > p {
+    margin: 4px 0 0;
+    color: var(--color-text-light-1);
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
+
+/* GitHub's radio choices with an icon (choice.tmpl): one per line, 16px apart; Primer's radio, a muted 24px icon,
+   then the semibold title over a muted note. A locked choice is dimmed. */
+.theme-form-choices {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  & > .help {
+    margin: 0;
+  }
+}
+
+.theme-form-choice {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 0;
+  color: var(--color-text);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  cursor: pointer;
+  & > input[type="radio"] {
+    appearance: none;
+    box-sizing: border-box;
+    flex: none;
+    width: 16px;
+    height: 16px;
+    margin: 4px 0 0;
+    border: 1px solid var(--github-borderColor-emphasis);
+    border-radius: 50%;
+    background: var(--color-body);
+    cursor: inherit;
+    transition: border-width 80ms linear;
+    &:checked {
+      border: 4px solid var(--github-bgColor-accent-emphasis);
+      background: var(--github-fgColor-onEmphasis);
+    }
+    &:focus-visible {
+      outline: 2px solid var(--github-borderColor-accent-emphasis);
+      outline-offset: 2px;
+    }
+  }
+  & > .theme-form-choice-icon {
+    flex: none;
+    color: var(--color-text-light-1);
+  }
+  &:has(> input:disabled) {
+    cursor: not-allowed;
+    & > :is(input, .theme-form-choice-icon, .theme-form-choice-text) {
+      opacity: 0.6;
+    }
+  }
+}
+
+.theme-form-choice-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding-top: 2px;
+}
+
+.theme-form-choice-title {
+  font-weight: 600;
+}
+
+.theme-form-choice-note {
+  color: var(--color-text-light-1);
+  font-size: 12px;
+  line-height: 18px;
+}

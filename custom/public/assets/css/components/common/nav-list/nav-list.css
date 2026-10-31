@@ -1,0 +1,82 @@
+/* GitHub's NavList, as in settings and Insights: an icon per page, collapsible groups and a blue bar beside the current
+   page. Add theme-nav-list to Forgejo's vertical menu. */
+.ui.vertical.menu.theme-nav-list {
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  & > .item:not(details),
+  & > details.item > summary,
+  & > details.item > .menu > .item {
+    position: relative;
+    display: flex;
+    /* Room for the current page's bar, which sits outside the item. */
+    overflow: visible;
+    align-items: center;
+    gap: 8px;
+    min-height: 33px;
+    margin: 0;
+    padding: 6px 8px;
+    border: 0;
+    border-radius: var(--border-radius);
+    background: transparent;
+    color: var(--color-text);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
+    &:hover {
+      background: var(--github-control-transparent-bgColor-hover);
+      color: var(--color-text);
+    }
+    &:focus-visible {
+      outline: 2px solid var(--github-fgColor-accent);
+      outline-offset: -2px;
+    }
+  }
+  & > details.item {
+    display: block;
+    width: 100%;
+    padding: 0;
+    background: transparent;
+    & > summary {
+      cursor: pointer;
+    }
+    & > .menu {
+      margin: 0;
+      padding: 0;
+    }
+    /* Pages inside a group line up with their group's label, as on GitHub. */
+    & > .menu > .item {
+      padding-left: 32px;
+    }
+  }
+  /* GitHub's 8px between icon and label comes from the gap alone; Fomantic's icon margin on menu items added 5px to
+     links but not to a group's summary, so Actions' label started further left than its neighbours'. */
+  & .item > .svg,
+  & summary > .svg:first-child {
+    flex: none;
+    margin: 0;
+    color: var(--color-text-light-1);
+  }
+  & > .item.active,
+  & > details.item > .menu > .item.active {
+    background: var(--github-control-transparent-bgColor-active);
+    font-weight: 600;
+    &::before {
+      content: "";
+      /* Fomantic hides ::before on nested menu items with a more specific rule. */
+      display: block !important;
+      position: absolute;
+      top: 4px;
+      left: -8px;
+      width: 4px;
+      height: 24px;
+      border-radius: var(--border-radius);
+      background: var(--github-bgColor-accent-emphasis);
+    }
+  }
+  & > details.item > summary::after {
+    flex: none;
+    margin-left: auto;
+    color: var(--color-text-light-1);
+  }
+}

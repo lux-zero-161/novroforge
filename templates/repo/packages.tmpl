@@ -1,6 +1,6 @@
+{{/* A repository's packages in the package list a user or organization shows, under a "Packages" heading. */}}
 {{template "base/head" .}}
 <div role="main" aria-label="{{.Title}}" class="page-content repository packages">
-	{{template "repo/header" .}}
 	<div class="ui container">
 		{{if (and .Repository.IsPrivate .Repository.Owner.Visibility.IsPublic)}}
 			<div class="ui warning message flash-message flash-warning">
@@ -8,7 +8,9 @@
 				{{ctx.Locale.Tr "repo.packages.visibility_warning" .Repository.OwnerName}}
 			</div>
 		{{end}}
-		{{template "package/shared/list" .}}
+		<div class="theme-list-heading"><div class="theme-list-title"><h1>{{ctx.Locale.Tr "packages.title"}}</h1></div></div>
+		{{template "base/alert" .}}
+		{{template "components/package/list/list" .}}
 	</div>
 </div>
 {{template "base/footer" .}}

@@ -1,3 +1,4 @@
+{{/* Forgejo's runner list with GitHub's empty state. */}}
 <div class="runner-container">
 
 	<h4 class="ui top attached header">
@@ -123,9 +124,7 @@
 			</tbody>
 		</table>
 		{{else}}
-		<div class="tw-flex tw-p-4">
-			{{ctx.Locale.Tr "actions.runners.none"}}
-		</div>
+		{{template "components/common/settings/blankslate" dict "Title" (ctx.Locale.Tr "actions.runners.none")}}
 		{{end}}
 	</div>
 

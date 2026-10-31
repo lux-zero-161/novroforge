@@ -1,0 +1,10 @@
+{{/* GitHub's settings context: who or what these settings belong to, above the settings nav. Avatar is rendered HTML
+	(a user's avatar), Icon an octicon name when there is none. Link and LinkLabel add the button on the right. */}}
+<div class="theme-settings-context">
+	{{if .Avatar}}{{.Avatar}}{{else}}<span class="theme-settings-context-icon">{{svg .Icon 24}}</span>{{end}}
+	<div class="theme-settings-context-title">
+		<h1>{{.Title}}{{if .Login}} <span>({{.Login}})</span>{{end}}</h1>
+		<p>{{.Subtitle}}</p>
+	</div>
+	{{if .Link}}<a class="ui button theme-control" href="{{.Link}}">{{svg .LinkIcon 16}}{{.LinkLabel}}</a>{{end}}
+</div>

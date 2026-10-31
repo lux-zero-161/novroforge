@@ -1,0 +1,115 @@
+{{/* Repository-root metadata sections: releases, packages and languages, like GitHub's sidebar. */}}
+<link rel="stylesheet" href="{{AssetUrlPrefix}}/css/repo-latest-release.css?v=f8f22b5055">
+<aside class="repo-home-sidebar-bottom flex-relaxed-list">
+	{{/* GitHub always shows Releases and Packages, with an empty state and, for people who can publish, a first step. */}}
+	{{if and (.Permission.CanRead $.UnitTypeReleases) (not .IsEmptyRepo)}}
+		<div class="divider"></div>
+		<div class="repo-home-sidebar-header repo-release-heading">
+			<a class="muted" href="{{.RepoLink}}/releases">{{ctx.Locale.Tr "repo.releases"}}</a>
+			{{if .NumReleases}}<span class="theme-counter theme-counter-tab">{{CountFmt .NumReleases}}</span>{{end}}
+		</div>
+		{{if .NumReleases}}
+			<a class="repo-latest-release" data-repo-latest-release data-api-url="{{AppSubUrl}}/api/v1/repos/{{.Repository.OwnerName}}/{{.Repository.Name}}/releases/latest" href="{{.RepoLink}}/releases">
+				<div class="repo-latest-release-heading">
+					{{svg "octicon-tag" 16}}
+					<span class="repo-latest-release-title" data-release-title>Loading latest release…</span>
+					<span class="repo-latest-release-badge" data-release-badge>Latest</span>
+				</div>
+				<span class="repo-latest-release-date" data-release-date><relative-time tense="past"></relative-time></span>
+			</a>
+			<script>
+				(() => {
+					const card = document.querySelector('[data-repo-latest-release]');
+					if (!card) return;
+					fetch(card.dataset.apiUrl, {headers: {Accept: 'application/json'}, credentials: 'same-origin'})
+						.then(response => response.ok ? response.json() : Promise.reject())
+						.then(release => {
+							card.querySelector('[data-release-title]').textContent = release.name || release.tag_name;
+							if (release.published_at) card.querySelector('[data-release-date] relative-time').setAttribute('datetime', release.published_at);
+							card.classList.add('theme-fade-in');
+						})
+						.catch(() => {
+							card.querySelector('[data-release-title]').textContent = 'View all releases';
+							card.querySelector('[data-release-date]').remove();
+							card.querySelector('[data-release-badge]').remove();
+						});
+				})();
+			</script>
+		{{else}}
+			<div class="repo-home-sidebar-empty">
+				<span>No releases published</span>
+				{{if and (.Permission.CanWrite $.UnitTypeReleases) (not .Repository.IsArchived)}}
+					<a href="{{.RepoLink}}/releases/new">{{ctx.Locale.Tr "repo.release.new_release"}}</a>
+				{{end}}
+			</div>
+		{{end}}
+	{{end}}
+
+	{{if .Permission.CanRead $.UnitTypePackages}}
+		<div class="divider"></div>
+		<div class="repo-home-sidebar-header repo-packages-heading">
+			<a class="muted" href="{{.RepoLink}}/packages">{{ctx.Locale.Tr "packages.title"}}</a>
+			{{if .NumPackages}}<span class="theme-counter theme-counter-tab">{{CountFmt .NumPackages}}</span>{{end}}
+		</div>
+		{{if .NumPackages}}
+			{{/* The home page only knows the count; the owner's package API says which ones belong to this repository. */}}
+			<ul class="repo-home-packages" style="--repo-home-packages: {{if gt .NumPackages 5}}5{{else}}{{.NumPackages}}{{end}}" aria-busy="true" data-repo-packages data-api-url="{{AppSubUrl}}/api/v1/packages/{{.Repository.OwnerName}}?limit=50" data-repo-name="{{.Repository.Name}}" data-owner-link="{{.Repository.Owner.HomeLink}}"></ul>
+			<template id="repo-home-package-icon">{{svg "octicon-package" 16}}</template>
+			{{if gt .NumPackages 5}}<a class="repo-home-packages-all" href="{{.RepoLink}}/packages">{{ctx.Locale.Tr "packages.title"}}: {{CountFmt .NumPackages}}</a>{{end}}
+			<script>
+				(() => {
+					const list = document.querySelector('[data-repo-packages]');
+					if (!list) return;
+					fetch(list.dataset.apiUrl, {headers: {Accept: 'application/json'}, credentials: 'same-origin'})
+						.then(response => response.ok ? response.json() : Promise.reject())
+						.then(packages => {
+							const seen = new Set();
+							for (const pkg of packages) {
+								const key = `${pkg.type}/${pkg.name}`;
+								if (pkg.repository?.name !== list.dataset.repoName || seen.has(key) || seen.size >= 5) continue;
+								seen.add(key);
+								const item = document.createElement('li');
+								const link = document.createElement('a');
+								link.href = `${list.dataset.ownerLink}/-/packages/${encodeURIComponent(pkg.type)}/${encodeURIComponent(pkg.name)}`;
+								link.append(document.getElementById('repo-home-package-icon').content.firstElementChild.cloneNode(true), pkg.name);
+								item.append(link);
+								list.append(item);
+							}
+							if (!seen.size) return list.remove();
+							list.removeAttribute('aria-busy');
+							list.classList.add('theme-fade-in');
+						})
+						.catch(() => list.remove());
+				})();
+			</script>
+		{{else}}
+			<div class="repo-home-sidebar-empty">
+				<span>{{ctx.Locale.Tr "packages.empty"}}</span>
+				{{if and (.Permission.CanWrite $.UnitTypePackages) (not .Repository.IsArchived)}}
+					<a href="{{.RepoLink}}/packages">Publish your first package</a>
+				{{end}}
+			</div>
+		{{end}}
+	{{end}}
+
+	{{if and (.Permission.CanRead $.UnitTypeCode) (not .IsEmptyRepo) .LanguageStats}}
+		<div class="divider"></div>
+		<h2 class="repo-home-sidebar-header repo-language-heading tw-sr-only">Languages</h2>
+		<div class="repo-language-content">
+			<div class="language-stats">
+				{{range .LanguageStats}}
+					<div class="bar" style="width: {{.Percentage}}%; background-color: {{.Color}}" data-tooltip-placement="top" data-tooltip-content="{{.Language}}"></div>
+				{{end}}
+			</div>
+			<div class="language-stats-details">
+				{{range .LanguageStats}}
+					<div class="item">
+						<i class="color-icon" style="background-color: {{.Color}}"></i>
+						<strong class="tw-font-semibold">{{if eq .Language "other"}}{{ctx.Locale.Tr "repo.language_other"}}{{else}}{{.Language}}{{end}}</strong>
+						{{.Percentage}}%
+					</div>
+				{{end}}
+			</div>
+		</div>
+	{{end}}
+</aside>

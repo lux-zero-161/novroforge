@@ -1,19 +1,36 @@
+{{/* GitHub's commit history: a "Commits" heading over a toolbar with the branch picker on the left and the search and
+commit graph on the right, then the commits grouped by day. GitHub shows no commit, branch and tag counters here. */}}
 {{template "base/head" .}}
-<div role="main" aria-label="{{.Title}}" class="page-content repository commits">
-	{{template "repo/header" .}}
+{{$scope := ctx.Locale.Tr "repo.commits.search_branch"}}{{if .All}}{{$scope = ctx.Locale.Tr "repo.commits.search_all"}}{{end}}
+<div role="main" aria-label="{{.Title}}" class="page-content repository commits github-commits">
 	<div class="ui container">
-		{{template "repo/sub_menu" .}}
-		<div class="repo-button-row">
-			<div class="tw-flex tw-items-center">
-				{{template "repo/branch_dropdown" dict "root" . "ContainerClasses" "tw-mr-1"}}
-				<a href="{{.RepoLink}}/graph" class="ui basic small compact button">
-					{{svg "octicon-git-branch"}}
-					{{ctx.Locale.Tr "repo.commit_graph"}}
-				</a>
+		{{template "base/alert" .}}
+		<h1 class="github-commits-title">{{ctx.Locale.Tr "repo.commits.commits"}}</h1>
+		<div class="github-commits-toolbar">
+			<div class="github-commits-ref">
+				{{template "repo/branch_dropdown" dict "root" .}}
 				{{template "repo/filepath" .}}
 			</div>
+			<div class="github-commits-actions">
+				<form class="ignore-dirty github-commits-search" action="{{.RepoLink}}/commits/{{.BranchNameSubURL}}/search" role="search">
+					{{template "components/common/search/search" dict "Kind" "icon" "Value" .Keyword "Placeholder" (ctx.Locale.Tr "search.commit_kind") "Label" (ctx.Locale.Tr "repo.commits.search.tooltip")}}
+					{{template "components/common/dropdown/dropdown" dict "Kind" "single" "Label" $scope "UpdateLabel" true "Items" "repo/commits_search_scope" "Data" .}}
+				</form>
+				<a href="{{.RepoLink}}/graph" class="button theme-control">{{svg "octicon-git-branch" 16}}{{ctx.Locale.Tr "repo.commit_graph"}}</a>
+			</div>
 		</div>
-		{{template "repo/commits_table" .}}
+		{{if .Commits}}
+			{{template "repo/commits_list" .}}
+		{{else}}
+			<div class="theme-empty">
+				{{svg "octicon-git-commit" 24}}
+				<h3>{{ctx.Locale.Tr "search.no_results"}}</h3>
+			</div>
+		{{end}}
+		{{if .OldFilename}}
+			<p class="github-commits-renamed">{{ctx.Locale.Tr "repo.commits.renamed_from" .OldFilename}} (<a href="{{.OldFilenameHistory}}">{{ctx.Locale.Tr "repo.commits.browse_further"}}</a>)</p>
+		{{end}}
+		{{template "base/paginate" .}}
 	</div>
 </div>
 {{template "base/footer" .}}

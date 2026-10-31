@@ -7,16 +7,16 @@
 		{{else}}
 			{{svg "octicon-issue-opened" 16}}
 		{{end}}
-		{{ctx.Locale.PrettyNumber .OpenCount}}&nbsp;{{ctx.Locale.Tr "repo.issues.open_title"}}
+		{{if $.themeList}}{{ctx.Locale.Tr "repo.issues.open_title"}} <span class="theme-counter issue-state-count">{{ctx.Locale.PrettyNumber .OpenCount}}</span>{{else}}{{ctx.Locale.PrettyNumber .OpenCount}}&nbsp;{{ctx.Locale.Tr "repo.issues.open_title"}}{{end}}
 	</a>
 	<a class="{{if eq .State "closed"}}active {{end}}item" href="{{.ClosedLink}}" data-test-name="closed-issue-count">
 		{{svg "octicon-issue-closed" 16}}
-		{{ctx.Locale.PrettyNumber .ClosedCount}}&nbsp;{{ctx.Locale.Tr "repo.issues.closed_title"}}
+		{{if $.themeList}}{{ctx.Locale.Tr "repo.issues.closed_title"}} <span class="theme-counter issue-state-count">{{ctx.Locale.PrettyNumber .ClosedCount}}</span>{{else}}{{ctx.Locale.PrettyNumber .ClosedCount}}&nbsp;{{ctx.Locale.Tr "repo.issues.closed_title"}}{{end}}
 	</a>
 	{{if not .PageIsMilestones}}
 		<a class="{{if eq .State "all"}}active {{end}}item" href="{{.AllStatesLink}}" data-test-name="all-issue-count">
 			{{svg "octicon-eye" 16}}
-			{{ctx.Locale.PrettyNumber (.AllCount)}}&nbsp;{{ctx.Locale.Tr "repo.issues.all_title"}}
+			{{if $.themeList}}{{ctx.Locale.Tr "repo.issues.all_title"}} <span class="theme-counter issue-state-count">{{ctx.Locale.PrettyNumber (.AllCount)}}</span>{{else}}{{ctx.Locale.PrettyNumber (.AllCount)}}&nbsp;{{ctx.Locale.Tr "repo.issues.all_title"}}{{end}}
 		</a>
 	{{end}}
 </div>

@@ -277,17 +277,6 @@ func (f *AddEmailForm) Validate(req *http.Request, errs binding.Errors) binding.
 	return middleware.Validate(errs, ctx.Data, f, ctx.Locale)
 }
 
-// UpdateThemeForm form for updating a users' theme
-type UpdateThemeForm struct {
-	Theme string `binding:"Required;MaxSize(64)"`
-}
-
-// Validate validates the field
-func (f *UpdateThemeForm) Validate(req *http.Request, errs binding.Errors) binding.Errors {
-	ctx := context.GetValidateContext(req)
-	return middleware.Validate(errs, ctx.Data, f, ctx.Locale)
-}
-
 // ChangePasswordForm form for changing password
 type ChangePasswordForm struct {
 	OldPassword string `form:"old_password" binding:"MaxSize(255)"`

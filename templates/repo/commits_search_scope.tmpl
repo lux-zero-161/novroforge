@@ -1,0 +1,2 @@
+{{template "components/common/dropdown/option" dict "Type" "radio" "Name" "all" "Value" "false" "Label" (ctx.Locale.Tr "repo.commits.search_branch") "Checked" (not .All)}}
+{{template "components/common/dropdown/option" dict "Type" "radio" "Name" "all" "Value" "true" "Label" (ctx.Locale.Tr "repo.commits.search_all") "Checked" .All}}

@@ -1,0 +1,59 @@
+/* Commit history: GitHub's heading over a branch and search toolbar, then the commits grouped by day. Kept as a page
+   stylesheet, outside the size-limited theme files. */
+.github-commits-title {
+  margin: 0 0 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--color-light-border);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 36px;
+}
+
+.github-commits-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.github-commits-ref,
+.github-commits-actions,
+.github-commits-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.github-commits-ref .repo-path {
+  margin: 0;
+  font-size: 16px;
+}
+
+.github-commits-search .theme-search-field {
+  width: 260px;
+}
+
+.github-commits-renamed {
+  margin: 0 0 16px;
+  color: var(--color-text-light-1);
+  font-size: 12px;
+}
+
+@media (max-width: 767.98px) {
+  .github-commits-actions {
+    flex: 1 1 100%;
+    flex-wrap: wrap;
+  }
+
+  .github-commits-search {
+    flex: 1 1 100%;
+  }
+
+  .github-commits-search .theme-search-field {
+    flex: 1;
+    width: auto;
+  }
+}

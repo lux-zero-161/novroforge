@@ -1,61 +1,7 @@
-{{$showFileTree := (and (not .DiffNotAvailable) (gt .DiffMetadata.TotalNumberOfFiles 1))}}
+{{/* Only the compare route sets CompareSeparator; GitHub's compare view has no file tree and a "Showing..." summary. */}}
+{{$isCompare := .CompareSeparator}}
+{{$showFileTree := (and (not .DiffNotAvailable) (gt .DiffMetadata.TotalNumberOfFiles 0) (not $isCompare))}}
 <div>
-	<div class="diff-detail-box diff-box">
-		<div class="tw-flex tw-items-center tw-flex-wrap tw-gap-2 tw-ml-0.5">
-			{{if $showFileTree}}
-				<button class="diff-toggle-file-tree-button not-mobile btn interact-fg" data-show-text="{{ctx.Locale.Tr "repo.diff.show_file_tree"}}" data-hide-text="{{ctx.Locale.Tr "repo.diff.hide_file_tree"}}">
-					{{/* the icon meaning is reversed here, "octicon-sidebar-collapse" means show the file tree */}}
-					{{svg "octicon-sidebar-collapse" 20 "icon tw-hidden"}}
-					{{svg "octicon-sidebar-expand" 20 "icon tw-hidden"}}
-				</button>
-				<script>
-					// Default to true if unset
-					const diffTreeVisible = localStorage?.getItem('diff_file_tree_visible') !== 'false';
-					const diffTreeBtn = document.querySelector('.diff-toggle-file-tree-button');
-					const diffTreeIcon = `.octicon-sidebar-${diffTreeVisible ? 'expand' : 'collapse'}`;
-					diffTreeBtn.querySelector(diffTreeIcon).classList.remove('tw-hidden');
-					diffTreeBtn.setAttribute('data-tooltip-content', diffTreeBtn.getAttribute(diffTreeVisible ? 'data-hide-text' : 'data-show-text'));
-				</script>
-			{{end}}
-			{{if not .DiffNotAvailable}}
-				<div class="diff-detail-stats tw-flex tw-items-center tw-flex-wrap">
-					{{svg "octicon-diff" 16 "tw-mr-1"}}{{ctx.Locale.Tr "repo.diff.stats_desc" .DiffMetadata.TotalNumberOfFiles .Diff.TotalAddition .Diff.TotalDeletion}}
-				</div>
-			{{end}}
-		</div>
-		<div class="diff-detail-actions button-row">
-			{{if and .PageIsPullFiles $.SignedUserID (not .IsArchived) (not .DiffNotAvailable)}}
-				<div class="not-mobile tw-flex tw-items-center tw-flex-col tw-whitespace-nowrap tw-mr-1">
-					<label for="viewed-files-summary" id="viewed-files-summary-label" data-text-changed-template="{{ctx.Locale.Tr "repo.pulls.viewed_files_label"}}">
-						{{ctx.Locale.Tr "repo.pulls.viewed_files_label" .DiffMetadata.NumberOfViewedFiles .DiffMetadata.TotalNumberOfFiles}}
-					</label>
-					<progress id="viewed-files-summary" value="{{.DiffMetadata.NumberOfViewedFiles}}" max="{{.DiffMetadata.TotalNumberOfFiles}}"></progress>
-				</div>
-			{{end}}
-			{{template "repo/diff/whitespace_dropdown" .}}
-			{{template "repo/diff/options_dropdown" .}}
-			{{if .PageIsPullFiles}}
-				<div id="diff-commit-select" data-issuelink="{{$.Issue.Link}}" data-queryparams="?style={{if $.IsSplitStyle}}split{{else}}unified{{end}}&whitespace={{$.WhitespaceBehavior}}&show-outdated={{$.ShowOutdatedComments}}" data-filter_changes_by_commit="{{ctx.Locale.Tr "repo.pulls.filter_changes_by_commit"}}">
-					{{/*
-						the following will be replaced by vue component
-						but this avoids any loading artifacts till the vue component is initialized
-					*/}}
-					<div class="ui jump dropdown basic button custom">
-						{{svg "octicon-git-commit"}}
-					</div>
-				</div>
-			{{end}}
-			{{if and .PageIsPullFiles $.SignedUserID (not .IsArchived)}}
-				{{template "repo/diff/new_review" .}}
-			{{end}}
-			{{if .HeadBranchIsEditable}}
-				<div id="suggestion-batch-bar" class="tw-hidden tw-flex tw-gap-2" data-default-summary="{{ctx.Locale.Tr "repo.issues.review.suggested_change_commit"}}">
-					<button type="button" class="ui tiny basic button clear-suggestion-batch">{{ctx.Locale.Tr "repo.issues.review.discard_batch_suggestions"}}</button>
-					<button type="button" class="ui tiny primary button commit-suggestion-batch">{{ctx.Locale.Tr "repo.issues.review.commit_batch_suggestions"}} (<span class="batch-count">0</span>)</button>
-				</div>
-			{{end}}
-		</div>
-	</div>
 	{{if not .DiffNotAvailable}}
 		{{if and .IsShowingOnlySingleCommit .PageIsPullFiles}}
 			<div class="ui info message">
@@ -90,24 +36,105 @@
 			diffFileInfo.files.push(...diffDataFiles);
 			window.config.pageData.diffFileInfo = diffFileInfo;
 		</script>
-	{{end}}
-	<div id="diff-container">
+		{{end}}
 		{{if $showFileTree}}
-			<div id="diff-file-tree" class="tw-hidden not-mobile"></div>
 			<script>
-				if (diffTreeVisible) document.getElementById('diff-file-tree').classList.remove('tw-hidden');
+				// Default to true if unset. The tree and its toggle use this initial state.
+				const diffTreeVisible = localStorage?.getItem('diff_file_tree_visible') !== 'false';
 			</script>
 		{{end}}
-		<div id="diff-content-container">
-		{{if .IsShowingOnlySingleCommit}}
-			<div id="diff-commit-header">
-			{{template "repo/commit_header" .}}
+		{{if and $isCompare (not .DiffNotAvailable)}}
+			<div class="diff-compare-stats">
+				<span>{{svg "octicon-file-diff" 16}}{{ctx.Locale.Tr "repo.diff.stats_desc" .DiffMetadata.TotalNumberOfFiles .Diff.TotalAddition .Diff.TotalDeletion}}</span>
+				<div class="diff-compare-style">
+					<a class="{{if .IsSplitStyle}}active{{end}}" href="?style=split&amp;whitespace={{.WhitespaceBehavior}}">{{ctx.Locale.Tr "repo.diff.show_split_view"}}</a>
+					<a class="{{if not .IsSplitStyle}}active{{end}}" href="?style=unified&amp;whitespace={{.WhitespaceBehavior}}">{{ctx.Locale.Tr "repo.diff.show_unified_view"}}</a>
+				</div>
 			</div>
 		{{end}}
-		{{if .DiffNotAvailable}}
-			<h4>{{ctx.Locale.Tr "repo.diff.data_not_available"}}</h4>
-		{{else}}
-			<div id="diff-file-boxes" class="sixteen wide column">
+		<div id="diff-container"{{if $showFileTree}} class="diff-has-file-tree"{{end}}>
+			{{/* GitHub's toolbar spans the tree and the files, in the first row of the #diff-container grid. */}}
+			<div class="diff-detail-box diff-box diff-content-controls">
+				<div class="diff-content-controls-left">
+					{{if $showFileTree}}
+						<button class="diff-toggle-file-tree-button theme-icon-button not-mobile" data-show-text="{{ctx.Locale.Tr "repo.diff.show_file_tree"}}" data-hide-text="{{ctx.Locale.Tr "repo.diff.hide_file_tree"}}">
+							{{/* the icon meaning is reversed here, "octicon-sidebar-collapse" means show the file tree */}}
+							{{svg "octicon-sidebar-collapse" 16 "icon tw-hidden"}}
+							{{svg "octicon-sidebar-expand" 16 "icon tw-hidden"}}
+						</button>
+					{{end}}
+					{{if .PageIsPullFiles}}
+						{{/* Vue replaces the button inside; CSS draws the label from this variable. */}}
+						<div id="diff-commit-select" style="--diff-commit-label: '{{if .IsShowingOnlySingleCommit}}{{ShortSha .CommitID}}{{else if not .IsShowingAllCommits}}{{ShortSha .BeforeCommitID}}..{{ShortSha .AfterCommitID}}{{else}}{{ctx.Locale.Tr "repo.commits.commits"}}{{end}}'" data-issuelink="{{$.Issue.Link}}" data-queryparams="?style={{if $.IsSplitStyle}}split{{else}}unified{{end}}&whitespace={{$.WhitespaceBehavior}}&show-outdated={{$.ShowOutdatedComments}}" data-filter_changes_by_commit="{{ctx.Locale.Tr "repo.pulls.filter_changes_by_commit"}}">
+							{{/*
+								the following will be replaced by vue component
+								but this avoids any loading artifacts till the vue component is initialized
+							*/}}
+							<div class="ui jump dropdown basic button custom">
+								{{svg "octicon-git-commit"}}
+							</div>
+						</div>
+					{{end}}
+					<div class="diff-code-search">
+						{{template "components/common/search/search" dict "Kind" "icon" "Local" true "ID" "diff-code-search" "Placeholder" "Search within code"}}
+						<div class="diff-search-navigation" hidden><span id="diff-search-count" role="status"></span><button class="btn interact-bg" type="button" data-search-direction="-1" aria-label="Previous match">{{svg "octicon-chevron-up" 16}}</button><button class="btn interact-bg" type="button" data-search-direction="1" aria-label="Next match">{{svg "octicon-chevron-down" 16}}</button></div>
+					</div>
+				</div>
+				<div class="diff-content-controls-right diff-detail-actions button-row">
+					{{if and .PageIsPullFiles $.SignedUserID (not .IsArchived) (not .DiffNotAvailable)}}
+						<div class="diff-viewed-summary not-mobile">
+							{{/* Forgejo updates the hidden progress; diff-view.js mirrors its value onto the ring. */}}
+							<span class="diff-viewed-ring" aria-hidden="true"></span>
+							<label for="viewed-files-summary" id="viewed-files-summary-label" data-text-changed-template="{{ctx.Locale.Tr "repo.pulls.viewed_files_label"}}">
+								{{ctx.Locale.Tr "repo.pulls.viewed_files_label" .DiffMetadata.NumberOfViewedFiles .DiffMetadata.TotalNumberOfFiles}}
+							</label>
+							<progress id="viewed-files-summary" value="{{.DiffMetadata.NumberOfViewedFiles}}" max="{{.DiffMetadata.TotalNumberOfFiles}}"></progress>
+						</div>
+					{{end}}
+					{{if and .PageIsPullFiles $.SignedUserID (not .IsArchived)}}
+						{{template "repo/diff/new_review" .}}
+					{{end}}
+					{{template "repo/diff/view_settings" .}}
+				</div>
+			</div>
+			{{if $showFileTree}}
+				<div class="diff-file-tree-panel not-mobile">
+					<div class="diff-file-tree-scroll">
+						<div class="diff-file-tree-controls">
+                            {{template "components/common/search/search" dict "Kind" "icon" "Local" true "ID" "diff-tree-filter" "Placeholder" "Filter files…" "Label" "Filter files"}}
+                            <details class="theme-menu diff-tree-options">
+                                <summary class="theme-icon-button theme-icon-button-outlined" aria-label="Filter options">{{svg "octicon-filter" 16}}</summary>
+                                <div class="theme-menu-popover"></div>
+                            </details>
+                        </div>
+						<div id="diff-file-tree" class="file-tree tw-hidden"></div>
+                        <p class="diff-tree-empty" role="status" hidden>No files found.</p>
+					</div>
+				</div>
+				<script>
+					if (diffTreeVisible) document.getElementById('diff-file-tree').classList.remove('tw-hidden');
+					else document.getElementById('diff-container').classList.add('diff-file-tree-hidden');
+					// The toggle sits in the toolbar above, so its first state is set here, once the tree exists; diff-file-tree.js
+					// keeps it in sync afterwards. Phones start with the tree closed.
+					const diffTreeBtn = document.querySelector('.diff-toggle-file-tree-button');
+					const diffTreeIcon = `.octicon-sidebar-${diffTreeVisible ? 'expand' : 'collapse'}`;
+					diffTreeBtn.querySelector(diffTreeIcon).classList.remove('tw-hidden');
+					diffTreeBtn.classList.toggle('active', diffTreeVisible && !matchMedia('(max-width: 767.98px)').matches);
+					diffTreeBtn.setAttribute('data-tooltip-content', diffTreeBtn.getAttribute(diffTreeVisible ? 'data-hide-text' : 'data-show-text'));
+				</script>
+				<div class="resizable-divider not-mobile" role="separator" aria-label="Resize file tree" aria-orientation="vertical" aria-valuemin="200" aria-valuenow="296" aria-valuemax="480" data-resize-container="#diff-container" data-resize-content-minimum-width="320" data-resize-default-width="296" data-resize-maximum-width="480" data-resize-minimum-width="200" data-resize-storage-key="diff_file_tree_width" data-resize-variable="--diff-file-tree-width" tabindex="0"></div>
+			{{end}}
+			<div id="diff-content-container">
+				<div class="diff-content-body">
+					{{if .IsShowingOnlySingleCommit}}
+						<div id="diff-commit-header">
+							{{template "repo/commit_header" .}}
+						</div>
+					{{end}}
+					{{if .DiffNotAvailable}}
+						<h4>{{ctx.Locale.Tr "repo.diff.data_not_available"}}</h4>
+					{{else}}
+						<div id="diff-file-boxes" class="sixteen wide column">
 				{{range $i, $file := .Diff.Files}}
 					{{/*notice: the index of Diff.Files should not be used for element ID, because the index will be restarted from 0 when doing load-more for PRs with a lot of files*/}}
 					{{$blobBase := call $.GetBlobByPathForCommit $.BeforeCommit $file.OldName}}
@@ -119,89 +146,28 @@
 					{{$showFileViewToggle := or $isImage (and (not $file.IsIncomplete) $isCsv)}}
 					{{$isExpandable := or (gt $file.Addition 0) (gt $file.Deletion 0) $file.IsBin}}
 					{{$isReviewFile := and $.IsSigned $.PageIsPullFiles (not $.IsArchived) $.IsShowingAllCommits}}
-					<div class="diff-file-box diff-box file-content {{TabSizeClass $.Editorconfig $file.Name}} tw-mt-0" id="diff-{{$file.NameHash}}" data-old-filename="{{$file.OldName}}" data-new-filename="{{$file.Name}}" {{if or ($file.ShouldBeHidden) (not $isExpandable)}}data-folded="true"{{end}}>
-						<h4 class="diff-file-header sticky-2nd-row ui top attached header tw-font-normal tw-flex tw-items-center tw-justify-between tw-flex-wrap">
-							<div class="diff-file-name tw-flex tw-flex-1 tw-items-center tw-gap-1 tw-flex-wrap">
-								<button class="fold-file btn interact-bg tw-p-1{{if not $isExpandable}} tw-invisible{{end}}">
-									{{if $file.ShouldBeHidden}}
-										{{svg "octicon-chevron-right" 18}}
-									{{else}}
-										{{svg "octicon-chevron-down" 18}}
-									{{end}}
-								</button>
-								<div class="tw-font-semibold tw-flex tw-items-center tw-font-mono">
-									{{if $file.IsBin}}
-										<span class="tw-ml-0.5 tw-mr-2">
-											{{ctx.Locale.Tr "repo.diff.bin"}}
-										</span>
-									{{else}}
-										{{template "repo/diff/stats" dict "file" . "root" $}}
-									{{end}}
-								</div>
-								<span class="file tw-flex tw-items-center tw-font-mono tw-flex-2"><a class="muted file-link" title="{{if $file.IsRenamed}}{{$file.OldName}} → {{end}}{{$file.Name}}" href="#diff-{{$file.NameHash}}">{{if $file.IsRenamed}}{{$file.OldName}} → {{end}}{{$file.Name}}</a>
-									<button class="btn interact-fg tw-p-2" data-clipboard-text="{{$file.Name}}" data-tooltip-content="{{ctx.Locale.Tr "copy_path"}}">{{svg "octicon-copy" 14}}</button>
-									{{if $file.IsLFSFile}}
-										<span class="ui label tw-mx-2" data-tooltip-content="{{ctx.Locale.Tr "repo.diff.lfs.tooltip"}}">{{ctx.Locale.Tr "quota.sizes.git.lfs"}}</span>
-									{{end}}
-									{{if $file.IsGenerated}}
-										<span class="ui label tw-mx-2">{{ctx.Locale.Tr "repo.diff.generated"}}</span>
-									{{end}}
-									{{if $file.IsVendored}}
-										<span class="ui label tw-mx-2">{{ctx.Locale.Tr "repo.diff.vendored"}}</span>
-									{{end}}
-									{{if and $file.Mode $file.OldMode}}
-										{{$old := ctx.Locale.Tr ($file.ModeTranslationKey $file.OldMode)}}
-										{{$new := ctx.Locale.Tr ($file.ModeTranslationKey $file.Mode)}}
-										<span class="tw-mx-2 tw-font-mono tw-whitespace-nowrap">{{ctx.Locale.Tr "git.filemode.changed_filemode" $old $new}}</span>
-									{{else if $file.Mode}}
-										<span class="tw-mx-2 tw-font-mono tw-whitespace-nowrap">{{ctx.Locale.Tr ($file.ModeTranslationKey $file.Mode)}}</span>
-									{{end}}
-								</span>
-							</div>
-							<div class="diff-file-header-actions tw-flex tw-items-center button-row tw-flex-wrap">
-								{{if $showFileViewToggle}}
-									<div class="ui compact icon buttons">
-										<button class="ui tiny basic button file-view-toggle" data-toggle-selector="#diff-source-{{$file.NameHash}}" data-tooltip-content="{{ctx.Locale.Tr "repo.file_view_source"}}">{{svg "octicon-code"}}</button>
-										<button class="ui tiny basic button file-view-toggle active" data-toggle-selector="#diff-rendered-{{$file.NameHash}}" data-tooltip-content="{{ctx.Locale.Tr "repo.file_view_rendered"}}">{{svg "octicon-file"}}</button>
-									</div>
-								{{end}}
-								{{if $file.IsProtected}}
-									<span class="ui basic label">{{ctx.Locale.Tr "repo.diff.protected"}}</span>
-								{{end}}
-								{{if and $isReviewFile $file.HasChangedSinceLastReview}}
-									<span class="changed-since-last-review unselectable not-mobile">{{ctx.Locale.Tr "repo.pulls.has_changed_since_last_review"}}</span>
-								{{end}}
-								{{if and (not (or $file.IsIncomplete $file.IsBin $file.IsSubmodule)) ($file.GetEscapeStatus ctx.Locale).Escaped}}
-									<button class="ui basic tiny button unescape-button not-mobile">{{ctx.Locale.Tr "repo.unescape_control_characters"}}</button>
-									<button class="ui basic tiny button escape-button tw-hidden">{{ctx.Locale.Tr "repo.escape_control_characters"}}</button>
-								{{end}}
-								{{if and (not $file.IsSubmodule) (not $.PageIsWiki)}}
-									{{if $file.IsDeleted}}
-										<a class="ui basic tiny button" rel="nofollow" href="{{$.BeforeSourcePath}}/{{PathEscapeSegments .Name}}">{{ctx.Locale.Tr "repo.diff.view_file"}}</a>
-									{{else}}
-										<a class="ui basic tiny button" rel="nofollow" href="{{$.SourcePath}}/{{PathEscapeSegments .Name}}">{{ctx.Locale.Tr "repo.diff.view_file"}}</a>
-										{{if and $.HeadBranchIsEditable (not $file.IsLFSFile)}}
-											<a class="ui basic tiny button" rel="nofollow" href="{{$.SourceRepoLink}}/_edit/{{PathEscapeSegments $.HeadBranch}}/{{PathEscapeSegments .Name}}">{{ctx.Locale.Tr "repo.editor.edit_this_file"}}</a>
-										{{end}}
-									{{end}}
-								{{end}}
-								{{if $isReviewFile}}
-									<label data-link="{{$.Issue.Link}}/viewed-files" data-headcommit="{{$.AfterCommitID}}" class="viewed-file-form unselectable{{if $file.IsViewed}} viewed-file-checked-form{{end}}">
-										<input type="checkbox" name="{{$file.GetDiffFileName}}" autocomplete="off"{{if $file.IsViewed}} checked{{end}}> {{ctx.Locale.Tr "repo.pulls.has_viewed_file"}}
-									</label>
-								{{end}}
-							</div>
-						</h4>
+					<div class="diff-file-box diff-box file-content {{TabSizeClass $.Editorconfig $file.Name}} tw-mt-0" id="diff-{{$file.NameHash}}" data-old-filename="{{$file.OldName}}" data-new-filename="{{$file.Name}}" {{if and $file.IsDeleted (not $file.IsBin)}}data-deleted-diff-hidden{{end}} {{if or ($file.ShouldBeHidden) (not $isExpandable)}}data-folded="true"{{end}}>
+						{{template "repo/diff/file_header" dict "file" $file "root" $ "isExpandable" $isExpandable "isReviewFile" $isReviewFile "showFileViewToggle" $showFileViewToggle}}
+                        {{if and $file.IsDeleted (not $file.IsBin)}}
+                            <div class="diff-deleted-placeholder">
+                                <div class="diff-deleted-skeleton" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+                                <button type="button" class="btn diff-load-deleted">Load diff</button>
+                                <span>This file was deleted.</span>
+                            </div>
+                        {{end}}
 						<div class="diff-file-body ui attached unstackable table segment" {{if and $file.IsViewed $.IsShowingAllCommits}}data-folded="true"{{end}}>
 							<div id="diff-source-{{$file.NameHash}}" class="file-body file-code unicode-escaped code-diff{{if $.IsSplitStyle}} code-diff-split{{else}} code-diff-unified{{end}}{{if $showFileViewToggle}} tw-hidden{{end}}">
 								{{if or $file.IsIncomplete $file.IsBin}}
-									<div class="diff-file-body binary">
+									<div class="diff-file-body binary{{if $file.IsIncomplete}} diff-suppressed-placeholder{{end}}">
 										{{if $file.IsIncomplete}}
+											{{/* GitHub's large diff placeholder. Forgejo replaces the parent of a.diff-load-button with the loaded
+												diff and reads data-href from the clicked element, so the link stays a direct child holding text only. */}}
+											<div class="diff-deleted-skeleton" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
 											{{if $file.IsIncompleteLineTooLong}}
-												{{ctx.Locale.Tr "repo.diff.file_suppressed_line_too_long"}}
+												<span>{{ctx.Locale.Tr "repo.diff.file_suppressed_line_too_long"}}</span>
 											{{else}}
-												{{ctx.Locale.Tr "repo.diff.file_suppressed"}}
-												<a class="ui basic tiny button diff-load-button" data-href="?file-only=true&files={{$file.Name}}&files={{$file.OldName}}">{{ctx.Locale.Tr "repo.diff.load"}}</a>
+												<a class="diff-load-button" role="button" href="#" data-href="?file-only=true&files={{$file.Name}}&files={{$file.OldName}}">{{ctx.Locale.Tr "repo.diff.load"}}</a>
+												<span>Large diffs are not rendered by default.</span>
 											{{end}}
 										{{else}}
 											{{ctx.Locale.Tr "repo.diff.bin_not_shown"}}
@@ -232,20 +198,29 @@
 						</div>
 					</div>
 				{{end}}
+
 			</div>
 			{{if .DiffMetadata.HasNext}}
-				<div class="diff-file-box diff-box file-content tw-mt-2" id="diff-incomplete">
-					<h4 class="ui top attached header tw-font-normal tw-flex tw-items-center tw-justify-between">
-						{{ctx.Locale.Tr "repo.diff.too_many_files"}}
-						<a class="ui basic tiny button" id="diff-show-more-files" data-href="?{{range $i, $f := .FileSelection}}{{if $i}}&{{end}}files={{$f}}{{end}}&diff-page={{len (printf "a%*s" .DiffMetadata.CurrentPage "")}}&file-only=true">{{ctx.Locale.Tr "repo.diff.show_more"}}</a>
-					</h4>
+				{{/* GitHub loads the next files while scrolling: diff-view.js presses the hidden "Show more" link. */}}
+				<div class="diff-loading-more" id="diff-incomplete" role="status">
+					<span class="diff-loading-spinner" aria-hidden="true"></span>
+					<span>Loading more files…</span>
+					<a class="tw-hidden" id="diff-show-more-files" data-href="?{{range $i, $f := .FileSelection}}{{if $i}}&{{end}}files={{$f}}{{end}}&diff-page={{len (printf "a%*s" .DiffMetadata.CurrentPage "")}}&file-only=true">{{ctx.Locale.Tr "repo.diff.show_more"}}</a>
 				</div>
 			{{end}}
 		{{end}}
 		</div>
-	</div>
+			</div>
+		</div>
+        <script src="{{AssetUrlPrefix}}/js/diff-view.js?v=9846bc278c" defer></script>
+		{{if $showFileTree}}
+			<script src="{{AssetUrlPrefix}}/js/resizable-divider.js?v=a61239127c" defer></script>
+            <script src="{{AssetUrlPrefix}}/js/diff-file-tree.js?v=0bdf57f9c1" defer></script>
+            <script src="{{AssetUrlPrefix}}/js/tree-navigation.js?v=b3ee375e16" defer></script>
+            <script src="{{AssetUrlPrefix}}/js/details-menu.js?v=3c4c1b86dd" defer></script>
+		{{end}}
 
-	{{if and (not $.Repository.IsArchived) (not .DiffNotAvailable)}}
+		{{if and (not $.Repository.IsArchived) (not .DiffNotAvailable)}}
 		<template id="issue-comment-editor-template">
 			<div class="ui comment form">
 				{{template "shared/combomarkdowneditor" (dict
@@ -253,7 +228,6 @@
 					"MarkdownPreviewContext" $.RepoLink
 					"TextareaName" "content"
 					"DropzoneParentContainer" ".ui.form"
-					"SuggestionButton" true
 				)}}
 				{{if .IsAttachmentEnabled}}
 					<div class="field">

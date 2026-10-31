@@ -1,0 +1,134 @@
+{{- /* Home's activity feed: one compact row per event in a box, the event's icon, what happened and when on the first
+line and the issue title, commit message or comment beneath. feed.js groups the rows by day and loads older pages in
+place; without it the rows stay in one list and "Load older activity" opens the next page. The sentences are
+Forgejo's own, so every event type and language reads as on the profile. Data is the page context. */ -}}
+{{$data := .}}
+{{$link := $data.Link}}{{if eq $link AppSubUrl}}{{$link = print $link "/"}}{{end}}
+{{$params := $data.Page.GetParams}}
+<div class="theme-feed" data-theme-feed>
+	<ol class="theme-feed-list" data-theme-feed-list>
+		{{range $data.Feeds}}
+			{{$op := .GetOpType.String}}
+			<li class="theme-feed-item" data-op="{{$op}}" data-time="{{.GetCreate.Unix}}"{{if eq $op "publish_release"}} data-release="{{.Content}}" data-link="{{.GetRepoLink ctx}}/releases/tag/{{.GetTag | PathEscapeSegments}}" data-repo="{{.ShortRepoPath ctx}}"{{end}}>
+				<span class="theme-feed-icon theme-feed-icon-{{ActionIcon .GetOpType}}">{{svg (printf "octicon-%s" (ActionIcon .GetOpType)) 16}}</span>
+				<div class="theme-feed-main">
+					<p class="theme-feed-summary">
+						{{ctx.AvatarUtils.AvatarByAction . 16}}
+						{{if gt .ActUser.ID 0}}
+							<a class="theme-feed-actor" href="{{AppSubUrl}}/{{(.GetActUserName ctx) | PathEscape}}" title="{{.GetActDisplayNameTitle ctx}}">{{.GetActDisplayName ctx}}</a>
+						{{else}}
+							<span class="theme-feed-actor">{{.ShortActUserName ctx}}</span>
+						{{end}}
+						{{if .GetOpType.InActions "create_repo"}}
+							{{ctx.Locale.Tr "action.create_repo" (.GetRepoLink ctx) (.ShortRepoPath ctx)}}
+						{{else if .GetOpType.InActions "rename_repo"}}
+							{{ctx.Locale.Tr "action.rename_repo" .GetContent (.GetRepoLink ctx) (.ShortRepoPath ctx)}}
+						{{else if .GetOpType.InActions "commit_repo"}}
+							{{if .Content}}
+								{{ctx.Locale.Tr "action.commit_repo" (.GetRepoLink ctx) (.GetRefLink ctx) .GetBranch (.ShortRepoPath ctx)}}
+							{{else}}
+								{{ctx.Locale.Tr "action.create_branch" (.GetRepoLink ctx) (.GetRefLink ctx) .GetBranch (.ShortRepoPath ctx)}}
+							{{end}}
+						{{else if .GetOpType.InActions "create_issue"}}
+							{{$index := index .GetIssueInfos 0}}
+							{{ctx.Locale.Tr "action.create_issue" (printf "%s/issues/%s" (.GetRepoLink ctx) $index) $index (.ShortRepoPath ctx)}}
+						{{else if .GetOpType.InActions "create_pull_request"}}
+							{{$index := index .GetIssueInfos 0}}
+							{{ctx.Locale.Tr "action.create_pull_request" (printf "%s/pulls/%s" (.GetRepoLink ctx) $index) $index (.ShortRepoPath ctx)}}
+						{{else if .GetOpType.InActions "transfer_repo"}}
+							{{ctx.Locale.Tr "action.transfer_repo" .GetContent (.GetRepoLink ctx) (.ShortRepoPath ctx)}}
+						{{else if .GetOpType.InActions "push_tag"}}
+							{{ctx.Locale.Tr "action.push_tag" (.GetRepoLink ctx) (.GetRefLink ctx) .GetTag (.ShortRepoPath ctx)}}
+						{{else if .GetOpType.InActions "comment_issue"}}
+							{{$index := index .GetIssueInfos 0}}
+							{{ctx.Locale.Tr "action.comment_issue" (printf "%s/issues/%s" (.GetRepoLink ctx) $index) $index (.ShortRepoPath ctx)}}
+						{{else if .GetOpType.InActions "merge_pull_request"}}
+							{{$index := index .GetIssueInfos 0}}
+							{{ctx.Locale.Tr "action.merge_pull_request" (printf "%s/pulls/%s" (.GetRepoLink ctx) $index) $index (.ShortRepoPath ctx)}}
+						{{else if .GetOpType.InActions "auto_merge_pull_request"}}
+							{{$index := index .GetIssueInfos 0}}
+							{{ctx.Locale.Tr "action.auto_merge_pull_request" (printf "%s/pulls/%s" (.GetRepoLink ctx) $index) $index (.ShortRepoPath ctx)}}
+						{{else if .GetOpType.InActions "close_issue"}}
+							{{$index := index .GetIssueInfos 0}}
+							{{ctx.Locale.Tr "action.close_issue" (printf "%s/issues/%s" (.GetRepoLink ctx) $index) $index (.ShortRepoPath ctx)}}
+						{{else if .GetOpType.InActions "reopen_issue"}}
+							{{$index := index .GetIssueInfos 0}}
+							{{ctx.Locale.Tr "action.reopen_issue" (printf "%s/issues/%s" (.GetRepoLink ctx) $index) $index (.ShortRepoPath ctx)}}
+						{{else if .GetOpType.InActions "close_pull_request"}}
+							{{$index := index .GetIssueInfos 0}}
+							{{ctx.Locale.Tr "action.close_pull_request" (printf "%s/pulls/%s" (.GetRepoLink ctx) $index) $index (.ShortRepoPath ctx)}}
+						{{else if .GetOpType.InActions "reopen_pull_request"}}
+							{{$index := index .GetIssueInfos 0}}
+							{{ctx.Locale.Tr "action.reopen_pull_request" (printf "%s/pulls/%s" (.GetRepoLink ctx) $index) $index (.ShortRepoPath ctx)}}
+						{{else if .GetOpType.InActions "delete_tag"}}
+							{{$index := index .GetIssueInfos 0}}
+							{{ctx.Locale.Tr "action.delete_tag" (.GetRepoLink ctx) .GetTag (.ShortRepoPath ctx)}}
+						{{else if .GetOpType.InActions "delete_branch"}}
+							{{$index := index .GetIssueInfos 0}}
+							{{ctx.Locale.Tr "action.delete_branch" (.GetRepoLink ctx) .GetBranch (.ShortRepoPath ctx)}}
+						{{else if .GetOpType.InActions "mirror_sync_push"}}
+							{{ctx.Locale.Tr "action.mirror_sync_push" (.GetRepoLink ctx) (.GetRefLink ctx) .GetBranch (.ShortRepoPath ctx)}}
+						{{else if .GetOpType.InActions "mirror_sync_create"}}
+							{{ctx.Locale.Tr "action.mirror_sync_create" (.GetRepoLink ctx) (.GetRefLink ctx) .GetBranch (.ShortRepoPath ctx)}}
+						{{else if .GetOpType.InActions "mirror_sync_delete"}}
+							{{ctx.Locale.Tr "action.mirror_sync_delete" (.GetRepoLink ctx) .GetBranch (.ShortRepoPath ctx)}}
+						{{else if .GetOpType.InActions "approve_pull_request"}}
+							{{$index := index .GetIssueInfos 0}}
+							{{ctx.Locale.Tr "action.approve_pull_request" (printf "%s/pulls/%s" (.GetRepoLink ctx) $index) $index (.ShortRepoPath ctx)}}
+						{{else if .GetOpType.InActions "reject_pull_request"}}
+							{{$index := index .GetIssueInfos 0}}
+							{{ctx.Locale.Tr "action.reject_pull_request" (printf "%s/pulls/%s" (.GetRepoLink ctx) $index) $index (.ShortRepoPath ctx)}}
+						{{else if .GetOpType.InActions "comment_pull"}}
+							{{$index := index .GetIssueInfos 0}}
+							{{ctx.Locale.Tr "action.comment_pull" (printf "%s/pulls/%s" (.GetRepoLink ctx) $index) $index (.ShortRepoPath ctx)}}
+						{{else if .GetOpType.InActions "publish_release"}}
+							{{$linkText := .Content | RenderEmoji $.Context}}
+							{{ctx.Locale.Tr "action.publish_release" (.GetRepoLink ctx) (printf "%s/releases/tag/%s" (.GetRepoLink ctx) .GetTag) (.ShortRepoPath ctx) $linkText}}
+						{{else if .GetOpType.InActions "pull_review_dismissed"}}
+							{{$index := index .GetIssueInfos 0}}
+							{{$reviewer := index .GetIssueInfos 1}}
+							{{ctx.Locale.Tr "action.review_dismissed" (printf "%s/pulls/%s" (.GetRepoLink ctx) $index) $index (.ShortRepoPath ctx) $reviewer}}
+						{{end}}
+						<span class="theme-feed-time">{{DateUtils.TimeSince .GetCreate}}</span>
+					</p>
+					{{if .GetOpType.InActions "commit_repo" "mirror_sync_push"}}
+						{{$push := ActionContent2Commits ctx .}}
+						{{$repoLink := .GetRepoLink ctx}}
+						{{$repo := .Repo}}
+						{{range $i, $commit := $push.Commits}}
+							{{if eq $i 0}}
+								<p class="theme-feed-detail theme-feed-commit">
+									<a class="theme-feed-sha" href="{{$repoLink}}/commit/{{$commit.Sha1}}">{{ShortSha $commit.Sha1}}</a>
+									<span class="theme-feed-message">{{RenderCommitMessage $.Context $commit.Message ($repo.ComposeMetas ctx)}}</span>
+									{{if gt $push.Len 1}}
+										{{if $push.CompareURL}}<a class="theme-feed-more" href="{{AppSubUrl}}/{{$push.CompareURL}}">{{ctx.Locale.Tr "action.compare_commits" $push.Len}}</a>{{end}}
+									{{end}}
+								</p>
+							{{end}}
+						{{end}}
+					{{else if .GetOpType.InActions "create_issue" "create_pull_request"}}
+						<p class="theme-feed-detail theme-feed-title">{{RenderIssueTitle ctx (index .GetIssueInfos 1) (.Repo.ComposeMetas ctx)}}</p>
+					{{else if .GetOpType.InActions "comment_issue" "approve_pull_request" "reject_pull_request" "comment_pull"}}
+						<p class="theme-feed-detail theme-feed-title"><a href="{{.GetCommentLink ctx}}">{{RenderRefIssueTitle $.Context (.GetIssueTitle ctx)}}</a></p>
+						{{$comment := index .GetIssueInfos 1}}
+						{{if $comment}}<div class="theme-feed-detail theme-feed-comment markup">{{RenderMarkdownToHtml ctx $comment}}</div>{{end}}
+					{{else if .GetOpType.InActions "merge_pull_request"}}
+						<p class="theme-feed-detail theme-feed-title">{{index .GetIssueInfos 1}}</p>
+					{{else if .GetOpType.InActions "close_issue" "reopen_issue" "close_pull_request" "reopen_pull_request"}}
+						<p class="theme-feed-detail theme-feed-title">{{RenderIssueTitle ctx (.GetIssueTitle ctx) (.Repo.ComposeMetas ctx)}}</p>
+					{{else if .GetOpType.InActions "pull_review_dismissed"}}
+						<p class="theme-feed-detail">{{ctx.Locale.Tr "action.review_dismissed_reason"}} {{index .GetIssueInfos 2 | RenderEmoji $.Context}}</p>
+					{{end}}
+				</div>
+			</li>
+		{{end}}
+	</ol>
+	{{with $data.Page.Paginater}}
+		{{if .HasNext}}
+			<a class="theme-feed-older" href="{{$link}}?page={{.Next}}{{if $params}}&{{$params}}{{end}}" data-theme-feed-older>Load older activity</a>
+		{{end}}
+	{{end}}
+	<template data-theme-feed-text data-today="Today" data-yesterday="Yesterday" data-week="This week" data-last-week="Last week" data-earlier="Earlier" data-error="Older activity could not be loaded. Try again."></template>
+</div>
+{{/* Not deferred: the day headings are in place before the page's first paint instead of pushing the rows down. */}}
+<script src="{{AssetUrlPrefix}}/js/components/dashboard/feed/feed.js?v=818a23ca4b"></script>

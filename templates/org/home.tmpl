@@ -1,5 +1,7 @@
 {{template "base/head" .}}
-<div role="main" aria-label="{{.Title}}" class="page-content organization profile">
+{{/* Only the explicit repositories tab selects the full repository listing. */}}
+{{$repositories := eq (printf "%s" (ExecuteTemplate .Context "org/view_mode" .)) "repositories"}}
+<div role="main" aria-label="{{.Title}}" class="page-content organization profile github-org{{if $repositories}} org-repository-view theme-sidebar-layout{{end}}"{{if $repositories}} data-theme-sidebar="org_repositories_sidebar_collapsed"{{end}}>
 	{{if .Flash}}
 		<div class="ui container tw-mb-8">
 			{{template "base/alert" .}}
@@ -7,7 +9,7 @@
 	{{end}}
 	{{if .Invite}}
 		<div class="ui container tw-mb-8">
-			<div class="ui info message tw-flex tw-items-center tw-justify-between">
+			<div class="ui info message org-invite-flash tw-flex tw-items-center tw-justify-between">
 				<div>
 					{{if eq (len .TeamsInvitedTo) 1}}
 						{{$teamsFormatted := HTMLFormat "<b>%s</b>" (index .TeamsInvitedTo 0).Name}}
@@ -22,16 +24,17 @@
 						{{ctx.Locale.Tr "org.pending_invite_notification_multiple_teams" $teamsFormatted}}
 					{{end}}
 				</div>
-				<div><a class="primary button" href="{{AppSubUrl}}/org/invite/{{.Invite.Token}}">{{ctx.Locale.Tr "org.view_invite"}}</a></div>
+				<a class="primary button" href="{{AppSubUrl}}/org/invite/{{.Invite.Token}}">{{ctx.Locale.Tr "org.view_invite"}}</a>
 			</div>
 		</div>
 	{{end}}
-	{{template "org/header" .}}
+	{{if not $repositories}}{{template "org/header" .}}{{end}}
 
-	<div class="ui container">
-		<div class="ui mobile reversed stackable grid">
-			<div class="ui {{if .ShowMemberAndTeamTab}}eleven wide{{end}} column">
-				{{if .ProfileReadme}}
+	{{if $repositories}}{{template "org/repository_nav" .}}{{end}}
+	<div class="ui container{{if $repositories}} theme-sidebar-main{{end}}">
+		<div class="org-overview-grid{{if or $repositories (not .ShowMemberAndTeamTab)}} org-full-width{{end}}">
+			<div class="org-repositories">
+				{{if and .ProfileReadme (not $repositories)}}
 					<div id="readme_profile" class="{{if not .IsProfileReadmePlain}}markup{{end}}">
 					{{if .IsProfileReadmePlain}}
 						<pre>{{.ProfileReadme}}</pre>
@@ -40,26 +43,21 @@
 					{{end}}
 					</div>
 				{{end}}
-				{{template "shared/repo_search" .}}
-				{{template "explore/repo_list" .}}
-				{{template "base/paginate" .}}
+				{{if $repositories}}
+					{{template "org/repository_list" .}}
+				{{else}}
+					<h2 class="org-section-title">{{svg "octicon-repo" 16}} {{ctx.Locale.Tr "user.repositories"}}</h2>
+					{{template "user/profile_repository_search" .}}
+					{{template "components/repository/results/results" dict "Data" . "View" "overview" "Pagination" "org/repository_pagination"}}
+				{{end}}
 			</div>
 
-			{{if .ShowMemberAndTeamTab}}
-			<div class="ui five wide column">
-				{{if .CanCreateOrgRepo}}
-					<div class="center aligned">
-						<a class="ui primary button tw-mb-1" href="{{AppSubUrl}}/repo/create?org={{.Org.ID}}">{{ctx.Locale.Tr "new_repo.link"}}</a>
-						{{if not .DisableMigrations}}
-							<a class="ui primary button tw-mb-1" href="{{AppSubUrl}}/repo/migrate?org={{.Org.ID}}&mirror=1">{{ctx.Locale.Tr "new_migrate.link"}}</a>
-						{{end}}
-					</div>
-					<div class="divider"></div>
-				{{end}}
+			{{if and .ShowMemberAndTeamTab (not $repositories)}}
+			<aside class="org-overview-sidebar">
 				{{if .NumMembers}}
 					<h4 class="ui top attached header tw-flex">
 						<strong class="tw-flex-1">{{ctx.Locale.Tr "org.members"}}</strong>
-						<a class="text grey tw-flex tw-items-center" href="{{.OrgLink}}/members"><span>{{.NumMembers}}</span> {{svg "octicon-chevron-right"}}</a>
+						<a class="org-sidebar-count tw-flex tw-items-center" href="{{.OrgLink}}/members"><span>{{.NumMembers}}</span> {{svg "octicon-chevron-right"}}</a>
 					</h4>
 					<div class="ui attached segment members">
 						{{$isMember := .IsOrganizationMember}}
@@ -73,26 +71,26 @@
 				{{if .IsOrganizationMember}}
 					<div class="ui top attached header tw-flex">
 						<strong class="tw-flex-1">{{ctx.Locale.Tr "org.teams"}}</strong>
-						<a class="text grey tw-flex tw-items-center" href="{{.OrgLink}}/teams"><span>{{.Org.NumTeams}}</span> {{svg "octicon-chevron-right"}}</a>
+						<a class="org-sidebar-count tw-flex tw-items-center" href="{{.OrgLink}}/teams"><span>{{.Org.NumTeams}}</span> {{svg "octicon-chevron-right"}}</a>
 					</div>
 					<div class="ui attached table segment teams">
 						{{range .Teams}}
 							<div class="item">
 								<a href="{{$.OrgLink}}/teams/{{.LowerName | PathEscape}}"><strong class="team-name">{{.Name}}</strong></a>
-								<p class="text grey">
-									<a class="muted" href="{{$.OrgLink}}/teams/{{.LowerName | PathEscape}}"><strong>{{.NumMembers}}</strong> {{ctx.Locale.Tr "org.lower_members"}}</a> ·
-									<a class="muted" href="{{$.OrgLink}}/teams/{{.LowerName | PathEscape}}/repositories"><strong>{{.NumRepos}}</strong> {{ctx.Locale.Tr "org.lower_repositories"}}</a>
+								<p class="org-team-meta">
+									{{.NumMembers}} {{ctx.Locale.Tr "org.lower_members"}} ·
+									{{.NumRepos}} {{ctx.Locale.Tr "org.lower_repositories"}}
 								</p>
 							</div>
 						{{end}}
 					</div>
 					{{if .IsOrganizationOwner}}
 						<div class="ui bottom attached segment">
-							<a class="primary small button" href="{{.OrgLink}}/teams/new">{{ctx.Locale.Tr "org.create_new_team"}}</a>
+							<a class="secondary button theme-control theme-control-small" href="{{.OrgLink}}/teams/new">{{ctx.Locale.Tr "org.create_new_team"}}</a>
 						</div>
 					{{end}}
 				{{end}}
-			</div>
+			</aside>
 			{{end}}
 		</div>
 	</div>

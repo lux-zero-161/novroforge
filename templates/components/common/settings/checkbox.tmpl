@@ -1,0 +1,9 @@
+{{/* GitHub's settings checkbox: the box beside a semibold title, with a muted note beneath the title. Name, ID, Checked,
+	Disabled and Value describe the input; Title and Note are text (Note may be rendered HTML); Tooltip explains a disabled
+	or risky choice; Extra is rendered HTML placed after the note, such as a hidden input or a warning. */}}
+<div class="theme-settings-checkbox"{{if .Tooltip}} data-tooltip-content="{{.Tooltip}}"{{end}}>
+	<input type="checkbox" id="{{.ID}}" name="{{.Name}}"{{if .Value}} value="{{.Value}}"{{end}}{{if .Checked}} checked{{end}}{{if .Disabled}} disabled{{end}}>
+	<label for="{{.ID}}">{{.Title}}</label>
+	{{if .Note}}<p class="theme-settings-checkbox-note">{{.Note}}</p>{{end}}
+	{{if .Extra}}{{.Extra}}{{end}}
+</div>

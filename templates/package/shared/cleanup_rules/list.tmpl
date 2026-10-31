@@ -1,3 +1,4 @@
+{{/* Forgejo's package cleanup rules with GitHub's empty state. */}}
 <h4 class="ui top attached header">
 	{{ctx.Locale.Tr "packages.owner.settings.cleanuprules.title"}}
 	<div class="ui right">
@@ -50,7 +51,7 @@
 				</div>
 			</div>
 		{{else}}
-			<div class="item">{{ctx.Locale.Tr "packages.owner.settings.cleanuprules.none"}}</div>
+			{{template "components/common/settings/blankslate" dict "Title" (ctx.Locale.Tr "packages.owner.settings.cleanuprules.none")}}
 		{{end}}
 	</div>
 </div>

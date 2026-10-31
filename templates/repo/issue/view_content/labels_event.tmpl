@@ -1,0 +1,28 @@
+{{- /* "added the … label" with theme labels. The translation takes the labels as one HTML string, which a template
+call cannot produce, so the markup of components/repository/label/label is assembled here. Keep the two in step. */ -}}
+{{$kind := "issues"}}{{if .IsPull}}{{$kind = "pulls"}}{{end}}
+{{$added := ""}}{{$removed := ""}}
+{{range $key, $labels := dict "added" .Added "removed" .Removed}}
+	{{$list := HTMLFormat `<span class="labels-list">`}}
+	{{range $labels}}
+		{{$archived := ""}}{{$description := .Description}}
+		{{if .IsArchived}}{{$archived = " archived-label"}}{{$description = print "(" (ctx.Locale.Tr "archived") ") " .Description}}{{end}}
+		{{$scope := .ExclusiveScope}}
+		{{$label := ""}}
+		{{if $scope}}
+			{{$label = HTMLFormat `<span class="repository-label-scoped%s" style="--repository-label-color: %s; --repository-label-foreground: %s" data-tooltip-content="%s" aria-description="%s"><span class="repository-label repository-label-scope">%s</span><span class="repository-label repository-label-item">%s</span></span>` $archived .Color (ContrastColor .Color) $description $description (RenderEmoji ctx $scope) (RenderEmoji ctx (slice .Name (len (print $scope "/"))))}}
+		{{else}}
+			{{$label = HTMLFormat `<span class="repository-label%s" style="--repository-label-color: %s; --repository-label-foreground: %s" data-tooltip-content="%s" aria-description="%s">%s</span>` $archived .Color (ContrastColor .Color) $description $description (RenderEmoji ctx .Name)}}
+		{{end}}
+		{{$list = HTMLFormat `%s<a href="%s/%s?labels=%d" rel="nofollow">%s</a> ` $list $.RepoLink $kind .ID $label}}
+	{{end}}
+	{{$list = HTMLFormat `%s</span>` $list}}
+	{{if eq $key "added"}}{{$added = $list}}{{else}}{{$removed = $list}}{{end}}
+{{end}}
+{{if and .Added (not .Removed)}}
+	{{ctx.Locale.TrN (len .Added) "repo.issues.add_label" "repo.issues.add_labels" $added .Time}}
+{{else if and (not .Added) .Removed}}
+	{{ctx.Locale.TrN (len .Removed) "repo.issues.remove_label" "repo.issues.remove_labels" $removed .Time}}
+{{else}}
+	{{ctx.Locale.Tr "repo.issues.add_remove_labels" $added $removed .Time}}
+{{end}}

@@ -1,7 +1,7 @@
+{{/* Forgejo 17's activity pages laid out as GitHub's Insights: the nav list beside the page. */}}
 {{template "base/head" .}}
 <div role="main" aria-label="{{.Title}}" class="page-content repository commits">
-	{{template "repo/header" .}}
-	<div class="ui container flex-container">
+	<div class="ui container flex-container github-insights">
 		{{if and (not .IsEmptyRepo) (.Permission.CanRead $.UnitTypeCode)}}
 			<div class="flex-container-nav">
 				{{template "repo/navbar" .}}
@@ -16,4 +16,3 @@
 	</div>
 </div>
 {{template "base/footer" .}}
-

@@ -1,0 +1,68 @@
+/* The dashboard's own lists: issues, pull requests, notifications and subscriptions. */
+
+/* Notifications */
+.github-notifications .theme-list-heading {
+  margin-bottom: 16px;
+}
+
+.github-notifications #notification_table {
+  overflow: hidden;
+  border: 1px solid var(--color-light-border);
+  border-radius: var(--border-radius);
+}
+
+.github-notifications .notifications-item {
+  min-height: 55px;
+  padding: 8px 16px !important;
+  background: var(--color-box-header);
+}
+
+.github-notifications .notifications-item + .notifications-item {
+  border-top: 1px solid var(--color-light-border);
+}
+
+/* Read notifications recede: no tint and a muted title. */
+.github-notifications .notifications-item[data-status="2"] {
+  background: transparent;
+}
+
+.github-notifications .notifications-item[data-status="2"] .issue-title {
+  color: var(--color-text-light-1);
+}
+
+.github-notifications .notifications-item:hover {
+  background: var(--color-hover);
+}
+
+.github-notifications .notifications-top-row {
+  color: var(--color-text-light-1);
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.github-notifications .notifications-bottom-row {
+  padding: 0;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.github-notifications .notifications-updated {
+  color: var(--color-text-light-1);
+  font-size: 12px;
+}
+
+.github-notifications .notifications-buttons .btn {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border-radius: var(--border-radius);
+  color: var(--color-text-light-1);
+}
+
+/* Subscriptions: the issue list sits in the box under its header instead of drawing its own border. As specific as
+   the issue list rule for notification pages, and loaded after it. */
+.page-content.user.notification .theme-box-list #issue-list {
+  border: 0;
+}

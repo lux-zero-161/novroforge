@@ -1,6 +1,7 @@
+{{/* Forgejo 17's Insights navigation in GitHub's nav list. */}}
 {{$canReadCode := $.Permission.CanRead $.UnitTypeCode}}
 
-<div class="ui fluid vertical menu">
+<div class="ui fluid vertical menu theme-nav-list">
 	<a class="{{if .PageIsPulse}}active {{end}}item" href="{{.RepoLink}}/activity">
 		{{ctx.Locale.Tr "repo.activity.navbar.pulse"}}
 	</a>

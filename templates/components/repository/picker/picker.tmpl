@@ -1,0 +1,24 @@
+{{- /* A list of repositories loaded from Forgejo's own repository search (/repo/search, which accepts the browser
+session), newest activity first. Home lists the signed-in user's top repositories with it; the header's switcher lists
+an owner's repositories. UID and Team select the repositories as Forgejo's dashboard list does; Exclusive keeps to
+repositories UID owns. Current marks a repository with a check. FullName shows "owner/name" instead of the name. Limit
+is the page size; More adds a Show more button. Search shows the filter field from the start; otherwise a button with
+data-theme-repo-picker-toggle and aria-controls naming the picker's ID reveals it. Lazy waits for the enclosing dropdown
+to open, then shows the field. */ -}}
+<div{{if .ID}} id="{{.ID}}"{{end}} class="theme-repo-picker" data-theme-repo-picker data-url="{{AppSubUrl}}/repo/search" data-uid="{{.UID}}"{{if .Team}} data-team="{{.Team}}"{{end}}{{if .Exclusive}} data-exclusive{{end}}{{if .Current}} data-current="{{.Current}}"{{end}}{{if .FullName}} data-full-name{{end}} data-limit="{{or .Limit 10}}"{{if .Lazy}} data-lazy{{end}}>
+	<div class="theme-repo-picker-search"{{if not .Search}} hidden{{end}}>
+		{{template "components/common/search/search" dict "Kind" "icon" "Local" true "Placeholder" (ctx.Locale.Tr "search.repo_kind")}}
+	</div>
+	<ul class="theme-repo-picker-list" data-theme-repo-picker-list aria-label="{{.Label}}" aria-busy="true"></ul>
+	<p class="theme-repo-picker-message" data-theme-repo-picker-message role="status" hidden></p>
+	{{if .More}}<button type="button" class="theme-repo-picker-more" data-theme-repo-picker-more hidden>Show more</button>{{end}}
+	<template data-theme-repo-picker-icons>
+		<span data-icon="repo">{{svg "octicon-repo" 16}}</span>
+		<span data-icon="private">{{svg "octicon-lock" 16}}</span>
+		<span data-icon="fork">{{svg "octicon-repo-forked" 16}}</span>
+		<span data-icon="mirror">{{svg "octicon-mirror" 16}}</span>
+		<span data-icon="template">{{svg "octicon-repo-template" 16}}</span>
+		<span data-icon="check">{{svg "octicon-check" 16}}</span>
+	</template>
+	<template data-theme-repo-picker-text data-empty="{{ctx.Locale.Tr "search.no_results"}}" data-error="Repositories could not be loaded. Try again."></template>
+</div>

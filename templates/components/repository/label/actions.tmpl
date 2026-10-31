@@ -1,0 +1,3 @@
+{{$label := .Label}}
+<a class="theme-dropdown-action edit-label-button" href="#" data-id="{{$label.ID}}" data-title="{{$label.Name}}" {{if $label.Exclusive}}data-exclusive{{end}} {{if gt $label.ArchivedUnix 0}}data-is-archived{{end}} data-num-issues="{{$label.NumIssues}}" data-description="{{$label.Description}}" data-color={{$label.Color}}>{{svg "octicon-pencil" 16}}{{ctx.Locale.Tr "repo.issues.label_edit"}}</a>
+<a class="theme-dropdown-action theme-dropdown-danger delete-button" href="#" data-url="{{.DeleteLink}}" data-id="{{$label.ID}}" data-modal-id="delete-label">{{svg "octicon-trash" 16}}{{ctx.Locale.Tr "repo.issues.label_delete"}}</a>

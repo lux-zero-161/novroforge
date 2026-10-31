@@ -2,32 +2,37 @@
 	{{if or (not .LinkAccountMode) (and .LinkAccountMode .LinkAccountModeSignIn)}}
 	{{template "base/alert" .}}
 	{{end}}
-	<h4 class="ui top attached header center">
+	<div class="signin-branding">
+		<img class="signin-logo" width="48" height="48" src="{{AssetUrlPrefix}}/img/logo.svg" alt="{{ctx.Locale.Tr "logo"}}">
 		{{if .LinkAccountMode}}
+		<h4 class="ui top attached header center signin-title">
 			{{ctx.Locale.Tr "auth.oauth_signin_title"}}
+		</h4>
 		{{else}}
-			{{ctx.Locale.Tr "auth.login_userpass"}}
+		<div class="signin-title" role="heading" aria-level="1">Sign in to {{AppDisplayName}}</div>
 		{{end}}
-	</h4>
+	</div>
 	<div class="ui attached segment">
 		{{if .EnableInternalSignIn}}
 		<form class="ui form tw-mb-4" action="{{.SignInLink}}" method="post">
-			<div class="required field {{if and (.Err_UserName) (or (not .LinkAccountMode) (and .LinkAccountMode .LinkAccountModeSignIn))}}error{{end}}">
+			<div class="field {{if and (.Err_UserName) (or (not .LinkAccountMode) (and .LinkAccountMode .LinkAccountModeSignIn))}}error{{end}}">
 				<label for="user_name">{{ctx.Locale.Tr "home.uname_holder"}}</label>
 				<input id="user_name" type="text" name="user_name" value="{{.user_name}}" autofocus required autocorrect="off" autocapitalize="none">
 			</div>
 			{{if or (not .DisablePassword) .LinkAccountMode}}
-			<div class="required field {{if and (.Err_Password) (or (not .LinkAccountMode) (and .LinkAccountMode .LinkAccountModeSignIn))}}error{{end}}">
-				<label for="password">{{ctx.Locale.Tr "password"}}</label>
+			<div class="field {{if and (.Err_Password) (or (not .LinkAccountMode) (and .LinkAccountMode .LinkAccountModeSignIn))}}error{{end}}">
+				<div class="signin-field-label">
+					<label for="password">{{ctx.Locale.Tr "password"}}</label>
+					{{if not .LinkAccountMode}}
+						<a href="{{AppSubUrl}}/user/forgot_password">{{ctx.Locale.Tr "auth.forgot_password"}}</a>
+					{{end}}
+				</div>
 				<input id="password" name="password" type="password" value="{{.password}}" autocomplete="current-password" required>
 			</div>
 			{{end}}
 			{{if not .LinkAccountMode}}
-			<div class="inline field">
-				<div class="ui checkbox">
-					<label>{{ctx.Locale.Tr "auth.remember_me"}}</label>
-					<input name="remember" type="checkbox">
-				</div>
+			<div class="inline field signin-remember">
+				<label><input name="remember" type="checkbox"> {{ctx.Locale.Tr "auth.remember_me"}}</label>
 			</div>
 			{{end}}
 
@@ -51,21 +56,12 @@
 	</div>
 </div>
 
-{{if not .DisablePassword}}
+{{if and (not .DisablePassword) .ShowRegistrationButton}}
 <div class="ui container fluid">
-	{{template "user/auth/webauthn_error" .}}
-
-		<div class="ui attached segment header top tw-max-w-2xl tw-m-auto tw-flex tw-flex-col tw-items-center">
-			{{if .ShowRegistrationButton}}
-			<div class="field">
-				{{ctx.Locale.Tr "auth.hint_register" (printf "%s/user/sign_up" AppSubUrl)}}
-				<br>
-			</div>
-			{{end}}
-			<div class="field">
-				<a href="{{AppSubUrl}}/user/forgot_password">{{ctx.Locale.Tr "auth.forgot_password"}}</a>
-			</div>
+	<div class="signin-footer ui attached segment header top tw-max-w-2xl tw-m-auto tw-flex tw-flex-col tw-items-center">
+		<div class="field">
+			{{ctx.Locale.Tr "auth.hint_register" (printf "%s/user/sign_up" AppSubUrl)}}
 		</div>
+	</div>
 </div>
 {{end}}
-

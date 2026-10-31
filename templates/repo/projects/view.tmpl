@@ -1,15 +1,15 @@
+{{/*
+	GitHub-style project board page. GitHub shows a project without the repository header and the issue sub-navigation,
+	so the page only keeps the repository tabs. The New issue button moves to the project toolbar.
+*/}}
 {{template "base/head" .}}
-<div role="main" aria-label="{{.Title}}" class="page-content repository projects view-project">
-	{{template "repo/header" .}}
-	<div class="ui container padded">
-		<div class="tw-flex tw-justify-between tw-items-center tw-mb-4">
-			{{template "repo/issue/navbar" .}}
-			{{if (not $.Repository.IsArchived)}}
-				<a class="ui small primary button" href="{{.RepoLink}}/issues/new/choose?project={{.Project.ID}}">{{ctx.Locale.Tr "repo.issues.new"}}</a>
-			{{end}}
-		</div>
-	</div>
-	<div class="ui container fluid padded">
+{{/* Forgejo returns to a user project after creating an issue through the repository's project route, which shows the
+	user's board inside the repository. Open the project at its own address instead. */}}
+{{if not .Project.IsRepositoryProject}}
+	<script>window.location.replace({{.Project.Link ctx}});</script>
+{{end}}
+<div role="main" aria-label="{{.Title}}" class="page-content repository projects view-project github-project-page">
+	<div class="github-project-container">
 		{{template "projects/view" .}}
 	</div>
 </div>

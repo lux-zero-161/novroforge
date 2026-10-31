@@ -1,3 +1,5 @@
+{{/* Forgejo's blocked users list with GitHub's empty state. */}}
+{{if .BlockedUsers}}
 <div class="flex-list">
 	{{range .BlockedUsers}}
 		<div class="flex-item flex-item-center">
@@ -19,9 +21,8 @@
 				</form>
 			</div>
 		</div>
-	{{else}}
-		<div class="flex-item">
-			<span class="text grey italic">{{ctx.Locale.Tr "settings.blocked_users_none"}}</span>
-		</div>
 	{{end}}
 </div>
+{{else}}
+	{{template "components/common/settings/blankslate" dict "Title" (ctx.Locale.Tr "settings.blocked_users_none") "Plain" true}}
+{{end}}

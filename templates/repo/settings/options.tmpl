@@ -1,3 +1,4 @@
+{{/* Forgejo's repository options with GitHub's settings checkboxes for Template and Visibility. */}}
 {{template "repo/settings/layout_head" (dict "ctxData" . "pageClass" "repository settings options")}}
 	<div class="user-main-content twelve wide column">
 		<h4 class="ui top attached header">
@@ -15,26 +16,15 @@
 					<label>{{ctx.Locale.Tr "repo.repo_size"}}</label>
 					<span {{if not (eq .Repository.Size 0)}} data-tooltip-content="{{.Repository.SizeDetailsString ctx.Locale}}"{{end}}>{{ctx.Locale.TrSize .Repository.Size}}</span>
 				</div>
-				<div class="inline field">
-					<label>{{ctx.Locale.Tr "repo.template"}}</label>
-					<div class="ui checkbox">
-						<input name="template" type="checkbox" {{if .Repository.IsTemplate}}checked{{end}}>
-						<label>{{ctx.Locale.Tr "repo.template_helper"}}</label>
-					</div>
-				</div>
+				{{/* GitHub's checkboxes: a semibold title with Forgejo's description as the note beneath it. */}}
+				{{template "components/common/settings/checkbox" dict "ID" "repo-template" "Name" "template" "Checked" .Repository.IsTemplate "Title" (ctx.Locale.Tr "repo.template_helper") "Note" (ctx.Locale.Tr "repo.template_description")}}
 				{{if not .Repository.IsFork}}
-					<div class="inline field">
-						<label>{{ctx.Locale.Tr "repo.visibility"}}</label>
-						<div class="ui checkbox" {{if and (not .Repository.IsPrivate) (gt .Repository.NumStars 0)}}data-tooltip-content="{{ctx.Locale.Tr "repo.stars_remove_warning"}}"{{end}}>
-							{{if .IsAdmin}}
-								<input name="private" type="checkbox" {{if .Repository.IsPrivate}}checked{{end}}>
-							{{else}}
-								<input name="private" type="checkbox" {{if .Repository.IsPrivate}}checked{{end}}{{if and $.ForcePrivate .Repository.IsPrivate}} disabled{{end}}>
-								{{if and .Repository.IsPrivate $.ForcePrivate}}<input type="hidden" name="private" value="{{.Repository.IsPrivate}}">{{end}}
-							{{end}}
-							<label>{{ctx.Locale.Tr "repo.visibility_helper"}} {{if .Repository.NumForks}}<span class="text red">{{ctx.Locale.Tr "repo.visibility_fork_helper"}}</span>{{end}}</label>
-						</div>
-					</div>
+					{{$forced := and (not .IsAdmin) $.ForcePrivate .Repository.IsPrivate}}
+					{{$visibilityNote := ctx.Locale.Tr "repo.visibility_description"}}
+					{{if .Repository.NumForks}}{{$visibilityNote = print $visibilityNote " " (ctx.Locale.Tr "repo.visibility_fork_helper")}}{{end}}
+					{{$keepPrivate := ""}}
+					{{if $forced}}{{$keepPrivate = HTMLFormat `<input type="hidden" name="private" value="%v">` .Repository.IsPrivate}}{{end}}
+					{{template "components/common/settings/checkbox" dict "ID" "repo-private" "Name" "private" "Checked" .Repository.IsPrivate "Disabled" $forced "Title" (ctx.Locale.Tr "repo.visibility_helper") "Note" $visibilityNote "Tooltip" (and (not .Repository.IsPrivate) (gt .Repository.NumStars 0) (ctx.Locale.Tr "repo.stars_remove_warning")) "Extra" $keepPrivate}}
 				{{end}}
 				<div class="field {{if .Err_Description}}error{{end}}">
 					<label for="description">{{ctx.Locale.Tr "repo.repo_desc"}}</label>
@@ -106,6 +96,8 @@
 						{{ctx.Locale.Tr "repo.settings.archive.mirrors_unavailable"}}
 					</div>
 				{{else}}
+					{{/* GitHub: the description first, then the mirrors in a box (or an empty state), then the form below. */}}
+					<div class="theme-settings-description">
 					{{if $newMirrorsEntirelyEnabled}}
 						{{ctx.Locale.Tr "mirror_settings.docs.summary"}}
 						<a target="_blank" rel="noopener noreferrer" href="{{AppDocsURL "user/repo-mirror/#pushing-to-a-remote-repository"}}">{{ctx.Locale.Tr "mirror_settings.docs.doc_link_title"}}</a><br><br>
@@ -127,6 +119,7 @@
 					{{else}}
 						{{ctx.Locale.Tr "mirror_settings.docs.no_new_mirrors"}} {{ctx.Locale.Tr "mirror_settings.docs.can_still_use"}}<br>
 					{{end}}
+					</div>
 
 					{{if .Repository.IsMirror}}
 					<table class="ui table">
@@ -162,8 +155,11 @@
 									</form>
 								</td>
 							</tr>
-							<tr>
-								<td colspan="4">
+						</tbody>
+						{{end}}{{/* end if: $modifyBrokenPullMirror / $isWorkingPullMirror */}}
+					</table>
+					{{if $isWorkingPullMirror}}
+						{{$address := MirrorRemoteAddress $.Context .PullMirror}}
 									<form class="ui form" method="post">
 										{{template "base/disable_form_autofill"}}
 										<input type="hidden" name="action" value="mirror">
@@ -218,13 +214,10 @@
 											<button class="ui primary button">{{ctx.Locale.Tr "repo.settings.update_mirror_settings"}}</button>
 										</div>
 									</form>
-								</td>
-							</tr>
-						</tbody>
-						{{end}}{{/* end if: $modifyBrokenPullMirror / $isWorkingPullMirror */}}
-					</table>
+					{{end}}
 					{{end}}{{/* end if .Repository.IsMirror */}}
 
+					{{if .PushMirrors}}
 					<table class="ui table">
 						<thead>
 							<tr>
@@ -266,14 +259,13 @@
 									</form>
 								</td>
 							</tr>
-							{{else}}
-							<tr>
-								<td>{{ctx.Locale.Tr "mirror_settings.push_mirror.none"}}</td>
-							</tr>
 							{{end}}
+						</tbody>
+					</table>
+					{{else}}
+						{{template "components/common/settings/blankslate" dict "Title" (ctx.Locale.Tr "mirror_settings.push_mirror.none")}}
+					{{end}}
 							{{if (not .DisableNewPushMirrors)}}
-								<tr>
-									<td colspan="5">
 										<form class="ui form" method="post">
 											{{template "base/disable_form_autofill"}}
 											<input type="hidden" name="action" value="push-mirror-add">
@@ -325,11 +317,7 @@
 												<button class="ui primary button">{{ctx.Locale.Tr "mirror_settings.push_mirror.add"}}</button>
 											</div>
 										</form>
-									</td>
-								</tr>
 							{{end}}
-						</tbody>
-					</table>
 				{{end}}
 			</div>
 		{{end}}
@@ -398,51 +386,51 @@
 				</div>
 			</form>
 
-			<div class="divider"></div>
+			{{/* The indexers as GitHub's box rows: what is indexed on the left, the action on the right. */}}
 			<form class="ui form" method="post">
 				<input type="hidden" name="action" value="admin_index">
-				{{if .CodeIndexerEnabled}}
-					<h4 class="ui header">{{ctx.Locale.Tr "repo.settings.admin_code_indexer"}}</h4>
-					<div class="inline fields">
-						<label>{{ctx.Locale.Tr "repo.settings.admin_indexer_commit_sha"}}</label>
-						<span class="field">
-							{{if .CodeIndexerStatus}}
-								<a rel="nofollow" class="sha label" href="{{.RepoLink}}/commit/{{.CodeIndexerStatus.CommitSha}}">
-									<span class="shortsha">{{ShortSha .CodeIndexerStatus.CommitSha}}</span>
-								</a>
-							{{else}}
-									<span>{{ctx.Locale.Tr "repo.settings.admin_indexer_unindexed"}}</span>
-							{{end}}
-						</span>
-						<div class="field">
-							<button class="ui primary button" name="request_reindex_type" value="code">{{ctx.Locale.Tr "repo.settings.reindex_button"}}</button>
+				<div class="flex-list theme-settings-rows">
+					{{if .CodeIndexerEnabled}}
+						<div class="flex-item">
+							<div class="flex-item-main">
+								<div class="flex-item-title">{{ctx.Locale.Tr "repo.settings.admin_code_indexer"}}</div>
+								<div class="flex-item-body">
+									{{ctx.Locale.Tr "repo.settings.admin_indexer_commit_sha"}}
+									{{if .CodeIndexerStatus}}
+										<a rel="nofollow" class="sha label" href="{{.RepoLink}}/commit/{{.CodeIndexerStatus.CommitSha}}"><span class="shortsha">{{ShortSha .CodeIndexerStatus.CommitSha}}</span></a>
+									{{else}}
+										{{ctx.Locale.Tr "repo.settings.admin_indexer_unindexed"}}
+									{{end}}
+								</div>
+							</div>
+							<div class="flex-item-trailing">
+								<button class="ui button" name="request_reindex_type" value="code">{{ctx.Locale.Tr "repo.settings.reindex_button"}}</button>
+							</div>
+						</div>
+					{{end}}
+					<div class="flex-item">
+						<div class="flex-item-main">
+							<div class="flex-item-title">{{ctx.Locale.Tr "repo.issue_indexer.title"}}</div>
+						</div>
+						<div class="flex-item-trailing">
+							<button class="ui button" name="request_reindex_type" value="issues">{{ctx.Locale.Tr "repo.settings.reindex_button"}}</button>
 						</div>
 					</div>
-				{{end}}
-
-				<h4 class="ui header">{{ctx.Locale.Tr "repo.issue_indexer.title"}}</h4>
-				<div class="inline fields">
-					<div class="field">
-						<button class="ui primary button" name="request_reindex_type" value="issues">{{ctx.Locale.Tr "repo.settings.reindex_button"}}</button>
-					</div>
-				</div>
-
-				<h4 class="ui header">{{ctx.Locale.Tr "repo.settings.admin_stats_indexer"}}</h4>
-				<div class="inline fields">
-					{{if and .StatsIndexerStatus .StatsIndexerStatus.CommitSha}}
-						<label>{{ctx.Locale.Tr "repo.settings.admin_indexer_commit_sha"}}</label>
-					{{end}}
-					<span class="field">
-						{{if and .StatsIndexerStatus .StatsIndexerStatus.CommitSha}}
-							<a rel="nofollow" class="sha label" href="{{.RepoLink}}/commit/{{.StatsIndexerStatus.CommitSha}}">
-								<span class="shortsha">{{ShortSha .StatsIndexerStatus.CommitSha}}</span>
-							</a>
-						{{else}}
-							<span>{{ctx.Locale.Tr "repo.settings.admin_indexer_unindexed"}}</span>
-						{{end}}
-					</span>
-					<div class="field">
-						<button class="ui primary button" name="request_reindex_type" value="stats">{{ctx.Locale.Tr "repo.settings.reindex_button"}}</button>
+					<div class="flex-item">
+						<div class="flex-item-main">
+							<div class="flex-item-title">{{ctx.Locale.Tr "repo.settings.admin_stats_indexer"}}</div>
+							<div class="flex-item-body">
+								{{if and .StatsIndexerStatus .StatsIndexerStatus.CommitSha}}
+									{{ctx.Locale.Tr "repo.settings.admin_indexer_commit_sha"}}
+									<a rel="nofollow" class="sha label" href="{{.RepoLink}}/commit/{{.StatsIndexerStatus.CommitSha}}"><span class="shortsha">{{ShortSha .StatsIndexerStatus.CommitSha}}</span></a>
+								{{else}}
+									{{ctx.Locale.Tr "repo.settings.admin_indexer_unindexed"}}
+								{{end}}
+							</div>
+						</div>
+						<div class="flex-item-trailing">
+							<button class="ui button" name="request_reindex_type" value="stats">{{ctx.Locale.Tr "repo.settings.reindex_button"}}</button>
+						</div>
 					</div>
 				</div>
 			</form>
@@ -560,7 +548,7 @@
 
 {{if .Permission.IsOwner}}
 	{{if .Repository.IsMirror}}
-		<dialog class="modal" id="convert-mirror-repo-modal">
+		<dialog id="convert-mirror-repo-modal">
 			<article>
 				<header>{{ctx.Locale.Tr "repo.settings.convert"}}</header>
 				<div class="content">
@@ -591,7 +579,7 @@
 		</dialog>
 	{{end}}
 	{{if and .Repository.IsFork .Repository.Owner.CanCreateRepo}}
-		<dialog class="modal" id="convert-fork-repo-modal">
+		<dialog id="convert-fork-repo-modal">
 			<article>
 				<header>{{ctx.Locale.Tr "repo.settings.convert_fork"}}</header>
 				<div class="content">
@@ -621,7 +609,7 @@
 			</article>
 		</dialog>
 	{{end}}
-	<dialog class="modal" id="transfer-repo-modal">
+	<dialog id="transfer-repo-modal">
 		<article>
 			<header>{{ctx.Locale.Tr "repo.settings.transfer.modal.title"}}</header>
 			<div class="content">
@@ -657,7 +645,7 @@
 		</article>
 	</dialog>
 
-	<dialog class="modal" id="delete-repo-modal">
+	<dialog id="delete-repo-modal">
 		<article>
 			<header>{{ctx.Locale.Tr "repo.settings.delete"}}</header>
 			<div class="content">
@@ -692,7 +680,7 @@
 	</dialog>
 
 	{{if .Repository.UnitEnabled $.Context $.UnitTypeWiki}}
-	<dialog class="modal" id="delete-wiki-modal">
+	<dialog id="delete-wiki-modal">
 		<article>
 			<header>{{ctx.Locale.Tr "repo.settings.wiki_delete"}}</header>
 			<div class="content">
@@ -723,7 +711,7 @@
 		</article>
 	</dialog>
 	{{if ne $.Repository.GetWikiBranchName .DefaultWikiBranchName}}
-		<dialog class="modal" id="rename-wiki-branch-modal">
+		<dialog id="rename-wiki-branch-modal">
 			<article>
 				<header>{{ctx.Locale.Tr "repo.settings.wiki_rename_branch_main"}}</header>
 				<div class="content">
@@ -759,7 +747,7 @@
 	{{end}}
 
 	{{if not .Repository.IsMirror}}
-		<dialog class="modal" id="archive-repo-modal">
+		<dialog id="archive-repo-modal">
 			<article>
 				<header>
 					{{if .Repository.IsArchived}}

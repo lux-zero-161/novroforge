@@ -1,30 +1,18 @@
-<div role="main" aria-label="{{.Title}}" class="page-content user notification" id="notification_div" data-sequence-number="{{.SequenceNumber}}">
-	<div class="ui container">
-		{{$notificationUnreadCount := call .NotificationUnreadCount}}
-		<div class="tw-flex tw-items-center tw-justify-between tw-mb-4 tw-gap-2">
-			<div class="switch">
-				<a class="{{if eq .Status 1}}active {{end}}item" href="{{AppSubUrl}}/notifications?q=unread">
-					{{ctx.Locale.Tr "notification.unread"}}
-					<div class="notifications-unread-count ui label{{if not $notificationUnreadCount}} tw-hidden{{end}}">{{$notificationUnreadCount}}</div>
-				</a>
-				<a class="{{if eq .Status 2}}active {{end}}item" href="{{AppSubUrl}}/notifications?q=read">
-					{{ctx.Locale.Tr "notification.read"}}
-				</a>
+<div role="main" aria-label="{{.Title}}" class="page-content user notification theme-sidebar-layout github-notifications" id="notification_div" data-sequence-number="{{.SequenceNumber}}" data-theme-sidebar="notification_sidebar_collapsed">
+	{{$notificationUnreadCount := call .NotificationUnreadCount}}
+	{{$current := "unread"}}{{if eq .Status 2}}{{$current = "read"}}{{end}}
+	{{template "user/notification/sidebar" dict "Data" . "Current" $current}}
+	<div class="ui container theme-sidebar-main">
+		<div class="theme-list-heading">
+			<div class="theme-list-title">
+				<button type="button" class="theme-icon-button" data-theme-sidebar-toggle data-theme-sidebar-expand aria-expanded="false" aria-label="Expand sidebar">{{svg "octicon-sidebar-expand" 16}}</button>
+				<h1>{{if eq .Status 2}}{{ctx.Locale.Tr "notification.read"}}{{else}}{{ctx.Locale.Tr "notification.unread"}}{{end}}</h1>
 			</div>
-			<div class="button-row tw-flex">
-				<a class="secondary button" href="{{AppSubUrl}}/notifications/subscriptions">
-					{{ctx.Locale.Tr "notification.subscriptions"}}
-				</a>
-				{{if and (eq .Status 1)}}
-					<form class="{{if not $notificationUnreadCount}}tw-hidden{{end}}" action="{{AppSubUrl}}/notifications/purge" method="post">
-						<div>
-							<button class="primary button" title="{{ctx.Locale.Tr "notification.mark_all_as_read"}}">
-								{{svg "octicon-checklist"}}
-							</button>
-						</div>
-					</form>
-				{{end}}
-			</div>
+			{{if eq .Status 1}}
+				<form class="{{if not $notificationUnreadCount}}tw-hidden{{end}}" action="{{AppSubUrl}}/notifications/purge" method="post">
+					<button class="ui secondary button theme-control">{{svg "octicon-checklist" 16}}{{ctx.Locale.Tr "notification.mark_all_as_read"}}</button>
+				</form>
+			{{end}}
 		</div>
 		<div class="tw-p-0">
 			<div id="notification_table">

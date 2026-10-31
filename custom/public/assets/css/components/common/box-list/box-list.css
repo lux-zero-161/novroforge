@@ -1,0 +1,196 @@
+/* GitHub's Box list, as on its projects, milestones and labels pages: a toolbar, then a box whose header holds the
+   state tabs (or a count) and Sort, with a row per item. */
+.theme-box-list-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.theme-box-list-page > .theme-list-heading {
+  margin-bottom: 16px;
+}
+
+.theme-box-list-search {
+  flex: 1;
+  min-width: 0;
+}
+
+.theme-box-list-search .theme-search-field {
+  width: 100%;
+}
+
+.theme-box-list {
+  border: 1px solid var(--color-light-border);
+  border-radius: var(--border-radius);
+}
+
+.theme-box-list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: 47px;
+  padding: 0 8px;
+  border-bottom: 1px solid var(--color-light-border);
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+  background: var(--color-box-header);
+}
+
+.theme-box-list-states {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.theme-box-list-states > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 8px;
+  border-radius: var(--border-radius);
+  color: var(--color-text-light-1);
+  font-size: 14px;
+  line-height: 30px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.theme-box-list-states > a:hover {
+  color: var(--color-text);
+  background: var(--github-control-transparent-bgColor-hover);
+  text-decoration: none;
+}
+
+.theme-box-list-states > a[aria-current] {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+/* A header that counts instead of switching state, as on GitHub's labels page. */
+.theme-box-list-title {
+  margin: 0;
+  padding: 0 8px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 30px;
+}
+
+.theme-box-list-states .theme-counter {
+  font-weight: 600;
+}
+
+/* More than one menu on the right of the header (Type and Sort). */
+.theme-box-list-filters {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.theme-box-list-header > .theme-dropdown > summary.theme-control,
+.theme-box-list-filters > .theme-dropdown > summary.theme-control {
+  font-weight: 400;
+}
+
+.theme-box-list-header .theme-dropdown-panel {
+  width: 240px;
+}
+
+/* GitHub's Sort menu marks the current order with a check and keeps the labels aligned. */
+.theme-box-list-check {
+  flex: none;
+  visibility: hidden;
+}
+
+.theme-dropdown-action[aria-current] > .theme-box-list-check {
+  visibility: visible;
+}
+
+.theme-box-list-rows {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.theme-box-list-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 64px;
+  margin: 0 16px;
+  padding: 8px 0;
+  border-top: 1px solid var(--color-light-border);
+}
+
+.theme-box-list-row:first-child {
+  border-top: 0;
+}
+
+.theme-box-list-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.theme-box-list-main h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  overflow-wrap: anywhere;
+}
+
+.theme-box-list-main h3 > a {
+  color: var(--color-text);
+}
+
+.theme-box-list-main h3 > a:hover {
+  color: var(--color-primary);
+}
+
+.theme-box-list-meta,
+.theme-box-list-description {
+  margin: 0;
+  color: var(--color-text-light-1);
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.theme-box-list-description.markup {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.theme-box-list-description.markup > * {
+  display: inline;
+  margin: 0;
+  font-size: inherit;
+}
+
+.theme-box-list-row > .theme-dropdown > summary.theme-control {
+  width: 32px;
+  padding: 0;
+  justify-content: center;
+  color: var(--color-text-light-1);
+}
+
+.theme-box-list-row > .theme-dropdown .theme-dropdown-panel {
+  width: 192px;
+}
+
+@media (max-width: 543.98px) {
+  .theme-box-list-row {
+    margin: 0 8px;
+  }
+}
+
+/* Forks: the owner's avatar before the fork's name. */
+.theme-fork-row {
+  min-height: 48px;
+}
+
+.theme-fork-row > img.ui.avatar {
+  flex: none;
+  border-radius: 50%;
+}

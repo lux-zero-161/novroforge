@@ -1,6 +1,9 @@
 {{template "base/head" .ctxData}}
 <div role="main" aria-label="{{.ctxData.Title}}" class="page-content {{.pageClass}}">
-	<div class="ui container flex-container">
+	<div class="ui container theme-settings-context-container">
+		{{template "components/common/settings/context" dict "Icon" "octicon-server" "Title" (ctx.Locale.Tr "admin_panel") "Subtitle" AppName}}
+	</div>
+	<div class="ui container flex-container theme-settings">
 		{{template "admin/navbar" .ctxData}}
 		<div class="flex-container-main">
 			{{template "base/alert" .ctxData}}

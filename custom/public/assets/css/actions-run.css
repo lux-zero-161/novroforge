@@ -1,0 +1,588 @@
+.page-content.repository.github-actions-run,
+.full.height:has(> .action-view-right):has(.github-actions-run) {
+  padding-top: 0;
+  margin-top: 0 !important;
+  .action-view-container.ui.container {
+    width: 100%;
+    margin: 0;
+    padding: 16px 32px 32px;
+  }
+  .action-view-header.action-view-header {
+    margin: 0 0 16px;
+  }
+  /* GitHub's parent link: an arrow icon and the workflow, with a padded hover area that lines up with the title. */
+  .actions-run-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-left: -8px;
+    padding: 4px 8px;
+    border-radius: var(--border-radius);
+    color: var(--color-text-light-1);
+    font-size: 14px;
+    line-height: 17.5px;
+    &:hover {
+      color: var(--color-text);
+      background: var(--github-control-transparent-bgColor-hover);
+      text-decoration: none;
+    }
+    &:focus-visible {
+      outline: 2px solid var(--color-primary);
+      outline-offset: -2px;
+    }
+    & > svg {
+      flex-shrink: 0;
+    }
+  }
+  .action-info-summary {
+    gap: 16px;
+    align-items: center;
+  }
+  .action-info-summary-title {
+    gap: 8px;
+    min-width: 0;
+  }
+  .action-info-summary-title-text {
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: 600;
+    margin: 0;
+    overflow-wrap: anywhere;
+  }
+  .actions-run-index {
+    font-weight: 400;
+    color: var(--color-text-light-1);
+  }
+  .action-info-summary-actions {
+    flex-shrink: 0;
+    display: flex;
+    gap: 8px;
+  }
+  .action-info-summary-actions .ui.button {
+    height: 32px;
+    min-height: 32px;
+    padding: 5px 12px;
+    margin: 0;
+    font-size: 14px;
+  }
+  /* Delete run lives in the "…" menu, which clicks this hidden button. */
+  .action-info-summary-actions #delete-run {
+    display: none;
+  }
+  .actions-run-menu {
+    order: 1;
+  }
+  .actions-run-menu > summary.theme-control {
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    min-height: 32px;
+    padding: 0;
+    color: var(--color-text-light-1);
+  }
+  .actions-run-menu .theme-dropdown-panel {
+    width: 200px;
+  }
+  .action-summary {
+    display: none;
+    font-size: 12px;
+    line-height: 18px;
+    margin-left: 28px;
+  }
+  .action-summary + .action-summary {
+    display: none;
+  }
+  .action-view-body {
+    display: grid;
+    grid-template-columns: 280px minmax(0, 1fr);
+    gap: 48px;
+    align-items: start;
+  }
+  .action-view-left.action-view-left.action-view-left {
+    overflow: visible;
+    margin: 0;
+    width: auto;
+    min-width: 0;
+    max-width: none;
+  }
+  .actions-summary-link,
+  .actions-workflow-source {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 8px;
+    margin: 0;
+    border-radius: var(--border-radius);
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--color-text);
+  }
+  .actions-summary-link {
+    position: relative;
+    font-weight: 400;
+    margin-bottom: 8px;
+  }
+  .actions-summary-link[aria-current="page"] {
+    font-weight: 600;
+    background: var(--github-control-transparent-bgColor-active);
+  }
+  .actions-summary-link[aria-current="page"]::before {
+    display: block;
+    content: "";
+    position: absolute;
+    left: -8px;
+    top: 4px;
+    height: 24px;
+    width: 4px;
+    background: var(--color-primary);
+    border-radius: var(--border-radius);
+  }
+  .actions-jobs-heading {
+    font-size: 12px;
+    line-height: 18px;
+    color: var(--color-text-light-1);
+    margin: 0 0 8px;
+    padding: 8px 0 16px;
+    border-bottom: 1px solid var(--color-light-border);
+  }
+  .actions-details-heading {
+    font-size: 12px;
+    line-height: 18px;
+    color: var(--color-text-light-1);
+    margin: 16px 0 8px;
+    padding: 16px 8px 0;
+    border-top: 1px solid var(--color-light-border);
+  }
+  .actions-workflow-source > svg,
+  .actions-summary-link > svg {
+    flex-shrink: 0;
+    color: var(--color-text-light-1);
+  }
+  .job-brief-item.job-brief-item.job-brief-item {
+    margin: 0 0 4px;
+    padding: 6px 8px;
+    min-height: 32px;
+    font-size: 14px;
+    line-height: 20px;
+  }
+  /* GitHub's job list carries no durations; the summary's job cards keep them. */
+  .job-brief-item .step-summary-duration {
+    display: none;
+  }
+  .actions-summary-link,
+  .actions-workflow-source,
+  .job-brief-item.job-brief-item {
+    text-decoration: none;
+    &:hover {
+      text-decoration: none;
+      color: var(--color-text);
+      background: var(--github-control-transparent-bgColor-hover);
+    }
+    &:focus-visible {
+      outline: 2px solid var(--color-primary);
+      outline-offset: -2px;
+    }
+  }
+  .actions-summary-link[aria-current="page"]:hover,
+  .job-brief-item.job-brief-item.selected:hover {
+    background: var(--github-control-transparent-bgColor-active);
+  }
+  .actions-job-card {
+    text-decoration: none;
+    &:hover {
+      text-decoration: none;
+    }
+    &:focus-visible {
+      outline: 2px solid var(--color-primary);
+      outline-offset: 2px;
+    }
+    &:active {
+      background: var(--github-control-transparent-bgColor-active);
+    }
+  }
+  .job-step-summary:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: -2px;
+  }
+  .job-brief-item.selected {
+    background: var(--github-control-transparent-bgColor-active);
+  }
+  .action-view-right {
+    min-width: 0;
+    width: auto;
+    margin: 0;
+    border: 1px solid var(--color-light-border);
+    box-shadow: none;
+    border-radius: var(--border-radius);
+    min-height: calc(100dvh - 260px);
+    background: var(--color-menu);
+  }
+  .job-info-header {
+    height: 80px !important;
+    padding: 16px 16px 16px 24px !important;
+    background: var(--color-menu);
+    border-bottom: 1px solid var(--color-light-border);
+  }
+  .job-info-header-title {
+    color: var(--color-primary) !important;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 600;
+  }
+  .job-info-header-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .job-info-header-left {
+    min-width: 0;
+  }
+  .job-info-header-detail {
+    margin: 0 !important;
+    color: var(--color-text-light-1);
+    font-size: 12px;
+    line-height: 18px;
+  }
+  .job-step-container {
+    padding: 8px;
+  }
+  .job-step-section {
+    margin: 0 !important;
+  }
+  .job-step-summary.job-step-summary {
+    height: 36px;
+    min-height: 36px;
+    padding: 8px !important;
+    gap: 8px;
+    color: var(--color-text-light-1);
+    font: 14px/20px var(--fonts-proportional);
+    border-radius: var(--border-radius);
+  }
+  /* Skipped steps are muted on GitHub; the theme's grey text is the regular text colour. */
+  .job-step-summary .octicon-skip.text.grey {
+    color: var(--color-text-light-2) !important;
+  }
+  /* Finished steps are grey on GitHub; only failures keep their colour. */
+  .job-step-summary .octicon-check-circle-fill {
+    color: var(--color-text-light-1) !important;
+  }
+  .job-step-summary:hover {
+    background: var(--github-control-transparent-bgColor-hover);
+  }
+  .job-step-summary.selected {
+    top: 80px;
+    color: var(--color-text);
+    background: var(--color-console-active-bg) !important;
+  }
+  .job-step-summary .step-summary-duration {
+    font: 12px/18px var(--fonts-proportional);
+    color: var(--color-text-light-1);
+  }
+  .job-step-logs {
+    padding: 8px 0;
+    background: var(--color-console-bg);
+    overflow: auto;
+  }
+  .job-log-line {
+    font: 12px/20px var(--fonts-monospace);
+  }
+  .actions-log-search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .actions-log-search > .theme-search-field {
+    width: 256px;
+    max-width: 100%;
+  }
+  .actions-log-search span {
+    font-size: 12px;
+    color: var(--color-text-light-1);
+  }
+  .job-log-line[hidden] {
+    display: none;
+  }
+  .actions-run-overview {
+    min-width: 0;
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .actions-run-facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px 48px;
+    padding: 20px;
+    border: 1px solid var(--color-light-border);
+    border-radius: var(--border-radius);
+    margin-bottom: 16px;
+  }
+  .actions-fact-label {
+    display: block;
+    width: 100%;
+    color: var(--color-text-light-1);
+    font-size: 12px;
+    line-height: 18px;
+    margin-bottom: 6px;
+  }
+  .actions-run-trigger {
+    flex: 0 1 280px;
+    display: flex;
+    align-content: start;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0 8px;
+    min-width: 0;
+  }
+  .actions-run-trigger > a {
+    font-size: 14px;
+    color: var(--color-text);
+  }
+  .actions-run-trigger .actions-summary-commit {
+    font-size: 12px;
+    font-family: var(--fonts-monospace);
+    text-decoration: underline;
+  }
+  .actions-run-trigger .actions-summary-branch {
+    padding: 0 6px;
+    font-size: 12px;
+    background: var(--color-primary-alpha-10);
+    color: var(--color-primary);
+    border-radius: var(--border-radius);
+  }
+  .actions-run-fact strong {
+    font-size: 16px;
+    line-height: 24px;
+    text-transform: capitalize;
+  }
+  .actions-workflow-card {
+    padding: 20px;
+    border: 1px solid var(--color-light-border);
+    border-radius: var(--border-radius);
+    background: var(--color-menu);
+  }
+  .actions-workflow-title {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+  /* GitHub's job graph: a 260px card per linked job in stage columns 56px apart, jobs without links stacked in one
+     card, and 2px links between the dots on the cards' edges. It scrolls sideways when it is wider than the box. */
+  .actions-job-graph {
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 24px 0 8px;
+  }
+  .actions-job-canvas {
+    position: relative;
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 56px;
+    padding: 16px 8px;
+  }
+  .actions-job-links {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    pointer-events: none;
+  }
+  .actions-job-links path {
+    fill: none;
+    stroke: var(--color-light-border);
+    stroke-width: 2px;
+  }
+  .actions-job-links path.is-active {
+    stroke: var(--github-bgColor-accent-emphasis);
+    stroke-width: 3px;
+  }
+  .actions-job-stage {
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+  }
+  .actions-job-node {
+    position: relative;
+    width: 260px;
+    border: 1px solid var(--color-light-border);
+    border-radius: var(--border-radius);
+    background: var(--color-box-header);
+  }
+  .actions-job-card {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px;
+    border-radius: var(--border-radius);
+    color: var(--color-text);
+  }
+  .actions-job-card strong {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+  }
+  .actions-job-duration {
+    flex-shrink: 0;
+    margin-left: auto;
+    font-size: 12px;
+    line-height: 18px;
+    color: var(--color-text-light-1);
+  }
+  .actions-job-port {
+    position: absolute;
+    top: 50%;
+    width: 16px;
+    height: 16px;
+    margin-top: -8px;
+    border-radius: 50%;
+    pointer-events: none;
+    &.is-input {
+      left: -9px;
+    }
+    &.is-output {
+      right: -9px;
+    }
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+    }
+    &::before {
+      inset: 1px;
+      background: var(--color-box-header);
+    }
+    &::after {
+      inset: 4px;
+      background: var(--github-borderColor-emphasis);
+    }
+    &.is-active::after {
+      background: var(--github-bgColor-accent-emphasis);
+    }
+  }
+  .actions-job-canvas.is-focused .actions-job-node:not(.is-related) {
+    border-color: color-mix(in srgb, var(--color-light-border) 70%, transparent);
+    background: var(--color-menu);
+    .actions-job-port::before {
+      background: var(--color-menu);
+    }
+    .actions-job-card {
+      color: var(--color-text-light-1);
+    }
+    .actions-job-card > span:first-child {
+      opacity: 0.5;
+    }
+  }
+  &:not(.actions-summary-mode) .actions-run-overview {
+    display: none;
+  }
+  &.actions-summary-mode .action-view-right {
+    display: none;
+  }
+  &.actions-summary-mode .job-brief-item.selected {
+    font-weight: 400;
+    background: transparent;
+    &:hover {
+      background: var(--github-control-transparent-bgColor-hover);
+    }
+  }
+  &.actions-summary-mode .job-brief-item.selected::after {
+    display: none;
+  }
+  @media (max-width: 1011.98px) {
+    .action-view-body {
+      grid-template-columns: 224px minmax(0, 1fr);
+      gap: 24px;
+    }
+  }
+  @media (max-width: 767.98px) {
+    .action-view-container.ui.container {
+      padding: 16px;
+    }
+    .action-info-summary {
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .action-info-summary-actions {
+      flex-wrap: wrap;
+    }
+    .action-view-header.action-view-header {
+      margin-bottom: 24px;
+    }
+    .action-view-body {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .action-view-left.action-view-left.action-view-left {
+      width: 100%;
+    }
+    .job-brief-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+    .job-brief-item.job-brief-item.job-brief-item {
+      flex: 1;
+    }
+    .actions-jobs-heading {
+      padding: 4px 0 8px;
+    }
+    .actions-workflow-source,
+    .actions-details-heading {
+      display: none;
+    }
+    .action-view-right,
+    .actions-run-overview {
+      width: 100%;
+    }
+    .actions-run-facts {
+      gap: 16px;
+      padding: 16px;
+    }
+    .actions-run-trigger {
+      flex-basis: 100%;
+    }
+    .actions-workflow-card {
+      padding: 16px;
+    }
+    /* The log search moves under the job title instead of covering its status line. */
+    .job-info-header {
+      flex-wrap: wrap;
+      gap: 8px;
+      height: auto !important;
+      padding: 12px 16px !important;
+    }
+    .job-info-header-right {
+      width: 100%;
+    }
+    .actions-log-search {
+      flex: 1;
+      min-width: 0;
+    }
+    .actions-log-search > .theme-search-field {
+      width: 100%;
+    }
+    .actions-log-search span {
+      display: none;
+    }
+    .job-step-summary.job-step-summary {
+      font-size: 12px;
+    }
+  }
+}
+
+/* Forgejo teleports the job panel outside the run mount in fullscreen mode. */
+.full.height:has(.github-actions-run) > .action-view-right {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  overflow: auto;
+  border-radius: 0;
+}

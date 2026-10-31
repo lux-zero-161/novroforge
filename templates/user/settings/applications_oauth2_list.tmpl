@@ -1,39 +1,38 @@
+{{/* GitHub's OAuth apps: the applications in a box, one row each with its client ID and Edit and Delete on the right,
+	then the form that registers a new one under its own title. Also used by organization and site administration
+	settings. */}}
 <div class="ui attached segment">
-	<div class="flex-list">
-		<div class="flex-item">
-			{{ctx.Locale.Tr "settings.oauth2_application_create_description"}}
-		</div>
+	<p class="theme-settings-description">{{ctx.Locale.Tr "settings.oauth2_application_create_description"}}</p>
+	{{if .Applications}}
+	<ul class="theme-settings-box">
 		{{range .Applications}}
-			<div class="flex-item tw-items-center">
-				<div class="flex-item-leading">
-					{{svg "octicon-apps" 32}}
-				</div>
-				<div class="flex-item-main">
-					<div class="flex-item-title">{{.Name}}</div>
-					<div class="flex-item-body">
+			<li class="theme-settings-box-row">
+				<span class="theme-settings-box-icon">{{svg "octicon-apps"}}</span>
+				<div class="theme-settings-box-main">
+					<span class="theme-settings-box-title">{{.Name}}</span>
+					<p class="theme-settings-box-meta">
 						{{ctx.Locale.Tr "settings.oauth2_client_id"}}
-						<span class="ui label">{{.ClientID}}</span>
-					</div>
+						<code>{{.ClientID}}</code>
+					</p>
 				</div>
 				{{$isBuiltin := and $.BuiltinApplications (index $.BuiltinApplications .ClientID)}}
-				<div class="flex-item-trailing">
+				<div class="theme-settings-box-actions">
 					{{if $isBuiltin}}
-						<span class="ui basic label" data-tooltip-content="{{ctx.Locale.Tr "settings.oauth2_application_locked"}}">{{ctx.Locale.Tr "locked"}}</span>
+						<span class="ui basic label theme-label theme-label-muted" data-tooltip-content="{{ctx.Locale.Tr "settings.oauth2_application_locked"}}">{{ctx.Locale.Tr "locked"}}</span>
 					{{else}}
-						<a href="{{$.Link}}/oauth2/{{.ID}}" class="ui primary tiny button">
-							{{svg "octicon-pencil" 16 "tw-mr-1"}}
+						<a href="{{$.Link}}/oauth2/{{.ID}}" class="ui tiny button">
 							{{ctx.Locale.Tr "settings.oauth2_application_edit"}}
 						</a>
 						<button class="ui red tiny button delete-button" data-modal-id="remove-gitea-oauth2-application"
 								data-url="{{$.Link}}/oauth2/{{.ID}}/delete">
-							{{svg "octicon-trash" 16 "tw-mr-1"}}
 							{{ctx.Locale.Tr "settings.delete_key"}}
 						</button>
 					{{end}}
 				</div>
-			</div>
+			</li>
 		{{end}}
-	</div>
+	</ul>
+	{{end}}
 
 	<div class="ui g-modal-confirm delete modal" id="remove-gitea-oauth2-application">
 		<div class="header">
@@ -48,9 +47,9 @@
 </div>
 
 <div class="ui attached bottom segment">
-	<h5 class="ui top header">
-		{{ctx.Locale.Tr "settings.create_oauth2_application"}}
-	</h5>
+	<div class="theme-settings-subsection">
+		<h3>{{ctx.Locale.Tr "settings.create_oauth2_application"}}</h3>
+	</div>
 	<form class="ui form ignore-dirty" action="{{.Link}}/oauth2" method="post">
 		<div class="field {{if .Err_AppName}}error{{end}}">
 			<label for="application-name">{{ctx.Locale.Tr "settings.oauth2_application_name"}}</label>
@@ -62,8 +61,8 @@
 		</div>
 		<div class="field {{if .Err_ConfidentialClient}}error{{end}}">
 			<div class="ui checkbox">
-				<label>{{ctx.Locale.Tr "settings.oauth2_confidential_client"}}</label>
-				<input type="checkbox" name="confidential_client" checked>
+				<input type="checkbox" id="confidential-client" name="confidential_client" checked>
+				<label for="confidential-client">{{ctx.Locale.Tr "settings.oauth2_confidential_client"}}</label>
 			</div>
 		</div>
 		<button class="ui primary button">

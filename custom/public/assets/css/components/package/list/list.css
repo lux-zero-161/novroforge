@@ -1,0 +1,116 @@
+/* GitHub's package list: the search, type filter and Search button on one line, then a box with a row per package
+   (its icon, name and type, then the latest version and who published it). */
+.theme-package-search {
+  margin: 0 0 16px;
+}
+
+.theme-package-search-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.theme-package-search-controls > .theme-search-field {
+  flex: 1;
+}
+
+/* GitHub's box header over the rows: the package icon and the count. */
+.theme-package-list-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px;
+  border: 1px solid var(--color-secondary);
+  border-bottom: 0;
+  border-radius: 6px 6px 0 0;
+  background: var(--color-box-header);
+  color: var(--color-text);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+.theme-package-list-header > .svg {
+  color: var(--color-text-light-1);
+}
+
+.theme-package-row {
+  border: 1px solid var(--color-secondary);
+  border-bottom: 0;
+}
+
+.theme-package-list-header + .theme-package-row {
+  border-radius: 0;
+}
+
+.theme-package-row:first-child {
+  border-radius: 6px 6px 0 0;
+}
+
+.theme-package-row:last-of-type {
+  border-bottom: 1px solid var(--color-secondary);
+  border-radius: 0 0 6px 6px;
+}
+
+.theme-package-row:only-of-type {
+  border-radius: var(--border-radius);
+}
+
+.theme-package-row > .flex-item {
+  gap: 16px;
+  padding: 16px;
+}
+
+.theme-package-icon {
+  flex: none;
+  margin-top: 4px;
+  color: var(--color-text-light-1);
+}
+
+.theme-package-row .flex-item-title {
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+/* As GitHub's list: the name in bold body text, blue only on hover. */
+.theme-package-row .flex-item-title > a {
+  color: var(--color-text);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.theme-package-row .flex-item-title > a:hover {
+  color: var(--github-fgColor-accent);
+}
+
+.theme-package-row .flex-item-body {
+  display: block;
+  margin-top: 4px;
+  color: var(--color-text-light-1);
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.theme-package-version {
+  margin-right: 12px;
+}
+
+@media (max-width: 767px) {
+  .theme-package-search-controls {
+    flex-wrap: wrap;
+  }
+
+  .theme-package-search-controls > .theme-search-field {
+    flex-basis: 100%;
+  }
+
+  .theme-package-search-controls > .theme-select-wrap {
+    flex: 1;
+  }
+
+  .theme-package-search-controls .theme-select {
+    width: 100%;
+  }
+}

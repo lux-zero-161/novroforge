@@ -1,0 +1,22 @@
+{{- /* GitHub's dashboard context at the top of the dashboard sidebars (Home, issues, pull requests, milestones): the
+account the dashboard shows, with a switch button that lists the signed-in user and their organizations. Data is the
+page context; Page is the dashboard page to keep when switching ("" for Home, issues, pulls or milestones). An
+organization adds its team filter beneath. The switch menu gets the template context (ctx), which carries the avatar
+helper the page's Context lacks. */ -}}
+{{$data := .Data}}
+{{$user := $data.ContextUser}}
+<div class="theme-dashboard-context">
+	{{ctx.AvatarUtils.Avatar $user 32}}
+	<div class="theme-dashboard-context-title">
+		<a href="{{$user.HomeLink}}">{{$user.Name}}</a>
+		<span>{{if $user.IsOrganization}}{{ctx.Locale.Tr "org.settings.options"}}{{else}}Your personal account{{end}}</span>
+	</div>
+	{{template "components/common/dropdown/dropdown" dict "Kind" "actions" "Icon" "octicon-arrow-switch" "IconOnly" true "Quiet" true "Small" true "Label" (ctx.Locale.Tr "home.switch_dashboard_context") "Title" (ctx.Locale.Tr "home.switch_dashboard_context") "Items" "components/dashboard/context/items" "Data" (dict "Context" ctx "Page" .Page "Data" $data)}}
+</div>
+{{if and $user.IsOrganization $data.Teams}}
+	{{$base := print $data.Org.OrganisationLink "/" (or .Page "dashboard")}}
+	{{$team := ctx.Locale.Tr "org.teams"}}{{if $data.Team}}{{$team = $data.Team.Name}}{{end}}
+	<div class="theme-dashboard-team">
+		{{template "components/common/dropdown/dropdown" dict "Kind" "actions" "Icon" "octicon-people" "Label" $team "Title" (ctx.Locale.Tr "home.filter_by_team_repositories") "Items" "components/dashboard/context/teams" "Data" (dict "Context" $data.Context "Base" $base "Data" $data)}}
+	</div>
+{{end}}

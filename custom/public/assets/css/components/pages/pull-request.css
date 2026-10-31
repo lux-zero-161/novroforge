@@ -1,0 +1,487 @@
+/* Pull request page rules kept out of the theme files, which are at their size limit. */
+
+/*
+ * A merge scheduled for when checks succeed. Forgejo prints a blue notice above the merge button;
+ * here it is one more section of the merge box, like the rows above it: a round status icon, the
+ * sentence, and the bar with the merge button and "Cancel" below. Its measurements are the merge
+ * box's own (--merge-section-*), set where the other rows are styled.
+ */
+.github-pull-review .pull-merge-actions > #pull-request-merge-form:has(.ui.info.message) {
+  flex: 0 0 100%;
+}
+
+.github-pull-review .pull-merge-actions .ui.info.message {
+  position: relative;
+  display: block;
+  min-height: var(--merge-section-height);
+  margin: calc(-1 * var(--merge-section-padding)) calc(-1 * var(--merge-section-padding)) var(--merge-section-padding);
+  padding: 20px var(--merge-section-padding) 20px calc(var(--merge-section-padding) + var(--merge-section-icon) + 8px);
+  border: 0;
+  border-bottom: 1px solid var(--merge-section-divider);
+  border-radius: 0;
+  background: var(--color-body);
+  box-shadow: none;
+  color: var(--color-text);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+/* The status icon: a white clock on the accent colour. The notice itself carries no icon element. */
+.github-pull-review .pull-merge-actions .ui.info.message::before {
+  content: "";
+  position: absolute;
+  top: var(--merge-section-padding);
+  left: var(--merge-section-padding);
+  width: var(--merge-section-icon);
+  height: var(--merge-section-icon);
+  border-radius: 50%;
+  background: var(--github-bgColor-accent-emphasis)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3E%3Cpath d='M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0Zm7-3.25v2.992l2.028.812a.75.75 0 0 1-.557 1.392l-2.5-1A.751.751 0 0 1 7 8.25v-3.5a.75.75 0 0 1 1.5 0Z'/%3E%3C/svg%3E")
+    center / 16px no-repeat;
+}
+
+.github-pull-review .pull-merge-actions .ui.info.message relative-time {
+  color: var(--color-text-light-1);
+  font-weight: 400;
+}
+
+/* The buttons under the notice sit 8px apart. */
+.github-pull-review .pull-merge-actions .tw-flex {
+  align-items: center;
+  gap: 8px;
+}
+
+.github-pull-review .pull-merge-actions .tw-flex > form {
+  margin: 0 !important;
+}
+
+/*
+ * "Close pull request" uses Forgejo's closed-issue icon, which the theme colours as done (purple). GitHub shows a red
+ * closed pull request icon; issues keep theirs.
+ */
+.page-content.github-pull-review #status-button[value="close"] > svg {
+  color: var(--color-red) !important;
+  background: currentColor;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.25 1A2.25 2.25 0 0 1 4 5.372v5.256a2.251 2.251 0 1 1-1.5 0V5.372A2.251 2.251 0 0 1 3.25 1m9.5 5.5a.75.75 0 0 1 .75.75v3.378a2.251 2.251 0 1 1-1.5 0V7.25a.75.75 0 0 1 .75-.75m-2.03-5.273a.75.75 0 0 1 1.06 0l.97.97.97-.97a.748.748 0 0 1 1.265.332.75.75 0 0 1-.205.729l-.97.97.97.97a.75.75 0 0 1-.018 1.042.75.75 0 0 1-1.042.018l-.97-.97-.97.97a.749.749 0 0 1-1.275-.326.75.75 0 0 1 .215-.734l.97-.97-.97-.97a.75.75 0 0 1 0-1.06ZM2.5 3.25a.75.75 0 1 0 1.5 0 .75.75 0 0 0-1.5 0M3.25 12a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5m9.5 0a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5'/%3E%3C/svg%3E")
+    center / 16px no-repeat;
+}
+
+.page-content.github-pull-review #status-button[value="close"] > svg > * {
+  visibility: hidden;
+}
+
+/*
+ * "Comparing changes" / new pull request (repo/diff/compare.tmpl), like GitHub's: the Subhead, the range editor, the
+ * create box with its text on the left and the button on the right, then the summary, commits and files.
+ */
+.page-content.github-compare .theme-compare-header {
+  margin: 0 0 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--color-light-border);
+}
+
+.page-content.github-compare .theme-compare-header > h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 32px;
+}
+
+.page-content.github-compare .theme-compare-header > p {
+  margin: 0;
+  color: var(--color-text-light-1);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+/* The range editor: a muted box with the compare icon, the base and compare pickers and the comparison arrow. */
+.page-content.github-compare .ui.segment.choose.branch {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  margin: 0 0 16px;
+  padding: 8px 16px;
+  border: 1px solid var(--color-light-border);
+  border-radius: var(--border-radius);
+  background: var(--color-box-header);
+  box-shadow: none;
+  color: var(--color-text-light-1);
+}
+
+.page-content.github-compare .ui.segment.choose.branch > a {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 4px !important;
+  color: var(--color-text-light-1);
+  line-height: 12px;
+}
+
+.page-content.github-compare .ui.segment.choose.branch > a:hover {
+  color: var(--color-primary);
+}
+
+/* The comparison type ("..." or "..") under the arrow, as GitHub writes it. */
+.page-content.github-compare .ui.segment.choose.branch .compare-separator {
+  margin: 0;
+  font-size: 12px;
+  line-height: 12px;
+}
+
+.page-content.github-compare .ui.segment.choose.branch .ui.basic.small.button {
+  height: 28px;
+  min-height: 28px;
+  max-width: 100%;
+  margin: 0;
+  padding: 0 8px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.page-content.github-compare .ui.segment.choose.branch .ui.basic.small.button > .text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* "base:" and "compare:" are muted and bold in GitHub's branch buttons. */
+.page-content.github-compare .compare-ref-label {
+  color: var(--color-text-light-1);
+  font-weight: 600;
+}
+
+/* The create box: what the pull request would merge, and the button that shows the form. */
+.page-content.github-compare .theme-compare-create:not(.tw-hidden) {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 0 0 16px;
+  padding: 16px;
+  border: 1px solid var(--color-info-border);
+  border-radius: var(--border-radius);
+  background: var(--color-info-bg);
+  box-shadow: none;
+  color: var(--color-text);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.page-content.github-compare .theme-compare-create code {
+  padding: 0 4px;
+  border-radius: var(--border-radius);
+  background: var(--github-bgColor-accent-muted);
+  color: var(--github-fgColor-accent);
+  font-size: 12px;
+}
+
+.page-content.github-compare .theme-compare-create > .button {
+  flex: none;
+  margin: 0;
+}
+
+.page-content.github-compare .pullrequest-form {
+  margin: 0 0 24px;
+}
+
+/* GitHub's row for the open pull request of these branches. */
+.page-content.github-compare .theme-compare-existing {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 0 0 16px;
+  padding: 16px;
+  border: 1px solid var(--color-light-border);
+  border-radius: var(--border-radius);
+}
+
+.page-content.github-compare .theme-compare-existing-main {
+  min-width: 0;
+}
+
+.page-content.github-compare .theme-compare-existing h2 {
+  margin: 0 0 4px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  overflow-wrap: anywhere;
+}
+
+.page-content.github-compare .theme-compare-existing h2 > svg {
+  margin-right: 4px;
+  vertical-align: text-bottom;
+}
+
+.page-content.github-compare .theme-compare-existing h2 > a {
+  color: var(--color-text);
+}
+
+.page-content.github-compare .theme-compare-existing h2 > a:hover {
+  color: var(--color-primary);
+}
+
+.page-content.github-compare .theme-compare-existing h2 > .index {
+  color: var(--color-text-light-1);
+  font-weight: 400;
+}
+
+.page-content.github-compare .theme-compare-existing-open {
+  color: var(--github-fgColor-success);
+}
+
+.page-content.github-compare .theme-compare-existing-merged {
+  color: var(--github-fgColor-done);
+}
+
+.page-content.github-compare .theme-compare-existing-closed {
+  color: var(--color-red);
+}
+
+.page-content.github-compare .theme-compare-existing p {
+  margin: 0 0 0 20px;
+  color: var(--color-text-light-1);
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.page-content.github-compare .theme-compare-existing > .button {
+  flex: none;
+  margin: 0;
+}
+
+.page-content.github-compare .theme-compare-empty {
+  margin: 0 0 16px;
+}
+
+/* "N commits · N files · N authors" over the commits, as GitHub's summary box. */
+.page-content.github-compare .theme-compare-summary {
+  display: flex;
+  margin: 0 0 16px;
+  padding: 0 8px;
+  border: 1px solid var(--color-light-border);
+  border-radius: var(--border-radius);
+  list-style: none;
+}
+
+.page-content.github-compare .theme-compare-summary > li {
+  flex: 1;
+  margin: 8px 0;
+  color: var(--color-text);
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+}
+
+.page-content.github-compare .theme-compare-summary > li > svg,
+.page-content.github-compare .diff-compare-stats > span > svg {
+  margin-right: 8px;
+  color: var(--color-text-light-1);
+  vertical-align: text-bottom;
+}
+
+@media (max-width: 767.98px) {
+  .page-content.github-compare > .ui.container {
+    width: auto !important;
+    margin-right: 16px !important;
+    margin-left: 16px !important;
+  }
+
+  .page-content.github-compare .theme-compare-create:not(.tw-hidden),
+  .page-content.github-compare .theme-compare-existing {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .page-content.github-compare .theme-compare-summary {
+    display: block;
+  }
+
+  .page-content.github-compare .theme-compare-summary > li {
+    text-align: left;
+  }
+}
+
+/* The diff: the "N changed files with..." row with Split/Unified, no review toolbar or file tree. The toolbar
+   stays in the page, hidden, as diff-view.js reads its search field and settings. */
+.page-content.github-compare #diff-container > .diff-content-controls {
+  display: none;
+}
+
+.page-content.github-compare #diff-container > #diff-content-container {
+  padding: 0;
+}
+
+.page-content.github-compare .diff-compare-stats {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 8px 0 16px;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.page-content.github-compare .diff-compare-stats > span > strong:first-of-type {
+  color: var(--color-primary);
+}
+
+.page-content.github-compare .diff-compare-style {
+  display: inline-flex;
+  flex: none;
+  white-space: nowrap;
+  padding: 2px;
+  border-radius: var(--border-radius);
+  background: var(--color-box-header);
+}
+
+.page-content.github-compare .diff-compare-style > a {
+  padding: 2px 8px;
+  border-radius: calc(var(--border-radius) - 2px);
+  color: var(--color-text);
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.page-content.github-compare .diff-compare-style > a.active {
+  background: var(--color-body);
+  box-shadow: 0 0 0 1px var(--color-light-border);
+  font-weight: 600;
+}
+
+/*
+ * GitHub's Code menu on a pull request's title row: the clone URL with its HTTPS/SSH choice, then the commands that
+ * check out the pull request. The protocol buttons and URL field are Forgejo's clone_buttons, driven by its scripts.
+ */
+.pull-code-menu.theme-dropdown[data-theme-dropdown] > .theme-dropdown-panel {
+  width: 400px;
+  padding: 0;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.pull-code-menu .pull-code-section {
+  padding: 16px;
+}
+
+.pull-code-menu .pull-code-section + .pull-code-section {
+  border-top: 1px solid var(--color-light-border);
+}
+
+.pull-code-menu .pull-code-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 8px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+.pull-code-menu .pull-code-title > svg {
+  color: var(--color-text-light-1);
+}
+
+.pull-code-menu .pull-code-description {
+  margin: 0 0 8px;
+  color: var(--color-text-light-1);
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.pull-code-menu .pull-code-clone {
+  display: grid;
+  grid-template-columns: max-content max-content minmax(0, 1fr) 32px;
+  gap: 8px 4px;
+  align-items: center;
+}
+
+.pull-code-menu .pull-code-clone > :is(#repo-clone-https, #repo-clone-ssh) {
+  grid-row: 1;
+  height: 32px;
+  min-height: 32px;
+  margin: 0;
+  padding: 5px 12px;
+  border: 1px solid transparent;
+  border-radius: var(--border-radius);
+  background: transparent;
+  box-shadow: none;
+  color: var(--color-text);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.pull-code-menu .pull-code-clone > :is(#repo-clone-https, #repo-clone-ssh):hover {
+  background: var(--github-control-transparent-bgColor-hover);
+}
+
+/* Forgejo marks the chosen protocol primary and the other basic. */
+.pull-code-menu .pull-code-clone > .primary:is(#repo-clone-https, #repo-clone-ssh) {
+  border-color: var(--color-secondary);
+  background: var(--color-hover);
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.pull-code-menu .pull-code-clone > #repo-clone-url,
+.pull-code-menu .pull-code-command > pre {
+  min-width: 0;
+  margin: 0;
+  border: 1px solid var(--color-light-border);
+  border-radius: var(--border-radius);
+  background: var(--color-box-header);
+  color: var(--color-text);
+  font-family: var(--fonts-monospace);
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.pull-code-menu .pull-code-clone > #repo-clone-url {
+  grid-row: 2;
+  grid-column: 1 / 4;
+  width: 100%;
+  height: 32px;
+  padding: 6px 12px;
+}
+
+.pull-code-menu .pull-code-clone > #repo-clone-url:focus {
+  border-color: var(--github-borderColor-accent-emphasis);
+  outline: none;
+}
+
+.pull-code-menu .pull-code-clone > #clipboard-btn {
+  grid-row: 2;
+  grid-column: 4;
+  width: 32px;
+  height: 32px;
+  min-height: 32px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  color: var(--color-text-light-1);
+}
+
+.pull-code-menu .pull-code-clone > #clipboard-btn:hover {
+  background: var(--github-control-transparent-bgColor-hover);
+}
+
+.pull-code-menu .pull-code-command {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 32px;
+  gap: 4px;
+  align-items: start;
+}
+
+/* Each command keeps its own line; a long branch name wraps instead of scrolling the narrow menu. */
+.pull-code-menu .pull-code-command > pre {
+  padding: 6px 12px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}

@@ -1,7 +1,10 @@
 {{template "base/head" .ctxData}}
 <div role="main" aria-label="{{.ctxData.Title}}" class="page-content {{.pageClass}}">
-	{{template "org/header" .ctxData}}
-	<div class="ui container flex-container">
+	{{/* GitHub heads organization settings with the settings context, not the organization's profile header. */}}
+	<div class="ui container theme-settings-context-container">
+		{{template "components/common/settings/context" dict "Avatar" (ctx.AvatarUtils.Avatar .ctxData.Org 48) "Title" (.ctxData.Org.DisplayName) "Login" .ctxData.Org.Name "Subtitle" (ctx.Locale.Tr "org.settings.options") "Link" .ctxData.Org.HomeLink "LinkIcon" "octicon-organization" "LinkLabel" (ctx.Locale.Tr "your_profile")}}
+	</div>
+	<div class="ui container flex-container theme-settings">
 		{{template "org/settings/navbar" .ctxData}}
 		<div class="flex-container-main">
 			{{template "base/alert" .ctxData}}

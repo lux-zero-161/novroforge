@@ -1,0 +1,39 @@
+{{- /* Home's work rail beside the activity feed: review requests, the signed-in user's pull requests, issues assigned
+to them and mentioning them, milestones due and the latest releases. work.js fills each box from Forgejo's issue search
+and milestone list (the releases from the feed's own rows) and, once all have answered, fades in the boxes with
+something in them together; with none, the rail closes and the feed grows into its place. The rail keeps its column
+while it loads, unless it was empty on the last visit to this dashboard, which the inline script reads before the first
+paint. An organization's rail covers its repositories, and its team's when one is chosen. Data is the page context. */ -}}
+{{$data := .}}
+{{$user := $data.ContextUser}}
+{{$teamPath := ""}}{{if $data.Team}}{{$teamPath = print "/" (PathEscape $data.Team.Name)}}{{end}}
+{{$base := AppSubUrl}}{{if $user.IsOrganization}}{{$base = $user.OrganisationLink}}{{end}}
+<aside class="theme-work" data-theme-work data-key="theme-work-rail:{{$user.ID}}{{$teamPath}}" data-search="{{AppSubUrl}}/issues/search"{{if $user.IsOrganization}} data-owner="{{$user.Name}}"{{if $data.Team}} data-team="{{$data.Team.Name}}"{{end}}{{end}} aria-label="{{ctx.Locale.Tr "dashboard"}}" aria-busy="true">
+	{{if not $data.UnitPullsGlobalDisabled}}
+		{{template "components/dashboard/work/panel" dict "Kind" "search" "Query" "type=pulls&review_requested=true" "Icon" "octicon-git-pull-request" "Title" (ctx.Locale.Tr "repo.issues.filter_type.review_requested") "Link" (print $base "/pulls" $teamPath "?type=review_requested")}}
+		{{template "components/dashboard/work/panel" dict "Kind" "search" "Query" "type=pulls&created=true" "Icon" "octicon-git-pull-request" "Title" (ctx.Locale.Tr "repo.issues.filter_type.created_by_you") "Link" (print $base "/pulls" $teamPath "?type=created_by")}}
+	{{end}}
+	{{if not $data.UnitIssuesGlobalDisabled}}
+		{{template "components/dashboard/work/panel" dict "Kind" "search" "Query" "type=issues&assigned=true" "Icon" "octicon-issue-opened" "Title" (ctx.Locale.Tr "repo.issues.filter_type.assigned_to_you") "Link" (print $base "/issues" $teamPath "?type=assigned")}}
+		{{template "components/dashboard/work/panel" dict "Kind" "search" "Query" "mentioned=true" "Icon" "octicon-mention" "Title" (ctx.Locale.Tr "repo.issues.filter_type.mentioning_you") "Link" (print $base "/issues" $teamPath "?type=mentioned")}}
+	{{end}}
+	{{if and $data.ShowMilestonesDashboardPage (not (and $data.UnitIssuesGlobalDisabled $data.UnitPullsGlobalDisabled))}}
+		{{template "components/dashboard/work/panel" dict "Kind" "milestones" "Query" (print $base "/milestones" $teamPath "?state=open&sort=closestduedate") "Icon" "octicon-milestone" "Title" (ctx.Locale.Tr "repo.milestones") "Link" (print $base "/milestones" $teamPath "?state=open&sort=closestduedate")}}
+	{{end}}
+	{{template "components/dashboard/work/panel" dict "Kind" "releases" "Icon" "octicon-tag" "Title" (ctx.Locale.Tr "repo.releases")}}
+	<template data-theme-work-icons>
+		<span data-icon="issue">{{svg "octicon-issue-opened" 16}}</span>
+		<span data-icon="pull">{{svg "octicon-git-pull-request" 16}}</span>
+		<span data-icon="draft">{{svg "octicon-git-pull-request-draft" 16}}</span>
+		<span data-icon="milestone">{{svg "octicon-milestone" 16}}</span>
+		<span data-icon="tag">{{svg "octicon-tag" 16}}</span>
+	</template>
+</aside>
+<script>
+	(() => {
+		const rail = document.currentScript.previousElementSibling;
+		try {
+			if (localStorage.getItem(rail.dataset.key) === "empty") rail.hidden = true;
+		} catch {}
+	})();
+</script>

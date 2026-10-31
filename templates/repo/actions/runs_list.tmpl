@@ -12,19 +12,19 @@
 			</div>
 			<div class="flex-item-main">
 				<div class="flex-item-title">
-					<a title="{{.Title}}" href="{{if .Link}}{{.Link}}{{else}}{{$.Link}}/{{.Index}}{{end}}">
+					<a title="{{.Title}}" href="{{if .Link}}{{.Link}}{{else}}{{$.Link}}/{{.Index}}{{end}}#summary">
 						{{if .Title}}{{RenderCommitMessage ctx .Title ($.Repository.ComposeMetas ctx)}}{{else}}{{ctx.Locale.Tr "actions.runs.empty_commit_message"}}{{end}}
 					</a>
 					{{if .Prioritize}}<span class="ui label">{{ctx.Locale.Tr "actions.runs.prioritized_run"}}</span>{{end}}
 				</div>
 				<div class="flex-item-body">
-					<b>{{if not $.CurWorkflow}}{{.WorkflowID}} {{end}}#{{.Index}}</b> -
+					{{if not $.CurWorkflow}}<b>{{.WorkflowID}}</b> {{end}}#{{.Index}}:
 					{{if .IsScheduledRun -}}
-						{{ctx.Locale.Tr "actions.runs.scheduled_description" .CommitLink (ShortSha .CommitSHA)}}
+						{{ctx.Locale.Tr "actions.runs.scheduled_description" .CommitLink (slice .CommitSHA 0 7)}}
 					{{else if .IsDispatchedRun -}}
-						{{ctx.Locale.Tr "actions.runs.workflow_dispatch_description" .CommitLink (ShortSha .CommitSHA) .TriggerUser.HomeLink .TriggerUser.GetDisplayName}}
+						{{ctx.Locale.Tr "actions.runs.workflow_dispatch_description" .CommitLink (slice .CommitSHA 0 7) .TriggerUser.HomeLink .TriggerUser.GetDisplayName}}
 					{{else -}}
-						{{ctx.Locale.Tr "actions.runs.on_push_description" .CommitLink (ShortSha .CommitSHA) .TriggerUser.HomeLink .TriggerUser.GetDisplayName}}
+						{{ctx.Locale.Tr "actions.runs.on_push_description" .CommitLink (slice .CommitSHA 0 7) .TriggerUser.HomeLink .TriggerUser.GetDisplayName}}
 					{{end -}}
 				</div>
 			</div>
@@ -38,17 +38,17 @@
 					<div class="run-list-meta">{{svg "octicon-calendar" 16}}{{DateUtils.TimeSince .Updated}}</div>
 					<div class="run-list-meta">{{svg "octicon-stopwatch" 16}}{{.Duration}}</div>
 				</div>
-				<div class="dialog-dropdown">
-					<button class="opener border" command="toggle-popover" commandfor="run-{{.Index}}-options-dropdown">
-						{{ctx.Locale.Tr "actions.runs.options"}} {{svg "octicon-triangle-down" 14}}
-					</button>
+				<details class="dropdown dir-rtl">
+					<summary class="actions-run-options" aria-label="{{ctx.Locale.Tr "actions.runs.options"}}">
+						{{svg "octicon-kebab-horizontal" 16}}
+					</summary>
 					<form id="de_prioritize_{{.Index}}" method="post">
 						<input type="hidden" name="workflow" value="{{$.CurWorkflow}}">
 						<input type="hidden" name="actor" value="{{$.CurActor}}">
 						<input type="hidden" name="status" value="{{$.CurStatus}}">
 						<input type="hidden" name="page" value="{{$.Page.Paginater.Current}}">
 					</form>
-					<dialog popover id="run-{{.Index}}-options-dropdown" class="inline-flip">
+					<div class="content">
 						<ul>
 							<li>
 								<button form="de_prioritize_{{.Index}}" formaction="{{.Link}}/prioritize" {{if or (not ($.Permission.CanWrite $.UnitTypeActions)) .Prioritize .Status.IsDone}}disabled{{end}}>{{ctx.Locale.Tr "actions.runs.prioritize_run"}}</button>
@@ -57,8 +57,8 @@
 								<button form="de_prioritize_{{.Index}}" formaction="{{.Link}}/deprioritize" {{if or (not ($.Permission.CanWrite $.UnitTypeActions)) (not .Prioritize) .Status.IsDone}}disabled{{end}}>{{ctx.Locale.Tr "actions.runs.deprioritize_run"}}</button>
 							</li>
 						</ul>
-					</dialog>
-				</div>
+					</div>
+				</details>
 			</div>
 		</div>
 	{{end}}

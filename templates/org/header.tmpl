@@ -1,15 +1,16 @@
-<div class="ui container tw-flex tw-gap-x-4">
+{{if or .PageIsViewRepositories .PageIsOrgSettings}}
+<div class="ui container org-identity tw-flex tw-gap-x-4">
 	{{ctx.AvatarUtils.Avatar .Org 100 "org-avatar"}}
 	<div id="org-info" class="tw-flex tw-flex-col">
 		<div class="org-header tw-flex">
 			<div class="org-title">
 				<h1>{{.Org.DisplayName}}</h1>
 				<span class="org-visibility">
-					{{if .Org.Visibility.IsLimited}}<span class="ui large horizontal label">{{ctx.Locale.Tr "org.settings.visibility.limited_shortname"}}</span>{{end}}
-					{{if .Org.Visibility.IsPrivate}}<span class="ui large horizontal label">{{ctx.Locale.Tr "org.settings.visibility.private_shortname"}}</span>{{end}}
+					{{if .Org.Visibility.IsLimited}}<span class="ui large horizontal label theme-label theme-label-muted">{{ctx.Locale.Tr "org.settings.visibility.limited_shortname"}}</span>{{end}}
+					{{if .Org.Visibility.IsPrivate}}<span class="ui large horizontal label theme-label theme-label-muted">{{ctx.Locale.Tr "org.settings.visibility.private_shortname"}}</span>{{end}}
 				</span>
 			</div>
-			<span class="button-sequence tw-items-center tw-ml-auto tw-whitespace-nowrap">
+			<span class="button-sequence org-actions tw-ml-auto tw-whitespace-nowrap">
 				{{if .Funding}}
 					{{template "shared/donation_button" .}}
 				{{end}}
@@ -21,28 +22,7 @@
 				{{end}}
 				{{$moderationEntryNeeded := and .IsModerationEnabled .IsSigned (not .IsOrganizationOwner)}}
 				{{if or .EnableFeed $moderationEntryNeeded}}
-					<div class="dialog-dropdown">
-						<button class="opener border" command="toggle-popover" commandfor="org-actions-dropdown" data-tooltip-content="{{ctx.Locale.Tr "profile.actions.tooltip"}}">
-							{{svg "octicon-kebab-horizontal" 20}}
-						</button>
-						<dialog popover id="org-actions-dropdown" class="inline-flip">
-							<ul>
-								{{if .EnableFeed}}
-									<li>
-										<a href="{{.Org.HomeLink}}.rss">{{svg "octicon-rss"}}{{ctx.Locale.Tr "rss_feed"}}</a>
-									</li>
-									<li>
-										<a href="{{.Org.HomeLink}}.atom">{{svg "octicon-rss"}}{{ctx.Locale.Tr "feed.atom.link"}}</a>
-									</li>
-								{{end}}
-								{{if $moderationEntryNeeded}}
-									<li>
-										<a class="orange text" href="{{AppSubUrl}}/report_abuse?type=org&id={{$.Org.ID}}">{{svg "octicon-stop"}}{{ctx.Locale.Tr "moderation.report_abuse"}}</a>
-									</li>
-								{{end}}
-							</ul>
-						</dialog>
-					</div>
+					{{template "components/common/dropdown/dropdown" dict "Kind" "actions" "Icon" "octicon-kebab-horizontal" "IconOnly" true "Label" (ctx.Locale.Tr "profile.actions.tooltip") "Items" "org/action_menu_items" "Data" .}}
 				{{end}}
 			</span>
 		</div>
@@ -56,9 +36,7 @@
 		</div>
 	</div>
 </div>
-
 {{if .Funding}}
 	{{template "shared/funding" .}}
 {{end}}
-
-{{template "org/menu" .}}
+{{end}}

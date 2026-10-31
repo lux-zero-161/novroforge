@@ -1,6 +1,5 @@
 {{template "base/head" .}}
-<div role="main" aria-label="{{.Title}}" class="page-content repository view issue pull commits">
-	{{template "repo/header" .}}
+<div role="main" aria-label="{{.Title}}" class="page-content repository view issue pull commits github-pull-review">
 	<div class="ui container">
 		{{template "repo/issue/view_title" .}}
 		{{template "repo/pulls/tab_menu" .}}

@@ -1,8 +1,22 @@
 {{template "base/head" .}}
-<div role="main" aria-label="{{.Title}}" class="page-content repository new issue">
-	{{template "repo/header" .}}
+<div role="main" aria-label="{{.Title}}" class="page-content repository new issue github-issue-new">
 	<div class="ui container">
+		<h1 class="issue-new-heading">
+			{{ctx.Locale.Tr "repo.issues.new"}}
+			{{/* Shown in the side panel of organization and user projects, like on the issue itself (view_title). */}}
+			<a class="github-issue-repository" href="{{.Repository.Link}}" target="_top">
+				{{svg "octicon-repo" 16}}
+				<span>{{.Repository.FullName}}</span>
+				{{if .Repository.IsPrivate}}<span class="github-issue-repository-private">{{ctx.Locale.Tr "repo.desc.private"}}</span>{{end}}
+			</a>
+		</h1>
 		{{template "repo/issue/new_form" .}}
+		{{/* Forgejo's branch selector nests its own form in new_form, and its end tag closes the new issue form early.
+			The redirect field after it is then left out, so an issue created from a project board opened the issue
+			instead of returning to the board. The form attribute submits it with the new issue form again. */}}
+		{{if .redirect_after_creation}}
+			<input type="hidden" name="redirect_after_creation" value="{{.redirect_after_creation}}" form="new-issue">
+		{{end}}
 	</div>
 </div>
 {{template "base/footer" .}}

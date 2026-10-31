@@ -1,13 +1,23 @@
-<label>
-	<input name="auto_init" type="checkbox" {{if .auto_init}}checked{{end}}>
-	{{ctx.Locale.Tr "repo.auto_init"}}
-	<span class="help">{{ctx.Locale.Tr "repo.auto_init_description"}}</span>
+{{/* GitHub's README switch: Forgejo's auto_init checkbox drawn as a toggle switch. Forgejo's stylesheet shows the
+	.gitignore, license and README rows only while the label before them holds a checked input, and its script turns the
+	switch on when a .gitignore or license is chosen. */}}
+<label class="theme-create-row">
+	<span class="theme-create-row-text">
+		<span class="theme-create-row-title">{{ctx.Locale.Tr "repo.auto_init"}}</span>
+		<span class="help">{{ctx.Locale.Tr "repo.auto_init_description"}}</span>
+	</span>
+	<span class="theme-create-row-switch">
+		<input class="theme-toggle-switch" role="switch" name="auto_init" type="checkbox" {{if .auto_init}}checked{{end}}>
+	</span>
 </label>
 
 <div class="hide-unless-checked">
-	<label>
-		.gitignore
-		<div class="ui multiple search selection dropdown tw-flex-wrap">
+	<div class="theme-create-row">
+		<div class="theme-create-row-text">
+			<span class="theme-create-row-title" id="repo_gitignores_label">.gitignore</span>
+			<p class="help">{{ctx.Locale.Tr "repo.repo_gitignore_helper_desc"}}</p>
+		</div>
+		<div class="ui multiple search selection dropdown tw-flex-wrap" aria-labelledby="repo_gitignores_label">
 			<input type="hidden" name="gitignores" value="{{.gitignores}}">
 			<div class="default text">{{ctx.Locale.Tr "repo.repo_gitignore_helper"}}</div>
 			<div class="menu">
@@ -16,12 +26,14 @@
 				{{end}}
 			</div>
 		</div>
-		<span class="help">{{ctx.Locale.Tr "repo.repo_gitignore_helper_desc"}}</span>
-	</label>
+	</div>
 
-	<label>
-		{{ctx.Locale.Tr "repo.license"}}
-		<div class="ui search selection dropdown">
+	<div class="theme-create-row">
+		<div class="theme-create-row-text">
+			<span class="theme-create-row-title" id="repo_license_label">{{ctx.Locale.Tr "repo.license"}}</span>
+			<p class="help">{{ctx.Locale.Tr "repo.license_helper_desc" "https://choosealicense.com/"}}</p>
+		</div>
+		<div class="ui search selection dropdown" aria-labelledby="repo_license_label">
 			<input type="hidden" name="license" value="{{.license}}">
 			<div class="default text">{{ctx.Locale.Tr "repo.license_helper"}}</div>
 			<div class="menu">
@@ -31,15 +43,17 @@
 				{{end}}
 			</div>
 		</div>
-		<span class="help">{{ctx.Locale.Tr "repo.license_helper_desc" "https://choosealicense.com/"}}</span>
-	</label>
+	</div>
 
 	{{$supportedReadmesLength := len .Readmes}}
 	{{/* Only offer README selection if there is an actual choice */}}
 	{{if ge $supportedReadmesLength 2}}
-		<label>
-			{{ctx.Locale.Tr "repo.readme"}}
-			<div class="ui selection dropdown">
+		<div class="theme-create-row">
+			<div class="theme-create-row-text">
+				<span class="theme-create-row-title" id="repo_readme_label">{{ctx.Locale.Tr "repo.readme"}}</span>
+				<p class="help">{{ctx.Locale.Tr "repo.readme_helper_desc"}}</p>
+			</div>
+			<div class="ui selection dropdown" aria-labelledby="repo_readme_label">
 				<input type="hidden" name="readme" value="{{.readme}}">
 				<div class="default text">{{ctx.Locale.Tr "repo.readme_helper"}}</div>
 				<div class="menu">
@@ -48,8 +62,7 @@
 					{{end}}
 				</div>
 			</div>
-			<span class="help">{{ctx.Locale.Tr "repo.readme_helper_desc"}}</span>
-		</label>
+		</div>
 	{{else}}
 		<input type="hidden" name="readme" value="Default">
 	{{end}}

@@ -1,2 +1,15 @@
+{{/*
+	Forgejo's own partial, kept identical except for the theme link's version. Forgejo lets browsers cache theme
+	files for hours and versions this link with its own release only, so an updated theme kept rendering with the
+	previous stylesheet. The build appends the theme's content version after AssetVersion.
+
+	The script marks pages opened in a project board's side panel, before they paint, so the panel shows the issue
+	without the site navigation, and names the issue's repository for organization and user projects. The frame name
+	survives navigation inside the panel.
+
+	No render-blocking expect link: holding the first paint until the whole page was parsed left large pages, such as
+	a big pull request's files, blank for over half a second longer.
+*/}}
+<script>if (window.name.startsWith("github-project-panel") && window.parent !== window) document.documentElement.classList.add("github-embedded", ...(window.name.endsWith("-owner") ? ["github-embedded-owner"] : []));</script>
 <link rel="stylesheet" href="{{AssetUrlPrefix}}/css/index.css?v={{AssetVersion}}">
-<link rel="stylesheet" href="{{AssetUrlPrefix}}/css/theme-{{ThemeName .SignedUser | PathEscape}}.css?v={{AssetVersion}}">
+<link rel="stylesheet" href="{{AssetUrlPrefix}}/css/theme-{{ThemeName .SignedUser | PathEscape}}.css?v={{AssetVersion}}-7ec1f4c929">

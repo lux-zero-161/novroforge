@@ -1,0 +1,4 @@
+{{$query := print "?sort=" .SortType "&state=" .State "&labels=" .Labels}}
+<a class="theme-dropdown-action" href="{{$query}}&issueType=all"{{if or (eq .IssueType "all") (not .IssueType)}} aria-current="true"{{end}}>{{svg "octicon-check" 16 "theme-box-list-check"}}{{ctx.Locale.Tr "all"}}</a>
+<a class="theme-dropdown-action" href="{{$query}}&issueType=issues"{{if eq .IssueType "issues"}} aria-current="true"{{end}}>{{svg "octicon-check" 16 "theme-box-list-check"}}{{ctx.Locale.Tr "issues"}}</a>
+<a class="theme-dropdown-action" href="{{$query}}&issueType=pulls"{{if eq .IssueType "pulls"}} aria-current="true"{{end}}>{{svg "octicon-check" 16 "theme-box-list-check"}}{{ctx.Locale.Tr "pull_requests"}}</a>

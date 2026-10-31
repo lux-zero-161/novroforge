@@ -1,0 +1,28 @@
+{{- /* GitHub's branch table: a heading, then a box with column headers and a row per branch. Page is the page context,
+Title the heading, and either Default the default branch or Branches the other rows. */ -}}
+<section class="theme-branch-section">
+	<h2 class="theme-branch-section-title">{{.Title}}</h2>
+	<div class="theme-branch-box">
+		<table class="theme-branch-table">
+			<thead>
+				<tr>
+					<th scope="col">Branch</th>
+					<th scope="col" class="theme-branch-updated">Updated</th>
+					<th scope="col" class="theme-branch-status">Check status</th>
+					<th scope="col" class="theme-branch-divergence"><span>Behind</span><span>Ahead</span></th>
+					<th scope="col" class="theme-branch-pull">Pull request</th>
+					<th scope="col" class="theme-branch-actions"><span class="tw-sr-only">{{ctx.Locale.Tr "profile.actions.tooltip"}}</span></th>
+				</tr>
+			</thead>
+			<tbody>
+				{{if .Default}}
+					{{template "components/repository/branch/row" dict "Page" .Page "Branch" .Default "IsDefault" true}}
+				{{else}}
+					{{range .Branches}}
+						{{template "components/repository/branch/row" dict "Page" $.Page "Branch" .}}
+					{{end}}
+				{{end}}
+			</tbody>
+		</table>
+	</div>
+</section>

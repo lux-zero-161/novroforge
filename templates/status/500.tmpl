@@ -4,6 +4,9 @@
 * .Flash
 * .ErrorMsg
 * .SignedUser (optional)
+
+The theme lays it out as its not-found page: the status code over the heading, centred, then the error in a box. The
+page loads no navbar assets, so it links the stylesheet with that layout itself.
 */}}
 <!DOCTYPE html>
 <html lang="{{ctx.Locale.Lang}}" data-theme="{{ThemeName .SignedUser}}">
@@ -13,6 +16,7 @@
 	<link rel="icon" href="{{AssetUrlPrefix}}/img/favicon.svg" type="image/svg+xml">
 	<link rel="alternate icon" href="{{AssetUrlPrefix}}/img/favicon.png" type="image/png">
 	{{template "base/head_style" .}}
+	<link rel="stylesheet" href="{{AssetUrlPrefix}}/css/components/pages/site.css?v=295182c2d7">
 </head>
 <body>
 	<div class="full height">
@@ -29,21 +33,21 @@
 				<style> .ui.message.flash-message { text-align: start; } </style>
 				{{template "base/alert" .}}
 			</div>
-			<div class="ui container center">
-				<h1 class="tw-mt-8 error-code">500</h1>
-				<p>{{ctx.Locale.Tr "error.server_internal"}}</p>
-			</div>
-			<div class="divider"></div>
-			<div class="ui container tw-my-8">
+			<section class="theme-status">
+				<p class="error-code">500</p>
+				<h1>{{ctx.Locale.Tr "error.server_internal"}}</h1>
 				{{if .ErrorMsg}}
-					<p>{{ctx.Locale.Tr "error.occurred"}}:</p>
-					<pre class="tw-whitespace-pre-wrap tw-break-all">{{.ErrorMsg}}</pre>
+					<div class="theme-status-error">
+						<p>{{ctx.Locale.Tr "error.occurred"}}:</p>
+						<pre>{{.ErrorMsg}}</pre>
+					</div>
 				{{end}}
-				<div class="center tw-mt-8">
-					{{if or .SignedUser.IsAdmin .ShowFooterVersion}}<p>{{ctx.Locale.Tr "admin.config.app_ver"}}: {{AppVer}}</p>{{end}}
-					{{if .SignedUser.IsAdmin}}<p>{{ctx.Locale.Tr "error.report_message" "https://codeberg.org/forgejo/forgejo/issues"}}</p>{{end}}
+				<div class="theme-status-links">
+					<a href="{{AppSubUrl}}/">{{ctx.Locale.Tr "home"}}</a>
 				</div>
-			</div>
+				{{if or .SignedUser.IsAdmin .ShowFooterVersion}}<p class="theme-status-version">{{ctx.Locale.Tr "admin.config.app_ver"}}: {{AppVer}}</p>{{end}}
+				{{if .SignedUser.IsAdmin}}<p class="theme-status-version">{{ctx.Locale.Tr "error.report_message" "https://codeberg.org/forgejo/forgejo/issues"}}</p>{{end}}
+			</section>
 		</div>
 	</div>
 

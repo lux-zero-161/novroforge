@@ -1,0 +1,74 @@
+{{- /* One branch of components/repository/branch/table: its name, who pushed when, its checks, how far it is behind
+and ahead of the default branch, its pull request, then delete or restore and a menu with Forgejo's other actions. */ -}}
+{{$page := .Page}}{{$branch := .Branch}}{{$db := $branch.DBBranch}}
+{{$canWrite := and $page.IsWriter (not $page.Repository.IsArchived) (not $page.IsMirror)}}
+{{$compareLink := ""}}
+{{if $page.DefaultBranchBranch}}
+	{{$headOwner := ""}}{{if ne $page.Repository.Owner.Name $page.Owner.Name}}{{$headOwner = print (PathEscape $page.Owner.Name) ":"}}{{end}}
+	{{$compareLink = print $page.RepoLink "/compare/" (PathEscapeSegments $page.DefaultBranchBranch.DBBranch.Name) "..." $headOwner (PathEscapeSegments $db.Name)}}
+{{end}}
+<tr{{if $db.IsDeleted}} class="theme-branch-deleted"{{end}}>
+	<td class="theme-branch-name-cell">
+		<div class="theme-branch-name-row">
+			{{if $db.IsDeleted}}
+				<span class="theme-branch-name">{{$db.Name}}</span>
+			{{else}}
+				<a class="theme-branch-name" href="{{$page.RepoLink}}/src/branch/{{PathEscapeSegments $db.Name}}" title="{{$db.Name}}">{{$db.Name}}</a>
+			{{end}}
+			<button class="theme-icon-button theme-branch-copy" data-clipboard-text="{{$db.Name}}" data-tooltip-content="{{ctx.Locale.Tr "copy_branch"}}" aria-label="{{ctx.Locale.Tr "copy_branch"}}">{{svg "octicon-copy" 16}}</button>
+			{{if $branch.IsProtected}}<span class="theme-branch-protected" data-tooltip-content="{{ctx.Locale.Tr "repo.settings.protected_branch"}}">{{svg "octicon-shield-lock" 16}}</span>{{end}}
+		</div>
+	</td>
+	<td class="theme-branch-updated">
+		{{if $db.IsDeleted}}
+			{{ctx.Locale.Tr "repo.branch.deleted_by" $db.DeletedBy.Name}} {{DateUtils.TimeSince $db.DeletedUnix}}
+		{{else}}
+			<span class="theme-branch-updated-inner">{{if $db.Pusher}}{{ctx.AvatarUtils.Avatar $db.Pusher 16}}{{end}}<a class="muted" href="{{$page.RepoLink}}/commit/{{PathEscape $db.CommitID}}" title="{{$db.CommitMessage}}">{{DateUtils.TimeSince $db.CommitTime}}</a></span>
+		{{end}}
+	</td>
+	<td class="theme-branch-status">
+		{{if not $db.IsDeleted}}{{template "repo/commit_statuses" dict "Status" (index $page.CommitStatus $db.CommitID) "Statuses" (index $page.CommitStatuses $db.CommitID)}}{{end}}
+	</td>
+	<td class="theme-branch-divergence">
+		{{if and (not .IsDefault) (not $db.IsDeleted) $page.DefaultBranchBranch}}
+			{{$total := Eval $branch.CommitsBehind "+" $branch.CommitsAhead}}
+			<div class="theme-branch-divergence-graph" data-tooltip-content="{{$branch.CommitsAhead}} ahead, {{$branch.CommitsBehind}} behind {{$page.DefaultBranchBranch.DBBranch.Name}}">
+				<span class="theme-branch-behind"><span class="theme-branch-count">{{$branch.CommitsBehind}}</span><span class="theme-branch-bar"{{if $total}} style="width: {{Eval 100 "*" $branch.CommitsBehind "/" $total}}%"{{end}}></span></span>
+				<span class="theme-branch-ahead"><span class="theme-branch-count">{{$branch.CommitsAhead}}</span><span class="theme-branch-bar"{{if $total}} style="width: {{Eval 100 "*" $branch.CommitsAhead "/" $total}}%"{{end}}></span></span>
+			</div>
+		{{end}}
+	</td>
+	<td class="theme-branch-pull">
+		{{if .IsDefault}}
+		{{else if not ($page.Permission.CanRead $page.UnitTypePullRequests)}}
+			{{if $compareLink}}<a class="button theme-control theme-control-small" href="{{$compareLink}}">{{ctx.Locale.Tr "compare.branches.title"}}</a>{{end}}
+		{{else if or (not $branch.LatestPullRequest) (and $branch.LatestPullRequest.HasMerged $branch.MergeMovedOn)}}
+			{{if $branch.IsIncluded}}
+				<span class="theme-branch-included" data-tooltip-content="{{ctx.Locale.Tr "repo.branch.included_desc"}}">{{svg "octicon-git-pull-request" 16}}{{ctx.Locale.Tr "repo.branch.included"}}</span>
+			{{else if and (not $db.IsDeleted) $page.AllowsPulls (gt $branch.CommitsAhead 0) $compareLink}}
+				<a class="button theme-control theme-control-small" href="{{$compareLink}}">{{if $page.CanPull}}{{ctx.Locale.Tr "repo.pulls.compare_changes"}}{{else}}{{ctx.Locale.Tr "action.compare_branch"}}{{end}}</a>
+			{{end}}
+		{{else}}
+			{{$pull := $branch.LatestPullRequest}}
+			{{$state := "open"}}{{$icon := "octicon-git-pull-request"}}{{$label := ctx.Locale.Tr "repo.issues.open_title"}}
+			{{if $pull.HasMerged}}{{$state = "merged"}}{{$icon = "octicon-git-merge"}}{{$label = ctx.Locale.Tr "repo.pulls.merged"}}
+			{{else if $pull.Issue.IsClosed}}{{$state = "closed"}}{{$icon = "octicon-git-pull-request-closed"}}{{$label = ctx.Locale.Tr "repo.issues.closed_title"}}
+			{{else if $pull.IsWorkInProgress ctx}}{{$state = "draft"}}{{$icon = "octicon-git-pull-request-draft"}}{{$label = ctx.Locale.Tr "repo.issues.draft_title"}}{{end}}
+			<a class="theme-branch-pull-link theme-branch-pull-{{$state}}" href="{{$pull.Issue.Link}}" data-tooltip-content="{{$label}}">{{svg $icon 16}}{{if not $pull.IsSameRepo}}{{$pull.BaseRepo.FullName}}{{end}}#{{$pull.Issue.Index}}</a>
+		{{end}}
+	</td>
+	<td class="theme-branch-actions">
+		<div class="theme-branch-actions-inner">
+			{{if and $canWrite (not .IsDefault) (not $branch.IsProtected)}}
+				{{if $db.IsDeleted}}
+					<button class="theme-icon-button link-action restore-branch-button" data-url="{{$page.Link}}/restore?branch_id={{$db.ID}}&name={{$db.Name}}&page={{$page.Page.Paginater.Current}}" data-tooltip-content="{{ctx.Locale.Tr "repo.branch.restore" $db.Name}}" aria-label="{{ctx.Locale.Tr "repo.branch.restore" $db.Name}}">{{svg "octicon-reply" 16}}</button>
+				{{else}}
+					<button class="theme-icon-button theme-branch-delete delete-button delete-branch-button" data-url="{{$page.Link}}/delete?name={{$db.Name}}&page={{$page.Page.Paginater.Current}}" data-tooltip-content="{{ctx.Locale.Tr "repo.branch.delete" $db.Name}}" aria-label="{{ctx.Locale.Tr "repo.branch.delete" $db.Name}}" data-name="{{$db.Name}}" data-modal-id="delete-branch">{{svg "octicon-trash" 16}}</button>
+				{{end}}
+			{{end}}
+			{{if not $db.IsDeleted}}
+				{{template "components/common/dropdown/dropdown" dict "Kind" "actions" "Icon" "octicon-kebab-horizontal" "IconOnly" true "Quiet" true "Label" (ctx.Locale.Tr "profile.actions.tooltip") "Items" "components/repository/branch/actions" "Data" (dict "Context" $page.Context "Page" $page "Branch" $db "IsDefault" .IsDefault "CanWrite" $canWrite)}}
+			{{end}}
+		</div>
+	</td>
+</tr>

@@ -1,0 +1,87 @@
+/* GitHub's label rows: the label in a quarter of the row, the description, the open issues, then the menu. */
+.theme-label-row {
+  min-height: 56px;
+  padding: 12px 0;
+}
+
+.theme-label-name {
+  display: flex;
+  flex: 0 0 25%;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.theme-label-description {
+  flex: 1;
+  min-width: 0;
+  color: var(--color-text-light-1);
+  font-size: 12px;
+  line-height: 18px;
+  overflow-wrap: anywhere;
+}
+
+.theme-label-issues {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 4px;
+  color: var(--color-text-light-1);
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.theme-label-issues:hover {
+  color: var(--github-fgColor-accent);
+}
+
+/* Rows without the menu keep the issue links in line with those that have it. */
+.theme-label-actions-placeholder {
+  flex: 0 0 32px;
+}
+
+.theme-label-list-note {
+  min-height: 0;
+  color: var(--color-text-light-1);
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.theme-label-list-template {
+  padding: 16px;
+  border-bottom: 1px solid var(--color-light-border);
+}
+
+/* Phones: the label and its menu on one line, the description and the open issues beneath. */
+@media (max-width: 767.98px) {
+  .theme-label-row {
+    display: grid;
+    grid-template-areas:
+      "name actions"
+      "description description"
+      "issues issues";
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 4px 16px;
+  }
+
+  .theme-label-name {
+    grid-area: name;
+  }
+
+  .theme-label-description {
+    grid-area: description;
+  }
+
+  .theme-label-description:empty {
+    display: none;
+  }
+
+  .theme-label-issues {
+    grid-area: issues;
+  }
+
+  .theme-label-row > :is(.theme-dropdown, .theme-label-actions-placeholder) {
+    grid-area: actions;
+  }
+}

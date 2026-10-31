@@ -1,3 +1,4 @@
+{{/* Forgejo's variables list with GitHub's empty state. */}}
 <h4 class="ui top attached header">
 	{{ctx.Locale.Tr "actions.variables.management"}}
 	<div class="ui right">
@@ -54,12 +55,12 @@
 		{{end}}
 	</div>
 	{{else}}
-		{{ctx.Locale.Tr "actions.variables.none"}}
+		{{template "components/common/settings/blankslate" dict "Title" (ctx.Locale.Tr "actions.variables.none")}}
 	{{end}}
 </div>
 
 {{/** Edit variable dialog */}}
-<dialog class="modal" id="edit-variable-modal">
+<dialog id="edit-variable-modal">
 	<article>
 		<header></header>
 		<form class="ui form form-fetch-action" method="post">
@@ -91,7 +92,7 @@
 		</article>
 </dialog>
 
-<dialog class="modal" id="delete-variable">
+<dialog id="delete-variable">
 	<article>
 		<div class="content">{{ctx.Locale.Tr "actions.variables.deletion.description"}}</div>
 		<div class="actions">

@@ -320,14 +320,6 @@ func Repos(ctx *context.Context) {
 func Appearance(ctx *context.Context) {
 	ctx.Data["Title"] = ctx.Tr("settings.appearance")
 	ctx.Data["PageIsSettingsAppearance"] = true
-	ctx.Data["AllThemes"] = setting.UI.Themes
-	ctx.Data["ThemeName"] = func(themeName string) string {
-		fullThemeName := "themes.names." + themeName
-		if ctx.Locale.HasKey(fullThemeName) {
-			return ctx.Locale.TrString(fullThemeName)
-		}
-		return themeName
-	}
 
 	var hiddenCommentTypes *big.Int
 	val, err := user_model.GetUserSetting(ctx, ctx.Doer.ID, user_model.SettingsKeyHiddenCommentTypes)
@@ -342,35 +334,6 @@ func Appearance(ctx *context.Context) {
 	}
 
 	ctx.HTML(http.StatusOK, tplSettingsAppearance)
-}
-
-// UpdateUIThemePost is used to update users' specific theme
-func UpdateUIThemePost(ctx *context.Context) {
-	form := web.GetForm(ctx).(*forms.UpdateThemeForm)
-	ctx.Data["Title"] = ctx.Tr("settings")
-	ctx.Data["PageIsSettingsAppearance"] = true
-
-	if ctx.HasError() {
-		ctx.Redirect(setting.AppSubURL + "/user/settings/appearance")
-		return
-	}
-
-	if !user_model.IsThemeValid(form.Theme) {
-		ctx.Flash.Error(ctx.Tr("settings.theme_update_error"))
-		ctx.Redirect(setting.AppSubURL + "/user/settings/appearance")
-		return
-	}
-
-	opts := &user_service.UpdateOptions{
-		Theme: optional.Some(form.Theme),
-	}
-	if err := user_service.UpdateUser(ctx, ctx.Doer, opts); err != nil {
-		ctx.Flash.Error("UpdateUser err")
-	} else {
-		ctx.Flash.Success(ctx.Tr("settings.theme_update_success"))
-	}
-
-	ctx.Redirect(setting.AppSubURL + "/user/settings/appearance")
 }
 
 // UpdateUserLang update a user's language

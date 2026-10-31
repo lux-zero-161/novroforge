@@ -1,0 +1,4 @@
+<a class="theme-dropdown-action" href="{{.Repository.Link}}/forks">{{svg "octicon-repo-forked" 16}}{{ctx.Locale.Tr "repo.forks"}}</a>
+{{if .CanSignedUserFork}}
+	<a class="theme-dropdown-action" href="{{.RepoLink}}/fork">{{svg "octicon-plus" 16}}{{ctx.Locale.Tr "repo.fork_repo"}}</a>
+{{end}}

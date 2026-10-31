@@ -1,23 +1,23 @@
+{{/* GitHub lists a repository's labels inside the issue sidebar layout: a heading with New label, then the label box. */}}
 {{template "base/head" .}}
-<div role="main" aria-label="{{.Title}}" class="page-content repository labels">
-	{{template "repo/header" .}}
-	<div class="ui container">
-		<h1>{{ctx.Locale.Tr "repo.labels"}}</h1>
-		<div class="issue-navbar tw-mb-4">
-			{{template "repo/issue/navbar" .}}
-			{{if and (or .CanWriteIssues .CanWritePulls) (not .Repository.IsArchived)}}
-				<button class="ui small primary new-label button">{{ctx.Locale.Tr "repo.issues.new_label"}}</button>
+{{$canWrite := and (or .CanWriteIssues .CanWritePulls) (not .Repository.IsArchived)}}
+<div role="main" aria-label="{{.Title}}" class="page-content repository labels theme-sidebar-layout" data-theme-sidebar="issue_sidebar_collapsed">
+	{{template "repo/issue/sidebar" .}}
+	<div class="ui container theme-sidebar-main">
+		<section class="theme-box-list-page">
+			<div class="theme-list-heading">
+				<div class="theme-list-title"><button type="button" class="theme-icon-button" data-theme-sidebar-toggle data-theme-sidebar-expand aria-expanded="false" aria-label="Expand sidebar">{{svg "octicon-sidebar-expand" 16}}</button><h1>{{ctx.Locale.Tr "repo.labels"}}</h1></div>
+				{{if $canWrite}}<button class="ui primary new-label button theme-control">{{ctx.Locale.Tr "repo.issues.new_label"}}</button>{{end}}
+			</div>
+			{{if $canWrite}}
+				{{template "repo/issue/labels/label_new" .}}
 			{{end}}
-		</div>
-		{{if and (or .CanWriteIssues .CanWritePulls) (not .Repository.IsArchived)}}
-			{{template "repo/issue/labels/label_new" .}}
-		{{end}}
-		{{template "base/alert" .}}
-		{{template "repo/issue/labels/label_list" .}}
+			{{template "base/alert" .}}
+			{{template "repo/issue/labels/label_list" .}}
+		</section>
 	</div>
 </div>
-
-{{if and (or .CanWriteIssues .CanWritePulls) (not .Repository.IsArchived)}}
+{{if $canWrite}}
 	{{template "repo/issue/labels/edit_delete_label" .}}
 {{end}}
 {{template "base/footer" .}}

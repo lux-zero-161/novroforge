@@ -1,18 +1,32 @@
+{{/* GitHub's forks page: a heading over a box with a row per fork (its owner's avatar, owner and name), or GitHub's
+empty state. Forgejo has no string for that state, so it is GitHub's English one. */}}
 {{template "base/head" .}}
 <div role="main" aria-label="{{.Title}}" class="page-content repository forks">
-	{{template "repo/header" .}}
 	<div class="ui container">
-		<h2 class="ui dividing header">
-			{{ctx.Locale.Tr "repo.forks"}}
-		</h2>
-		{{range .Forks}}
-			<div class="tw-flex tw-items-center tw-py-2">
-				<span class="tw-mr-1">{{ctx.AvatarUtils.Avatar .Owner}}</span>
-				<a href="{{.Owner.HomeLink}}">{{.Owner.Name}}</a> / <a href="{{.Link}}">{{.Name}}</a>
-			</div>
-		{{end}}
+		<section class="theme-box-list-page">
+			<div class="theme-list-heading"><div class="theme-list-title"><h1>{{ctx.Locale.Tr "repo.forks"}}</h1></div></div>
+			{{if .Forks}}
+				<div class="theme-box-list">
+					<ul class="theme-box-list-rows">
+						{{range .Forks}}
+							<li class="theme-box-list-row theme-fork-row">
+								{{ctx.AvatarUtils.Avatar .Owner 20}}
+								<div class="theme-box-list-main">
+									<h3><a href="{{.Owner.HomeLink}}">{{.Owner.Name}}</a> / <a href="{{.Link}}">{{.Name}}</a></h3>
+								</div>
+							</li>
+						{{end}}
+					</ul>
+				</div>
+			{{else}}
+				<div class="theme-empty">
+					{{svg "octicon-repo-forked" 24}}
+					<h3>No one has forked this repository yet</h3>
+					<p>Forks are a great way to contribute to a repository. After forking a repository, you can send the original author a pull request.</p>
+				</div>
+			{{end}}
+		</section>
+		{{template "base/paginate" .}}
 	</div>
-
-	{{template "base/paginate" .}}
 </div>
 {{template "base/footer" .}}

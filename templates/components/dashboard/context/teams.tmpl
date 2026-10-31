@@ -1,0 +1,7 @@
+{{$data := .Data}}
+<a class="theme-dropdown-action" href="{{.Base}}"{{if not $data.Team}} aria-current="true"{{end}}>{{svg "octicon-check" 16 "theme-box-list-check"}}{{ctx.Locale.Tr "all"}}</a>
+{{range $data.Teams}}
+	{{if not .IncludesAllRepositories}}
+		<a class="theme-dropdown-action" href="{{$.Base}}/{{PathEscape .Name}}"{{if and $data.Team (eq $data.Team.ID .ID)}} aria-current="true"{{end}}>{{svg "octicon-check" 16 "theme-box-list-check"}}{{.Name}}</a>
+	{{end}}
+{{end}}

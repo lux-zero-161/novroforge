@@ -1,0 +1,61 @@
+{{- /* GitHub's milestone list, for a repository and for the dashboard: a box with the Open and Closed tabs and Sort in
+its header, and a row per milestone with its due date and description on the left and its progress on the right.
+Data is the page context. Query starts every state and sort link ("?q=..." plus any page filter). ShowRepo names each
+milestone's repository, as the dashboard lists several. RepoLink and CanWrite add Edit, Close and Delete for a
+repository's writers. Rows carry their progress and an open milestone's due date for Home's work rail. */ -}}
+{{$data := .Data}}
+{{$query := .Query}}
+<div class="theme-box-list">
+	<div class="theme-box-list-header">
+		{{template "components/common/box-list/states" dict "Label" (ctx.Locale.Tr "repo.milestones") "OpenLink" (print $query "&state=open&sort=" $data.SortType) "ClosedLink" (print $query "&state=closed&sort=" $data.SortType) "OpenCount" .OpenCount "ClosedCount" .ClosedCount "IsClosed" $data.IsShowClosed}}
+		{{template "components/common/dropdown/dropdown" dict "Kind" "actions" "Label" (ctx.Locale.Tr "repo.issues.filter_sort") "Quiet" true "Items" "components/repository/milestone/sort" "Data" (dict "Context" $data.Context "Query" (print $query "&state=" $data.State) "SortType" $data.SortType)}}
+	</div>
+	<ul class="theme-box-list-rows">
+		{{range $data.Milestones}}
+			{{$link := print $.RepoLink "/milestone/" .ID}}
+			{{if $.ShowRepo}}{{$link = print .Repo.Link "/milestone/" .ID}}{{end}}
+			<li class="theme-box-list-row theme-milestone-row" data-theme-milestone data-progress="{{.Completeness}}"{{if and (not .IsClosed) .DeadlineString}} data-due="{{.DeadlineString}}"{{end}}>
+				<div class="theme-box-list-main">
+					<h3>{{if $.ShowRepo}}<span class="theme-milestone-repo">{{.Repo.FullName}}</span>{{end}}<a href="{{$link}}">{{.Name}}</a></h3>
+					<p class="theme-box-list-meta">
+						{{if .IsClosed}}
+							{{ctx.Locale.Tr "repo.milestones.closed" (DateUtils.TimeSince .ClosedDateUnix)}}
+						{{else if .DeadlineString}}
+							<span{{if .IsOverdue}} class="theme-milestone-overdue"{{end}}>{{svg "octicon-calendar" 14}} {{DateUtils.AbsoluteShort (.DeadlineString|DateUtils.ParseLegacy)}}</span>
+						{{else}}
+							{{ctx.Locale.Tr "repo.milestones.no_due_date"}}
+						{{end}}
+						{{if .UpdatedUnix}}<span aria-hidden="true">·</span> {{ctx.Locale.Tr "repo.milestones.update_ago" (DateUtils.TimeSince .UpdatedUnix)}}{{end}}
+						{{if .TotalTrackedTime}}<span aria-hidden="true">·</span> <span data-tooltip-content="{{ctx.Locale.Tr "tracked_time_summary"}}">{{svg "octicon-clock" 14}} {{.TotalTrackedTime|Sec2Time}}</span>{{end}}
+					</p>
+					{{if .Content}}<div class="theme-box-list-description markup">{{.RenderedContent}}</div>{{end}}
+				</div>
+				<div class="theme-milestone-progress">
+					<progress class="theme-progress" value="{{.Completeness}}" max="100"></progress>
+					<p class="theme-milestone-stats">
+						<span>{{ctx.Locale.Tr "repo.milestones.completeness" .Completeness}}</span>
+						<span><strong>{{ctx.Locale.PrettyNumber .NumOpenIssues}}</strong> {{ctx.Locale.Tr "repo.issues.open_title"}}</span>
+						<span><strong>{{ctx.Locale.PrettyNumber .NumClosedIssues}}</strong> {{ctx.Locale.Tr "repo.issues.closed_title"}}</span>
+					</p>
+					{{if $.CanWrite}}
+						<p class="theme-milestone-actions">
+							<a href="{{$.RepoLink}}/milestones/{{.ID}}/edit">{{ctx.Locale.Tr "repo.issues.label_edit"}}</a>
+							{{if .IsClosed}}
+								<a class="link-action" href data-url="{{$.RepoLink}}/milestones/{{.ID}}/open">{{ctx.Locale.Tr "repo.milestones.open"}}</a>
+							{{else}}
+								<a class="link-action" href data-url="{{$.RepoLink}}/milestones/{{.ID}}/close">{{ctx.Locale.Tr "repo.milestones.close"}}</a>
+							{{end}}
+							<a class="delete-button theme-milestone-delete" href="#" data-url="{{$.RepoLink}}/milestones/delete" data-id="{{.ID}}" data-modal-id="delete-milestone">{{ctx.Locale.Tr "repo.issues.label_delete"}}</a>
+						</p>
+					{{end}}
+				</div>
+			</li>
+		{{else}}
+			<li class="theme-empty theme-empty-compact">
+				{{svg "octicon-milestone" 24}}
+				<h3>{{ctx.Locale.Tr "search.no_results"}}</h3>
+			</li>
+		{{end}}
+	</ul>
+</div>
+{{template "base/paginate" $data}}

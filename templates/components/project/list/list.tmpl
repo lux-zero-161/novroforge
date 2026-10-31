@@ -1,0 +1,56 @@
+{{- /* GitHub's project list for repository, organization and user pages: a toolbar, then one box with the Open and Closed
+tabs and Sort in its header and a row per project. Heading puts GitHub's repository heading with the sidebar toggle above
+the search; without it, New project sits beside the search as on GitHub's profile pages. */ -}}
+{{$data := .Data}}
+{{$canWrite := and $data.CanWriteProjects (not $data.Repository.IsArchived)}}
+{{$newProject := ""}}
+{{if $canWrite}}{{$newProject = print $data.Link "/new"}}{{end}}
+<section class="theme-box-list-page">
+	{{if .Heading}}
+		<div class="theme-list-heading">
+			<div class="theme-list-title"><button type="button" class="theme-icon-button" data-theme-sidebar-toggle data-theme-sidebar-expand aria-expanded="false" aria-label="Expand sidebar">{{svg "octicon-sidebar-expand" 16}}</button><h1>{{ctx.Locale.Tr "repo.projects"}}</h1></div>
+			{{if $newProject}}<a class="primary button theme-control" href="{{$newProject}}">{{ctx.Locale.Tr "repo.projects.new"}}</a>{{end}}
+		</div>
+	{{end}}
+	<div class="theme-box-list-toolbar">
+		<form class="ui form ignore-dirty theme-box-list-search" role="search">
+			<input type="hidden" name="state" value="{{$data.State}}">
+			<input type="hidden" name="sort" value="{{$data.SortType}}">
+			{{template "components/common/search/search" dict "Kind" "icon" "Value" $data.Keyword "Placeholder" (ctx.Locale.Tr "search.project_kind") "Label" (ctx.Locale.Tr "search.project_kind")}}
+		</form>
+		{{if and $newProject (not .Heading)}}<a class="primary button theme-control" href="{{$newProject}}">{{ctx.Locale.Tr "repo.projects.new"}}</a>{{end}}
+	</div>
+	<div class="theme-box-list">
+		<div class="theme-box-list-header">
+			{{template "components/common/box-list/states" dict "Label" (ctx.Locale.Tr "repo.projects") "OpenLink" (print "?state=open&q=" (QueryEscape $data.Keyword) "&sort=" $data.SortType) "ClosedLink" (print "?state=closed&q=" (QueryEscape $data.Keyword) "&sort=" $data.SortType) "OpenCount" $data.OpenCount "ClosedCount" $data.ClosedCount "IsClosed" $data.IsShowClosed}}
+			{{template "components/common/dropdown/dropdown" dict "Kind" "actions" "Label" (ctx.Locale.Tr "repo.issues.filter_sort") "Quiet" true "Items" "components/project/list/sort" "Data" $data}}
+		</div>
+		<ul class="theme-box-list-rows">
+			{{range $data.Projects}}
+				<li class="theme-box-list-row">
+					<div class="theme-box-list-main">
+						<h3><a href="{{.Link ctx}}">{{.Title}}</a></h3>
+						<p class="theme-box-list-meta">#{{.ID}} {{ctx.Locale.Tr "issues.updated" (DateUtils.TimeSince .UpdatedUnix)}}</p>
+						{{if .Description}}<div class="theme-box-list-description markup">{{.RenderedContent}}</div>{{end}}
+					</div>
+					{{if $canWrite}}
+						{{template "components/common/dropdown/dropdown" dict "Kind" "actions" "Icon" "octicon-kebab-horizontal" "IconOnly" true "Quiet" true "Label" (ctx.Locale.Tr "profile.actions.tooltip") "Items" "components/project/list/actions" "Data" (dict "Context" $data.Context "Link" (.Link ctx) "IsClosed" .IsClosed)}}
+					{{end}}
+				</li>
+			{{else}}
+				<li class="theme-empty theme-empty-compact">
+					{{svg "octicon-project" 24}}
+					<h3>{{if and (not $data.Keyword) (eq $data.OpenCount 0) (eq $data.ClosedCount 0)}}There aren't any projects yet{{else}}{{ctx.Locale.Tr "search.no_results"}}{{end}}</h3>
+				</li>
+			{{end}}
+		</ul>
+	</div>
+	{{template "base/paginate" $data}}
+	{{if $canWrite}}
+		<div class="ui g-modal-confirm delete modal" id="delete-project">
+			<div class="header">{{svg "octicon-trash"}}{{ctx.Locale.Tr "repo.projects.deletion"}}</div>
+			<div class="content"><p>{{ctx.Locale.Tr "repo.projects.deletion_desc"}}</p></div>
+			{{template "base/modal_actions_confirm" $data}}
+		</div>
+	{{end}}
+</section>

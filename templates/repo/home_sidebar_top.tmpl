@@ -1,0 +1,204 @@
+{{/* GitHub-style repository overview sidebar adapted to Forgejo 15 data and endpoints. */}}
+<aside class="repo-home-sidebar-top" aria-label="About">
+	<div id="repo-topics" class="repo-about-block flex-relaxed-list">
+		<div class="repo-home-sidebar-header repo-about-heading">
+			<span>About</span>
+			{{if and .Permission.IsAdmin (not .Repository.IsArchived)}}
+				<button id="github_theme_repo_about_manage" type="button" class="btn repo-about-settings" aria-label="Edit repository metadata" data-tooltip-content="Edit repository metadata">
+					{{svg "octicon-gear" 16}}
+				</button>
+			{{end}}
+		</div>
+
+		{{$description := .Repository.DescriptionHTML $.Context}}
+		{{if $description}}
+			<div class="repo-description tw-break-anywhere"><span class="description">{{$description | RenderCodeBlock}}</span></div>
+		{{else}}
+			<div class="repo-description no-description tw-break-anywhere">No description, website, or topics provided.</div>
+		{{end}}
+
+		{{if .Repository.Website}}
+			<a class="flex-text-block repo-home-sidebar-website" href="{{.Repository.Website}}">
+				{{svg "octicon-link" 16}} <span>{{.Repository.Website}}</span>
+			</a>
+		{{end}}
+
+		<div class="repo-about-topic-list flex-text-block tw-flex-wrap">
+			{{range .Topics}}
+				<a class="repo-topic ui large label" title="{{.}}" href="{{AppSubUrl}}/explore/repos?q={{.}}&topic=1">{{.}}</a>
+			{{end}}
+		</div>
+
+		{{if and (.Permission.CanRead $.UnitTypeCode) (not .IsEmptyRepo)}}
+			{{/* GitHub no longer lists the README or the repository size here. */}}
+			<div class="repo-home-sidebar-metadata flex-relaxed-list">
+				{{if .CitationFile}}
+					<a class="flex-text-block muted" href="{{.RepoLink}}/src/branch/{{.BranchName}}/{{.CitationFile}}">
+						{{svg "octicon-cross-reference"}} {{ctx.Locale.Tr "repo.cite_this_repo"}}
+					</a>
+				{{end}}
+				<a class="flex-text-block muted" href="{{.RepoLink}}/activity">
+					{{svg "octicon-pulse"}} {{ctx.Locale.Tr "repo.activity"}}
+				</a>
+				{{if not .DisableStars}}
+					<a class="flex-text-block muted" href="{{.RepoLink}}/stars">
+						{{svg "octicon-star"}} <span>{{ctx.Locale.TrPluralString .Repository.NumStars "stars.n_stars" (HTMLFormat "<b>%s</b>" (CountFmt .Repository.NumStars))}}</span>
+					</a>
+				{{end}}
+				<a class="flex-text-block muted" href="{{.RepoLink}}/watchers">
+					{{svg "octicon-eye"}} <span>{{ctx.Locale.TrPluralString .Repository.NumWatches "watch.n_watchers" (HTMLFormat "<b>%s</b>" (CountFmt .Repository.NumWatches))}}</span>
+				</a>
+				{{if not .DisableForks}}
+					<a class="flex-text-block muted" href="{{.RepoLink}}/forks">
+						{{svg "octicon-repo-forked"}} <span>{{ctx.Locale.TrPluralString .Repository.NumForks "fork.n_forks" (HTMLFormat "<b>%s</b>" (CountFmt .Repository.NumForks))}}</span>
+					</a>
+				{{end}}
+                <div class="repo-mobile-summary only-mobile">
+                    <a class="flex-text-block muted" href="{{.RepoLink}}/branches">{{svg "octicon-git-branch" 16}}{{.BranchesCount}} {{if eq .BranchesCount 1}}branch{{else}}branches{{end}}</a>
+                    <a class="flex-text-block muted" href="{{.RepoLink}}/tags">{{svg "octicon-tag" 16}}{{.NumTags}} {{if eq .NumTags 1}}tag{{else}}tags{{end}}</a>
+                </div>
+                <div class="repo-mobile-visibility only-mobile">{{if .Repository.IsPrivate}}{{svg "octicon-lock" 16}}{{else}}{{svg "octicon-globe" 16}}{{end}}{{if .Repository.IsPrivate}}Private{{else if .Repository.Owner.Visibility.IsPrivate}}Internal{{else}}Public{{end}} repository</div>
+			</div>
+		{{end}}
+	</div>
+
+	{{if and .Permission.IsAdmin (not .Repository.IsArchived)}}
+		<div class="repo-about-modal-overlay ui form tw-hidden" id="github_theme_repo_about_edit" role="dialog" aria-modal="true" aria-labelledby="repo-about-modal-title">
+			<form id="repo-about-form" class="repo-about-modal-card" action="{{.RepoLink}}/settings" method="post">
+				<input type="hidden" name="action" value="update">
+				<input type="hidden" name="repo_name" value="{{.Repository.Name}}">
+				{{if .Repository.IsPrivate}}<input type="hidden" name="private" value="true">{{end}}
+				{{if .Repository.IsTemplate}}<input type="hidden" name="template" value="true">{{end}}
+
+				<div class="repo-about-modal-header">
+					<strong id="repo-about-modal-title">Edit repository details</strong>
+					<button type="button" class="btn interact-fg repo-about-modal-close" aria-label="Close">
+						{{svg "octicon-x" 16}}
+					</button>
+				</div>
+
+				<div class="repo-about-modal-body">
+					<div class="field">
+						<label for="repo-about-description">{{ctx.Locale.Tr "repo.repo_desc"}}</label>
+						<input id="repo-about-description" name="description" maxlength="2048" value="{{.Repository.Description}}" placeholder="{{ctx.Locale.Tr "repo.repo_desc"}}">
+					</div>
+
+					<div class="field">
+						<label for="repo-about-website">{{ctx.Locale.Tr "repo.settings.site"}}</label>
+						<input id="repo-about-website" name="website" type="url" maxlength="1024" value="{{.Repository.Website}}" placeholder="https://">
+					</div>
+
+					<div class="field">
+						<label for="repo-about-topics">Topics</label>
+						{{/* Forgejo 17 passes topics as plain strings; the save handler posts this comma-separated value. */}}
+						<input id="repo-about-topics" class="repo-about-topics-input" name="topics" type="text" value="{{StringUtils.Join .Topics ","}}" placeholder="topic-one, topic-two">
+					</div>
+
+					<div class="repo-about-error tw-hidden" role="alert"></div>
+				</div>
+
+				<div class="repo-about-modal-footer">
+					<button type="button" class="ui basic button" id="github_theme_repo_about_cancel">{{ctx.Locale.Tr "cancel"}}</button>
+					<button type="button" class="ui primary button" id="github_theme_repo_about_save" data-link="{{.RepoLink}}/topics">Save changes</button>
+				</div>
+			</form>
+		</div>
+
+		<script>
+			(() => {
+				const initRepoAboutModal = () => {
+					const view = document.getElementById('repo-topics');
+					const modal = document.getElementById('github_theme_repo_about_edit');
+					const form = document.getElementById('repo-about-form');
+					const manage = document.getElementById('github_theme_repo_about_manage');
+					const cancel = document.getElementById('github_theme_repo_about_cancel');
+					const close = modal?.querySelector('.repo-about-modal-close');
+					const save = document.getElementById('github_theme_repo_about_save');
+					const error = modal?.querySelector('.repo-about-error');
+					const description = document.getElementById('repo-about-description');
+					if (!view || !modal || !form || !manage || !cancel || !close || !save || !error || !description) return;
+
+					const hideError = () => {
+						error.textContent = '';
+						error.classList.add('tw-hidden');
+					};
+					const showError = message => {
+						error.textContent = message;
+						error.classList.remove('tw-hidden');
+					};
+
+					manage.addEventListener('click', () => {
+						hideError();
+						modal.classList.remove('tw-hidden');
+						document.documentElement.classList.add('repo-about-modal-open');
+						requestAnimationFrame(() => description.focus());
+					});
+					cancel.addEventListener('click', () => {
+						modal.classList.add('tw-hidden');
+						document.documentElement.classList.remove('repo-about-modal-open');
+						hideError();
+					});
+					close.addEventListener('click', () => cancel.click());
+					modal.addEventListener('click', event => {
+						if (event.target === modal) cancel.click();
+					});
+					document.addEventListener('keydown', event => {
+						if (event.key === 'Escape' && !modal.classList.contains('tw-hidden')) {
+							event.preventDefault();
+							cancel.click();
+						}
+					});
+
+					save.addEventListener('click', async event => {
+						event.preventDefault();
+						event.stopImmediatePropagation();
+						hideError();
+						if (!form.reportValidity()) return;
+
+						const originalText = save.textContent;
+						save.disabled = true;
+						save.textContent = 'Saving…';
+						try {
+							const topics = form.querySelector('input[name="topics"]').value;
+							const topicData = new FormData();
+							topicData.append('topics', topics);
+							const topicResponse = await fetch(save.dataset.link, {
+								method: 'POST',
+								body: topicData,
+								credentials: 'same-origin',
+							});
+							const topicResult = await topicResponse.json().catch(() => ({}));
+							if (!topicResponse.ok || topicResult.status !== 'ok') {
+								throw new Error(topicResult.message || 'Could not update repository topics.');
+							}
+
+							const settingsData = new FormData(form);
+							settingsData.delete('topics');
+							const settingsURL = new URL(form.getAttribute('action'), window.location.href);
+							const settingsResponse = await fetch(settingsURL, {
+								method: 'POST',
+								body: settingsData,
+								credentials: 'same-origin',
+							});
+							const expectedPath = settingsURL.pathname;
+							if (!settingsResponse.ok || !settingsResponse.redirected || new URL(settingsResponse.url).pathname !== expectedPath) {
+								throw new Error('Could not update repository details. Check the fields and try again.');
+							}
+							window.location.reload();
+						} catch (saveError) {
+							showError(saveError instanceof Error ? saveError.message : 'Could not update repository details.');
+							save.disabled = false;
+							save.textContent = originalText;
+						}
+					}, true);
+				};
+
+				if (document.readyState === 'loading') {
+					document.addEventListener('DOMContentLoaded', initRepoAboutModal, {once: true});
+				} else {
+					initRepoAboutModal();
+				}
+			})();
+		</script>
+	{{end}}
+</aside>

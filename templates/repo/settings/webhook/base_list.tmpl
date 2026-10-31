@@ -1,5 +1,8 @@
+{{/* GitHub's webhooks list: the description, then each hook as a box row with its status, URL and actions. Shared by repository, organization, personal and site administration settings. */}}
 <h4 class="ui top attached header">
-	{{.Title}}
+	{{/* Settings pages pass their page title, which for organizations is just "Settings"; site administration passes
+		each list's own title. */}}
+	{{if .PageIsSettingsHooks}}{{ctx.Locale.Tr "repo.settings.hooks"}}{{else}}{{.Title}}{{end}}
 	<div class="ui right">
 		<div class="ui jump dropdown">
 			<div class="ui primary tiny button">{{ctx.Locale.Tr "repo.settings.add_webhook"}}</div>
@@ -8,19 +11,23 @@
 	</div>
 </h4>
 <div class="ui attached segment">
-	<div class="ui list">
-		<div class="item">
-			{{.Description}}
-		</div>
-		{{range .Webhooks}}
-			<div class="item truncated-item-container">
-				<span class="text {{if eq .LastStatus 1}}green{{else if eq .LastStatus 2}}red{{else}}grey{{end}} tw-mr-2">{{svg "octicon-dot-fill" 22}}</span>
-				<div class="text truncate tw-flex-1 tw-mr-2">
-					<a title="{{.URL}}" href="{{$.BaseLink}}/{{.ID}}">{{.URL}}</a>
+	<p class="theme-settings-description">{{.Description}}</p>
+	{{if .Webhooks}}
+		<div class="flex-list">
+			{{range .Webhooks}}
+				<div class="flex-item flex-item-center">
+					<div class="flex-item-leading">
+						<span class="text {{if eq .LastStatus 1}}green{{else if eq .LastStatus 2}}red{{else}}grey{{end}}">{{svg "octicon-dot-fill" 16}}</span>
+					</div>
+					<div class="flex-item-main">
+						<a class="flex-item-title gt-ellipsis" title="{{.URL}}" href="{{$.BaseLink}}/{{.ID}}">{{.URL}}</a>
+					</div>
+					<div class="flex-item-trailing">
+						<a class="ui button" href="{{$.BaseLink}}/{{.ID}}" aria-label="{{ctx.Locale.Tr "edit"}}">{{svg "octicon-pencil"}}</a>
+						<button class="ui red button delete-button" data-url="{{$.Link}}/delete" data-id="{{.ID}}" data-modal-id="delete-webhook" aria-label="{{ctx.Locale.Tr "remove"}}">{{svg "octicon-trash"}}</button>
+					</div>
 				</div>
-				<a class="muted tw-p-2" href="{{$.BaseLink}}/{{.ID}}">{{svg "octicon-pencil"}}</a>
-				<a class="delete-button tw-p-2" data-url="{{$.Link}}/delete" data-id="{{.ID}}" data-modal-id="delete-webhook">{{svg "octicon-trash"}}</a>
-			</div>
-		{{end}}
-	</div>
+			{{end}}
+		</div>
+	{{end}}
 </div>

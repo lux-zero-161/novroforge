@@ -1,16 +1,9 @@
+{{/* Forgejo 17's milestone form inside the issue sidebar layout, where GitHub shows it; Milestones in the sidebar
+replaces the Labels and Milestones switch. */}}
 {{template "base/head" .}}
-<div role="main" aria-label="{{.Title}}" class="page-content repository new milestone">
-	{{template "repo/header" .}}
-	<div class="ui container">
-		<div class="issue-navbar">
-			{{template "repo/issue/navbar" .}}
-			{{if and (or .CanWriteIssues .CanWritePulls) .PageIsEditMilestone}}
-				<div class="ui right floated secondary menu">
-					<a class="ui primary button" href="{{$.RepoLink}}/milestones/new">{{ctx.Locale.Tr "repo.milestones.new"}}</a>
-				</div>
-			{{end}}
-		</div>
-		<div class="divider"></div>
+<div role="main" aria-label="{{.Title}}" class="page-content repository new milestone theme-sidebar-layout" data-theme-sidebar="issue_sidebar_collapsed">
+	{{template "repo/issue/sidebar" .}}
+	<div class="ui container theme-sidebar-main">
 		<h2 class="ui dividing header">
 			{{if .PageIsEditMilestone}}
 				{{ctx.Locale.Tr "repo.milestones.edit"}}

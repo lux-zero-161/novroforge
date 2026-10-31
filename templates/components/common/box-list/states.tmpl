@@ -1,0 +1,6 @@
+{{- /* The Open and Closed tabs of a box list header, each with its count. Label names the navigation; OpenLink,
+ClosedLink, OpenCount and ClosedCount fill the tabs, and IsClosed marks the closed one as current. */ -}}
+<nav class="theme-box-list-states" aria-label="{{.Label}}">
+	<a href="{{.OpenLink}}"{{if not .IsClosed}} aria-current="page"{{end}}>{{ctx.Locale.Tr "repo.issues.open_title"}} <span class="theme-counter">{{ctx.Locale.PrettyNumber .OpenCount}}</span></a>
+	<a href="{{.ClosedLink}}"{{if .IsClosed}} aria-current="page"{{end}}>{{ctx.Locale.Tr "repo.issues.closed_title"}} <span class="theme-counter">{{ctx.Locale.PrettyNumber .ClosedCount}}</span></a>
+</nav>

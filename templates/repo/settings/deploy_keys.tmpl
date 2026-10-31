@@ -1,3 +1,4 @@
+{{/* Forgejo's deploy keys with GitHub's empty state. */}}
 {{template "repo/settings/layout_head" (dict "ctxData" . "pageClass" "repository settings")}}
 	<div class="repo-setting-content">
 		<h4 class="ui top attached header">
@@ -66,7 +67,7 @@
 					{{end}}
 				</div>
 			{{else}}
-				{{ctx.Locale.Tr "repo.settings.no_deploy_keys"}}
+				{{template "components/common/settings/blankslate" dict "Title" (ctx.Locale.Tr "repo.settings.no_deploy_keys")}}
 			{{end}}
 		</div>
 	</div>

@@ -1,3 +1,5 @@
+{{/* GitHub's upload page: the folder with the branch, the drop zone, then the commit box with Commit changes and Cancel
+(repo/editor/commit_form keeps it on the page here). */}}
 {{template "base/head" .}}
 <div role="main" aria-label="{{.Title}}" class="page-content repository file editor upload">
 	{{template "repo/header" .}}
@@ -18,7 +20,7 @@
 							<span class="section"><a href="{{$.BranchLink}}/{{index $.TreePaths $i | PathEscapeSegments}}">{{$v}}</a></span>
 						{{end}}
 					{{end}}
-					<span>{{ctx.Locale.Tr "repo.editor.or"}} <a href="{{$.BranchLink}}{{if not .IsNewFile}}/{{.TreePath | PathEscapeSegments}}{{end}}">{{ctx.Locale.Tr "repo.editor.cancel_lower"}}</a></span>
+					{{template "components/repository/editor/branch" .}}
 					<input type="hidden" id="tree_path" name="tree_path" value="{{.TreePath}}" required>
 				</div>
 			</div>

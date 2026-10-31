@@ -18,36 +18,22 @@
 	{{end}}
 
 	{{if not .ReadmeInList}}
-		<div id="repo-file-commit-box" class="ui segment list-header tw-mb-4 tw-flex tw-justify-between">
-			<div class="latest-commit">
-				{{template "repo/latest_commit" .}}
-			</div>
-			{{if .LatestCommit}}
-				{{if .LatestCommit.Committer}}
-					<div class="text grey age">
-						{{DateUtils.TimeSince .LatestCommit.Committer.When}}
-					</div>
-				{{end}}
-			{{end}}
-		</div>
+        <div id="repo-file-commit-box" class="ui segment list-header tw-mb-4">{{template "repo/latest_commit_row" .}}</div>
 	{{end}}
 
 	<h4 class="file-header ui top attached header tw-flex tw-items-center tw-justify-between tw-flex-wrap">
 		<div class="file-header-left tw-flex tw-items-center tw-pr-4 tw-flex-wrap {{if .IsCitationFile}}tw-gap-4{{else}}tw-gap-2{{end}}">
 			{{if .ReadmeInList}}
-				{{svg "octicon-book"}}
-				<strong><a class="default-link muted" href="#readme">{{.FileName}}</a></strong>
+				{{template "repo/readme/tabs" .}}
 			{{else}}
+                {{if or .HasSourceRenderedToggle .IsRepresentableAsText}}<nav class="repo-file-view-tabs" aria-label="File view">
+                    {{if .HasSourceRenderedToggle}}<a class="{{if .IsDisplayingRendered}}active{{end}}" href="{{$.Link}}">Preview</a>{{end}}
+                    {{if .IsRepresentableAsText}}<a class="{{if or .IsDisplayingSource (not .HasSourceRenderedToggle)}}active{{end}}" href="?display=source">Code</a><a href="{{.RepoLink}}/blame/{{.BranchNameSubURL}}/{{PathEscapeSegments .TreePath}}">{{ctx.Locale.Tr "repo.blame"}}</a>{{end}}
+                </nav>{{end}}
 				{{template "repo/file_info" .}}
 			{{end}}
 		</div>
 		<div class="file-header-right file-actions tw-flex tw-items-center tw-flex-wrap">
-			{{if .HasSourceRenderedToggle}}
-				<div class="ui compact icon buttons">
-					<a href="?display=source" class="ui mini basic button {{if .IsDisplayingSource}}active{{end}}" data-tooltip-content="{{ctx.Locale.Tr "repo.file_view_source"}}">{{svg "octicon-code" 15}}</a>
-					<a href="{{$.Link}}" class="ui mini basic button {{if .IsDisplayingRendered}}active{{end}}" data-tooltip-content="{{ctx.Locale.Tr "repo.file_view_rendered"}}">{{svg "octicon-file" 15}}</a>
-				</div>
-			{{end}}
 			{{if not .ReadmeInList}}
 				<div class="ui buttons tw-mr-1">
 					{{if .SymlinkURL}}
@@ -57,10 +43,6 @@
 					{{if not .IsViewCommit}}
 						<a class="ui mini basic button" href="{{.RepoLink}}/src/commit/{{PathEscape .CommitID}}/{{PathEscapeSegments .TreePath}}">{{ctx.Locale.Tr "repo.file_permalink"}}</a>
 					{{end}}
-					{{if .IsRepresentableAsText}}
-						<a class="ui mini basic button" href="{{.RepoLink}}/blame/{{.BranchNameSubURL}}/{{PathEscapeSegments .TreePath}}">{{ctx.Locale.Tr "repo.blame"}}</a>
-					{{end}}
-					<a class="ui mini basic button" href="{{.RepoLink}}/commits/{{.BranchNameSubURL}}/{{PathEscapeSegments .TreePath}}">{{ctx.Locale.Tr "repo.file_history"}}</a>
 					{{if .EscapeStatus.Escaped}}
 						<button class="ui mini basic button unescape-button tw-hidden">{{ctx.Locale.Tr "repo.unescape_control_characters"}}</button>
 						<button class="ui mini basic button escape-button">{{ctx.Locale.Tr "repo.escape_control_characters"}}</button>
@@ -108,7 +90,10 @@
 				<button class="ui mini basic button escape-button tw-mr-1">{{ctx.Locale.Tr "repo.escape_control_characters"}}</button>
 			{{end}}
 			{{if and .ReadmeInList .CanEditReadmeFile}}
-				<a class="btn-octicon" data-tooltip-content="{{ctx.Locale.Tr "repo.editor.edit_this_file"}}" href="{{.RepoLink}}/_edit/{{PathEscapeSegments .BranchName}}/{{PathEscapeSegments .TreePath}}/{{PathEscapeSegments .FileName}}">{{svg "octicon-pencil"}}</a>
+				<a class="btn-octicon" data-tooltip-content="{{ctx.Locale.Tr "repo.editor.edit_this_file"}}" href="{{.RepoLink}}/_edit/{{PathEscapeSegments .BranchName}}/{{if .TreePath}}{{PathEscapeSegments .TreePath}}/{{end}}{{PathEscapeSegments .FileName}}">{{svg "octicon-pencil"}}</a>
+			{{end}}
+			{{if and .ReadmeInList .IsMarkup}}
+				{{template "components/common/dropdown/dropdown" dict "Kind" "actions" "Icon" "octicon-list-unordered" "IconOnly" true "Quiet" true "Small" true "Label" "Outline" "Items" "repo/readme/outline" "Data" .}}
 			{{end}}
 		</div>
 	</h4>
@@ -143,26 +128,6 @@
 						{{else}}
 							<a href="{{$.RawFileLink}}" rel="nofollow">{{ctx.Locale.Tr "repo.file_view_raw"}}</a>
 						{{end}}
-					{{else if .IsFontFile}}
-						<style>
-							@font-face {
-								font-family: preview-font;
-								src: url("{{$.RawFileLink}}");
-							}
-						</style>
-						<div class="font-preview">
-							<p class="font-viewer-sample">abcdefghijklmnopqrstuvwxyz</p>
-							<p class="font-viewer-sample">ABCDEFGHIJKLMNOPQRSTUVWXYZ</p>
-							<p class="font-viewer-sample">0123456789</p>
-							<p class="font-viewer-sample">! " ' , . ; : ?</p>
-							<p class="font-viewer-sample">+ - * / = < > % ^ & | ~</p>
-							<p class="font-viewer-sample">(&nbsp;) [ ] { }</p>
-							<p class="font-viewer-sample">$ # @ \ ` _</p>
-							{{range $size := .FontPreviewSizes}}
-								<small class="font-viewer-size">{{$size}}px</small>
-								<p class="font-viewer-pangram" style="font-size: {{$size}}px">{{$.FontPreviewPangram}}</p>
-							{{end}}
-						</div>
 					{{else}}
 						<a href="{{$.RawFileLink}}" rel="nofollow">{{ctx.Locale.Tr "repo.file_view_raw"}}</a>
 					{{end}}

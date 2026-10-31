@@ -1,3 +1,4 @@
+{{/* Forgejo's authorized integrations with GitHub's empty state. */}}
 {{template "user/settings/layout_head" (dict "ctxData" . "pageClass" "user settings applications")}}
 
 <div class="user-setting-content">
@@ -46,13 +47,7 @@
 					</div>
 				</div>
 			{{else}}
-				<div class="flex-item">
-					<div class="flex-item-main">
-						<div class="flex-item-body">
-							<p>{{ctx.Locale.Tr "settings.authorized_integration.none"}}</p>
-						</div>
-					</div>
-				</div>
+				{{template "components/common/settings/blankslate" dict "Title" (ctx.Locale.Tr "settings.authorized_integration.none")}}
 			{{end}}
 		</div>
 	</div>

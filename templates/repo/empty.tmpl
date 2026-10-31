@@ -1,6 +1,7 @@
+{{/* Forgejo 17 template; the only change is the title row, which GitHub shows on an empty repository too. */}}
 {{template "base/head" .}}
 <div role="main" aria-label="{{.Title}}" class="page-content repository quickstart">
-	{{template "repo/header" .}}
+	{{template "repo/home_header" .}}
 	<div class="ui container">
 		<div class="ui grid">
 			<div class="sixteen wide column content">
@@ -49,7 +50,7 @@
 							<div class="item">
 								<h3>{{ctx.Locale.Tr "repo.create_new_repo_command"}}</h3>
 								<div class="markup">
-									<pre class="code-block"><code>touch README.md
+									<pre><code>touch README.md
 git init{{if eq .Repository.ObjectFormatName "sha256"}} --object-format=sha256{{end}}
 {{if ne .Repository.DefaultBranch "master"}}git switch -c {{.Repository.DefaultBranch}}{{end}}
 git add README.md
@@ -63,7 +64,7 @@ git push -u origin {{.Repository.DefaultBranch}}</code></pre>
 							<div class="item">
 								<h3>{{ctx.Locale.Tr "repo.push_exist_repo"}}</h3>
 								<div class="markup">
-									<pre class="code-block"><code>git remote add origin <span class="js-clone-url">{{$.CloneButtonOriginLink.HTTPS}}</span>
+									<pre><code>git remote add origin <span class="js-clone-url">{{$.CloneButtonOriginLink.HTTPS}}</span>
 git push -u origin {{.Repository.DefaultBranch}}</code></pre>
 								</div>
 							</div>

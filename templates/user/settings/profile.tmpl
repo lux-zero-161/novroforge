@@ -1,9 +1,10 @@
+{{/* GitHub's public profile: the form on the left, the profile picture with its Edit menu in a column on the right. */}}
 {{template "user/settings/layout_head" (dict "ctxData" . "pageClass" "user settings profile")}}
 	<div class="user-setting-content">
 		<h4 class="ui top attached header">
 			{{ctx.Locale.Tr "settings.public_profile"}}
 		</h4>
-		<div class="ui attached segment">
+		<div class="ui attached segment theme-settings-columns">
 			<form class="ui form" action="{{.Link}}" method="post">
 				<fieldset>
 					<legend>{{ctx.Locale.Tr "settings.profile_desc"}}</legend>
@@ -108,44 +109,39 @@
 
 				<button class="ui primary button">{{ctx.Locale.Tr "settings.update_profile"}}</button>
 			</form>
-		</div>
 
-		<h4 id="avatar-settings" class="ui top attached header">
-			{{ctx.Locale.Tr "settings.avatar"}}
-		</h4>
-		<div class="ui attached segment">
-			<form class="ui form" action="{{.Link}}/avatar" method="post" enctype="multipart/form-data">
-				{{if not .DisableGravatar}}
-				<div class="inline field">
-					<div class="ui radio checkbox">
-						<input name="source" value="lookup" type="radio" {{if not .SignedUser.UseCustomAvatar}}checked{{end}}>
-						<label>{{ctx.Locale.Tr "settings.lookup_avatar_by_mail"}}</label>
-					</div>
-				</div>
-				<div class="field tw-pl-4 {{if .Err_Gravatar}}error{{end}}">
-					<label for="gravatar">Avatar {{ctx.Locale.Tr "email"}}</label>
-					<input id="gravatar" name="gravatar" value="{{.SignedUser.AvatarEmail}}">
-				</div>
-				{{end}}
-
-				<div class="inline field">
-					<div class="ui radio checkbox">
-						<input name="source" value="local" type="radio" {{if .SignedUser.UseCustomAvatar}}checked{{end}}>
-						<label>{{ctx.Locale.Tr "settings.enable_custom_avatar"}}</label>
-					</div>
-				</div>
-
-				<div class="inline field tw-pl-4">
-					<label for="new-avatar">{{ctx.Locale.Tr "settings.choose_new_avatar"}}</label>
-					<input id="new-avatar" name="avatar" aria-describedby="new-avatar-description" type="file" accept="image/png,image/jpeg,image/gif,image/webp">
-					<br/><span id="new-avatar-description" class=help>{{ctx.Locale.Tr "avatar.constraints_hint" (ctx.Locale.TrSize .MaxAvatarFileSize) .MaxAvatarWidth .MaxAvatarHeight}}</span>
-				</div>
-
-				<div class="field button-sequence">
-					<button class="primary button">{{ctx.Locale.Tr "settings.update_avatar"}}</button>
-					<button class="danger button link-action" data-url="{{.Link}}/avatar/delete">{{ctx.Locale.Tr "settings.delete_current_avatar"}}</button>
-				</div>
+			<aside class="theme-settings-aside" aria-labelledby="avatar-settings">
+			<h3 id="avatar-settings">Profile picture</h3>
+			{{/* GitHub's picture with Edit on its lower left. Upload a photo opens the file chooser and choosing a file
+			sends the form at once, as the custom picture; the form itself stays hidden. With Gravatar allowed, the menu
+			can switch back to it. */}}
+			<div class="theme-avatar-edit">
+				{{ctx.AvatarUtils.Avatar .SignedUser 200 "theme-settings-avatar"}}
+				{{template "components/common/dropdown/dropdown" dict "Kind" "actions" "Icon" "octicon-pencil" "Label" "Edit" "Small" true "NoCaret" true "Items" "user/settings/avatar_menu" "Data" (dict "Context" ctx "Link" .Link "Gravatar" (not .DisableGravatar) "Custom" .SignedUser.UseCustomAvatar)}}
+			</div>
+			<form id="avatar-form" class="ui form tw-hidden" action="{{.Link}}/avatar" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="source" value="local">
+				<input id="new-avatar" name="avatar" aria-describedby="new-avatar-description" type="file" accept="image/png,image/jpeg,image/gif,image/webp">
 			</form>
+			<p id="new-avatar-description" class="help">{{ctx.Locale.Tr "avatar.constraints_hint" (ctx.Locale.TrSize .MaxAvatarFileSize) .MaxAvatarWidth .MaxAvatarHeight}}</p>
+			{{/* The address Gravatar looks the picture up by, editable below the picture; its button and the menu's
+			Gravatar choice both send it. */}}
+			{{if not .DisableGravatar}}
+				<form id="avatar-gravatar-form" class="ui form theme-avatar-gravatar" action="{{.Link}}/avatar" method="post">
+					<input type="hidden" name="source" value="lookup">
+					<div class="field{{if .Err_Gravatar}} error{{end}}">
+						<label for="gravatar">{{ctx.Locale.Tr "settings.lookup_avatar_by_mail"}}</label>
+						<input id="gravatar" name="gravatar" value="{{.SignedUser.AvatarEmail}}" autocomplete="email">
+					</div>
+					<button class="ui button">{{ctx.Locale.Tr "settings.update_avatar"}}</button>
+				</form>
+			{{end}}
+			<script>
+				document.getElementById("new-avatar").addEventListener("change", (event) => {
+					if (event.target.files.length) event.target.form.requestSubmit();
+				});
+			</script>
+			</aside>
 		</div>
 	</div>
 {{template "user/settings/layout_footer" .}}

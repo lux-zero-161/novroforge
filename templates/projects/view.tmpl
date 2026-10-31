@@ -1,83 +1,113 @@
+{{/*
+	GitHub-style project board, shared by repository, organization and user projects. Forgejo's board script needs
+	.project-column, .cards, .issue-card[data-issue], the .project-column-issue-count inside each column and the column
+	modals inside .project-column-header, so those keep Forgejo's classes. Column colours become GitHub's status dot;
+	columns without one named like GitHub's default statuses get GitHub's colour (see pages/projects.css).
+*/}}
 {{$canWriteProject := and .CanWriteProjects (or (not .Repository) (not .Repository.IsArchived))}}
 
-<div class="ui container tw-max-w-full">
-	<div class="tw-flex max-sm:tw-flex-col tw-justify-between tw-items-center tw-mb-4 tw-gap-3">
-		<h2 class="tw-mb-0 tw-flex-1 tw-break-anywhere">{{.Project.Title}}</h2>
+<div class="github-project-header">
+	<h1 class="github-project-title">
+		{{if .Project.IsClosed}}{{svg "octicon-lock" 16}}{{end}}
+		<span>{{.Project.Title}}</span>
+	</h1>
+	<div class="github-project-actions">
+		{{if and .Repository (not .Repository.IsArchived)}}
+			<a class="ui primary button theme-control" href="{{.RepoLink}}/issues/new/choose?project={{.Project.ID}}" data-project-panel-link>{{ctx.Locale.Tr "repo.issues.new"}}</a>
+		{{else if and (not .Repository) .IsSigned (not .Project.IsClosed)}}
+			{{/* Organization and user projects have no repository of their own: pick one of the owner's repositories,
+				then Forgejo's new issue form opens with this project already set. The board script lists them. */}}
+			<details class="theme-menu github-project-new-issue" data-owner-id="{{.ContextUser.ID}}" data-project-id="{{.Project.ID}}">
+				<summary class="ui primary button theme-control" aria-haspopup="menu">
+					{{ctx.Locale.Tr "repo.issues.new"}}
+					{{svg "octicon-triangle-down" 16}}
+				</summary>
+				<div class="theme-menu-popover" role="menu">
+					<span class="theme-menu-title">Create issue in repository</span>
+					<div class="github-project-repo-filter">
+						{{template "components/common/search/search" dict "Kind" "icon" "Local" true "ID" "project-repo-filter" "Placeholder" "Find a repository" "Label" "Find a repository"}}
+					</div>
+					<p class="github-project-repo-status" role="status">Loading…</p>
+				</div>
+				<template class="github-project-repo-icon">{{svg "octicon-repo" 16}}</template>
+			</details>
+		{{end}}
 		{{if $canWriteProject}}
-			<div class="ui compact mini menu">
-				<a class="item" href="{{.Link}}/edit?redirect=project">
+			<div class="github-project-button-group">
+				<a class="button theme-control" href="{{.Link}}/edit?redirect=project">
 					{{svg "octicon-pencil"}}
 					{{ctx.Locale.Tr "repo.issues.label_edit"}}
 				</a>
 				{{if .Project.IsClosed}}
-					<button class="item btn link-action" data-url="{{.Link}}/open">
+					<button class="button theme-control link-action" data-url="{{.Link}}/open">
 						{{svg "octicon-check"}}
 						{{ctx.Locale.Tr "repo.projects.open"}}
 					</button>
 				{{else}}
-					<button class="item btn link-action" data-url="{{.Link}}/close">
+					<button class="button theme-control link-action" data-url="{{.Link}}/close">
 						{{svg "octicon-skip"}}
 						{{ctx.Locale.Tr "repo.projects.close"}}
 					</button>
 				{{end}}
-				<button class="item btn delete-button" data-url="{{.Link}}/delete" data-id="{{.Project.ID}}" data-modal-id="delete-project">
+				<button class="button theme-control delete-button" data-url="{{.Link}}/delete" data-id="{{.Project.ID}}" data-modal-id="delete-project">
 					{{svg "octicon-trash"}}
 					{{ctx.Locale.Tr "repo.issues.label_delete"}}
 				</button>
-				<button class="item btn show-modal" data-modal="#new-project-column-item">
-					{{svg "octicon-plus"}}
-					{{ctx.Locale.Tr "new_project_column"}}
-				</button>
 			</div>
-			<dialog class="modal" id="new-project-column-item">
-				<article>
-					<header>{{ctx.Locale.Tr "repo.projects.column.new"}}</header>
-					<form class="ui form">
-						<div class="content">
-							<div class="required field">
-								<label for="new_project_column">{{ctx.Locale.Tr "repo.projects.column.new_title"}}</label>
-								<input class="new-project-column" id="new_project_column" name="title" required>
-							</div>
-
-							<div class="field color-field">
-								<label for="new_project_column_color_picker">{{ctx.Locale.Tr "repo.projects.column.color"}}</label>
-								<div class="js-color-picker-input column">
-									<input maxlength="7" placeholder="#c320f6" id="new_project_column_color_picker" name="color">
-									{{template "repo/issue/label_precolors"}}
-								</div>
-							</div>
-						</div>
-						<div class="actions">
-							<button type="button" class="ui cancel button">{{ctx.Locale.Tr "settings.cancel"}}</button>
-							<button data-url="{{$.Link}}" class="ui primary button" id="new_project_column_submit">{{ctx.Locale.Tr "repo.projects.column.new_submit"}}</button>
-						</div>
-					</form>
-				</article>
-			</dialog>
 		{{end}}
 	</div>
-
-	<div class="content markup">{{$.Project.RenderedContent}}</div>
-
-	<div class="divider"></div>
 </div>
+
+{{if .Project.RenderedContent}}
+	<div class="github-project-description markup">{{$.Project.RenderedContent}}</div>
+{{end}}
+
+<div class="github-project-filter">
+	{{template "components/common/search/search" dict "Kind" "icon" "Local" true "ID" "project-board-filter" "Placeholder" "Filter by keyword" "Label" "Filter cards by keyword"}}
+</div>
+
+{{if $canWriteProject}}
+	<dialog class="modal" id="new-project-column-item">
+		<article>
+			<header>{{ctx.Locale.Tr "repo.projects.column.new"}}</header>
+			<form class="ui form">
+				<div class="content">
+					<div class="required field">
+						<label for="new_project_column">{{ctx.Locale.Tr "repo.projects.column.new_title"}}</label>
+						<input class="new-project-column" id="new_project_column" name="title" required>
+					</div>
+
+					<div class="field color-field">
+						<label for="new_project_column_color_picker">{{ctx.Locale.Tr "repo.projects.column.color"}}</label>
+						<div class="js-color-picker-input column">
+							<input maxlength="7" placeholder="#c320f6" id="new_project_column_color_picker" name="color">
+							{{template "repo/issue/label_precolors"}}
+						</div>
+					</div>
+				</div>
+				<div class="actions">
+					<button type="button" class="ui cancel button">{{ctx.Locale.Tr "settings.cancel"}}</button>
+					<button data-url="{{$.Link}}" class="ui primary button" id="new_project_column_submit">{{ctx.Locale.Tr "repo.projects.column.new_submit"}}</button>
+				</div>
+			</form>
+		</article>
+	</dialog>
+{{end}}
 
 <div id="project-board">
 	<div class="board {{if $canWriteProject}}sortable{{end}}"{{if $canWriteProject}} data-url="{{$.Link}}/move"{{end}}>
 		{{range .Columns}}
-			<div class="project-column"{{if .Color}} style="background: {{.Color}} !important; color: {{ContrastColor .Color}} !important"{{end}} data-id="{{.ID}}" data-sorting="{{.Sorting}}" data-url="{{$.Link}}/{{.ID}}">
+			<div class="project-column"{{if .Color}} style="--project-column-color: {{.Color}}"{{end}} data-column-title="{{.Title}}" data-id="{{.ID}}" data-sorting="{{.Sorting}}" data-url="{{$.Link}}/{{.ID}}">
 				<div class="project-column-header{{if $canWriteProject}} tw-cursor-grab{{end}}">
-					<div class="ui large label project-column-title tw-py-1">
-						<div class="ui small circular grey label project-column-issue-count">
-							{{len (index $.IssuesMap .ID)}}
-						</div>
-						<span class="project-column-title-label">{{.Title}}</span>
-					</div>
+					<span class="project-column-dot" aria-hidden="true"></span>
+					<span class="project-column-title-label">{{.Title}}</span>
+					<span class="theme-counter project-column-issue-count">{{len (index $.IssuesMap .ID)}}</span>
+					{{if .Default}}<span class="project-column-default" data-tooltip-content="{{ctx.Locale.Tr "repo.projects.column.set_default"}}">{{svg "octicon-pin" 12}}</span>{{end}}
 					{{if $canWriteProject}}
-						<div class="ui dropdown jump item">
-							<div class="tw-px-2">
+						<div class="ui dropdown jump item project-column-menu">
+							<span class="theme-icon-button" aria-label="{{ctx.Locale.Tr "repo.projects.column.edit"}}">
 								{{svg "octicon-kebab-horizontal"}}
-							</div>
+							</span>
 							<div class="menu user-menu">
 								<a class="item show-modal button" data-modal="#edit-project-column-modal-{{.ID}}">
 									{{svg "octicon-pencil"}}
@@ -152,18 +182,38 @@
 						</div>
 					{{end}}
 				</div>
-				<div class="divider"{{if .Color}} style="color: {{ContrastColor .Color}} !important"{{end}}></div>
 				<div class="ui cards" data-url="{{$.Link}}/{{.ID}}" data-project="{{$.Project.ID}}" data-board="{{.ID}}" id="board_{{.ID}}">
 					{{range (index $.IssuesMap .ID)}}
 						<div class="issue-card tw-break-anywhere {{if $canWriteProject}}tw-cursor-grab{{end}}" data-issue="{{.ID}}">
-							{{template "repo/issue/card" (dict "Issue" . "Page" $)}}
+							{{template "projects/card" (dict "Issue" . "Page" $)}}
 						</div>
 					{{end}}
 				</div>
 			</div>
 		{{end}}
+		{{if $canWriteProject}}
+			<button type="button" class="github-project-add-column theme-icon-button theme-icon-button-outlined show-modal" data-modal="#new-project-column-item" aria-label="{{ctx.Locale.Tr "new_project_column"}}" data-tooltip-content="{{ctx.Locale.Tr "new_project_column"}}">
+				{{svg "octicon-plus"}}
+			</button>
+		{{end}}
 	</div>
 </div>
+
+{{/* GitHub opens a card's issue in a side panel. The panel shows the issue page itself, which the theme renders
+	without the site chrome when it is loaded in this frame (see base/head_style). */}}
+<div class="github-project-panel" data-project-id="{{.Project.ID}}" hidden>
+	<div class="github-project-panel-backdrop" data-project-panel-close></div>
+	<section class="github-project-panel-sheet" role="dialog" aria-modal="true" aria-label="Issue">
+		<div class="github-project-panel-toolbar">
+			<a class="theme-icon-button github-project-panel-open" target="_blank" rel="noopener" aria-label="Open in new tab" data-tooltip-content="Open in new tab">{{svg "octicon-link-external"}}</a>
+			<button type="button" class="theme-icon-button" data-project-panel-close aria-label="Close panel">{{svg "octicon-x"}}</button>
+		</div>
+		{{/* Organization and user projects hold issues from several repositories, so their panel names the repository. */}}
+		<iframe name="github-project-panel{{if not .Repository}}-owner{{end}}" title="Issue"></iframe>
+	</section>
+</div>
+<script src="{{AssetUrlPrefix}}/js/details-menu.js?v=3c4c1b86dd" defer></script>
+<script src="{{AssetUrlPrefix}}/js/project-board.js?v=abc2df1f9c" defer></script>
 
 {{if $canWriteProject}}
 	<div class="ui g-modal-confirm delete modal" id="delete-project">

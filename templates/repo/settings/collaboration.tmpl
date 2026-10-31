@@ -1,9 +1,31 @@
+{{/* GitHub's "Collaborators and teams": the repository's visibility, a summary of direct access, then "Manage access"
+	with the people (and, for organization repositories, the teams) in a box or an empty state, added through a dialog.
+	Forgejo has no strings for the visibility sentences, "Direct access" and "Manage access". Forgejo's hooks stay: the
+	search box ids, the access-mode menu and the delete modal. */}}
 {{template "repo/settings/layout_head" (dict "ctxData" . "pageClass" "repository settings collaboration")}}
 	<div class="repo-setting-content">
 		<h4 class="ui top attached header">
 			{{ctx.Locale.Tr "repo.settings.collaboration"}}
 		</h4>
 		<div class="ui attached segment">
+			<div class="theme-settings-summary">
+				<span class="theme-settings-summary-icon">{{if .Repository.IsPrivate}}{{svg "octicon-lock" 16}}{{else}}{{svg "octicon-eye" 16}}{{end}}</span>
+				<div class="theme-settings-summary-main">
+					<strong>{{if .Repository.IsPrivate}}Private repository{{else}}Public repository{{end}}</strong>
+					<span>{{if .Repository.IsPrivate}}{{ctx.Locale.Tr "repo.visibility_description"}}{{else}}This repository is public and visible to anyone.{{end}}</span>
+				</div>
+				<a class="ui button" href="{{.RepoLink}}/settings#repo-private">Manage visibility</a>
+			</div>
+
+			<div class="theme-settings-panel">
+				<div class="theme-settings-panel-title">Direct access {{svg "octicon-people" 16}}</div>
+				<p><strong>{{len .Collaborators}}</strong> {{if eq (len .Collaborators) 1}}collaborator has{{else}}collaborators have{{end}} access to this repository.{{if .RepoOwnerIsOrganization}} <strong>{{len .Teams}}</strong> {{if eq (len .Teams) 1}}team has{{else}}teams have{{end}} access too.{{end}}</p>
+			</div>
+
+			<div class="theme-settings-subsection">
+				<h3>Manage access</h3>
+				{{if .Collaborators}}<button type="button" class="ui primary button show-modal" data-modal="#add-collaborator-modal">{{ctx.Locale.Tr "repo.settings.add_collaborator"}}</button>{{end}}
+			</div>
 			{{if .Collaborators}}
 			<div class="flex-list">
 				{{range .Collaborators}}
@@ -17,20 +39,20 @@
 							</div>
 						</div>
 						<div class="flex-item-trailing button-sequence">
-							<div class="dialog-dropdown access-mode" aria-label="{{ctx.Locale.Tr "repo.settings.collaboration.change_access"}}" data-url="{{$.Link}}/access_mode" data-uid="{{.ID}}">
-								<button class="opener options" command="toggle-popover" commandfor="collab-{{.ID}}-dropdown">
+							<details class="dropdown dir-rtl access-mode" aria-label="{{ctx.Locale.Tr "repo.settings.collaboration.change_access"}}" data-url="{{$.Link}}/access_mode" data-uid="{{.ID}}">
+								<summary class="options">
 									{{svg "octicon-shield-lock"}}
 									<div class="text">{{if eq .Collaboration.Mode 1}}{{ctx.Locale.Tr "repo.settings.collaboration.read"}}{{else if eq .Collaboration.Mode 2}}{{ctx.Locale.Tr "repo.settings.collaboration.write"}}{{else if eq .Collaboration.Mode 3}}{{ctx.Locale.Tr "repo.settings.collaboration.admin"}}{{else}}{{ctx.Locale.Tr "repo.settings.collaboration.undefined"}}{{end}}</div>
 									{{svg "octicon-triangle-down" 14 "dropdown icon"}}
-								</button>
-								<dialog popover class="inline-flip" id="collab-{{.ID}}-dropdown">
+								</summary>
+								<div class="content">
 									<ul>
 										<li><button type="button" data-mode="3">{{ctx.Locale.Tr "repo.settings.collaboration.admin"}}</button></li>
 										<li><button type="button" data-mode="2">{{ctx.Locale.Tr "repo.settings.collaboration.write"}}</button></li>
 										<li><button type="button" data-mode="1">{{ctx.Locale.Tr "repo.settings.collaboration.read"}}</button></li>
 									</ul>
-								</dialog>
-							</div>
+								</div>
+							</details>
 							<button class="danger button delete-button" data-url="{{$.Link}}/delete" data-id="{{.ID}}" data-modal-id="delete-collaborator">
 								{{ctx.Locale.Tr "repo.settings.delete_collaborator"}}
 							</button>
@@ -39,28 +61,29 @@
 				{{end}}
 			</div>
 			{{else}}
-				{{ctx.Locale.Tr "repo.settings.collaboration.none"}}
-			{{end}}
-		</div>
-		<div class="ui bottom attached segment">
-			<form class="ui form" id="repo-collab-form" action="{{.Link}}" method="post">
-				<div id="search-user-box" class="ui search input tw-align-middle">
-					<input class="prompt" name="collaborator" placeholder="{{ctx.Locale.Tr "search.user_kind"}}" autocomplete="off" autofocus required>
+				<div class="theme-settings-blankslate theme-settings-blankslate-spacious">
+					{{svg "octicon-people" 32}}
+					<h3>{{ctx.Locale.Tr "repo.settings.collaboration.none"}}</h3>
+					<button type="button" class="ui button show-modal" data-modal="#add-collaborator-modal">{{ctx.Locale.Tr "repo.settings.add_collaborator"}}</button>
 				</div>
-				<button class="ui primary button">{{ctx.Locale.Tr "repo.settings.add_collaborator"}}</button>
-			</form>
-		</div>
+			{{end}}
 
 		{{if .RepoOwnerIsOrganization}}
-		<h4 class="ui top attached header">
-			{{ctx.Locale.Tr "repo.settings.teams"}}
-		</h4>
 		{{$allowedToChangeTeams := (or (.Org.RepoAdminChangeTeamAccess) (.Permission.IsOwner))}}
-		{{if .Teams}}
-		<div class="ui attached segment">
+			<div class="theme-settings-subsection">
+				<h3>{{ctx.Locale.Tr "repo.settings.teams"}}</h3>
+				{{if and $allowedToChangeTeams .Teams}}<button type="button" class="ui primary button show-modal" data-modal="#add-team-modal">{{ctx.Locale.Tr "repo.settings.add_team"}}</button>{{end}}
+			</div>
+			{{if not $allowedToChangeTeams}}
+				<p class="theme-settings-description">{{ctx.Locale.Tr "repo.settings.change_team_access_not_allowed"}}</p>
+			{{end}}
+			{{if .Teams}}
 			<div class="flex-list">
 				{{range $t, $team := .Teams}}
-					<div class="flex-item">
+					<div class="flex-item tw-items-center">
+						<div class="flex-item-leading">
+							<span class="theme-settings-team-icon">{{svg "octicon-people" 16}}</span>
+						</div>
 						<div class="flex-item-main">
 							<a class="flex-item-title text primary" href="{{AppSubUrl}}/org/{{$.OrgName|PathEscape}}/teams/{{.LowerName|PathEscape}}">
 								{{.Name}}
@@ -79,31 +102,65 @@
 						{{if $allowedToChangeTeams}}
 							<div class="flex-item-trailing" {{if .IncludesAllRepositories}} data-tooltip-content="{{ctx.Locale.Tr "repo.settings.delete_team_tip"}}"{{end}}>
 								<button class="danger button delete-button{{if .IncludesAllRepositories}} disabled{{end}}" data-url="{{$.Link}}/team/delete" data-id="{{.ID}}" data-modal-id="delete-collaborator">
-										{{ctx.Locale.Tr "repo.settings.delete_collaborator"}}
+									{{ctx.Locale.Tr "repo.settings.delete_collaborator"}}
 								</button>
 							</div>
 						{{end}}
 					</div>
 				{{end}}
 			</div>
-		</div>
-		{{end}}
-		<div class="ui bottom attached segment">
-			{{if $allowedToChangeTeams}}
-				<form class="ui form" id="repo-collab-team-form" action="{{.Link}}/team" method="post">
-					<div id="search-team-box" class="ui search input tw-align-middle" data-org-name="{{.OrgName}}">
-						<input class="prompt" name="team" placeholder="{{ctx.Locale.Tr "search.team_kind"}}" autocomplete="off" autofocus required>
-					</div>
-					<button class="ui primary button">{{ctx.Locale.Tr "repo.settings.add_team"}}</button>
-				</form>
 			{{else}}
-				<div class="item">
-					{{ctx.Locale.Tr "repo.settings.change_team_access_not_allowed"}}
+				<div class="theme-settings-blankslate theme-settings-blankslate-spacious">
+					{{svg "octicon-people" 32}}
+					<h3>No teams have access to this repository.</h3>
+					{{if $allowedToChangeTeams}}<button type="button" class="ui button show-modal" data-modal="#add-team-modal">{{ctx.Locale.Tr "repo.settings.add_team"}}</button>{{end}}
 				</div>
 			{{end}}
-		</div>
 		{{end}}
+		</div>
 	</div>
+
+<dialog id="add-collaborator-modal">
+	<article>
+		<header>{{ctx.Locale.Tr "repo.settings.add_collaborator"}}</header>
+		<form class="ui form" id="repo-collab-form" action="{{.Link}}" method="post">
+			<div class="content">
+				<div class="field">
+					<label for="add-collaborator-name">{{ctx.Locale.Tr "search.user_kind"}}</label>
+					<div id="search-user-box" class="ui search input">
+						<input id="add-collaborator-name" class="prompt" name="collaborator" placeholder="{{ctx.Locale.Tr "search.user_kind"}}" autocomplete="off" required>
+					</div>
+				</div>
+			</div>
+			<div class="actions">
+				<button type="button" class="ui cancel button">{{ctx.Locale.Tr "settings.cancel"}}</button>
+				<button type="submit" class="ui primary button">{{ctx.Locale.Tr "repo.settings.add_collaborator"}}</button>
+			</div>
+		</form>
+	</article>
+</dialog>
+
+{{if .RepoOwnerIsOrganization}}
+<dialog id="add-team-modal">
+	<article>
+		<header>{{ctx.Locale.Tr "repo.settings.add_team"}}</header>
+		<form class="ui form" id="repo-collab-team-form" action="{{.Link}}/team" method="post">
+			<div class="content">
+				<div class="field">
+					<label for="add-team-name">{{ctx.Locale.Tr "search.team_kind"}}</label>
+					<div id="search-team-box" class="ui search input" data-org-name="{{.OrgName}}">
+						<input id="add-team-name" class="prompt" name="team" placeholder="{{ctx.Locale.Tr "search.team_kind"}}" autocomplete="off" required>
+					</div>
+				</div>
+			</div>
+			<div class="actions">
+				<button type="button" class="ui cancel button">{{ctx.Locale.Tr "settings.cancel"}}</button>
+				<button type="submit" class="ui primary button">{{ctx.Locale.Tr "repo.settings.add_team"}}</button>
+			</div>
+		</form>
+	</article>
+</dialog>
+{{end}}
 
 <div class="ui g-modal-confirm delete modal" id="delete-collaborator">
 	<div class="header">

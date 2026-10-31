@@ -1,0 +1,16 @@
+{{- /* One row of components/repository/label/list. Label is the label; IssuesLink and OpenIssues link its open issues;
+CanWrite adds the Edit and Delete menu, DeleteLink being where Delete posts. */ -}}
+{{$label := .Label}}
+<li class="theme-box-list-row theme-label-row">
+	<div class="theme-label-name">
+		{{template "components/repository/label/label" $label}}
+		{{template "repo/issue/labels/label_archived" $label}}
+	</div>
+	<div class="theme-label-description">{{if $label.Description}}{{$label.Description | RenderEmoji ctx}}{{end}}</div>
+	<a class="theme-label-issues" href="{{.IssuesLink}}?labels={{$label.ID}}">{{svg "octicon-issue-opened" 16}}{{ctx.Locale.Tr "repo.issues.label_open_issues" .OpenIssues}}</a>
+	{{if .CanWrite}}
+		{{template "components/common/dropdown/dropdown" dict "Kind" "actions" "Icon" "octicon-kebab-horizontal" "IconOnly" true "Quiet" true "Label" (ctx.Locale.Tr "profile.actions.tooltip") "Items" "components/repository/label/actions" "Data" (dict "Context" .Context "Label" $label "DeleteLink" .DeleteLink)}}
+	{{else}}
+		<span class="theme-label-actions-placeholder"></span>
+	{{end}}
+</li>

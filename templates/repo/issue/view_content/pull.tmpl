@@ -4,6 +4,7 @@
 {{$manualMergeStyleAllowed := $prConfig.AllowManualMerge}}
 {{$hasUnsignedMergeStyle := or $fastForwardStyleAllowed $manualMergeStyleAllowed}}
 {{$signingBlocksAllMergeStyles := and .AllowMerge .RequireSigned (not .WillSign) (not $hasUnsignedMergeStyle)}}
+{{$hasMergeForm := and .AllowMerge (or $prConfig.AllowMerge $prConfig.AllowRebase $prConfig.AllowRebaseMerge $prConfig.AllowSquash $prConfig.AllowFastForwardOnly $prConfig.AllowManualMerge)}}
 {{if or (not .Issue.PullRequest.HasMerged) .IsPullBranchDeletable .SomePullRequestRunsNeedApproval}}
 <div class="timeline-item comment merge box">
 	<div class="timeline-avatar text {{if .Issue.PullRequest.HasMerged}}purple
@@ -177,22 +178,43 @@
 							{{svg "octicon-dot-fill"}}
 							{{ctx.Locale.Tr "repo.pulls.required_status_check_administrator"}}
 						</div>
+					{{else if $hasMergeForm}}
+						{{/* GitHub's ready-to-merge header: a title with the signing note beneath it. */}}
+						<div class="item pull-merge-status">
+							{{svg "octicon-check"}}
+							<div>
+								<h3>{{ctx.Locale.Tr "repo.pulls.can_auto_merge_desc"}}</h3>
+								{{if .WillSign}}
+									<div class="item pull-merge-note">
+										{{svg "octicon-lock" 16 "text green"}}
+										{{ctx.Locale.Tr "repo.signing.will_sign" .SigningKey}}
+									</div>
+								{{else if .IsSigned}}
+									<div class="item pull-merge-note">
+										{{svg "octicon-unlock"}}
+										{{ctx.Locale.Tr (printf "repo.signing.wont_sign.%s" .WontSignReason)}}
+									</div>
+								{{end}}
+							</div>
+						</div>
 					{{else}}
 						<div class="item">
 							{{svg "octicon-check"}}
 							{{ctx.Locale.Tr "repo.pulls.can_auto_merge_desc"}}
 						</div>
 					{{end}}
-					{{if .WillSign}}
-						<div class="item">
-							{{svg "octicon-lock" 16 "text green"}}
-							{{ctx.Locale.Tr "repo.signing.will_sign" .SigningKey}}
-						</div>
-					{{else if .IsSigned}}
-						<div class="item">
-							{{svg "octicon-unlock"}}
-							{{ctx.Locale.Tr (printf "repo.signing.wont_sign.%s" .WontSignReason)}}
-						</div>
+					{{if or $notAllOverridableChecksOk (not $hasMergeForm)}}
+						{{if .WillSign}}
+							<div class="item">
+								{{svg "octicon-lock" 16 "text green"}}
+								{{ctx.Locale.Tr "repo.signing.will_sign" .SigningKey}}
+							</div>
+						{{else if .IsSigned}}
+							<div class="item">
+								{{svg "octicon-unlock"}}
+								{{ctx.Locale.Tr (printf "repo.signing.wont_sign.%s" .WontSignReason)}}
+							</div>
+						{{end}}
 					{{end}}
 				{{end}}
 				{{template "repo/pulls/trust" .}}
@@ -296,7 +318,6 @@
 						</script>
 
 						{{$showGeneralMergeForm = true}}
-						<div id="pull-request-merge-form"></div>
 					{{else}}
 						{{/* no merge style was set in repo setting: not or ($prConfig.AllowMerge ...) */}}
 						<div class="divider"></div>
@@ -394,7 +415,17 @@
 				</div>
 			{{end}}
 
-			{{if and .Issue.PullRequest.HeadRepo (not .Issue.PullRequest.HasMerged) (not .Issue.IsClosed)}}
+			{{$showMergeInstructions := and .Issue.PullRequest.HeadRepo (not .Issue.PullRequest.HasMerged) (not .Issue.IsClosed)}}
+			{{if $showGeneralMergeForm}}
+				{{/* The merge button and the command line instructions close the box together. */}}
+				{{if $showMergeInstructions}}<div class="divider"></div>{{end}}
+				<div class="pull-merge-actions">
+					<div id="pull-request-merge-form"></div>
+					{{if $showMergeInstructions}}
+						{{template "repo/issue/view_content/pull_merge_instruction" dict "PullRequest" .Issue.PullRequest "ShowMergeInstructions" .ShowMergeInstructions "AutodetectManualMerge" .AutodetectManualMerge "DefaultMergeMessage" .DefaultMergeMessage "DefaultMergeBody" .DefaultMergeBody "IsPullFilesConflicted" .IsPullFilesConflicted "NoDivider" true}}
+					{{end}}
+				</div>
+			{{else if $showMergeInstructions}}
 				{{template "repo/issue/view_content/pull_merge_instruction" dict "PullRequest" .Issue.PullRequest "ShowMergeInstructions" .ShowMergeInstructions "AutodetectManualMerge" .AutodetectManualMerge "DefaultMergeMessage" .DefaultMergeMessage "DefaultMergeBody" .DefaultMergeBody "IsPullFilesConflicted" .IsPullFilesConflicted}}
 			{{end}}
 		</div>

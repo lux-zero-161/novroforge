@@ -1,0 +1,19 @@
+/* Insights (Forgejo's activity pages): GitHub's 256px nav list beside the page, 40px apart. Kept as a page stylesheet,
+   outside the size-limited theme files. */
+.ui.container.flex-container.github-insights {
+  gap: 40px;
+}
+
+.github-insights > .flex-container-nav {
+  width: 256px;
+}
+
+@media (max-width: 767.98px) {
+  .ui.container.flex-container.github-insights {
+    gap: 24px;
+  }
+
+  .github-insights > .flex-container-nav {
+    width: auto;
+  }
+}
