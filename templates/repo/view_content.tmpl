@@ -86,12 +86,13 @@
 		{{end}}
 
 		{{if $isTreePathRoot}}
-			<details class="dropdown repo-code-dropdown">
-				<summary class="ui primary compact button" aria-label="Code">
+			<div class="dialog-dropdown repo-code-dropdown">
+				<button type="button" class="ui primary compact button" command="toggle-popover" commandfor="repo-code-dropdown" aria-label="Code">
 					{{svg "octicon-code" 16}}
 					<span>{{ctx.Locale.Tr "repo.code"}}</span>
 					{{svg "octicon-triangle-down" 16 "dropdown icon"}}
-				</summary>
+				</button>
+				<dialog popover id="repo-code-dropdown" class="inline-flip">
 				<div class="content">
 					<nav class="repo-code-navigation" aria-label="{{ctx.Locale.Tr "repo.code"}}">
 						<span class="repo-code-navigation-item active">{{ctx.Locale.Tr "admin.users.local"}}</span>
@@ -180,7 +181,8 @@
 						window.updateCloneStates();
 					})();
 				</script>
-			</details>
+				</dialog>
+			</div>
 		{{end}}
 	</div>
 </div>
@@ -196,7 +198,7 @@
 	{{end}}
 {{end}}
 
-<script src="{{AssetUrlPrefix}}/js/details-menu.js?v=3c4c1b86dd" defer></script>
+<script src="{{AssetUrlPrefix}}/js/details-menu.js" defer></script>
 
-<script src="{{AssetUrlPrefix}}/js/repo-file-picker.js?v=f9d897570e" defer></script>
-<script src="{{AssetUrlPrefix}}/js/readme-outline.js?v=23f9d97db0" defer></script>
+<script src="{{AssetUrlPrefix}}/js/repo-file-picker.js" defer></script>
+<script src="{{AssetUrlPrefix}}/js/readme-outline.js" defer></script>

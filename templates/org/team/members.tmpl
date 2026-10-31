@@ -30,20 +30,20 @@ member (avatar, name and username, Remove for owners), then Forgejo's invitation
 					<div class="theme-box-list-header">
 						<h2 class="theme-box-list-title">{{ctx.Locale.Tr "org.members"}} <span class="theme-counter">{{ctx.Locale.PrettyNumber .Team.NumMembers}}</span></h2>
 					</div>
-					{{if .Team.Members}}
+					{{if $.Memberships}}
 					<ul class="theme-box-list-rows">
-						{{range .Team.Members}}
+						{{range $.Memberships}}
 							<li class="theme-box-list-row theme-team-row">
-								<a href="{{.HomeLink}}">{{ctx.AvatarUtils.Avatar . 32}}</a>
+								<a href="{{.User.HomeLink}}">{{ctx.AvatarUtils.Avatar .User 32}}</a>
 								<div class="theme-box-list-main">
-									<h3><a href="{{.HomeLink}}">{{.DisplayName}}</a></h3>
-									{{if .FullName}}<p class="theme-box-list-meta">{{.Name}}</p>{{end}}
+									<h3><a href="{{.User.HomeLink}}">{{.User.DisplayName}}</a></h3>
+									{{template "org/team/membership_origin" .}}
 								</div>
 								{{if and $.IsOrganizationOwner (not (and ($.Team.IsOwnerTeam) (eq (len $.Team.Members) 1)))}}
 									<form>
 										<button class="ui red button theme-control theme-control-small delete-button" data-modal-id="remove-team-member"
-											data-url="{{$.OrgLink}}/teams/{{$.Team.LowerName | PathEscape}}/action/remove" data-datauid="{{.ID}}"
-											data-name="{{.DisplayName}}"
+											data-url="{{$.OrgLink}}/teams/{{$.Team.LowerName | PathEscape}}/action/remove" data-datauid="{{.User.ID}}"
+											data-name="{{.User.DisplayName}}"
 											data-data-team-name="{{$.Team.Name}}">{{ctx.Locale.Tr "org.members.remove"}}</button>
 									</form>
 								{{end}}

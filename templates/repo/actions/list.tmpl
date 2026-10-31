@@ -1,7 +1,7 @@
 {{template "base/head" .}}
 {{/* GitHub lists runs beside the shared sidebar layout; the sidebar stays outside the part Forgejo refreshes. */}}
 <div class="page-content repository actions github-actions-list{{if .HasWorkflowsOrRuns}} theme-sidebar-layout{{end}}"{{if .HasWorkflowsOrRuns}} data-theme-sidebar="actions_sidebar_collapsed"{{end}}>
-<link rel="stylesheet" href="{{AssetUrlPrefix}}/css/actions-list.css?v=a4737559e9">
+<link rel="stylesheet" href="{{AssetUrlPrefix}}/css/actions-list.css">
 	{{if .HasWorkflowsOrRuns}}{{template "repo/actions/sidebar" .}}{{end}}
 	<div class="ui container theme-sidebar-main actions-list-shell">
 		{{template "base/alert" .}}
@@ -19,7 +19,7 @@
 	</div>
 </div>
 
-<script src="{{AssetUrlPrefix}}/js/actions-list.js?v=6745232fa0" defer></script>
+<script src="{{AssetUrlPrefix}}/js/actions-list.js" defer></script>
 <script type="text/javascript">
 
 function pollingOk() {
@@ -32,7 +32,7 @@ function pollingOk() {
 //
 // Can't inline this into the `hx-trigger` above because using a left-brace ('[') breaks htmx's trigger parsing.
 function noActiveDropdowns() {
-	if (document.querySelector('[aria-expanded=true]') !== null || document.querySelector('details[open]') !== null) {
+	if (document.querySelector('[aria-expanded=true]') !== null || document.querySelector('.dialog-dropdown dialog:popover-open') !== null) {
 		return false;
 	}
 	const dropdownForm = document.querySelector('#branch-dropdown-form');

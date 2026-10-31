@@ -548,7 +548,7 @@
 
 {{if .Permission.IsOwner}}
 	{{if .Repository.IsMirror}}
-		<dialog id="convert-mirror-repo-modal">
+		<dialog class="modal" id="convert-mirror-repo-modal">
 			<article>
 				<header>{{ctx.Locale.Tr "repo.settings.convert"}}</header>
 				<div class="content">
@@ -579,7 +579,7 @@
 		</dialog>
 	{{end}}
 	{{if and .Repository.IsFork .Repository.Owner.CanCreateRepo}}
-		<dialog id="convert-fork-repo-modal">
+		<dialog class="modal" id="convert-fork-repo-modal">
 			<article>
 				<header>{{ctx.Locale.Tr "repo.settings.convert_fork"}}</header>
 				<div class="content">
@@ -609,7 +609,7 @@
 			</article>
 		</dialog>
 	{{end}}
-	<dialog id="transfer-repo-modal">
+	<dialog class="modal" id="transfer-repo-modal">
 		<article>
 			<header>{{ctx.Locale.Tr "repo.settings.transfer.modal.title"}}</header>
 			<div class="content">
@@ -645,7 +645,7 @@
 		</article>
 	</dialog>
 
-	<dialog id="delete-repo-modal">
+	<dialog class="modal" id="delete-repo-modal">
 		<article>
 			<header>{{ctx.Locale.Tr "repo.settings.delete"}}</header>
 			<div class="content">
@@ -680,7 +680,7 @@
 	</dialog>
 
 	{{if .Repository.UnitEnabled $.Context $.UnitTypeWiki}}
-	<dialog id="delete-wiki-modal">
+	<dialog class="modal" id="delete-wiki-modal">
 		<article>
 			<header>{{ctx.Locale.Tr "repo.settings.wiki_delete"}}</header>
 			<div class="content">
@@ -711,7 +711,7 @@
 		</article>
 	</dialog>
 	{{if ne $.Repository.GetWikiBranchName .DefaultWikiBranchName}}
-		<dialog id="rename-wiki-branch-modal">
+		<dialog class="modal" id="rename-wiki-branch-modal">
 			<article>
 				<header>{{ctx.Locale.Tr "repo.settings.wiki_rename_branch_main"}}</header>
 				<div class="content">
@@ -747,7 +747,7 @@
 	{{end}}
 
 	{{if not .Repository.IsMirror}}
-		<dialog id="archive-repo-modal">
+		<dialog class="modal" id="archive-repo-modal">
 			<article>
 				<header>
 					{{if .Repository.IsArchived}}

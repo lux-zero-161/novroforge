@@ -94,6 +94,12 @@
 					{{if and .PageIsPullFiles $.SignedUserID (not .IsArchived)}}
 						{{template "repo/diff/new_review" .}}
 					{{end}}
+					{{if .HeadBranchIsEditable}}
+						<div id="suggestion-batch-bar" class="tw-hidden tw-flex tw-gap-2" data-default-summary="{{ctx.Locale.Tr "repo.issues.review.suggested_change_commit"}}">
+							<button type="button" class="ui tiny basic button clear-suggestion-batch">{{ctx.Locale.Tr "repo.issues.review.discard_batch_suggestions"}}</button>
+							<button type="button" class="ui tiny primary button commit-suggestion-batch">{{ctx.Locale.Tr "repo.issues.review.commit_batch_suggestions"}} (<span class="batch-count">0</span>)</button>
+						</div>
+					{{end}}
 					{{template "repo/diff/view_settings" .}}
 				</div>
 			</div>
@@ -212,12 +218,12 @@
 		</div>
 			</div>
 		</div>
-        <script src="{{AssetUrlPrefix}}/js/diff-view.js?v=9846bc278c" defer></script>
+        <script src="{{AssetUrlPrefix}}/js/diff-view.js" defer></script>
 		{{if $showFileTree}}
-			<script src="{{AssetUrlPrefix}}/js/resizable-divider.js?v=a61239127c" defer></script>
-            <script src="{{AssetUrlPrefix}}/js/diff-file-tree.js?v=0bdf57f9c1" defer></script>
-            <script src="{{AssetUrlPrefix}}/js/tree-navigation.js?v=b3ee375e16" defer></script>
-            <script src="{{AssetUrlPrefix}}/js/details-menu.js?v=3c4c1b86dd" defer></script>
+			<script src="{{AssetUrlPrefix}}/js/resizable-divider.js" defer></script>
+            <script src="{{AssetUrlPrefix}}/js/diff-file-tree.js" defer></script>
+            <script src="{{AssetUrlPrefix}}/js/tree-navigation.js" defer></script>
+            <script src="{{AssetUrlPrefix}}/js/details-menu.js" defer></script>
 		{{end}}
 
 		{{if and (not $.Repository.IsArchived) (not .DiffNotAvailable)}}
@@ -228,6 +234,7 @@
 					"MarkdownPreviewContext" $.RepoLink
 					"TextareaName" "content"
 					"DropzoneParentContainer" ".ui.form"
+					"SuggestionButton" true
 				)}}
 				{{if .IsAttachmentEnabled}}
 					<div class="field">

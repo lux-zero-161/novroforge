@@ -4,7 +4,7 @@
 {{if or $isUserProfile $isOrganization}}
 <header class="profile-global-header{{if $isOrganization}} organization-global-header{{end}}">
 {{end}}
-<link rel="stylesheet" href="{{AssetUrlPrefix}}/css/navbar-drawer.css?v=757be07b7f">
+<link rel="stylesheet" href="{{AssetUrlPrefix}}/css/navbar-drawer.css">
 {{/* Forgejo 15 navigation adapted to the theme's GitHub-style layout. */}}
 <nav id="navbar"{{if .Repository}} class="repository-navbar"{{end}} aria-label="{{ctx.Locale.Tr "aria.navbar"}}">
 	<div class="navbar-left">
@@ -225,4 +225,4 @@
 {{end}}
 
 {{template "base/navbar_drawer" .}}
-<script src="{{AssetUrlPrefix}}/js/navbar-drawer.js?v=3a156f6787" defer></script>
+<script src="{{AssetUrlPrefix}}/js/navbar-drawer.js" defer></script>

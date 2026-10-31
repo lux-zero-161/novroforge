@@ -51,7 +51,7 @@
                                     <summary class="theme-icon-button" aria-label="More options">{{svg "octicon-kebab-horizontal" 16}}</summary>
                                     <div class="theme-menu-popover">
                                         <button type="button" data-clipboard-text="{{$file.Name}}">{{ctx.Locale.Tr "copy_path"}}</button>
-								{{if not (or $file.IsIncomplete $file.IsBin $file.IsSubmodule)}}
+								{{if and (not (or $file.IsIncomplete $file.IsBin $file.IsSubmodule)) ($file.GetEscapeStatus ctx.Locale).Escaped}}
 									<button class="unescape-button">{{ctx.Locale.Tr "repo.unescape_control_characters"}}</button>
 									<button class="escape-button tw-hidden">{{ctx.Locale.Tr "repo.escape_control_characters"}}</button>
 								{{end}}

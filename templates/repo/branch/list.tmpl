@@ -39,7 +39,7 @@ GitHub's branch tables. Forgejo's dialogs for creating, renaming and deleting a 
 	{{template "base/modal_actions_confirm" .}}
 </div>
 
-<dialog id="create-branch-modal">
+<dialog class="modal" id="create-branch-modal">
 	<article>
 		<header>{{ctx.Locale.Tr "repo.branch.new_branch"}}</header>
 		<form class="ui form" id="create-branch-form" action="" data-base-action="{{.Link}}/_new/branch/" method="post">
@@ -58,7 +58,7 @@ GitHub's branch tables. Forgejo's dialogs for creating, renaming and deleting a 
 	</article>
 </dialog>
 
-<dialog id="rename-branch-modal">
+<dialog class="modal" id="rename-branch-modal">
 	<article>
 		<header>{{ctx.Locale.Tr "repo.settings.rename_branch"}}</header>
 		<div class="content default-branch-warning">

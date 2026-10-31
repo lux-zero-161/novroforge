@@ -26,7 +26,7 @@
 			<span class="theme-counter theme-counter-tab" aria-label="{{ctx.Locale.TrPluralString .NumForks "fork.n_forks" (printf "%d" .NumForks)}}">{{CountFmt .NumForks}}</span>
 		</a>
 		{{template "components/common/dropdown/dropdown" dict "Kind" "actions" "Icon" "octicon-triangle-down" "IconOnly" true "Small" true "Label" (ctx.Locale.Tr "repo.forks") "Items" "repo/header_fork_menu" "Data" $}}
-		<dialog id="fork-repo-modal">
+		<dialog class="modal" id="fork-repo-modal">
 			<article>
 				<header>{{ctx.Locale.Tr "repo.already_forked" .Name}}</header>
 				<div class="content tw-text-left">

@@ -3,8 +3,8 @@ import type {Config} from 'stylelint';
 
 const cssVarFiles = [
   fileURLToPath(new URL('web_src/css/base.css', import.meta.url)),
-  fileURLToPath(new URL('web_src/css/themes/theme-gitea-light.css', import.meta.url)),
-  fileURLToPath(new URL('web_src/css/themes/theme-gitea-dark.css', import.meta.url)),
+  fileURLToPath(new URL('custom/public/assets/css/theme-github-light.css', import.meta.url)),
+  fileURLToPath(new URL('custom/public/assets/css/theme-github-dark.css', import.meta.url)),
 ];
 
 export default {
