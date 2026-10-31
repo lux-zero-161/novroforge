@@ -68,10 +68,11 @@ func (repo *Repository) CreateArchive(ctx context.Context, format ArchiveType, t
 
 	var stderr strings.Builder
 	err := cmd.Run(&RunOpts{
-		Dir:    repo.Path,
-		Stdout: target,
-		Stderr: &stderr,
-		Env:    env,
+		Dir:               repo.Path,
+		Stdout:            target,
+		Stderr:            &stderr,
+		Env:               env,
+		UseContextTimeout: true,
 	})
 	if err != nil {
 		return ConcatenateError(err, stderr.String())
