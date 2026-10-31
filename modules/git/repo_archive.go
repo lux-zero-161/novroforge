@@ -61,9 +61,6 @@ func (repo *Repository) CreateArchive(ctx context.Context, format ArchiveType, t
 		cmd.AddOptionFormat("--prefix=%s", filepath.Base(strings.TrimSuffix(repo.Path, ".git"))+"/")
 	}
 	cmd.AddOptionFormat("--format=%s", format.String())
-	if format == ZIP || format == TARGZ {
-		cmd.AddArguments("-0")
-	}
 	cmd.AddDynamicArguments(commitID)
 
 	// Avoid LFS hooks getting installed because of /etc/gitconfig, which can break pull requests.

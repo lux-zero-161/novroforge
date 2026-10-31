@@ -46,8 +46,6 @@ const (
 	tplAlertDetails base.TplName = "repo/alert_details"
 )
 
-var directArchiveSem = make(chan struct{}, 1)
-
 // MustBeNotEmpty render when a repo is a empty git dir
 func MustBeNotEmpty(ctx *context.Context) {
 	if ctx.Repo.Repository.IsEmpty {
@@ -518,17 +516,21 @@ func Download(ctx *context.Context) {
 		return
 	}
 
-	downloadDirect(ctx, aReq)
-}
-
-func downloadDirect(ctx *context.Context, aReq *archiver_service.ArchiveRequest) {
-	select {
-	case directArchiveSem <- struct{}{}:
-		defer func() { <-directArchiveSem }()
-	case <-ctx.Req.Context().Done():
+	if setting.Repository.StreamArchives {
+		downloadDirect(ctx, aReq)
 		return
 	}
 
+	archiver, err := aReq.Await(ctx)
+	if err != nil {
+		ctx.ServerError("archiver.Await", err)
+		return
+	}
+
+	download(ctx, aReq.GetArchiveName(), archiver)
+}
+
+func downloadDirect(ctx *context.Context, aReq *archiver_service.ArchiveRequest) {
 	downloadName := ctx.Repo.Repository.Name + "-" + aReq.GetArchiveName()
 	header := ctx.Resp.Header()
 	switch aReq.Type {
@@ -608,6 +610,11 @@ func download(ctx *context.Context, archiveName string, archiver *repo_model.Rep
 // a request that's already in-progress, but the archiver service will just
 // kind of drop it on the floor if this is the case.
 func InitiateDownload(ctx *context.Context) {
+	if setting.Repository.StreamArchives {
+		ctx.JSON(http.StatusOK, map[string]any{"complete": true})
+		return
+	}
+
 	uri := ctx.Params("*")
 	ext, tp, err := archiver_service.ParseFileName(uri)
 	if err != nil {
