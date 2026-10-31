@@ -79,7 +79,7 @@ func toUser(ctx context.Context, user *user_model.User, signed, authed bool) *ap
 		result.LoginName = user.LoginName
 		result.SourceID = user.LoginSource
 		result.LastLogin = user.LastLoginUnix.AsTime()
-		result.Language = user.Language
+		result.Language = "en-US"
 		result.IsActive = user.IsActive
 		result.ProhibitLogin = user.ProhibitLogin
 	}
@@ -93,7 +93,7 @@ func User2UserSettings(user *user_model.User) api.UserSettings {
 		Website:             user.Website,
 		Location:            user.Location,
 		Pronouns:            user.Pronouns,
-		Language:            user.Language,
+		Language:            "en-US",
 		Description:         user.Description,
 		Theme:               user.Theme,
 		HideEmail:           user.KeepEmailPrivate,

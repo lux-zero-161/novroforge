@@ -22,10 +22,7 @@ import (
 	"forgejo.org/modules/log"
 	"forgejo.org/modules/optional"
 	"forgejo.org/modules/setting"
-	"forgejo.org/modules/translation"
-	"forgejo.org/modules/util"
 	"forgejo.org/modules/web"
-	"forgejo.org/modules/web/middleware"
 	"forgejo.org/services/context"
 	"forgejo.org/services/forms"
 	user_service "forgejo.org/services/user"
@@ -336,36 +333,6 @@ func Appearance(ctx *context.Context) {
 	ctx.HTML(http.StatusOK, tplSettingsAppearance)
 }
 
-// UpdateUserLang update a user's language
-func UpdateUserLang(ctx *context.Context) {
-	form := web.GetForm(ctx).(*forms.UpdateLanguageForm)
-	ctx.Data["Title"] = ctx.Tr("settings")
-	ctx.Data["PageIsSettingsAppearance"] = true
-
-	if form.Language != "" {
-		if !util.SliceContainsString(setting.Langs, form.Language) {
-			ctx.Flash.Error(ctx.Tr("settings.update_language_not_found", form.Language))
-			ctx.Redirect(setting.AppSubURL + "/user/settings/appearance")
-			return
-		}
-	}
-
-	opts := &user_service.UpdateOptions{
-		Language: optional.Some(form.Language),
-	}
-	if err := user_service.UpdateUser(ctx, ctx.Doer, opts); err != nil {
-		ctx.ServerError("UpdateUser", err)
-		return
-	}
-
-	// Update the language to the one we just set
-	middleware.SetLocaleCookie(ctx.Resp, ctx.Doer.Language, 0)
-
-	log.Trace("User settings updated: %s", ctx.Doer.Name)
-	ctx.Flash.Success(translation.NewLocale(ctx.Doer.Language).TrString("settings.update_language_success"))
-	ctx.Redirect(setting.AppSubURL + "/user/settings/appearance")
-}
-
 // UpdateUserHints updates a user's hints settings
 func UpdateUserHints(ctx *context.Context) {
 	form := web.GetForm(ctx).(*forms.UpdateHintsForm)
@@ -381,7 +348,7 @@ func UpdateUserHints(ctx *context.Context) {
 	}
 
 	log.Trace("User settings updated: %s", ctx.Doer.Name)
-	ctx.Flash.Success(translation.NewLocale(ctx.Doer.Language).TrString("settings.update_hints_success"))
+	ctx.Flash.Success(ctx.Tr("settings.update_hints_success"))
 	ctx.Redirect(setting.AppSubURL + "/user/settings/appearance")
 }
 

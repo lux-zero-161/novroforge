@@ -197,7 +197,6 @@ func Contexter() func(next http.Handler) http.Handler {
 			ctx.Data["UnitProjectsGlobalDisabled"] = unit.TypeProjects.UnitGlobalDisabled()
 			ctx.Data["UnitActionsGlobalDisabled"] = unit.TypeActions.UnitGlobalDisabled()
 
-			ctx.Data["AllLangs"] = translation.AllLangs()
 
 			ctx.PageData["PLURAL_RULE_LANG"] = translation.GetPluralRule(ctx.Locale)
 			ctx.PageData["PLURAL_RULE_FALLBACK"] = translation.GetDefaultPluralRule()

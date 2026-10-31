@@ -1,32 +1,6 @@
-{{/* GitHub's appearance settings: the language as a labelled shared select with its button,
-	then Forgejo's hints and hidden comment types as checkbox lists. */}}
+{{/* Appearance settings: hints and hidden comment types as checkbox lists. */}}
 {{template "user/settings/layout_head" (dict "ctxData" . "pageClass" "user settings sshkeys")}}
 	<div class="user-setting-content">
-
-		<!-- Language -->
-		<h4 class="ui top attached header">
-			{{ctx.Locale.Tr "settings.language.title"}}
-		</h4>
-		<div class="ui attached segment">
-			<form class="ui form" action="{{.Link}}/language" method="post">
-				<p class="theme-settings-description">{{ctx.Locale.Tr "settings.language.description"}}</p>
-				<div class="field">
-					<label for="language">{{ctx.Locale.Tr "settings.language"}}</label>
-					<span class="theme-select-wrap">
-						<select class="theme-select" id="language" name="language">
-							{{range .AllLangs}}
-								<option value="{{.Lang}}"{{if eq $.SignedUser.Language .Lang}} selected{{end}}>{{.Name}}</option>
-							{{end}}
-						</select>
-					</span>
-					<p class="help">{{ctx.Locale.Tr "settings.language.localization_project" (AppNextDocsURL "contributor/localization/")}}</p>
-				</div>
-				<div class="field">
-					<button class="ui primary button">{{ctx.Locale.Tr "settings.update_language"}}</button>
-				</div>
-			</form>
-		</div>
-
 		<!-- Hints -->
 		<h4 id="hints" class="ui top attached header">
 			{{ctx.Locale.Tr "settings.hints"}}

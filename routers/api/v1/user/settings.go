@@ -59,7 +59,6 @@ func UpdateUserSettings(ctx *context.APIContext) {
 		Pronouns:            optional.FromPtr(form.Pronouns),
 		Website:             optional.FromPtr(form.Website),
 		Location:            optional.FromPtr(form.Location),
-		Language:            optional.FromPtr(form.Language),
 		Theme:               optional.FromPtr(form.Theme),
 		DiffViewStyle:       optional.FromPtr(form.DiffViewStyle),
 		KeepEmailPrivate:    optional.FromPtr(form.HideEmail),

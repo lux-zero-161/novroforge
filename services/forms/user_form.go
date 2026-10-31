@@ -224,26 +224,9 @@ type UpdateProfileForm struct {
 	KeepPronounsPrivate bool
 }
 
-// Validate validates the fields
-func (f *UpdateProfileForm) Validate(req *http.Request, errs binding.Errors) binding.Errors {
-	ctx := context.GetValidateContext(req)
-	return middleware.Validate(errs, ctx.Data, f, ctx.Locale)
-}
-
-// UpdateLanguageForm form for updating profile
-type UpdateLanguageForm struct {
-	Language string
-}
-
 // UpdateHintsForm form for updating user hint settings
 type UpdateHintsForm struct {
 	EnableRepoUnitHints bool
-}
-
-// Validate validates the fields
-func (f *UpdateLanguageForm) Validate(req *http.Request, errs binding.Errors) binding.Errors {
-	ctx := context.GetValidateContext(req)
-	return middleware.Validate(errs, ctx.Data, f, ctx.Locale)
 }
 
 // Avatar types

@@ -30,7 +30,6 @@ import (
 	"forgejo.org/modules/optional"
 	"forgejo.org/modules/setting"
 	"forgejo.org/modules/templates"
-	"forgejo.org/modules/translation"
 	"forgejo.org/modules/web"
 	"forgejo.org/modules/web/middleware"
 	"forgejo.org/routers/common"
@@ -75,7 +74,6 @@ func Contexter() func(next http.Handler) http.Handler {
 				"DbTypeNames":    dbTypeNames,
 				"EnvConfigKeys":  envConfigKeys,
 				"CustomConfFile": setting.CustomConf,
-				"AllLangs":       translation.AllLangs(),
 
 				"PasswordHashAlgorithms": hash.RecommendedHashAlgorithms,
 			})

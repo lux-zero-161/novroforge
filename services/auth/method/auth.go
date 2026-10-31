@@ -11,11 +11,8 @@ import (
 	user_model "forgejo.org/models/user"
 	"forgejo.org/modules/auth/webauthn"
 	"forgejo.org/modules/log"
-	"forgejo.org/modules/optional"
 	"forgejo.org/modules/session"
-	"forgejo.org/modules/web/middleware"
 	"forgejo.org/services/auth"
-	user_service "forgejo.org/services/user"
 )
 
 // Init should be called exactly once when the application starts to allow plugins
@@ -48,18 +45,4 @@ func handleSignIn(resp http.ResponseWriter, req *http.Request, sess auth.Session
 		log.Error(fmt.Sprintf("Error setting session: %v", err))
 	}
 
-	// Language setting of the user overwrites the one previously set
-	// If the user does not have a locale set, we save the current one.
-	if len(user.Language) == 0 {
-		lc := middleware.Locale(resp, req)
-		opts := &user_service.UpdateOptions{
-			Language: optional.Some(lc.Language()),
-		}
-		if err := user_service.UpdateUser(req.Context(), user, opts); err != nil {
-			log.Error(fmt.Sprintf("Error updating user language [user: %d, locale: %s]", user.ID, user.Language))
-			return
-		}
-	}
-
-	middleware.SetLocaleCookie(resp, user.Language, 0)
 }

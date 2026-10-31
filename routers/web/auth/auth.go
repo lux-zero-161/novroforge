@@ -74,10 +74,6 @@ func autoSignIn(ctx *context.Context) (bool, error) {
 			return false, fmt.Errorf("unable to updateSession: %w", err)
 		}
 
-		if err := resetLocale(ctx, u); err != nil {
-			return false, err
-		}
-
 		return true, nil
 	}
 
@@ -109,27 +105,6 @@ func autoSignIn(ctx *context.Context) (bool, error) {
 
 	ctx.Redirect(fmt.Sprintf("%s/user/oauth2/%s?prompt=none", setting.AppSubURL, url.PathEscape(source.Name)))
 	return true, nil
-}
-
-func resetLocale(ctx *context.Context, u *user_model.User) error {
-	// Language setting of the user overwrites the one previously set
-	// If the user does not have a locale set, we save the current one.
-	if u.Language == "" {
-		opts := &user_service.UpdateOptions{
-			Language: optional.Some(ctx.Locale.Language()),
-		}
-		if err := user_service.UpdateUser(ctx, u, opts); err != nil {
-			return err
-		}
-	}
-
-	middleware.SetLocaleCookie(ctx.Resp, u.Language, 0)
-
-	if ctx.Locale.Language() != u.Language {
-		ctx.Locale = middleware.Locale(ctx.Resp, ctx.Req)
-	}
-
-	return nil
 }
 
 func RedirectAfterLogin(ctx *context.Context) {
@@ -366,24 +341,6 @@ func handleSignInFull(ctx *context.Context, u *user_model.User, remember, obeyRe
 	}); err != nil {
 		ctx.ServerError("RegenerateSession", err)
 		return setting.AppSubURL + "/"
-	}
-
-	// Language setting of the user overwrites the one previously set
-	// If the user does not have a locale set, we save the current one.
-	if u.Language == "" {
-		opts := &user_service.UpdateOptions{
-			Language: optional.Some(ctx.Locale.Language()),
-		}
-		if err := user_service.UpdateUser(ctx, u, opts); err != nil {
-			ctx.ServerError("UpdateUser Language", fmt.Errorf("Error updating user language [user: %d, locale: %s]", u.ID, ctx.Locale.Language()))
-			return setting.AppSubURL + "/"
-		}
-	}
-
-	middleware.SetLocaleCookie(ctx.Resp, u.Language, 0)
-
-	if ctx.Locale.Language() != u.Language {
-		ctx.Locale = middleware.Locale(ctx.Resp, ctx.Req)
 	}
 
 	// Register last login
@@ -870,11 +827,6 @@ func handleAccountActivation(ctx *context.Context, user *user_model.User) {
 	}); err != nil {
 		log.Error("Unable to regenerate session for user: %-v with email: %s: %v", user, user.Email, err)
 		ctx.ServerError("ActivateUserEmail", err)
-		return
-	}
-
-	if err := resetLocale(ctx, user); err != nil {
-		ctx.ServerError("resetLocale", err)
 		return
 	}
 

@@ -241,7 +241,7 @@ func newAccessTokenResponse(ctx go_context.Context, grant *auth.OAuth2Grant, ser
 			idToken.Profile = user.HTMLURL()
 			idToken.Picture = user.AvatarLink(ctx)
 			idToken.Website = user.Website
-			idToken.Locale = user.Language
+			idToken.Locale = "en-US"
 			idToken.UpdatedAt = user.UpdatedUnix
 		}
 		if grant.ScopeContains("email") {
@@ -1440,11 +1440,6 @@ func handleOAuth2SignIn(ctx *context.Context, source *auth.Source, u *user_model
 			if !errors.Is(err, util.ErrNotExist) {
 				log.Error("UpdateExternalUser failed: %v", err)
 			}
-		}
-
-		if err := resetLocale(ctx, u); err != nil {
-			ctx.ServerError("resetLocale", err)
-			return
 		}
 
 		if redirectTo := ctx.GetSiteCookie("redirect_to"); len(redirectTo) > 0 {

@@ -96,7 +96,6 @@ type UserSettingsOptions struct {
 	Description         *string `json:"description" binding:"MaxSize(255)"`
 	Location            *string `json:"location" binding:"MaxSize(50)"`
 	Pronouns            *string `json:"pronouns" binding:"MaxSize(50)"`
-	Language            *string `json:"language"`
 	Theme               *string `json:"theme"`
 	DiffViewStyle       *string `json:"diff_view_style"`
 	EnableRepoUnitHints *bool   `json:"enable_repo_unit_hints"`

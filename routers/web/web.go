@@ -772,7 +772,6 @@ func registerRoutes(m *web.Route) {
 		})
 		m.Group("/appearance", func() {
 			m.Get("", user_setting.Appearance)
-			m.Post("/language", web.Bind(forms.UpdateLanguageForm{}), user_setting.UpdateUserLang)
 			m.Post("/hints", web.Bind(forms.UpdateHintsForm{}), user_setting.UpdateUserHints)
 			m.Post("/hidden_comments", user_setting.UpdateUserHiddenComments)
 		})
