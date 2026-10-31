@@ -1,0 +1,45 @@
+version: "2"
+linters:
+  default: none
+  enable:
+    - bidichk
+    - dupl
+    - errcheck
+    - forbidigo
+    - gocritic
+    - govet
+    - ineffassign
+    - nakedret
+    - nolintlint
+    - revive
+    - staticcheck
+    - testifylint
+    - unconvert
+    - unparam
+    - unused
+    - wastedassign
+  exclusions:
+    generated: lax
+    presets:
+      - comments
+      - common-false-positives
+      - legacy
+      - std-error-handling
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
+    rules:
+      - linters:
+          - revive
+        text: don't use ALL_CAPS in Go names; use CamelCase
+formatters:
+  enable:
+    - gofmt
+    - gofumpt
+  exclusions:
+    generated: lax
+    paths:
+      - third_party$
+      - builtin$
+      - examples$

@@ -1,0 +1,294 @@
+# This file contains all available configuration options
+# with their default values.
+
+# options for analysis running
+run:
+  # timeout for analysis, e.g. 30s, 5m, default is 1m
+  timeout: 1m
+
+  # exit code when at least one issue was found, default is 1
+  issues-exit-code: 1
+
+  # include test files or not, default is true
+  tests: true
+
+  # Allow multiple parallel golangci-lint instances running.
+  # If false (default) - golangci-lint acquires file lock on start.
+  allow-parallel-runners: false
+
+
+# output configuration options
+output:
+  # colored-line-number|line-number|json|tab|checkstyle|code-climate|junit-xml|github-actions
+  # default is "colored-line-number"
+  format: colored-line-number
+
+  # print lines of code with issue, default is true
+  print-issued-lines: true
+
+  # print linter name in the end of issue text, default is true
+  print-linter-name: true
+
+  # make issues output unique by line, default is true
+  uniq-by-line: true
+
+  # add a prefix to the output file references; default is no prefix
+  path-prefix: ""
+
+  # sorts results by: filepath, line and column
+  sort-results: true
+
+
+# all available settings of specific linters
+linters-settings:
+  dogsled:
+    # checks assignments with too many blank identifiers; default is 2
+    max-blank-identifiers: 2
+
+  errcheck:
+    # report about not checking of errors in type assertions: `a := b.(MyStruct)`;
+    # default is false: such cases aren't reported by default.
+    check-type-assertions: false
+
+    # report about assignment of errors to blank identifier: `num, _ := strconv.Atoi(numStr)`;
+    # default is false: such cases aren't reported by default.
+    check-blank: false
+
+    # list of functions to exclude from checking, where each entry is a single function to exclude.
+    # see https://github.com/kisielk/errcheck#excluding-functions for details
+    exclude-functions:
+      - io/ioutil.ReadFile
+      - io.Copy(*bytes.Buffer)
+      - io.Copy(os.Stdout)
+
+  errorlint:
+    # Check whether fmt.Errorf uses the %w verb for formatting errors. See the readme for caveats
+    errorf: true
+    # Check for plain type assertions and type switches
+    asserts: true
+    # Check for plain error comparisons
+    comparison: true
+
+  gci:
+    sections:
+        - standard
+        - default
+        - prefix(codeberg.org/Gusted/algorithms-go)
+
+  gocritic:
+    # Enable multiple checks by tags, run `GL_DEBUG=gocritic golangci-lint run` to see all tags and checks.
+    # Empty list by default. See https://github.com/go-critic/go-critic#usage -> section "Tags".
+    enabled-tags:
+      - performance
+      - diagnostic
+      - style
+      - experimental
+      - opinionated
+
+    # Settings passed to gocritic.
+    # The settings key is the name of a supported gocritic checker.
+    # The list of supported checkers can be find in https://go-critic.github.io/overview.
+    settings:
+      rangeExprCopy:
+        # size in bytes that makes the warning trigger (default 512)
+        sizeThreshold: 32
+        # whether to check test functions (default true)
+        skipTestFuncs: true
+      rangeValCopy:
+        # size in bytes that makes the warning trigger (default 128)
+        sizeThreshold: 32
+        # whether to check test functions (default true)
+        skipTestFuncs: true
+      tooManyResultsChecker:
+        # maximum number of results (default 5)
+        maxResults: 10
+      unnamedResult:
+        # whether to check exported functions
+        checkExported: true
+
+  godot:
+    # comments to be checked: `declarations`, `toplevel`, or `all`
+    scope: declarations
+    # list of regexps for excluding particular comment lines from check
+    exclude:
+      # example: exclude comments which contain numbers
+      # - '[0-9]+'
+    # check that each sentence starts with a capital letter
+    capital: false
+
+  gofmt:
+    # simplify code: gofmt with `-s` option, true by default
+    simplify: true
+
+  gofumpt:
+    # Select the Go version to target. The default is `1.15`.
+    lang-version: "1.18"
+
+    # Choose whether or not to use the extra rules that are disabled
+    # by default
+    extra-rules: true
+
+  gosec:
+    # Exclude generated files
+    exclude-generated: true
+    # Filter out the issues with a lower severity than the given value. Valid options are: low, medium, high.
+    severity: "low"
+    # Filter out the issues with a lower confidence than the given value. Valid options are: low, medium, high.
+    confidence: "low"
+    # To specify the configuration of rules.
+    # The configuration of rules is not fully documented by gosec:
+    # https://github.com/securego/gosec#configuration
+    # https://github.com/securego/gosec/blob/569328eade2ccbad4ce2d0f21ee158ab5356a5cf/rules/rulelist.go#L60-L102
+    config:
+      G306: "0600"
+
+  gosimple:
+    # Select the Go version to target. The default is '1.13'.
+    go: "1.17"
+    # https://staticcheck.io/docs/options#checks
+    checks: [ "all" ]
+
+  govet:
+    # report about shadowed variables
+    check-shadowing: true
+
+    enable-all: true
+    disable-all: false
+
+  importas:
+    # if set to `true`, force to use alias.
+    no-unaliased: true
+
+  misspell:
+    # Correct spellings using locale preferences for US or UK.
+    # Default is to use a neutral variety of English.
+    # Setting locale to US will correct the British spelling of 'colour' to 'color'.
+    locale: US
+
+  nolintlint:
+    # Disable to ensure that all nolint directives actually have an effect. Default is true.
+    allow-unused: true
+    # Disable to ensure that nolint directives don't have a leading space. Default is true.
+    allow-leading-space: true
+    # Exclude following linters from requiring an explanation.  Default is [].
+    allow-no-explanation: [ ]
+    # Enable to require an explanation of nonzero length after each nolint directive. Default is false.
+    require-explanation: true
+    # Enable to require nolint directives to mention the specific linter being suppressed. Default is false.
+    require-specific: true
+
+  prealloc:
+    # XXX: we don't recommend using this linter before doing performance profiling.
+    # For most programs usage of prealloc will be a premature optimization.
+
+    # Report preallocation suggestions only on simple loops that have no returns/breaks/continues/gotos in them.
+    # True by default.
+    simple: true
+    range-loops: true # Report preallocation suggestions on range loops, true by default
+    for-loops: false # Report preallocation suggestions on for loops, false by default
+
+  predeclared:
+    # comma-separated list of predeclared identifiers to not report on
+    ignore: ""
+    # include method names and field names (i.e., qualified names) in checks
+    q: true
+
+  staticcheck:
+    # Select the Go version to target. The default is '1.13'.
+    go: "1.17"
+    # https://staticcheck.io/docs/options#checks
+    checks: [ "all" ]
+
+  stylecheck:
+    # Select the Go version to target. The default is '1.13'.
+    go: "1.17"
+    # https://staticcheck.io/docs/options#checks
+    checks: [ "all"]
+    # https://staticcheck.io/docs/options#initialisms
+    initialisms: [ "ACL", "API", "ASCII", "CPU", "CSS", "DNS", "EOF", "GUID", "HTML", "HTTP", "HTTPS", "ID", "IP", "JSON", "QPS", "RAM", "RPC", "SLA", "SMTP", "SQL", "SSH", "TCP", "TLS", "TTL", "UDP", "UI", "GID", "UID", "UUID", "URI", "URL", "UTF8", "VM", "XML", "XMPP", "XSRF", "XSS" ]
+    # https://staticcheck.io/docs/options#http_status_code_whitelist
+    http-status-code-whitelist: [ "200", "400", "404", "500" ]
+
+  tagliatelle:
+    # check the struck tag name case
+    case:
+      # use the struct field name to check the name of the struct tag
+      use-field-name: true
+      rules:
+        # any struct tag type can be used.
+        # support string case: `camel`, `pascal`, `kebab`, `snake`, `goCamel`, `goPascal`, `goKebab`, `goSnake`, `upper`, `lower`
+        json: camel
+        yaml: camel
+        xml: camel
+        bson: camel
+        avro: snake
+        mapstructure: kebab
+
+  thelper:
+    # The following configurations enable all checks. It can be omitted because all checks are enabled by default.
+    # You can enable only required checks deleting unnecessary checks.
+    test:
+      first: true
+      name: true
+      begin: true
+    benchmark:
+      first: true
+      name: true
+      begin: true
+    tb:
+      first: true
+      name: true
+      begin: true
+
+  unparam:
+    # Inspect exported functions, default is false. Set to true if no external program/library imports your code.
+    # XXX: if you enable this setting, unparam will report a lot of false-positives in text editors:
+    # if it's called for subdir of a project it can't find external interfaces. All text editor integrations
+    # with golangci-lint call it on a directory with the changed file.
+    check-exported: false
+
+  unused:
+    # Select the Go version to target. The default is '1.13'.
+    go: "1.17"
+
+linters:
+  disable-all: false
+  enable-all: false
+  enable:
+    - unused
+    - unparam
+    - thelper
+    - tagliatelle
+    - stylecheck
+    - staticcheck
+    - predeclared
+    - prealloc
+    - nolintlint
+    - misspell
+    - importas
+    - govet
+    - gosimple
+    - gosec
+    - gofumpt
+    - gofmt
+    - godot
+    - gocritic
+    - gci
+    - errorlint
+    - errcheck
+    - dogsled
+
+  fast: false
+
+issues:
+  # Maximum issues count per one linter. Set to 0 to disable. Default is 50.
+  max-issues-per-linter: 0
+
+  # Maximum count of issues with the same text. Set to 0 to disable. Default is 3.
+  max-same-issues: 0
+
+  # Fix found issues (if it's supported by the linter)
+  fix: false
+
+severity:
+  default-severity: error
