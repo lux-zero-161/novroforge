@@ -144,25 +144,6 @@ func Dashboard(ctx *context.Context) {
 	pager.AddParam(ctx, "date", "Date")
 	ctx.Data["Page"] = pager
 
-	pinnedRepos, _, err := repo_model.SearchRepository(ctx, &repo_model.SearchRepoOptions{
-		ListOptions: db.ListOptions{Page: 1, PageSize: 6},
-		Actor:       ctx.Doer,
-		OwnerID:     ctxUser.ID,
-		Private:     true,
-		AllPublic:   true,
-		Archived:    optional.Some(false),
-		OrderBy:     db.SearchOrderByRecentUpdated,
-	})
-	if err != nil {
-		ctx.ServerError("SearchRepository", err)
-		return
-	}
-	if err := pinnedRepos.LoadAttributes(ctx); err != nil {
-		ctx.ServerError("LoadAttributes", err)
-		return
-	}
-	ctx.Data["DashboardPinnedRepos"] = pinnedRepos
-
 	publicRepos, _, err := repo_model.SearchRepository(ctx, &repo_model.SearchRepoOptions{
 		ListOptions: db.ListOptions{Page: 1, PageSize: 3},
 		Actor:       ctx.Doer,

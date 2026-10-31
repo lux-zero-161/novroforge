@@ -3,19 +3,76 @@
    explore and projects cards. Colours come from the active GitHub theme. */
 
 @media (min-width: 901px) {
-  body:has(.github-home) #navbar,
-  body:has(.github-home) #navbar-drawer,
-  body:has(.github-home) .profile-navigation {
+  .full.height:has(> .github-shell-sidebar) {
+    display: grid;
+    grid-template-columns: 260px minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .full.height:has(> .github-shell-sidebar) > #navbar,
+  .full.height:has(> .github-shell-sidebar) > #navbar-drawer,
+  .full.height:has(> .github-shell-sidebar) .profile-navigation {
     display: none !important;
   }
 }
 
-body:has(.github-home) .full.height {
+body:has(.github-shell-sidebar) .full.height {
   padding-bottom: 0;
 }
 
-body:has(.github-home) .page-footer {
+body:has(.github-shell-sidebar) .page-footer {
   display: none;
+}
+
+.github-shell-sidebar {
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: 100dvh;
+  min-width: 0;
+  padding: 16px 12px 12px;
+  border-right: 1px solid var(--color-light-border);
+  background: var(--color-body);
+}
+
+.github-shell-sidebar-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.github-shell-main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 100dvh;
+}
+
+.github-shell-content {
+  flex: 1;
+  min-width: 0;
+  background: var(--color-body);
+}
+
+.github-shell-content .page-content.theme-sidebar-layout > .theme-sidebar {
+  top: 64px;
+  height: calc(100dvh - 64px);
+}
+
+.github-shell-sidebar .theme-repo-picker-item {
+  min-height: 32px;
+  padding: 4px 8px;
+  margin: 0 -8px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.github-shell-sidebar .theme-repo-picker-list[aria-busy="true"]:empty {
+  min-height: 32px;
 }
 
 .page-content.github-home.theme-sidebar-layout[data-theme-sidebar] {
@@ -890,6 +947,7 @@ body:has(.github-home) .page-footer {
     grid-template-columns: minmax(0, 1fr);
   }
 
+  .github-shell-sidebar,
   .github-home .theme-sidebar {
     display: none;
   }

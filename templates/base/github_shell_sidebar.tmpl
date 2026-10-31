@@ -1,0 +1,32 @@
+{{$user := .SignedUser}}
+<aside class="github-shell-sidebar" aria-label="{{ctx.Locale.Tr "dashboard"}}">
+	<div class="github-shell-sidebar-content">
+		<a class="github-home-logo" href="{{AppSubUrl}}/" aria-label="{{AppName}}">
+			{{svg "octicon-mark-github" 32}}
+			<span class="github-home-logo-name">{{AppName}}</span>
+		</a>
+		<nav class="github-home-nav" aria-label="{{ctx.Locale.Tr "dashboard"}}">
+			<a class="{{if .PageIsDashboard}}active{{end}}" href="{{AppSubUrl}}/">{{svg "octicon-home" 16}}<span>{{ctx.Locale.Tr "home"}}</span></a>
+			{{if not .UnitIssuesGlobalDisabled}}<a class="{{if or .PageIsIssues .PageIsIssueList}}active{{end}}" href="{{AppSubUrl}}/issues">{{svg "octicon-issue-opened" 16}}<span>{{ctx.Locale.Tr "issues"}}</span></a>{{end}}
+			{{if not .UnitPullsGlobalDisabled}}<a class="{{if or .PageIsPulls .PageIsPullList}}active{{end}}" href="{{AppSubUrl}}/pulls">{{svg "octicon-git-pull-request" 16}}<span>{{ctx.Locale.Tr "pull_requests"}}</span></a>{{end}}
+			{{if .ShowMilestonesDashboardPage}}<a class="{{if or .PageIsMilestones .PageIsMilestonesDashboard}}active{{end}}" href="{{AppSubUrl}}/milestones">{{svg "octicon-milestone" 16}}<span>{{ctx.Locale.Tr "milestones"}}</span></a>{{end}}
+			<a class="{{if .PageIsViewProjects}}active{{end}}" href="{{$user.HomeLink}}/-/projects">{{svg "octicon-table" 16}}<span>Projects</span></a>
+			<a href="{{$user.HomeLink}}?tab=repositories">{{svg "octicon-repo" 16}}<span>Repositories</span></a>
+			<a href="{{$user.HomeLink}}?tab=stars">{{svg "octicon-star" 16}}<span>Stars</span></a>
+			<a class="{{if .PageIsExploreRepositories}}active{{end}}" href="{{AppSubUrl}}/explore/repos">{{svg "octicon-telescope" 16}}<span>Explore</span></a>
+		</nav>
+		<section class="github-home-pinned" aria-labelledby="github-shell-pinned-title">
+			<h2 id="github-shell-pinned-title">Pinned repositories</h2>
+			{{template "components/repository/picker/picker" dict "ID" "github-shell-repositories" "UID" $user.ID "FullName" true "Limit" 6 "Label" "Pinned repositories"}}
+			<a class="github-home-sidebar-link" href="{{$user.HomeLink}}?tab=repositories">Show more</a>
+		</section>
+	</div>
+	<div class="github-home-sidebar-footer">
+		<a class="github-home-profile" href="{{$user.HomeLink}}">
+			{{ctx.AvatarUtils.Avatar $user 32}}
+			<span><strong>{{$user.Name}}</strong><small>{{$user.DisplayName}}</small></span>
+		</a>
+		<a class="github-home-sidebar-icon" href="{{AppSubUrl}}/user/settings" title="{{ctx.Locale.Tr "settings"}}">{{svg "octicon-gear" 16}}</a>
+		<a class="github-home-sidebar-icon" href="{{AppSubUrl}}/user/settings/appearance" title="{{ctx.Locale.Tr "settings.appearance"}}">{{svg "octicon-sun" 16}}</a>
+	</div>
+</aside>

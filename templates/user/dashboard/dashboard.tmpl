@@ -5,62 +5,7 @@
 {{if $isOrg}}{{$base = $user.OrganisationLink}}{{end}}
 {{$teamPath := ""}}{{if .Team}}{{$teamPath = print "/" (PathEscape .Team.Name)}}{{end}}
 {{$displayName := $user.Name}}{{if $user.DisplayName}}{{$displayName = $user.DisplayName}}{{end}}
-<div role="main" aria-label="{{.Title}}" class="page-content dashboard feeds theme-sidebar-layout github-home" data-theme-sidebar="dashboard_sidebar_collapsed">
-	<aside class="theme-sidebar github-home-sidebar" aria-label="{{ctx.Locale.Tr "dashboard"}}">
-		<div class="theme-sidebar-content">
-			<a class="github-home-logo" href="{{AppSubUrl}}/" aria-label="{{AppName}}">
-				{{svg "octicon-mark-github" 32}}
-				<span class="github-home-logo-name">{{AppName}}</span>
-			</a>
-			<nav class="github-home-nav" aria-label="{{ctx.Locale.Tr "dashboard"}}">
-				<a class="active" href="{{if $isOrg}}{{$user.DashboardLink}}{{$teamPath}}{{else}}{{AppSubUrl}}/{{end}}">{{svg "octicon-home" 16}}<span>{{ctx.Locale.Tr "home"}}</span></a>
-				{{if not .UnitIssuesGlobalDisabled}}<a href="{{$base}}/issues{{$teamPath}}">{{svg "octicon-issue-opened" 16}}<span>{{ctx.Locale.Tr "issues"}}</span></a>{{end}}
-				{{if not .UnitPullsGlobalDisabled}}<a href="{{$base}}/pulls{{$teamPath}}">{{svg "octicon-git-pull-request" 16}}<span>{{ctx.Locale.Tr "pull_requests"}}</span></a>{{end}}
-				{{if .ShowMilestonesDashboardPage}}<a href="{{$base}}/milestones{{$teamPath}}">{{svg "octicon-milestone" 16}}<span>{{ctx.Locale.Tr "milestones"}}</span></a>{{end}}
-				<a href="{{$user.HomeLink}}/-/projects">{{svg "octicon-table" 16}}<span>Projects</span></a>
-				<a href="{{$user.HomeLink}}?tab=repositories">{{svg "octicon-repo" 16}}<span>Repositories</span></a>
-				<a href="{{$user.HomeLink}}?tab=stars">{{svg "octicon-star" 16}}<span>Stars</span></a>
-				<a href="{{AppSubUrl}}/explore/repos">{{svg "octicon-telescope" 16}}<span>Explore</span></a>
-			</nav>
-			<section class="github-home-pinned" aria-labelledby="github-home-pinned-title">
-				<h2 id="github-home-pinned-title">Pinned repositories</h2>
-				{{range .DashboardPinnedRepos}}
-					<a class="github-home-pinned-repo" href="{{.Link}}">
-						{{svg "octicon-repo" 16}}
-						<span class="github-home-pinned-name">{{.OwnerName}}/{{.Name}}</span>
-						<span class="github-home-pinned-meta">
-							{{if .PrimaryLanguage}}<i class="color-icon" style="background-color: {{.PrimaryLanguage.Color}}"></i>{{.PrimaryLanguage.Language}}{{end}}
-							{{if .NumStars}}<span>{{svg "octicon-star" 12}}{{CountFmt .NumStars}}</span>{{end}}
-						</span>
-					</a>
-				{{else}}
-					<p class="github-home-sidebar-empty">No repositories yet.</p>
-				{{end}}
-				<a class="github-home-sidebar-link" href="{{$user.HomeLink}}?tab=repositories">Show more</a>
-			</section>
-		</div>
-		<div class="github-home-sidebar-footer">
-			<a class="github-home-profile" href="{{$user.HomeLink}}">
-				{{ctx.AvatarUtils.Avatar $user 32}}
-				<span><strong>{{$user.Name}}</strong><small>{{$user.DisplayName}}</small></span>
-			</a>
-			<a class="github-home-sidebar-icon" href="{{AppSubUrl}}/user/settings" title="{{ctx.Locale.Tr "settings"}}">{{svg "octicon-gear" 16}}</a>
-			<a class="github-home-sidebar-icon" href="{{AppSubUrl}}/user/settings/appearance" title="{{ctx.Locale.Tr "settings.appearance"}}">{{svg "octicon-sun" 16}}</a>
-		</div>
-	</aside>
-	<div class="theme-sidebar-main github-home-main">
-		<header class="github-home-topbar">
-			<form class="github-home-search" action="{{AppSubUrl}}/explore/repos" method="get" role="search">
-				{{template "components/common/search/search" dict "Kind" "icon" "Placeholder" "Search or jump to..." "Shortcut" "/" "Class" "github-home-search-field"}}
-			</form>
-			<div class="github-home-topbar-actions">
-				<a class="github-home-icon-button" href="{{AppSubUrl}}/repo/create" data-tooltip-content="{{ctx.Locale.Tr "create_new"}}">{{svg "octicon-plus" 16}}</a>
-				{{if not .UnitIssuesGlobalDisabled}}<a class="github-home-icon-button" href="{{$base}}/issues{{$teamPath}}" data-tooltip-content="{{ctx.Locale.Tr "issues"}}">{{svg "octicon-issue-opened" 16}}</a>{{end}}
-				{{if not .UnitPullsGlobalDisabled}}<a class="github-home-icon-button" href="{{$base}}/pulls{{$teamPath}}" data-tooltip-content="{{ctx.Locale.Tr "pull_requests"}}">{{svg "octicon-git-pull-request" 16}}</a>{{end}}
-				<a class="github-home-icon-button" href="{{AppSubUrl}}/notifications" data-tooltip-content="{{ctx.Locale.Tr "notifications"}}">{{svg "octicon-inbox" 16}}</a>
-				<a class="github-home-avatar" href="{{$user.HomeLink}}" aria-label="{{$user.Name}}">{{ctx.AvatarUtils.Avatar $user 28}}</a>
-			</div>
-		</header>
+<div role="main" aria-label="{{.Title}}" class="page-content dashboard feeds github-home">
 		<main class="github-home-content">
 			<header class="github-home-welcome">
 				<div>
@@ -195,7 +140,6 @@
 				</aside>
 			</div>
 		</main>
-	</div>
 </div>
 <script src="{{AssetUrlPrefix}}/js/dashboard-greeting.js?v=112ffc9736"></script>
 {{template "base/footer" .}}

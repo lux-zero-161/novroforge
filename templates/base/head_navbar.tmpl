@@ -226,3 +226,10 @@
 
 {{template "base/navbar_drawer" .}}
 <script src="{{AssetUrlPrefix}}/js/navbar-drawer.js" defer></script>
+
+{{if .IsSigned}}
+	{{template "base/github_shell_sidebar" .}}
+	<div class="github-shell-main">
+		{{template "base/github_shell_topbar" .}}
+		<div class="github-shell-content">
+{{end}}
