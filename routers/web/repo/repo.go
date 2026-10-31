@@ -8,6 +8,7 @@ package repo
 import (
 	"errors"
 	"fmt"
+	"mime"
 	"net/http"
 	"slices"
 	"strings"
@@ -42,8 +43,10 @@ import (
 
 const (
 	tplCreate       base.TplName = "repo/create"
-	tplAlertDetails base.TplName = "base/alert_details"
+	tplAlertDetails base.TplName = "repo/alert_details"
 )
+
+var directArchiveSem = make(chan struct{}, 1)
 
 // MustBeNotEmpty render when a repo is a empty git dir
 func MustBeNotEmpty(ctx *context.Context) {
@@ -515,13 +518,41 @@ func Download(ctx *context.Context) {
 		return
 	}
 
-	archiver, err := aReq.Await(ctx)
-	if err != nil {
-		ctx.ServerError("archiver.Await", err)
+	downloadDirect(ctx, aReq)
+}
+
+func downloadDirect(ctx *context.Context, aReq *archiver_service.ArchiveRequest) {
+	select {
+	case directArchiveSem <- struct{}{}:
+		defer func() { <-directArchiveSem }()
+	case <-ctx.Req.Context().Done():
 		return
 	}
 
-	download(ctx, aReq.GetArchiveName(), archiver)
+	downloadName := ctx.Repo.Repository.Name + "-" + aReq.GetArchiveName()
+	header := ctx.Resp.Header()
+	switch aReq.Type {
+	case git.ZIP:
+		header.Set("Content-Type", "application/zip")
+	case git.TARGZ:
+		header.Set("Content-Type", "application/gzip")
+	default:
+		header.Set("Content-Type", "application/octet-stream")
+	}
+	header.Set("Content-Disposition", mime.FormatMediaType("attachment", map[string]string{"filename": downloadName}))
+	header.Set("Cache-Control", "no-store")
+	header.Set("X-Accel-Buffering", "no")
+	ctx.Resp.WriteHeader(http.StatusOK)
+
+	var err error
+	if aReq.Type == git.BUNDLE {
+		err = ctx.Repo.GitRepo.CreateBundle(ctx, aReq.CommitID, ctx.Resp)
+	} else {
+		err = ctx.Repo.GitRepo.CreateArchive(ctx, aReq.Type, ctx.Resp, setting.Repository.PrefixArchiveFiles, aReq.CommitID)
+	}
+	if err != nil {
+		log.Error("downloadDirect: %v", err)
+	}
 }
 
 func download(ctx *context.Context, archiveName string, archiver *repo_model.RepoArchiver) {
