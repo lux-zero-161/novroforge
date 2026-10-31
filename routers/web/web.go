@@ -415,7 +415,8 @@ func Routes() *web.Route {
 		routes.Group("", func() {
 			// Note: The route is here but no in API routes because it renders a web page
 			routes.Get("/api/swagger", misc.Swagger) // Render V1 by default
-			routes.Get("/api/forgejo/swagger", misc.SwaggerForgejo)
+			routes.Get("/api/novroforge/swagger", misc.SwaggerNovroForge)
+			routes.Get("/api/forgejo/swagger", misc.SwaggerNovroForge)
 		}, gzipMid, context.Contexter())
 	}
 

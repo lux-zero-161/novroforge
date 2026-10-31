@@ -48,7 +48,6 @@ page loads no navbar assets, so it links the stylesheet with that layout itself.
 					<a href="{{AppSubUrl}}/">{{ctx.Locale.Tr "home"}}</a>
 				</div>
 				{{if or .SignedUser.IsAdmin .ShowFooterVersion}}<p class="theme-status-version">{{ctx.Locale.Tr "admin.config.app_ver"}}: {{AppVer}}</p>{{end}}
-				{{if .SignedUser.IsAdmin}}<p class="theme-status-version">{{ctx.Locale.Tr "error.report_message" "https://github.com/lux-zero-161/novroforge/issues"}}</p>{{end}}
 			</section>
 		</div>
 	</div>

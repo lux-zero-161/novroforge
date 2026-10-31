@@ -17,5 +17,5 @@ func TestAPIForgejoRoot(t *testing.T) {
 
 	req := NewRequest(t, "GET", "/api/forgejo/v1")
 	resp := MakeRequest(t, req, http.StatusNoContent)
-	assert.Contains(t, resp.Header().Get("Link"), "/assets/forgejo/api.v1.yml")
+	assert.Contains(t, resp.Header().Get("Link"), "/assets/novroforge/api.v1.yml")
 }

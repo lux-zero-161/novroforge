@@ -10,10 +10,10 @@ import (
 	"forgejo.org/services/context"
 )
 
-// tplSwagger swagger page template
-const tplForgejoSwagger base.TplName = "swagger/forgejo-ui"
+// tplNovroForgeSwagger swagger page template
+const tplNovroForgeSwagger base.TplName = "swagger/novroforge-ui"
 
-func SwaggerForgejo(ctx *context.Context) {
+func SwaggerNovroForge(ctx *context.Context) {
 	ctx.Data["APIVersion"] = "v1"
-	ctx.HTML(http.StatusOK, tplForgejoSwagger)
+	ctx.HTML(http.StatusOK, tplNovroForgeSwagger)
 }
