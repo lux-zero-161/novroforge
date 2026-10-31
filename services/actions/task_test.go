@@ -13,7 +13,7 @@ import (
 	"novroforge.xyz/modules/timeutil"
 	notify_service "novroforge.xyz/services/notify"
 
-	runnerv1 "code.forgejo.org/forgejo/actions-proto/runner/v1"
+	runnerv1 "code.novroforge.xyz/novroforge/actions-proto/runner/v1"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
@@ -56,7 +56,7 @@ jobs:
 					Ref:               "refs/heads/main",
 					CommitSHA:         "abc123def456",
 					WorkflowID:        "test-workflow.yaml",
-					WorkflowDirectory: ".forgejo/workflows",
+					WorkflowDirectory: ".novroforge/workflows",
 					EventPayload:      `{"repository": {"name": "testrepo"}}`,
 					IsForkPullRequest: isFork,
 				},
@@ -70,10 +70,10 @@ jobs:
 
 		taskContext, err := generateTaskContext(task, &repo_model.ActionsConfig{})
 		require.NoError(t, err)
-		require.NotEmpty(t, taskContext.Fields["forgejo_actions_id_token_request_token"].GetStringValue())
-		require.NotEmpty(t, taskContext.Fields["forgejo_actions_id_token_request_url"].GetStringValue())
+		require.NotEmpty(t, taskContext.Fields["novroforge_actions_id_token_request_token"].GetStringValue())
+		require.NotEmpty(t, taskContext.Fields["novroforge_actions_id_token_request_url"].GetStringValue())
 		require.NotEmpty(t, taskContext.Fields["gitea_runtime_token"].GetStringValue())
-		require.NotEmpty(t, taskContext.Fields["forgejo_runtime_token"].GetStringValue())
+		require.NotEmpty(t, taskContext.Fields["novroforge_runtime_token"].GetStringValue())
 	})
 
 	t.Run("openid connect enabled from fork with pull_request_target event", func(t *testing.T) {
@@ -81,10 +81,10 @@ jobs:
 
 		taskContext, err := generateTaskContext(task, &repo_model.ActionsConfig{})
 		require.NoError(t, err)
-		require.NotEmpty(t, taskContext.Fields["forgejo_actions_id_token_request_token"].GetStringValue())
-		require.NotEmpty(t, taskContext.Fields["forgejo_actions_id_token_request_url"].GetStringValue())
+		require.NotEmpty(t, taskContext.Fields["novroforge_actions_id_token_request_token"].GetStringValue())
+		require.NotEmpty(t, taskContext.Fields["novroforge_actions_id_token_request_url"].GetStringValue())
 		require.NotEmpty(t, taskContext.Fields["gitea_runtime_token"].GetStringValue())
-		require.NotEmpty(t, taskContext.Fields["forgejo_runtime_token"].GetStringValue())
+		require.NotEmpty(t, taskContext.Fields["novroforge_runtime_token"].GetStringValue())
 	})
 
 	t.Run("openid connect enabled from fork with pull_request event", func(t *testing.T) {
@@ -92,10 +92,10 @@ jobs:
 
 		taskContext, err := generateTaskContext(task, &repo_model.ActionsConfig{})
 		require.NoError(t, err)
-		require.Empty(t, taskContext.Fields["forgejo_actions_id_token_request_token"].GetStringValue())
-		require.Empty(t, taskContext.Fields["forgejo_actions_id_token_request_url"].GetStringValue())
+		require.Empty(t, taskContext.Fields["novroforge_actions_id_token_request_token"].GetStringValue())
+		require.Empty(t, taskContext.Fields["novroforge_actions_id_token_request_url"].GetStringValue())
 		require.NotEmpty(t, taskContext.Fields["gitea_runtime_token"].GetStringValue())
-		require.NotEmpty(t, taskContext.Fields["forgejo_runtime_token"].GetStringValue())
+		require.NotEmpty(t, taskContext.Fields["novroforge_runtime_token"].GetStringValue())
 	})
 
 	t.Run("openid connect disabled", func(t *testing.T) {
@@ -103,10 +103,10 @@ jobs:
 
 		taskContext, err := generateTaskContext(task, &repo_model.ActionsConfig{})
 		require.NoError(t, err)
-		require.Empty(t, taskContext.Fields["forgejo_actions_id_token_request_token"].GetStringValue())
-		require.Empty(t, taskContext.Fields["forgejo_actions_id_token_request_url"].GetStringValue())
+		require.Empty(t, taskContext.Fields["novroforge_actions_id_token_request_token"].GetStringValue())
+		require.Empty(t, taskContext.Fields["novroforge_actions_id_token_request_url"].GetStringValue())
 		require.NotEmpty(t, taskContext.Fields["gitea_runtime_token"].GetStringValue())
-		require.NotEmpty(t, taskContext.Fields["forgejo_runtime_token"].GetStringValue())
+		require.NotEmpty(t, taskContext.Fields["novroforge_runtime_token"].GetStringValue())
 	})
 }
 

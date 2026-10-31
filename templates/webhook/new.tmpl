@@ -12,8 +12,8 @@
 <div class="ui attached segment">
 	{{with .ctxData}}
 		<!-- the template argument cannot be dynamic  -->
-		{{if eq .HookType "forgejo"}}
-			{{template "webhook/new/forgejo" .}}
+		{{if eq .HookType "novroforge"}}
+			{{template "webhook/new/novroforge" .}}
 		{{else if eq .HookType "gitea"}}
 			{{template "webhook/new/gitea" .}}
 		{{else if eq .HookType "gogs"}}

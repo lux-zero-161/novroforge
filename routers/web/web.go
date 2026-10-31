@@ -59,8 +59,8 @@ import (
 
 	_ "novroforge.xyz/modules/session" // to registers all internal adapters
 
-	"code.forgejo.org/go-chi/binding"
-	"code.forgejo.org/go-chi/captcha"
+	"code.novroforge.xyz/go-chi/binding"
+	"code.novroforge.xyz/go-chi/captcha"
 	chi_middleware "github.com/go-chi/chi/v5/middleware"
 	"github.com/go-chi/cors"
 	"github.com/klauspost/compress/gzhttp"
@@ -211,7 +211,7 @@ func webAuth(authMethod auth_service.Method) func(*context.Context) {
 		case *auth_service.AuthenticationNotAttempted:
 			ar = &auth_service.UnauthenticatedResult{}
 		case *auth_service.AuthenticationAttemptedIncorrectCredential:
-			ctx.Error(http.StatusUnauthorized, ctx.Locale.TrString("auth.unauthorized_credentials", "https://codeberg.org/forgejo/forgejo/issues/2809"))
+			ctx.Error(http.StatusUnauthorized, ctx.Locale.TrString("auth.unauthorized_credentials", "https://codeberg.org/novroforge/novroforge/issues/2809"))
 			return
 		case *auth_service.AuthenticationError:
 			// Don't reveal the internal server error details to the user as they may contain sensitive details -- log
@@ -233,7 +233,7 @@ func webAuth(authMethod auth_service.Method) func(*context.Context) {
 		if ctx.Doer == nil && ctx.InteractiveReauthenticationPossible {
 			// The request is not authenticated, and session authentication was attempted. Clear "uid" from the session.
 			// The purpose of this behaviour isn't clear as it is retained through multiple refactorings, originally
-			// introduced in https://codeberg.org/forgejo/forgejo/commit/17c5c654a57ecf51c8c7c8ecfc6c86ae313d4000; it
+			// introduced in https://codeberg.org/novroforge/novroforge/commit/17c5c654a57ecf51c8c7c8ecfc6c86ae313d4000; it
 			// may not be meaningful with separated auth methods on different HTTP routes.  It is retained here as it
 			// seems like a reasonable security precaution.
 			//
@@ -416,7 +416,7 @@ func Routes() *web.Route {
 			// Note: The route is here but no in API routes because it renders a web page
 			routes.Get("/api/swagger", misc.Swagger) // Render V1 by default
 			routes.Get("/api/novroforge/swagger", misc.SwaggerNovroForge)
-			routes.Get("/api/forgejo/swagger", misc.SwaggerNovroForge)
+			routes.Get("/api/novroforge/swagger", misc.SwaggerNovroForge)
 		}, gzipMid, context.Contexter())
 	}
 

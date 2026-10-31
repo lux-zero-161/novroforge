@@ -142,7 +142,7 @@ func TestActionsAPIWorkflowDispatchReturnInfo(t *testing.T) {
 		{
 			name:              "NovroForge",
 			workflowID:        "build.yml",
-			workflowDirectory: ".forgejo/workflows",
+			workflowDirectory: ".novroforge/workflows",
 		},
 	}
 
@@ -237,7 +237,7 @@ func TestActionsAPIWorkflowDispatchErrors(t *testing.T) {
 		repo := forgery.CreateRepository(t, user2, &forgery.CreateRepositoryOptions{
 			Name: "api-repo-workflow-dispatch-errors",
 			Files: forgery.MapFS{
-				".forgejo/workflows/dispatch.yml": forgery.MapFile(`name: dispatch
+				".novroforge/workflows/dispatch.yml": forgery.MapFile(`name: dispatch
 on: [workflow_dispatch]
 jobs:
   test:

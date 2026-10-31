@@ -1,12 +1,12 @@
 // Copyright 2025 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: MIT
 
-package forgejo_migrations_legacy
+package novroforge_migrations_legacy
 
 import (
 	"database/sql"
 
-	"code.forgejo.org/xorm/xorm"
+	"code.novroforge.xyz/xorm/xorm"
 )
 
 func AddPublicKeyInformationForFederation(x *xorm.Engine) error {

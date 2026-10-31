@@ -8,7 +8,7 @@ import (
 
 	migration_tests "novroforge.xyz/models/gitea_migrations/test"
 
-	"code.forgejo.org/xorm/xorm"
+	"code.novroforge.xyz/xorm/xorm"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

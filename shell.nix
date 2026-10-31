@@ -3,7 +3,7 @@
 }:
 
 pkgs.mkShell {
-  name = "forgejo";
+  name = "novroforge";
   nativeBuildInputs = with pkgs; [
     # generic
     git

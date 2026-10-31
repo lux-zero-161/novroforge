@@ -250,7 +250,7 @@ func TestPackageAlpineNoArch(t *testing.T) {
 
 	user := unittest.AssertExistsAndLoadBean(t, &user_model.User{ID: 2})
 
-	packageNames := []string{"forgejo-noarch-test", "forgejo-noarch-test-openrc"}
+	packageNames := []string{"novroforge-noarch-test", "novroforge-noarch-test-openrc"}
 	packageVersion := "1.0.0-r0"
 
 	base64AlpinePackageContent := `H4sIAAAAAAACA9ML9nT30wsKdtSryMxLrExJLdIrKk7UKyhNYqAaMAACMxMTMA0E6LQhiG1oYmpm
@@ -284,7 +284,7 @@ MoxKyDAAAAAAAAAAAADA2noDOINxQwAoAAA=`
 	require.NoError(t, err)
 
 	packageContents := map[string][]byte{}
-	packageContents["forgejo-noarch-test"] = content
+	packageContents["novroforge-noarch-test"] = content
 
 	base64AlpinePackageContent = `H4sIAAAAAAACA9ML9nT30wsKdtSryMxLrExJLdIrKk7UKyhNYqAaMAACMxMTMA0E6LQhiG1oYmpm
 ZGhqZGBkzmBgaGRsaM6gYMBAB1BaXJJYpKDAMEJBV8/bw4880tiXWbav8ygSDheyNpq/YubDz3sy
@@ -317,7 +317,7 @@ aiIK5QoSDwAAAAAAAAAAAAAAAP/IK49O1e8AKAAA`
 	content, err = base64.StdEncoding.DecodeString(base64AlpinePackageContent)
 	require.NoError(t, err)
 
-	packageContents["forgejo-noarch-test-openrc"] = content
+	packageContents["novroforge-noarch-test-openrc"] = content
 
 	branches := []string{"v3.16", "v3.17", "v3.18"}
 	repositories := []string{"main", "testing"}
@@ -441,10 +441,10 @@ aiIK5QoSDwAAAAAAAAAAAAAAAP/IK49O1e8AKAAA`
 									assert.Contains(t, s, "L:GPLv3\n")
 									assert.Contains(t, s, "S:1508\n")
 									assert.Contains(t, s, "I:20480\n")
-									assert.Contains(t, s, "o:forgejo-noarch-test\n")
+									assert.Contains(t, s, "o:novroforge-noarch-test\n")
 									assert.Contains(t, s, "m:Alexandre Almeida <git@aoalmeida.com>\n")
 									assert.Contains(t, s, "t:1707660311\n")
-									assert.Contains(t, s, "p:cmd:forgejo_2173=1.0.0-r0")
+									assert.Contains(t, s, "p:cmd:novroforge_2173=1.0.0-r0")
 
 									assert.Contains(t, s, "C:Q1zTXZP03UbSled31mi4MXmsrgNQ4=\n")
 									assert.Contains(t, s, "P:"+packageNames[1]+"\n")
@@ -455,10 +455,10 @@ aiIK5QoSDwAAAAAAAAAAAAAAAP/IK49O1e8AKAAA`
 									assert.Contains(t, s, "L:GPLv3\n")
 									assert.Contains(t, s, "S:1569\n")
 									assert.Contains(t, s, "I:16384\n")
-									assert.Contains(t, s, "o:forgejo-noarch-test\n")
+									assert.Contains(t, s, "o:novroforge-noarch-test\n")
 									assert.Contains(t, s, "m:Alexandre Almeida <git@aoalmeida.com>\n")
 									assert.Contains(t, s, "t:1707660311\n")
-									assert.Contains(t, s, "i:openrc forgejo-noarch-test=1.0.0-r0")
+									assert.Contains(t, s, "i:openrc novroforge-noarch-test=1.0.0-r0")
 
 									return true
 								}

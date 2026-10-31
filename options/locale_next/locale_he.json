@@ -50,7 +50,7 @@
 	"migrate.onedev.description": "ייבוא מידע מ־code.onedev.io או שרת OneDev אחר.",
 	"migrate.gitbucket.description": "יבוא מידע משרת GitBucket.",
 	"migrate.codebase.description": "ייבוא מידע מ־codebasehq.com.",
-	"migrate.forgejo.description": "ייבוא מידע מקודברג או שרת פורג'ו אחר.",
+	"migrate.novroforge.description": "ייבוא מידע מקודברג או שרת פורג'ו אחר.",
 	"migrate.items.wiki": "ויקי",
 	"migrate.items.milestones": "אבני דרך",
 	"migrate.items.labels": "תוויות",

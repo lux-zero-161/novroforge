@@ -19,7 +19,7 @@ import (
 	"novroforge.xyz/modules/setting"
 	api "novroforge.xyz/modules/structs"
 
-	runnerv1 "code.forgejo.org/forgejo/actions-proto/runner/v1"
+	runnerv1 "code.novroforge.xyz/novroforge/actions-proto/runner/v1"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"google.golang.org/protobuf/types/known/timestamppb"
@@ -54,7 +54,7 @@ jobs:
     steps:
       - run: echo hello from job
 `
-	treePath := ".forgejo/workflows/api-job.yml"
+	treePath := ".novroforge/workflows/api-job.yml"
 
 	onApplicationRun(t, func(t *testing.T, u *url.URL) {
 		user2 := unittest.AssertExistsAndLoadBean(t, &user_model.User{ID: 2})

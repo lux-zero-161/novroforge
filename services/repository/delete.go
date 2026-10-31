@@ -150,7 +150,7 @@ func DeleteRepositoryDirectly(ctx context.Context, repoID int64, opts DeleteRepo
 
 		if setting.Database.Type.IsMySQL() {
 			// mariadb:10 does not use the hook_task KEY when using IN.
-			// https://codeberg.org/forgejo/forgejo/issues/3678
+			// https://codeberg.org/novroforge/novroforge/issues/3678
 			//
 			// Version 11 does support it, but is not available in debian yet.
 			// Version 11.4 LTS is not available yet (stable should be released mid 2024 https://mariadb.org/mariadb/all-releases/)

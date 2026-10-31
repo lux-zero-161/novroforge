@@ -143,7 +143,7 @@ func TestDelayWriter(t *testing.T) {
 		defer test.MockVariableValue(&setting.Git.VerbosePushDelay, time.Millisecond*500)()
 		finish := captureOutput(t, os.Stdout)
 
-		err = app.Run(t.Context(), []string{"./forgejo", "pre-receive"})
+		err = app.Run(t.Context(), []string{"./novroforge", "pre-receive"})
 		require.NoError(t, err)
 		out := finish()
 
@@ -155,7 +155,7 @@ func TestDelayWriter(t *testing.T) {
 		defer test.MockVariableValue(&setting.Git.VerbosePushDelay, time.Second*5)()
 		finish := captureOutput(t, os.Stdout)
 
-		err = app.Run(t.Context(), []string{"./forgejo", "pre-receive"})
+		err = app.Run(t.Context(), []string{"./novroforge", "pre-receive"})
 		require.NoError(t, err)
 		out := finish()
 
@@ -247,7 +247,7 @@ func TestRunHookPrePostReceive(t *testing.T) {
 				app.Commands = []*cli.Command{subcmdHookPreReceive()}
 
 				finish := captureOutput(t, os.Stdout)
-				err = app.Run(t.Context(), []string{"./forgejo", "pre-receive"})
+				err = app.Run(t.Context(), []string{"./novroforge", "pre-receive"})
 				require.NoError(t, err)
 				out := finish()
 				require.Empty(t, out)
@@ -275,7 +275,7 @@ func TestRunHookPrePostReceive(t *testing.T) {
 				app.Commands = []*cli.Command{subcmdHookPostReceive()}
 
 				finish := captureOutput(t, os.Stdout)
-				err = app.Run(t.Context(), []string{"./forgejo", "post-receive"})
+				err = app.Run(t.Context(), []string{"./novroforge", "post-receive"})
 				require.NoError(t, err)
 				out := finish()
 				require.Empty(t, out)

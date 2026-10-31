@@ -112,45 +112,45 @@ func Test_getPostgreSQLConnectionString(t *testing.T) {
 			Host:    "host1,host2,host3",
 			User:    "user",
 			Passwd:  "pass",
-			Name:    "forgejo",
+			Name:    "novroforge",
 			SSLMode: "disable",
-			Output:  "postgres://user:pass@host1:5432,host2:5432,host3:5432/forgejo?sslmode=disable",
+			Output:  "postgres://user:pass@host1:5432,host2:5432,host3:5432/novroforge?sslmode=disable",
 		},
 		{
 			// Multi-host with different ports
 			Host:    "host1:5432,host2:5433",
 			User:    "user",
 			Passwd:  "pass",
-			Name:    "forgejo",
+			Name:    "novroforge",
 			SSLMode: "require",
-			Output:  "postgres://user:pass@host1:5432,host2:5433/forgejo?sslmode=require",
+			Output:  "postgres://user:pass@host1:5432,host2:5433/novroforge?sslmode=require",
 		},
 		{
 			// Multi-host IPv6
 			Host:    "[::1]:1234,[::2]:2345",
 			User:    "user",
 			Passwd:  "pass",
-			Name:    "forgejo",
+			Name:    "novroforge",
 			SSLMode: "disable",
-			Output:  "postgres://user:pass@[::1]:1234,[::2]:2345/forgejo?sslmode=disable",
+			Output:  "postgres://user:pass@[::1]:1234,[::2]:2345/novroforge?sslmode=disable",
 		},
 		{
 			// Multi-host with spaces (should be trimmed)
 			Host:    "host1:5432 , host2:5433 , host3",
 			User:    "user",
 			Passwd:  "pass",
-			Name:    "forgejo",
+			Name:    "novroforge",
 			SSLMode: "verify-full",
-			Output:  "postgres://user:pass@host1:5432,host2:5433,host3:5432/forgejo?sslmode=verify-full",
+			Output:  "postgres://user:pass@host1:5432,host2:5433,host3:5432/novroforge?sslmode=verify-full",
 		},
 		{
 			// Multi-host with database parameters
 			Host:    "host1,host2",
 			User:    "user",
 			Passwd:  "pass",
-			Name:    "forgejo?connect_timeout=10",
+			Name:    "novroforge?connect_timeout=10",
 			SSLMode: "disable",
-			Output:  "postgres://user:pass@host1:5432,host2:5432/forgejo?connect_timeout=10&sslmode=disable",
+			Output:  "postgres://user:pass@host1:5432,host2:5432/novroforge?connect_timeout=10&sslmode=disable",
 		},
 	}
 

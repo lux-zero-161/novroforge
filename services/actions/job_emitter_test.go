@@ -15,8 +15,8 @@ import (
 	"novroforge.xyz/modules/test"
 	notify_service "novroforge.xyz/services/notify"
 
-	"code.forgejo.org/forgejo/runner/v13/act/jobparser"
-	"code.forgejo.org/forgejo/runner/v13/act/model"
+	"code.novroforge.xyz/novroforge/runner/v13/act/jobparser"
+	"code.novroforge.xyz/novroforge/runner/v13/act/model"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
@@ -156,7 +156,7 @@ on: push
 jobs:
   job2:
     if: false
-    uses: ./.forgejo/workflows/reusable.yml
+    uses: ./.novroforge/workflows/reusable.yml
 __metadata:
   workflow_call_id: b5a9f46f1f2513d7777fde50b169d323a6519e349cc175484c947ac315a209ed
 `,
@@ -178,7 +178,7 @@ on: push
 jobs:
   job2:
     if: false
-    uses: ./.forgejo/workflows/reusable.yml
+    uses: ./.novroforge/workflows/reusable.yml
 __metadata:
   workflow_call_id: b5a9f46f1f2513d7777fde50b169d323a6519e349cc175484c947ac315a209ed
 `,
@@ -200,7 +200,7 @@ on: push
 jobs:
   job2:
     if: false
-    uses: ./.forgejo/workflows/reusable.yml
+    uses: ./.novroforge/workflows/reusable.yml
 __metadata:
   workflow_call_id: b5a9f46f1f2513d7777fde50b169d323a6519e349cc175484c947ac315a209ed
 `,
@@ -221,7 +221,7 @@ on: push
 jobs:
   job2:
     if: false
-    uses: ./.forgejo/workflows/reusable.yml
+    uses: ./.novroforge/workflows/reusable.yml
     with:
       something: ${{ needs.job0.outputs.something }}
 incomplete_with: true
@@ -248,7 +248,7 @@ on: push
 jobs:
   job2:
     if: false
-    uses: ./.forgejo/workflows/reusable.yml
+    uses: ./.novroforge/workflows/reusable.yml
     strategy:
       matrix: ${{ fromJSON(needs.job0.outputs.something) }}
 incomplete_matrix: true
@@ -276,7 +276,7 @@ on: push
 jobs:
   job2:
     if: false
-    uses: ./.forgejo/workflows/reusable.yml
+    uses: ./.novroforge/workflows/reusable.yml
 __metadata:
   workflow_call_id: b5a9f46f1f2513d7777fde50b169d323a6519e349cc175484c947ac315a209ed
 `,
@@ -298,7 +298,7 @@ on: push
 jobs:
   job2:
     if: false
-    uses: ./.forgejo/workflows/reusable.yml
+    uses: ./.novroforge/workflows/reusable.yml
 __metadata:
   workflow_call_id: b5a9f46f1f2513d7777fde50b169d323a6519e349cc175484c947ac315a209ed
 `,
@@ -370,7 +370,7 @@ jobs:
     steps:
       - id: define
         run: |
-          echo 'scalar=scalar value' >> "$FORGEJO_OUTPUT"
+          echo 'scalar=scalar value' >> "$novroforge_OUTPUT"
   scalar-job:
     name: "inner incomplete-job ${{ inputs.workflow_input }}"
     runs-on: ${{ needs.define-runs-on.outputs.scalar-value }}
@@ -567,7 +567,7 @@ func Test_prepareJobForEmitting(t *testing.T) {
 			name:                     "workflow call remote reference unavailable",
 			runJobID:                 629,
 			preExecutionError:        actions_model.ErrorCodeJobParsingError,
-			preExecutionErrorDetails: []any{"unable to read instance workflow \"some-repo/some-org/.forgejo/workflows/reusable.yml@non-existent-reference\": someone deleted that reference maybe"},
+			preExecutionErrorDetails: []any{"unable to read instance workflow \"some-repo/some-org/.novroforge/workflows/reusable.yml@non-existent-reference\": someone deleted that reference maybe"},
 		},
 		{
 			name:     "workflow call with needs expansion",
@@ -661,7 +661,7 @@ func Test_prepareJobForEmitting(t *testing.T) {
 			localReusableWorkflowCallArgs: &localReusableWorkflowCallArgs{
 				repoID:    63,
 				commitSHA: "97f29ee599c373c729132a5c46a046978311e0ee",
-				path:      "./.forgejo/workflows/reusable.yml",
+				path:      "./.novroforge/workflows/reusable.yml",
 			},
 		},
 		{
@@ -857,7 +857,7 @@ func Test_tryHandleWorkflowCallOuterJob(t *testing.T) {
 			outputs: map[string]string{
 				"from_inner_job":        "abcdefghijklmnopqrstuvwxyz",
 				"from_inner_job_result": "success",
-				"from_forgejo_ctx":      "refs/heads/main",
+				"from_novroforge_ctx":      "refs/heads/main",
 				"from_input_ctx":        "hello, world!",
 				"from_vars_repo":        "this is a repo variable",
 				"from_vars_org":         "this is an org variable",
@@ -872,7 +872,7 @@ func Test_tryHandleWorkflowCallOuterJob(t *testing.T) {
 			outputs: map[string]string{
 				"from_inner_job":        "abcdefghijklmnopqrstuvwxyz",
 				"from_inner_job_result": "success",
-				"from_forgejo_ctx":      "refs/heads/main",
+				"from_novroforge_ctx":      "refs/heads/main",
 				"from_input_ctx":        "hello, world!",
 				"from_vars_repo":        "this is a repo variable",
 				"from_vars_org":         "this is an org variable",

@@ -27,7 +27,7 @@ func GetVersion(ctx context.Context) (*version.Version, error) {
 func GetVersionWithEngine(e db.Engine) (*version.Version, error) {
 	versionString := DefaultVersionString
 
-	exists, err := e.IsTableExist("forgejo_sem_ver")
+	exists, err := e.IsTableExist("novroforge_sem_ver")
 	if err != nil {
 		return nil, err
 	}
@@ -72,9 +72,9 @@ func SetVersionWithEngine(e db.Engine, v *version.Version) error {
 	}
 
 	if !has {
-		_, err = e.Exec("insert into forgejo_sem_ver values (?)", v.String())
+		_, err = e.Exec("insert into novroforge_sem_ver values (?)", v.String())
 	} else if semver.Version != v.String() {
-		_, err = e.Exec("update forgejo_sem_ver set version = ?", v.String())
+		_, err = e.Exec("update novroforge_sem_ver set version = ?", v.String())
 	}
 	return err
 }

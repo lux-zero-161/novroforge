@@ -33,7 +33,7 @@ func getClientIP() string {
 }
 
 func newInternalRequest(ctx context.Context, url, method string, body ...any) *httplib.Request {
-	url = fmt.Sprintf("http://forgejo-internal/%s", strings.TrimPrefix(url, "/"))
+	url = fmt.Sprintf("http://novroforge-internal/%s", strings.TrimPrefix(url, "/"))
 	req := httplib.NewRequest(url, method).
 		SetContext(ctx).
 		Header("X-Real-IP", getClientIP())

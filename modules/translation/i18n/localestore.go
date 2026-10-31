@@ -76,7 +76,7 @@ func (store *localeStore) AddLocaleByIni(langName, langDesc string, pluralRule P
 	for _, section := range iniFile.Sections() {
 		for _, key := range section.Keys() {
 			var trKey string
-			// see https://codeberg.org/forgejo/discussions/issues/104
+			// see https://codeberg.org/novroforge/discussions/issues/104
 			//     https://github.com/WeblateOrg/weblate/issues/10831
 			// for an explanation of why "common" is an alternative
 			if section.Name() == "" || section.Name() == "DEFAULT" || section.Name() == "common" {

@@ -42,16 +42,16 @@ func init() {
 	setting.AppStartTime = time.Now().UTC()
 }
 
-func forgejoEnv() {
+func novroforgergeEnv() {
 	for _, k := range []string{"CUSTOM", "WORK_DIR"} {
-		if v, ok := os.LookupEnv("FORGEJO_" + k); ok {
+		if v, ok := os.LookupEnv("novroforgerge_" + k); ok {
 			os.Setenv("GITEA_"+k, v)
 		}
 	}
 }
 
 func main() {
-	forgejoEnv()
+	novroforgeEnv()
 	cli.OsExiter = func(code int) {
 		log.GetManager().Close()
 		os.Exit(code)

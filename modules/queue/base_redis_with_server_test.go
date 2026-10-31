@@ -29,7 +29,7 @@ func (suite *baseRedisWithServerTestSuite) TestNormal() {
 }
 
 func (suite *baseRedisWithServerTestSuite) TestWithPrefix() {
-	redisAddress := "redis://" + suite.testRedisHost() + "/0?prefix=forgejo:queue:"
+	redisAddress := "redis://" + suite.testRedisHost() + "/0?prefix=novroforge:queue:"
 	queueSettings := setting.QueueSettings{
 		Length:  10,
 		ConnStr: redisAddress,

@@ -31,7 +31,7 @@ import (
 	"novroforge.xyz/tests"
 	"novroforge.xyz/tests/forgery"
 
-	runnerv1 "code.forgejo.org/forgejo/actions-proto/runner/v1"
+	runnerv1 "code.novroforge.xyz/novroforge/actions-proto/runner/v1"
 	"connectrpc.com/connect"
 	gouuid "github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
@@ -482,21 +482,21 @@ jobs:
 				assert.Equal(t, actionRun.WorkflowID, gtCtx["workflow"].GetStringValue())
 				assert.Contains(t, gtCtx["workflow_ref"].GetStringValue(), fmt.Sprintf("user2/actions-gitea-context/%s@refs/pull", tc.treePath))
 				assert.Equal(t, setting.Actions.DefaultActionsURL.URL(), gtCtx["gitea_default_actions_url"].GetStringValue())
-				assert.Equal(t, setting.Actions.DefaultActionsURL.URL(), gtCtx["forgejo_default_actions_url"].GetStringValue())
-				assert.Equal(t, setting.AppVer, gtCtx["forgejo_server_version"].GetStringValue())
+				assert.Equal(t, setting.Actions.DefaultActionsURL.URL(), gtCtx["novroforge_default_actions_url"].GetStringValue())
+				assert.Equal(t, setting.AppVer, gtCtx["novroforge_server_version"].GetStringValue())
 				token := gtCtx["token"].GetStringValue()
 				assert.Equal(t, actionTask.TokenLastEight, token[len(token)-8:])
 				assert.NotEmpty(t, gtCtx["gitea_runtime_token"].GetStringValue())
-				assert.NotEmpty(t, gtCtx["forgejo_runtime_token"].GetStringValue())
+				assert.NotEmpty(t, gtCtx["novroforge_runtime_token"].GetStringValue())
 				if tc.enableOpenIDConnect {
-					assert.NotEmpty(t, gtCtx["forgejo_actions_id_token_request_token"].GetStringValue())
+					assert.NotEmpty(t, gtCtx["novroforge_actions_id_token_request_token"].GetStringValue())
 					assert.Equal(t,
 						fmt.Sprintf("%sapi/actions/_apis/pipelines/workflows/%d/idtoken?placeholder=true",
-							setting.AppURL, actionRunJob.RunID), gtCtx["forgejo_actions_id_token_request_url"].GetStringValue(),
+							setting.AppURL, actionRunJob.RunID), gtCtx["novroforge_actions_id_token_request_url"].GetStringValue(),
 					)
 				} else {
-					assert.Empty(t, gtCtx["forgejo_actions_id_token_request_token"].GetStringValue())
-					assert.Empty(t, gtCtx["forgejo_actions_id_token_request_url"].GetStringValue())
+					assert.Empty(t, gtCtx["novroforge_actions_id_token_request_token"].GetStringValue())
+					assert.Empty(t, gtCtx["novroforge_actions_id_token_request_url"].GetStringValue())
 				}
 			})
 		}
@@ -854,13 +854,13 @@ func TestActionsRunsEvaluateIf(t *testing.T) {
 				"NewWorkflowRunAttempt",
 				mock.MatchedBy(func(ctx context.Context) bool { return ctx != nil }),
 				mock.MatchedBy(func(run *actions_model.ActionRun) bool {
-					return run.Title == ".forgejo/workflows/serverside_if.yml" &&
+					return run.Title == ".novroforge/workflows/serverside_if.yml" &&
 						run.Status == actions_model.StatusWaiting
 				}))
 			notifier.AssertCalled(t, "WorkflowRunCompleted",
 				mock.MatchedBy(func(ctx context.Context) bool { return ctx != nil }),
 				mock.MatchedBy(func(run *actions_model.ActionRun) bool {
-					return run.Title == ".forgejo/workflows/serverside_if.yml" &&
+					return run.Title == ".novroforge/workflows/serverside_if.yml" &&
 						run.Status == actions_model.StatusSkipped
 				}),
 				actions_model.StatusWaiting,
@@ -1136,7 +1136,7 @@ func TestActionsRunsEvaluateIf(t *testing.T) {
 			assert.Equal(t, actions_model.StatusSuccess.String(), run.Status.String())
 		})
 
-		t.Run("access forgejo context during workflow_dispatch evaluation", func(t *testing.T) {
+		t.Run("access novroforge context during workflow_dispatch evaluation", func(t *testing.T) {
 			defer tests.PrintCurrentTest(t)()
 
 			arif := newActionsRunIfTester(t)
@@ -1156,7 +1156,7 @@ func TestActionsRunsEvaluateIf(t *testing.T) {
 			assert.Equal(t, actions_model.StatusSuccess.String(), run.Status.String())
 		})
 
-		t.Run("access forgejo context during scheduled evaluation", func(t *testing.T) {
+		t.Run("access novroforge context during scheduled evaluation", func(t *testing.T) {
 			defer tests.PrintCurrentTest(t)()
 
 			arif := newActionsRunIfTester(t)
@@ -1176,7 +1176,7 @@ func TestActionsRunsEvaluateIf(t *testing.T) {
 			assert.Equal(t, actions_model.StatusSuccess.String(), run.Status.String())
 		})
 
-		t.Run("access forgejo context during event evaluation", func(t *testing.T) {
+		t.Run("access novroforge context during event evaluation", func(t *testing.T) {
 			defer tests.PrintCurrentTest(t)()
 
 			arif := newActionsRunIfTester(t)
@@ -1316,7 +1316,7 @@ func newActionsRunIfTester(t *testing.T) *ActionsRunIfTester {
 	MakeRequest(t,
 		NewRequestWithJSON(t, "POST",
 			fmt.Sprintf("/api/v1/repos/%s/%s/actions/variables/ROLE", user2.Name, testRepository.Name),
-			api.CreateVariableOption{Value: "forgejo-coding"}).AddTokenAuth(token),
+			api.CreateVariableOption{Value: "novroforge-coding"}).AddTokenAuth(token),
 		http.StatusNoContent)
 
 	runner := newMockRunner()
@@ -1338,7 +1338,7 @@ func (tester *ActionsRunIfTester) addWorkflowFile(filename, workflow string) *ap
 }
 
 func (tester *ActionsRunIfTester) dispatch(workflow string) *api.DispatchWorkflowRun {
-	workflowPath := ".forgejo/workflows/serverside_if.yml"
+	workflowPath := ".novroforge/workflows/serverside_if.yml"
 	tester.addWorkflowFile(workflowPath, workflow)
 
 	dispatchRequest := NewRequestWithJSON(tester.t, "POST",
@@ -1358,13 +1358,13 @@ func (tester *ActionsRunIfTester) dispatch(workflow string) *api.DispatchWorkflo
 }
 
 func (tester *ActionsRunIfTester) pushEvent(workflow string) *actions_model.ActionRun {
-	workflowPath := ".forgejo/workflows/serverside_if.yml"
+	workflowPath := ".novroforge/workflows/serverside_if.yml"
 	resp := tester.addWorkflowFile(workflowPath, workflow)
 	return unittest.AssertExistsAndLoadBean(tester.t, &actions_model.ActionRun{CommitSHA: resp.Commit.SHA})
 }
 
 func (tester *ActionsRunIfTester) forceSchedule(workflow string) *actions_model.ActionRun {
-	workflowPath := ".forgejo/workflows/serverside_if.yml"
+	workflowPath := ".novroforge/workflows/serverside_if.yml"
 	resp := tester.addWorkflowFile(workflowPath, workflow)
 	payload := &api.SchedulePayload{
 		Action: api.HookScheduleCreated,
@@ -1376,7 +1376,7 @@ func (tester *ActionsRunIfTester) forceSchedule(workflow string) *actions_model.
 			RepoID:            tester.apiRepo.ID,
 			OwnerID:           tester.user.ID,
 			WorkflowID:        "serverside_if.yml",
-			WorkflowDirectory: ".forgejo/workflows",
+			WorkflowDirectory: ".novroforge/workflows",
 			TriggerUserID:     tester.user.ID,
 			Ref:               "refs/heads/main",
 			CommitSHA:         resp.Commit.SHA,
@@ -1541,7 +1541,7 @@ jobs:
 }
 
 func (tester *ActionsRunIfTester) dispatchNovroForgeTesting() *api.DispatchWorkflowRun {
-	// Trimmed down copy of `.forgejo/workflows/testing.yml` to create a more complex & realistic `needs` tree with `if`
+	// Trimmed down copy of `.novroforge/workflows/testing.yml` to create a more complex & realistic `needs` tree with `if`
 	// conditions on every job:
 	return tester.dispatch(`
 name: testing
@@ -1550,35 +1550,35 @@ on:
   workflow_dispatch:
 jobs:
   backend-checks:
-    if: vars.ROLE == 'forgejo-coding' || vars.ROLE == 'forgejo-testing'
+    if: vars.ROLE == 'novroforge-coding' || vars.ROLE == 'novroforge-testing'
     runs-on: ubuntu
     steps:
       - run: echo "backend-checks job"
   frontend-checks:
-    if: vars.ROLE == 'forgejo-coding' || vars.ROLE == 'forgejo-testing'
+    if: vars.ROLE == 'novroforge-coding' || vars.ROLE == 'novroforge-testing'
     runs-on: ubuntu
     steps:
       - run: echo "frontend-checks job"
   test-unit:
-    if: vars.ROLE == 'forgejo-coding' || vars.ROLE == 'forgejo-testing'
+    if: vars.ROLE == 'novroforge-coding' || vars.ROLE == 'novroforge-testing'
     runs-on: ubuntu
     needs: [backend-checks, frontend-checks]
     steps:
       - run: echo "test-unit job"
   test-pgsql:
-    if: vars.ROLE == 'forgejo-coding' || vars.ROLE == 'forgejo-testing'
+    if: vars.ROLE == 'novroforge-coding' || vars.ROLE == 'novroforge-testing'
     runs-on: ubuntu
     needs: [backend-checks, frontend-checks]
     steps:
       - run: echo "test-pgsql job"
   test-sqlite:
-    if: vars.ROLE == 'forgejo-coding' || vars.ROLE == 'forgejo-testing'
+    if: vars.ROLE == 'novroforge-coding' || vars.ROLE == 'novroforge-testing'
     runs-on: ubuntu
     needs: [backend-checks, frontend-checks]
     steps:
       - run: echo "test-sqlite job"
   security-check:
-    if: vars.ROLE == 'forgejo-coding' || vars.ROLE == 'forgejo-testing'
+    if: vars.ROLE == 'novroforge-coding' || vars.ROLE == 'novroforge-testing'
     runs-on: ubuntu
     needs:
       - test-sqlite
@@ -1586,7 +1586,7 @@ jobs:
     steps:
       - run: echo "security-check job"
   semgrep:
-    if: vars.ROLE == 'forgejo-coding' || vars.ROLE == 'forgejo-testing'
+    if: vars.ROLE == 'novroforge-coding' || vars.ROLE == 'novroforge-testing'
     runs-on: ubuntu
     steps:
       - run: echo "semgrep job"
@@ -1621,13 +1621,13 @@ on:
   workflow_dispatch:
 jobs:
   test-1:
-    if: ${{ forgejo.event_name == 'workflow_dispatch' }}
+    if: ${{ novroforge.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu
     steps:
       - run: echo "Job contents go here."
   test-2:
     needs: [test-1]
-    if: ${{ forgejo.event_name == 'workflow_dispatch' }}
+    if: ${{ novroforge.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu
     steps:
       - run: echo "Job contents go here."
@@ -1640,13 +1640,13 @@ on:
   push:
 jobs:
   test-1:
-    if: ${{ forgejo.event_name == 'push' }}
+    if: ${{ novroforge.event_name == 'push' }}
     runs-on: ubuntu
     steps:
       - run: echo "Job contents go here."
   test-2:
     needs: [test-1]
-    if: ${{ forgejo.event_name == 'push' }}
+    if: ${{ novroforge.event_name == 'push' }}
     runs-on: ubuntu
     steps:
       - run: echo "Job contents go here."
@@ -1659,13 +1659,13 @@ on:
   schedule:
 jobs:
   test-1:
-    if: ${{ forgejo.repository_owner == 'user2' }}
+    if: ${{ novroforge.repository_owner == 'user2' }}
     runs-on: ubuntu
     steps:
       - run: echo "Job contents go here."
   test-2:
     needs: [test-1]
-    if: ${{ forgejo.repository_owner == 'user2' }}
+    if: ${{ novroforge.repository_owner == 'user2' }}
     runs-on: ubuntu
     steps:
       - run: echo "Job contents go here."
@@ -1739,7 +1739,7 @@ jobs:
 }
 
 func (tester *ActionsRunIfTester) dispatchIncompleteWith() *api.DispatchWorkflowRun {
-	tester.addWorkflowFile(".forgejo/workflows/reusable.yml", `
+	tester.addWorkflowFile(".novroforge/workflows/reusable.yml", `
 on:
   workflow_call:
     inputs:
@@ -1763,7 +1763,7 @@ jobs:
       - run: echo "Job contents go here."
   test-2:
     needs: [test-1]
-    uses: ./.forgejo/workflows/reusable.yml
+    uses: ./.novroforge/workflows/reusable.yml
     with:
       my_input: ${{ needs.test-1.outputs.output-not-existing }}
 `)
@@ -1815,7 +1815,7 @@ jobs:
     strategy:
       matrix:
         dimension: [value1, value2]
-    uses: ./.forgejo/workflows/reusable.yml
+    uses: ./.novroforge/workflows/reusable.yml
     with:
       test-dimension: ${{ matrix.dimension }}
   entry-follow-up:
@@ -1847,8 +1847,8 @@ jobs:
 		user2 := unittest.AssertExistsAndLoadBean(t, &user_model.User{ID: 2})
 		repo := forgery.CreateRepository(t, user2, &forgery.CreateRepositoryOptions{
 			Files: forgery.MapFS{
-				".forgejo/workflows/entry.yml":    forgery.MapFile(entry),
-				".forgejo/workflows/reusable.yml": forgery.MapFile(reusable),
+				".novroforge/workflows/entry.yml":    forgery.MapFile(entry),
+				".novroforge/workflows/reusable.yml": forgery.MapFile(reusable),
 			},
 		})
 		forgery.EnableRepoUnit(t, repo, unit_model.TypeActions, nil)

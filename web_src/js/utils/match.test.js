@@ -44,7 +44,7 @@ test('matchEmoji', () => {
   ]);
 
   expect(matchEmoji('forge')).toEqual([
-    'forgejo',
+    'novroforge',
   ]);
 
   expect(matchEmoji('frog')).toEqual([

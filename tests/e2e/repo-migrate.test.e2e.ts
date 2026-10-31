@@ -16,7 +16,7 @@ test('Migration type selection screen', async ({page}) => {
   await expect(page.locator('svg.gitea-git')).toBeVisible();
   await expect(page.locator('svg.octicon-mark-github')).toBeVisible();
   await expect(page.locator('svg.gitea-gitlab')).toBeVisible();
-  await expect(page.locator('svg.gitea-forgejo')).toBeVisible();
+  await expect(page.locator('svg.gitea-novroforge')).toBeVisible();
   await expect(page.locator('svg.gitea-gitea')).toBeVisible();
   await expect(page.locator('svg.gitea-gogs')).toBeVisible();
   await expect(page.locator('svg.gitea-onedev')).toBeVisible();
@@ -60,7 +60,7 @@ test('Migration Progress Page', async ({page, browser}) => {
 
   const form = page.locator('form');
   await form.getByRole('textbox', {name: 'Repository Name'}).fill(repoName);
-  await form.getByRole('textbox', {name: 'Migrate / Clone from URL'}).fill(`https://codeberg.org/forgejo/${repoName}`);
+  await form.getByRole('textbox', {name: 'Migrate / Clone from URL'}).fill(`https://codeberg.org/novroforge/${repoName}`);
   await screenshot(page);
   await form.locator('button.primary').click({timeout: 5000});
   await expect(page).toHaveURL(`user2/${repoName}`);

@@ -34,7 +34,7 @@ func TestGithubDownloaderFilterComments(t *testing.T) {
 	server := unittest.NewMockWebServer(t, "https://api.github.com", fixturePath, false)
 	defer server.Close()
 
-	downloader := NewGithubDownloaderV3(t.Context(), server.URL, true, true, "", "", token, "forgejo", "test_repo")
+	downloader := NewGithubDownloaderV3(t.Context(), server.URL, true, true, "", "", token, "novroforge", "test_repo")
 	err := downloader.RefreshRate()
 	require.NoError(t, err)
 
@@ -47,9 +47,9 @@ func TestGithubDownloaderFilterComments(t *testing.T) {
 	iCreated.Time = time.Date(2025, 1, 1, 12, 0, 0, 0, time.UTC)
 	iUpdated.Time = time.Date(2025, 1, 1, 12, 1, 0, 0, time.UTC)
 	iAssociation := "COLLABORATOR"
-	iURL := "https://api.github.com/repos/forgejo/test_repo/issues/comments/3164032267"
-	iHTMLURL := "https://github.com/forgejo/test_repo/issues/1#issuecomment-3164032267"
-	iIssueURL := "https://api.github.com/repos/forgejo/test_repo/issues/1"
+	iURL := "https://api.github.com/repos/novroforge/test_repo/issues/comments/3164032267"
+	iHTMLURL := "https://github.com/novroforge/test_repo/issues/1#issuecomment-3164032267"
+	iIssueURL := "https://api.github.com/repos/novroforge/test_repo/issues/1"
 
 	githubComments = append(
 		githubComments,
@@ -75,9 +75,9 @@ func TestGithubDownloaderFilterComments(t *testing.T) {
 	pCreated.Time = time.Date(2025, 1, 1, 11, 0, 0, 0, time.UTC)
 	pUpdated.Time = time.Date(2025, 1, 1, 11, 1, 0, 0, time.UTC)
 	pAssociation := "COLLABORATOR"
-	pURL := "https://api.github.com/repos/forgejo/test_repo/issues/comments/3164118916"
-	pHTMLURL := "https://github.com/forgejo/test_repo/pull/3#issuecomment-3164118916"
-	pIssueURL := "https://api.github.com/repos/forgejo/test_repo/issues/3"
+	pURL := "https://api.github.com/repos/novroforge/test_repo/issues/comments/3164118916"
+	pHTMLURL := "https://github.com/novroforge/test_repo/pull/3#issuecomment-3164118916"
+	pIssueURL := "https://api.github.com/repos/novroforge/test_repo/issues/3"
 
 	githubComments = append(githubComments, &github.IssueComment{
 		ID:                &prID,
@@ -143,7 +143,7 @@ func TestGitHubDownloadRepo(t *testing.T) {
 
 	server.Config.Handler = ratelimitInjectHandler(server.Config.Handler, urlpattern, 7)
 
-	downloader := NewGithubDownloaderV3(t.Context(), server.URL, true, true, "", "", token, "forgejo", "test_repo")
+	downloader := NewGithubDownloaderV3(t.Context(), server.URL, true, true, "", "", token, "novroforge", "test_repo")
 	err := downloader.RefreshRate()
 	require.NoError(t, err)
 
@@ -151,17 +151,17 @@ func TestGitHubDownloadRepo(t *testing.T) {
 	require.NoError(t, err)
 	assertRepositoryEqual(t, &base.Repository{
 		Name:          "test_repo",
-		Owner:         "forgejo",
+		Owner:         "novroforge",
 		Description:   "Exclusively used for testing Github->NovroForge migration",
-		CloneURL:      server.URL + "/forgejo/test_repo.git",
-		OriginalURL:   server.URL + "/forgejo/test_repo",
+		CloneURL:      server.URL + "/novroforge/test_repo.git",
+		OriginalURL:   server.URL + "/novroforge/test_repo",
 		DefaultBranch: "main",
-		Website:       "https://codeberg.org/forgejo/forgejo/",
+		Website:       "https://codeberg.org/novroforge/novroforge/",
 	}, repo)
 
 	topics, err := downloader.GetTopics()
 	require.NoError(t, err)
-	assert.Contains(t, topics, "forgejo")
+	assert.Contains(t, topics, "novroforge")
 
 	milestones, err := downloader.GetMilestones()
 	require.NoError(t, err)
@@ -363,16 +363,16 @@ func TestGitHubDownloadRepo(t *testing.T) {
 			},
 			Head: base.PullRequestBranch{
 				Ref:      "some-feature",
-				CloneURL: server.URL + "/forgejo/test_repo.git",
+				CloneURL: server.URL + "/novroforge/test_repo.git",
 				SHA:      "c608ab3997349219e1510cdb5ddd1e5e82897dfa",
 				RepoName: "test_repo",
 
-				OwnerName: "forgejo",
+				OwnerName: "novroforge",
 			},
 			Base: base.PullRequestBranch{
 				Ref:       "main",
 				SHA:       "442d28a55b842472c95bead51a4c61f209ac1636",
-				OwnerName: "forgejo",
+				OwnerName: "novroforge",
 				RepoName:  "test_repo",
 			},
 			ForeignIndex: 3,
@@ -400,13 +400,13 @@ func TestGitHubDownloadRepo(t *testing.T) {
 				Ref:       "another-feature",
 				SHA:       "5638cb8f3278e467fc1eefcac14d3c0d5d91601f",
 				RepoName:  "test_repo",
-				OwnerName: "forgejo",
-				CloneURL:  server.URL + "/forgejo/test_repo.git",
+				OwnerName: "novroforge",
+				CloneURL:  server.URL + "/novroforge/test_repo.git",
 			},
 			Base: base.PullRequestBranch{
 				Ref:       "main",
 				SHA:       "6dd0c6801ddbb7333787e73e99581279492ff449",
-				OwnerName: "forgejo",
+				OwnerName: "novroforge",
 				RepoName:  "test_repo",
 			},
 			Merged:         true,
@@ -557,17 +557,17 @@ func TestGithubAvatarDownload(t *testing.T) {
 	server := unittest.NewMockWebServer(t, "https://api.github.com", fixturePath, liveMode)
 	defer server.Close()
 
-	downloader := NewGithubDownloaderV3(t.Context(), server.URL, true, true, "", "", token, "forgejo", "forgejo-12921")
+	downloader := NewGithubDownloaderV3(t.Context(), server.URL, true, true, "", "", token, "novroforge", "novroforge-12921")
 
 	repo, err := downloader.GetRepoInfo()
 	require.NoError(t, err)
 
 	assertRepositoryEqual(t, &base.Repository{
-		Name:          "forgejo-12921",
-		Owner:         "forgejo",
-		Description:   "A simple repo that is used for testing forgejo avatar migrations",
-		CloneURL:      server.URL + "/forgejo/forgejo-12921.git",
-		OriginalURL:   server.URL + "/forgejo/forgejo-12921",
+		Name:          "novroforge-12921",
+		Owner:         "novroforge",
+		Description:   "A simple repo that is used for testing novroforge avatar migrations",
+		CloneURL:      server.URL + "/novroforge/novroforge-12921.git",
+		OriginalURL:   server.URL + "/novroforge/novroforge-12921",
 		DefaultBranch: "main",
 		AvatarURL:     "",
 	}, repo)

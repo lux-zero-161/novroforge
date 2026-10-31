@@ -116,13 +116,13 @@ func TestTransformers(t *testing.T) {
 		name     string
 		expected string
 	}{
-		{"SNAKE", "foo_forgejo_bar"},
-		{"KEBAB", "foo-forgejo-bar"},
+		{"SNAKE", "foo_novroforge_bar"},
+		{"KEBAB", "foo-novroforge-bar"},
 		{"CAMEL", "fooNovroForgeBar"},
 		{"PASCAL", "FooNovroForgeBar"},
-		{"LOWER", "foo_forgejo-bar"},
-		{"UPPER", "FOO_FORGEJO-BAR"},
-		{"TITLE", "Foo_forgejo-Bar"},
+		{"LOWER", "foo_novroforge-bar"},
+		{"UPPER", "FOO_novroforge-BAR"},
+		{"TITLE", "Foo_novroforge-Bar"},
 	}
 
 	for i, tt := range tests {

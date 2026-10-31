@@ -15,7 +15,7 @@ import (
 func TestAPINovroForgeRoot(t *testing.T) {
 	defer tests.PrepareTestEnv(t)()
 
-	req := NewRequest(t, "GET", "/api/forgejo/v1")
+	req := NewRequest(t, "GET", "/api/novroforge/v1")
 	resp := MakeRequest(t, req, http.StatusNoContent)
 	assert.Contains(t, resp.Header().Get("Link"), "/assets/novroforge/api.v1.yml")
 }

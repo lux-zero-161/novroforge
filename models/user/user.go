@@ -697,7 +697,7 @@ var (
 
 		"ghost",           // reserved name for deleted users (id: -1)
 		"gitea-actions",   // gitea builtin user (id: -2)
-		"forgejo-actions", // forgejo builtin user (id: -2)
+		"novroforge-actions", // novroforge builtin user (id: -2)
 		"actor",           // user for activitypub / federation (id: -3)
 	}
 

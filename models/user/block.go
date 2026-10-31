@@ -27,7 +27,7 @@ type BlockedUser struct {
 
 // TableName provides the real table name
 func (*BlockedUser) TableName() string {
-	return "forgejo_blocked_user"
+	return "novroforge_blocked_user"
 }
 
 func init() {
@@ -62,9 +62,9 @@ func CountBlockedUsers(ctx context.Context, userID int64) (int64, error) {
 // field of blockeduser.
 func ListBlockedUsers(ctx context.Context, userID int64, opts db.ListOptions) ([]*User, error) {
 	sess := db.GetEngine(ctx).
-		Select("`forgejo_blocked_user`.created_unix, `user`.*").
-		Join("INNER", "forgejo_blocked_user", "`user`.id=`forgejo_blocked_user`.block_id").
-		Where("`forgejo_blocked_user`.user_id=?", userID)
+		Select("`novroforge_blocked_user`.created_unix, `user`.*").
+		Join("INNER", "novroforge_blocked_user", "`user`.id=`novroforge_blocked_user`.block_id").
+		Where("`novroforge_blocked_user`.user_id=?", userID)
 
 	if opts.Page > 0 {
 		sess = db.SetSessionPagination(sess, &opts)
@@ -83,8 +83,8 @@ func ListBlockedByUsersID(ctx context.Context, userID int64) ([]int64, error) {
 	err := db.GetEngine(ctx).
 		Table("user").
 		Select("`user`.id").
-		Join("INNER", "forgejo_blocked_user", "`user`.id=`forgejo_blocked_user`.user_id").
-		Where("`forgejo_blocked_user`.block_id=?", userID).
+		Join("INNER", "novroforge_blocked_user", "`user`.id=`novroforge_blocked_user`.user_id").
+		Where("`novroforge_blocked_user`.block_id=?", userID).
 		Find(&users)
 
 	return users, err

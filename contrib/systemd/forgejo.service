@@ -25,21 +25,21 @@ After=network.target
 # If using socket activation for main http/s
 ###
 #
-#After=forgejo.main.socket
-#Requires=forgejo.main.socket
+#After=novroforge.main.socket
+#Requires=novroforge.main.socket
 #
 ###
-# (You can also provide forgejo an http fallback and/or ssh socket too)
+# (You can also provide novroforge an http fallback and/or ssh socket too)
 #
-# An example of /etc/systemd/system/forgejo.main.socket
+# An example of /etc/systemd/system/novroforge.main.socket
 ###
 ##
 ## [Unit]
 ## Description=NovroForge Web Socket
-## PartOf=forgejo.service
+## PartOf=novroforge.service
 ##
 ## [Socket]
-## Service=forgejo.service
+## Service=novroforge.service
 ## ListenStream=<some_port>
 ## NoDelay=true
 ##
@@ -55,11 +55,11 @@ RestartSec=2s
 Type=notify
 User=git
 Group=git
-WorkingDirectory=/var/lib/forgejo/
-RuntimeDirectory=forgejo
-ExecStart=/usr/local/bin/forgejo web --config /etc/forgejo/app.ini
+WorkingDirectory=/var/lib/novroforge/
+RuntimeDirectory=novroforge
+ExecStart=/usr/local/bin/novroforge web --config /etc/novroforge/app.ini
 Restart=always
-Environment=USER=git HOME=/home/git FORGEJO_WORK_DIR=/var/lib/forgejo
+Environment=USER=git HOME=/home/git novroforge_WORK_DIR=/var/lib/novroforge
 # If you install Git to directory prefix other than default PATH (which happens
 # for example if you install other versions of Git side-to-side with
 # distribution version), uncomment below line and add that prefix to PATH

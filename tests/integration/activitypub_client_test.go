@@ -40,7 +40,7 @@ func TestActivityPubClientBodySize(t *testing.T) {
 		t.Run("NormalMaxSize", func(t *testing.T) {
 			resp, err := apClient.GetBody(url)
 			require.NoError(t, err)
-			assert.Contains(t, string(resp), "forgejo")
+			assert.Contains(t, string(resp), "novroforge")
 		})
 
 		// Set MaxSize to something very low to always fail

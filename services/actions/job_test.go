@@ -13,7 +13,7 @@ import (
 	"novroforge.xyz/modules/timeutil"
 	notify_service "novroforge.xyz/services/notify"
 
-	"code.forgejo.org/forgejo/runner/v13/act/jobparser"
+	"code.novroforge.xyz/novroforge/runner/v13/act/jobparser"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
@@ -119,7 +119,7 @@ jobs:
   outer-job:
     with:
       some_input: ${{ needs.other-job.outputs.some-output }}
-    uses: ./.forgejo/workflows/reusable.yml
+    uses: ./.novroforge/workflows/reusable.yml
 `)
 		workflows, err := jobparser.Parse(workflowRaw, false,
 			jobparser.WithJobOutputs(map[string]map[string]string{}),
@@ -160,7 +160,7 @@ func TestConvertSingleWorkflowToJobs_FindOuterWorkflowCall(t *testing.T) {
 	workflowRaw := []byte(`
 jobs:
   outer-job:
-    uses: ./.forgejo/workflows/reusable.yml
+    uses: ./.novroforge/workflows/reusable.yml
 `)
 	workflows, err := jobparser.Parse(workflowRaw, false,
 		jobparser.WithJobOutputs(map[string]map[string]string{}),
@@ -348,7 +348,7 @@ jobs:
         name: test (incomplete matrix)
         runs-on: docker
         steps:
-            - uses: https://code.forgejo.org/actions/setup-node@v4
+            - uses: https://code.novroforge.xyz/actions/setup-node@v4
               with:
                 node-version: ${{ matrix.node }}
         strategy:
@@ -413,7 +413,7 @@ jobs:
         name: test (incomplete matrix)
         runs-on: docker
         steps:
-            - uses: https://code.forgejo.org/actions/setup-node@v4
+            - uses: https://code.novroforge.xyz/actions/setup-node@v4
               with:
                 node-version: ${{ matrix.node }}
         strategy:

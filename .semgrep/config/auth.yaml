@@ -1,5 +1,5 @@
 rules:
-  - id: forgejo-api-use-resource-SearchRepoOptions
+  - id: novroforge-api-use-resource-SearchRepoOptions
     patterns:
       - pattern: |
           repo_model.SearchRepoOptions{...}
@@ -19,7 +19,7 @@ rules:
       include:
         - "/routers/api/**/*.go"
 
-  - id: forgejo-api-use-resource-SearchTeamRepoOptions
+  - id: novroforge-api-use-resource-SearchTeamRepoOptions
     patterns:
       - pattern: |
           organization.SearchTeamRepoOptions{...}
@@ -39,7 +39,7 @@ rules:
       include:
         - "/routers/api/**/*.go"
 
-  - id: forgejo-api-use-resource-GetUserRepoPermission
+  - id: novroforge-api-use-resource-GetUserRepoPermission
     patterns:
       - pattern: |
           $X.GetUserRepoPermission($CTX, $REPO, $DOER)
@@ -56,10 +56,10 @@ rules:
       $X.GetUserRepoPermissionWithReducer($CTX, $REPO, $DOER, $CTX.Reducer)
     severity: ERROR
 
-  - id: forgejo-api-suspicious-GetUserRepoPermission
+  - id: novroforge-api-suspicious-GetUserRepoPermission
     patterns:
       - pattern: $X.GetUserRepoPermission($CTX, $REPO, $DOER)
-      - pattern-not: # don't match if identical to forgejo-api-use-resource-GetUserRepoPermission
+      - pattern-not: # don't match if identical to novroforge-api-use-resource-GetUserRepoPermission
           patterns:
           - pattern: |
               $X.GetUserRepoPermission($CTX, $REPO, $DOER)
@@ -77,7 +77,7 @@ rules:
       include:
         - "/routers/api/**/*.go"
 
-  - id: forgejo-api-direct-IsAdmin-check
+  - id: novroforge-api-direct-IsAdmin-check
     patterns:
       - pattern: |
           ctx.Doer.IsAdmin
@@ -92,7 +92,7 @@ rules:
       include:
         - "/routers/api/**/*.go"
 
-  - id: forgejo-api-direct-repo-Admin-check
+  - id: novroforge-api-direct-repo-Admin-check
     patterns:
       - pattern: |
           ctx.Repo.IsAdmin()

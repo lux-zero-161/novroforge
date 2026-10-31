@@ -1,7 +1,7 @@
 // Copyright 2025 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-package forgejo_migrations
+package novroforge_migrations
 
 import (
 	"testing"
@@ -38,7 +38,7 @@ func Test_addForeignKeysNovroForgeAuthToken(t *testing.T) {
 	var remainingRecords []*NovroForgeAuthToken
 	require.NoError(t,
 		db.GetEngine(t.Context()).
-			Table("forgejo_auth_token").
+			Table("novroforge_auth_token").
 			Select("`id`, `uid`").
 			OrderBy("`id`").
 			Find(&remainingRecords))

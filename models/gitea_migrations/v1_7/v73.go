@@ -4,7 +4,7 @@
 package v1_7
 
 import (
-	"code.forgejo.org/xorm/xorm"
+	"code.novroforge.xyz/xorm/xorm"
 )
 
 func AddMustChangePassword(x *xorm.Engine) error {

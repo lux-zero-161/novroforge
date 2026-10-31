@@ -31,14 +31,14 @@ func TestNovroForgeSemVerMissing(t *testing.T) {
 	ctx := db.DefaultContext
 	e := db.GetEngine(ctx)
 
-	_, err := e.Exec("delete from forgejo_sem_ver")
+	_, err := e.Exec("delete from novroforge_sem_ver")
 	require.NoError(t, err)
 
 	v, err := GetVersion(ctx)
 	require.NoError(t, err)
 	assert.Equal(t, "1.0.0", v.String())
 
-	_, err = e.Exec("drop table forgejo_sem_ver")
+	_, err = e.Exec("drop table novroforge_sem_ver")
 	require.NoError(t, err)
 
 	v, err = GetVersion(ctx)

@@ -513,23 +513,23 @@ func (g *GiteaDownloader) getIssueComments(foreignIndex int64, page int) ([]*git
 
 // GetComments returns comments according issueNumber
 func (g *GiteaDownloader) GetComments(commentable base.Commentable) ([]*base.Comment, bool, error) {
-	forgejoComments := make([]*base.Comment, 0, g.maxPerPage)
+	novroforgeComments := make([]*base.Comment, 0, g.maxPerPage)
 
 	// Initially get and append giteaComments of page 1
 	giteaComments, err := g.getIssueComments(commentable.GetForeignIndex(), 1)
 	if err != nil {
 		return nil, false, err
 	}
-	forgejoComments = append(forgejoComments, g.makeCommentsList(giteaComments, commentable.GetLocalIndex(), commentable.GetForeignIndex())...)
+	novroforgeComments = append(novroforgeComments, g.makeCommentsList(giteaComments, commentable.GetLocalIndex(), commentable.GetForeignIndex())...)
 
 	// We either get all comments at once (gitea pagination bug) or all comments fit in one page or pagination is off
-	shouldReturn := g.isSinglePage(forgejoComments)
+	shouldReturn := g.isSinglePage(novroforgeComments)
 	if shouldReturn {
-		return forgejoComments, true, nil
+		return novroforgeComments, true, nil
 	}
 	// Only if the amount of comments == g.maxPerPage we assume there might be a next page
 	for i := 2; ; i++ {
-		// make sure forgejo can shutdown gracefully
+		// make sure novroforge can shutdown gracefully
 		select {
 		case <-g.ctx.Done():
 			return nil, false, nil
@@ -540,27 +540,27 @@ func (g *GiteaDownloader) GetComments(commentable base.Commentable) ([]*base.Com
 		if err != nil {
 			return nil, false, err
 		}
-		forgejoComments = append(forgejoComments, g.makeCommentsList(giteaComments, commentable.GetLocalIndex(), commentable.GetForeignIndex())...)
+		novroforgeComments = append(novroforgeComments, g.makeCommentsList(giteaComments, commentable.GetLocalIndex(), commentable.GetForeignIndex())...)
 
-		shouldBreak := g.isLastPage(forgejoComments, giteaComments)
+		shouldBreak := g.isLastPage(novroforgeComments, giteaComments)
 		if shouldBreak {
 			break
 		}
 	}
-	return forgejoComments, true, nil
+	return novroforgeComments, true, nil
 }
 
-func (g *GiteaDownloader) isSinglePage(forgejoComments []*base.Comment) bool {
-	if len(forgejoComments) > g.maxPerPage || len(forgejoComments) < g.maxPerPage || !g.pagination {
+func (g *GiteaDownloader) isSinglePage(novroforgeComments []*base.Comment) bool {
+	if len(novroforgeComments) > g.maxPerPage || len(novroforgeComments) < g.maxPerPage || !g.pagination {
 		return true
 	}
 	return false
 }
 
-func (g *GiteaDownloader) isLastPage(forgejoComments []*base.Comment, giteaComments []*gitea_sdk.Comment) bool {
+func (g *GiteaDownloader) isLastPage(novroforgeComments []*base.Comment, giteaComments []*gitea_sdk.Comment) bool {
 	if len(giteaComments) < g.maxPerPage {
 		return true
-	} else if g.identicalComment(forgejoComments[0], giteaComments[0]) && g.identicalComment(forgejoComments[len(forgejoComments)-1], giteaComments[len(giteaComments)-1]) {
+	} else if g.identicalComment(novroforgeComments[0], giteaComments[0]) && g.identicalComment(novroforgeComments[len(novroforgeComments)-1], giteaComments[len(giteaComments)-1]) {
 		return true
 	}
 	return false

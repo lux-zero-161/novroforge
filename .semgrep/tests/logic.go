@@ -15,7 +15,7 @@ func (opts FindRunJobOptions) Bad() builder.Cond {
 	if opts.RepoID > 0 {
 		cond = cond.And(builder.Eq{"repo_id": opts.RepoID})
 	}
-	// ruleid:forgejo-logic-suspicious-OwnerID-check
+	// ruleid:novroforge-logic-suspicious-OwnerID-check
 	if opts.OwnerID > 0 {
 		cond = cond.And(builder.Eq{"owner_id": opts.OwnerID})
 	}
@@ -27,7 +27,7 @@ func (opts FindRunJobOptions) Good() builder.Cond {
 	if opts.RepoID > 0 {
 		cond = cond.And(builder.Eq{"repo_id": opts.RepoID})
 	}
-	// ok:forgejo-logic-suspicious-OwnerID-check
+	// ok:novroforge-logic-suspicious-OwnerID-check
 	if opts.OwnerID != 0 {
 		cond = cond.And(builder.Eq{"owner_id": opts.OwnerID})
 	}

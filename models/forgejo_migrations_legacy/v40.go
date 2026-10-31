@@ -1,9 +1,9 @@
 // Copyright 2024 The Gitea Authors. All rights reserved.
 // SPDX-License-Identifier: MIT
 
-package forgejo_migrations_legacy
+package novroforge_migrations_legacy
 
-import "code.forgejo.org/xorm/xorm"
+import "code.novroforge.xyz/xorm/xorm"
 
 func AddIndexForReleaseSha1(x *xorm.Engine) error {
 	type Release struct {

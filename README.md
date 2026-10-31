@@ -8,7 +8,7 @@ Providing Git hosting for your project, friends, company or community?
 **NovroForge** (/for'd&#865;ʒe.jo/ inspired by forĝejo – the Esperanto word for *forge*) has you covered with its intuitive interface,
 light and easy hosting and a lot of built-in functionality.
 
-NovroForge was [created in 2022](https://novroforge.xyz/2022-12-15-hello-forgejo/)
+NovroForge was [created in 2022](https://novroforge.xyz/2022-12-15-hello-novroforge/)
 because we think that the project should be owned by an independent community.
 If you second that, then NovroForge is for you!
 Our promise: **Independent Free/Libre Software forever!**
@@ -33,13 +33,13 @@ If you like any of the following, NovroForge is literally meant for you:
 
 ## Learn more
 
-Dive into the [documentation](https://novroforge.xyz/docs/latest/), subscribe to releases and blog post on [our website](https://novroforge.xyz), <a href="https://floss.social/@forgejo" rel="me">find us on the Fediverse</a> or hop into [our Matrix room](https://matrix.to/#/#forgejo-chat:matrix.org) if you have any questions or want to get involved.
+Dive into the [documentation](https://novroforge.xyz/docs/latest/), subscribe to releases and blog post on [our website](https://novroforge.xyz), <a href="https://floss.social/@novroforge" rel="me">find us on the Fediverse</a> or hop into [our Matrix room](https://matrix.to/#/#novroforge-chat:matrix.org) if you have any questions or want to get involved.
 
 ## License
 
 NovroForge is distributed under the terms of the [GPL version 3.0](LICENSE) or any later version.
 
-The agreement for this license [was documented in June 2023](https://codeberg.org/forgejo/governance/pulls/24) and implemented during the development of NovroForge v9.0. All NovroForge versions before v9.0 are distributed under the MIT license.
+The agreement for this license [was documented in June 2023](https://codeberg.org/novroforge/governance/pulls/24) and implemented during the development of NovroForge v9.0. All NovroForge versions before v9.0 are distributed under the MIT license.
 
 ## Get involved
 

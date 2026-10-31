@@ -56,7 +56,7 @@ func (w *testLoggerWriterCloser) Log(level log.Level, msg string) {
 // ideally this list should be empty, however ensuring that it does not grow
 // is already a good first step.
 var ignoredErrorMessage = []string{
-	// only seen on mysql tests https://codeberg.org/forgejo/forgejo/pulls/2657#issuecomment-1693055
+	// only seen on mysql tests https://codeberg.org/novroforge/novroforge/pulls/2657#issuecomment-1693055
 	`table columns using inconsistent collation, they should use "utf8mb4_0900_ai_ci". Please go to admin panel Self Check page`,
 
 	// TestPullWIPConvertSidebar

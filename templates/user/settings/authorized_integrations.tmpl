@@ -19,9 +19,9 @@
 			{{range .AuthorizedIntegrations}}
 				<div class="flex-item">
 					<div class="flex-item-leading">
-						{{if eq .UI "forgejo-actions-local"}}
-							<span role="img" aria-label="{{ctx.Locale.Tr "settings.authorized_integration.ui.forgejo_actions_local"}}" title="{{ctx.Locale.Tr "settings.authorized_integration.ui.forgejo_actions_local"}}">
-								{{svg "gitea-forgejo" 32}}
+						{{if eq .UI "novroforge-actions-local"}}
+							<span role="img" aria-label="{{ctx.Locale.Tr "settings.authorized_integration.ui.novroforge_actions_local"}}" title="{{ctx.Locale.Tr "settings.authorized_integration.ui.novroforge_actions_local"}}">
+								{{svg "gitea-novroforge" 32}}
 							</span>
 						{{else}}
 							<span role="img" aria-label="{{ctx.Locale.Tr "settings.authorized_integration.ui.generic"}}" title="{{ctx.Locale.Tr "settings.authorized_integration.ui.generic"}}">

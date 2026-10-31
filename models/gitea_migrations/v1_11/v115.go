@@ -17,7 +17,7 @@ import (
 	"novroforge.xyz/modules/setting"
 	"novroforge.xyz/modules/util"
 
-	"code.forgejo.org/xorm/xorm"
+	"code.novroforge.xyz/xorm/xorm"
 )
 
 func RenameExistingUserAvatarName(x *xorm.Engine) error {

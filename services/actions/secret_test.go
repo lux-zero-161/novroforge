@@ -78,7 +78,7 @@ func TestGetSecretsOfJob(t *testing.T) {
 			name:     "workflow call inner job, defined secrets",
 			runJobID: 610,
 			secrets: map[string]string{
-				"FORGEJO":  "context forgejo = refs/heads/main",
+				"novroforge":  "context novroforge = refs/heads/main",
 				"INPUTS":   "context inputs = some_wd_input_value",
 				"MATRIX":   "context matrix = some-dimension-value",
 				"NEEDS":    "context needs = abcdefghijklmnopqrstuvwxyz",

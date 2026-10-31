@@ -9,7 +9,7 @@ import (
 	"novroforge.xyz/modules/queue/lqinternal"
 	"novroforge.xyz/modules/setting"
 
-	"code.forgejo.org/forgejo/levelqueue"
+	"code.novroforge.xyz/novroforge/levelqueue"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"github.com/syndtr/goleveldb/leveldb"

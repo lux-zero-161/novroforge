@@ -50,7 +50,7 @@ func NewPersonIDFromModel(host, schema string, port uint16, softwareName, id str
 	result.HostPort = port
 	result.IsPortSupplemented = false
 
-	if softwareName == "forgejo" {
+	if softwareName == "novroforge" {
 		result.Path = personIDapiPathV1
 	}
 	result.UnvalidatedInput = result.AsURI()
@@ -87,8 +87,8 @@ func (id PersonID) HostSuffix() string {
 func (id PersonID) Validate() []string {
 	result := id.ActorID.Validate()
 	result = append(result, validation.ValidateNotEmpty(id.Source, "source")...)
-	result = append(result, validation.ValidateOneOf(id.Source, []any{"forgejo", "gitea", "mastodon", "gotosocial"}, "Source")...)
-	if id.Source == "forgejo" {
+	result = append(result, validation.ValidateOneOf(id.Source, []any{"novroforge", "gitea", "mastodon", "gotosocial"}, "Source")...)
+	if id.Source == "novroforge" {
 		result = append(result, validation.ValidateNotEmpty(id.Path, "path")...)
 		lowerPath := strings.ToLower(id.Path)
 		if lowerPath != personIDapiPathV1 && lowerPath != personIDapiPathV1Latest {

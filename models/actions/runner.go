@@ -22,7 +22,7 @@ import (
 	"novroforge.xyz/modules/translation"
 	"novroforge.xyz/modules/util"
 
-	runnerv1 "code.forgejo.org/forgejo/actions-proto/runner/v1"
+	runnerv1 "code.novroforge.xyz/novroforge/actions-proto/runner/v1"
 	"xorm.io/builder"
 )
 
@@ -152,7 +152,7 @@ func (r *ActionRunner) Editable(ownerID, repoID int64) bool {
 
 // LoadAttributes loads the attributes of the runner
 func (r *ActionRunner) LoadAttributes(ctx context.Context) error {
-	// nosemgrep: forgejo-logic-suspicious-OwnerID-check (system users are not stored in the database)
+	// nosemgrep: novroforge-logic-suspicious-OwnerID-check (system users are not stored in the database)
 	if r.OwnerID > 0 {
 		var user user_model.User
 		has, err := db.GetEngine(ctx).ID(r.OwnerID).Get(&user)

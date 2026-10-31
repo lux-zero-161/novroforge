@@ -26,7 +26,7 @@ import (
 	"novroforge.xyz/modules/util"
 	packages_service "novroforge.xyz/services/packages"
 
-	"code.forgejo.org/forgejo/go-rpmutils"
+	"code.novroforge.xyz/novroforge/go-rpmutils"
 	"github.com/ProtonMail/go-crypto/openpgp"
 	"github.com/ProtonMail/go-crypto/openpgp/armor"
 	"github.com/ProtonMail/go-crypto/openpgp/packet"

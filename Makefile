@@ -49,7 +49,7 @@ GO_LICENSES_PACKAGE ?= github.com/google/go-licenses/v2@v2.0.1 # renovate: datas
 GOVULNCHECK_PACKAGE ?= golang.org/x/vuln/cmd/govulncheck@v1 # renovate: datasource=go
 DEADCODE_PACKAGE ?= golang.org/x/tools/cmd/deadcode@v0.50.0 # renovate: datasource=go
 ERRORTYPE_PACKAGE ?= fillmore-labs.com/errortype@v0.0.11 # renovate: datasource=go
-RENOVATE_NPM_PACKAGE ?= renovate@44.171.1 # renovate: datasource=docker packageName=data.forgejo.org/renovate/renovate
+RENOVATE_NPM_PACKAGE ?= renovate@44.171.1 # renovate: datasource=docker packageName=data.novroforge.xyz/renovate/renovate
 MOCKERY_PACKAGE ?= github.com/vektra/mockery/v3@v3.8.1 # renovate: datasource=go
 
 # https://github.com/disposable-email-domains/disposable-email-domains/commits/main/
@@ -90,35 +90,35 @@ GITEA_COMPATIBILITY ?= gitea-1.22.0
 
 STORED_VERSION=$(shell cat $(STORED_VERSION_FILE) 2>/dev/null)
 ifneq ($(STORED_VERSION),)
-  FORGEJO_VERSION ?= $(STORED_VERSION)
+  novroforgerge_VERSION ?= $(STORED_VERSION)
 else
   ifneq ($(GITEA_VERSION),)
-    FORGEJO_VERSION ?= $(GITEA_VERSION)
-    FORGEJO_VERSION_API ?= $(GITEA_VERSION)+${GITEA_COMPATIBILITY}
+    novroforgerge_VERSION ?= $(GITEA_VERSION)
+    novroforge_VERSION_API ?= $(GITEA_VERSION)+${GITEA_COMPATIBILITY}
   else
     # drop the "g" prefix prepended by git describe to the commit hash
-    FORGEJO_VERSION ?= $(shell git describe --exclude '*-test' --tags --always 2>/dev/null | sed 's/^v//' | sed 's/\-g/-/')
-    ifneq ($(FORGEJO_VERSION),)
-      ifeq ($(findstring $(GITEA_COMPATIBILITY),$(FORGEJO_VERSION)),)
-        FORGEJO_VERSION := $(FORGEJO_VERSION)+$(GITEA_COMPATIBILITY)
+    novroforge_VERSION ?= $(shell git describe --exclude '*-test' --tags --always 2>/dev/null | sed 's/^v//' | sed 's/\-g/-/')
+    ifneq ($(novroforge_VERSION),)
+      ifeq ($(findstring $(GITEA_COMPATIBILITY),$(novroforge_VERSION)),)
+        novroforge_VERSION := $(novroforge_VERSION)+$(GITEA_COMPATIBILITY)
       endif
     endif
   endif
 endif
-FORGEJO_VERSION_MAJOR=$(shell echo $(FORGEJO_VERSION) | sed -e 's/\..*//')
-FORGEJO_VERSION_MINOR=$(shell echo $(FORGEJO_VERSION) | sed -E -e 's/^([0-9]+\.[0-9]+).*/\1/')
+novroforge_VERSION_MAJOR=$(shell echo $(novroforge_VERSION) | sed -e 's/\..*//')
+novroforge_VERSION_MINOR=$(shell echo $(novroforge_VERSION) | sed -E -e 's/^([0-9]+\.[0-9]+).*/\1/')
 
-RELEASE_VERSION ?= ${FORGEJO_VERSION}
+RELEASE_VERSION ?= ${novroforge_VERSION}
 VERSION ?= ${RELEASE_VERSION}
 
-FORGEJO_VERSION_API ?= ${FORGEJO_VERSION}
+novroforge_VERSION_API ?= ${novroforge_VERSION}
 
 # Strip binaries by default to reduce size, allow overriding for debugging
 STRIP ?= 1
 ifeq ($(STRIP),1)
 	LDFLAGS := $(LDFLAGS) -s -w
 endif
-LDFLAGS := $(LDFLAGS) -X "main.ReleaseVersion=$(RELEASE_VERSION)" -X "main.MakeVersion=$(MAKE_VERSION)" -X "main.Version=$(FORGEJO_VERSION)" -X "main.Tags=$(TAGS)" -X "main.NovroForgeVersion=$(FORGEJO_VERSION_API)"
+LDFLAGS := $(LDFLAGS) -X "main.ReleaseVersion=$(RELEASE_VERSION)" -X "main.MakeVersion=$(MAKE_VERSION)" -X "main.Version=$(novroforge_VERSION)" -X "main.Tags=$(TAGS)" -X "main.NovroForgeVersion=$(novroforge_VERSION_API)"
 
 LINUX_ARCHS ?= linux/amd64,linux/386,linux/arm-5,linux/arm-6,linux/arm64
 
@@ -174,7 +174,7 @@ ifdef DEPS_PLAYWRIGHT
 	PLAYWRIGHT_FLAGS += --with-deps
 endif
 
-FORGEJO_API_SPEC := public/assets/forgejo/api.v1.yml
+novroforge_API_SPEC := public/assets/novroforge/api.v1.yml
 
 SWAGGER_SPEC := templates/swagger/v1_json.tmpl
 SWAGGER_SPEC_S_TMPL := s|"basePath": *"/api/v1"|"basePath": "{{AppSubUrl \| JSEscape}}/api/v1"|g
@@ -253,8 +253,8 @@ help:
 	@echo " - generate-gitignore               update gitignore files"
 	@echo " - generate-manpage                 generate manpage"
 	@echo " - generate-mockery                 generate mockery files"
-	@echo " - generate-forgejo-api             generate the forgejo API from spec"
-	@echo " - forgejo-api-validate             check if the forgejo API matches the specs"
+	@echo " - generate-novroforge-api             generate the novroforge API from spec"
+	@echo " - novroforge-api-validate             check if the novroforge API matches the specs"
 	@echo " - generate-swagger                 generate the swagger spec from code comments"
 	@echo " - swagger-validate                 check if the swagger spec is valid"
 	@echo " - go-licenses                      regenerate go licenses"
@@ -265,27 +265,27 @@ help:
 
 .PHONY: verify-version
 verify-version:
-ifeq ($(FORGEJO_VERSION),)
-	@echo "Error: Could not determine FORGEJO_VERSION; version file $(STORED_VERSION_FILE) not present and no suitable git tag found"
+ifeq ($(novroforge_VERSION),)
+	@echo "Error: Could not determine novroforge_VERSION; version file $(STORED_VERSION_FILE) not present and no suitable git tag found"
 	@echo 'In most cases this likely means you forgot to fetch git tags, you can fix this by executing `git fetch --tags`. If this is not possible and this is part of a custom build process, then you can set a specific version by writing it to $(STORED_VERSION_FILE) (This must be a semver compatible version).'
 	@false
 endif
 
 .PHONY: show-version-full
 show-version-full: verify-version
-	@echo ${FORGEJO_VERSION}
+	@echo ${novroforge_VERSION}
 
 .PHONY: show-version-major
 show-version-major: verify-version
-	@echo ${FORGEJO_VERSION_MAJOR}
+	@echo ${novroforge_VERSION_MAJOR}
 
 .PHONY: show-version-minor
 show-version-minor: verify-version
-	@echo ${FORGEJO_VERSION_MINOR}
+	@echo ${novroforge_VERSION_MINOR}
 
 .PHONY: show-version-api
 show-version-api: verify-version
-	@echo ${FORGEJO_VERSION_API}
+	@echo ${novroforge_VERSION_API}
 
 ###
 # Package computation targets
@@ -295,14 +295,14 @@ show-version-api: verify-version
 .PHONY: compute-go-test-packages
 compute-go-test-packages:
 ifeq ($(HAS_GO), yes)
-	$(eval GO_TEST_PACKAGES ?= $(filter-out $(shell $(GO) list novroforge.xyz/models/gitea_migrations/...) $(shell $(GO) list novroforge.xyz/models/forgejo_migrations_legacy/...) $(shell $(GO) list novroforge.xyz/models/forgejo_migrations/...) novroforge.xyz/tests/integration/migration-test novroforge.xyz/tests novroforge.xyz/tests/integration novroforge.xyz/tests/e2e,$(shell $(GO) list ./...)))
+	$(eval GO_TEST_PACKAGES ?= $(filter-out $(shell $(GO) list novroforge.xyz/models/gitea_migrations/...) $(shell $(GO) list novroforge.xyz/models/novroforge_migrations_legacy/...) $(shell $(GO) list novroforge.xyz/models/novroforge_migrations/...) novroforge.xyz/tests/integration/migration-test novroforge.xyz/tests novroforge.xyz/tests/integration novroforge.xyz/tests/e2e,$(shell $(GO) list ./...)))
 endif
 
 # Target to compute MIGRATION_PACKAGES - only runs when needed
 .PHONY: compute-migration-packages
 compute-migration-packages:
 ifeq ($(HAS_GO), yes)
-	$(eval MIGRATION_PACKAGES := $(shell $(GO) list novroforge.xyz/models/gitea_migrations/... novroforge.xyz/models/forgejo_migrations_legacy/... novroforge.xyz/models/forgejo_migrations/...))
+	$(eval MIGRATION_PACKAGES := $(shell $(GO) list novroforge.xyz/models/gitea_migrations/... novroforge.xyz/models/novroforge_migrations_legacy/... novroforge.xyz/models/novroforge_migrations/...))
 endif
 
 ###
@@ -388,20 +388,20 @@ endif
 
 OAPI_CODEGEN_PACKAGE ?= github.com/deepmap/oapi-codegen/cmd/oapi-codegen@v1.12.4
 KIN_OPENAPI_CODEGEN_PACKAGE ?= github.com/getkin/kin-openapi/cmd/validate@v0.114.0
-FORGEJO_API_SERVER = routers/api/forgejo/v1/generated.go
+novroforge_API_SERVER = routers/api/novroforge/v1/generated.go
 
-.PHONY: generate-forgejo-api
-generate-forgejo-api: $(FORGEJO_API_SPEC)
-	$(GO) run $(OAPI_CODEGEN_PACKAGE) -package v1 -generate chi-server,types $< > $(FORGEJO_API_SERVER)
+.PHONY: generate-novroforge-api
+generate-novroforge-api: $(novroforge_API_SPEC)
+	$(GO) run $(OAPI_CODEGEN_PACKAGE) -package v1 -generate chi-server,types $< > $(novroforge_API_SERVER)
 
-.PHONY: forgejo-api-check
-forgejo-api-check: generate-forgejo-api
-	@git diff --exit-code --color=always $(FORGEJO_API_SERVER) \
-	|| (code=$$?; echo "Please run 'make generate-forgejo-api' and commit the result"; exit $${code})
+.PHONY: novroforge-api-check
+novroforge-api-check: generate-novroforge-api
+	@git diff --exit-code --color=always $(novroforge_API_SERVER) \
+	|| (code=$$?; echo "Please run 'make generate-novroforge-api' and commit the result"; exit $${code})
 
-.PHONY: forgejo-api-validate
-forgejo-api-validate:
-	$(GO) run $(KIN_OPENAPI_CODEGEN_PACKAGE) $(FORGEJO_API_SPEC)
+.PHONY: novroforge-api-validate
+novroforge-api-validate:
+	$(GO) run $(KIN_OPENAPI_CODEGEN_PACKAGE) $(novroforge_API_SPEC)
 
 .PHONY: generate-swagger
 generate-swagger: $(SWAGGER_SPEC)
@@ -473,7 +473,7 @@ lint-swagger: node_modules
 
 .PHONY: lint-renovate
 lint-renovate: node_modules
-	npx --yes --package $(RENOVATE_NPM_PACKAGE) -- renovate-config-validator --no-global .forgejo/renovate.json > .lint-renovate 2>&1 || true
+	npx --yes --package $(RENOVATE_NPM_PACKAGE) -- renovate-config-validator --no-global .novroforge/renovate.json > .lint-renovate 2>&1 || true
 	@if grep --quiet --extended-regexp -e '^( ERROR:)' .lint-renovate ; then cat .lint-renovate ; rm .lint-renovate ; exit 1 ; fi
 	@rm .lint-renovate
 
@@ -523,7 +523,7 @@ lint-go-vet:
 
 .PHONY: lint-editorconfig
 lint-editorconfig:
-	$(GO) run $(EDITORCONFIG_CHECKER_PACKAGE) templates .forgejo/workflows
+	$(GO) run $(EDITORCONFIG_CHECKER_PACKAGE) templates .novroforge/workflows
 
 .PHONY: lint-disposable-emails
 lint-disposable-emails:
@@ -881,8 +881,8 @@ merge-locales:
 $(EXECUTABLE): $(GO_SOURCES) $(TAGS_PREREQ) | verify-version
 	CGO_CFLAGS="$(CGO_CFLAGS)" $(GO) build $(GOFLAGS) $(EXTRA_GOFLAGS) -tags '$(TAGS)' -ldflags '$(LDFLAGS)' -o $@
 
-forgejo: $(EXECUTABLE)
-	ln -f $(EXECUTABLE) forgejo
+novroforge: $(EXECUTABLE)
+	ln -f $(EXECUTABLE) novroforge
 
 static-executable: $(GO_SOURCES) $(TAGS_PREREQ) | verify-version
 	CGO_CFLAGS="$(CGO_CFLAGS)" $(GO) build $(GOFLAGS) $(EXTRA_GOFLAGS) -tags 'netgo osusergo $(TAGS)' -ldflags '-linkmode external -extldflags "-static" $(LDFLAGS)' -o $(EXECUTABLE)
@@ -898,7 +898,7 @@ $(DIST_DIRS):
 
 .PHONY: release-linux
 release-linux: | $(DIST_DIRS) verify-version
-	CGO_CFLAGS="$(CGO_CFLAGS)" $(GO) run $(XGO_PACKAGE) -go $(XGO_VERSION) -dest $(DIST)/binaries -tags 'netgo osusergo $(TAGS)' -ldflags '-linkmode external -extldflags "-static" $(LDFLAGS)' -targets '$(LINUX_ARCHS)' -out forgejo-$(VERSION) .
+	CGO_CFLAGS="$(CGO_CFLAGS)" $(GO) run $(XGO_PACKAGE) -go $(XGO_VERSION) -dest $(DIST)/binaries -tags 'netgo osusergo $(TAGS)' -ldflags '-linkmode external -extldflags "-static" $(LDFLAGS)' -targets '$(LINUX_ARCHS)' -out novroforge-$(VERSION) .
 ifeq ($(CI),true)
 	cp /build/* $(DIST)/binaries
 endif
@@ -929,8 +929,8 @@ release-sources: | $(DIST_DIRS)
 # bsdtar needs a ^ to prevent matching subdirectories
 	$(eval EXCL := --exclude=$(shell tar --help | grep -q bsdtar && echo "^")./)
 # use transform to a add a release-folder prefix; in bsdtar the transform parameter equivalent is -s
-	$(eval TRANSFORM := $(shell tar --help | grep -q bsdtar && echo "-s '/^./forgejo-src-$(VERSION)/'" || echo "--transform 's|^./|forgejo-src-$(VERSION)/|'"))
-	tar $(addprefix $(EXCL),$(TAR_EXCLUDES)) $(TRANSFORM) -czf $(DIST)/release/forgejo-src-$(VERSION).tar.gz .
+	$(eval TRANSFORM := $(shell tar --help | grep -q bsdtar && echo "-s '/^./novroforge-src-$(VERSION)/'" || echo "--transform 's|^./|novroforge-src-$(VERSION)/|'"))
+	tar $(addprefix $(EXCL),$(TAR_EXCLUDES)) $(TRANSFORM) -czf $(DIST)/release/novroforge-src-$(VERSION).tar.gz .
 	rm -f $(STORED_VERSION_FILE)
 
 .PHONY: release-docs
@@ -942,11 +942,11 @@ reproduce-build:
 # Start building the Dockerfile with the RELEASE_VERSION tag set. GOPROXY is set
 # for convenience, because the default of the Dockerfile is `direct` which can be
 # quite slow.
-	@docker build --build-arg="RELEASE_VERSION=$(RELEASE_VERSION)" --build-arg="GOPROXY=$(shell $(GO) env GOPROXY)" --tag "forgejo-reproducibility" .
-	@id=$$(docker create forgejo-reproducibility); \
-	docker cp $$id:/app/gitea/gitea ./forgejo; \
+	@docker build --build-arg="RELEASE_VERSION=$(RELEASE_VERSION)" --build-arg="GOPROXY=$(shell $(GO) env GOPROXY)" --tag "novroforge-reproducibility" .
+	@id=$$(docker create novroforge-reproducibility); \
+	docker cp $$id:/app/gitea/gitea ./novroforge; \
 	docker rm -v $$id; \
-	docker image rm forgejo-reproducibility:latest
+	docker image rm novroforge-reproducibility:latest
 
 .PHONY: reproduce-build\#%
 reproduce-build\#%:

@@ -54,7 +54,7 @@ func (url defaultActionsURL) URL() string {
 }
 
 const (
-	defaultActionsURLNovroForge = "https://data.forgejo.org"
+	defaultActionsURLNovroForge = "https://data.novroforge.xyz"
 	defaultActionsURLGitHub  = "github" // https://github.com
 	defaultActionsURLSelf    = "self"   // the root URL of the self-hosted instance
 )

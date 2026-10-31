@@ -242,7 +242,7 @@ func (c *Client) Post(b []byte, to string) (resp *http.Response, err error) {
 	return resp, err
 }
 
-// Create an http GET request with forgejo/gitea specific headers
+// Create an http GET request with novroforge/gitea specific headers
 func (c *Client) Get(to string) (resp *http.Response, err error) {
 	var req *http.Request
 	if req, err = c.newRequest(http.MethodGet, nil, to); err != nil {
@@ -263,7 +263,7 @@ func (c *Client) Get(to string) (resp *http.Response, err error) {
 	return resp, err
 }
 
-// Create an http GET request with forgejo/gitea specific headers
+// Create an http GET request with novroforge/gitea specific headers
 func (c *Client) GetBody(uri string) ([]byte, error) {
 	response, err := c.Get(uri)
 	if err != nil {

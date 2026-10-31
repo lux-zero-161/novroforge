@@ -4,7 +4,7 @@
 package v1_19
 
 import (
-	"code.forgejo.org/xorm/xorm"
+	"code.novroforge.xyz/xorm/xorm"
 )
 
 func AddIndexForHookTask(x *xorm.Engine) error {

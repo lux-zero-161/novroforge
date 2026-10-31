@@ -27,7 +27,7 @@ import (
 	"novroforge.xyz/services/context"
 	"novroforge.xyz/services/convert"
 
-	"code.forgejo.org/forgejo/runner/v13/act/model"
+	"code.novroforge.xyz/forgejo/runner/v13/act/model"
 )
 
 const (

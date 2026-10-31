@@ -7,7 +7,7 @@ import (
 	"regexp"
 	"testing"
 
-	"code.forgejo.org/go-chi/binding"
+	"code.novroforge.xyz/go-chi/binding"
 )
 
 func getRegexPatternErrorString(pattern string) string {

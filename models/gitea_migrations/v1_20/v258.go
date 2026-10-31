@@ -4,7 +4,7 @@
 package v1_20
 
 import (
-	"code.forgejo.org/xorm/xorm"
+	"code.novroforge.xyz/xorm/xorm"
 )
 
 func AddPinOrderToIssue(x *xorm.Engine) error {

@@ -16,7 +16,7 @@ import (
 
 func TestFeedPlainTextTitles(t *testing.T) {
 	// This test verifies that items' titles in feeds are generated as plain text.
-	// See https://codeberg.org/forgejo/forgejo/pulls/1595
+	// See https://codeberg.org/novroforge/novroforge/pulls/1595
 	defer test.MockVariableValue(&setting.UI.DefaultShowFullName, true)()
 
 	t.Run("Feed plain text titles", func(t *testing.T) {

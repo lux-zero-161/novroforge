@@ -39,28 +39,28 @@ func TestKeys(t *testing.T) {
 	t.Run("Required", func(t *testing.T) {
 		t.Cleanup(stdout.Reset)
 
-		err := app.Run(t.Context(), []string{"./forgejo", "keys"})
+		err := app.Run(t.Context(), []string{"./novroforge", "keys"})
 		require.ErrorContains(t, err, `Required flags "username, type, content" not set`)
 	})
 
 	t.Run("Invalid base64", func(t *testing.T) {
 		t.Cleanup(stdout.Reset)
 
-		err := app.Run(t.Context(), []string{"./forgejo", "keys", "-u", "git", "-k", "Is base56 contant-time?", "-t", "ssh-unknown-type"})
+		err := app.Run(t.Context(), []string{"./novroforge", "keys", "-u", "git", "-k", "Is base56 contant-time?", "-t", "ssh-unknown-type"})
 		require.ErrorContains(t, err, "is not valid base64 encoded content:")
 	})
 
 	t.Run("Invalid SSH key input", func(t *testing.T) {
 		t.Cleanup(stdout.Reset)
 
-		err := app.Run(t.Context(), []string{"./forgejo", "keys", "-u", "git", "-k", "c3NoLWVkMjU1MTkgICAgICAgZw==", "-t", "ssh-unknown-type"})
+		err := app.Run(t.Context(), []string{"./novroforge", "keys", "-u", "git", "-k", "c3NoLWVkMjU1MTkgICAgICAgZw==", "-t", "ssh-unknown-type"})
 		require.ErrorContains(t, err, "key content cannot be parsed as public SSH key: ssh: short read")
 	})
 
 	t.Run("Mismatched type", func(t *testing.T) {
 		t.Cleanup(stdout.Reset)
 
-		err := app.Run(t.Context(), []string{"./forgejo", "keys", "-u", "git", "-k", "AAAAC3NzaC1lZDI1NTE5AAAAIPdJ4yqPcq36whvYjhwj9OhHbGY/M4RCEDK9c96m0lNb", "-t", "ssh-unknown-type"})
+		err := app.Run(t.Context(), []string{"./novroforge", "keys", "-u", "git", "-k", "AAAAC3NzaC1lZDI1NTE5AAAAIPdJ4yqPcq36whvYjhwj9OhHbGY/M4RCEDK9c96m0lNb", "-t", "ssh-unknown-type"})
 		require.ErrorContains(t, err, `authorized keys key type mismatch: given type "ssh-unknown-type", encoded type "ssh-ed25519"`)
 
 		assert.Empty(t, stdout.String())
@@ -69,7 +69,7 @@ func TestKeys(t *testing.T) {
 	t.Run("Mismatched username", func(t *testing.T) {
 		t.Cleanup(stdout.Reset)
 
-		err := app.Run(t.Context(), []string{"./forgejo", "keys", "-u", "frog", "-k", "AAAAC3NzaC1lZDI1NTE5AAAAIPdJ4yqPcq36whvYjhwj9OhHbGY/M4RCEDK9c96m0lNb", "-t", "ssh-ed25519"})
+		err := app.Run(t.Context(), []string{"./novroforge", "keys", "-u", "frog", "-k", "AAAAC3NzaC1lZDI1NTE5AAAAIPdJ4yqPcq36whvYjhwj9OhHbGY/M4RCEDK9c96m0lNb", "-t", "ssh-ed25519"})
 		require.NoError(t, err)
 
 		assert.Empty(t, stdout.String())
@@ -78,7 +78,7 @@ func TestKeys(t *testing.T) {
 	t.Run("Normal", func(t *testing.T) {
 		t.Cleanup(stdout.Reset)
 
-		err := app.Run(t.Context(), []string{"./forgejo", "keys", "-u", "git", "-k", "AAAAC3NzaC1lZDI1NTE5AAAAIPdJ4yqPcq36whvYjhwj9OhHbGY/M4RCEDK9c96m0lNb", "-t", "ssh-ed25519"})
+		err := app.Run(t.Context(), []string{"./novroforge", "keys", "-u", "git", "-k", "AAAAC3NzaC1lZDI1NTE5AAAAIPdJ4yqPcq36whvYjhwj9OhHbGY/M4RCEDK9c96m0lNb", "-t", "ssh-ed25519"})
 		require.NoError(t, err)
 
 		assert.Equal(t, "# Some authorized key command will be returned here\n", stdout.String())

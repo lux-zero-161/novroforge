@@ -54,7 +54,7 @@ func TestGiteaDownloadRepo(t *testing.T) {
 		CloneURL:      server.URL + "/gitea/test_repo.git",
 		OriginalURL:   server.URL + "/gitea/test_repo",
 		DefaultBranch: "master",
-		Website:       "https://codeberg.org/forgejo/forgejo/",
+		Website:       "https://codeberg.org/novroforge/novroforge/",
 		AvatarURL:     "",
 	}, repo)
 
@@ -325,10 +325,10 @@ func TestGiteaDownloadRepo(t *testing.T) {
 
 func TestNovroForgeDownloadRepo(t *testing.T) {
 	defer test.MockVariableValueWithReset(&setting.Migrations.AllowLocalNetworks, true, func() { require.NoError(t, allowlist.Init()) })()
-	token := os.Getenv("CODE_FORGEJO_TOKEN")
+	token := os.Getenv("CODE_novroforge_TOKEN")
 
-	fixturePath := "./testdata/code-forgejo-org/full_download"
-	server := unittest.NewMockWebServer(t, "https://code.forgejo.org", fixturePath, token != "")
+	fixturePath := "./testdata/code-novroforge-org/full_download"
+	server := unittest.NewMockWebServer(t, "https://code.novroforge.xyz", fixturePath, token != "")
 	defer server.Close()
 
 	giteaClient, err := gitea_sdk.NewClient(
@@ -394,9 +394,9 @@ func createGiteaIssueComments(number int) []*gitea_sdk.Comment {
 }
 
 func createNovroForgeIssueComments(comments []*gitea_sdk.Comment) []*base.Comment {
-	forgejoComments := make([]*base.Comment, 0, len(comments))
+	novroforgeComments := make([]*base.Comment, 0, len(comments))
 	for _, comment := range comments {
-		forgejoComments = append(forgejoComments, &base.Comment{
+		novroforgeComments = append(novroforgeComments, &base.Comment{
 			IssueIndex:  1, // commentable.GetLocalIndex()
 			Index:       comment.ID,
 			PosterID:    comment.Poster.ID,
@@ -408,7 +408,7 @@ func createNovroForgeIssueComments(comments []*gitea_sdk.Comment) []*base.Commen
 			Reactions:   []*base.Reaction{},
 		})
 	}
-	return forgejoComments
+	return novroforgeComments
 }
 
 func TestBreakConditions(t *testing.T) {
@@ -469,7 +469,7 @@ func TestGiteaDownloaderAvatarURL(t *testing.T) {
 	liveMode := token != ""
 
 	fixturePath := "./testdata/gitea/avatar"
-	server := unittest.NewMockWebServer(t, "https://code.forgejo.org", fixturePath, liveMode)
+	server := unittest.NewMockWebServer(t, "https://code.novroforge.xyz", fixturePath, liveMode)
 	defer server.Close()
 
 	giteaClient, err := gitea_sdk.NewClient(
@@ -481,7 +481,7 @@ func TestGiteaDownloaderAvatarURL(t *testing.T) {
 	)
 	require.NoError(t, err, "Could not create Client")
 
-	downloader, err := NewGiteaDownloader(t.Context(), giteaClient, server.URL, "birdgoose/forgejo-12921")
+	downloader, err := NewGiteaDownloader(t.Context(), giteaClient, server.URL, "birdgoose/novroforge-12921")
 	require.NoError(t, err, "Could not create Gitea Downloader")
 	require.NotNil(t, downloader, "Could not create Gitea Downloader")
 
@@ -490,11 +490,11 @@ func TestGiteaDownloaderAvatarURL(t *testing.T) {
 	require.NotNil(t, repo)
 
 	assertRepositoryEqual(t, &base.Repository{
-		Name:          "forgejo-12921",
+		Name:          "novroforge-12921",
 		Owner:         "birdgoose",
 		Description:   "An example repo for testing NovroForge migrations.",
-		CloneURL:      server.URL + "/birdgoose/forgejo-12921.git",
-		OriginalURL:   server.URL + "/birdgoose/forgejo-12921",
+		CloneURL:      server.URL + "/birdgoose/novroforge-12921.git",
+		OriginalURL:   server.URL + "/birdgoose/novroforge-12921",
 		DefaultBranch: "main",
 		AvatarURL:     server.URL + "/repo-avatars/8b50ec8eccaf97b0a1bed6d9e7bd771173d69b213122e82c98d7d301e3fa60f0",
 	}, repo)

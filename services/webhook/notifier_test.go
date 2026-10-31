@@ -220,7 +220,7 @@ func TestWebhookNotifier_NewWorkflowRunAttempt(t *testing.T) {
 		ContentType: webhook_model.ContentTypeJSON,
 		Events:      `{"send_everything":true}`,
 		IsActive:    true,
-		Type:        webhook_module.FORGEJO,
+		Type:        webhook_module.novroforge,
 	}
 
 	unittest.AssertSuccessfulInsert(t, webhook)
@@ -268,7 +268,7 @@ func TestWebhookNotifier_WorkflowRunStatusChanged(t *testing.T) {
 		ContentType: webhook_model.ContentTypeJSON,
 		Events:      `{"send_everything":true}`,
 		IsActive:    true,
-		Type:        webhook_module.FORGEJO,
+		Type:        webhook_module.novroforge,
 	}
 
 	unittest.AssertSuccessfulInsert(t, webhook)
@@ -316,7 +316,7 @@ func TestWebhookNotifier_WorkflowRunCompleted(t *testing.T) {
 		ContentType: webhook_model.ContentTypeJSON,
 		Events:      `{"send_everything":true}`,
 		IsActive:    true,
-		Type:        webhook_module.FORGEJO,
+		Type:        webhook_module.novroforge,
 	}
 
 	unittest.AssertSuccessfulInsert(t, webhook)
@@ -364,7 +364,7 @@ func TestWebhookNotifier_NewWorkflowJobAttempt(t *testing.T) {
 		ContentType: webhook_model.ContentTypeJSON,
 		Events:      `{"send_everything":true}`,
 		IsActive:    true,
-		Type:        webhook_module.FORGEJO,
+		Type:        webhook_module.novroforge,
 	}
 
 	unittest.AssertSuccessfulInsert(t, webhook)
@@ -432,7 +432,7 @@ func TestWebhookNotifier_WorkflowJobStatusChanged(t *testing.T) {
 		ContentType: webhook_model.ContentTypeJSON,
 		Events:      `{"send_everything":true}`,
 		IsActive:    true,
-		Type:        webhook_module.FORGEJO,
+		Type:        webhook_module.novroforge,
 	}
 
 	unittest.AssertSuccessfulInsert(t, webhook)
@@ -500,7 +500,7 @@ func TestWebhookNotifier_WorkflowJobCompleted(t *testing.T) {
 		ContentType: webhook_model.ContentTypeJSON,
 		Events:      `{"send_everything":true}`,
 		IsActive:    true,
-		Type:        webhook_module.FORGEJO,
+		Type:        webhook_module.novroforge,
 	}
 
 	unittest.AssertSuccessfulInsert(t, webhook)

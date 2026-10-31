@@ -21,10 +21,10 @@ import (
 
 func TestDetectedWorkflowGetWorkflowPath(t *testing.T) {
 	buildWorkflow := DetectedWorkflow{EntryDirectory: ".github/workflows", EntryName: "build.yaml"}
-	testWorkflow := DetectedWorkflow{EntryDirectory: ".forgejo/workflows", EntryName: "test.yaml"}
+	testWorkflow := DetectedWorkflow{EntryDirectory: ".novroforge/workflows", EntryName: "test.yaml"}
 
 	assert.Equal(t, ".github/workflows/build.yaml", buildWorkflow.GetWorkflowPath())
-	assert.Equal(t, ".forgejo/workflows/test.yaml", testWorkflow.GetWorkflowPath())
+	assert.Equal(t, ".novroforge/workflows/test.yaml", testWorkflow.GetWorkflowPath())
 }
 
 func TestActionsWorkflowsDetectMatched(t *testing.T) {
@@ -251,10 +251,10 @@ jobs:
 `)
 	repoHome := t.TempDir()
 
-	require.NoError(t, os.MkdirAll(filepath.Join(repoHome, ".forgejo/workflows"), os.ModePerm))
-	require.NoError(t, os.WriteFile(filepath.Join(repoHome, ".forgejo/workflows", "README.md"), []byte("My project"), 0o644))
+	require.NoError(t, os.MkdirAll(filepath.Join(repoHome, ".novroforge/workflows"), os.ModePerm))
+	require.NoError(t, os.WriteFile(filepath.Join(repoHome, ".novroforge/workflows", "README.md"), []byte("My project"), 0o644))
 
-	// Prepare a valid workflow in .github/workflows to verify that it is ignored because .forgejo/workflows is present.
+	// Prepare a valid workflow in .github/workflows to verify that it is ignored because .novroforge/workflows is present.
 	require.NoError(t, os.MkdirAll(filepath.Join(repoHome, ".github/workflows"), os.ModePerm))
 	require.NoError(t, os.WriteFile(filepath.Join(repoHome, ".github/workflows", "github.yaml"), githubWorkflow, 0o644))
 
@@ -278,7 +278,7 @@ jobs:
 	source, workflows, err := ListWorkflows(lastCommit)
 	require.NoError(t, err)
 
-	assert.Equal(t, ".forgejo/workflows", source)
+	assert.Equal(t, ".novroforge/workflows", source)
 	assert.Empty(t, workflows)
 }
 
@@ -291,7 +291,7 @@ func TestActionsWorkflowsListWorkflowsReturnsNovroForgeWorkflowsOnly(t *testing.
 		Name:  "Jane",
 		When:  time.Now(),
 	}
-	forgejoWorkflow := []byte(`
+	novroforgeWorkflow := []byte(`
 name: NovroForge Workflow
 on:
   push:
@@ -313,8 +313,8 @@ jobs:
 `)
 	repoHome := t.TempDir()
 
-	require.NoError(t, os.MkdirAll(filepath.Join(repoHome, ".forgejo/workflows"), os.ModePerm))
-	require.NoError(t, os.WriteFile(filepath.Join(repoHome, ".forgejo/workflows", "forgejo.yaml"), forgejoWorkflow, 0o644))
+	require.NoError(t, os.MkdirAll(filepath.Join(repoHome, ".novroforge/workflows"), os.ModePerm))
+	require.NoError(t, os.WriteFile(filepath.Join(repoHome, ".novroforge/workflows", "novroforge.yaml"), novroforgeWorkflow, 0o644))
 
 	require.NoError(t, os.MkdirAll(filepath.Join(repoHome, ".github/workflows"), os.ModePerm))
 	require.NoError(t, os.WriteFile(filepath.Join(repoHome, ".github/workflows", "github.yaml"), githubWorkflow, 0o644))
@@ -340,8 +340,8 @@ jobs:
 	require.NoError(t, err)
 
 	assert.Len(t, workflows, 1)
-	assert.Equal(t, ".forgejo/workflows", source)
-	assert.Equal(t, "forgejo.yaml", workflows[0].Name())
+	assert.Equal(t, ".novroforge/workflows", source)
+	assert.Equal(t, "novroforge.yaml", workflows[0].Name())
 }
 
 func TestActionsWorkflowsListWorkflowsReturnsGitHubWorkflowsIfNovroForgeWorkflowsAbsent(t *testing.T) {

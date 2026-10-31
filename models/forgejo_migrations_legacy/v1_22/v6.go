@@ -4,7 +4,7 @@
 package v1_22
 
 import (
-	"code.forgejo.org/xorm/xorm"
+	"code.novroforge.xyz/xorm/xorm"
 )
 
 func AddWikiBranchToRepository(x *xorm.Engine) error {

@@ -49,12 +49,12 @@ jobs:
 	require.NoError(t, err)
 
 	schedule := &ActionSchedule{
-		Title:             ".forgejo/workflows/test.yaml",
+		Title:             ".novroforge/workflows/test.yaml",
 		Specs:             []*ActionScheduleSpec{specWithoutTZ, specWithTZ},
 		RepoID:            repo62.ID,
 		OwnerID:           user2.ID,
 		WorkflowID:        "test.yaml",
-		WorkflowDirectory: ".forgejo/workflows",
+		WorkflowDirectory: ".novroforge/workflows",
 		TriggerUserID:     -2,
 		Ref:               "refs/heads/main",
 		CommitSHA:         "6af834a5bc97c1a337eb3a21d26903c5cdceca0c",
@@ -71,9 +71,9 @@ jobs:
 	require.Len(t, schedules, 1)
 
 	assert.NotZero(t, schedules[0].ID)
-	assert.Equal(t, ".forgejo/workflows/test.yaml", schedules[0].Title)
+	assert.Equal(t, ".novroforge/workflows/test.yaml", schedules[0].Title)
 	assert.Equal(t, "test.yaml", schedules[0].WorkflowID)
-	assert.Equal(t, ".forgejo/workflows", schedules[0].WorkflowDirectory)
+	assert.Equal(t, ".novroforge/workflows", schedules[0].WorkflowDirectory)
 	assert.Equal(t, int64(-2), schedules[0].TriggerUserID)
 	assert.Equal(t, "refs/heads/main", schedules[0].Ref)
 	assert.Equal(t, "6af834a5bc97c1a337eb3a21d26903c5cdceca0c", schedules[0].CommitSHA)

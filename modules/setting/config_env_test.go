@@ -62,7 +62,7 @@ func TestDecodeEnvironmentKey(t *testing.T) {
 	assert.Equal(t, "KEY", key)
 	assert.False(t, file)
 
-	ok, section, key, file = decodeEnvironmentKey(prefix, suffix, "FORGEJO__SEC__KEY")
+	ok, section, key, file = decodeEnvironmentKey(prefix, suffix, "novroforge__SEC__KEY")
 	assert.True(t, ok)
 	assert.Equal(t, "sec", section)
 	assert.Equal(t, "KEY", key)

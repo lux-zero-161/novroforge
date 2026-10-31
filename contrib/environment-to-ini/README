@@ -17,11 +17,11 @@ When run, `environment-to-ini` will write the config files based on the
 environment variables provided.
 Check with the `-h` flag for several options to alter this behaviour.
 
-Environment variables of the form "FORGEJO__SECTION_NAME__KEY_NAME"
+Environment variables of the form "novroforge__SECTION_NAME__KEY_NAME"
 will be mapped to the ini section "[section_name]" and the key
 "KEY_NAME" with the value as provided.
 
-Environment variables of the form "FORGEJO__SECTION_NAME__KEY_NAME__FILE"
+Environment variables of the form "novroforge__SECTION_NAME__KEY_NAME__FILE"
 will be mapped to the ini section "[section_name]" and the key
 "KEY_NAME" with the value loaded from the specified file.
 
@@ -39,8 +39,8 @@ a UTF8 byte string if necessary. E.g. to configure:
   ...
   """
 
-You would set the environment variables: "FORGEJO__LOG_0x2E_CONSOLE__COLORIZE=false"
-and "FORGEJO__LOG_0x2E_CONSOLE__STDERR=false". Other examples can be found
+You would set the environment variables: "novroforge__LOG_0x2E_CONSOLE__COLORIZE=false"
+and "novroforge__LOG_0x2E_CONSOLE__STDERR=false". Other examples can be found
 on the configuration cheat sheet.
 
 To build locally, run:

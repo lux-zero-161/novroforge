@@ -9,7 +9,7 @@ import (
 	migrations_tests "novroforge.xyz/models/gitea_migrations/test"
 	"novroforge.xyz/modules/timeutil"
 
-	"code.forgejo.org/xorm/xorm/names"
+	"code.novroforge.xyz/xorm/xorm/names"
 	"github.com/stretchr/testify/require"
 )
 

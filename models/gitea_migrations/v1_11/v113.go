@@ -6,7 +6,7 @@ package v1_11
 import (
 	"fmt"
 
-	"code.forgejo.org/xorm/xorm"
+	"code.novroforge.xyz/xorm/xorm"
 )
 
 func FeatureChangeTargetBranch(x *xorm.Engine) error {

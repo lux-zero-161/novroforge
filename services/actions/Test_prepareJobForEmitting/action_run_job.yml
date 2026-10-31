@@ -589,7 +589,7 @@
     jobs:
       consume-runs-on:
         name: consume-runs-on
-        uses: some-repo/some-org/.forgejo/workflows/reusable.yml@non-existent-reference
+        uses: some-repo/some-org/.novroforge/workflows/reusable.yml@non-existent-reference
         with:
           workflow_input: ${{ needs.define-workflow-call.outputs.workflow_input }}
     incomplete_with: true
@@ -614,7 +614,7 @@
     jobs:
       perform-workflow-call:
         name: perform-workflow-call
-        uses: some-repo/some-org/.forgejo/workflows/reusable.yml@simple
+        uses: some-repo/some-org/.novroforge/workflows/reusable.yml@simple
         with:
           workflow_input: ${{ needs.define-workflow-call.outputs.workflow_input }}
     incomplete_with: true
@@ -652,7 +652,7 @@
     jobs:
       perform-workflow-call:
         name: perform-workflow-call
-        uses: some-repo/some-org/.forgejo/workflows/reusable.yml@more-incomplete
+        uses: some-repo/some-org/.novroforge/workflows/reusable.yml@more-incomplete
         with:
           workflow_input: ${{ needs.define-workflow-call.outputs.workflow_input }}
     incomplete_with: true
@@ -690,7 +690,7 @@
     jobs:
       perform-workflow-call:
         name: perform-workflow-call
-        uses: some-repo/some-org/.forgejo/workflows/reusable.yml@more-incomplete
+        uses: some-repo/some-org/.novroforge/workflows/reusable.yml@more-incomplete
         with:
           workflow_input: ${{ needs.oops-i-misspelt-the-job-id.outputs.workflow_input }}
     incomplete_with: true
@@ -728,7 +728,7 @@
     jobs:
       perform-workflow-call:
         name: perform-workflow-call
-        uses: some-repo/some-org/.forgejo/workflows/reusable.yml@more-incomplete
+        uses: some-repo/some-org/.novroforge/workflows/reusable.yml@more-incomplete
         with:
           workflow_input: ${{ needs.define-workflow-call.outputs.output-doesnt-exist }}
     incomplete_with: true
@@ -766,7 +766,7 @@
     jobs:
       perform-workflow-call:
         name: perform-workflow-call
-        uses: some-repo/some-org/.forgejo/workflows/reusable.yml@more-incomplete
+        uses: some-repo/some-org/.novroforge/workflows/reusable.yml@more-incomplete
         with:
           workflow_input: ${{ matrix.dimension-oops-error }}
         strategy:
@@ -807,7 +807,7 @@
     jobs:
       perform-workflow-call:
         name: perform-workflow-call
-        uses: ./.forgejo/workflows/reusable.yml
+        uses: ./.novroforge/workflows/reusable.yml
         with:
           workflow_input: ${{ needs.define-workflow-call.outputs.workflow_input }}
     incomplete_with: true

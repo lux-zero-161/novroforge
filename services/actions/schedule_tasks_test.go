@@ -18,8 +18,8 @@ import (
 	"novroforge.xyz/modules/timeutil"
 	webhook_module "novroforge.xyz/modules/webhook"
 
-	"code.forgejo.org/forgejo/runner/v13/act/jobparser"
-	"code.forgejo.org/forgejo/runner/v13/act/model"
+	"code.novroforge.xyz/novroforge/runner/v13/act/jobparser"
+	"code.novroforge.xyz/novroforge/runner/v13/act/model"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -41,7 +41,7 @@ func TestServiceActions_startTask(t *testing.T) {
 			RepoID:            repo.ID,
 			OwnerID:           repo.OwnerID,
 			WorkflowID:        workflowID,
-			WorkflowDirectory: ".forgejo/workflows",
+			WorkflowDirectory: ".novroforge/workflows",
 			TriggerUserID:     repo.OwnerID,
 			Ref:               "branch",
 			CommitSHA:         "fakeSHA",
@@ -120,7 +120,7 @@ func TestCreateScheduleTask(t *testing.T) {
 				RepoID:            repo.ID,
 				OwnerID:           repo.OwnerID,
 				WorkflowID:        "some.yml",
-				WorkflowDirectory: ".forgejo/workflows",
+				WorkflowDirectory: ".novroforge/workflows",
 				TriggerUserID:     repo.OwnerID,
 				Ref:               "branch",
 				CommitSHA:         "fakeSHA",
@@ -240,7 +240,7 @@ jobs:
 				RepoID:            repo.ID,
 				OwnerID:           repo.OwnerID,
 				WorkflowID:        "some.yml",
-				WorkflowDirectory: ".forgejo/workflows",
+				WorkflowDirectory: ".novroforge/workflows",
 				TriggerUserID:     repo.OwnerID,
 				Ref:               "branch",
 				CommitSHA:         "fakeSHA",
@@ -371,7 +371,7 @@ func TestServiceActions_DynamicMatrix(t *testing.T) {
 			RepoID:            repo.ID,
 			OwnerID:           repo.OwnerID,
 			WorkflowID:        workflowID,
-			WorkflowDirectory: ".forgejo/workflows",
+			WorkflowDirectory: ".novroforge/workflows",
 			TriggerUserID:     repo.OwnerID,
 			Ref:               "branch",
 			CommitSHA:         "fakeSHA",
@@ -538,9 +538,9 @@ func TestServiceActions_ExpandReusableWorkflow(t *testing.T) {
 				`
 jobs:
   job2:
-    uses: ./.forgejo/workflows/reusable.yml
+    uses: ./.novroforge/workflows/reusable.yml
   job3:
-    uses: some-org/some-repo/.forgejo/workflows/reusable-path.yml@main
+    uses: some-org/some-repo/.novroforge/workflows/reusable-path.yml@main
 `,
 			),
 		},
@@ -568,13 +568,13 @@ jobs:
 	require.Len(t, localReusableCalled, 1, "localReusableCalled")
 	require.Len(t, remoteReusableCalled, 1, "remoteReusableCalled")
 
-	assert.Equal(t, &callArgs{4, "fakeSHA", "./.forgejo/workflows/reusable.yml"}, localReusableCalled[0])
+	assert.Equal(t, &callArgs{4, "fakeSHA", "./.novroforge/workflows/reusable.yml"}, localReusableCalled[0])
 	assert.Equal(t, 2, cleanupCallCount, "cleanupCallCount")
 	assert.Equal(t, &model.NonLocalReusableWorkflowReference{
 		Org:         "some-org",
 		Repo:        "some-repo",
 		Filename:    "reusable-path.yml",
 		Ref:         "main",
-		GitPlatform: "forgejo",
+		GitPlatform: "novroforge",
 	}, remoteReusableCalled[0])
 }

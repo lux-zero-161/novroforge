@@ -1,12 +1,12 @@
 // Copyright 2023 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: MIT
 
-package forgejo_v1_20
+package novroforge_v1_20
 
 import (
 	"novroforge.xyz/modules/timeutil"
 
-	"code.forgejo.org/xorm/xorm"
+	"code.novroforge.xyz/xorm/xorm"
 )
 
 type AuthorizationToken struct {
@@ -18,7 +18,7 @@ type AuthorizationToken struct {
 }
 
 func (AuthorizationToken) TableName() string {
-	return "forgejo_auth_token"
+	return "novroforge_auth_token"
 }
 
 func CreateAuthorizationTokenTable(x *xorm.Engine) error {

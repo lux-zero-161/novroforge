@@ -39,7 +39,7 @@ func TestNewTwoFactor(t *testing.T) {
 
 	otpKey, err := totp.Generate(totp.GenerateOpts{
 		SecretSize:  40,
-		Issuer:      "forgejo-test",
+		Issuer:      "novroforge-test",
 		AccountName: "user2",
 	})
 	require.NoError(t, err)

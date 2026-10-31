@@ -3,7 +3,7 @@
 
 package v1_13
 
-import "code.forgejo.org/xorm/xorm"
+import "code.novroforge.xyz/xorm/xorm"
 
 func AddTrustModelToRepository(x *xorm.Engine) error {
 	type Repository struct {

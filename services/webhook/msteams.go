@@ -1005,7 +1005,7 @@ func (m msteamsConvertor) Action(p *api.ActionPayload) (MSTeamsPayload, error) {
 	}
 
 	// TODO: is TriggerUser correct here?
-	// if you'd like to test these proprietary services, see the discussion on: https://codeberg.org/forgejo/forgejo/pulls/7508
+	// if you'd like to test these proprietary services, see the discussion on: https://codeberg.org/novroforge/novroforge/pulls/7508
 	return createMSTeamsPayload(
 		p.Run.Repo,
 		p.Run.TriggerUser,

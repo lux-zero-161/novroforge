@@ -48,7 +48,7 @@ type ActionRun struct {
 	Repo                 *repo_model.Repository `xorm:"-"`
 	OwnerID              int64                  `xorm:"index"`
 	WorkflowID           string                 `xorm:"index"`                                 // the name of workflow file
-	WorkflowDirectory    string                 `xorm:"NOT NULL DEFAULT '.forgejo/workflows'"` // directory where the workflow file resides, for example, .forgejo/workflows
+	WorkflowDirectory    string                 `xorm:"NOT NULL DEFAULT '.novroforge/workflows'"` // directory where the workflow file resides, for example, .novroforge/workflows
 	Index                int64                  `xorm:"index unique(repo_index)"`              // a unique number for each run of a repository
 	TriggerUserID        int64                  `xorm:"index"`
 	TriggerUser          *user_model.User       `xorm:"-"`

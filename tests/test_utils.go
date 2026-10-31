@@ -213,7 +213,7 @@ func InitTest() {
 	}
 
 	setting.Repository.Local.LocalCopyPath = os.TempDir()
-	dir, err := os.MkdirTemp("", "prepared-forgejo")
+	dir, err := os.MkdirTemp("", "prepared-novroforge")
 	if err != nil {
 		log.Fatal("os.MkdirTemp: %v", err)
 	}

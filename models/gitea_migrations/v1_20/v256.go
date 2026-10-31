@@ -4,7 +4,7 @@
 package v1_20
 
 import (
-	"code.forgejo.org/xorm/xorm"
+	"code.novroforge.xyz/xorm/xorm"
 )
 
 func AddIsInternalColumnToPackage(x *xorm.Engine) error {

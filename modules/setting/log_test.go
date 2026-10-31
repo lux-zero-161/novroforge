@@ -224,13 +224,13 @@ ACCESS = file
 }
 `
 	dump := manager.GetLogger(log.DEFAULT).DumpWriters()
-	require.JSONEq(t, strings.ReplaceAll(writerDump, "$FILENAME", tempPath("forgejo.log")), toJSON(dump))
+	require.JSONEq(t, strings.ReplaceAll(writerDump, "$FILENAME", tempPath("novroforge.log")), toJSON(dump))
 
 	dump = manager.GetLogger("access").DumpWriters()
 	require.JSONEq(t, strings.ReplaceAll(writerDumpAccess, "$FILENAME", tempPath("access.log")), toJSON(dump))
 
 	dump = manager.GetLogger("router").DumpWriters()
-	require.JSONEq(t, strings.ReplaceAll(writerDump, "$FILENAME", tempPath("forgejo.log")), toJSON(dump))
+	require.JSONEq(t, strings.ReplaceAll(writerDump, "$FILENAME", tempPath("novroforge.log")), toJSON(dump))
 }
 
 func TestLogConfigLegacyModeDisable(t *testing.T) {
@@ -401,13 +401,13 @@ COMPRESSION_LEVEL = 4
 
 	dump := manager.GetLogger(log.DEFAULT).DumpWriters()
 	expected := writerDump
-	expected = strings.ReplaceAll(expected, "$FILENAME-0", tempPath("forgejo.log"))
+	expected = strings.ReplaceAll(expected, "$FILENAME-0", tempPath("novroforge.log"))
 	expected = strings.ReplaceAll(expected, "$FILENAME-1", tempPath("file-xxx.log"))
 	require.JSONEq(t, expected, toJSON(dump))
 }
 
 func TestLogPrepareFilenameForWriter(t *testing.T) {
-	t.Run("forgejo.log is the default and a backward compatible symlink is created for gitea.log", func(t *testing.T) {
+	t.Run("novroforge.log is the default and a backward compatible symlink is created for gitea.log", func(t *testing.T) {
 		d := t.TempDir()
 		defer test.MockVariableValue(&Log.RootPath, d)()
 		logFileBackward := filepath.Join(d, logBackwardCompatibleFileName)
@@ -427,7 +427,7 @@ func TestLogPrepareFilenameForWriter(t *testing.T) {
 		test.PanicErrorContains(t, func() { LogPrepareFilenameForWriter("", logDefaultFileName) }, "os.Lstat")
 	})
 
-	t.Run("forgejo.log is not the default if gitea.log already exists", func(t *testing.T) {
+	t.Run("novroforge.log is not the default if gitea.log already exists", func(t *testing.T) {
 		t.Run("as a regular file", func(t *testing.T) {
 			d := t.TempDir()
 			defer test.MockVariableValue(&Log.RootPath, d)()
@@ -491,7 +491,7 @@ func TestLogPrepareFilenameForWriter(t *testing.T) {
 		assert.Equal(t, giteaLog, LogPrepareFilenameForWriter(giteaLog, logDefaultFileName))
 	})
 
-	t.Run("no backward compatibility effort if the default is not forgejo.log", func(t *testing.T) {
+	t.Run("no backward compatibility effort if the default is not novroforge.log", func(t *testing.T) {
 		d := t.TempDir()
 		defer test.MockVariableValue(&Log.RootPath, d)()
 		alternateDefaultFileName := "access.log"

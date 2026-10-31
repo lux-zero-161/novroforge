@@ -6,7 +6,7 @@ package v1_12
 import (
 	"novroforge.xyz/modules/setting"
 
-	"code.forgejo.org/xorm/xorm"
+	"code.novroforge.xyz/xorm/xorm"
 )
 
 func PrependRefsHeadsToIssueRefs(x *xorm.Engine) error {

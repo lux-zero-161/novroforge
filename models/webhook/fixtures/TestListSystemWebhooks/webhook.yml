@@ -4,7 +4,7 @@
   owner_id: 0
   url: http://www.example.com/systemhook5
   http_method: POST
-  type: forgejo
+  type: novroforge
   content_type: 1 # json
   events: '{"push_only":true,"send_everything":false,"choose_events":false,"events":{"create":false,"push":true,"pull_request":false}}'
   is_active: true
@@ -15,7 +15,7 @@
   owner_id: 0
   url: http://www.example.com/systemhook6
   http_method: POST
-  type: forgejo
+  type: novroforge
   content_type: 1 # json
   events: '{"push_only":true,"send_everything":false,"choose_events":false,"events":{"create":false,"push":true,"pull_request":false}}'
   is_active: true
@@ -26,7 +26,7 @@
   owner_id: 0
   url: http://www.example.com/systemhook7
   http_method: POST
-  type: forgejo
+  type: novroforge
   content_type: 1 # json
   events: '{"push_only":true,"send_everything":false,"choose_events":false,"events":{"create":false,"push":true,"pull_request":false}}'
   is_active: true
@@ -37,7 +37,7 @@
   owner_id: 0
   url: http://www.example.com/systemhook8
   http_method: POST
-  type: forgejo
+  type: novroforge
   content_type: 1 # json
   events: '{"push_only":true,"send_everything":false,"choose_events":false,"events":{"create":false,"push":true,"pull_request":false}}'
   is_active: false
@@ -48,7 +48,7 @@
   owner_id: 0
   url: http://www.example.com/systemhook9
   http_method: POST
-  type: forgejo
+  type: novroforge
   content_type: 1 # json
   events: '{"push_only":true,"send_everything":false,"choose_events":false,"events":{"create":false,"push":true,"pull_request":false}}'
   is_active: false
@@ -59,7 +59,7 @@
   owner_id: 0
   url: http://www.example.com/systemhook
   http_method: POST
-  type: forgejo
+  type: novroforge
   content_type: 1 # json
   events: '{"push_only":true,"send_everything":false,"choose_events":false,"events":{"create":false,"push":true,"pull_request":false}}'
   is_active: false

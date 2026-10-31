@@ -1,17 +1,17 @@
 {{template "user/settings/authorized_integrations/view_head" .}}
 
 <h4 class="ui top attached header {{if .Err_SourceRepo}}error{{end}}">
-	{{ctx.Locale.Tr "settings.authorized_integration.ui.forgejo_actions_local"}}
+	{{ctx.Locale.Tr "settings.authorized_integration.ui.novroforge_actions_local"}}
 </h4>
 <div class="ui attached bottom segment">
-	<p>{{ctx.Locale.Tr "settings.authorized_integration.forgejo_actions_local.description"}}</p>
+	<p>{{ctx.Locale.Tr "settings.authorized_integration.novroforge_actions_local.description"}}</p>
 
 	{{if eq .Form.SourceRepo ""}}
 		<div class="tw-flex tw-flex-wrap tw-gap-8">
 			<!-- left-hand side: repo list from a search -->
 			<div class="ui tab active list tw-flex-1">
 				<h5 id="action-select-repo">
-					{{ctx.Locale.Tr "settings.authorized_integration.forgejo_actions_local.select_repository"}}
+					{{ctx.Locale.Tr "settings.authorized_integration.novroforge_actions_local.select_repository"}}
 				</h5>
 
 				<div class="ui small fluid action left icon input tw-mb-3">
@@ -32,7 +32,7 @@
 								{{.FullName}}
 							</div>
 							<button class="ui primary button tw-ml-2 tw-my-1 tiny" type="submit" aria-label="{{ctx.Locale.Tr "repo.editor.add" .FullName}}" formnovalidate="true" name="source_repo" value="{{.FullName}}" formmethod="get">
-								{{ctx.Locale.Tr "settings.authorized_integration.forgejo_actions_local.select_repo"}}
+								{{ctx.Locale.Tr "settings.authorized_integration.novroforge_actions_local.select_repo"}}
 							</button>
 						{{end}}
 					</div>
@@ -94,19 +94,19 @@
 	{{end}}
 
 	<div class="field {{if .Err_WorkflowFile}}error{{end}}">
-		<label for="workflow_file">{{ctx.Locale.Tr "settings.authorized_integration.forgejo_actions_local.workflow_file.label"}}</label>
+		<label for="workflow_file">{{ctx.Locale.Tr "settings.authorized_integration.novroforge_actions_local.workflow_file.label"}}</label>
 		<input id="workflow_file" name="workflow_file" value="{{.Form.WorkflowFile}}">
-		<span class="help">{{ctx.Locale.Tr "settings.authorized_integration.forgejo_actions_local.workflow_file.help" "https://pkg.go.dev/github.com/gobwas/glob#Compile" "github.com/gobwas/glob"}}</span>
+		<span class="help">{{ctx.Locale.Tr "settings.authorized_integration.novroforge_actions_local.workflow_file.help" "https://pkg.go.dev/github.com/gobwas/glob#Compile" "github.com/gobwas/glob"}}</span>
 	</div>
 
 	<div class="field {{if .Err_GitRef}}error{{end}}">
-		<label for="git_ref">{{ctx.Locale.Tr "settings.authorized_integration.forgejo_actions_local.git_ref.label"}}</label>
+		<label for="git_ref">{{ctx.Locale.Tr "settings.authorized_integration.novroforge_actions_local.git_ref.label"}}</label>
 		<input id="git_ref" name="git_ref" value="{{.Form.GitRef}}">
-		<span class="help">{{ctx.Locale.Tr "settings.authorized_integration.forgejo_actions_local.git_ref.help" "https://pkg.go.dev/github.com/gobwas/glob#Compile" "github.com/gobwas/glob"}}</span>
+		<span class="help">{{ctx.Locale.Tr "settings.authorized_integration.novroforge_actions_local.git_ref.help" "https://pkg.go.dev/github.com/gobwas/glob#Compile" "github.com/gobwas/glob"}}</span>
 	</div>
 
 	<div class="field">
-		<label for="event">{{ctx.Locale.Tr "settings.authorized_integration.forgejo_actions_local.event.label"}}</label>
+		<label for="event">{{ctx.Locale.Tr "settings.authorized_integration.novroforge_actions_local.event.label"}}</label>
 		<select id="event" name="event" multiple class="ui selection dropdown">
 			<option value="pull_request" {{if (SliceUtils.Contains .Form.Event "pull_request")}}selected{{end}}>pull_request</option>
 			<option value="push" {{if (SliceUtils.Contains .Form.Event "push")}}selected{{end}}>push</option>
@@ -116,7 +116,7 @@
 			<option value="schedule" {{if (SliceUtils.Contains .Form.Event "schedule")}}selected{{end}}>schedule</option>
 			<option value="workflow_dispatch" {{if (SliceUtils.Contains .Form.Event "workflow_dispatch")}}selected{{end}}>workflow_dispatch</option>
 		</select>
-		<span class="help">{{ctx.Locale.Tr "settings.authorized_integration.forgejo_actions_local.event.help"}}</span>
+		<span class="help">{{ctx.Locale.Tr "settings.authorized_integration.novroforge_actions_local.event.help"}}</span>
 	</div>
 </div>
 

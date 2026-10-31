@@ -5,7 +5,7 @@ package unittest
 import (
 	"testing"
 
-	"code.forgejo.org/xorm/xorm/contexts"
+	"code.novroforge.xyz/xorm/xorm/contexts"
 	"github.com/stretchr/testify/require"
 )
 

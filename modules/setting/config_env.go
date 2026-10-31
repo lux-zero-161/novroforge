@@ -14,7 +14,7 @@ import (
 )
 
 const (
-	EnvConfigKeyPrefixGitea = "^(FORGEJO|GITEA)__"
+	EnvConfigKeyPrefixGitea = "^(novroforge|GITEA)__"
 	EnvConfigKeySuffixFile  = "__FILE"
 )
 

@@ -29,7 +29,7 @@ import (
 	"novroforge.xyz/modules/util"
 	"novroforge.xyz/tests"
 
-	"code.forgejo.org/xorm/xorm"
+	"code.novroforge.xyz/xorm/xorm"
 	_ "github.com/jackc/pgx/v5/stdlib" // Import pgx driver
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -123,7 +123,7 @@ func readSQLFromFile(t *testing.T, version string) string {
 	filename := fmt.Sprintf(path.Join(root, "tests/integration/migration-test/gitea-v%s.%s.sql.gz"), version, setting.Database.Type)
 
 	if _, err := os.Stat(filename); os.IsNotExist(err) {
-		filename = fmt.Sprintf(path.Join(root, "tests/integration/migration-test/forgejo-v%s.%s.sql.gz"), version, setting.Database.Type)
+		filename = fmt.Sprintf(path.Join(root, "tests/integration/migration-test/novroforge-v%s.%s.sql.gz"), version, setting.Database.Type)
 		if _, err := os.Stat(filename); os.IsNotExist(err) {
 			require.NoError(t, err)
 		}

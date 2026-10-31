@@ -119,7 +119,7 @@ func TestRepoMigrationTypeSelect(t *testing.T) {
 	headers := page.Find(".migrate-entry h3").Text()
 	descriptions := page.Find(".migrate-entry .description").Text()
 
-	sourceNames := []string{"github", "gitea", "gitlab", "gogs", "onedev", "gitbucket", "codebase", "forgejo", "pagure"}
+	sourceNames := []string{"github", "gitea", "gitlab", "gogs", "onedev", "gitbucket", "codebase", "novroforge", "pagure"}
 	for _, sourceName := range sourceNames {
 		assert.Contains(t, strings.ToLower(headers), sourceName)
 		assert.Contains(t, descriptions, locale.Tr(fmt.Sprintf("migrate.%s.description", sourceName)))

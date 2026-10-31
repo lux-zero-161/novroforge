@@ -5,10 +5,10 @@
 label_worth=worth
 label_bug=bug
 label_feature=feature
-label_ui=forgejo/ui
+label_ui=novroforge/ui
 label_breaking=breaking
 label_security=security
-label_localization=forgejo/i18n
+label_localization=novroforge/i18n
 
 payload=$(mktemp)
 pr=$(mktemp)

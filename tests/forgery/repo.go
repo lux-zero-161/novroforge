@@ -18,7 +18,7 @@ import (
 	repo_service "novroforge.xyz/services/repository"
 	wiki_service "novroforge.xyz/services/wiki"
 
-	"code.forgejo.org/xorm/xorm/convert"
+	"code.novroforge.xyz/xorm/xorm/convert"
 	"github.com/stretchr/testify/require"
 )
 

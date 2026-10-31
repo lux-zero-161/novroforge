@@ -11,7 +11,7 @@ import (
 	"novroforge.xyz/modules/container"
 	"novroforge.xyz/modules/timeutil"
 
-	"code.forgejo.org/forgejo/runner/v13/act/jobparser"
+	"code.novroforge.xyz/novroforge/runner/v13/act/jobparser"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

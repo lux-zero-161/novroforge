@@ -78,11 +78,11 @@ func TestUnixSocketAbstractNamespace(t *testing.T) {
 	iniStr := `
 	[server]
 	PROTOCOL=http+unix
-	HTTP_ADDR=@forgejo
+	HTTP_ADDR=@novroforge
 	`
 	cfg, err := NewConfigProviderFromData(iniStr)
 	require.NoError(t, err)
 	loadServerFrom(cfg)
 
-	assert.Equal(t, "@forgejo", HTTPAddr)
+	assert.Equal(t, "@novroforge", HTTPAddr)
 }

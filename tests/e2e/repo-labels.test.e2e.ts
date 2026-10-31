@@ -43,7 +43,7 @@ test('Edit label', async ({page}) => {
 });
 
 test('New label after a failed validation', async ({page}) => {
-  // for issue https://codeberg.org/forgejo/forgejo/issues/11842
+  // for issue https://codeberg.org/novroforge/novroforge/issues/11842
   const response = await page.goto('/user2/repo1/labels');
   expect(response?.status()).toBe(200);
 

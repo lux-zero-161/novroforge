@@ -17,7 +17,7 @@ type (
 )
 
 const (
-	NovroForgeSourceType    SoftwareNameType = "forgejo"
+	NovroForgeSourceType    SoftwareNameType = "novroforge"
 	GiteaSourceType      SoftwareNameType = "gitea"
 	MastodonSourceType   SoftwareNameType = "mastodon"
 	GoToSocialSourceType SoftwareNameType = "gotosocial"

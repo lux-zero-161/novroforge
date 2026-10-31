@@ -53,7 +53,7 @@ func NewReplaceUser(name string) *User {
 
 const (
 	ActionsUserID   = -2
-	ActionsUserName = "forgejo-actions"
+	ActionsUserName = "novroforge-actions"
 	ActionsFullName = "NovroForge Actions"
 	ActionsEmail    = "noreply@novroforge.xyz"
 )

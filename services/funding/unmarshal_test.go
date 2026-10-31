@@ -15,10 +15,10 @@ import (
 
 func TestCouldBeFundingConfig(t *testing.T) {
 	cases := []string{
-		".forgejo/FUNDING",
-		".forgejo/Funding",
-		".forgejo/funding",
-		".forgejo/fundING",
+		".novroforge/FUNDING",
+		".novroforge/Funding",
+		".novroforge/funding",
+		".novroforge/fundING",
 
 		".github/FUNDING",
 		".github/Funding",
@@ -45,9 +45,9 @@ func TestCannotBeFundingConfig(t *testing.T) {
 		"README.md",
 		".gitea/FUNDING.yml",
 		"custom/FUNDING.yml",
-		".forgejo/_FUNDING.yml",
-		".forgejo/.FUNDING.yml",
-		".forgejo/FUNDING.yml.",
+		".novroforge/_FUNDING.yml",
+		".novroforge/.FUNDING.yml",
+		".novroforge/FUNDING.yml.",
 		"",
 	}
 	for _, fileName := range cases {

@@ -1081,7 +1081,7 @@ citation-information .tab:not(.active) {
   padding: 0 0.5rem;
 }
 
-/* emulation of horizontal rule between comments originating from forgejo- themes, commit faab0c670e */
+/* emulation of horizontal rule between comments originating from novroforge- themes, commit faab0c670e */
 
 .repository.view.issue .comment-list .code-comment + .code-comment {
   margin-top: 1rem !important;
@@ -1647,7 +1647,7 @@ citation-information .tab:not(.active) {
 }
 
 /* workaround for safari as it does not support 'display: list-item' for summary tags yet
-** see https://codeberg.org/forgejo/forgejo/issues/5259 */
+** see https://codeberg.org/novroforge/novroforge/issues/5259 */
 details.repo-search-result summary::-webkit-details-marker,
 details.repo-search-result summary::marker {
   display: none;

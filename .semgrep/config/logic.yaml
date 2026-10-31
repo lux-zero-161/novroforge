@@ -1,5 +1,5 @@
 rules:
-  - id: forgejo-logic-suspicious-OwnerID-check
+  - id: novroforge-logic-suspicious-OwnerID-check
     pattern: |-
       $X.OwnerID > 0
     languages:

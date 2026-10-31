@@ -25,7 +25,7 @@ import (
 	"novroforge.xyz/services/forms"
 	"novroforge.xyz/services/webhook/shared"
 
-	"code.forgejo.org/go-chi/binding"
+	"code.novroforge.xyz/go-chi/binding"
 	"go.yaml.in/yaml/v3"
 )
 
@@ -297,7 +297,7 @@ func adjustManifest(repo *api.Repository, commitID, gitRef string, r io.Reader, 
 	if manifest.Environment == nil {
 		manifest.Environment = make(map[string]string)
 	}
-	manifest.Environment["BUILD_SUBMITTER"] = "forgejo"
+	manifest.Environment["BUILD_SUBMITTER"] = "novroforge"
 	manifest.Environment["BUILD_SUBMITTER_URL"] = setting.AppURL
 	manifest.Environment["GIT_REF"] = gitRef
 

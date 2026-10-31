@@ -64,7 +64,7 @@
 }
 
 /* `.ui.label` implies `min-width: 0` breaking the layout.
-   (https://codeberg.org/forgejo/forgejo/pulls/8138#issuecomment-5960251)
+   (https://codeberg.org/novroforge/novroforge/pulls/8138#issuecomment-5960251)
    When it becomes possible, feel free to replace with something better. */
 .collapsible-comment-box .ui.label {
   min-width: unset;

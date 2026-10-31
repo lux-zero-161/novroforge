@@ -597,7 +597,7 @@ func TestDiscordJSONPayload(t *testing.T) {
 	buf, err := io.ReadAll(req.Body)
 	require.NoError(t, err)
 
-	// https://codeberg.org/forgejo/forgejo/issues/11573
+	// https://codeberg.org/novroforge/novroforge/issues/11573
 	assert.NotContains(t, string(buf), `"footer":`)
 
 	var body DiscordPayload

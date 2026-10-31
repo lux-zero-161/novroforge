@@ -89,7 +89,7 @@ func (p *Project) LoadRepo(ctx context.Context) (err error) {
 
 // Link returns the project's relative URL.
 func (p *Project) Link(ctx context.Context) string {
-	// nosemgrep: forgejo-logic-suspicious-OwnerID-check (system users are not stored in the database)
+	// nosemgrep: novroforge-logic-suspicious-OwnerID-check (system users are not stored in the database)
 	if p.OwnerID > 0 {
 		err := p.LoadOwner(ctx)
 		if err != nil {

@@ -6,7 +6,7 @@ package v1_8
 import (
 	"novroforge.xyz/modules/setting"
 
-	"code.forgejo.org/xorm/xorm"
+	"code.novroforge.xyz/xorm/xorm"
 )
 
 func AddCanCloseIssuesViaCommitInAnyBranch(x *xorm.Engine) error {

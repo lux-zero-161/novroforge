@@ -127,8 +127,8 @@ func TestAPIRepoIssueConfigPaths(t *testing.T) {
 		owner := unittest.AssertExistsAndLoadBean(t, &user_model.User{ID: repo.OwnerID})
 
 		templateConfigCandidates := []string{
-			".forgejo/ISSUE_TEMPLATE/config",
-			".forgejo/issue_template/config",
+			".novroforge/ISSUE_TEMPLATE/config",
+			".novroforge/issue_template/config",
 			".gitea/ISSUE_TEMPLATE/config",
 			".gitea/issue_template/config",
 			".github/ISSUE_TEMPLATE/config",
@@ -185,7 +185,7 @@ func TestAPIRepoValidateIssueConfig(t *testing.T) {
 		})
 
 		t.Run("Invalid", func(t *testing.T) {
-			dirs := []string{".gitea", ".forgejo", "docs"}
+			dirs := []string{".gitea", ".novroforge", "docs"}
 			for _, dir := range dirs {
 				t.Run(dir, func(t *testing.T) {
 					defer tests.PrintCurrentTest(t)()

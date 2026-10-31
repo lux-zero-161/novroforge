@@ -1,11 +1,11 @@
 // Copyright 2025 The NovroForge Authors.
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-package forgejo_migrations_legacy
+package novroforge_migrations_legacy
 
 import (
-	"code.forgejo.org/xorm/xorm"
-	"code.forgejo.org/xorm/xorm/schemas"
+	"code.novroforge.xyz/xorm/xorm"
+	"code.novroforge.xyz/xorm/xorm/schemas"
 )
 
 func SetTopicsAsEmptySlice(x *xorm.Engine) error {

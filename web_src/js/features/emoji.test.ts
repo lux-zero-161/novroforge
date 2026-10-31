@@ -7,7 +7,7 @@ test('emojiString', () => {
   expect(emojiString('european_union')).toEqual('🇪🇺');
   expect(emojiString('eu')).toEqual('🇪🇺');
 
-  expect(emojiString('forgejo')).toEqual(':forgejo:');
+  expect(emojiString('novroforge')).toEqual(':novroforge:');
   expect(emojiString('frogejo')).toEqual(':frogejo:');
   expect(emojiString('blobnom')).toEqual(':blobnom:');
 
@@ -20,7 +20,7 @@ test('emojiHTML', () => {
   expect(emojiHTML('european_union')).toEqual('<span class="emoji" title=":european_union:">🇪🇺</span>');
   expect(emojiHTML('eu')).toEqual('<span class="emoji" title=":eu:">🇪🇺</span>');
 
-  expect(emojiHTML('forgejo')).toEqual('<span class="emoji" title=":forgejo:"><img alt=":forgejo:" src="/assets/img/emoji/forgejo.png"></span>');
+  expect(emojiHTML('novroforge')).toEqual('<span class="emoji" title=":novroforge:"><img alt=":novroforge:" src="/assets/img/emoji/novroforge.png"></span>');
   expect(emojiHTML('frogejo')).toEqual('<span class="emoji" title=":frogejo:"><img alt=":frogejo:" src="/assets/img/emoji/frogejo.png"></span>');
   expect(emojiHTML('blobnom')).toEqual('<span class="emoji" title=":blobnom:"><img alt=":blobnom:" src="/assets/img/emoji/blobnom.png"></span>');
 

@@ -16,7 +16,7 @@ import (
 	"novroforge.xyz/modules/json"
 	"novroforge.xyz/modules/setting"
 
-	runnerv1 "code.forgejo.org/forgejo/actions-proto/runner/v1"
+	runnerv1 "code.novroforge.xyz/novroforge/actions-proto/runner/v1"
 	"connectrpc.com/connect"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -36,12 +36,12 @@ func TestActionsStepSummaries(t *testing.T) {
 		runner := newMockRunner()
 		runner.registerAsRepoRunner(t, user2.Name, repo.Name, "mock-runner", []string{"ubuntu-latest"})
 
-		treePath := ".forgejo/workflows/step-summaries.yml"
+		treePath := ".novroforge/workflows/step-summaries.yml"
 		fileContent := `name: step-summaries
 on:
   push:
     paths:
-      - '.forgejo/workflows/step-summaries.yml'
+      - '.novroforge/workflows/step-summaries.yml'
 jobs:
   job1:
     runs-on: ubuntu-latest

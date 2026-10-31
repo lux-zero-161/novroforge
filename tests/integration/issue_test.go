@@ -1362,7 +1362,7 @@ func TestIssueForm(t *testing.T) {
 		session := loginUser(t, user2.Name)
 		repo := forgery.CreateRepository(t, user2, &forgery.CreateRepositoryOptions{
 			Files: forgery.MapFS{
-				".forgejo/issue_template/test.yaml": forgery.MapFile(`name: Test
+				".novroforge/issue_template/test.yaml": forgery.MapFile(`name: Test
 about: Hello World
 body:
   - type: checkboxes
@@ -1382,13 +1382,13 @@ body:
 			resp := session.MakeRequest(t, req, http.StatusOK)
 			htmlDoc := NewHTMLParser(t, resp.Body)
 
-			htmlDoc.AssertElement(t, "a[href$='/issues/new?template=.forgejo%2fissue_template%2ftest.yaml']", true)
+			htmlDoc.AssertElement(t, "a[href$='/issues/new?template=.novroforge%2fissue_template%2ftest.yaml']", true)
 		})
 
 		t.Run("Issue template", func(t *testing.T) {
 			defer tests.PrintCurrentTest(t)()
 
-			req := NewRequest(t, "GET", repo.Link()+"/issues/new?template=.forgejo%2fissue_template%2ftest.yaml")
+			req := NewRequest(t, "GET", repo.Link()+"/issues/new?template=.novroforge%2fissue_template%2ftest.yaml")
 			resp := session.MakeRequest(t, req, http.StatusOK)
 			htmlDoc := NewHTMLParser(t, resp.Body)
 

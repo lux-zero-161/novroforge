@@ -4,7 +4,7 @@
 package v1_11
 
 import (
-	"code.forgejo.org/xorm/xorm"
+	"code.novroforge.xyz/xorm/xorm"
 )
 
 func AddWhitelistDeployKeysToBranches(x *xorm.Engine) error {

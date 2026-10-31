@@ -25,7 +25,7 @@ func TestRepoFundingConfigPrecedence(t *testing.T) {
 	onApplicationRun(t, func(t *testing.T, u *url.URL) {
 		user := forgery.CreateUser(t, nil)
 		checkFunding := func(t *testing.T, fundingConfigFilename, configKind string) {
-			t.Run("prefers "+configKind+" .forgejo/FUNDING.yml over any "+fundingConfigFilename, func(t *testing.T) {
+			t.Run("prefers "+configKind+" .novroforge/FUNDING.yml over any "+fundingConfigFilename, func(t *testing.T) {
 				defer tests.PrintCurrentTest(t)()
 
 				// Prepare the test repository
@@ -36,7 +36,7 @@ func TestRepoFundingConfigPrecedence(t *testing.T) {
 				altConfig := "ko_fi: test\n"
 				repo := forgery.CreateRepository(t, user, &forgery.CreateRepositoryOptions{
 					Files: forgery.MapFS{
-						".forgejo/FUNDING.yml": forgery.MapFile(preferredConfig),
+						".novroforge/FUNDING.yml": forgery.MapFile(preferredConfig),
 						fundingConfigFilename:  forgery.MapFile(altConfig),
 					},
 				})

@@ -20,7 +20,7 @@ func TestNewRepositoryId(t *testing.T) {
 
 	expected = forgefed.RepositoryID{}
 	expected.ID = "1"
-	expected.Source = "forgejo"
+	expected.Source = "novroforge"
 	expected.HostSchema = "http"
 	expected.Path = ""
 	expected.Host = "localhost"
@@ -28,19 +28,19 @@ func TestNewRepositoryId(t *testing.T) {
 	expected.IsPortSupplemented = false
 	expected.UnvalidatedInput = "http://localhost:3000/1"
 
-	_, err = forgefed.NewRepositoryID("https://an.other.host/api/v1/activitypub/user-id/1", "forgejo")
+	_, err = forgefed.NewRepositoryID("https://an.other.host/api/v1/activitypub/user-id/1", "novroforge")
 	require.EqualError(t, err, "Validation Error: forgefed.RepositoryID: path: \"api/v1/activitypub/user-id\" has to be a repo specific api path")
 
 	expected = forgefed.RepositoryID{}
 	expected.ID = "1"
-	expected.Source = "forgejo"
+	expected.Source = "novroforge"
 	expected.HostSchema = "http"
 	expected.Path = "api/activitypub/repository-id"
 	expected.Host = "localhost"
 	expected.HostPort = 3000
 	expected.IsPortSupplemented = false
 	expected.UnvalidatedInput = "http://localhost:3000/api/activitypub/repository-id/1"
-	sut, err = forgefed.NewRepositoryID("http://localhost:3000/api/activitypub/repository-id/1", "forgejo")
+	sut, err = forgefed.NewRepositoryID("http://localhost:3000/api/activitypub/repository-id/1", "novroforge")
 	require.NoError(t, err)
 	assert.Equal(t, expected, sut)
 }

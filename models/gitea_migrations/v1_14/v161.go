@@ -8,7 +8,7 @@ import (
 
 	"novroforge.xyz/models/gitea_migrations/base"
 
-	"code.forgejo.org/xorm/xorm"
+	"code.novroforge.xyz/xorm/xorm"
 )
 
 func ConvertTaskTypeToString(x *xorm.Engine) error {

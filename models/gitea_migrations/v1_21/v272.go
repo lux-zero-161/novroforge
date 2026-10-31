@@ -4,7 +4,7 @@
 package v1_21
 
 import (
-	"code.forgejo.org/xorm/xorm"
+	"code.novroforge.xyz/xorm/xorm"
 )
 
 func AddVersionToActionRunTable(x *xorm.Engine) error {

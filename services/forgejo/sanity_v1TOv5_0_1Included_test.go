@@ -1,13 +1,13 @@
 // SPDX-License-Identifier: MIT
 
-package forgejo
+package novroforge
 
 import (
 	"fmt"
 	"testing"
 
 	"novroforge.xyz/models/db"
-	"novroforge.xyz/models/forgejo/semver"
+	"novroforge.xyz/models/novroforge/semver"
 	"novroforge.xyz/models/unittest"
 	"novroforge.xyz/modules/log"
 

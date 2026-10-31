@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 
-package forgejo
+package novroforge
 
 import (
 	"novroforge.xyz/models/db"

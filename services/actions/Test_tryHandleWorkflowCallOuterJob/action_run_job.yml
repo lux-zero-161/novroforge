@@ -35,7 +35,7 @@
         outputs:
           from_inner_job: ${{ needs['outer-job.inner-job'].outputs.my_output }}
           from_inner_job_result: ${{ needs['outer-job.inner-job'].result }}
-          from_forgejo_ctx: ${{ forgejo.ref }}
+          from_novroforge_ctx: ${{ novroforge.ref }}
           from_input_ctx: ${{ inputs.wc_input }}!
           from_vars_repo: ${{ vars.repo_var }}
           from_vars_org: ${{ vars.org_var }}
@@ -72,7 +72,7 @@
         outputs:
           from_inner_job: ${{ needs['outer-job.inner-job'].outputs.my_output }}
           from_inner_job_result: ${{ needs['outer-job.inner-job'].result }}
-          from_forgejo_ctx: ${{ forgejo.ref }}
+          from_novroforge_ctx: ${{ novroforge.ref }}
           from_input_ctx: ${{ inputs.wc_input }}!
           from_vars_repo: ${{ vars.repo_var }}
           from_vars_org: ${{ vars.org_var }}

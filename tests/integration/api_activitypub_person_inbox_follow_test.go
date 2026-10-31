@@ -24,7 +24,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-// Flow of this test is documented at: https://codeberg.org/forgejo-contrib/federation/src/branch/main/doc/user-activity-following.md
+// Flow of this test is documented at: https://codeberg.org/novroforge-contrib/federation/src/branch/main/doc/user-activity-following.md
 func TestActivityPubPersonInboxFollow(t *testing.T) {
 	defer test.MockVariableValue(&setting.Federation.Enabled, true)()
 	defer test.MockVariableValue(&setting.Federation.SignatureEnforced, true)()

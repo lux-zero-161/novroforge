@@ -1,10 +1,10 @@
 // Copyright 2025 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-package forgejo_migrations
+package novroforge_migrations
 
 import (
-	"code.forgejo.org/xorm/xorm"
+	"code.novroforge.xyz/xorm/xorm"
 )
 
 func init() {
@@ -16,10 +16,10 @@ func init() {
 
 func addActionRunWorkflowDirectory(x *xorm.Engine) error {
 	type ActionRun struct {
-		WorkflowDirectory string `xorm:"workflow_directory NOT NULL DEFAULT '.forgejo/workflows'"`
+		WorkflowDirectory string `xorm:"workflow_directory NOT NULL DEFAULT '.novroforge/workflows'"`
 	}
 	type ActionSchedule struct {
-		WorkflowDirectory string `xorm:"workflow_directory NOT NULL DEFAULT '.forgejo/workflows'"`
+		WorkflowDirectory string `xorm:"workflow_directory NOT NULL DEFAULT '.novroforge/workflows'"`
 	}
 
 	_, err := x.SyncWithOptions(xorm.SyncOptions{IgnoreDropIndices: true}, new(ActionRun), new(ActionSchedule))

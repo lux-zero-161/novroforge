@@ -108,7 +108,7 @@ func actionsTrustTestCreateBaseRepo(t *testing.T, owner *user_model.User) *repo_
 		Files: []*files_service.ChangeRepoFile{
 			{
 				Operation: "create",
-				TreePath:  ".forgejo/workflows/pr.yml",
+				TreePath:  ".novroforge/workflows/pr.yml",
 				ContentReader: strings.NewReader(`
 on:
   pull_request:

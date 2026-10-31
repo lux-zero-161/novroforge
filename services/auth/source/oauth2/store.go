@@ -11,7 +11,7 @@ import (
 	"novroforge.xyz/modules/log"
 	session_module "novroforge.xyz/modules/session"
 
-	chiSession "code.forgejo.org/go-chi/session"
+	chiSession "code.novroforge.xyz/go-chi/session"
 	"github.com/gorilla/sessions"
 )
 

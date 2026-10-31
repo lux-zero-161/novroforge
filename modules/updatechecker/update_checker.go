@@ -53,7 +53,7 @@ func GiteaUpdateChecker(httpEndpoint, domainEndpoint string) error {
 var lookupTXT = net.LookupTXT
 
 // getVersionDNS will request the TXT records for the domain. If a record starts
-// with "forgejo_versions=" everything after that will be used as the latest
+// with "novroforge_versions=" everything after that will be used as the latest
 // version available.
 func getVersionDNS(domainEndpoint string) (version []string, err error) {
 	records, err := lookupTXT(domainEndpoint)
@@ -67,7 +67,7 @@ func getVersionDNS(domainEndpoint string) (version []string, err error) {
 
 	var supportedVersions []string
 	for _, record := range records {
-		if after, ok := strings.CutPrefix(record, "forgejo_versions="); ok {
+		if after, ok := strings.CutPrefix(record, "novroforge_versions="); ok {
 			// Get all supported versions, separated by a comma.
 			for v := range strings.SplitSeq(after, ",") {
 				supportedVersions = append(supportedVersions, strings.TrimSpace(v))

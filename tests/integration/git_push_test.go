@@ -454,7 +454,7 @@ func TestGitPushMirror(t *testing.T) {
 		require.NoError(t, err)
 
 		// Create a mirror (via a migration) and convert it to a pushed mirror
-		// https://codeberg.org/forgejo/forgejo/pulls/14885
+		// https://codeberg.org/novroforge/novroforge/pulls/14885
 		t.Run("CloneMirror", func(t *testing.T) {
 			defer allowlist.Init() // reset allowlist to not disturb the other tests
 
@@ -470,7 +470,7 @@ func TestGitPushMirror(t *testing.T) {
 			require.NoError(t, err)
 
 			// check that the refs got mirrored (shouldn't happen, but would invalidate the rest of the test)
-			// https://codeberg.org/forgejo/forgejo/pulls/14885
+			// https://codeberg.org/novroforge/novroforge/pulls/14885
 			err = git.NewCommand(git.DefaultContext, "fetch").
 				AddDynamicArguments(
 					mirror.HTMLURL(),

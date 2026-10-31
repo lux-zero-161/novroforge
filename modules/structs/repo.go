@@ -331,7 +331,7 @@ const (
 	OneDevService                                    // 6 onedev service
 	GitBucketService                                 // 7 gitbucket service
 	CodebaseService                                  // 8 codebase service
-	NovroForgeService                                   // 9 forgejo service
+	NovroForgeService                                   // 9 novroforge service
 	PagureService                                    // 10 pagure service
 	BitbucketDataCenterService                       // 11 bitbucket data center / server service
 )
@@ -383,7 +383,7 @@ type MigrateRepoOptions struct {
 	// required: true
 	RepoName string `json:"repo_name" binding:"Required;AlphaDashDot;MaxSize(100)"`
 
-	// enum: ["git", "github", "gitea", "gitlab", "gogs", "onedev", "gitbucket", "codebase", "forgejo", "pagure", "bitbucketdc"]
+	// enum: ["git", "github", "gitea", "gitlab", "gogs", "onedev", "gitbucket", "codebase", "novroforge", "pagure", "bitbucketdc"]
 	Service      string `json:"service"`
 	AuthUsername string `json:"auth_username"`
 	AuthPassword string `json:"auth_password"`

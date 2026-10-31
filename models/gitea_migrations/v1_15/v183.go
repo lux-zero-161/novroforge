@@ -9,7 +9,7 @@ import (
 
 	"novroforge.xyz/modules/timeutil"
 
-	"code.forgejo.org/xorm/xorm"
+	"code.novroforge.xyz/xorm/xorm"
 )
 
 func CreatePushMirrorTable(x *xorm.Engine) error {

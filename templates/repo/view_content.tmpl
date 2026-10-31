@@ -145,7 +145,7 @@
 				</div>
 				{{template "repo/clone_script" .}}{{/* Updates .js-clone-url and related elements. */}}
 				<script>
-					// GitHub offers its CLI next to HTTPS and SSH; NovroForge's is fj (forgejo-cli). NovroForge keeps the choice in
+					// GitHub offers its CLI next to HTTPS and SSH; NovroForge's is fj (novroforge-cli). NovroForge keeps the choice in
 					// localStorage and repaints through window.updateCloneStates, so wrap it to show the fj command instead.
 					(() => {
 						const fjButton = document.getElementById('repo-clone-fj');

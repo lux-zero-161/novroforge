@@ -455,7 +455,7 @@ func testAPIQuotaEnforcement(t *testing.T) {
 			req := NewRequestWithJSON(t, "POST", "/api/v1/repos/migrate", api.MigrateRepoOptions{
 				CloneAddr: env.Repo.HTMLURL() + ".git",
 				RepoName:  "quota-migrate",
-				Service:   "forgejo",
+				Service:   "novroforge",
 			}).AddTokenAuth(env.User.Token)
 			env.User.Session.MakeRequest(t, req, http.StatusRequestEntityTooLarge)
 		})
@@ -468,7 +468,7 @@ func testAPIQuotaEnforcement(t *testing.T) {
 				CloneAddr: "an-invalid-address",
 				RepoName:  "quota-migrate",
 				RepoOwner: env.Orgs.Unlimited.UserName,
-				Service:   "forgejo",
+				Service:   "novroforge",
 			}).AddTokenAuth(env.User.Token)
 			env.User.Session.MakeRequest(t, req, http.StatusUnprocessableEntity)
 		})
@@ -1254,7 +1254,7 @@ func testAPIQuotaEnforcement(t *testing.T) {
 
 		// Create a generic package to play with
 		env.WithoutQuota(t, func() {
-			body := strings.NewReader("forgejo is awesome")
+			body := strings.NewReader("novroforge is awesome")
 			req := NewRequestWithBody(t, "PUT", fmt.Sprintf("/api/packages/%s/generic/quota-test/1.0.0/test.txt", env.User.User.Name), body).
 				AddTokenAuth(env.User.Token)
 			env.User.Session.MakeRequest(t, req, http.StatusCreated)
@@ -1263,7 +1263,7 @@ func testAPIQuotaEnforcement(t *testing.T) {
 		t.Run("CREATE", func(t *testing.T) {
 			defer tests.PrintCurrentTest(t)()
 
-			body := strings.NewReader("forgejo is awesome")
+			body := strings.NewReader("novroforge is awesome")
 			req := NewRequestWithBody(t, "PUT", fmt.Sprintf("/api/packages/%s/generic/quota-test/1.0.0/overquota.txt", env.User.User.Name), body).
 				AddTokenAuth(env.User.Token)
 			env.User.Session.MakeRequest(t, req, http.StatusRequestEntityTooLarge)
@@ -1301,7 +1301,7 @@ func testAPIQuotaEnforcement(t *testing.T) {
 			DecodeJSON(t, resp, &quotaOK)
 			assert.True(t, quotaOK, "user must have quota remaining before the rejection test")
 
-			body := strings.NewReader("forgejo is awesome")
+			body := strings.NewReader("novroforge is awesome")
 			req = NewRequestWithBody(t, "PUT",
 				fmt.Sprintf("/api/packages/%s/generic/org-quota-test/1.0.0/file.txt", env.Orgs.Limited.Name),
 				body,
@@ -1321,7 +1321,7 @@ func testAPIQuotaEnforcement(t *testing.T) {
 			DecodeJSON(t, resp, &quotaOK)
 			assert.False(t, quotaOK, "user must have no quota before the upload test")
 
-			body := strings.NewReader("forgejo is awesome")
+			body := strings.NewReader("novroforge is awesome")
 			req = NewRequestWithBody(t, "PUT",
 				fmt.Sprintf("/api/packages/%s/generic/org-quota-test/1.0.0/file.txt", env.Orgs.Unlimited.Name),
 				body,

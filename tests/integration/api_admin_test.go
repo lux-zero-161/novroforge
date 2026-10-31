@@ -685,7 +685,7 @@ func TestAPIAdminListHooksPagination(t *testing.T) {
 				"content_type":      "json",
 				"is_system_webhook": "true",
 			},
-			Type: "forgejo",
+			Type: "novroforge",
 		}).AddTokenAuth(token)
 		MakeRequest(t, req, http.StatusCreated)
 	}

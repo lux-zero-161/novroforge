@@ -69,7 +69,7 @@ func Test_Sanitizer(t *testing.T) {
 		`<a href="data:1234">bad</a>`, `bad`,
 
 		// Mention
-		`<a href="/org/forgejo/teams/UI" class="mention" rel="nofollow">@forgejo/UI</a>`, `<a href="/org/forgejo/teams/UI" class="mention" rel="nofollow">@forgejo/UI</a>`,
+		`<a href="/org/novroforge/teams/UI" class="mention" rel="nofollow">@novroforge/UI</a>`, `<a href="/org/novroforge/teams/UI" class="mention" rel="nofollow">@novroforge/UI</a>`,
 
 		// Emoji
 		`<span class="emoji" aria-label="thumbs up" data-alias="+1">THUMBS UP</span>`, `<span class="emoji" aria-label="thumbs up" data-alias="+1">THUMBS UP</span>`,

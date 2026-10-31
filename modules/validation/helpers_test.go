@@ -49,7 +49,7 @@ func Test_IsValidURL(t *testing.T) {
 }
 
 func Test_IsValidExternalURL(t *testing.T) {
-	defer test.MockVariableValue(&setting.AppURL, "https://code.forgejo.org/")()
+	defer test.MockVariableValue(&setting.AppURL, "https://code.novroforge.xyz/")()
 
 	cases := []struct {
 		description string
@@ -58,7 +58,7 @@ func Test_IsValidExternalURL(t *testing.T) {
 	}{
 		{
 			description: "Current instance URL",
-			url:         "https://code.forgejo.org/test",
+			url:         "https://code.novroforge.xyz/test",
 			valid:       true,
 		},
 		{
@@ -68,7 +68,7 @@ func Test_IsValidExternalURL(t *testing.T) {
 		},
 		{
 			description: "Current instance API URL",
-			url:         "https://code.forgejo.org/api/v1/user/follow",
+			url:         "https://code.novroforge.xyz/api/v1/user/follow",
 			valid:       false,
 		},
 		{
@@ -91,7 +91,7 @@ func Test_IsValidExternalURL(t *testing.T) {
 }
 
 func Test_IsValidExternalTrackerURLFormat(t *testing.T) {
-	defer test.MockVariableValue(&setting.AppURL, "https://code.forgejo.org/")()
+	defer test.MockVariableValue(&setting.AppURL, "https://code.novroforge.xyz/")()
 
 	cases := []struct {
 		description string
@@ -238,7 +238,7 @@ func TestIsValidActivityPubUsername(t *testing.T) {
 		},
 		{
 			description: "Username with two subdomains",
-			username:    "@user@forgejo.activitypub.example.tld",
+			username:    "@user@novroforge.activitypub.example.tld",
 			valid:       true,
 		},
 		{

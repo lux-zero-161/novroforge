@@ -2,7 +2,7 @@
 {{if .Size}}
 	{{$size = .Size}}
 {{end}}
-{{if eq .HookType "forgejo"}}
+{{if eq .HookType "novroforge"}}
 	<img width="{{$size}}" height="{{$size}}" src="{{AssetUrlPrefix}}/img/logo-white.png" alt="">
 {{else if eq .HookType "gitea"}}
 	{{svg "gitea-gitea" $size "img"}}

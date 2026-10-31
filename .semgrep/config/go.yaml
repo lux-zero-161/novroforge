@@ -1,5 +1,5 @@
 rules:
-  - id: forgejo-switch-empty-case
+  - id: novroforge-switch-empty-case
     pattern-either:
       - pattern: |-
           switch $_ {

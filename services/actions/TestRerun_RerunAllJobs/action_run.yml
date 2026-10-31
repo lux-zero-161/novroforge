@@ -3,7 +3,7 @@
   repo_id: 62 # test_workflows
   owner_id: 2 # user2
   workflow_id: test.yaml
-  workflow_directory: .forgejo/workflows
+  workflow_directory: .novroforge/workflows
   index: 110
   trigger_user_id: 2
   ref: refs/heads/main
@@ -25,7 +25,7 @@
   repo_id: 62 # test_workflows
   owner_id: 2 # user2
   workflow_id: test.yaml
-  workflow_directory: .forgejo/workflows
+  workflow_directory: .novroforge/workflows
   index: 111
   trigger_user_id: 2
   ref: refs/heads/main
@@ -45,7 +45,7 @@
   repo_id: 62 # test_workflows
   owner_id: 2 # user2
   workflow_id: invalid.yaml
-  workflow_directory: .forgejo/workflows
+  workflow_directory: .novroforge/workflows
   index: 112
   trigger_user_id: 2
   ref: refs/heads/main
@@ -68,7 +68,7 @@
   repo_id: 62 # test_workflows
   owner_id: 2 # user2
   workflow_id: dependent.yaml
-  workflow_directory: .forgejo/workflows
+  workflow_directory: .novroforge/workflows
   index: 113
   trigger_user_id: 2
   ref: refs/heads/main

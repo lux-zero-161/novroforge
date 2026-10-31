@@ -57,12 +57,12 @@ func TestUpload(t *testing.T) {
 	// Mock Data
 	repoMock := &base.Repository{
 		Name:          repoName,
-		Owner:         "forgejo",
+		Owner:         "novroforge",
 		Description:   "Some mock repo",
-		CloneURL:      server.URL + "/forgejo/test_repo.git",
-		OriginalURL:   server.URL + "/forgejo/test_repo",
+		CloneURL:      server.URL + "/novroforge/test_repo.git",
+		OriginalURL:   server.URL + "/novroforge/test_repo",
 		DefaultBranch: "master",
-		Website:       "https://codeberg.org/forgejo/forgejo/",
+		Website:       "https://codeberg.org/novroforge/novroforge/",
 	}
 
 	// Create Repo
@@ -72,15 +72,15 @@ func TestUpload(t *testing.T) {
 
 	t.Run("Topic", func(t *testing.T) {
 		logChecker, cleanup := test.NewLogChecker(log.DEFAULT, log.INFO)
-		logChecker.StopMark("Invalid topics: [verylongtopicthatistoolongforgejomigration a b c d e f] in migration to user1/test_repo")
+		logChecker.StopMark("Invalid topics: [verylongtopicthatistoolongnovroforgemigration a b c d e f] in migration to user1/test_repo")
 		defer cleanup()
 
-		require.NoError(t, uploader.CreateTopics("verylongtopicthatistoolongforgejomigration", "go  ", " security", "a b c d e f"))
+		require.NoError(t, uploader.CreateTopics("verylongtopicthatistoolongnovroforgemigration", "go  ", " security", "a b c d e f"))
 
 		_, logStopped := logChecker.Check(time.Second)
 		assert.True(t, logStopped)
 
-		unittest.AssertExistsIf(t, false, &repo_model.Topic{Name: "verylongtopicthatistoolongforgejomigration"})
+		unittest.AssertExistsIf(t, false, &repo_model.Topic{Name: "verylongtopicthatistoolongnovroforgemigration"})
 		unittest.AssertExistsIf(t, true, &repo_model.Topic{Name: "go"})
 		unittest.AssertExistsIf(t, true, &repo_model.Topic{Name: "security"})
 		unittest.AssertExistsIf(t, false, &repo_model.Topic{Name: "a b c d e f"})
@@ -1047,12 +1047,12 @@ func TestGiteaUploaderWithAvatar(t *testing.T) {
 			// Mock Data
 			repoMock := &base.Repository{
 				Name:          repoName,
-				Owner:         "forgejo",
+				Owner:         "novroforge",
 				Description:   "Some mock repo",
-				CloneURL:      server.URL + "/forgejo/test_repo.git",
-				OriginalURL:   server.URL + "/forgejo/test_repo",
+				CloneURL:      server.URL + "/novroforge/test_repo.git",
+				OriginalURL:   server.URL + "/novroforge/test_repo",
 				DefaultBranch: "master",
-				Website:       "https://codeberg.org/forgejo/forgejo/",
+				Website:       "https://codeberg.org/novroforge/novroforge/",
 				AvatarURL:     imageServer.URL + testCase.avatarURL,
 			}
 

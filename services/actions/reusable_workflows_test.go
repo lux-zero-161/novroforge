@@ -13,8 +13,8 @@ import (
 	"novroforge.xyz/modules/git"
 	"novroforge.xyz/modules/setting"
 
-	"code.forgejo.org/forgejo/runner/v13/act/jobparser"
-	"code.forgejo.org/forgejo/runner/v13/act/model"
+	"code.novroforge.xyz/novroforge/runner/v13/act/jobparser"
+	"code.novroforge.xyz/novroforge/runner/v13/act/model"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"go.yaml.in/yaml/v3"
@@ -67,7 +67,7 @@ func TestExpandLocalReusableWorkflows(t *testing.T) {
 	require.NotNil(t, fetcher)
 
 	t.Run("successful fetch", func(t *testing.T) {
-		content, err := fetcher(&jobparser.Job{}, "./.forgejo/workflows/reusable-1.yml")
+		content, err := fetcher(&jobparser.Job{}, "./.novroforge/workflows/reusable-1.yml")
 		require.NoError(t, err)
 		assert.Equal(t, testWorkflow, string(content))
 	})
@@ -76,14 +76,14 @@ func TestExpandLocalReusableWorkflows(t *testing.T) {
 	// into memory immediately.  In that case, the reader doesn't need to be closed since it's a `NopCloser`, but in all
 	// other cases it does.  This test verifies that >4k files can be read without errors.
 	t.Run("successful fetch > 4k", func(t *testing.T) {
-		content, err := fetcher(&jobparser.Job{}, "./.forgejo/workflows/reusable-more-than-4k.yml")
+		content, err := fetcher(&jobparser.Job{}, "./.novroforge/workflows/reusable-more-than-4k.yml")
 		require.NoError(t, err)
 		assert.Greater(t, len(content), 4096)
 	})
 
 	t.Run("file not exist", func(t *testing.T) {
-		_, err = fetcher(&jobparser.Job{}, "./forgejo/workflows/reusable-2.yml")
-		require.ErrorContains(t, err, "expanding reusable workflow failed to access path ./forgejo/workflows/reusable-2.yml: object does not exist")
+		_, err = fetcher(&jobparser.Job{}, "./novroforge/workflows/reusable-2.yml")
+		require.ErrorContains(t, err, "expanding reusable workflow failed to access path ./novroforge/workflows/reusable-2.yml: object does not exist")
 	})
 
 	t.Run("do not expand due to runs-on", func(t *testing.T) {
@@ -91,7 +91,7 @@ func TestExpandLocalReusableWorkflows(t *testing.T) {
 		err = yaml.Unmarshal([]byte("{ name: job1, runs-on: ubuntu-latest }"), &jobWithRunsOn)
 		require.NoError(t, err)
 		assert.False(t, expandForJob(&jobWithRunsOn))
-		_, err = fetcher(&jobWithRunsOn, "./.forgejo/workflows/reusable-1.yml")
+		_, err = fetcher(&jobWithRunsOn, "./.novroforge/workflows/reusable-1.yml")
 		require.ErrorIs(t, jobparser.ErrUnsupportedReusableWorkflowFetch, err)
 	})
 }
@@ -121,7 +121,7 @@ func TestLazyRepoExpandLocalReusableWorkflows(t *testing.T) {
 	lazy2, cleanup := lazyRepoExpandLocalReusableWorkflow(t.Context(), 1, "e3868ecb4f8b483fc0bdd422561bf0062a7df907")
 	assert.NotNil(t, lazy2)
 	assert.NotNil(t, cleanup)
-	content, err := lazy2(&jobparser.Job{}, "./.forgejo/workflows/reusable-1.yml")
+	content, err := lazy2(&jobparser.Job{}, "./.novroforge/workflows/reusable-1.yml")
 	require.NoError(t, err)
 	assert.Equal(t, testWorkflow, string(content))
 	cleanup()
@@ -179,7 +179,7 @@ func TestExpandInstanceReusableWorkflows(t *testing.T) {
 			ref: &model.NonLocalReusableWorkflowReference{
 				Org:         "user2",
 				Repo:        "repo1",
-				GitPlatform: "forgejo",
+				GitPlatform: "novroforge",
 				Filename:    "reusable-1.yml",
 				Ref:         "main",
 			},

@@ -4,7 +4,7 @@
 package v1_8
 
 import (
-	"code.forgejo.org/xorm/xorm"
+	"code.novroforge.xyz/xorm/xorm"
 )
 
 func AddUserDefaultTheme(x *xorm.Engine) error {

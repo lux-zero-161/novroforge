@@ -3,7 +3,7 @@
 
 package v1_10
 
-import "code.forgejo.org/xorm/xorm"
+import "code.novroforge.xyz/xorm/xorm"
 
 func AddIndexOnRepositoryAndComment(x *xorm.Engine) error {
 	type Repository struct {

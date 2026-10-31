@@ -48,7 +48,7 @@ func fileIsDevIno(file *os.File, dev, ino uint64) bool {
 }
 
 func init() {
-	// When forgejo is running under service supervisor (e.g. systemd) with logging
+	// When novroforge is running under service supervisor (e.g. systemd) with logging
 	// set to console, the output streams are typically captured into some logging
 	// system (e.g. journald or syslog) instead of going to the terminal. Disable
 	// usage of ANSI escape sequences if that's the case to avoid spamming

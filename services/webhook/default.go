@@ -24,19 +24,19 @@ import (
 var _ Handler = defaultHandler{}
 
 type defaultHandler struct {
-	forgejo bool
+	novroforge bool
 }
 
 func (dh defaultHandler) Type() webhook_module.HookType {
-	if dh.forgejo {
-		return webhook_module.FORGEJO
+	if dh.novroforge {
+		return webhook_module.novroforge
 	}
 	return webhook_module.GITEA
 }
 
 func (dh defaultHandler) Icon(size int) template.HTML {
-	if dh.forgejo {
-		return svg.RenderHTML("gitea-forgejo", size, "img")
+	if dh.novroforge {
+		return svg.RenderHTML("gitea-novroforge", size, "img")
 	}
 	return svg.RenderHTML("gitea-gitea", size, "img")
 }

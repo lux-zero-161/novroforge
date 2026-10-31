@@ -119,7 +119,7 @@ func LoadBuiltInFundingProviders() {
 	anythingRegex := regexp.MustCompile(anythingPattern)
 
 	// built-in providers are largely based on github's list at <https://docs.github.com/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/displaying-a-sponsor-button-in-your-repository#about-funding-files>
-	// `polar` is intentionally omitted, see https://codeberg.org/forgejo/forgejo/pulls/13361#issuecomment-20078290
+	// `polar` is intentionally omitted, see https://codeberg.org/novroforge/novroforge/pulls/13361#issuecomment-20078290
 	addFundingProvider(&FundingProviderConfig{
 		Name:         "community_bridge", // aka LFX Mentorship, but the config calls it community_bridge for compat
 		Title:        "crowdfunding.linuxfoundation.org/initiatives/%[1]s",

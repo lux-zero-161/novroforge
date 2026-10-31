@@ -1,7 +1,7 @@
 // Copyright 2025 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-package forgejo_migrations_legacy
+package novroforge_migrations_legacy
 
 import (
 	"context"
@@ -13,8 +13,8 @@ import (
 	"novroforge.xyz/modules/secret"
 	"novroforge.xyz/modules/setting"
 
-	"code.forgejo.org/xorm/xorm"
-	"code.forgejo.org/xorm/xorm/schemas"
+	"code.novroforge.xyz/xorm/xorm"
+	"code.novroforge.xyz/xorm/xorm/schemas"
 )
 
 func MigrateActionSecretsToKeying(x *xorm.Engine) error {

@@ -1,7 +1,7 @@
 // Copyright The NovroForge Authors.
 // SPDX-License-Identifier: MIT
 
-package forgejo
+package novroforge
 
 import (
 	"context"

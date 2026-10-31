@@ -1,7 +1,7 @@
 // Copyright 2023 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: MIT
 
-package forgejo_migrations_legacy
+package novroforge_migrations_legacy
 
 import (
 	"testing"
@@ -9,14 +9,14 @@ import (
 	migration_tests "novroforge.xyz/models/gitea_migrations/test"
 	"novroforge.xyz/modules/test"
 
-	"code.forgejo.org/xorm/xorm"
+	"code.novroforge.xyz/xorm/xorm"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
 
 // TestEnsureUpToDate tests the behavior of EnsureUpToDate.
 func TestEnsureUpToDate(t *testing.T) {
-	defer test.MockVariableValue(&forgejoMigrationsEnsureUpToDate, func(x *xorm.Engine) error {
+	defer test.MockVariableValue(&novroforgeMigrationsEnsureUpToDate, func(x *xorm.Engine) error {
 		return nil
 	})()
 
@@ -37,8 +37,8 @@ func TestEnsureUpToDate(t *testing.T) {
 	err = EnsureUpToDate(x)
 	require.NoError(t, err)
 
-	// Modify forgejo version to have a lower version.
-	_, err = x.Exec("UPDATE `forgejo_version` SET version = ? WHERE id = 1", ExpectedVersion()-1)
+	// Modify novroforge version to have a lower version.
+	_, err = x.Exec("UPDATE `novroforge_version` SET version = ? WHERE id = 1", ExpectedVersion()-1)
 	require.NoError(t, err)
 
 	err = EnsureUpToDate(x)
@@ -71,11 +71,11 @@ func TestMigrateFailWithCorruption(t *testing.T) {
 	_, err := x.Insert(&NovroForgeVersion{ID: 100, Version: 100})
 	require.NoError(t, err)
 	err = Migrate(x)
-	require.ErrorContains(t, err, "corrupted records in the table `forgejo_version`")
+	require.ErrorContains(t, err, "corrupted records in the table `novroforge_version`")
 
 	// Two versions...
 	_, err = x.Insert(&NovroForgeVersion{ID: 1, Version: 1000})
 	require.NoError(t, err)
 	err = Migrate(x)
-	require.ErrorContains(t, err, "unexpected records in the table `forgejo_version`")
+	require.ErrorContains(t, err, "unexpected records in the table `novroforge_version`")
 }

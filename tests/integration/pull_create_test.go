@@ -137,8 +137,8 @@ func TestPullCreateWithPullTemplate(t *testing.T) {
 		forkUser := unittest.AssertExistsAndLoadBean(t, &user_model.User{ID: 2})
 
 		templateCandidates := []string{
-			".forgejo/PULL_REQUEST_TEMPLATE.md",
-			".forgejo/pull_request_template.md",
+			".novroforge/PULL_REQUEST_TEMPLATE.md",
+			".novroforge/pull_request_template.md",
 			".gitea/PULL_REQUEST_TEMPLATE.md",
 			".gitea/pull_request_template.md",
 			".github/PULL_REQUEST_TEMPLATE.md",
@@ -221,7 +221,7 @@ func TestPullCreateWithPullTemplate(t *testing.T) {
 			// Unlike issues, where all candidates are considered and shown, for
 			// pull request, there's a priority: if there are multiple
 			// templates, only the highest priority one is used.
-			testPullPreview(t, session, forkUser.Name, forkedRepo.Name, message+" .forgejo/PULL_REQUEST_TEMPLATE.md")
+			testPullPreview(t, session, forkUser.Name, forkedRepo.Name, message+" .novroforge/PULL_REQUEST_TEMPLATE.md")
 		})
 	})
 }

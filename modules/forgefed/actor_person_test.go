@@ -19,7 +19,7 @@ import (
 func TestNewPersonIdFromModel(t *testing.T) {
 	expected := forgefed.PersonID{}
 	expected.ID = "1"
-	expected.Source = "forgejo"
+	expected.Source = "novroforge"
 	expected.HostSchema = "https"
 	expected.Path = "api/v1/activitypub/user-id"
 	expected.Host = "an.other.host"
@@ -27,7 +27,7 @@ func TestNewPersonIdFromModel(t *testing.T) {
 	expected.IsPortSupplemented = false
 	expected.UnvalidatedInput = "https://an.other.host:443/api/v1/activitypub/user-id/1"
 
-	sut, _ := forgefed.NewPersonIDFromModel("an.other.host", "https", 443, "forgejo", "1")
+	sut, _ := forgefed.NewPersonIDFromModel("an.other.host", "https", 443, "novroforge", "1")
 	assert.Equal(t, expected, sut)
 }
 
@@ -37,7 +37,7 @@ func TestNewPersonId(t *testing.T) {
 
 	expected = forgefed.PersonID{}
 	expected.ID = "1"
-	expected.Source = "forgejo"
+	expected.Source = "novroforge"
 	expected.HostSchema = "https"
 	expected.Path = "api/v1/activitypub/user-id"
 	expected.Host = "an.other.host"
@@ -45,13 +45,13 @@ func TestNewPersonId(t *testing.T) {
 	expected.IsPortSupplemented = true
 	expected.UnvalidatedInput = "https://an.other.host/api/v1/activitypub/user-id/1"
 
-	sut, err = forgefed.NewPersonID("https://an.other.host/api/v1/activitypub/user-id/1", "forgejo")
+	sut, err = forgefed.NewPersonID("https://an.other.host/api/v1/activitypub/user-id/1", "novroforge")
 	require.NoError(t, err)
 	assert.Equal(t, expected, sut)
 
 	expected = forgefed.PersonID{}
 	expected.ID = "1"
-	expected.Source = "forgejo"
+	expected.Source = "novroforge"
 	expected.HostSchema = "https"
 	expected.Path = "api/v1/activitypub/user-id"
 	expected.Host = "an.other.host"
@@ -59,12 +59,12 @@ func TestNewPersonId(t *testing.T) {
 	expected.IsPortSupplemented = false
 	expected.UnvalidatedInput = "https://an.other.host:443/api/v1/activitypub/user-id/1"
 
-	sut, _ = forgefed.NewPersonID("https://an.other.host:443/api/v1/activitypub/user-id/1", "forgejo")
+	sut, _ = forgefed.NewPersonID("https://an.other.host:443/api/v1/activitypub/user-id/1", "novroforge")
 	assert.Equal(t, expected, sut)
 
 	expected = forgefed.PersonID{}
 	expected.ID = "1"
-	expected.Source = "forgejo"
+	expected.Source = "novroforge"
 	expected.HostSchema = "http"
 	expected.Path = "api/v1/activitypub/user-id"
 	expected.Host = "an.other.host"
@@ -72,12 +72,12 @@ func TestNewPersonId(t *testing.T) {
 	expected.IsPortSupplemented = false
 	expected.UnvalidatedInput = "http://an.other.host:80/api/v1/activitypub/user-id/1"
 
-	sut, _ = forgefed.NewPersonID("http://an.other.host:80/api/v1/activitypub/user-id/1", "forgejo")
+	sut, _ = forgefed.NewPersonID("http://an.other.host:80/api/v1/activitypub/user-id/1", "novroforge")
 	assert.Equal(t, expected, sut)
 
 	expected = forgefed.PersonID{}
 	expected.ID = "1"
-	expected.Source = "forgejo"
+	expected.Source = "novroforge"
 	expected.HostSchema = "https"
 	expected.Path = "api/v1/activitypub/user-id"
 	expected.Host = "an.other.host"
@@ -85,7 +85,7 @@ func TestNewPersonId(t *testing.T) {
 	expected.IsPortSupplemented = false
 	expected.UnvalidatedInput = "https://an.other.host:443/api/v1/activitypub/user-id/1"
 
-	sut, _ = forgefed.NewPersonID("HTTPS://an.other.host:443/api/v1/activitypub/user-id/1", "forgejo")
+	sut, _ = forgefed.NewPersonID("HTTPS://an.other.host:443/api/v1/activitypub/user-id/1", "novroforge")
 	assert.Equal(t, expected, sut)
 
 	expected = forgefed.PersonID{}
@@ -106,7 +106,7 @@ func TestNewPersonId(t *testing.T) {
 func TestPersonIdValidation(t *testing.T) {
 	sut := forgefed.PersonID{}
 	sut.ID = "1"
-	sut.Source = "forgejo"
+	sut.Source = "novroforge"
 	sut.HostSchema = "https"
 	sut.Path = ""
 	sut.Host = "an.other.host"
@@ -134,7 +134,7 @@ func TestPersonIdValidation(t *testing.T) {
 
 	sut = forgefed.PersonID{}
 	sut.ID = "1"
-	sut.Source = "forgejo"
+	sut.Source = "novroforge"
 	sut.HostSchema = "https"
 	sut.Path = "path"
 	sut.Host = "an.other.host"
@@ -148,7 +148,7 @@ func TestPersonIdValidation(t *testing.T) {
 
 	sut = forgefed.PersonID{}
 	sut.ID = "1"
-	sut.Source = "forgejox"
+	sut.Source = "novroforgex"
 	sut.HostSchema = "https"
 	sut.Path = "api/v1/activitypub/user-id"
 	sut.Host = "an.other.host"
@@ -158,11 +158,11 @@ func TestPersonIdValidation(t *testing.T) {
 
 	result, err = validation.IsValid(sut)
 	assert.False(t, result)
-	require.EqualError(t, err, "Validation Error: forgefed.PersonID: Field Source contains the value forgejox, which is not in allowed subset [forgejo gitea mastodon gotosocial]")
+	require.EqualError(t, err, "Validation Error: forgefed.PersonID: Field Source contains the value novroforgex, which is not in allowed subset [novroforge gitea mastodon gotosocial]")
 
 	sut = forgefed.PersonID{}
 	sut.ID = "actor"
-	sut.Source = "forgejo"
+	sut.Source = "novroforge"
 	sut.HostSchema = "https"
 	sut.Path = "api/v1/activitypub"
 	sut.Host = "example.com"
@@ -176,7 +176,7 @@ func TestPersonIdValidation(t *testing.T) {
 
 	sut = forgefed.PersonID{}
 	sut.ID = "actor"
-	sut.Source = "forgejo"
+	sut.Source = "novroforge"
 	sut.HostSchema = "https"
 	sut.Path = "api/activitypub"
 	sut.Host = "example.com"
@@ -190,7 +190,7 @@ func TestPersonIdValidation(t *testing.T) {
 
 	sut = forgefed.PersonID{}
 	sut.ID = "1"
-	sut.Source = "forgejo"
+	sut.Source = "novroforge"
 	sut.HostSchema = "https"
 	sut.Path = "api/v1/activitypub"
 	sut.Host = "example.com"
@@ -204,7 +204,7 @@ func TestPersonIdValidation(t *testing.T) {
 }
 
 func TestWebfingerId(t *testing.T) {
-	sut, _ := forgefed.NewPersonID("https://codeberg.org/api/v1/activitypub/user-id/12345", "forgejo")
+	sut, _ := forgefed.NewPersonID("https://codeberg.org/api/v1/activitypub/user-id/12345", "novroforge")
 	assert.Equal(t, "@12345@codeberg.org", sut.AsWebfinger())
 }
 
@@ -214,14 +214,14 @@ func TestShouldThrowErrorOnInvalidInput(t *testing.T) {
 		username  string
 		expectErr bool
 	}{
-		{"", "forgejo", true},
-		{"http://localhost:3000/api/v1/something", "forgejo", true},
-		{"./api/v1/something", "forgejo", true},
-		{"http://1.2.3.4/api/v1/something", "forgejo", true},
-		{"http:///[fe80::1ff:fe23:4567:890a%25eth0]/api/v1/something", "forgejo", true},
-		{"https://codeberg.org/api/v1/activitypub/../activitypub/user-id/12345", "forgejo", true},
-		{"https://myuser@an.other.host/api/v1/activitypub/user-id/1", "forgejo", true},
-		{"https://an.other.host/api/v1/activitypub/user-id/1", "forgejo", false},
+		{"", "novroforge", true},
+		{"http://localhost:3000/api/v1/something", "novroforge", true},
+		{"./api/v1/something", "novroforge", true},
+		{"http://1.2.3.4/api/v1/something", "novroforge", true},
+		{"http:///[fe80::1ff:fe23:4567:890a%25eth0]/api/v1/something", "novroforge", true},
+		{"https://codeberg.org/api/v1/activitypub/../activitypub/user-id/12345", "novroforge", true},
+		{"https://myuser@an.other.host/api/v1/activitypub/user-id/1", "novroforge", true},
+		{"https://an.other.host/api/v1/activitypub/user-id/1", "novroforge", false},
 	}
 
 	for _, tt := range tests {
@@ -287,20 +287,20 @@ func TestForgePersonValidation(t *testing.T) {
 }
 
 func TestAsloginName(t *testing.T) {
-	sut, _ := forgefed.NewPersonID("https://codeberg.org/api/v1/activitypub/user-id/12345", "forgejo")
+	sut, _ := forgefed.NewPersonID("https://codeberg.org/api/v1/activitypub/user-id/12345", "novroforge")
 	assert.Equal(t, "12345@codeberg.org", sut.AsLoginName())
 
-	sut, _ = forgefed.NewPersonID("https://codeberg.org:443/api/v1/activitypub/user-id/12345", "forgejo")
+	sut, _ = forgefed.NewPersonID("https://codeberg.org:443/api/v1/activitypub/user-id/12345", "novroforge")
 	assert.Equal(t, "12345@codeberg.org:443", sut.AsLoginName())
 }
 
 func TestHostSuffix(t *testing.T) {
-	sut, _ := forgefed.NewPersonID("https://codeberg.org/api/v1/activitypub/user-id/12345", "forgejo")
-	sut.Host = "forgejo.example.tld"
+	sut, _ := forgefed.NewPersonID("https://codeberg.org/api/v1/activitypub/user-id/12345", "novroforge")
+	sut.Host = "novroforge.example.tld"
 	sut.HostPort = 80
 
 	// sut.IsPortSupplemented is true by default at time of writing.
-	assert.Equal(t, "@forgejo.example.tld", sut.HostSuffix())
+	assert.Equal(t, "@novroforge.example.tld", sut.HostSuffix())
 	sut.IsPortSupplemented = false
-	assert.Equal(t, "@forgejo.example.tld:80", sut.HostSuffix())
+	assert.Equal(t, "@novroforge.example.tld:80", sut.HostSuffix())
 }

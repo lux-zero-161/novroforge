@@ -21,9 +21,9 @@ func checkAuthorizedKeys(ctx context.Context, logger log.Logger, autofix bool) e
 		return nil
 	}
 
-	// make sure the doctor has the same AppPath as forgejo
+	// make sure the doctor has the same AppPath as novroforge
 	// they can differ due to symlinks
-	// https://codeberg.org/forgejo/forgejo/pulls/12901
+	// https://codeberg.org/novroforge/novroforge/pulls/12901
 	if err := system.Init(); err != nil {
 		return err
 	}
@@ -62,8 +62,8 @@ func checkAuthorizedKeys(ctx context.Context, logger log.Logger, autofix bool) e
 			logger.Critical(
 				"authorized_keys file %q contains validity errors.\nRegenerate it with:\n\t\"%s\"\nor\n\t\"%s\"",
 				fPath,
-				"forgejo admin regenerate keys",
-				"forgejo doctor check --run authorized-keys --fix",
+				"novroforge admin regenerate keys",
+				"novroforge doctor check --run authorized-keys --fix",
 			)
 			return errors.New("errors discovered from InspectPublicKeys")
 		}

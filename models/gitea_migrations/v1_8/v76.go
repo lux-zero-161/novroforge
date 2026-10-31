@@ -8,7 +8,7 @@ import (
 
 	"novroforge.xyz/modules/timeutil"
 
-	"code.forgejo.org/xorm/xorm"
+	"code.novroforge.xyz/xorm/xorm"
 )
 
 func AddPullRequestRebaseWithMerge(x *xorm.Engine) error {

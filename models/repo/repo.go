@@ -911,7 +911,7 @@ type CountRepositoryOptions struct {
 func CountRepositories(ctx context.Context, opts CountRepositoryOptions) (int64, error) {
 	sess := db.GetEngine(ctx).Where("id > 0")
 
-	// nosemgrep: forgejo-logic-suspicious-OwnerID-check (repositories cannot be owned by system users)
+	// nosemgrep: novroforge-logic-suspicious-OwnerID-check (repositories cannot be owned by system users)
 	if opts.OwnerID > 0 {
 		sess.And("owner_id = ?", opts.OwnerID)
 	}

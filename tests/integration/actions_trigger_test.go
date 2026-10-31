@@ -43,7 +43,7 @@ import (
 	"novroforge.xyz/tests"
 	"novroforge.xyz/tests/forgery"
 
-	runnerv1 "code.forgejo.org/forgejo/actions-proto/runner/v1"
+	runnerv1 "code.novroforge.xyz/novroforge/actions-proto/runner/v1"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -76,7 +76,7 @@ func TestActionsPullRequestCommitStatus(t *testing.T) {
 		} {
 			files = append(files, &files_service.ChangeRepoFile{
 				Operation: "create",
-				TreePath:  fmt.Sprintf(".forgejo/workflows/%s.yml", onType),
+				TreePath:  fmt.Sprintf(".novroforge/workflows/%s.yml", onType),
 				ContentReader: strings.NewReader(fmt.Sprintf(`name: %[1]s
 on:
   pull_request:
@@ -384,7 +384,7 @@ func TestActionsPullRequestWithInvalidWorkflow(t *testing.T) {
 			Files: []*files_service.ChangeRepoFile{
 				{
 					Operation: "create",
-					TreePath:  ".forgejo/workflows/broken.yml",
+					TreePath:  ".novroforge/workflows/broken.yml",
 					ContentReader: strings.NewReader(`name: broken
 on:
 pull_request:
@@ -561,7 +561,7 @@ jobs:
 		}
 		err = pull_service.NewPullRequest(git.DefaultContext, baseRepo, pullIssue, nil, nil, pullRequest, nil)
 		require.NoError(t, err)
-		// if a PR "synchronized" event races the "opened" event by having the same SHA, it must be skipped. See https://codeberg.org/forgejo/forgejo/issues/2009.
+		// if a PR "synchronized" event races the "opened" event by having the same SHA, it must be skipped. See https://codeberg.org/novroforge/novroforge/issues/2009.
 		assert.True(t, actions_service.SkipPullRequestEvent(git.DefaultContext, webhook_module.HookEventPullRequestSync, baseRepo.ID, addFileToForkedResp.Commit.SHA))
 
 		// load and compare ActionRun
@@ -648,19 +648,19 @@ func TestActionsPullRequestTargetEventLocalReusable(t *testing.T) {
 				Files: []*files_service.ChangeRepoFile{
 					{
 						Operation: "create",
-						TreePath:  ".forgejo/workflows/pr.yml",
+						TreePath:  ".novroforge/workflows/pr.yml",
 						ContentReader: strings.NewReader(`
 name: test
 on:
   pull_request_target:
 jobs:
   outer-job:
-    uses: ./.forgejo/workflows/local-reusable.yml
+    uses: ./.novroforge/workflows/local-reusable.yml
 `),
 					},
 					{
 						Operation: "create",
-						TreePath:  ".forgejo/workflows/local-reusable.yml",
+						TreePath:  ".novroforge/workflows/local-reusable.yml",
 						ContentReader: strings.NewReader(`
 name: reusable
 on:
@@ -697,7 +697,7 @@ jobs:
 				Files: []*files_service.ChangeRepoFile{
 					{
 						Operation: "create",
-						TreePath:  ".forgejo/workflows/local-reusable.yml",
+						TreePath:  ".novroforge/workflows/local-reusable.yml",
 						ContentReader: strings.NewReader(`
 name: reusable
 on:
@@ -787,7 +787,7 @@ jobs:
 				Files: []*files_service.ChangeRepoFile{
 					{
 						Operation: "create",
-						TreePath:  ".forgejo/workflows/pr.yml",
+						TreePath:  ".novroforge/workflows/pr.yml",
 						ContentReader: strings.NewReader(`
 name: test
 on:
@@ -802,12 +802,12 @@ jobs:
     strategy:
       matrix:
         dim1: ${{ needs.outer-job-prereq.outputs.fake-output }}
-    uses: ./.forgejo/workflows/local-reusable.yml
+    uses: ./.novroforge/workflows/local-reusable.yml
 `),
 					},
 					{
 						Operation: "create",
-						TreePath:  ".forgejo/workflows/local-reusable.yml",
+						TreePath:  ".novroforge/workflows/local-reusable.yml",
 						ContentReader: strings.NewReader(`
 name: reusable
 on:
@@ -844,7 +844,7 @@ jobs:
 				Files: []*files_service.ChangeRepoFile{
 					{
 						Operation: "create",
-						TreePath:  ".forgejo/workflows/local-reusable.yml",
+						TreePath:  ".novroforge/workflows/local-reusable.yml",
 						ContentReader: strings.NewReader(`
 name: reusable
 on:
@@ -1135,7 +1135,7 @@ func TestActionsWorkflowDispatch(t *testing.T) {
 		{
 			name:              "NovroForge",
 			workflowID:        "build.yml",
-			workflowDirectory: ".forgejo/workflows",
+			workflowDirectory: ".novroforge/workflows",
 		},
 	}
 	onApplicationRun(t, func(t *testing.T, u *url.URL) {
@@ -1243,7 +1243,7 @@ jobs:
 			Name:      "repo-workflow-dispatch",
 			LatestSha: &sha,
 			Files: forgery.MapFS{
-				".forgejo/workflows/dispatch.yaml": forgery.MapFile(workflow),
+				".novroforge/workflows/dispatch.yaml": forgery.MapFile(workflow),
 			},
 		})
 		forgery.EnableRepoUnit(t, repo, unit_model.TypeActions, nil)
@@ -1284,7 +1284,7 @@ func TestActionsWorkflowDispatchDynamicMatrix(t *testing.T) {
 			Name:      "repo-workflow-dispatch",
 			LatestSha: &sha,
 			Files: forgery.MapFS{
-				".forgejo/workflows/dispatch.yml": forgery.MapFile(`
+				".novroforge/workflows/dispatch.yml": forgery.MapFile(`
 name: test
 on: [workflow_dispatch]
 jobs:
@@ -1335,7 +1335,7 @@ func TestActionsWorkflowDispatchDynamicMatrixBooleanInput(t *testing.T) {
 			Name:      "repo-workflow-dispatch",
 			LatestSha: &sha,
 			Files: forgery.MapFS{
-				".forgejo/workflows/dispatch.yml": forgery.MapFile(`
+				".novroforge/workflows/dispatch.yml": forgery.MapFile(`
 name: test
 on:
   workflow_dispatch:
@@ -1390,14 +1390,14 @@ func TestActionsWorkflowDispatchReusableWorkflow(t *testing.T) {
 			Name:      "repo-workflow-dispatch",
 			LatestSha: &sha,
 			Files: forgery.MapFS{
-				".forgejo/workflows/dispatch.yml": forgery.MapFile(
+				".novroforge/workflows/dispatch.yml": forgery.MapFile(
 					"name: test\n" +
 						"on: [workflow_dispatch]\n" +
 						"jobs:\n" +
 						"  test:\n" +
-						"    uses: ./.forgejo/workflows/reusable.yml\n",
+						"    uses: ./.novroforge/workflows/reusable.yml\n",
 				),
-				".forgejo/workflows/reusable.yml": forgery.MapFile(
+				".novroforge/workflows/reusable.yml": forgery.MapFile(
 					"name: test\n" +
 						"on: [workflow_call]\n" +
 						"jobs:\n" +
@@ -1455,7 +1455,7 @@ func TestActionsWorkflowDispatchConcurrencyGroup(t *testing.T) {
 			Name:      "repo-workflow-dispatch",
 			LatestSha: &sha,
 			Files: forgery.MapFS{
-				".forgejo/workflows/dispatch.yml": forgery.MapFile(
+				".novroforge/workflows/dispatch.yml": forgery.MapFile(
 					"name: test\n" +
 						"on: [workflow_dispatch]\n" +
 						"jobs:\n" +
@@ -1518,7 +1518,7 @@ func TestActionsWorkflowDispatchIncompleteJobBooleanInput(t *testing.T) {
 			Name:      "repo-workflow-dispatch",
 			LatestSha: &sha,
 			Files: forgery.MapFS{
-				".forgejo/workflows/dispatch.yml": forgery.MapFile(`
+				".novroforge/workflows/dispatch.yml": forgery.MapFile(`
 name: test
 on:
   workflow_dispatch:
@@ -1593,7 +1593,7 @@ func TestActionsWorkflowDispatchBooleanInputConsistency(t *testing.T) {
 			Name:      "repo-workflow-dispatch",
 			LatestSha: &sha,
 			Files: forgery.MapFS{
-				".forgejo/workflows/dispatch.yml": forgery.MapFile(`
+				".novroforge/workflows/dispatch.yml": forgery.MapFile(`
 name: test
 on:
   workflow_dispatch:
@@ -1631,7 +1631,7 @@ jobs:
 
 		task := runner.fetchTask(t)
 
-		// Verify that ${{ forgejo.event.inputs.win32 }} would be the boolean value, not a string value
+		// Verify that ${{ novroforge.event.inputs.win32 }} would be the boolean value, not a string value
 		context := task.GetContext().AsMap()
 		event, ok := context["event"].(map[string]any)
 		require.True(t, ok)
@@ -1690,7 +1690,7 @@ jobs:
 				baseRepo := forgery.CreateRepository(t, user2, &forgery.CreateRepositoryOptions{
 					Name: "repo-pull-request",
 					Files: forgery.MapFS{
-						".forgejo/workflows/test.yaml": forgery.MapFile(testCase.workflow),
+						".novroforge/workflows/test.yaml": forgery.MapFile(testCase.workflow),
 						"README.md":                    forgery.MapFile("Hello"),
 						"test.txt":                     forgery.MapFile("one"),
 					},
@@ -1798,7 +1798,7 @@ jobs:
 				owner := unittest.AssertExistsAndLoadBean(t, &user_model.User{ID: 2})
 				repo := forgery.CreateRepository(t, owner, &forgery.CreateRepositoryOptions{
 					Files: forgery.MapFS{
-						".forgejo/workflows/workflow.yml": forgery.MapFile(workflow),
+						".novroforge/workflows/workflow.yml": forgery.MapFile(workflow),
 					},
 				})
 
@@ -1839,7 +1839,7 @@ jobs:
 			user2 := unittest.AssertExistsAndLoadBean(t, &user_model.User{ID: 2})
 			repo := forgery.CreateRepository(t, user2, &forgery.CreateRepositoryOptions{
 				Files: forgery.MapFS{
-					".forgejo/workflows/workflow.yaml": forgery.MapFile(workflow),
+					".novroforge/workflows/workflow.yaml": forgery.MapFile(workflow),
 				},
 			})
 
@@ -1903,7 +1903,7 @@ jobs:
 
 			repo := forgery.CreateRepository(t, user2, &forgery.CreateRepositoryOptions{
 				Files: forgery.MapFS{
-					".forgejo/workflows/workflow.yaml": forgery.MapFile(workflow),
+					".novroforge/workflows/workflow.yaml": forgery.MapFile(workflow),
 					"README.md":                        forgery.MapFile(""),
 				},
 			})
@@ -2196,7 +2196,7 @@ func TestActionsForkPullRequest(t *testing.T) {
 	)
 	type expectedRef int
 	const (
-		// forgejo.ref will be refs/pull/%d/head
+		// novroforge.ref will be refs/pull/%d/head
 		refPullRequest expectedRef = iota
 		// refs/heads/main
 		refBaseBranch
@@ -2464,7 +2464,7 @@ jobs:
 				baseRepo := forgery.CreateRepository(t, user2, &forgery.CreateRepositoryOptions{
 					Name: fmt.Sprintf("repo-pull-request-%s", tc.name),
 					Files: forgery.MapFS{
-						".forgejo/workflows/pr.yml": forgery.MapFile(makeWorkflowForEvent(tc.workflowPreamble, "base")),
+						".novroforge/workflows/pr.yml": forgery.MapFile(makeWorkflowForEvent(tc.workflowPreamble, "base")),
 					},
 				})
 				forgery.EnableRepoUnit(t, baseRepo, unit_model.TypeActions, nil)
@@ -2491,7 +2491,7 @@ jobs:
 					Files: []*files_service.ChangeRepoFile{
 						{
 							Operation:     "update",
-							TreePath:      ".forgejo/workflows/pr.yml",
+							TreePath:      ".novroforge/workflows/pr.yml",
 							ContentReader: strings.NewReader(makeWorkflowForEvent(tc.workflowPreamble, "fork")),
 						},
 					},
@@ -2554,7 +2554,7 @@ jobs:
 				// Now we should be able to fetch the task:
 				task := runner.fetchTask(t)
 
-				assert.Contains(t, task.Secrets, "FORGEJO_TOKEN")
+				assert.Contains(t, task.Secrets, "novroforge_TOKEN")
 				assert.Contains(t, task.Secrets, "GITEA_TOKEN")
 				assert.Contains(t, task.Secrets, "GITHUB_TOKEN")
 				switch tc.expectedResult {
@@ -2563,7 +2563,7 @@ jobs:
 					assert.Len(t, task.Secrets, 3)                                     // no other secrets, especially MY_SECRET defined in the base repo
 					// runFromFork should give us a token that only has read permissions to the repo's units, so a write
 					// to the repo should fail:
-					writeToRepoCode(t, baseRepo, task.Secrets["FORGEJO_TOKEN"], http.StatusForbidden)
+					writeToRepoCode(t, baseRepo, task.Secrets["novroforge_TOKEN"], http.StatusForbidden)
 				case runFromMergedFork:
 					assert.Contains(t, string(task.GetWorkflowPayload()), "job-fork:") // job-fork would be in the base branch now that the PR is merged
 					// secrets should be present
@@ -2577,12 +2577,12 @@ jobs:
 					// would return http.StatusOK to this request, but it doesn't.  Every one of these cases ends up
 					// marked as `IsForkPullRequest` (which is technically correct), and then the token only gets
 					// read-only permissions (which is a surprise).  This is a bug; StatusCreated is correct:
-					writeToRepoCode(t, baseRepo, task.Secrets["FORGEJO_TOKEN"], http.StatusForbidden)
+					writeToRepoCode(t, baseRepo, task.Secrets["novroforge_TOKEN"], http.StatusForbidden)
 				case runFromBaseWithoutPullRequest:
 					assert.Contains(t, string(task.GetWorkflowPayload()), "job-base:") // running the workflow from the base branch, not the fork, which is why it can be trusted
 					assert.Contains(t, task.Secrets, "MY_SECRET")
 					assert.Len(t, task.Secrets, 4)
-					writeToRepoCode(t, baseRepo, task.Secrets["FORGEJO_TOKEN"], http.StatusCreated)
+					writeToRepoCode(t, baseRepo, task.Secrets["novroforge_TOKEN"], http.StatusCreated)
 				default:
 					assert.Failf(t, "unexpected tc.expectedResult", "tc.expectedResult=%d was not implemented", tc.expectedResult)
 				}

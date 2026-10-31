@@ -11,7 +11,7 @@ import (
 	"novroforge.xyz/modules/nosql"
 	"novroforge.xyz/modules/queue/lqinternal"
 
-	"code.forgejo.org/forgejo/levelqueue"
+	"code.novroforge.xyz/novroforge/levelqueue"
 	"github.com/syndtr/goleveldb/leveldb"
 )
 

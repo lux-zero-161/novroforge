@@ -34,7 +34,7 @@ func TestFundingProviderConfigValidDefaultTemplates(t *testing.T) {
 		{"github", "feross"},                // from our package-lock.json
 		{"issuehunt", "bk138"},              // from https://github.com/bk138/droidVNC-NG
 		{"ko_fi", "browniebroke"},           // from https://github.com/browniebroke/deezer-python
-		{"liberapay", "forgejo"},            // 👋
+		{"liberapay", "novroforge"},            // 👋
 		{"open_collective", "eslint"},       // from our package-lock.json
 		{"patreon", "feross"},               // from our package-lock.json
 		{"tidelift", "npm/browserslist"},    // from our package-lock.json

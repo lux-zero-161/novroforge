@@ -28,7 +28,7 @@ func TestNodeinfo(t *testing.T) {
 	var nodeinfo api.NodeInfo
 	DecodeJSON(t, resp, &nodeinfo)
 	assert.True(t, nodeinfo.OpenRegistrations)
-	assert.Equal(t, "forgejo", nodeinfo.Software.Name)
+	assert.Equal(t, "novroforge", nodeinfo.Software.Name)
 	assert.Equal(t, 31, nodeinfo.Usage.Users.Total)
 	assert.Equal(t, 23, nodeinfo.Usage.LocalPosts)
 	assert.Equal(t, 4, nodeinfo.Usage.LocalComments)

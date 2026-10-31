@@ -38,7 +38,7 @@ for (const width of widthCases) {
     const context = await browser.newContext({viewport: {width, height: 600}});
     const page = await context.newPage();
 
-    const response = await page.goto('/user2/funding_some_valid/src/branch/main/.forgejo/FUNDING.yml', {waitUntil: 'domcontentloaded'});
+    const response = await page.goto('/user2/funding_some_valid/src/branch/main/.novroforge/FUNDING.yml', {waitUntil: 'domcontentloaded'});
     expect(response?.status()).toBe(200);
 
     const errors = page.locator('.ui.error.message').filter({hasText: 'Errors parsing funding config:'});

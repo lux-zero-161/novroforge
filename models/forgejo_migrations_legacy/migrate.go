@@ -1,7 +1,7 @@
 // Copyright 2023 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: MIT
 
-package forgejo_migrations_legacy
+package novroforge_migrations_legacy
 
 import (
 	"context"
@@ -9,16 +9,16 @@ import (
 	"fmt"
 	"os"
 
-	"novroforge.xyz/models/forgejo/semver"
-	"novroforge.xyz/models/forgejo_migrations"
-	forgejo_v1_20 "novroforge.xyz/models/forgejo_migrations_legacy/v1_20"
-	forgejo_v1_22 "novroforge.xyz/models/forgejo_migrations_legacy/v1_22"
+	"novroforge.xyz/models/novroforge/semver"
+	"novroforge.xyz/models/novroforge_migrations"
+	novroforge_v1_20 "novroforge.xyz/models/novroforge_migrations_legacy/v1_20"
+	novroforge_v1_22 "novroforge.xyz/models/novroforge_migrations_legacy/v1_22"
 	"novroforge.xyz/modules/git"
 	"novroforge.xyz/modules/log"
 	"novroforge.xyz/modules/setting"
 
-	"code.forgejo.org/xorm/xorm"
-	"code.forgejo.org/xorm/xorm/names"
+	"code.novroforge.xyz/xorm/xorm"
+	"code.novroforge.xyz/xorm/xorm/names"
 )
 
 // NovroForgeVersion describes the NovroForge version table. Should have only one row with id = 1.
@@ -41,29 +41,29 @@ func NewMigration(desc string, fn func(*xorm.Engine) error) *Migration {
 // Add new migrations to the bottom of the list.
 var migrations = []*Migration{
 	// v0 -> v1
-	NewMigration("Create the `forgejo_blocked_user` table", forgejo_v1_20.AddNovroForgeBlockedUser),
+	NewMigration("Create the `novroforge_blocked_user` table", novroforge_v1_20.AddNovroForgeBlockedUser),
 	// v1 -> v2
-	NewMigration("Create the `forgejo_sem_ver` table", forgejo_v1_20.CreateSemVerTable),
+	NewMigration("Create the `novroforge_sem_ver` table", novroforge_v1_20.CreateSemVerTable),
 	// v2 -> v3
-	NewMigration("Create the `forgejo_auth_token` table", forgejo_v1_20.CreateAuthorizationTokenTable),
+	NewMigration("Create the `novroforge_auth_token` table", novroforge_v1_20.CreateAuthorizationTokenTable),
 	// v3 -> v4
-	NewMigration("Add the `default_permissions` column to the `repo_unit` table", forgejo_v1_22.AddDefaultPermissionsToRepoUnit),
+	NewMigration("Add the `default_permissions` column to the `repo_unit` table", novroforge_v1_22.AddDefaultPermissionsToRepoUnit),
 	// v4 -> v5
-	NewMigration("Create the `forgejo_repo_flag` table", forgejo_v1_22.CreateRepoFlagTable),
+	NewMigration("Create the `novroforge_repo_flag` table", novroforge_v1_22.CreateRepoFlagTable),
 	// v5 -> v6
-	NewMigration("Add the `wiki_branch` column to the `repository` table", forgejo_v1_22.AddWikiBranchToRepository),
+	NewMigration("Add the `wiki_branch` column to the `repository` table", novroforge_v1_22.AddWikiBranchToRepository),
 	// v6 -> v7
-	NewMigration("Add the `enable_repo_unit_hints` column to the `user` table", forgejo_v1_22.AddUserRepoUnitHintsSetting),
+	NewMigration("Add the `enable_repo_unit_hints` column to the `user` table", novroforge_v1_22.AddUserRepoUnitHintsSetting),
 	// v7 -> v8
-	NewMigration("Modify the `release`.`note` content to remove SSH signatures", forgejo_v1_22.RemoveSSHSignaturesFromReleaseNotes),
+	NewMigration("Modify the `release`.`note` content to remove SSH signatures", novroforge_v1_22.RemoveSSHSignaturesFromReleaseNotes),
 	// v8 -> v9
-	NewMigration("Add the `apply_to_admins` column to the `protected_branch` table", forgejo_v1_22.AddApplyToAdminsSetting),
+	NewMigration("Add the `apply_to_admins` column to the `protected_branch` table", novroforge_v1_22.AddApplyToAdminsSetting),
 	// v9 -> v10
-	NewMigration("Add pronouns to user", forgejo_v1_22.AddPronounsToUser),
+	NewMigration("Add pronouns to user", novroforge_v1_22.AddPronounsToUser),
 	// v10 -> v11
-	NewMigration("Add the `created` column to the `issue` table", forgejo_v1_22.AddCreatedToIssue),
+	NewMigration("Add the `created` column to the `issue` table", novroforge_v1_22.AddCreatedToIssue),
 	// v11 -> v12
-	NewMigration("Add repo_archive_download_count table", forgejo_v1_22.AddRepoArchiveDownloadCount),
+	NewMigration("Add repo_archive_download_count table", novroforge_v1_22.AddRepoArchiveDownloadCount),
 	// v12 -> v13
 	NewMigration("Add `hide_archive_links` column to `release` table", AddHideArchiveLinksToRelease),
 	// v13 -> v14
@@ -87,7 +87,7 @@ var migrations = []*Migration{
 	// v22 -> v23
 	NewMigration("Add `delete_branch_after_merge` to `auto_merge` table", AddDeleteBranchAfterMergeToAutoMerge),
 	// v23 -> v24
-	NewMigration("Add `purpose` column to `forgejo_auth_token` table", AddPurposeToNovroForgeAuthToken),
+	NewMigration("Add `purpose` column to `novroforge_auth_token` table", AddPurposeToNovroForgeAuthToken),
 	// v24 -> v25
 	NewMigration("Migrate `secret` column to store keying material", MigrateTwoFactorToKeying),
 	// v25 -> v26
@@ -109,7 +109,7 @@ var migrations = []*Migration{
 	// v33 -> v34
 	NewMigration("Add `notify-email` column to `action_run` table", AddNotifyEmailToActionRun),
 	// v34 -> v35
-	NewMigration("Noop because of https://codeberg.org/forgejo/forgejo/issues/8373", NoopAddIndexToActionRunStopped),
+	NewMigration("Noop because of https://codeberg.org/novroforge/novroforge/issues/8373", NoopAddIndexToActionRunStopped),
 	// v35 -> v36
 	NewMigration("Fix wiki unit default permission", FixWikiUnitDefaultPermission),
 	// v36 -> v37
@@ -166,13 +166,13 @@ func EnsureUpToDate(x *xorm.Engine) error {
 	expected := ExpectedVersion()
 
 	if currentDB != expected {
-		return fmt.Errorf(`current NovroForge database version %d is not equal to the expected version %d. Please run "forgejo [--config /path/to/app.ini] migrate" to update the database version`, currentDB, expected)
+		return fmt.Errorf(`current NovroForge database version %d is not equal to the expected version %d. Please run "novroforge [--config /path/to/app.ini] migrate" to update the database version`, currentDB, expected)
 	}
 
-	return forgejoMigrationsEnsureUpToDate(x)
+	return novroforgeMigrationsEnsureUpToDate(x)
 }
 
-var forgejoMigrationsEnsureUpToDate = forgejo_migrations.EnsureUpToDate
+var novroforgeMigrationsEnsureUpToDate = novroforge_migrations.EnsureUpToDate
 
 // Migrate NovroForge database to current version.
 func Migrate(x *xorm.Engine) error {
@@ -195,19 +195,19 @@ func Migrate(x *xorm.Engine) error {
 			return fmt.Errorf("insert: %w", err)
 		}
 		// continue with the migration routine, but nothing will be applied; this allows transition into the newer
-		// forgejo_migration library and for it to be configured and populated.
+		// novroforge_migration library and for it to be configured and populated.
 		versionRecords = []*NovroForgeVersion{upToDate}
 		freshDB = true
 	} else if len(versionRecords) > 1 {
 		return fmt.Errorf(
-			"corrupt migrations: NovroForge database has unexpected records in the table `forgejo_version`; a single record is expected w/ ID=1, but %d records were found",
+			"corrupt migrations: NovroForge database has unexpected records in the table `novroforge_version`; a single record is expected w/ ID=1, but %d records were found",
 			len(versionRecords),
 		)
 	}
 	currentVersion := versionRecords[0]
 	if currentVersion.ID != 1 {
 		return fmt.Errorf(
-			"corrupt migrations: NovroForge database has corrupted records in the table `forgejo_version`; a single record with ID=1 is expected, but a record with ID=%d was found instead", currentVersion.ID,
+			"corrupt migrations: NovroForge database has corrupted records in the table `novroforge_version`; a single record with ID=1 is expected, but a record with ID=%d was found instead", currentVersion.ID,
 		)
 	}
 
@@ -218,7 +218,7 @@ func Migrate(x *xorm.Engine) error {
 		msg := fmt.Sprintf("Your NovroForge database (migration version: %d) is for a newer version of NovroForge, you cannot use the newer database for this old NovroForge release (%d).", v, ExpectedVersion())
 		msg += "\nNovroForge will exit to keep your database safe and unchanged. Please use the correct NovroForge release, do not change the migration version manually (incorrect manual operation may cause data loss)."
 		if !setting.IsProd {
-			msg += fmt.Sprintf("\nIf you are in development and really know what you're doing, you can force changing the migration version by executing: UPDATE forgejo_version SET version=%d WHERE id=1;", ExpectedVersion())
+			msg += fmt.Sprintf("\nIf you are in development and really know what you're doing, you can force changing the migration version by executing: UPDATE novroforge_version SET version=%d WHERE id=1;", ExpectedVersion())
 		}
 		_, _ = fmt.Fprintln(os.Stderr, msg)
 		log.Fatal(msg)
@@ -254,5 +254,5 @@ func Migrate(x *xorm.Engine) error {
 		return fmt.Errorf("SetVersionStringWithEngine: %w", err)
 	}
 
-	return forgejo_migrations.Migrate(x, freshDB)
+	return novroforge_migrations.Migrate(x, freshDB)
 }

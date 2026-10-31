@@ -276,7 +276,7 @@ test('User: View authorized integration', async ({browser}, workerInfo) => {
   await expect(page.getByRole('textbox', {name: 'Name'})).toHaveValue('Example AI');
   await expect(page.getByRole('textbox', {name: 'Description'})).toHaveValue('This is an authorized integration.\nThis example is just for viewing and editing.');
   await expect(page.getByRole('textbox', {name: 'Audience (aud Claim)'})).toHaveValue('u:2:7a6a47fb-6252-48b2-b0bb-e39158b11a36');
-  await expect(page.getByRole('textbox', {name: 'Issuer (iss Claim)'})).toHaveValue('urn:forgejo:authorized-integrations:actions');
+  await expect(page.getByRole('textbox', {name: 'Issuer (iss Claim)'})).toHaveValue('urn:novroforge:authorized-integrations:actions');
 
   // Claim rules JSON codemirror editor:
   const editor = page.locator('.cm-content');
@@ -453,7 +453,7 @@ test('User: Add authorized integration', async ({browser}, workerInfo) => {
 
   await page.getByRole('textbox', {name: 'Name'}).fill('New Authorized Integration!');
   await page.getByRole('textbox', {name: 'Description'}).fill('Description that carefully describes things.');
-  await page.getByRole('textbox', {name: 'Issuer (iss Claim)'}).fill('urn:forgejo:authorized-integrations:actions');
+  await page.getByRole('textbox', {name: 'Issuer (iss Claim)'}).fill('urn:novroforge:authorized-integrations:actions');
   await page.getByRole('combobox', {name: 'repository'}).selectOption('read:repository');
   await page.getByRole('button', {name: 'Create authorized integration'}).click();
 
@@ -461,7 +461,7 @@ test('User: Add authorized integration', async ({browser}, workerInfo) => {
   await expect(page.getByRole('textbox', {name: 'Name'})).toHaveValue('New Authorized Integration!');
   await expect(page.getByRole('textbox', {name: 'Description'})).toHaveValue('Description that carefully describes things.');
   await expect(page.getByRole('textbox', {name: 'Audience (aud Claim)'})).toHaveValue(/^u:[0-9]+/);
-  await expect(page.getByRole('textbox', {name: 'Issuer (iss Claim)'})).toHaveValue('urn:forgejo:authorized-integrations:actions');
+  await expect(page.getByRole('textbox', {name: 'Issuer (iss Claim)'})).toHaveValue('urn:novroforge:authorized-integrations:actions');
 
   // Flash banner:
   await expect(page.locator('.ui.message.flash-success')).toBeVisible();
@@ -487,7 +487,7 @@ test('User: Add authorized integration validation error', async ({browser}, work
   await page.getByRole('menuitem', {name: 'Generic JWT'}).click();
 
   await page.getByRole('textbox', {name: 'Name'}).fill('\t\t');
-  await page.getByRole('textbox', {name: 'Issuer (iss Claim)'}).fill('urn:forgejo:authorized-integrations:actions');
+  await page.getByRole('textbox', {name: 'Issuer (iss Claim)'}).fill('urn:novroforge:authorized-integrations:actions');
   await page.getByRole('button', {name: 'Create authorized integration'}).click();
 
   // Should have errors from having just whitespace in the Name field:

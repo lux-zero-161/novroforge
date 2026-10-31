@@ -125,11 +125,11 @@ func InitWorkPathAndCfgProvider(getEnvFn func(name string) string, args ArgWorkP
 			}
 		}
 
-		envWorkPath = getEnvFn("FORGEJO_WORK_DIR")
+		envWorkPath = getEnvFn("novroforge_WORK_DIR")
 		if envWorkPath != "" {
 			tmpWorkPath.Set(envWorkPath)
 			if !filepath.IsAbs(tmpWorkPath.Value) {
-				log.Fatal("FORGEJO_WORK_DIR (work path) must be absolute path")
+				log.Fatal("novroforge_WORK_DIR (work path) must be absolute path")
 			}
 		}
 
@@ -141,11 +141,11 @@ func InitWorkPathAndCfgProvider(getEnvFn func(name string) string, args ArgWorkP
 			}
 		}
 
-		envCustomPath = getEnvFn("FORGEJO_CUSTOM")
+		envCustomPath = getEnvFn("novroforge_CUSTOM")
 		if envCustomPath != "" {
 			tmpCustomPath.Set(envCustomPath)
 			if !filepath.IsAbs(tmpCustomPath.Value) {
-				log.Fatal("FORGEJO_CUSTOM (custom path) must be absolute path")
+				log.Fatal("novroforge_CUSTOM (custom path) must be absolute path")
 			}
 		}
 	}
@@ -192,7 +192,7 @@ func InitWorkPathAndCfgProvider(getEnvFn func(name string) string, args ArgWorkP
 			log.Fatal("WORK_PATH in %q must be absolute path", configWorkPath)
 		}
 		configWorkPath = filepath.Clean(configWorkPath)
-		if tmpWorkPath.Value != "" && (getEnvFn("GITEA_WORK_DIR") != "" || getEnvFn("FORGEJO_WORK_DIR") != "" || args.WorkPath != "") {
+		if tmpWorkPath.Value != "" && (getEnvFn("GITEA_WORK_DIR") != "" || getEnvFn("novroforge_WORK_DIR") != "" || args.WorkPath != "") {
 			fi1, err1 := os.Stat(tmpWorkPath.Value)
 			fi2, err2 := os.Stat(configWorkPath)
 			if err1 != nil || err2 != nil || !os.SameFile(fi1, fi2) {

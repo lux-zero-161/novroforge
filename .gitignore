@@ -61,7 +61,7 @@ cpu.out
 /gitea-vet
 /debug
 /integrations.test
-/forgejo
+/novroforge
 
 /bin
 /dist

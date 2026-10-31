@@ -10,7 +10,7 @@ import (
 	"novroforge.xyz/models/gitea_migrations"
 	"novroforge.xyz/modules/log"
 
-	"code.forgejo.org/xorm/xorm"
+	"code.novroforge.xyz/xorm/xorm"
 )
 
 func checkDBVersion(ctx context.Context, logger log.Logger, autofix bool) error {

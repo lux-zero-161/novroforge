@@ -231,7 +231,7 @@ func TestGitAttributeCheckerError(t *testing.T) {
 		if err == nil {
 			t.Skip(
 				"git check-attr started too fast and CheckPath was successful (and likely cached)",
-				"https://codeberg.org/forgejo/forgejo/issues/2948",
+				"https://codeberg.org/novroforge/novroforge/issues/2948",
 			)
 		}
 		// Depending on the order of execution, the returned error can be:

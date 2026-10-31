@@ -244,31 +244,31 @@ test('Hyperlink paste behaviour', async ({page, isMobile}) => {
   await page.goto('/user2/repo1/issues/new');
   await page.locator('textarea').click();
   // same URL
-  await page.locator('textarea').fill('https://codeberg.org/forgejo/forgejo#some-anchor');
+  await page.locator('textarea').fill('https://codeberg.org/novroforge/novroforge#some-anchor');
   await page.locator('textarea').press('Shift+Home');
   await page.locator('textarea').press('ControlOrMeta+c');
   await page.locator('textarea').press('ControlOrMeta+v');
-  await expect(page.locator('textarea')).toHaveValue('https://codeberg.org/forgejo/forgejo#some-anchor');
+  await expect(page.locator('textarea')).toHaveValue('https://codeberg.org/novroforge/novroforge#some-anchor');
   // other text
   await page.locator('textarea').fill('Some other text');
   await page.locator('textarea').press('ControlOrMeta+a');
   await page.locator('textarea').press('ControlOrMeta+v');
-  await expect(page.locator('textarea')).toHaveValue('[Some other text](https://codeberg.org/forgejo/forgejo#some-anchor)');
+  await expect(page.locator('textarea')).toHaveValue('[Some other text](https://codeberg.org/novroforge/novroforge#some-anchor)');
   // subset of URL
-  await page.locator('textarea').fill('https://codeberg.org/forgejo/forgejo#some');
+  await page.locator('textarea').fill('https://codeberg.org/novroforge/novroforge#some');
   await page.locator('textarea').press('ControlOrMeta+a');
   await page.locator('textarea').press('ControlOrMeta+v');
-  await expect(page.locator('textarea')).toHaveValue('https://codeberg.org/forgejo/forgejo#some-anchor');
+  await expect(page.locator('textarea')).toHaveValue('https://codeberg.org/novroforge/novroforge#some-anchor');
   // superset of URL
-  await page.locator('textarea').fill('https://codeberg.org/forgejo/forgejo#some-anchor-on-the-page');
+  await page.locator('textarea').fill('https://codeberg.org/novroforge/novroforge#some-anchor-on-the-page');
   await page.locator('textarea').press('ControlOrMeta+a');
   await page.locator('textarea').press('ControlOrMeta+v');
-  await expect(page.locator('textarea')).toHaveValue('https://codeberg.org/forgejo/forgejo#some-anchor');
+  await expect(page.locator('textarea')).toHaveValue('https://codeberg.org/novroforge/novroforge#some-anchor');
   // completely separate URL
   await page.locator('textarea').fill('http://example.com');
   await page.locator('textarea').press('ControlOrMeta+a');
   await page.locator('textarea').press('ControlOrMeta+v');
-  await expect(page.locator('textarea')).toHaveValue('https://codeberg.org/forgejo/forgejo#some-anchor');
+  await expect(page.locator('textarea')).toHaveValue('https://codeberg.org/novroforge/novroforge#some-anchor');
   await page.locator('textarea').fill('');
 });
 
@@ -457,8 +457,8 @@ test('Emoji suggestions', async ({page}) => {
   await textarea.pressSequentially('forge');
   await expect(suggestionList).toBeVisible();
 
-  const item = suggestionList.locator(`li:has-text("forgejo")`);
-  await expect(item.locator('img')).toHaveAttribute('src', '/assets/img/emoji/forgejo.png');
+  const item = suggestionList.locator(`li:has-text("novroforge")`);
+  await expect(item.locator('img')).toHaveAttribute('src', '/assets/img/emoji/novroforge.png');
 });
 
 test.describe('Comment history', () => {

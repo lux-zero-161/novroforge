@@ -13,8 +13,8 @@ import (
 	"novroforge.xyz/modules/git"
 	"novroforge.xyz/modules/gitrepo"
 
-	"code.forgejo.org/forgejo/runner/v13/act/jobparser"
-	"code.forgejo.org/forgejo/runner/v13/act/model"
+	"code.novroforge.xyz/novroforge/runner/v13/act/jobparser"
+	"code.novroforge.xyz/novroforge/runner/v13/act/model"
 )
 
 type CleanupFunc func()
@@ -27,7 +27,7 @@ func expandForJob(job *jobparser.Job) bool {
 }
 
 // Provide a closure for `jobparser.ExpandLocalReusableWorkflows` which resolves reusable workflow references local to
-// the given commit.  A reusable workflow reference is a job with a `uses: ./.forgejo/workflows/some-path.yaml`, and
+// the given commit.  A reusable workflow reference is a job with a `uses: ./.novroforge/workflows/some-path.yaml`, and
 // resolving it involves reading the target file in the target commit and returning the file contents.
 //
 // See `expandForJob` for information about jobs that are exempt from expansion.
@@ -64,7 +64,7 @@ var expandLocalReusableWorkflows = func(commit *git.Commit) jobparser.LocalWorkf
 //
 // See `expandForJob` for information about jobs that are exempt from expansion.
 var lazyRepoExpandLocalReusableWorkflow = func(ctx context.Context, repoID int64, commitSHA string) (jobparser.LocalWorkflowFetcher, CleanupFunc) {
-	// In the event that local reusable workflows (eg. `uses: ./.forgejo/workflows/reusable.yml`) are present, we'll
+	// In the event that local reusable workflows (eg. `uses: ./.novroforge/workflows/reusable.yml`) are present, we'll
 	// need to read the commit of the repo to resolve that reference. But most workflows don't do this, so save the
 	// effort of opening the git repo and fetching the schedule's `CommitSHA` commit if it's not necessary by wrapping
 	// that logic in a caching closure, `getGitCommit`.
@@ -104,7 +104,7 @@ var lazyRepoExpandLocalReusableWorkflow = func(ctx context.Context, repoID int64
 
 // Standard function for `jobparser.ExpandInstanceReusableWorkflows` which resolves reusable workflow references on the
 // same NovroForge instance, but in a specific repo. For example, `uses:
-// some-org/some-repo/.forgejo/workflows/some-path.yaml@ref`. Resolving it involves reading the target file in the
+// some-org/some-repo/.novroforge/workflows/some-path.yaml@ref`. Resolving it involves reading the target file in the
 // target repo & commit and returning the file contents.
 //
 // See `expandForJob` for information about jobs that are exempt from expansion.

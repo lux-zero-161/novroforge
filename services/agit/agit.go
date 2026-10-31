@@ -76,7 +76,7 @@ func ProcReceive(ctx context.Context, repo *repo_model.Repository, gitRepo *git.
 				// Deletion of a refs/pull/.../head for which we have no pull request
 				// This can occur after a pull mirror was converted to a push mirror.
 				// Perform the deletion of the refs, since they shouldn't exist in the first place.
-				// https://codeberg.org/forgejo/forgejo/pulls/14885
+				// https://codeberg.org/novroforge/novroforge/pulls/14885
 				if _, _, err := git.NewCommand(ctx, "update-ref", "-d").
 					AddDynamicArguments(refFullName.String(), opts.OldCommitIDs[i]).
 					RunStdString(&git.RunOpts{Dir: repo.RepoPath()}); err != nil {

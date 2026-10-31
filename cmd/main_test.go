@@ -116,7 +116,7 @@ func TestCliCmd(t *testing.T) {
 		},
 		{
 			env: map[string]string{"GITEA_WORK_DIR": "/tmp"},
-			cmd: "./gitea forgejo-cli --help",
+			cmd: "./gitea novroforge-cli --help",
 			exp: "(subcommand help template)",
 		},
 	}

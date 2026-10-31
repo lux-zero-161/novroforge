@@ -14,7 +14,7 @@ import {validate_form} from './shared/forms.ts';
 test.use({user: 'user2'});
 
 test('repo webhook settings', async ({page}) => {
-  const response = await page.goto('/user2/repo1/settings/hooks/forgejo/new');
+  const response = await page.goto('/user2/repo1/settings/hooks/novroforge/new');
   expect(response?.status()).toBe(200);
 
   await page.locator('input[name="events"][value="choose_events"]').click();

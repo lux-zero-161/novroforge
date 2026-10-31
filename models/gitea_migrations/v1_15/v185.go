@@ -4,7 +4,7 @@
 package v1_15
 
 import (
-	"code.forgejo.org/xorm/xorm"
+	"code.novroforge.xyz/xorm/xorm"
 )
 
 func AddRepoArchiver(x *xorm.Engine) error {

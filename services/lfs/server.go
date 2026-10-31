@@ -521,7 +521,7 @@ func writeStatusMessage(ctx *context.Context, status int, message string) {
 
 	er := lfs_module.ErrorResponse{
 		Message:          message,
-		DocumentationURL: "https://codeberg.org/forgejo/forgejo/issues",
+		DocumentationURL: "https://codeberg.org/novroforge/novroforge/issues",
 	}
 
 	enc := json.NewEncoder(ctx.Resp)

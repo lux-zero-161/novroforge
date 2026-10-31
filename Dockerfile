@@ -1,6 +1,6 @@
-FROM --platform=$BUILDPLATFORM data.forgejo.org/oci/xx AS xx
+FROM --platform=$BUILDPLATFORM data.novroforge.xyz/oci/xx AS xx
 
-FROM --platform=$BUILDPLATFORM data.forgejo.org/oci/golang:1.27-alpine3.24 AS build-env
+FROM --platform=$BUILDPLATFORM data.novroforge.xyz/oci/golang:1.27-alpine3.24 AS build-env
 
 ARG GOPROXY
 ENV GOPROXY=${GOPROXY:-https://proxy.golang.org,direct}
@@ -40,7 +40,7 @@ WORKDIR ${GOPATH}/src/novroforge.xyz
 RUN make clean-no-bindata
 RUN make frontend
 RUN go build contrib/environment-to-ini/environment-to-ini.go && xx-verify environment-to-ini
-RUN LDFLAGS="-buildid=" make FORGEJO_GENERATE_SKIP_HASH=true RELEASE_VERSION=$RELEASE_VERSION GOFLAGS="-trimpath" go-check generate-backend static-executable && xx-verify gitea
+RUN LDFLAGS="-buildid=" make novroforge_GENERATE_SKIP_HASH=true RELEASE_VERSION=$RELEASE_VERSION GOFLAGS="-trimpath" go-check generate-backend static-executable && xx-verify gitea
 
 # Copy local files
 COPY docker/root /tmp/local
@@ -55,13 +55,13 @@ RUN chmod 755 /tmp/local/usr/bin/entrypoint \
               /go/src/novroforge.xyz/environment-to-ini
 RUN chmod 644 /go/src/novroforge.xyz/contrib/autocompletion/bash_autocomplete
 
-FROM data.forgejo.org/oci/alpine:3.24
+FROM data.novroforge.xyz/oci/alpine:3.24
 ARG RELEASE_VERSION
 LABEL maintainer="contact@novroforge.xyz" \
       org.opencontainers.image.authors="NovroForge" \
       org.opencontainers.image.url="https://novroforge.xyz" \
       org.opencontainers.image.documentation="https://novroforge.xyz/download/#container-image" \
-      org.opencontainers.image.source="https://codeberg.org/forgejo/forgejo" \
+      org.opencontainers.image.source="https://codeberg.org/novroforge/novroforge" \
       org.opencontainers.image.version="${RELEASE_VERSION}" \
       org.opencontainers.image.vendor="NovroForge" \
       org.opencontainers.image.licenses="GPL-3.0-or-later" \
@@ -97,8 +97,8 @@ RUN addgroup \
   echo "git:*" | chpasswd -e
 
 RUN mkdir \
-  -p /run/forgejo && \
-  chown git:git /run/forgejo
+  -p /run/novroforge && \
+  chown git:git /run/novroforge
 
 ENV USER=git
 ENV GITEA_CUSTOM=/data/gitea
@@ -109,8 +109,8 @@ ENTRYPOINT ["/usr/bin/entrypoint"]
 CMD ["/usr/bin/s6-svscan", "/etc/s6"]
 
 COPY --from=build-env /tmp/local /
-RUN cd /usr/local/bin ; ln -s gitea forgejo
+RUN cd /usr/local/bin ; ln -s gitea novroforge
 COPY --from=build-env /go/src/novroforge.xyz/gitea /app/gitea/gitea
-RUN ln -s /app/gitea/gitea /app/gitea/forgejo-cli
+RUN ln -s /app/gitea/gitea /app/gitea/novroforge-cli
 COPY --from=build-env /go/src/novroforge.xyz/environment-to-ini /usr/local/bin/environment-to-ini
 COPY --from=build-env /go/src/novroforge.xyz/contrib/autocompletion/bash_autocomplete /etc/profile.d/gitea_bash_autocomplete.sh

@@ -654,7 +654,7 @@ test('Issue suggestions', async ({page}) => {
 });
 
 test('Multiple combo markdown: insert table', async ({page}) => {
-  const response = await page.goto('/user2/multiple-combo-boxes/issues/new?template=.forgejo%2fissue_template%2fmulti-combo-boxes.yaml');
+  const response = await page.goto('/user2/multiple-combo-boxes/issues/new?template=.novroforge%2fissue_template%2fmulti-combo-boxes.yaml');
   expect(response?.status()).toBe(200);
 
   // check that there are two textareas

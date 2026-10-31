@@ -16,7 +16,7 @@ rules:
     paths:
       exclude:
         - /models/gitea_migrations/**/*.go
-        - /models/forgejo_migrations_legacy/**/*.go
+        - /models/novroforge_migrations_legacy/**/*.go
     languages:
       - go
     message: |

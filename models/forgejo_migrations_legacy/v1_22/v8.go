@@ -6,7 +6,7 @@ package v1_22
 import (
 	"strings"
 
-	"code.forgejo.org/xorm/xorm"
+	"code.novroforge.xyz/xorm/xorm"
 )
 
 func RemoveSSHSignaturesFromReleaseNotes(x *xorm.Engine) error {

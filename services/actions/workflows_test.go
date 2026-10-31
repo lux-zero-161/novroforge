@@ -12,8 +12,8 @@ import (
 	"novroforge.xyz/models/user"
 	"novroforge.xyz/modules/webhook"
 
-	"code.forgejo.org/forgejo/runner/v13/act/jobparser"
-	act_model "code.forgejo.org/forgejo/runner/v13/act/model"
+	"code.novroforge.xyz/novroforge/runner/v13/act/jobparser"
+	act_model "code.novroforge.xyz/novroforge/runner/v13/act/model"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

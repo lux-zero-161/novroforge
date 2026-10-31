@@ -8,7 +8,7 @@ import (
 
 	"novroforge.xyz/modules/setting"
 
-	"code.forgejo.org/xorm/xorm"
+	"code.novroforge.xyz/xorm/xorm"
 	"xorm.io/builder"
 )
 

@@ -154,7 +154,7 @@ func ApplyDiffPatch(ctx context.Context, repo *repo_model.Repository, doer *user
 	// the working tree.  This creates security risks where the files are actually being dropped into the bare repo.  To
 	// avoid this, we create a temporary working directory for the command where those junk files can be dropped and
 	// then deleted:
-	applyWorkingDir, err := os.MkdirTemp("", "forgejo-applydiffpatch-*")
+	applyWorkingDir, err := os.MkdirTemp("", "novroforge-applydiffpatch-*")
 	if err != nil {
 		return nil, fmt.Errorf("failed to create temp directory: %w", err)
 	}

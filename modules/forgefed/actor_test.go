@@ -13,27 +13,27 @@ import (
 )
 
 func TestActorNew(t *testing.T) {
-	sut, err := forgefed.NewActorID("https://an.other.forgejo.host/api/v1/activitypub/user-id/5")
+	sut, err := forgefed.NewActorID("https://an.other.novroforge.host/api/v1/activitypub/user-id/5")
 	require.NoError(t, err)
 	assert.Equal(t, forgefed.ActorID{
 		ID:                 "5",
 		HostSchema:         "https",
 		Path:               "api/v1/activitypub/user-id",
-		Host:               "an.other.forgejo.host",
+		Host:               "an.other.novroforge.host",
 		HostPort:           443,
-		UnvalidatedInput:   "https://an.other.forgejo.host/api/v1/activitypub/user-id/5",
+		UnvalidatedInput:   "https://an.other.novroforge.host/api/v1/activitypub/user-id/5",
 		IsPortSupplemented: true,
 	}, sut)
 
-	sut, err = forgefed.NewActorID("https://an.other.forgejo.host/api/v1/activitypub/actor")
+	sut, err = forgefed.NewActorID("https://an.other.novroforge.host/api/v1/activitypub/actor")
 	require.NoError(t, err)
 	assert.Equal(t, forgefed.ActorID{
 		ID:                 "actor",
 		HostSchema:         "https",
 		Path:               "api/v1/activitypub",
-		Host:               "an.other.forgejo.host",
+		Host:               "an.other.novroforge.host",
 		HostPort:           443,
-		UnvalidatedInput:   "https://an.other.forgejo.host/api/v1/activitypub/actor",
+		UnvalidatedInput:   "https://an.other.novroforge.host/api/v1/activitypub/actor",
 		IsPortSupplemented: true,
 	}, sut)
 

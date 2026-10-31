@@ -32,7 +32,7 @@ import (
 	"novroforge.xyz/modules/structs"
 	"novroforge.xyz/modules/timeutil"
 
-	"code.forgejo.org/xorm/xorm/schemas"
+	"code.novroforge.xyz/xorm/xorm/schemas"
 	"xorm.io/builder"
 )
 

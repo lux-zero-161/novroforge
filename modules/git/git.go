@@ -215,7 +215,7 @@ func syncGitConfig() (err error) {
 	// They're used in a few uncommon places, such as when creating a release and tag via the web interface.
 	for configKey, defaultValue := range map[string]string{
 		"user.name":  "NovroForge",
-		"user.email": "forgejo@fake.local",
+		"user.email": "novroforge@fake.local",
 	} {
 		if err := configSetNonExist(configKey, defaultValue); err != nil {
 			return err
@@ -226,7 +226,7 @@ func syncGitConfig() (err error) {
 		return err
 	}
 
-	// Set git some configurations - these must be set to these values for forgejo to work correctly
+	// Set git some configurations - these must be set to these values for novroforge to work correctly
 	if err := configSet("core.quotePath", "false"); err != nil {
 		return err
 	}
@@ -309,7 +309,7 @@ func syncGitConfig() (err error) {
 	if err = configUnsetAll("receive.hideRefs", "refs/pull/"); err != nil {
 		return err
 	}
-	// "" was erroneously set in https://codeberg.org/forgejo/forgejo/pulls/13661
+	// "" was erroneously set in https://codeberg.org/novroforge/novroforge/pulls/13661
 	if err = configUnsetAll("receive.hideRefs", ""); err != nil {
 		return err
 	}

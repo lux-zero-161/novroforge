@@ -19,11 +19,11 @@
 
 # Test case with needs, only
 - id: 901
-  title: ".forgejo/workflows/test.yaml"
+  title: ".novroforge/workflows/test.yaml"
   repo_id: 63
   owner_id: 2
   workflow_id: "test.yaml"
-  workflow_directory: ".forgejo/workflows"
+  workflow_directory: ".novroforge/workflows"
   index: 5
   trigger_user_id: 2
   ref: "refs/heads/main"

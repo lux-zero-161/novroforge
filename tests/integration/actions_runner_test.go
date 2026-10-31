@@ -14,10 +14,10 @@ import (
 	"novroforge.xyz/modules/setting"
 	"novroforge.xyz/modules/timeutil"
 
-	pingv1 "code.forgejo.org/forgejo/actions-proto/ping/v1"
-	"code.forgejo.org/forgejo/actions-proto/ping/v1/pingv1connect"
-	runnerv1 "code.forgejo.org/forgejo/actions-proto/runner/v1"
-	"code.forgejo.org/forgejo/actions-proto/runner/v1/runnerv1connect"
+	pingv1 "code.novroforge.xyz/novroforge/actions-proto/ping/v1"
+	"code.novroforge.xyz/novroforge/actions-proto/ping/v1/pingv1connect"
+	runnerv1 "code.novroforge.xyz/novroforge/actions-proto/runner/v1"
+	"code.novroforge.xyz/novroforge/actions-proto/runner/v1/runnerv1connect"
 	"connectrpc.com/connect"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -269,12 +269,12 @@ func (r *mockRunner) execTask(t *testing.T, task *runnerv1.Task, outcome *mockTa
 		assert.EqualValues(t, idx+1, resp.Msg.AckIndex)
 	}
 	if outcome.sendEmptyUpdateLog {
-		// When a forgejo-runner completes a task, it will start a retry loop of sending UpdateLog & UpdateTask until
+		// When a novroforge-runner completes a task, it will start a retry loop of sending UpdateLog & UpdateTask until
 		// both succeed, or the retries are exhausted, so that transient failures in a service call don't lose the final
 		// statuses of a task, or the final log uploads.  This can cause the final UpdateLog to be invoked multiple
 		// times.  In order to verify that this works and doesn't trigger any error cases, the mock runner always
 		// invokes the last UpdateLog twice and verifies that neither have errors. (retry reference:
-		// https://code.forgejo.org/forgejo/runner/src/commit/c4a92ffa5e3a400ae7e9c40a2914e649eb338ad7/internal/pkg/report/reporter.go#L400-L411)
+		// https://code.novroforge.xyz/novroforge/runner/src/commit/c4a92ffa5e3a400ae7e9c40a2914e649eb338ad7/internal/pkg/report/reporter.go#L400-L411)
 		for range 2 {
 			resp, err := r.client.runnerServiceClient.UpdateLog(t.Context(), connect.NewRequest(&runnerv1.UpdateLogRequest{
 				TaskId: task.Id,

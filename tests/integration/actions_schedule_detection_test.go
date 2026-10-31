@@ -85,7 +85,7 @@ jobs:
 		{
 			name:              "NovroForge with time zone",
 			workflowID:        "tz.yml",
-			workflowDirectory: ".forgejo/workflows",
+			workflowDirectory: ".novroforge/workflows",
 			workflowContent: `
 on:
   schedule:
@@ -97,7 +97,7 @@ jobs:
     steps:
       - run: echo OK
 `,
-			expectedWorkflowTitle: ".forgejo/workflows/tz.yml",
+			expectedWorkflowTitle: ".novroforge/workflows/tz.yml",
 			expectedCronSpecs: []expectedSpec{
 				{cron: "44 10 * * *", timeZone: optional.None[string]()},
 				{cron: "25 19 * * *", timeZone: optional.Some("Europe/Madrid")},
@@ -164,7 +164,7 @@ func TestActionsScheduleDetection_PullRequest(t *testing.T) {
 			repo_model.MergeStyleFastForwardOnly,
 		}
 		prBranch := "add-schedule"
-		workflowPath := ".forgejo/workflows/test.yaml"
+		workflowPath := ".novroforge/workflows/test.yaml"
 		workflowContent := `on:
   schedule:
     - cron: '* * * * *'
@@ -219,7 +219,7 @@ func TestActionsScheduleDetection_ActionsUnit(t *testing.T) {
 	onApplicationRun(t, func(t *testing.T, u *url.URL) {
 		user2 := unittest.AssertExistsAndLoadBean(t, &user_model.User{ID: 2})
 
-		workflowPath := ".forgejo/workflows/test.yaml"
+		workflowPath := ".novroforge/workflows/test.yaml"
 		workflowContent := `on:
   schedule:
     - cron: '* * * * *'
@@ -257,7 +257,7 @@ func TestActionsScheduleDetection_Archive(t *testing.T) {
 	onApplicationRun(t, func(t *testing.T, u *url.URL) {
 		user2 := unittest.AssertExistsAndLoadBean(t, &user_model.User{ID: 2})
 
-		workflowPath := ".forgejo/workflows/test.yaml"
+		workflowPath := ".novroforge/workflows/test.yaml"
 		workflowContent := `on:
   schedule:
     - cron: '* * * * *'
@@ -319,7 +319,7 @@ func TestActionsScheduleDetection_DefaultBranchChange(t *testing.T) {
 	}{
 		name:              "NovroForge",
 		workflowID:        "scheduled.yml",
-		workflowDirectory: ".forgejo/workflows",
+		workflowDirectory: ".novroforge/workflows",
 		workflowContent: `
 on:
   schedule:
@@ -338,7 +338,7 @@ jobs:
     steps:
       - run: echo updated
 `,
-		expectedWorkflowTitle: ".forgejo/workflows/scheduled.yml",
+		expectedWorkflowTitle: ".novroforge/workflows/scheduled.yml",
 	}
 
 	onApplicationRun(t, func(t *testing.T, u *url.URL) {
@@ -427,7 +427,7 @@ func TestActionsScheduleDetection_MirrorSync(t *testing.T) {
 	onApplicationRun(t, func(t *testing.T, u *url.URL) {
 		user2 := unittest.AssertExistsAndLoadBean(t, &user_model.User{ID: 2})
 
-		workflowPath := ".forgejo/workflows/test.yaml"
+		workflowPath := ".novroforge/workflows/test.yaml"
 		workflowContent := `on:
   schedule:
     - cron: '* * * * *'

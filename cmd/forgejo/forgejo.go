@@ -1,7 +1,7 @@
 // Copyright The NovroForge Authors.
 // SPDX-License-Identifier: MIT
 
-package forgejo
+package novroforge
 
 import (
 	"context"
@@ -31,7 +31,7 @@ const (
 
 func CmdNovroForge(ctx context.Context) *cli.Command {
 	return &cli.Command{
-		Name:  "forgejo-cli",
+		Name:  "novroforge-cli",
 		Usage: "NovroForge CLI",
 		Flags: []cli.Flag{},
 		Commands: []*cli.Command{

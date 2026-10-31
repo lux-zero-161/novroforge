@@ -93,7 +93,7 @@ func TestActionsIDToken(t *testing.T) {
 			assert.Equal(t, "c2d72f548424103f01ee1dc02889c1e2bff816b0", claims["sha"])
 			assert.Equal(t, "repo:user5-5/repo4-4:ref:refs/heads/master", claims["sub"])
 			assert.Equal(t, "artifact.yaml", claims["workflow"])
-			assert.Equal(t, "user5/repo4/.forgejo/workflows/artifact.yaml@refs/heads/master", claims["workflow_ref"])
+			assert.Equal(t, "user5/repo4/.novroforge/workflows/artifact.yaml@refs/heads/master", claims["workflow_ref"])
 		}
 
 		// Default aud
@@ -198,7 +198,7 @@ func TestActionsIDToken(t *testing.T) {
 		ai := &auth.AuthorizedIntegration{
 			UserID: 2,
 			Scope:  auth.AccessTokenScopeAll,
-			Issuer: "urn:forgejo:authorized-integrations:actions",
+			Issuer: "urn:novroforge:authorized-integrations:actions",
 			ClaimRules: &auth.ClaimRules{
 				Rules: []auth.ClaimRule{
 					{

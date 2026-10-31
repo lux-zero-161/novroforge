@@ -13,8 +13,8 @@ export function initInstall() {
   }
 }
 function initPreInstall() {
-  const defaultDbUser = 'forgejo';
-  const defaultDbName = 'forgejo';
+  const defaultDbUser = 'novroforge';
+  const defaultDbName = 'novroforge';
 
   const defaultDbHosts = {
     mysql: '127.0.0.1:3306',

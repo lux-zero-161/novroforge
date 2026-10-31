@@ -1,7 +1,7 @@
 -
   id: 1001
   repo_id: 2
-  type: forgejo
+  type: novroforge
   url: http://www.example.com/blåhaj
   http_method: POST
   content_type: 1 # json

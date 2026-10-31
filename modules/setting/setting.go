@@ -150,7 +150,7 @@ func MustInstalled() {
 		log.Fatal(`
 Unable to load a config file for an installed NovroForge instance.
 If you have installed NovroForge already, you might need to provide the path to your config file via the "--config" option.
-If you haven't installed NovroForge already, please run "forgejo web" command first to finish the installation.
+If you haven't installed NovroForge already, please run "novroforge web" command first to finish the installation.
 `)
 	}
 }

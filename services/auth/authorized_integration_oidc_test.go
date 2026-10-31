@@ -13,7 +13,7 @@ import (
 )
 
 // Real-world NovroForge Actions .well-known/openid-configuration from NovroForge v15
-const forgejoOIDC = `
+const novroforgeOIDC = `
 {
     "issuer": "https://example.org/api/actions",
     "jwks_uri": "https://example.org/api/actions/.well-known/keys",
@@ -56,7 +56,7 @@ const forgejoOIDC = `
 `
 
 // Real-world NovroForge Actions JWKS from NovroForge v15
-const forgejoJWKS = `
+const novroforgeJWKS = `
 {
     "keys": [
         {
@@ -233,7 +233,7 @@ const awsJWKS = `
 func TestParseOpenIDConfiguration(t *testing.T) {
 	t.Run("NovroForge", func(t *testing.T) {
 		var retval AuthorizedIntegrationOpenIDConfiguration
-		data := []byte(forgejoOIDC)
+		data := []byte(novroforgeOIDC)
 		require.NoError(t, json.Unmarshal(data, &retval))
 		assert.Equal(t, "https://example.org/api/actions/.well-known/keys", retval.JwksURI)
 	})
@@ -254,7 +254,7 @@ func TestParseOpenIDConfiguration(t *testing.T) {
 func TestParseJSONWebKeySet(t *testing.T) {
 	t.Run("NovroForge", func(t *testing.T) {
 		var retval AuthorizedIntegrationOpenIDKeys
-		data := []byte(forgejoJWKS)
+		data := []byte(novroforgeJWKS)
 		require.NoError(t, json.Unmarshal(data, &retval))
 		assert.Len(t, retval.Keys, 1)
 	})

@@ -41,7 +41,7 @@ import (
 	remote_service "novroforge.xyz/services/remote"
 	user_service "novroforge.xyz/services/user"
 
-	"code.forgejo.org/go-chi/binding"
+	"code.novroforge.xyz/go-chi/binding"
 	"github.com/golang-jwt/jwt/v5"
 	"github.com/markbates/goth"
 	"github.com/markbates/goth/gothic"

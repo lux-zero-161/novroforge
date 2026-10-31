@@ -144,7 +144,7 @@ func TestDeliverTestPayloadWithoutPushEvent(t *testing.T) {
 
 	// but if we deliver it as a testing payload, the check on event types is bypassed
 	// (so that webhooks can be tested regardless of the event types they are enabled for)
-	// See https://codeberg.org/forgejo/forgejo/issues/7934
+	// See https://codeberg.org/novroforge/novroforge/issues/7934
 	require.NoError(t, PrepareTestWebhook(db.DefaultContext, hook, &api.ReleasePayload{}))
 
 	unittest.AssertExistsAndLoadBean(t, &webhook_model.HookTask{

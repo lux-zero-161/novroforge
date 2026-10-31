@@ -108,7 +108,7 @@ type AuthenticationResult interface {
 	// Otherwise, None.
 	OAuth2GrantScopes() optional.Option[string]
 
-	// If authenticated as an Actions task (using ${{ forgejo.token }}), then indicates the specific task that performed
+	// If authenticated as an Actions task (using ${{ novroforge.token }}), then indicates the specific task that performed
 	// the authentication.
 	ActionsTaskID() optional.Option[int64]
 

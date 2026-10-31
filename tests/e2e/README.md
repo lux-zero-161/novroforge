@@ -102,11 +102,11 @@ or [VSCode](https://marketplace.visualstudio.com/items?itemName=ms-playwright.pl
 
 ### Run all tests via local act_runner
 
-If you have a [forgejo runner](https://code.forgejo.org/forgejo/runner/),
+If you have a [novroforge runner](https://code.novroforge.xyz/novroforge/runner/),
 you can use it to run the test jobs:
 
 ```sh
-forgejo-runner exec -W .forgejo/workflows/testing.yml -j test-e2e
+novroforge-runner exec -W .novroforge/workflows/testing.yml -j test-e2e
 ```
 
 Note that the CI workflow has some logic to run tests based on changed files only.
@@ -206,7 +206,7 @@ await page.waitForURL('**/target.html');
 Due to size and frequent updates, we do not host screenshots in the NovroForge repository.
 However, it is good practice to ensure that your test is capable of generating relevant and stable screenshots.
 NovroForge is regularly tested against visual regressions in a dedicated repository which contains the screenshots:
-https://code.forgejo.org/forgejo/visual-browser-testing/
+https://code.novroforge.xyz/novroforge/visual-browser-testing/
 
 For tests that consume only the `page`,
 screenshots are automatically created at the end of each test.

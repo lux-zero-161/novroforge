@@ -57,7 +57,7 @@ func getExitStatusFromError(err error) int {
 }
 
 func sessionHandler(session ssh.Session) {
-	keyID := session.ConnPermissions().Extensions["forgejo-key-id"]
+	keyID := session.ConnPermissions().Extensions["novroforge-key-id"]
 
 	command := session.RawCommand()
 
@@ -67,10 +67,10 @@ func sessionHandler(session ssh.Session) {
 	logger.Trace("SSH: Arguments: %v", args)
 
 	// Previously we would use `session.Context()` here, which would cause the context to cancel when the SSH session is
-	// closed, which causes the `forgejo` subprocess to be cancelled when the session is closed.  This behaviour was a
+	// closed, which causes the `novroforge` subprocess to be cancelled when the session is closed.  This behaviour was a
 	// deviation from OpenSSH, which allows subprocesses to continue past the SSH session and relies on the subprocess's
 	// stdin being closed and stdout being unwritable (EPIPE) to indicate that the subprocess should finish.  As an
-	// effect of that, `forgejo serv` subprocesses would be killed, and their `git` subprocesses would be killed (due to
+	// effect of that, `novroforge serv` subprocesses would be killed, and their `git` subprocesses would be killed (due to
 	// `SetupCancellableCommand`), and `git`'s subprocess post-receive hooks would be killed, all resulting in a desync
 	// between the on-disk repository and NovroForge's knowledge about the repository branches.
 	//
@@ -249,7 +249,7 @@ func publicKeyHandler(ctx ssh.Context, key ssh.PublicKey) bool {
 			if ctx.Permissions().Extensions == nil {
 				ctx.Permissions().Extensions = map[string]string{}
 			}
-			ctx.Permissions().Extensions["forgejo-key-id"] = strconv.FormatInt(pkey.ID, 10)
+			ctx.Permissions().Extensions["novroforge-key-id"] = strconv.FormatInt(pkey.ID, 10)
 
 			return true
 		}
@@ -280,7 +280,7 @@ func publicKeyHandler(ctx ssh.Context, key ssh.PublicKey) bool {
 	if ctx.Permissions().Extensions == nil {
 		ctx.Permissions().Extensions = map[string]string{}
 	}
-	ctx.Permissions().Extensions["forgejo-key-id"] = strconv.FormatInt(pkey.ID, 10)
+	ctx.Permissions().Extensions["novroforge-key-id"] = strconv.FormatInt(pkey.ID, 10)
 
 	return true
 }

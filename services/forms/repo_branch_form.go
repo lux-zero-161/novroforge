@@ -9,7 +9,7 @@ import (
 	"novroforge.xyz/modules/web/middleware"
 	"novroforge.xyz/services/context"
 
-	"code.forgejo.org/go-chi/binding"
+	"code.novroforge.xyz/go-chi/binding"
 )
 
 // NewBranchForm form for creating a new branch

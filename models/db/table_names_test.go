@@ -25,7 +25,7 @@ func TestGetTableNames(t *testing.T) {
 		tableNames := GetTableNames().Values()
 		slices.Sort(tableNames)
 
-		assert.Equal(t, []string{"forgejo_blocked_user", "gpg_key", "user"}, tableNames)
+		assert.Equal(t, []string{"novroforge_blocked_user", "gpg_key", "user"}, tableNames)
 	})
 }
 
@@ -36,5 +36,5 @@ type User struct{}
 type BlockedUser struct{}
 
 func (*BlockedUser) TableName() string {
-	return "forgejo_blocked_user"
+	return "novroforge_blocked_user"
 }

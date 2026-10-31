@@ -146,7 +146,7 @@ func generateRepoCommit(ctx context.Context, repo, templateRepo, generateRepo *r
 }
 
 func checkGiteaTemplate(tmpDir string) (*GiteaTemplate, error) {
-	configDirs := []string{".forgejo", ".gitea"}
+	configDirs := []string{".novroforge", ".gitea"}
 	var templateFilePath string
 
 	// All file access should be done through `root` to avoid file traversal attacks, especially with symlinks

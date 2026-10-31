@@ -26,17 +26,17 @@ func TestForgefedRepositoryCreateHostValid(t *testing.T) {
 
 		// Act
 		err := forgefed.CreateFederationHost(ctx, &forgefed.FederationHost{
-			HostFqdn:   "forgejo.example.com",
+			HostFqdn:   "novroforge.example.com",
 			HostPort:   80,
 			HostSchema: "http",
 			NodeInfo: forgefed.NodeInfo{
-				SoftwareName: "forgejo",
+				SoftwareName: "novroforge",
 			},
 		})
 
 		// Assert
 		require.NoError(t, err)
-		unittest.AssertExistsAndLoadBean(t, &forgefed.FederationHost{HostFqdn: "forgejo.example.com"})
+		unittest.AssertExistsAndLoadBean(t, &forgefed.FederationHost{HostFqdn: "novroforge.example.com"})
 	})
 }
 
@@ -52,7 +52,7 @@ func TestForgefedRepositoryCreateHostInvalid(t *testing.T) {
 
 		// Assert
 		require.Error(t, err)
-		unittest.AssertNotExistsBean(t, &forgefed.FederationHost{HostFqdn: "forgejo.example.com"})
+		unittest.AssertNotExistsBean(t, &forgefed.FederationHost{HostFqdn: "novroforge.example.com"})
 	})
 }
 
@@ -62,19 +62,19 @@ func TestForgefedRepositoryCreateUserValid(t *testing.T) {
 		ctx := t.Context()
 
 		err := forgefed.CreateFederationHost(ctx, &forgefed.FederationHost{
-			HostFqdn:   "forgejo.example.com",
+			HostFqdn:   "novroforge.example.com",
 			HostPort:   80,
 			HostSchema: "http",
 			NodeInfo: forgefed.NodeInfo{
-				SoftwareName: "forgejo",
+				SoftwareName: "novroforge",
 			},
 		})
 		require.NoError(t, err)
 
 		// Act
 		err = user.CreateFederatedUser(ctx, &user.User{
-			Name:  "@bob@forgejo.example.com",
-			Email: "bob@forgejo.example.com",
+			Name:  "@bob@novroforge.example.com",
+			Email: "bob@novroforge.example.com",
 		}, &user.FederatedUser{
 			ExternalID:       "1",
 			FederationHostID: 1,
@@ -83,7 +83,7 @@ func TestForgefedRepositoryCreateUserValid(t *testing.T) {
 
 		// Assert
 		require.NoError(t, err)
-		localUser := unittest.AssertExistsAndLoadBean(t, &user.User{Name: "@bob@forgejo.example.com", Email: "bob@forgejo.example.com"})
+		localUser := unittest.AssertExistsAndLoadBean(t, &user.User{Name: "@bob@novroforge.example.com", Email: "bob@novroforge.example.com"})
 		unittest.AssertExistsAndLoadBean(t, &user.FederatedUser{UserID: localUser.ID, FederationHostID: 1})
 	})
 }
@@ -94,26 +94,26 @@ func TestForgefedRepositoryCreateUserInvalid(t *testing.T) {
 		ctx := t.Context()
 
 		err := forgefed.CreateFederationHost(ctx, &forgefed.FederationHost{
-			HostFqdn:   "forgejo.example.com",
+			HostFqdn:   "novroforge.example.com",
 			HostPort:   80,
 			HostSchema: "http",
 			NodeInfo: forgefed.NodeInfo{
-				SoftwareName: "forgejo",
+				SoftwareName: "novroforge",
 			},
 		})
 		require.NoError(t, err)
 
 		// Act
 		err = user.CreateFederatedUser(ctx, &user.User{
-			Name:  "@bob@forgejo.example.com",
-			Email: "bob@forgejo.example.com",
+			Name:  "@bob@novroforge.example.com",
+			Email: "bob@novroforge.example.com",
 		}, &user.FederatedUser{
 			// invalid
 		})
 
 		// Assert
 		require.Error(t, err)
-		unittest.AssertNotExistsBean(t, &user.User{Email: "bob@forgejo.example.com"})
+		unittest.AssertNotExistsBean(t, &user.User{Email: "bob@novroforge.example.com"})
 		unittest.AssertNotExistsBean(t, &user.FederatedUser{FederationHostID: 1})
 	})
 }
@@ -132,7 +132,7 @@ func TestForgefedRepositoryFindHostsAndUsers(t *testing.T) {
 			HostPort:   80,
 			HostSchema: "http",
 			NodeInfo: forgefed.NodeInfo{
-				SoftwareName: "forgejo",
+				SoftwareName: "novroforge",
 			},
 		})
 		require.NoError(t, err)

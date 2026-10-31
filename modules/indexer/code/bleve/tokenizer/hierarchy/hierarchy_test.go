@@ -25,10 +25,10 @@ func TestIndexerBleveHierarchyTokenizer(t *testing.T) {
 			},
 		},
 		{
-			Term: "/tmp/forgejo/",
+			Term: "/tmp/novroforge/",
 			Results: []string{
 				"tmp",
-				"tmp/forgejo",
+				"tmp/novroforge",
 			},
 		},
 		{

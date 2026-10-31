@@ -6,7 +6,7 @@ package v1_16
 import (
 	"fmt"
 
-	"code.forgejo.org/xorm/xorm"
+	"code.novroforge.xyz/xorm/xorm"
 )
 
 func AddColorColToProjectBoard(x *xorm.Engine) error {

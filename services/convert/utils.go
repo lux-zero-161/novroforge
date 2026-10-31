@@ -36,7 +36,7 @@ func ToGitServiceType(value string) structs.GitServiceType {
 		return structs.OneDevService
 	case "gitbucket":
 		return structs.GitBucketService
-	case "forgejo":
+	case "novroforge":
 		return structs.NovroForgeService
 	case "pagure":
 		return structs.PagureService

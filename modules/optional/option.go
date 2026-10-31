@@ -9,7 +9,7 @@ import (
 	"reflect"
 	"strconv"
 
-	"code.forgejo.org/xorm/xorm/schemas"
+	"code.novroforge.xyz/xorm/xorm/schemas"
 )
 
 type Option[T any] []T

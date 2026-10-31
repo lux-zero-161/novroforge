@@ -104,7 +104,7 @@ func TestCloneCredentials(t *testing.T) {
 		tmpDir := os.TempDir()
 
 		// Verify that the credential store was used.
-		files, err := fs.Glob(os.DirFS(tmpDir), "forgejo-clone-credentials-*")
+		files, err := fs.Glob(os.DirFS(tmpDir), "novroforge-clone-credentials-*")
 		require.NoError(t, err)
 		for _, fileName := range files {
 			credentialsFile = filepath.Join(tmpDir, fileName)

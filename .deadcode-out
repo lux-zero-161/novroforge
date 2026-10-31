@@ -1,7 +1,7 @@
 novroforge.xyz/cmd
 	NoMainListener
 
-novroforge.xyz/cmd/forgejo
+novroforge.xyz/cmd/novroforge
 	ContextSetNoInit
 	ContextSetNoExit
 	ContextSetStderr
@@ -29,12 +29,12 @@ novroforge.xyz/models/dbfs
 	Create
 	Rename
 
-novroforge.xyz/models/forgejo/semver
+novroforge.xyz/models/novroforge/semver
 	GetVersion
 	SetVersionString
 	SetVersion
 
-novroforge.xyz/models/forgejo_migrations
+novroforge.xyz/models/novroforge_migrations
 	resetMigrations
 
 novroforge.xyz/models/git

@@ -24,7 +24,7 @@ import (
 
 func TestValidateAuthorizedIntegration(t *testing.T) {
 	ii := NewMockInternalIssuer(t)
-	ii.On("IssuerPlaceholder").Return("urn:forgejo:authorized-issuer:internal:test2")
+	ii.On("IssuerPlaceholder").Return("urn:novroforge:authorized-issuer:internal:test2")
 	RegisterInternalIssuerForTesting(t, "/fake-jwt-issuer", ii)
 
 	makeValid := func() *auth.AuthorizedIntegration {
@@ -33,7 +33,7 @@ func TestValidateAuthorizedIntegration(t *testing.T) {
 			ResourceAllRepos: true,
 			Scope:            auth.AccessTokenScopeReadRepository,
 			UI:               auth.AuthorizedIntegrationUIGeneric,
-			Issuer:           "urn:forgejo:authorized-issuer:internal:test2",
+			Issuer:           "urn:novroforge:authorized-issuer:internal:test2",
 			ClaimRules:       &auth.ClaimRules{},
 		}
 	}
@@ -119,7 +119,7 @@ func TestInsertAuthorizedIntegration(t *testing.T) {
 	require.NoError(t, unittest.PrepareTestDatabase())
 
 	ii := NewMockInternalIssuer(t)
-	ii.On("IssuerPlaceholder").Return("urn:forgejo:authorized-issuer:internal:test3")
+	ii.On("IssuerPlaceholder").Return("urn:novroforge:authorized-issuer:internal:test3")
 	RegisterInternalIssuerForTesting(t, "/fake-jwt-issuer", ii)
 
 	t.Run("success inserts w/ repos", func(t *testing.T) {
@@ -130,7 +130,7 @@ func TestInsertAuthorizedIntegration(t *testing.T) {
 			ClaimRules:       &auth.ClaimRules{},
 			Name:             " Magical AI ",
 			Scope:            auth.AccessTokenScopeReadRepository,
-			Issuer:           "urn:forgejo:authorized-issuer:internal:test3",
+			Issuer:           "urn:novroforge:authorized-issuer:internal:test3",
 		}
 		rr := []*auth.AuthorizedIntegResourceRepo{
 			{
@@ -156,7 +156,7 @@ func TestInsertAuthorizedIntegration(t *testing.T) {
 			ResourceAllRepos: false,
 			ClaimRules:       &auth.ClaimRules{},
 			Name:             " Magical AI ",
-			Issuer:           "urn:forgejo:authorized-issuer:internal:test3",
+			Issuer:           "urn:novroforge:authorized-issuer:internal:test3",
 		}
 		err := InsertAuthorizedIntegration(t.Context(), ai, nil)
 		require.ErrorIs(t, err, authz.ErrSpecifiedReposNone)
@@ -167,7 +167,7 @@ func TestUpdateAuthorizedIntegration(t *testing.T) {
 	require.NoError(t, unittest.PrepareTestDatabase())
 
 	ii := NewMockInternalIssuer(t)
-	ii.On("IssuerPlaceholder").Return("urn:forgejo:authorized-issuer:internal:test4")
+	ii.On("IssuerPlaceholder").Return("urn:novroforge:authorized-issuer:internal:test4")
 	RegisterInternalIssuerForTesting(t, "/fake-jwt-issuer", ii)
 
 	prep := func(t *testing.T) (*auth.AuthorizedIntegration, []*auth.AuthorizedIntegResourceRepo) {
@@ -178,7 +178,7 @@ func TestUpdateAuthorizedIntegration(t *testing.T) {
 			ClaimRules:       &auth.ClaimRules{},
 			Name:             " Magical AI ",
 			Scope:            auth.AccessTokenScopeReadRepository,
-			Issuer:           "urn:forgejo:authorized-issuer:internal:test4",
+			Issuer:           "urn:novroforge:authorized-issuer:internal:test4",
 		}
 		rr := []*auth.AuthorizedIntegResourceRepo{
 			{

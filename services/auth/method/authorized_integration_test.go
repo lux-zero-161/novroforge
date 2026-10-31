@@ -22,7 +22,7 @@ import (
 	"novroforge.xyz/modules/timeutil"
 	"novroforge.xyz/services/auth"
 
-	mc "code.forgejo.org/go-chi/cache"
+	mc "code.novroforge.xyz/go-chi/cache"
 	"github.com/golang-jwt/jwt/v5"
 	gouuid "github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
@@ -785,7 +785,7 @@ func TestAuthorizedIntegration(t *testing.T) {
 		t.Run("mismatched DB issuer placeholder", func(t *testing.T) {
 			ait := newInternalIssuerAITester(t,
 				aiDBTweak(func(ai *auth_model.AuthorizedIntegration) {
-					ai.Issuer = "urn:forgejo:authorized-issuer:internal:bad-choice-here"
+					ai.Issuer = "urn:novroforge:authorized-issuer:internal:bad-choice-here"
 				}))
 			defer ait.close()
 			output := ait.bearerRequest()
@@ -925,7 +925,7 @@ func newAITester(t *testing.T, tweaks ...tweak) *AuthorizedIntegrationTester {
 		UserID:   2,
 		Scope:    auth_model.AccessTokenScopeAll,
 		Issuer:   fmt.Sprintf("%s/api/actions/%s", ait.testServer.URL, uniqueTest),
-		Audience: fmt.Sprintf("https://forgejo.example.org/-/coolguy/authorized-integration/%s", gouuid.New().String()),
+		Audience: fmt.Sprintf("https://novroforge.example.org/-/coolguy/authorized-integration/%s", gouuid.New().String()),
 		ClaimRules: &auth_model.ClaimRules{
 			Rules: []auth_model.ClaimRule{
 				{
@@ -953,14 +953,14 @@ func newInternalIssuerAITester(t *testing.T, tweaks ...tweak) *AuthorizedIntegra
 			rc.Issuer = setting.AppURL + "/fake-jwt-issuer"
 		}),
 		aiDBTweak(func(ai *auth_model.AuthorizedIntegration) {
-			ai.Issuer = "urn:forgejo:authorized-issuer:internal:test1"
+			ai.Issuer = "urn:novroforge:authorized-issuer:internal:test1"
 		}),
 	}
 	innerTweaks = append(innerTweaks, tweaks...)
 	ait := newAITester(t, innerTweaks...)
 	ii := auth.NewMockInternalIssuer(t)
 	auth.RegisterInternalIssuerForTesting(t, "/fake-jwt-issuer", ii)
-	ii.On("IssuerPlaceholder").Return("urn:forgejo:authorized-issuer:internal:test1")
+	ii.On("IssuerPlaceholder").Return("urn:novroforge:authorized-issuer:internal:test1")
 	ii.On("SigningKey").Return(ait.jwtSigningKey)
 	ait.ii = ii
 	return ait
@@ -994,14 +994,14 @@ func (ait *AuthorizedIntegrationTester) signedJWT() string {
 
 func (ait *AuthorizedIntegrationTester) bearerRequest() auth.MethodOutput {
 	signedToken := ait.signedJWT()
-	req := httptest.NewRequest("GET", "https://forgejo.example.org", nil)
+	req := httptest.NewRequest("GET", "https://novroforge.example.org", nil)
 	req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", signedToken))
 	return ait.ai.Verify(req, nil, nil)
 }
 
 func (ait *AuthorizedIntegrationTester) basicRequest() auth.MethodOutput {
 	signedToken := ait.signedJWT()
-	req := httptest.NewRequest("GET", "https://forgejo.example.org", nil)
+	req := httptest.NewRequest("GET", "https://novroforge.example.org", nil)
 	req.SetBasicAuth("", signedToken)
 	return ait.ai.Verify(req, nil, nil)
 }

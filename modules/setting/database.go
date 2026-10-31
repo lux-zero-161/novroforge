@@ -16,7 +16,7 @@ import (
 
 	"novroforge.xyz/modules/log"
 
-	"code.forgejo.org/xorm/xorm"
+	"code.novroforge.xyz/xorm/xorm"
 )
 
 var (
@@ -87,7 +87,7 @@ func loadDBSetting(rootCfg ConfigProvider) {
 	Database.SSLMode = sec.Key("SSL_MODE").MustString("disable")
 	Database.CharsetCollation = sec.Key("CHARSET_COLLATION").String()
 
-	Database.Path = sec.Key("PATH").MustString(filepath.Join(AppDataPath, "forgejo.db"))
+	Database.Path = sec.Key("PATH").MustString(filepath.Join(AppDataPath, "novroforge.db"))
 	Database.Timeout = sec.Key("SQLITE_TIMEOUT").MustInt(60000)
 	Database.SQLiteJournalMode = sec.Key("SQLITE_JOURNAL_MODE").MustString("WAL")
 

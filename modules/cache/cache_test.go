@@ -16,7 +16,7 @@ import (
 	"novroforge.xyz/modules/setting"
 	"novroforge.xyz/modules/test"
 
-	"code.forgejo.org/go-chi/cache"
+	"code.novroforge.xyz/go-chi/cache"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

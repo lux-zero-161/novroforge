@@ -6,7 +6,7 @@ package v1_21
 import (
 	"novroforge.xyz/modules/timeutil"
 
-	"code.forgejo.org/xorm/xorm"
+	"code.novroforge.xyz/xorm/xorm"
 )
 
 func CreateVariableTable(x *xorm.Engine) error {

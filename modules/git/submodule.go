@@ -101,7 +101,7 @@ func parseSubmoduleContent(r io.Reader) (map[string]Submodule, error) {
 
 func parseSubmoduleSection(s *ini.Section) Submodule {
 	section, name, _ := strings.Cut(s.Name(), " ")
-	if !util.ASCIIEqualFold("submodule", section) { // See https://codeberg.org/forgejo/forgejo/pulls/8438#issuecomment-5805251
+	if !util.ASCIIEqualFold("submodule", section) { // See https://codeberg.org/novroforge/novroforge/pulls/8438#issuecomment-5805251
 		return Submodule{}
 	}
 	_ = name

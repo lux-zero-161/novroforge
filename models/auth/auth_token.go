@@ -50,7 +50,7 @@ type AuthorizationToken struct {
 
 // TableName provides the real table name.
 func (AuthorizationToken) TableName() string {
-	return "forgejo_auth_token"
+	return "novroforge_auth_token"
 }
 
 func init() {

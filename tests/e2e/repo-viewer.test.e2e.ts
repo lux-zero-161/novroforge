@@ -30,7 +30,7 @@ test('glb file with 3D rendering', async ({page}, workerInfo) => {
   test.skip(
     workerInfo.project.name !== 'chromium',
     'needs some investigation to run on other platforms',
-    // https://codeberg.org/forgejo/forgejo/actions/runs/113344/jobs/3/attempt/1
+    // https://codeberg.org/novroforge/novroforge/actions/runs/113344/jobs/3/attempt/1
   );
 
   const previewPath =

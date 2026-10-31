@@ -24,7 +24,7 @@ import (
 	"novroforge.xyz/modules/storage"
 	"novroforge.xyz/modules/util"
 
-	"code.forgejo.org/go-chi/session"
+	"code.novroforge.xyz/go-chi/session"
 	"github.com/mholt/archives"
 	"github.com/urfave/cli/v3"
 )
@@ -172,7 +172,7 @@ It can be used for backup and capture NovroForge server image to send to maintai
 			&cli.StringFlag{
 				Name:    "file",
 				Aliases: []string{"f"},
-				Value:   fmt.Sprintf("forgejo-dump-%d.zip", time.Now().Unix()),
+				Value:   fmt.Sprintf("novroforge-dump-%d.zip", time.Now().Unix()),
 				Usage:   "Name of the dump file which will be created. Supply '-' for stdout. See type for available types.",
 			},
 			&cli.BoolFlag{
@@ -279,7 +279,7 @@ func runDump(stdCtx context.Context, ctx *cli.Command) error {
 
 	if !setting.InstallLock {
 		log.Error("Is '%s' really the right config path?\n", setting.CustomConf)
-		return errors.New("forgejo is not initialized")
+		return errors.New("novroforge is not initialized")
 	}
 	setting.LoadSettings() // cannot access session settings otherwise
 
@@ -486,7 +486,7 @@ func dumpDatabase(ctx *cli.Command, archiveJobs chan archives.ArchiveAsyncJob, w
 	var err error
 	tmpDir := ctx.String("tempdir")
 	if tmpDir == "" {
-		tmpDir, err = os.MkdirTemp("", "forgejo-dump-*")
+		tmpDir, err = os.MkdirTemp("", "novroforge-dump-*")
 		if err != nil {
 			fatal("Failed to create temporary directory: %v", err)
 		}
@@ -502,7 +502,7 @@ func dumpDatabase(ctx *cli.Command, archiveJobs chan archives.ArchiveAsyncJob, w
 		fatal("Path does not exist: %s", tmpDir)
 	}
 
-	dbDump, err := os.CreateTemp(tmpDir, "forgejo-db.sql")
+	dbDump, err := os.CreateTemp(tmpDir, "novroforge-db.sql")
 	if err != nil {
 		fatal("Failed to create temporary file: %v", err)
 	}
@@ -524,8 +524,8 @@ func dumpDatabase(ctx *cli.Command, archiveJobs chan archives.ArchiveAsyncJob, w
 		fatal("Failed to dump database: %v", err)
 	}
 
-	if err := addFile(archiveJobs, "forgejo-db.sql", dbDump.Name(), verbose); err != nil {
-		fatal("Failed to include forgejo-db.sql: %v", err)
+	if err := addFile(archiveJobs, "novroforge-db.sql", dbDump.Name(), verbose); err != nil {
+		fatal("Failed to include novroforge-db.sql: %v", err)
 	}
 }
 

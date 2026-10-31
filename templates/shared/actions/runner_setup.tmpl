@@ -36,7 +36,7 @@
 		<h5>{{ctx.Locale.Tr "actions.runners.runner_setup.heading_using_configuration"}}</h5>
 		<pre><code aria-label="{{ctx.Locale.Tr "actions.runners.runner_setup.configuration_snippet_aria"}}">server:
 &nbsp;&nbsp;connections:
-&nbsp;&nbsp;&nbsp;&nbsp;forgejo:
+&nbsp;&nbsp;&nbsp;&nbsp;novroforge:
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;url: {{.AppURL}}
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;uuid: {{.Runner.UUID}}
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;token: {{.Runner.Token}}
@@ -44,7 +44,7 @@
 		<p>{{ctx.Locale.Tr "actions.runners.runner_setup.instruction_replace_connection_name"}}</p>
 		<h5>{{ctx.Locale.Tr "actions.runners.runner_setup.heading_using_options"}}</h5>
 		<pre><code aria-label="{{ctx.Locale.Tr "actions.runners.runner_setup.program_options_snippet_aria"}}">$ echo -n &quot;{{.Runner.Token}}&quot; > /path/to/runner-token
-$ forgejo-runner daemon \
+$ novroforge-runner daemon \
 	--url {{.AppURL}} \
 	--uuid {{.Runner.UUID}} \
 	--token-url file:///path/to/runner-token \

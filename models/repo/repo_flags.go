@@ -24,7 +24,7 @@ func init() {
 
 // TableName provides the real table name
 func (RepoFlag) TableName() string {
-	return "forgejo_repo_flag"
+	return "novroforge_repo_flag"
 }
 
 // ListFlags returns the array of flags on the repo.

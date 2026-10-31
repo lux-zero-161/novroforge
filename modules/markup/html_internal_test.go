@@ -341,7 +341,7 @@ func TestRender_AutoLink(t *testing.T) {
 		// render valid commit URLs
 		tmp := util.URLJoin(TestRepoURL, "commit", "d8a994ef243349f321568f9e36d5c3f444b99cae")
 		assert(tmp, "<a href=\""+tmp+"\"><code class=\"nohighlight\">d8a994ef24</code></a>", TestRepoURLWithoutSlash)
-		assert(tmp, "<a href=\""+tmp+"\"><code class=\"nohighlight\">"+TestOrgRepo+"@d8a994ef24</code></a>", "/forgejo/forgejo")
+		assert(tmp, "<a href=\""+tmp+"\"><code class=\"nohighlight\">"+TestOrgRepo+"@d8a994ef24</code></a>", "/novroforge/novroforge")
 		assert(
 			tmp+"#diff-2",
 			"<a href=\""+tmp+"#diff-2\"><code class=\"nohighlight\">d8a994ef24 (diff-2)</code></a>",
@@ -391,7 +391,7 @@ func TestRender_AutoLink(t *testing.T) {
 	t.Run("Compare", func(t *testing.T) {
 		tmp := util.URLJoin(TestRepoURL, "compare", "d8a994ef243349f321568f9e36d5c3f444b99cae..190d9492934af498c3f669d6a2431dc5459e5b20")
 		assert(tmp, "<a href=\""+tmp+"\" class=\"compare\"><code class=\"nohighlight\">d8a994ef24..190d949293</code></a>", TestRepoURL)
-		assert(tmp, "<a href=\""+tmp+"\" class=\"compare\"><code class=\"nohighlight\">"+TestOrgRepo+"@d8a994ef24..190d949293</code></a>", "https://localhost/forgejo/forgejo")
+		assert(tmp, "<a href=\""+tmp+"\" class=\"compare\"><code class=\"nohighlight\">"+TestOrgRepo+"@d8a994ef24..190d949293</code></a>", "https://localhost/novroforge/novroforge")
 
 		defer test.MockVariableValue(&setting.AppURL, TestAppURL+"sub/")()
 		tmp = "http://localhost:3000/sub/gogits/gogs/compare/190d9492934af498c3f669d6a2431dc5459e5b20..d8a994ef243349f321568f9e36d5c3f444b99cae"
@@ -406,14 +406,14 @@ func TestRender_AutoLink(t *testing.T) {
 		assert(tmp, "<a href=\""+tmp+"\" class=\"compare\"><code class=\"nohighlight\">gogits/gogs@190d949293..d8a994ef24</code></a>", "/gogits/gous")
 		assert(tmp, "<a href=\""+tmp+"\" class=\"compare\"><code class=\"nohighlight\">gogits/gogs@190d949293..d8a994ef24</code></a>", "https://external-link.gitea.io/go-gitea/gitea")
 
-		tmp = "https://codeberg.org/forgejo/forgejo/compare/8bbac4c679bea930c74849c355a60ed3c52f8eb5...e2278e5a38187a1dc84dc41d583ec8b44e7257c1?files=options/locale/locale_fi-FI.ini"
-		assert(tmp, "<a href=\""+tmp+"\" class=\"compare\"><code class=\"nohighlight\">codeberg.org/forgejo/forgejo@8bbac4c679...e2278e5a38 (options/locale/locale_fi-FI.ini)</code></a>", TestRepoURL)
-		assert(tmp+".", "<a href=\""+tmp+"\" class=\"compare\"><code class=\"nohighlight\">codeberg.org/forgejo/forgejo@8bbac4c679...e2278e5a38 (options/locale/locale_fi-FI.ini)</code></a>.", TestRepoURL)
+		tmp = "https://codeberg.org/novroforge/novroforge/compare/8bbac4c679bea930c74849c355a60ed3c52f8eb5...e2278e5a38187a1dc84dc41d583ec8b44e7257c1?files=options/locale/locale_fi-FI.ini"
+		assert(tmp, "<a href=\""+tmp+"\" class=\"compare\"><code class=\"nohighlight\">codeberg.org/novroforge/novroforge@8bbac4c679...e2278e5a38 (options/locale/locale_fi-FI.ini)</code></a>", TestRepoURL)
+		assert(tmp+".", "<a href=\""+tmp+"\" class=\"compare\"><code class=\"nohighlight\">codeberg.org/novroforge/novroforge@8bbac4c679...e2278e5a38 (options/locale/locale_fi-FI.ini)</code></a>.", TestRepoURL)
 		defer test.MockVariableValue(&setting.AppURL, "https://codeberg.org/")()
-		assert(tmp, "<a href=\""+tmp+"\" class=\"compare\"><code class=\"nohighlight\">8bbac4c679...e2278e5a38 (options/locale/locale_fi-FI.ini)</code></a>", "https://codeberg.org/forgejo/forgejo")
+		assert(tmp, "<a href=\""+tmp+"\" class=\"compare\"><code class=\"nohighlight\">8bbac4c679...e2278e5a38 (options/locale/locale_fi-FI.ini)</code></a>", "https://codeberg.org/novroforge/novroforge")
 
-		tmp = "https://codeberg.org/forgejo/forgejo/compare/8bbac4c679bea930c74849c355a60ed3c52f8eb5...e2278e5a38187a1dc84dc41d583ec8b44e7257c1?files=options/locale/locale_fi-FI.ini#L2"
-		assert(tmp, "<a href=\""+tmp+"\" class=\"compare\"><code class=\"nohighlight\">8bbac4c679...e2278e5a38 (options/locale/locale_fi-FI.ini#L2)</code></a>", "https://codeberg.org/forgejo/forgejo")
+		tmp = "https://codeberg.org/novroforge/novroforge/compare/8bbac4c679bea930c74849c355a60ed3c52f8eb5...e2278e5a38187a1dc84dc41d583ec8b44e7257c1?files=options/locale/locale_fi-FI.ini#L2"
+		assert(tmp, "<a href=\""+tmp+"\" class=\"compare\"><code class=\"nohighlight\">8bbac4c679...e2278e5a38 (options/locale/locale_fi-FI.ini#L2)</code></a>", "https://codeberg.org/novroforge/novroforge")
 	})
 
 	t.Run("Invalid URLs", func(t *testing.T) {
@@ -546,8 +546,8 @@ func TestRegExp_anySHA1Pattern(t *testing.T) {
 			"",
 			"#diff-2",
 		},
-		"https://codeberg.org/forgejo/forgejo/src/commit/949ab9a5c4cac742f84ae5a9fa186f8d6eb2cdc0/RELEASE-NOTES.md?display=source&w=1#L7-L9": {
-			"forgejo/forgejo/src/commit",
+		"https://codeberg.org/novroforge/novroforge/src/commit/949ab9a5c4cac742f84ae5a9fa186f8d6eb2cdc0/RELEASE-NOTES.md?display=source&w=1#L7-L9": {
+			"novroforge/novroforge/src/commit",
 			"949ab9a5c4cac742f84ae5a9fa186f8d6eb2cdc0",
 			"/RELEASE-NOTES.md",
 			"?display=source&w=1",
@@ -587,7 +587,7 @@ func TestRegExp_anySHA1Pattern(t *testing.T) {
 		assert.Equal(t, v, anyHashPattern.FindStringSubmatch(k)[1:])
 	}
 
-	for _, v := range []string{"https://codeberg.org/forgejo/forgejo/attachments/774421a1-b0ae-4501-8fba-983874b76811"} {
+	for _, v := range []string{"https://codeberg.org/novroforge/novroforge/attachments/774421a1-b0ae-4501-8fba-983874b76811"} {
 		assert.False(t, anyHashPattern.MatchString(v))
 	}
 }

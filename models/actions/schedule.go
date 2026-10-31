@@ -25,7 +25,7 @@ type ActionSchedule struct {
 	Repo              *repo_model.Repository `xorm:"-"`
 	OwnerID           int64                  `xorm:"index"`
 	WorkflowID        string
-	WorkflowDirectory string `xorm:"NOT NULL DEFAULT '.forgejo/workflows'"`
+	WorkflowDirectory string `xorm:"NOT NULL DEFAULT '.novroforge/workflows'"`
 	TriggerUserID     int64
 	TriggerUser       *user_model.User `xorm:"-"`
 	Ref               string

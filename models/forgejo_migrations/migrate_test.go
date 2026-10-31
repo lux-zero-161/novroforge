@@ -1,7 +1,7 @@
 // Copyright 2025 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-package forgejo_migrations
+package novroforge_migrations
 
 import (
 	"fmt"
@@ -10,7 +10,7 @@ import (
 	migration_tests "novroforge.xyz/models/gitea_migrations/test"
 	"novroforge.xyz/modules/test"
 
-	"code.forgejo.org/xorm/xorm"
+	"code.novroforge.xyz/xorm/xorm"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -247,7 +247,7 @@ func TestMigrate(t *testing.T) {
 	// should be able to query all three of the fields from this table created, verifying both migrations creating the
 	// table and adding a column were run
 	rec := make([]map[string]any, 0)
-	err = x.Cols("id", "name", "new_field").Table("forgejo_magic_functionality").Find(&rec)
+	err = x.Cols("id", "name", "new_field").Table("novroforge_magic_functionality").Find(&rec)
 	assert.NoError(t, err)
 }
 

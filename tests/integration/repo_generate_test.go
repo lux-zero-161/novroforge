@@ -248,7 +248,7 @@ func TestRepoGenerateTemplating(t *testing.T) {
 		template := forgery.CreateRepository(t, nil, &forgery.CreateRepositoryOptions{
 			IsTemplate: true,
 			Files: forgery.MapFS{
-				".forgejo/template":                             forgery.MapFile("**/Readme.md"),
+				".novroforge/template":                             forgery.MapFile("**/Readme.md"),
 				"dira-${REPO_NAME}/dirb-${REPO_NAME}/Readme.md": forgery.MapFile(input),
 			},
 		})
@@ -284,10 +284,10 @@ func TestRepoGenerateTemplating(t *testing.T) {
 			generatedName)
 		assert.Equal(t, body, resp.Body.String())
 
-		// The .forgejo/template file should not be present in the generated repo
+		// The .novroforge/template file should not be present in the generated repo
 		req = NewRequestf(
 			t,
-			"GET", "/%s/%s/raw/branch/%s/.forgejo/template",
+			"GET", "/%s/%s/raw/branch/%s/.novroforge/template",
 			user.Name,
 			generatedName,
 			template.DefaultBranch,
@@ -329,7 +329,7 @@ func TestRepoGenerateTemplatingSymlink(t *testing.T) {
 				template := forgery.CreateRepository(t, user, &forgery.CreateRepositoryOptions{
 					IsTemplate: true,
 					Files: forgery.MapFS{
-						".forgejo/template":   forgery.MapFile("**/Readme.md"),
+						".novroforge/template":   forgery.MapFile("**/Readme.md"),
 						"actual-contents.txt": forgery.MapFile("Here are some contents. $REPO_NAME"),
 						"problem/Readme.md":   forgery.MapSymlink(tc.symlinkTarget),
 					},
@@ -400,7 +400,7 @@ func TestRepoGenerateTemplatingSymlinkGlobFile(t *testing.T) {
 		template := forgery.CreateRepository(t, user, &forgery.CreateRepositoryOptions{
 			IsTemplate: true,
 			Files: forgery.MapFS{
-				".forgejo/template": forgery.MapSymlink("/etc/passwd"),
+				".novroforge/template": forgery.MapSymlink("/etc/passwd"),
 			},
 		})
 
@@ -418,7 +418,7 @@ func TestRepoGenerateTemplatingSymlinkGlobFile(t *testing.T) {
 			user,
 			generatedName,
 		)
-		assert.Contains(t, resp.Body.String(), "statat .forgejo/template: path escapes from parent")
+		assert.Contains(t, resp.Body.String(), "statat .novroforge/template: path escapes from parent")
 	})
 }
 
@@ -433,7 +433,7 @@ func TestRepoGenerateTemplatingDotGitDir(t *testing.T) {
 			IsTemplate: true,
 			Files: forgery.MapFS{
 				"README.md":         forgery.MapFile("Hello!"),
-				".forgejo/template": forgery.MapFile("README.md\n.g*/config"),
+				".novroforge/template": forgery.MapFile("README.md\n.g*/config"),
 				// if this reached .git/config, because REPO_NAME is going to be "it", it would break template
 				// generation and result in an error "fatal: bad zlib compression level 999"
 				".g${REPO_NAME}/config": forgery.MapFile("[core]\n    compression = 999"),

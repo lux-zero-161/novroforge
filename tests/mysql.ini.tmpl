@@ -12,11 +12,11 @@ SSL_MODE = disable
 
 [indexer]
 REPO_INDEXER_ENABLED = true
-REPO_INDEXER_PATH = {{PROJECT_ROOT}}/tests/{{TEST_TYPE}}/forgejo-{{TEST_TYPE}}-mysql/indexers/repos.bleve
+REPO_INDEXER_PATH = {{PROJECT_ROOT}}/tests/{{TEST_TYPE}}/novroforge-{{TEST_TYPE}}-mysql/indexers/repos.bleve
 
 [queue.issue_indexer]
 TYPE = level
-DATADIR = {{PROJECT_ROOT}}/tests/{{TEST_TYPE}}/forgejo-{{TEST_TYPE}}-mysql/indexers/issues.queue
+DATADIR = {{PROJECT_ROOT}}/tests/{{TEST_TYPE}}/novroforge-{{TEST_TYPE}}-mysql/indexers/issues.queue
 
 [queue.stats_recalc] # override below default of `immediate` to avoid locking issues
 TYPE = channel
@@ -25,13 +25,13 @@ TYPE = channel
 TYPE = immediate
 
 [repository]
-ROOT = {{REPO_TEST_DIR}}tests/{{TEST_TYPE}}/forgejo-{{TEST_TYPE}}-mysql/forgejo-repositories
+ROOT = {{REPO_TEST_DIR}}tests/{{TEST_TYPE}}/novroforge-{{TEST_TYPE}}-mysql/novroforge-repositories
 
 [repository.local]
-LOCAL_COPY_PATH = {{PROJECT_ROOT}}/tests/{{TEST_TYPE}}/forgejo-{{TEST_TYPE}}-mysql/tmp/local-repo
+LOCAL_COPY_PATH = {{PROJECT_ROOT}}/tests/{{TEST_TYPE}}/novroforge-{{TEST_TYPE}}-mysql/tmp/local-repo
 
 [repository.upload]
-TEMP_PATH = {{PROJECT_ROOT}}/tests/{{TEST_TYPE}}/forgejo-{{TEST_TYPE}}-mysql/tmp/uploads
+TEMP_PATH = {{PROJECT_ROOT}}/tests/{{TEST_TYPE}}/novroforge-{{TEST_TYPE}}-mysql/tmp/uploads
 
 [repository.signing]
 SIGNING_KEY = none
@@ -43,8 +43,8 @@ ROOT_URL         = http://localhost:3001/
 DISABLE_SSH      = false
 SSH_LISTEN_HOST  = localhost
 SSH_PORT         = 2201
-APP_DATA_PATH    = {{PROJECT_ROOT}}/tests/{{TEST_TYPE}}/forgejo-{{TEST_TYPE}}-mysql/data
-INTERNAL_LISTENER_PATH = {{REPO_TEST_DIR}}tests/{{TEST_TYPE}}/forgejo-{{TEST_TYPE}}-mysql/internal.sock
+APP_DATA_PATH    = {{PROJECT_ROOT}}/tests/{{TEST_TYPE}}/novroforge-{{TEST_TYPE}}-mysql/data
+INTERNAL_LISTENER_PATH = {{REPO_TEST_DIR}}tests/{{TEST_TYPE}}/novroforge-{{TEST_TYPE}}-mysql/internal.sock
 BUILTIN_SSH_SERVER_USER = git
 START_SSH_SERVER = true
 OFFLINE_MODE     = false
@@ -74,7 +74,7 @@ ENABLE_FEDERATED_AVATAR       = false
 
 [session]
 PROVIDER        = file
-PROVIDER_CONFIG = {{PROJECT_ROOT}}/tests/{{TEST_TYPE}}/forgejo-{{TEST_TYPE}}-mysql/data/sessions
+PROVIDER_CONFIG = {{PROJECT_ROOT}}/tests/{{TEST_TYPE}}/novroforge-{{TEST_TYPE}}-mysql/data/sessions
 
 [log]
 MODE                 = {{TEST_LOGGER}}
@@ -97,7 +97,7 @@ SECRET_KEY     = 9pCviYTWSb
 DISABLE_QUERY_AUTH_TOKEN = true
 
 [lfs]
-PATH = {{PROJECT_ROOT}}/tests/{{TEST_TYPE}}/forgejo-{{TEST_TYPE}}-mysql/data/lfs
+PATH = {{PROJECT_ROOT}}/tests/{{TEST_TYPE}}/novroforge-{{TEST_TYPE}}-mysql/data/lfs
 
 [packages]
 ENABLED = true

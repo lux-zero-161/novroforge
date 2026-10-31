@@ -4,7 +4,7 @@
 package v1_13
 
 import (
-	"code.forgejo.org/xorm/xorm"
+	"code.novroforge.xyz/xorm/xorm"
 )
 
 func PurgeInvalidDependenciesComments(x *xorm.Engine) error {

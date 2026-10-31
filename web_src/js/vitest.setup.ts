@@ -21,7 +21,7 @@ window.config = {
     more_items: '',
     incorrect_root_url: '',
   },
-  customEmojis: new Set(['forgejo', 'frogejo', 'blobnom']),
+  customEmojis: new Set(['novroforge', 'frogejo', 'blobnom']),
   appUrl: '',
   appSubUrl: '',
   assetUrlPrefix: '/assets',

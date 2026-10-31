@@ -49,14 +49,14 @@ func (suite *baseRedisUnitTestSuite) TestBasic() {
 		},
 		{
 			Name:             "unique with prefix",
-			ConnectionString: "redis://127.0.0.1/0?prefix=forgejo:queue:",
-			QueueName:        "forgejo:queue:" + queueName,
+			ConnectionString: "redis://127.0.0.1/0?prefix=novroforge:queue:",
+			QueueName:        "novroforge:queue:" + queueName,
 			Unique:           true,
 		},
 		{
 			Name:             "non-unique with prefix",
-			ConnectionString: "redis://127.0.0.1/0?prefix=forgejo:queue:",
-			QueueName:        "forgejo:queue:" + queueName,
+			ConnectionString: "redis://127.0.0.1/0?prefix=novroforge:queue:",
+			QueueName:        "novroforge:queue:" + queueName,
 			Unique:           false,
 		},
 	}

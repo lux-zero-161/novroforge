@@ -1,7 +1,7 @@
 // Copyright 2025 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-package forgejo_migrations_legacy
+package novroforge_migrations_legacy
 
 import (
 	"context"
@@ -20,7 +20,7 @@ import (
 	"novroforge.xyz/modules/packages/maven"
 	packages_service "novroforge.xyz/services/packages"
 
-	"code.forgejo.org/xorm/xorm"
+	"code.novroforge.xyz/xorm/xorm"
 )
 
 var getPackage = packages_service.GetPackageFileStream
@@ -333,7 +333,7 @@ func processPomMetadata(ctx context.Context, mpr *mavenPackageResult) error {
 	}
 
 	// this will also fix packages that missed its groupID
-	// Ref: https://codeberg.org/forgejo/forgejo/pulls/6329
+	// Ref: https://codeberg.org/novroforge/novroforge/pulls/6329
 	mpr.PackageVersion.MetadataJSON = string(raw)
 
 	// Since Maven packages are case-sensitive, avoid potential clashes and clean-ups

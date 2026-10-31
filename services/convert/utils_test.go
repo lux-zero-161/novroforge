@@ -29,7 +29,7 @@ func TestToGitServiceType(t *testing.T) {
 	}, {
 		typ: "gogs", enum: 5,
 	}, {
-		typ: "forgejo", enum: 9,
+		typ: "novroforge", enum: 9,
 	}, {
 		typ: "trash", enum: 1,
 	}}

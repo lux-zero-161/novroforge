@@ -20,7 +20,7 @@ import (
 
 var (
 	namePattern            = regexp.MustCompile("(?i)^[A-Z_][A-Z0-9_]*$")
-	forbiddenPrefixPattern = regexp.MustCompile("(?i)^(FORGEJO_|GITEA_|GITHUB_|[0-9])")
+	forbiddenPrefixPattern = regexp.MustCompile("(?i)^(novroforge_|GITEA_|GITHUB_|[0-9])")
 
 	ErrInvalidName = util.NewInvalidArgumentErrorf("invalid secret name")
 )

@@ -1,12 +1,12 @@
 // Copyright 2024 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: MIT
 
-package forgejo_migrations_legacy
+package novroforge_migrations_legacy
 
 import (
 	"novroforge.xyz/models/gitea_migrations/base"
 
-	"code.forgejo.org/xorm/xorm"
+	"code.novroforge.xyz/xorm/xorm"
 )
 
 func RemoveGiteaSpecificColumnsFromRepositoryAndBadge(x *xorm.Engine) error {

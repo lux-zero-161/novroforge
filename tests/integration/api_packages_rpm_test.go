@@ -24,7 +24,7 @@ import (
 	"novroforge.xyz/modules/util"
 	"novroforge.xyz/tests"
 
-	"code.forgejo.org/forgejo/go-rpmutils"
+	"code.novroforge.xyz/forgejo/go-rpmutils"
 	"github.com/ProtonMail/go-crypto/openpgp"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

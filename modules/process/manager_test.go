@@ -159,7 +159,7 @@ func TestSetupCancellableCommand(t *testing.T) {
 		// could do based upon child-pid... but the process will be a zombie once its parent is killed without waiting
 		// for it, and zombie processes absorb that kill with no response.
 		//
-		// The strategy used here is a tweak of forgejo-runner's `TestCancelLongRunningCommand` test, which faced the
+		// The strategy used here is a tweak of novroforge-runner's `TestCancelLongRunningCommand` test, which faced the
 		// same problem.  The subprocess writes a heartbeat file.  We delete it when we expect the process is killed,
 		// and then verify it never reappears.
 		script := `

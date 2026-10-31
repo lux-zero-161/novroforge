@@ -133,12 +133,12 @@ func prepareLoggerConfig(rootCfg ConfigProvider) {
 }
 
 var (
-	logDefaultFileName            = "forgejo.log"
+	logDefaultFileName            = "novroforge.log"
 	logBackwardCompatibleFileName = "gitea.log"
 )
 
 func logBackwardCompatibleDefaultToNovroForge(fileName, configFileName string) string {
-	// do not default to forgejo.log if the log file is explicitly
+	// do not default to novroforge.log if the log file is explicitly
 	// specified in the config file
 	if configFileName != "" {
 		return fileName
@@ -149,7 +149,7 @@ func logBackwardCompatibleDefaultToNovroForge(fileName, configFileName string) s
 		panic(fmt.Sprintf("os.Lstat %q: %v", backwardCompatibleFileName, err.Error()))
 	}
 	// gitea.log does not exist although the config file does not
-	// specify a default let's use forgejo.log instead and create a
+	// specify a default let's use novroforge.log instead and create a
 	// gitea.log symlink for backward compatibility
 	if os.IsNotExist(err) {
 		if err := os.Symlink(fileName, backwardCompatibleFileName); err != nil {
@@ -158,7 +158,7 @@ func logBackwardCompatibleDefaultToNovroForge(fileName, configFileName string) s
 		return fileName
 	}
 	// gitea.log was not created by this function because it is not a
-	// symlink, use gitea.log instead of forgejo.log
+	// symlink, use gitea.log instead of novroforge.log
 	if stat.Mode()&os.ModeSymlink == 0 {
 		return backwardCompatibleFileName
 	}
@@ -168,11 +168,11 @@ func logBackwardCompatibleDefaultToNovroForge(fileName, configFileName string) s
 	}
 	// the file was not created by this function because it does not
 	// point to the expected path, default to gitea.log instead of
-	// forgejo.log
+	// novroforge.log
 	if destination != fileName {
 		return backwardCompatibleFileName
 	}
-	// the symlink is as expected, let's use forgejo.log as a default
+	// the symlink is as expected, let's use novroforge.log as a default
 	return fileName
 }
 
@@ -189,7 +189,7 @@ func LogPrepareFilenameForWriter(configFileName, defaultFileName string) string 
 	if err := os.MkdirAll(filepath.Dir(fileName), os.ModePerm); err != nil {
 		panic(fmt.Sprintf("unable to create directory for log %q: %v", fileName, err.Error()))
 	}
-	// only relevant for the forgejo.log default (not when the default is
+	// only relevant for the novroforge.log default (not when the default is
 	// access.log for instance)
 	if defaultFileName == logDefaultFileName {
 		fileName = logBackwardCompatibleDefaultToNovroForge(fileName, configFileName)

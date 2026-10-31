@@ -3,7 +3,7 @@
 	<main class="actions-main">
 <div class="theme-list-heading actions-heading">
 			<div class="theme-list-title"><button type="button" class="theme-icon-button" data-theme-sidebar-toggle data-theme-sidebar-expand aria-expanded="false" aria-label="Expand sidebar">{{svg "octicon-sidebar-expand" 16}}</button><h1>{{if .CurWorkflow}}{{.CurWorkflow}}{{else}}{{ctx.Locale.Tr "actions.runs.all_workflows"}}{{end}}</h1></div>
-			{{if and .CanWriteCode .CanWriteActions}}<a class="ui button theme-control" href="{{.RepoLink}}/_new/{{.Repository.DefaultBranch | PathEscapeSegments}}/.forgejo/workflows/">New workflow</a>{{end}}
+			{{if and .CanWriteCode .CanWriteActions}}<a class="ui button theme-control" href="{{.RepoLink}}/_new/{{.Repository.DefaultBranch | PathEscapeSegments}}/.novroforge/workflows/">New workflow</a>{{end}}
 		</div>
 		<p class="actions-subtitle">{{if .CurWorkflow}}Workflow runs{{else}}Showing runs from all workflows{{end}}</p>
 		{{template "components/common/search/search" dict "Kind" "icon" "Local" true "ID" "actions-run-filter" "Class" "actions-search" "Placeholder" "Filter runs on this page"}}

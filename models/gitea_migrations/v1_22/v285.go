@@ -6,7 +6,7 @@ package v1_22
 import (
 	"time"
 
-	"code.forgejo.org/xorm/xorm"
+	"code.novroforge.xyz/xorm/xorm"
 )
 
 func AddPreviousDurationToActionRun(x *xorm.Engine) error {

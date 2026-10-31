@@ -152,7 +152,7 @@ func loadServerFrom(rootCfg ConfigProvider) {
 	HTTPAddr = sec.Key("HTTP_ADDR").MustString("0.0.0.0")
 	HTTPPort = sec.Key("HTTP_PORT").MustString("3000")
 
-	InternalListenerPath = sec.Key("INTERNAL_LISTENER_PATH").MustString("run/forgejo.sock")
+	InternalListenerPath = sec.Key("INTERNAL_LISTENER_PATH").MustString("run/novroforge.sock")
 	if !filepath.IsAbs(InternalListenerPath) {
 		InternalListenerPath = filepath.Join(AppWorkPath, InternalListenerPath)
 	}

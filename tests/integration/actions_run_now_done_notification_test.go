@@ -87,7 +87,7 @@ func TestActionNowDoneNotification(t *testing.T) {
 		repo := forgery.CreateRepository(t, user2, &forgery.CreateRepositoryOptions{
 			LatestSha: &sha,
 			Files: forgery.MapFS{
-				".forgejo/workflows/dispatch.yml": forgery.MapFile(
+				".novroforge/workflows/dispatch.yml": forgery.MapFile(
 					"name: test\n" +
 						"enable-email-notifications: true\n" +
 						"on: [workflow_dispatch]\n" +

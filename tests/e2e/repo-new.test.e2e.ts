@@ -79,7 +79,7 @@ test('New repo: initialize later', async ({page}) => {
   await page.getByRole('link', {name: 'New file'}).click();
   // wait for loading spinner to disappear
   // Otherwise, filling the filename might not populate the tree_path form field or preview tab
-  // The editor has race conditions, likely related to https://codeberg.org/forgejo/forgejo/issues/3371
+  // The editor has race conditions, likely related to https://codeberg.org/novroforge/novroforge/issues/3371
   await expect(page.locator('.is-loading')).toBeHidden();
   await page.locator('.cm-content').click();
   await page.keyboard.type('# Heading\n\nHello NovroForge!');

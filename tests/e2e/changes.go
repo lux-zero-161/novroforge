@@ -35,7 +35,7 @@ func initChangedFiles() {
 		// meta and config
 		"Makefile",
 		"playwright.config.ts",
-		".forgejo/workflows/testing.yml",
+		".novroforge/workflows/testing.yml",
 		"tests/e2e/*.go",
 		"tests/e2e/shared/*",
 		// frontend files

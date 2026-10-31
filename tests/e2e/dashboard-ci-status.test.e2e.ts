@@ -23,6 +23,6 @@ test('Correct link and tooltip', async ({page}, testInfo) => {
   const repoStatus = page.locator('.dashboard-repos .repo-owner-name-list > li:nth-child(1) > a:nth-child(2)');
   await expect(repoStatus).toHaveAttribute('href', '/user2/test_workflows/actions', {timeout: 10000});
   await expect(repoStatus).toHaveAttribute('data-tooltip-content', /^(Error|Failure)$/);
-  // ToDo: Ensure stable screenshot of dashboard. Known to be flaky: https://code.forgejo.org/forgejo/visual-browser-testing/commit/206d4cfb7a4af6d8d7043026cdd4d63708798b2a
+  // ToDo: Ensure stable screenshot of dashboard. Known to be flaky: https://code.novroforge.xyz/novroforge/visual-browser-testing/commit/206d4cfb7a4af6d8d7043026cdd4d63708798b2a
   // await screenshot(page);
 });

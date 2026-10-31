@@ -17,7 +17,7 @@ import (
 
 func TestGiteaPayload(t *testing.T) {
 	dh := defaultHandler{
-		forgejo: false,
+		novroforge: false,
 	}
 	hook := &webhook_model.Webhook{
 		RepoID:      3,
@@ -122,13 +122,13 @@ func TestGiteaPayload(t *testing.T) {
 
 func TestNovroForgePayload(t *testing.T) {
 	dh := defaultHandler{
-		forgejo: true,
+		novroforge: true,
 	}
 	hook := &webhook_model.Webhook{
 		RepoID:      3,
 		IsActive:    true,
-		Type:        webhook_module.FORGEJO,
-		URL:         "https://forgejo.example.com/",
+		Type:        webhook_module.novroforge,
+		URL:         "https://novroforge.example.com/",
 		Meta:        ``,
 		HTTPMethod:  "POST",
 		ContentType: webhook_model.ContentTypeJSON,
@@ -153,7 +153,7 @@ func TestNovroForgePayload(t *testing.T) {
 		require.NotNil(t, reqBody)
 
 		assert.Equal(t, "POST", req.Method)
-		assert.Equal(t, "https://forgejo.example.com/", req.URL.String())
+		assert.Equal(t, "https://novroforge.example.com/", req.URL.String())
 		assert.Equal(t, "sha256=", req.Header.Get("X-Hub-Signature-256"))
 		assert.Equal(t, "application/json", req.Header.Get("Content-Type"))
 		var body struct {
@@ -182,7 +182,7 @@ func TestNovroForgePayload(t *testing.T) {
 		require.NotNil(t, reqBody)
 
 		assert.Equal(t, "POST", req.Method)
-		assert.Equal(t, "https://forgejo.example.com/", req.URL.String())
+		assert.Equal(t, "https://novroforge.example.com/", req.URL.String())
 		assert.Equal(t, "sha256=", req.Header.Get("X-Hub-Signature-256"))
 		assert.Equal(t, "application/json", req.Header.Get("Content-Type"))
 		var body struct {
@@ -211,7 +211,7 @@ func TestNovroForgePayload(t *testing.T) {
 		require.NotNil(t, reqBody)
 
 		assert.Equal(t, "POST", req.Method)
-		assert.Equal(t, "https://forgejo.example.com/", req.URL.String())
+		assert.Equal(t, "https://novroforge.example.com/", req.URL.String())
 		assert.Equal(t, "sha256=", req.Header.Get("X-Hub-Signature-256"))
 		assert.Equal(t, "application/json", req.Header.Get("Content-Type"))
 		var body struct {

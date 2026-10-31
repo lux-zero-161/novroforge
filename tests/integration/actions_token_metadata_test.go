@@ -36,7 +36,7 @@ func TestActionGetTokenMetadata(t *testing.T) {
 		user2 := unittest.AssertExistsAndLoadBean(t, &user_model.User{ID: 2})
 		repo := forgery.CreateRepository(t, user2, &forgery.CreateRepositoryOptions{
 			Files: forgery.MapFS{
-				".forgejo/workflows/dispatch.yml": forgery.MapFile(
+				".novroforge/workflows/dispatch.yml": forgery.MapFile(
 					"name: test\n" +
 						"enable-email-notifications: true\n" +
 						"on: [workflow_dispatch]\n" +
@@ -75,7 +75,7 @@ func TestActionGetTokenMetadata(t *testing.T) {
 
 		t.Run("success", func(t *testing.T) {
 			req := NewRequest(t, "GET", "/api/v1/actions/run")
-			req.AddTokenAuth(runnerTask.Secrets["FORGEJO_TOKEN"])
+			req.AddTokenAuth(runnerTask.Secrets["novroforge_TOKEN"])
 			resp := MakeRequest(t, req, http.StatusOK)
 			var payload api.ActionRun
 			DecodeJSON(t, resp, &payload)

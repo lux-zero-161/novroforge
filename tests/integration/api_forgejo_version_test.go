@@ -11,7 +11,7 @@ import (
 	"novroforge.xyz/modules/setting"
 	"novroforge.xyz/modules/test"
 	"novroforge.xyz/routers"
-	v1 "novroforge.xyz/routers/api/forgejo/v1"
+	v1 "novroforge.xyz/routers/api/novroforge/v1"
 	"novroforge.xyz/tests"
 
 	"github.com/stretchr/testify/assert"
@@ -21,7 +21,7 @@ func TestAPINovroForgeVersion(t *testing.T) {
 	defer tests.PrepareTestEnv(t)()
 
 	t.Run("Version", func(t *testing.T) {
-		req := NewRequest(t, "GET", "/api/forgejo/v1/version")
+		req := NewRequest(t, "GET", "/api/novroforge/v1/version")
 		resp := MakeRequest(t, req, http.StatusOK)
 
 		var version v1.Version
@@ -30,7 +30,7 @@ func TestAPINovroForgeVersion(t *testing.T) {
 	})
 
 	t.Run("Version with Content-Type is json", func(t *testing.T) {
-		req := NewRequest(t, "GET", "/api/forgejo/v1/version")
+		req := NewRequest(t, "GET", "/api/novroforge/v1/version")
 		resp := MakeRequest(t, req, http.StatusOK)
 
 		assert.Equal(t, "application/json; charset=utf-8", resp.Header().Get("Content-Type"))
@@ -40,22 +40,22 @@ func TestAPINovroForgeVersion(t *testing.T) {
 		defer test.MockVariableValue(&setting.Service.RequireSignInView, true)()
 		defer test.MockVariableValue(&testWebRoutes, routers.NormalRoutes())()
 
-		t.Run("Get forgejo version without auth", func(t *testing.T) {
+		t.Run("Get novroforge version without auth", func(t *testing.T) {
 			defer tests.PrintCurrentTest(t)()
 
 			// GET api without auth
-			req := NewRequest(t, "GET", "/api/forgejo/v1/version")
+			req := NewRequest(t, "GET", "/api/novroforge/v1/version")
 			MakeRequest(t, req, http.StatusForbidden)
 		})
 
-		t.Run("Get forgejo version without auth", func(t *testing.T) {
+		t.Run("Get novroforge version without auth", func(t *testing.T) {
 			defer tests.PrintCurrentTest(t)()
 			username := "user1"
 			session := loginUser(t, username)
 			token := getTokenForLoggedInUser(t, session, auth_model.AccessTokenScopeWriteRepository)
 
 			// GET api with auth
-			req := NewRequest(t, "GET", "/api/forgejo/v1/version").AddTokenAuth(token)
+			req := NewRequest(t, "GET", "/api/novroforge/v1/version").AddTokenAuth(token)
 			resp := MakeRequest(t, req, http.StatusOK)
 
 			var version v1.Version

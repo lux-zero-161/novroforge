@@ -66,7 +66,7 @@ func init() {
 // described in RFC7519 (sec 4.1) which defines JWTs, but most claims are entirely arbitrarily defined by the JWT
 // issuer.
 //
-// For example, eg. a claim may be {"sub": "repo:coolguy/forgejo-runner-testrepo:pull_request"} indicating that an OIDC
+// For example, eg. a claim may be {"sub": "repo:coolguy/novroforge-runner-testrepo:pull_request"} indicating that an OIDC
 // token was received from an Actions execution in a specific repo on a specific event.
 //
 // Validating the claims from a JWT issuer is a critical part of creating a secure [AuthorizedIssuer].  For example,
@@ -84,13 +84,13 @@ func init() {
 //	  "rules": [{
 //	     "claim": "sub",
 //	     "compare": "eq",
-//	     "value": "repo:forgejo/website:pull_request"
+//	     "value": "repo:novroforge/website:pull_request"
 //	  }]
 //	}
 //
 // This defines a single rule which says that the `sub` claim must be exactly equal to
-// "repo:forgejo/website:pull_request".  NovroForge Actions would generate this subject when an Action is running on the
-// repo forgejo/website in response to the pull_request event.
+// "repo:novroforge/website:pull_request".  NovroForge Actions would generate this subject when an Action is running on the
+// repo novroforge/website in response to the pull_request event.
 //
 // Some JWT claims are JSON objects.  The [ClaimNested] comparison operator can be used to define rules that inspect the
 // object within a claim.  For example, AWS STS generates a claim "https://sts.amazonaws.com/": {...} with values inside
@@ -102,7 +102,7 @@ func init() {
 //	    "compare": "nest",
 //	    "nested": {"rules":[
 //	      {"claim": "aws_account", "compare": "eq", "value": "1234567890"},
-//	      {"claim": "lambda_source_function_arn", "compare": "eq", "value": "arn:aws:lambda:ca-central-1:1234567890:function:forgejo-oidc-accepting-test"}
+//	      {"claim": "lambda_source_function_arn", "compare": "eq", "value": "arn:aws:lambda:ca-central-1:1234567890:function:novroforge-oidc-accepting-test"}
 //	    ]}
 //	  }
 //
@@ -149,7 +149,7 @@ const (
 	AuthorizedIntegrationUIGeneric AuthorizedIntegrationUI = "generic"
 
 	// UI specific to Actions that are running on this local NovroForge instance accessing itself.
-	AuthorizedIntegrationUINovroForgeActionsLocal AuthorizedIntegrationUI = "forgejo-actions-local"
+	AuthorizedIntegrationUINovroForgeActionsLocal AuthorizedIntegrationUI = "novroforge-actions-local"
 )
 
 func GetAuthorizedIntegration(ctx context.Context, issuer, audience string) (*AuthorizedIntegration, error) {

@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: MIT
 
-package forgejo_v1_20
+package novroforge_v1_20
 
 import (
-	"code.forgejo.org/xorm/xorm"
+	"code.novroforge.xyz/xorm/xorm"
 )
 
 func CreateSemVerTable(x *xorm.Engine) error {

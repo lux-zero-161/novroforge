@@ -26,12 +26,12 @@ import (
 // and others are ignored.
 //
 // If that config is invalid, the other candidates are still ignored. This is
-// because a funding file in one of the more specific .forgejo or .github
+// because a funding file in one of the more specific .novroforge or .github
 // directories is more likely to have intentional meaning than one at the
 // repository root, so users would probably expect this degree of strictness.
 var fundingCandidates = []string{
-	".forgejo/FUNDING.yaml",
-	".forgejo/FUNDING.yml",
+	".novroforge/FUNDING.yaml",
+	".novroforge/FUNDING.yml",
 	".github/FUNDING.yaml",
 	".github/FUNDING.yml",
 	"FUNDING.yaml",

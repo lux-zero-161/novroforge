@@ -17,7 +17,7 @@ import (
 	"novroforge.xyz/services/contexttest"
 	"novroforge.xyz/services/forms"
 
-	"code.forgejo.org/go-chi/binding"
+	"code.novroforge.xyz/go-chi/binding"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

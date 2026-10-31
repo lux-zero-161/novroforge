@@ -24,7 +24,7 @@
       "commits": [
         {
           "added": [
-            ".forgejo/workflows/test.yml"
+            ".novroforge/workflows/test.yml"
           ],
           "author": {
             "email": "root@example.com",
@@ -48,7 +48,7 @@
       "compare_url": "http://10.201.14.40:3000/",
       "head_commit": {
         "added": [
-          ".forgejo/workflows/test.yml"
+          ".novroforge/workflows/test.yml"
         ],
         "author": {
           "email": "root@example.com",
@@ -172,7 +172,7 @@
         "release_counter": 0,
         "repo_transfer": null,
         "size": 25,
-        "ssh_url": "forgejo@10.201.14.40:root/example-push.git",
+        "ssh_url": "novroforge@10.201.14.40:root/example-push.git",
         "stars_count": 0,
         "template": false,
         "updated_at": "2024-01-24T18:59:25Z",
@@ -232,7 +232,7 @@
       "commits": [
         {
           "added": [
-            ".forgejo/workflows/test.yml"
+            ".novroforge/workflows/test.yml"
           ],
           "author": {
             "email": "root@example.com",
@@ -256,7 +256,7 @@
       "compare_url": "http://10.201.14.40:3000/",
       "head_commit": {
         "added": [
-          ".forgejo/workflows/test.yml"
+          ".novroforge/workflows/test.yml"
         ],
         "author": {
           "email": "root@example.com",
@@ -380,7 +380,7 @@
         "release_counter": 0,
         "repo_transfer": null,
         "size": 25,
-        "ssh_url": "forgejo@10.201.14.40:root/example-push.git",
+        "ssh_url": "novroforge@10.201.14.40:root/example-push.git",
         "stars_count": 0,
         "template": false,
         "updated_at": "2024-01-24T18:59:25Z",

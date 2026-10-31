@@ -1368,7 +1368,7 @@ func UpdateComment(ctx context.Context, c *Comment, contentVersion int, doer *us
 		sess = sess.NoAutoTime().SetExpr("updated_unix", c.Issue.UpdatedUnix)
 		// the UpdatedUnix value of the Comment also has to be set,
 		// to return the adequate value
-		// see https://codeberg.org/forgejo/forgejo/pulls/764#issuecomment-1023801
+		// see https://codeberg.org/novroforge/novroforge/pulls/764#issuecomment-1023801
 		c.UpdatedUnix = c.Issue.UpdatedUnix
 	}
 	c.ContentVersion = contentVersion + 1

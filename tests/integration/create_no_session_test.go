@@ -15,7 +15,7 @@ import (
 	"novroforge.xyz/routers"
 	"novroforge.xyz/tests"
 
-	"code.forgejo.org/go-chi/session"
+	"code.novroforge.xyz/go-chi/session"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

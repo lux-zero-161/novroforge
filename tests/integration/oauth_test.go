@@ -788,7 +788,7 @@ func TestSignInOAuthSSOLTACookie_With2FA(t *testing.T) {
 	}
 	defer createUser(t.Context(), t, user)()
 
-	otpKey, err := totp.Generate(totp.GenerateOpts{SecretSize: 40, Issuer: "forgejo-test", AccountName: user.Name})
+	otpKey, err := totp.Generate(totp.GenerateOpts{SecretSize: 40, Issuer: "novroforge-test", AccountName: user.Name})
 	require.NoError(t, err)
 	require.NoError(t, auth_model.NewTwoFactor(db.DefaultContext, &auth_model.TwoFactor{UID: user.ID}, otpKey.Secret()))
 	defer unittest.AssertSuccessfulDelete(t, &auth_model.TwoFactor{UID: user.ID})
@@ -817,7 +817,7 @@ func TestSignInOAuthSSOLTACookie_With2FA(t *testing.T) {
 }
 
 func TestSignInOAuthCallbackWithoutPKCEWhenUnsupported(t *testing.T) {
-	// https://codeberg.org/forgejo/forgejo/issues/4033
+	// https://codeberg.org/novroforge/novroforge/issues/4033
 	defer tests.PrepareTestEnv(t)()
 
 	// Setup authentication source

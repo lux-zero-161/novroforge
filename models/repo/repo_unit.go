@@ -17,8 +17,8 @@ import (
 	"novroforge.xyz/modules/timeutil"
 	"novroforge.xyz/modules/util"
 
-	"code.forgejo.org/xorm/xorm"
-	"code.forgejo.org/xorm/xorm/convert"
+	"code.novroforge.xyz/xorm/xorm"
+	"code.novroforge.xyz/xorm/xorm/convert"
 )
 
 // ErrUnitTypeNotExist represents a "UnitTypeNotExist" kind of error.
@@ -248,7 +248,7 @@ var (
 	// and repository where the action occurred and the event that triggered the Action.
 	//
 	// Example: repo:my-org/my-repo:ref:refs/heads/main
-	OIDCSubjectFormatLegacyNovroForge15 OIDCSubjectFormat = "legacy-forgejo-v15"
+	OIDCSubjectFormatLegacyNovroForge15 OIDCSubjectFormat = "legacy-novroforge-v15"
 )
 
 type ActionsConfig struct {

@@ -1,9 +1,9 @@
 // Copyright 2024 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: MIT
 
-package forgejo_migrations_legacy
+package novroforge_migrations_legacy
 
-import "code.forgejo.org/xorm/xorm"
+import "code.novroforge.xyz/xorm/xorm"
 
 func AddPurposeToNovroForgeAuthToken(x *xorm.Engine) error {
 	type NovroForgeAuthToken struct {
@@ -14,6 +14,6 @@ func AddPurposeToNovroForgeAuthToken(x *xorm.Engine) error {
 		return err
 	}
 
-	_, err := x.Exec("UPDATE `forgejo_auth_token` SET purpose = 'long_term_authorization' WHERE purpose = ''")
+	_, err := x.Exec("UPDATE `novroforge_auth_token` SET purpose = 'long_term_authorization' WHERE purpose = ''")
 	return err
 }

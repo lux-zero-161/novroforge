@@ -84,7 +84,7 @@ func TestAPIOrgSecrets(t *testing.T) {
 				ExpectedStatus: http.StatusBadRequest,
 			},
 			{
-				Name:           "FORGEJO_secret",
+				Name:           "novroforge_secret",
 				ExpectedStatus: http.StatusBadRequest,
 			},
 			{
@@ -158,7 +158,7 @@ func TestAPIOrgSecrets(t *testing.T) {
 	})
 
 	t.Run("Delete with forbidden names", func(t *testing.T) {
-		secret := secret_model.Secret{OwnerID: org.ID, RepoID: 0, Name: "FORGEJO_FORBIDDEN"}
+		secret := secret_model.Secret{OwnerID: org.ID, RepoID: 0, Name: "novroforge_FORBIDDEN"}
 		err := db.Insert(t.Context(), secret)
 		require.NoError(t, err)
 

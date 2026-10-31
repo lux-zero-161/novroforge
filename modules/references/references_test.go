@@ -417,7 +417,7 @@ func TestRegExp_mentionPattern(t *testing.T) {
 		{"@gitea;", "@gitea"},
 		{"@gitea/team1;", "@gitea/team1"},
 		{"@jess'", "@jess"},
-		{"@forgejo's", "@forgejo"},
+		{"@novroforge's", "@novroforge"},
 		{"Оно сломалось из-за коммитов от @jopik'а", "@jopik"},
 	}
 	falseTestCases := []string{

@@ -59,7 +59,7 @@ const DURATION_LIST_FORMAT = new Intl.ListFormat(navigator.language, {
  * respectively, which is an array indexed by the plural form index.
  *
  * Links to the language plural rule and form definitions:
- * https://codeberg.org/forgejo/forgejo/src/branch/forgejo/modules/translation/plural_rules.go
+ * https://codeberg.org/novroforge/novroforge/src/branch/novroforge/modules/translation/plural_rules.go
  * https://www.unicode.org/cldr/charts/46/supplemental/language_plural_rules.html
  * https://translate.codeberg.org/languages/$LANGUAGE_CODE/#information
  * https://github.com/WeblateOrg/language-data/blob/main/languages.csv

@@ -17,8 +17,8 @@ import (
 func cmdManager() *cli.Command {
 	return &cli.Command{
 		Name:        "manager",
-		Usage:       "Manage the running forgejo process",
-		Description: "This is a command for managing the running forgejo process",
+		Usage:       "Manage the running novroforge process",
+		Description: "This is a command for managing the running novroforge process",
 		Commands: []*cli.Command{
 			subcmdShutdown(),
 			subcmdRestart(),

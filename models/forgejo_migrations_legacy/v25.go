@@ -1,7 +1,7 @@
 // Copyright 2024 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: MIT
 
-package forgejo_migrations_legacy
+package novroforge_migrations_legacy
 
 import (
 	"context"
@@ -15,8 +15,8 @@ import (
 	"novroforge.xyz/modules/secret"
 	"novroforge.xyz/modules/setting"
 
-	"code.forgejo.org/xorm/xorm"
-	"code.forgejo.org/xorm/xorm/schemas"
+	"code.novroforge.xyz/xorm/xorm"
+	"code.novroforge.xyz/xorm/xorm/schemas"
 )
 
 func MigrateTwoFactorToKeying(x *xorm.Engine) error {
@@ -83,7 +83,7 @@ func MigrateTwoFactorToKeying(x *xorm.Engine) error {
 	})
 	if err == nil {
 		if len(ids) > 0 {
-			log.Error("NovroForge migration[25]: The following TOTP secrets were found to be corrupted and removed from the database. TOTP is no longer required to login with the associated users. They should be informed because they will need to visit their security settings and configure TOTP again. No other action is required. See https://codeberg.org/forgejo/forgejo/issues/6637 for more context on the various causes for such a corruption.")
+			log.Error("NovroForge migration[25]: The following TOTP secrets were found to be corrupted and removed from the database. TOTP is no longer required to login with the associated users. They should be informed because they will need to visit their security settings and configure TOTP again. No other action is required. See https://codeberg.org/novroforge/novroforge/issues/6637 for more context on the various causes for such a corruption.")
 			for _, message := range messages {
 				log.Error("NovroForge migration[25]: %s", message)
 			}

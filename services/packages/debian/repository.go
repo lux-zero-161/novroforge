@@ -24,7 +24,7 @@ import (
 	"novroforge.xyz/modules/util"
 	packages_service "novroforge.xyz/services/packages"
 
-	"code.forgejo.org/xorm/xorm"
+	"code.novroforge.xyz/xorm/xorm"
 	"github.com/ProtonMail/go-crypto/openpgp"
 	"github.com/ProtonMail/go-crypto/openpgp/armor"
 	"github.com/ProtonMail/go-crypto/openpgp/clearsign"

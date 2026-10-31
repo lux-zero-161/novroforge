@@ -43,7 +43,7 @@ func TestUpdateUser(t *testing.T) {
 		Visibility:                   optional.Some(structs.VisibleTypePrivate),
 		KeepActivityPrivate:          optional.Some(true),
 		Language:                     optional.Some("lang"),
-		Theme:                        optional.Some("forgejo-dark"),
+		Theme:                        optional.Some("novroforge-dark"),
 		DiffViewStyle:                optional.Some("split"),
 		AllowCreateOrganization:      optional.Some(false),
 		EmailNotificationsPreference: optional.Some("disabled"),

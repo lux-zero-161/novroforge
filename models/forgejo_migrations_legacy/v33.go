@@ -1,7 +1,7 @@
 // Copyright 2025 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: MIT
 
-package forgejo_migrations_legacy
+package novroforge_migrations_legacy
 
 import (
 	"fmt"
@@ -9,7 +9,7 @@ import (
 	"novroforge.xyz/modules/log"
 	"novroforge.xyz/modules/timeutil"
 
-	"code.forgejo.org/xorm/xorm"
+	"code.novroforge.xyz/xorm/xorm"
 )
 
 func dropOldFederationHostIndexes(x *xorm.Engine) {

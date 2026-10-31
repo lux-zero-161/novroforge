@@ -13,9 +13,9 @@ import (
 	"novroforge.xyz/modules/setting"
 	"novroforge.xyz/modules/sync"
 
-	mc "code.forgejo.org/go-chi/cache"
+	mc "code.novroforge.xyz/go-chi/cache"
 
-	_ "code.forgejo.org/go-chi/cache/memcache" // memcache plugin for cache
+	_ "code.novroforge.xyz/go-chi/cache/memcache" // memcache plugin for cache
 )
 
 var (

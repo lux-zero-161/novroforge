@@ -47,9 +47,9 @@
 	},
 	"search.milestone_kind": "Otsi verstaposte…",
 	"error.not_found.title": "Lehte ei leidu",
-	"themes.names.forgejo-light": "NovroForge hele kujundus",
-	"themes.names.forgejo-dark": "NovroForge tume kujundus",
-	"themes.names.forgejo-auto": "NovroForge (süsteemi kujundus)",
+	"themes.names.novroforge-light": "NovroForge hele kujundus",
+	"themes.names.novroforge-dark": "NovroForge tume kujundus",
+	"themes.names.novroforge-auto": "NovroForge (süsteemi kujundus)",
 	"relativetime.1week": "eelmisel nädalal",
 	"relativetime.1month": "eelmisel kuul",
 	"relativetime.months": {

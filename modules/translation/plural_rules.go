@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: MIT
 
 // Some useful links:
-// https://codeberg.org/forgejo/forgejo/src/branch/forgejo/web_src/js/webcomponents/relative-time.js
+// https://codeberg.org/novroforge/novroforge/src/branch/novroforge/web_src/js/webcomponents/relative-time.js
 // https://www.unicode.org/cldr/charts/46/supplemental/language_plural_rules.html
 // https://translate.codeberg.org/languages/$LANGUAGE_CODE/#information
 // https://github.com/WeblateOrg/language-data/blob/main/languages.csv

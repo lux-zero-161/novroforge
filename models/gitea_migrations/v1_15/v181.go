@@ -6,7 +6,7 @@ package v1_15
 import (
 	"strings"
 
-	"code.forgejo.org/xorm/xorm"
+	"code.novroforge.xyz/xorm/xorm"
 )
 
 func AddPrimaryEmail2EmailAddress(x *xorm.Engine) error {

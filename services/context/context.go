@@ -27,8 +27,8 @@ import (
 	web_types "novroforge.xyz/modules/web/types"
 	"novroforge.xyz/services/auth"
 
-	"code.forgejo.org/go-chi/cache"
-	"code.forgejo.org/go-chi/session"
+	"code.novroforge.xyz/go-chi/cache"
+	"code.novroforge.xyz/go-chi/session"
 )
 
 // Render represents a template render

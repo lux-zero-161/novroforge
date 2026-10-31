@@ -21,8 +21,8 @@ import (
 	"novroforge.xyz/modules/util"
 	"novroforge.xyz/tests/forgery"
 
-	runnerv1 "code.forgejo.org/forgejo/actions-proto/runner/v1"
-	"code.forgejo.org/xorm/xorm/convert"
+	runnerv1 "code.novroforge.xyz/novroforge/actions-proto/runner/v1"
+	"code.novroforge.xyz/xorm/xorm/convert"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -36,7 +36,7 @@ func createFetchTaskTestRepository(
 	t.Helper()
 
 	fileSystem := forgery.MapFS{
-		".forgejo/workflows/" + workflowFileName: &fstest.MapFile{
+		".novroforge/workflows/" + workflowFileName: &fstest.MapFile{
 			Data: []byte(workflowFileContent),
 		},
 	}
@@ -147,9 +147,9 @@ jobs:
 		require.NotNil(t, task1)
 		assert.Contains(t, string(task1.GetWorkflowPayload()), "name: job1")
 		{
-			// Base assumption, the FORGEJO_TOKEN secret can be identified... this is typical but we'll verify that it
+			// Base assumption, the novroforge_TOKEN secret can be identified... this is typical but we'll verify that it
 			// doesn't work after the idempotent fetch.
-			taskTokenTest, err := actions_model.GetRunningTaskByToken(t.Context(), task1.Secrets["FORGEJO_TOKEN"])
+			taskTokenTest, err := actions_model.GetRunningTaskByToken(t.Context(), task1.Secrets["novroforge_TOKEN"])
 			require.NoError(t, err)
 			assert.Equal(t, task1.Id, taskTokenTest.ID)
 		}
@@ -170,7 +170,7 @@ jobs:
 			// expected to be present, so we test for equal length.  "gitea_runtime_token" is a signed JWT which can
 			// change between invocations based upon precise timestamps used, and so similarly should be validated to be
 			// present not necessarily identical.
-			if k == "token" || k == "gitea_runtime_token" || k == "forgejo_runtime_token" {
+			if k == "token" || k == "gitea_runtime_token" || k == "novroforge_runtime_token" {
 				assert.Len(t, v1.(string), len(v2.(string)))
 			} else {
 				assert.EqualValues(t, v1, v2, "context[%q]", k)
@@ -178,7 +178,7 @@ jobs:
 		}
 		for k, v1 := range task1.Secrets {
 			v2 := task1fetchedAgain.Secrets[k]
-			if k == "FORGEJO_TOKEN" || k == "GITEA_TOKEN" || k == "GITHUB_TOKEN" {
+			if k == "novroforge_TOKEN" || k == "GITEA_TOKEN" || k == "GITHUB_TOKEN" {
 				// token isn't expected to be the same... but should be present.
 				assert.Len(t, v1, len(v2))
 			} else {
@@ -189,11 +189,11 @@ jobs:
 		assert.Equal(t, task1.Vars, task1fetchedAgain.Vars)
 
 		{
-			// Original FORGEJO_TOKEN should not be usable anymore.
-			_, err := actions_model.GetRunningTaskByToken(t.Context(), task1.Secrets["FORGEJO_TOKEN"])
+			// Original novroforge_TOKEN should not be usable anymore.
+			_, err := actions_model.GetRunningTaskByToken(t.Context(), task1.Secrets["novroforge_TOKEN"])
 			require.ErrorIs(t, err, util.ErrNotExist)
-			// New FORGEJO_TOKEN should be usable.
-			taskTokenTest, err := actions_model.GetRunningTaskByToken(t.Context(), task1fetchedAgain.Secrets["FORGEJO_TOKEN"])
+			// New novroforge_TOKEN should be usable.
+			taskTokenTest, err := actions_model.GetRunningTaskByToken(t.Context(), task1fetchedAgain.Secrets["novroforge_TOKEN"])
 			require.NoError(t, err)
 			assert.Equal(t, task1fetchedAgain.Id, taskTokenTest.ID)
 		}

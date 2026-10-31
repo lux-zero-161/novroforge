@@ -31,7 +31,7 @@ func TestActionsNotifications(t *testing.T) {
 	}{
 		{
 			name:     "enabled",
-			treePath: ".forgejo/workflows/enabled.yml",
+			treePath: ".novroforge/workflows/enabled.yml",
 			fileContent: `name: enabled
 on:
   push:
@@ -46,7 +46,7 @@ jobs:
 		},
 		{
 			name:     "disabled",
-			treePath: ".forgejo/workflows/disabled.yml",
+			treePath: ".novroforge/workflows/disabled.yml",
 			fileContent: `name: disabled
 on:
   push:

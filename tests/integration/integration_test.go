@@ -845,7 +845,7 @@ func newAITester(t *testing.T, setupAI ...func(*auth.AuthorizedIntegration)) *Au
 		UserID:   2,
 		Scope:    auth.AccessTokenScopeAll,
 		Issuer:   fmt.Sprintf("%s/api/actions/%s", ait.testServer.URL, uniqueTest),
-		Audience: fmt.Sprintf("https://forgejo.example.org/-/coolguy/authorized-integration/%s", gouuid.New().String()),
+		Audience: fmt.Sprintf("https://novroforge.example.org/-/coolguy/authorized-integration/%s", gouuid.New().String()),
 		ClaimRules: &auth.ClaimRules{
 			Rules: []auth.ClaimRule{
 				{

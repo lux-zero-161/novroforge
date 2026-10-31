@@ -18,9 +18,9 @@ import (
 	"novroforge.xyz/modules/timeutil"
 	"novroforge.xyz/modules/util"
 
-	runnerv1 "code.forgejo.org/forgejo/actions-proto/runner/v1"
-	"code.forgejo.org/forgejo/runner/v13/act/jobparser"
-	"code.forgejo.org/xorm/xorm"
+	runnerv1 "code.novroforge.xyz/novroforge/actions-proto/runner/v1"
+	"code.novroforge.xyz/novroforge/runner/v13/act/jobparser"
+	"code.novroforge.xyz/xorm/xorm"
 	"google.golang.org/protobuf/types/known/structpb"
 	"google.golang.org/protobuf/types/known/timestamppb"
 	"xorm.io/builder"
@@ -193,14 +193,14 @@ func generateTaskContext(t *actions_model.ActionTask, ac *repo_model.ActionsConf
 	}
 
 	gitCtx["gitea_runtime_token"] = giteaRuntimeToken // Can be removed after NovroForge 19.
-	gitCtx["forgejo_runtime_token"] = giteaRuntimeToken
+	gitCtx["novroforge_runtime_token"] = giteaRuntimeToken
 
 	if enableOpenIDConnect {
-		gitCtx["forgejo_actions_id_token_request_token"] = giteaRuntimeToken
+		gitCtx["novroforge_actions_id_token_request_token"] = giteaRuntimeToken
 		// The "placeholder=true" at the end of the URL is meaningless, but we need a param
 		// here if we want to match the format used in GitHub actions examples (e.g., to ensure
 		// that "ACTIONS_ID_TOKEN_REQUEST_URL&audience=..." will work as expected).
-		gitCtx["forgejo_actions_id_token_request_url"] = setting.AppURL + setting.AppSubURL + fmt.Sprintf("api/actions/_apis/pipelines/workflows/%d/idtoken?placeholder=true", t.Job.RunID)
+		gitCtx["novroforge_actions_id_token_request_url"] = setting.AppURL + setting.AppSubURL + fmt.Sprintf("api/actions/_apis/pipelines/workflows/%d/idtoken?placeholder=true", t.Job.RunID)
 	}
 
 	return structpb.NewStruct(gitCtx)

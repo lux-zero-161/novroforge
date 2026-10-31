@@ -1541,7 +1541,7 @@ func createDescriptionLink(href, content string) *html.Node {
 // The instance domain and sub-path is added if the link points to a different instance
 func optionalRepoSlugAndInstancePath(ctx *RenderContext, text *string, fullURL, slug string) {
 	if len(ctx.Links.Base) > 0 {
-		// The fullURL is the url to e.g. the commit. The slug is e.g. `forgejo/forgejo`.
+		// The fullURL is the url to e.g. the commit. The slug is e.g. `novroforge/novroforge`.
 		// To retrieve the instance domain and sub-path we need to remove the repo slug
 		slugStart := strings.LastIndex(fullURL, slug)
 		targetInstance := fullURL[:slugStart]

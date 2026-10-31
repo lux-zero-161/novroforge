@@ -59,7 +59,7 @@ func TestAPIOrgVariablesCreateOrganizationVariable(t *testing.T) {
 			ExpectedStatus: http.StatusBadRequest,
 		},
 		{
-			Name:           "forgejo_var",
+			Name:           "novroforge_var",
 			ExpectedStatus: http.StatusBadRequest,
 		},
 		{
@@ -139,7 +139,7 @@ func TestAPIOrgVariablesUpdateOrganizationVariable(t *testing.T) {
 			},
 			{
 				Name:           variableName,
-				UpdateName:     "forgejo_foo",
+				UpdateName:     "novroforge_foo",
 				ExpectedStatus: http.StatusBadRequest,
 			},
 			{
@@ -198,7 +198,7 @@ func TestAPIOrgVariablesDeleteOrganizationVariable(t *testing.T) {
 	owner := forgery.CreateUser(t, nil)
 	org := forgery.CreateOrganisation(t, owner)
 
-	variable, err := actions_model.InsertVariable(t.Context(), org.ID, 0, "FORGEJO_FORBIDDEN", "illegal")
+	variable, err := actions_model.InsertVariable(t.Context(), org.ID, 0, "novroforge_FORBIDDEN", "illegal")
 	require.NoError(t, err)
 	session := loginUser(t, owner.Name)
 	token := getTokenForLoggedInUser(t, session, auth_model.AccessTokenScopeWriteOrganization)

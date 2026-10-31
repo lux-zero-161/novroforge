@@ -80,8 +80,8 @@ func main() {
 		useGlobalModTime, _ = strconv.ParseBool(os.Args[4])
 	}
 
-	if os.Getenv("FORGEJO_GENERATE_SKIP_HASH") == "true" && fileExists(filename) {
-		fmt.Printf("bindata %s already exists and FORGEJO_GENERATE_SKIP_HASH=true\n", packageName)
+	if os.Getenv("novroforge_GENERATE_SKIP_HASH") == "true" && fileExists(filename) {
+		fmt.Printf("bindata %s already exists and novroforge_GENERATE_SKIP_HASH=true\n", packageName)
 		return
 	}
 

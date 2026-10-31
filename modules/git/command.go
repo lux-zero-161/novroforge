@@ -459,7 +459,7 @@ func (c *Command) AddAuthCredentialHelperForRemote(remoteURL string) (commandURL
 	// https://git-scm.com/docs/git-credential-store#_storage_format
 	// credential.helper adjustment must be set before the git subcommand
 	if strings.Contains(remoteURL, "://") && strings.Contains(remoteURL, "@") && parsedFromURL != nil {
-		credentialsFile, err := os.CreateTemp("", "forgejo-clone-credentials-")
+		credentialsFile, err := os.CreateTemp("", "novroforge-clone-credentials-")
 		if err != nil {
 			return "", nil, err
 		}

@@ -130,7 +130,7 @@ test('workflow dispatch box not available for unauthenticated users', async ({pa
 test('job run links to its defining file and all other runs from the same file', async ({page}) => {
   await page.goto('/user2/test_workflows/actions/runs/1');
   await expect(page.locator('.action-summary a').getByText('test-dispatch.yml', {exact: true}))
-    .toHaveAttribute('href', '/user2/test_workflows/src/commit/774f93df12d14931ea93259ae93418da4482fcc1/.forgejo/workflows/test-dispatch.yml');
+    .toHaveAttribute('href', '/user2/test_workflows/src/commit/774f93df12d14931ea93259ae93418da4482fcc1/.novroforge/workflows/test-dispatch.yml');
   await expect(page.locator('.action-summary a').getByText('all runs', {exact: true}))
     .toHaveAttribute('href', '/user2/test_workflows/actions?workflow=test-dispatch.yml');
 });

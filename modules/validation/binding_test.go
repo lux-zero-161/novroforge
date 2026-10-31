@@ -8,7 +8,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"code.forgejo.org/go-chi/binding"
+	"code.novroforge.xyz/go-chi/binding"
 	chi "github.com/go-chi/chi/v5"
 	"github.com/stretchr/testify/assert"
 )

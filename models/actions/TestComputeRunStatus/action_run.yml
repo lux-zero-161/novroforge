@@ -3,6 +3,6 @@
   owner_id: 1
   title: Test
   workflow_id: test.yaml
-  workflow_directory: .forgejo/workflows
+  workflow_directory: .novroforge/workflows
   trigger_user_id: 1
   status: 6 # running

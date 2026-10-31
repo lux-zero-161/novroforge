@@ -12,14 +12,14 @@ import (
 	secret_model "novroforge.xyz/models/secret"
 	actions_module "novroforge.xyz/modules/actions"
 
-	"code.forgejo.org/forgejo/runner/v13/act/jobparser"
+	"code.novroforge.xyz/novroforge/runner/v13/act/jobparser"
 )
 
 func getSecretsOfTask(ctx context.Context, task *actions_model.ActionTask) (map[string]string, error) {
 	secrets, err := getSecretsOfJob(ctx, task.Job)
 	secrets["GITHUB_TOKEN"] = task.Token
 	secrets["GITEA_TOKEN"] = task.Token
-	secrets["FORGEJO_TOKEN"] = task.Token
+	secrets["novroforge_TOKEN"] = task.Token
 	return secrets, err
 }
 
@@ -41,7 +41,7 @@ func getSecretsOfJob(ctx context.Context, job *actions_model.ActionRunJob) (map[
 	if canAccessSecrets, err := job.CanAccessSecrets(ctx); err != nil {
 		return nil, fmt.Errorf("failed evaluating CanAccessSecrets: %w", err)
 	} else if !canAccessSecrets {
-		// Ignore secrets for this run, (except the automatic GITHUB_TOKEN, GITEA_TOKEN and FORGEJO_TOKEN, which aren't
+		// Ignore secrets for this run, (except the automatic GITHUB_TOKEN, GITEA_TOKEN and novroforge_TOKEN, which aren't
 		// `getSecretsOfJob`'s responsibility)
 		return map[string]string{}, nil
 	}

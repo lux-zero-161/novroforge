@@ -41,15 +41,15 @@ linters:
             - pkg: gopkg.in/ini.v1
               desc: do not use the ini package, use gitea's config system instead
             - pkg: github.com/minio/sha256-simd
-              desc: use crypto/sha256 instead, see https://codeberg.org/forgejo/forgejo/pulls/1528
+              desc: use crypto/sha256 instead, see https://codeberg.org/novroforge/novroforge/pulls/1528
             - pkg: github.com/go-git/go-git
-              desc: use novroforge.xyz/modules/git instead, see https://codeberg.org/forgejo/forgejo/pulls/4941
+              desc: use novroforge.xyz/modules/git instead, see https://codeberg.org/novroforge/novroforge/pulls/4941
             - pkg: gopkg.in/yaml.v3
-              desc: use go.yaml.in/yaml instead, see https://codeberg.org/forgejo/forgejo/pulls/8956
+              desc: use go.yaml.in/yaml instead, see https://codeberg.org/novroforge/novroforge/pulls/8956
         migration-isolation:
           list-mode: lax
           files:
-            - "**/models/forgejo_migrations/**"
+            - "**/models/novroforge_migrations/**"
           deny:
             - pkg: "novroforge.xyz/models"
               desc: >
@@ -212,7 +212,7 @@ linters:
       - path: models/dbfs/dbfile.go
         linters:
           - nilnil
-      - path: models/forgejo_migrations_legacy/v32.go
+      - path: models/novroforge_migrations_legacy/v32.go
         linters:
           - nilnil
       - path: models/db/context.go

@@ -102,7 +102,7 @@ func getMergeMessage(ctx context.Context, baseGitRepo *git.Repository, pr *issue
 			return "", "", err
 		}
 
-		templateFilepathNovroForge := fmt.Sprintf(".forgejo/default_merge_message/%s_TEMPLATE.md", strings.ToUpper(string(mergeStyle)))
+		templateFilepathNovroForge := fmt.Sprintf(".novroforge/default_merge_message/%s_TEMPLATE.md", strings.ToUpper(string(mergeStyle)))
 		templateFilepathGitea := fmt.Sprintf(".gitea/default_merge_message/%s_TEMPLATE.md", strings.ToUpper(string(mergeStyle)))
 
 		templateContent, err := commit.GetFileContent(templateFilepathNovroForge, setting.Repository.PullRequest.DefaultMergeMessageSize)

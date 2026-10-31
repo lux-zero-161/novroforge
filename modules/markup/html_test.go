@@ -102,8 +102,8 @@ func TestRender_Commits(t *testing.T) {
 	commitLink := util.URLJoin(repo, "src", "commit", "eeb243c3395e1921c5d90e73bd739827251fc99d")
 	test(commitLink, `<p><a href="`+commitLink+`" rel="nofollow"><code>eeb243c339</code></a></p>`)
 
-	crossCommitLink := util.URLJoin(markup.TestAppURL, "forgejo/forgejo", "src", "commit", "eeb243c3395e1921c5d90e73bd739827251fc99d")
-	test(crossCommitLink, `<p><a href="`+crossCommitLink+`" rel="nofollow"><code>forgejo/forgejo@eeb243c339</code></a></p>`)
+	crossCommitLink := util.URLJoin(markup.TestAppURL, "novroforge/novroforge", "src", "commit", "eeb243c3395e1921c5d90e73bd739827251fc99d")
+	test(crossCommitLink, `<p><a href="`+crossCommitLink+`" rel="nofollow"><code>novroforge/novroforge@eeb243c339</code></a></p>`)
 
 	extCommitLink := util.URLJoin("https://codeberg.org/", markup.TestOrgRepo, "src", "commit", "eeb243c3395e1921c5d90e73bd739827251fc99d")
 	test(extCommitLink, `<p><a href="`+extCommitLink+`" rel="nofollow"><code>codeberg.org/`+markup.TestOrgRepo+`@eeb243c339</code></a></p>`)
@@ -152,7 +152,7 @@ func TestRender_CrossReferences(t *testing.T) {
 	)
 
 	sha := "65f1bf27bc3bf70f64657658635e66094edbcb4d"
-	urlWithQuery := util.URLJoin(markup.TestAppURL, "forgejo", "some-repo-name", "commit", sha, "README.md") + "?display=source#L1-L5"
+	urlWithQuery := util.URLJoin(markup.TestAppURL, "novroforge", "some-repo-name", "commit", sha, "README.md") + "?display=source#L1-L5"
 	test(
 		urlWithQuery,
 		`<p><a href="`+urlWithQuery+`" rel="nofollow"><code>`+sha[:10]+`/README.md (L1-L5)</code></a></p>`,
@@ -319,10 +319,10 @@ func TestRender_PullReviewCommitLink(t *testing.T) {
 		markup.TestRepoURL,
 	)
 
-	prCommitLink = "https://codeberg.org/forgejo/forgejo/pulls/7979/commits/4d968c08e0a8d24bd2f3fb2a3a48b37e6d84a327#diff-7649acfa98a9ee3faf0d28b488bbff428317fc72"
-	assert(prCommitLink, `<p><a href="`+prCommitLink+`" rel="nofollow">codeberg.org/forgejo/forgejo@!7979 (commit <code>4d968c08e0</code>)</a></p>`, markup.TestRepoURL)
+	prCommitLink = "https://codeberg.org/novroforge/novroforge/pulls/7979/commits/4d968c08e0a8d24bd2f3fb2a3a48b37e6d84a327#diff-7649acfa98a9ee3faf0d28b488bbff428317fc72"
+	assert(prCommitLink, `<p><a href="`+prCommitLink+`" rel="nofollow">codeberg.org/novroforge/novroforge@!7979 (commit <code>4d968c08e0</code>)</a></p>`, markup.TestRepoURL)
 	defer test.MockVariableValue(&setting.AppURL, "https://codeberg.org/")()
-	assert(prCommitLink, `<p><a href="`+prCommitLink+`" rel="nofollow">!7979 (commit <code>4d968c08e0</code>)</a></p>`, "https://codeberg.org/forgejo/forgejo")
+	assert(prCommitLink, `<p><a href="`+prCommitLink+`" rel="nofollow">!7979 (commit <code>4d968c08e0</code>)</a></p>`, "https://codeberg.org/novroforge/novroforge")
 }
 
 func TestRender_email(t *testing.T) {
@@ -411,13 +411,13 @@ func TestRender_email(t *testing.T) {
 
 	// Test fediverse handle
 	test(
-		"@forgejo@floss.social",
-		`<p><a href="https://fedirect.toolforge.org/?id=%40forgejo%40floss.social" rel="nofollow">@forgejo@floss.social</a></p>`,
+		"@novroforge@floss.social",
+		`<p><a href="https://fedirect.toolforge.org/?id=%40novroforge%40floss.social" rel="nofollow">@novroforge@floss.social</a></p>`,
 	)
 
 	test(
-		"!forgejo@programming.dev",
-		`<p><a href="https://fedirect.toolforge.org/?id=%21forgejo%40programming.dev" rel="nofollow">!forgejo@programming.dev</a></p>`,
+		"!novroforge@programming.dev",
+		`<p><a href="https://fedirect.toolforge.org/?id=%21novroforge%40programming.dev" rel="nofollow">!novroforge@programming.dev</a></p>`,
 	)
 
 	test(

@@ -4,7 +4,7 @@
 package v1_16
 
 import (
-	"code.forgejo.org/xorm/xorm"
+	"code.novroforge.xyz/xorm/xorm"
 )
 
 func AddRepoIDForAttachment(x *xorm.Engine) error {

@@ -23,11 +23,11 @@ func TestTreeEntry_Path(t *testing.T) {
 	}{
 		{
 			name: "Top level dir",
-			path: ".forgejo",
+			path: ".novroforge",
 		},
 		{
 			name: "File in subdir",
-			path: ".forgejo/default_merge_message/MERGE_TEMPLATE.md",
+			path: ".novroforge/default_merge_message/MERGE_TEMPLATE.md",
 		},
 	}
 	for _, tt := range tests {

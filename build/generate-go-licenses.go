@@ -85,8 +85,8 @@ func main() {
 		}
 
 		entries = append(entries, LicenseEntry{
-			Name:        "codeberg.org/forgejo/forgejo",
-			Path:        "codeberg.org/forgejo/forgejo/GPL-3.0-or-later",
+			Name:        "codeberg.org/novroforge/novroforge",
+			Path:        "codeberg.org/novroforge/novroforge/GPL-3.0-or-later",
 			LicenseText: string(licenseText),
 		})
 	}

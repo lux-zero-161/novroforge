@@ -61,7 +61,7 @@
         runs-on: ubuntu-latest
         steps:
           - id: set
-            run: echo "argument=something" >> "$FORGEJO_OUTPUT"
+            run: echo "argument=something" >> "$novroforge_OUTPUT"
         outputs:
           argument: ${{ steps.set.outputs.argument }}
 
@@ -82,7 +82,7 @@
       c:
         name: c
         runs-on: []
-        uses: ./.forgejo/workflows/reusable.yaml
+        uses: ./.novroforge/workflows/reusable.yaml
         with:
           argument: ${{ needs.a.outputs.argument }}
     incomplete_with: true

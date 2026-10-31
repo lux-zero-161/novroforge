@@ -14,7 +14,7 @@ import (
 	"novroforge.xyz/modules/timeutil"
 	notify_service "novroforge.xyz/services/notify"
 
-	"code.forgejo.org/forgejo/runner/v13/act/jobparser"
+	"code.novroforge.xyz/novroforge/runner/v13/act/jobparser"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"

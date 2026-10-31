@@ -28,7 +28,7 @@ import (
 	"novroforge.xyz/services/forms"
 	"novroforge.xyz/services/webhook/shared"
 
-	"code.forgejo.org/go-chi/binding"
+	"code.novroforge.xyz/go-chi/binding"
 )
 
 type discordHandler struct{}

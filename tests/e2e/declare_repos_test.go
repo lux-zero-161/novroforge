@@ -33,8 +33,8 @@ import (
 	"novroforge.xyz/services/wiki"
 	"novroforge.xyz/tests/forgery"
 
-	"code.forgejo.org/forgejo/runner/v13/act/jobparser"
-	"code.forgejo.org/xorm/xorm/convert"
+	"code.novroforge.xyz/novroforge/runner/v13/act/jobparser"
+	"code.novroforge.xyz/xorm/xorm/convert"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -157,7 +157,7 @@ func DeclareGitRepos(t *testing.T) {
 		wiki.AddWikiPage(db.DefaultContext, user, repo, "_Footer", "{a}{а}", "{a}{а}")
 	})
 	newRepo(t, 2, "multiple-combo-boxes", nil, []FileChanges{{
-		Filename: ".forgejo/issue_template/multi-combo-boxes.yaml",
+		Filename: ".novroforge/issue_template/multi-combo-boxes.yaml",
 		Versions: []string{`
 name: "Multiple combo-boxes"
 description: "To show something"
@@ -254,7 +254,7 @@ body:
 			}())
 	})
 	newRepo(t, 2, "funding_basic_complete", nil, []FileChanges{{
-		Filename: ".forgejo/FUNDING.yml",
+		Filename: ".novroforge/FUNDING.yml",
 		Versions: []string{`
 community_bridge: example
 github:
@@ -272,7 +272,7 @@ custom: ["https://example.com", 😀.com]
 `},
 	}}, nil)
 	newRepo(t, 2, "funding_some_valid", nil, []FileChanges{{
-		Filename: ".forgejo/FUNDING.yml",
+		Filename: ".novroforge/FUNDING.yml",
 		Versions: []string{`
 ko_fi: 1337
 custom: ["https://example.com"]
@@ -280,13 +280,13 @@ ko-fi: example
 `},
 	}}, nil)
 	newRepo(t, 2, "funding_with_a_really_ridiculously_long_title_that_doesnt_really_happen_all_that_often_normally_but_could_really_mess_with_things_if_not_handled_properly", nil, []FileChanges{{
-		Filename: ".forgejo/FUNDING.yml",
+		Filename: ".novroforge/FUNDING.yml",
 		Versions: []string{`
 custom: example.com
 `},
 	}}, nil)
 	newRepo(t, 6, ".profile", nil, []FileChanges{{
-		Filename: ".forgejo/FUNDING.yml",
+		Filename: ".novroforge/FUNDING.yml",
 		Versions: []string{`
 ko_fi: example
 liberapay: example

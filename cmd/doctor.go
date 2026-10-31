@@ -162,7 +162,7 @@ On very large NovroForge instances, the performance of operation will improve
 if the buffer-size option is used with large values. Approximately 130 MB of
 memory is required for every 100,000 records in the buffer.
 
-Bug reference: https://codeberg.org/forgejo/forgejo/issues/10671
+Bug reference: https://codeberg.org/novroforge/novroforge/issues/10671
 `,
 
 		Before: multipleBefore(noDanglingArgs, PrepareConsoleLoggerLevel(log.INFO)),

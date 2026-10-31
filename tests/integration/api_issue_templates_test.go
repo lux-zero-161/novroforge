@@ -36,8 +36,8 @@ func TestAPIIssueTemplateList(t *testing.T) {
 
 		t.Run("existing template", func(t *testing.T) {
 			templateCandidates := []string{
-				".forgejo/ISSUE_TEMPLATE/test.md",
-				".forgejo/issue_template/test.md",
+				".novroforge/ISSUE_TEMPLATE/test.md",
+				".novroforge/issue_template/test.md",
 				".gitea/ISSUE_TEMPLATE/test.md",
 				".gitea/issue_template/test.md",
 				".github/ISSUE_TEMPLATE/test.md",
@@ -77,7 +77,7 @@ This is the template!`)
 		t.Run("multiple templates", func(t *testing.T) {
 			defer tests.PrintCurrentTest(t)()
 			templatePriority := []string{
-				".forgejo/issue_template/test.md",
+				".novroforge/issue_template/test.md",
 				".gitea/issue_template/test.md",
 				".github/issue_template/test.md",
 				"docs/issue_template/test.md",

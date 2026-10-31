@@ -22,8 +22,8 @@ import (
 	"novroforge.xyz/modules/test"
 	webhook_module "novroforge.xyz/modules/webhook"
 
-	"code.forgejo.org/forgejo/runner/v13/act/jobparser"
-	"code.forgejo.org/forgejo/runner/v13/act/model"
+	"code.novroforge.xyz/novroforge/runner/v13/act/jobparser"
+	"code.novroforge.xyz/novroforge/runner/v13/act/model"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -124,7 +124,7 @@ func testActionsNotifierPullRequestWithDoer(t *testing.T, repo *repo_model.Repos
 		CommitMessage: "test",
 	}
 	dw.EntryName = "test.yml"
-	dw.EntryDirectory = ".forgejo/workflows"
+	dw.EntryDirectory = ".novroforge/workflows"
 	dw.TriggerEvent = &jobparser.Event{
 		Name: "pull_request",
 	}
@@ -354,7 +354,7 @@ func TestActionsNotifier_WorkflowDetection(t *testing.T) {
 	require.NoError(t, err)
 	require.Len(t, jobs, 1)
 
-	assert.Equal(t, ".forgejo/workflows", runs[0].WorkflowDirectory)
+	assert.Equal(t, ".novroforge/workflows", runs[0].WorkflowDirectory)
 	assert.Equal(t, "test.yml", runs[0].WorkflowID)
 }
 
@@ -386,7 +386,7 @@ func TestActionsNotifier_ExpandReusableWorkflow(t *testing.T) {
 	pr := unittest.AssertExistsAndLoadBean(t, &issues_model.PullRequest{ID: 3})
 
 	dw := &actions_module.DetectedWorkflow{
-		Content: []byte("{ on: pull_request, jobs: { j1: { uses: \"./.forgejo/workflows/reusable-path.yml\" }, j2: { uses: \"some-org/some-repo/.forgejo/workflows/reusable-path.yml@main\" }} }"),
+		Content: []byte("{ on: pull_request, jobs: { j1: { uses: \"./.novroforge/workflows/reusable-path.yml\" }, j2: { uses: \"some-org/some-repo/.novroforge/workflows/reusable-path.yml@main\" }} }"),
 	}
 	testActionsNotifierPullRequest(t, repo, pr, dw, webhook_module.HookEventPullRequestSync)
 
@@ -402,14 +402,14 @@ func TestActionsNotifier_ExpandReusableWorkflow(t *testing.T) {
 	require.Len(t, localReusableCalledGitCommit, 1, "localReusableCalledGitCommit")
 	require.Len(t, remoteReusableCalled, 1, "remoteReusableCalled")
 
-	assert.Equal(t, "./.forgejo/workflows/reusable-path.yml", localReusableCalled[0])
+	assert.Equal(t, "./.novroforge/workflows/reusable-path.yml", localReusableCalled[0])
 	assert.Equal(t, "test", localReusableCalledGitCommit[0].CommitMessage)
 	assert.Equal(t, &model.NonLocalReusableWorkflowReference{
 		Org:         "some-org",
 		Repo:        "some-repo",
 		Filename:    "reusable-path.yml",
 		Ref:         "main",
-		GitPlatform: "forgejo",
+		GitPlatform: "novroforge",
 	}, remoteReusableCalled[0])
 }
 

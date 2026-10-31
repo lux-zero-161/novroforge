@@ -19,7 +19,7 @@ import (
 	"novroforge.xyz/modules/setting"
 	"novroforge.xyz/services/mailer/token"
 
-	"code.forgejo.org/forgejo/reply"
+	"code.novroforge.xyz/forgejo/reply"
 	"github.com/emersion/go-imap"
 	"github.com/emersion/go-imap/client"
 	"github.com/jhillyerd/enmime/v2"

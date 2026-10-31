@@ -23,7 +23,7 @@ func TestGitbucketDownloaderCreation(t *testing.T) {
 	server := unittest.NewMockWebServer(t, "https://api.github.com", fixturePath, false)
 	defer server.Close()
 
-	downloader := NewGitBucketDownloader(t.Context(), server.URL, "", "", token, "forgejo", "test_repo")
+	downloader := NewGitBucketDownloader(t.Context(), server.URL, "", "", token, "novroforge", "test_repo")
 	err := downloader.RefreshRate()
 	require.NoError(t, err)
 }

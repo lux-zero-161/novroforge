@@ -87,8 +87,8 @@ func TestWebhookForms(t *testing.T) {
 
 	session := loginUser(t, "user1")
 
-	t.Run("forgejo/required", testWebhookForms("forgejo", session, map[string]string{
-		"payload_url":  "https://forgejo.example.com",
+	t.Run("novroforge/required", testWebhookForms("novroforge", session, map[string]string{
+		"payload_url":  "https://novroforge.example.com",
 		"http_method":  "POST",
 		"content_type": "1", // json
 	}, map[string]string{
@@ -102,13 +102,13 @@ func TestWebhookForms(t *testing.T) {
 	}, map[string]string{
 		"http_method": "INVALID",
 	}))
-	t.Run("forgejo/optional", testWebhookForms("forgejo", session, map[string]string{
-		"payload_url":  "https://forgejo.example.com",
+	t.Run("novroforge/optional", testWebhookForms("novroforge", session, map[string]string{
+		"payload_url":  "https://novroforge.example.com",
 		"http_method":  "POST",
 		"content_type": "1", // json
 		"secret":       "s3cr3t",
 
-		"branch_filter":        "forgejo/*",
+		"branch_filter":        "novroforge/*",
 		"authorization_header": "Bearer 123456",
 	}))
 

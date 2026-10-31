@@ -6,7 +6,7 @@
 // As it would lead to breakage for instance who already ran with the old prefix
 // the incorrect prefix is kept.
 
-package forgejo_migrations
+package novroforge_migrations
 
 import (
 	"context"
@@ -19,7 +19,7 @@ import (
 	"novroforge.xyz/modules/timeutil"
 	"novroforge.xyz/modules/validation"
 
-	"code.forgejo.org/xorm/xorm"
+	"code.novroforge.xyz/xorm/xorm"
 )
 
 func init() {
@@ -74,7 +74,7 @@ func changeActivityPubUsernameFormat(x *xorm.Engine) error {
 	// migrations concerning NovroForge's federation-related components should not return any errors at
 	// this point in time, as federation is not considered to be stable at the moment. For more
 	// information, check the relevant discussion here:
-	// https://codeberg.org/forgejo-contrib/federation/issues/67
+	// https://codeberg.org/novroforge-contrib/federation/issues/67
 	//
 	// Nevertheless, this structure involves some useful boilerplate that can be used for future
 	// migrations at a later point and has been kept as-is.

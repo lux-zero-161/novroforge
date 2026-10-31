@@ -20,7 +20,7 @@ import (
 func TestDataSizeTranslation(t *testing.T) {
 	onApplicationRun(t, func(t *testing.T, giteaURL *url.URL) {
 		noDigits := regexp.MustCompile("[0-9]+")
-		longString100 := `testRepoMigrate(t, session, "https://code.forgejo.org/forgejo/test_repo.git", testRepoName, struct)` + "\n"
+		longString100 := `testRepoMigrate(t, session, "https://code.novroforge.xyz/novroforge/test_repo.git", testRepoName, struct)` + "\n"
 
 		// Login user
 		user := forgery.CreateUser(t, nil)

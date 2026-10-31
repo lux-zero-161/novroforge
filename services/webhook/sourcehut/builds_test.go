@@ -66,7 +66,7 @@ func TestSourcehutBuildsPayload(t *testing.T) {
 		assert.Equal(t, `sources:
     - http://localhost:3000/testdata/repo.git#58771003157b81abc6bf41df0c5db4147a3e3c83
 environment:
-    BUILD_SUBMITTER: forgejo
+    BUILD_SUBMITTER: novroforge
     BUILD_SUBMITTER_URL: https://example.novroforge.xyz/
     GIT_REF: refs/heads/test
 image: alpine/edge
@@ -99,7 +99,7 @@ tasks:
 		assert.Equal(t, `sources:
     - http://localhost:3000/testdata/repo.git#58771003157b81abc6bf41df0c5db4147a3e3c83
 environment:
-    BUILD_SUBMITTER: forgejo
+    BUILD_SUBMITTER: novroforge
     BUILD_SUBMITTER_URL: https://example.novroforge.xyz/
     GIT_REF: refs/tags/v1.0.0
 image: alpine/edge
@@ -151,7 +151,7 @@ tasks:
 		assert.Equal(t, `sources:
     - http://localhost:3000/testdata/repo.git#58771003157b81abc6bf41df0c5db4147a3e3c83
 environment:
-    BUILD_SUBMITTER: forgejo
+    BUILD_SUBMITTER: novroforge
     BUILD_SUBMITTER_URL: https://example.novroforge.xyz/
     GIT_REF: refs/heads/main
 image: alpine/edge
@@ -188,7 +188,7 @@ tasks:
 		assert.Equal(t, `sources:
     - http://localhost:3000/testdata/repo.git#b0404943256a1f5a50c3726f4378756b4c1e5704
 environment:
-    BUILD_SUBMITTER: forgejo
+    BUILD_SUBMITTER: novroforge
     BUILD_SUBMITTER_URL: https://example.novroforge.xyz/
     GIT_REF: refs/heads/main
     deploy: synapse@synapse-bt.org
@@ -402,7 +402,7 @@ tasks:
 		assert.Equal(t, `sources:
     - http://localhost:3000/testdata/repo.git#58771003157b81abc6bf41df0c5db4147a3e3c83
 environment:
-    BUILD_SUBMITTER: forgejo
+    BUILD_SUBMITTER: novroforge
     BUILD_SUBMITTER_URL: https://example.novroforge.xyz/
     GIT_REF: refs/heads/main
 image: alpine/edge
@@ -429,7 +429,7 @@ tasks:
     - http://other.example.conm/repo.git
     - http://localhost:3000/testdata/repo.git#58771003157b81abc6bf41df0c5db4147a3e3c83
 environment:
-    BUILD_SUBMITTER: forgejo
+    BUILD_SUBMITTER: novroforge
     BUILD_SUBMITTER_URL: https://example.novroforge.xyz/
     GIT_REF: refs/heads/main
 image: alpine/edge
@@ -455,7 +455,7 @@ tasks:
     - http://localhost:3000/testdata/repo.git#58771003157b81abc6bf41df0c5db4147a3e3c83
     - http://other.example.conm/repo.git
 environment:
-    BUILD_SUBMITTER: forgejo
+    BUILD_SUBMITTER: novroforge
     BUILD_SUBMITTER_URL: https://example.novroforge.xyz/
     GIT_REF: refs/heads/main
 image: alpine/edge
@@ -482,7 +482,7 @@ tasks:
     - git@localhost:testdata/repo.git#58771003157b81abc6bf41df0c5db4147a3e3c83
     - http://other.example.conm/repo.git
 environment:
-    BUILD_SUBMITTER: forgejo
+    BUILD_SUBMITTER: novroforge
     BUILD_SUBMITTER_URL: https://example.novroforge.xyz/
     GIT_REF: refs/heads/main
 image: alpine/edge
@@ -506,7 +506,7 @@ tasks:
 		assert.Equal(t, `sources:
     - git@localhost:testdata/repo.git#58771003157b81abc6bf41df0c5db4147a3e3c83
 environment:
-    BUILD_SUBMITTER: forgejo
+    BUILD_SUBMITTER: novroforge
     BUILD_SUBMITTER_URL: https://example.novroforge.xyz/
     GIT_REF: refs/heads/main
 image: alpine/edge

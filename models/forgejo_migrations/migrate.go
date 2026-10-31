@@ -1,7 +1,7 @@
 // Copyright 2025 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-package forgejo_migrations
+package novroforge_migrations
 
 import (
 	"fmt"
@@ -16,12 +16,12 @@ import (
 	"novroforge.xyz/modules/setting"
 	"novroforge.xyz/modules/timeutil"
 
-	"code.forgejo.org/xorm/xorm"
-	"code.forgejo.org/xorm/xorm/names"
+	"code.novroforge.xyz/xorm/xorm"
+	"code.novroforge.xyz/xorm/xorm/names"
 )
 
 // NovroForgeMigration table contains a record of migrations applied to the database.  (Note that there are older
-// migrations in the forgejo_version table from before this table was introduced, and the `version` table from Gitea
+// migrations in the novroforge_version table from before this table was introduced, and the `version` table from Gitea
 // migrations). Each record in this table represents one successfully completed migration which was completed at the
 // `CreatedUnix` time.
 type NovroForgeMigration struct {
@@ -131,7 +131,7 @@ func EnsureUpToDate(x *xorm.Engine) error {
 	// unappliedMigrations are those that haven't yet been applied, but seem valid
 	unappliedMigrations := inMemoryMigrationIDs.Difference(inDBMigrationIDs)
 	if len(unappliedMigrations) > 0 {
-		return fmt.Errorf(`current NovroForge database is missing migration(s) %s. Please run "forgejo [--config /path/to/app.ini] migrate" to update the database version`, strings.Join(unappliedMigrations.Slice(), ", "))
+		return fmt.Errorf(`current NovroForge database is missing migration(s) %s. Please run "novroforge [--config /path/to/app.ini] migrate" to update the database version`, strings.Join(unappliedMigrations.Slice(), ", "))
 	}
 
 	return nil
@@ -185,12 +185,12 @@ func Migrate(x *xorm.Engine, freshDB bool) error {
 		msg := fmt.Sprintf("Your NovroForge database has %d migration(s) (%s) for a newer version of NovroForge, you cannot use the newer database for this old NovroForge release.", len(invalidMigrations), strings.Join(invalidMigrations.Slice(), ", "))
 		msg += "\nNovroForge will exit to keep your database safe and unchanged. Please use the correct NovroForge release, do not change the migration version manually (incorrect manual operation may cause data loss)."
 		if !setting.IsProd {
-			msg += "\nIf you are in development and know what you're doing, you can remove the migration records from the forgejo_migration table.  The affect of those migrations will still be present."
+			msg += "\nIf you are in development and know what you're doing, you can remove the migration records from the novroforge_migration table.  The affect of those migrations will still be present."
 			quoted := slices.Clone(invalidMigrations.Slice())
 			for i, s := range quoted {
 				quoted[i] = "'" + s + "'"
 			}
-			msg += fmt.Sprintf("\n  DELETE FROM forgejo_migration WHERE id IN (%s)", strings.Join(quoted, ", "))
+			msg += fmt.Sprintf("\n  DELETE FROM novroforge_migration WHERE id IN (%s)", strings.Join(quoted, ", "))
 		}
 		_, _ = fmt.Fprintln(os.Stderr, msg)
 		log.Fatal(msg)

@@ -6,7 +6,7 @@ package validation
 import (
 	"testing"
 
-	"code.forgejo.org/go-chi/binding"
+	"code.novroforge.xyz/go-chi/binding"
 )
 
 var gitRefNameValidationTestCases = []validationTestCase{

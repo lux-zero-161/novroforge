@@ -13,7 +13,7 @@ import (
 
 	"novroforge.xyz/modules/setting"
 
-	"code.forgejo.org/xorm/xorm/dialects"
+	"code.novroforge.xyz/xorm/xorm/dialects"
 	"github.com/jackc/pgx/v5/stdlib"
 )
 

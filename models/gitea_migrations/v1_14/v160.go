@@ -4,7 +4,7 @@
 package v1_14
 
 import (
-	"code.forgejo.org/xorm/xorm"
+	"code.novroforge.xyz/xorm/xorm"
 )
 
 func AddBlockOnOfficialReviewRequests(x *xorm.Engine) error {

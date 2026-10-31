@@ -28,7 +28,7 @@ func microcmdUserCreateAuthorizedIntegration() *cli.Command {
 receive JWTs from external sources, validate their claims against
 user-defined rules, and grant access to NovroForge's API on behalf of a user.
 
-The issuer may be set to "urn:forgejo:authorized-integrations:actions"
+The issuer may be set to "urn:novroforge:authorized-integrations:actions"
 to support JWTs from the local instance's NovroForge Actions, utilizing the
 enable-openid-connect flag in a workflow.`,
 
@@ -57,7 +57,7 @@ enable-openid-connect flag in a workflow.`,
 			// JWT validation:
 			&cli.StringFlag{
 				Name:     "issuer",
-				Usage:    `JWT issuer ('iss' claim), example: https://forgejo.example.org/api/actions`,
+				Usage:    `JWT issuer ('iss' claim), example: https://novroforge.example.org/api/actions`,
 				Required: true,
 			},
 			&cli.StringMapFlag{
@@ -73,7 +73,7 @@ enable-openid-connect flag in a workflow.`,
 			&cli.StringMapFlag{
 				Name:  "claim-glob",
 				Value: map[string]string{},
-				Usage: `Zero-or-more claim glob checks, formatted as claim=value, example: "sub=repo:forgejo/*:pull_request"`,
+				Usage: `Zero-or-more claim glob checks, formatted as claim=value, example: "sub=repo:novroforge/*:pull_request"`,
 			},
 			&cli.StringMapFlag{
 				Name:  "claim-glob-in",

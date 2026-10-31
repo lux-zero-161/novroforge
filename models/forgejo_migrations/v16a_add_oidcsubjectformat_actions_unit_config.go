@@ -1,7 +1,7 @@
 // Copyright 2026 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-package forgejo_migrations
+package novroforge_migrations
 
 import (
 	"context"
@@ -11,13 +11,13 @@ import (
 	"novroforge.xyz/modules/json"
 	"novroforge.xyz/modules/optional"
 
-	"code.forgejo.org/xorm/xorm"
+	"code.novroforge.xyz/xorm/xorm"
 	"xorm.io/builder"
 )
 
 func init() {
 	registerMigration(&Migration{
-		Description: "add OIDCSubjectFormat=legacy-forgejo-v15 to all existing repositories with actions enabled",
+		Description: "add OIDCSubjectFormat=legacy-novroforge-v15 to all existing repositories with actions enabled",
 		Upgrade:     setOIDCSubjectFormatLegacy15,
 	})
 }
@@ -48,7 +48,7 @@ func setOIDCSubjectFormatLegacy15(x *xorm.Engine) error {
 				return fmt.Errorf("failed to parse Actions config %q: %w", config, err)
 			}
 
-			actionsConfig.OIDCSubjectFormat = "legacy-forgejo-v15"
+			actionsConfig.OIDCSubjectFormat = "legacy-novroforge-v15"
 
 			configBytes, err := json.Marshal(actionsConfig)
 			if err != nil {

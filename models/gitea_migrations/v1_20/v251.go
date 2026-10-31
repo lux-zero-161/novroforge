@@ -6,7 +6,7 @@ package v1_20
 import (
 	"novroforge.xyz/modules/log"
 
-	"code.forgejo.org/xorm/xorm"
+	"code.novroforge.xyz/xorm/xorm"
 )
 
 func FixIncorrectOwnerTeamUnitAccessMode(x *xorm.Engine) error {

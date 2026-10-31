@@ -18,7 +18,7 @@ func Test_FederationHostValidation(t *testing.T) {
 	sut := FederationHost{
 		HostFqdn: "host.do.main",
 		NodeInfo: NodeInfo{
-			SoftwareName: "forgejo",
+			SoftwareName: "novroforge",
 		},
 		LatestActivity: time.Now(),
 		HostPort:       443,
@@ -30,7 +30,7 @@ func Test_FederationHostValidation(t *testing.T) {
 	sut = FederationHost{
 		HostFqdn: "",
 		NodeInfo: NodeInfo{
-			SoftwareName: "forgejo",
+			SoftwareName: "novroforge",
 		},
 		LatestActivity: time.Now(),
 		HostPort:       443,
@@ -42,7 +42,7 @@ func Test_FederationHostValidation(t *testing.T) {
 	sut = FederationHost{
 		HostFqdn: strings.Repeat("fill", 64),
 		NodeInfo: NodeInfo{
-			SoftwareName: "forgejo",
+			SoftwareName: "novroforge",
 		},
 		LatestActivity: time.Now(),
 		HostPort:       443,
@@ -64,7 +64,7 @@ func Test_FederationHostValidation(t *testing.T) {
 	sut = FederationHost{
 		HostFqdn: "host.do.main",
 		NodeInfo: NodeInfo{
-			SoftwareName: "forgejo",
+			SoftwareName: "novroforge",
 		},
 		LatestActivity: time.Now().Add(1 * time.Hour),
 		HostPort:       443,
@@ -76,7 +76,7 @@ func Test_FederationHostValidation(t *testing.T) {
 	sut = FederationHost{
 		HostFqdn: "hOst.do.main",
 		NodeInfo: NodeInfo{
-			SoftwareName: "forgejo",
+			SoftwareName: "novroforge",
 		},
 		LatestActivity: time.Now(),
 		HostPort:       443,
@@ -91,7 +91,7 @@ func Test_FederationHostDefaultPort(t *testing.T) {
 	sut := FederationHost{
 		HostFqdn: "host.do.main",
 		NodeInfo: NodeInfo{
-			SoftwareName: "forgejo",
+			SoftwareName: "novroforge",
 		},
 		LatestActivity: time.Now(),
 		HostPort:       443,
@@ -107,7 +107,7 @@ func Test_FederationHostDefaultPort(t *testing.T) {
 	sut = FederationHost{
 		HostFqdn: "host.do.main",
 		NodeInfo: NodeInfo{
-			SoftwareName: "forgejo",
+			SoftwareName: "novroforge",
 		},
 		LatestActivity: time.Now(),
 		HostPort:       80,
@@ -123,7 +123,7 @@ func Test_FederationHostDefaultPort(t *testing.T) {
 	sut = FederationHost{
 		HostFqdn: "host.do.main",
 		NodeInfo: NodeInfo{
-			SoftwareName: "forgejo",
+			SoftwareName: "novroforge",
 		},
 		LatestActivity: time.Now(),
 		HostPort:       8443,
@@ -139,7 +139,7 @@ func Test_FederationHostDefaultPort(t *testing.T) {
 	sut = FederationHost{
 		HostFqdn: "host.do.main",
 		NodeInfo: NodeInfo{
-			SoftwareName: "forgejo",
+			SoftwareName: "novroforge",
 		},
 		LatestActivity: time.Now(),
 		HostPort:       0,

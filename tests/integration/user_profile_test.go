@@ -93,7 +93,7 @@ func TestUserProfile(t *testing.T) {
 		checkFunding(t, "FUNDING.yml", "FUNDING.yml", 1)
 		checkFunding(t, "funding.yml", "funding.yml", 1)
 		checkFunding(t, "FundIng.Yml", "FundIng.Yml", 1)
-		checkFunding(t, ".forgejo/Funding.yml", ".forgejo/Funding.yml", 1)
+		checkFunding(t, ".novroforge/Funding.yml", ".novroforge/Funding.yml", 1)
 		checkFunding(t, ".github/funding.yml", ".github/funding.yml", 1)
 		checkFunding(t, ".gitea/funding.yml", ".gitea/funding.yml", 0)
 		checkFunding(t, "funding.org", "FUNDING.org", 0)

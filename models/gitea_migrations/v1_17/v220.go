@@ -7,8 +7,8 @@ import (
 	packages_model "novroforge.xyz/models/packages"
 	container_module "novroforge.xyz/modules/packages/container"
 
-	"code.forgejo.org/xorm/xorm"
-	"code.forgejo.org/xorm/xorm/schemas"
+	"code.novroforge.xyz/xorm/xorm"
+	"code.novroforge.xyz/xorm/xorm/schemas"
 )
 
 func AddContainerRepositoryProperty(x *xorm.Engine) (err error) {

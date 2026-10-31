@@ -13,7 +13,7 @@ import (
 	"novroforge.xyz/modules/util"
 	"novroforge.xyz/modules/validation"
 
-	"code.forgejo.org/go-chi/binding"
+	"code.novroforge.xyz/go-chi/binding"
 )
 
 // Form form binding interface

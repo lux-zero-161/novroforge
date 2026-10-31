@@ -10,7 +10,7 @@ import (
 	"fmt"
 
 	"novroforge.xyz/models/db"
-	"novroforge.xyz/models/forgejo_migrations_legacy"
+	"novroforge.xyz/models/novroforge_migrations_legacy"
 	"novroforge.xyz/models/gitea_migrations/v1_10"
 	"novroforge.xyz/models/gitea_migrations/v1_11"
 	"novroforge.xyz/models/gitea_migrations/v1_12"
@@ -32,10 +32,10 @@ import (
 	"novroforge.xyz/modules/git"
 	"novroforge.xyz/modules/log"
 	"novroforge.xyz/modules/setting"
-	forgejo_service "novroforge.xyz/services/forgejo"
+	novroforge_service "novroforge.xyz/services/novroforge"
 
-	"code.forgejo.org/xorm/xorm"
-	"code.forgejo.org/xorm/xorm/names"
+	"code.novroforge.xyz/xorm/xorm"
+	"code.novroforge.xyz/xorm/xorm/names"
 )
 
 const minDBVersion = 70 // Gitea 1.5.3
@@ -367,7 +367,7 @@ func prepareMigrationTasks() []*migration {
 
 		// Migration to NovroForge v10
 		newMigration(303, "Gitea last drop", v1_23.GiteaLastDrop),
-		newMigration(304, "Migrate `secret` column to store keying material", forgejo_migrations_legacy.MigrateTwoFactorToKeying),
+		newMigration(304, "Migrate `secret` column to store keying material", novroforge_migrations_legacy.MigrateTwoFactorToKeying),
 	}
 	return preparedMigrations
 }
@@ -423,10 +423,10 @@ func EnsureUpToDate(x *xorm.Engine) error {
 	expectedDB := ExpectedDBVersion()
 
 	if currentDB != expectedDB {
-		return fmt.Errorf(`current database version %d is not equal to the expected version %d. Please run "forgejo [--config /path/to/app.ini] migrate" to update the database version`, currentDB, expectedDB)
+		return fmt.Errorf(`current database version %d is not equal to the expected version %d. Please run "novroforge [--config /path/to/app.ini] migrate" to update the database version`, currentDB, expectedDB)
 	}
 
-	return forgejo_migrations_legacy.EnsureUpToDate(x)
+	return novroforge_migrations_legacy.EnsureUpToDate(x)
 }
 
 func getPendingMigrations(curDBVer int64, migrations []*migration) []*migration {
@@ -461,7 +461,7 @@ func Migrate(x *xorm.Engine) error {
 			return fmt.Errorf("insert: %w", err)
 		}
 		// continue with the migration routine, but nothing will be applied; this allows transition into the newer
-		// forgejo library and for it to be configured and populated.
+		// novroforge library and for it to be configured and populated.
 		versionRecords = []*Version{upToDate}
 	} else if len(versionRecords) > 1 {
 		return fmt.Errorf(
@@ -504,7 +504,7 @@ Please try upgrading to a lower version first (suggested v1.6.4), then upgrade t
 		}
 	}
 
-	if err := forgejo_service.PreMigrationSanityChecks(x, previousVersion, setting.CfgProvider); err != nil {
+	if err := novroforge_service.PreMigrationSanityChecks(x, previousVersion, setting.CfgProvider); err != nil {
 		return err
 	}
 
@@ -523,7 +523,7 @@ Please try upgrading to a lower version first (suggested v1.6.4), then upgrade t
 	}
 
 	// Execute NovroForge specific migrations.
-	return forgejo_migrations_legacy.Migrate(x)
+	return novroforge_migrations_legacy.Migrate(x)
 }
 
 // WrapperMigrate is a wrapper for Migrate to be called in diagnostics

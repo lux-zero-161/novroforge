@@ -223,7 +223,7 @@ func TestActionConcurrencyGroupQueueFetchNext(t *testing.T) {
 			Name:      "repo-workflow-dispatch",
 			LatestSha: &sha,
 			Files: forgery.MapFS{
-				".forgejo/workflows/dispatch.yml": forgery.MapFile(
+				".novroforge/workflows/dispatch.yml": forgery.MapFile(
 					"name: concurrency group workflow\n" +
 						"on:\n" +
 						"  workflow_dispatch:\n" +

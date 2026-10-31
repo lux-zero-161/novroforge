@@ -21,7 +21,7 @@
   "paths": {
     "/actions/run": {
       "get": {
-        "description": "The automatic actions token must be used as the authentication mechanism (\u003ccode\u003eAuthorization: Bearer $\u0026#x7b;\u0026#x7b; forgejo.token \u0026#x7d;\u0026#x7d;\u003c/code\u003e); other types of tokens cannot be used. The token is associated with the job, which must be still running for the request to this endpoint to succeed.\n",
+        "description": "The automatic actions token must be used as the authentication mechanism (\u003ccode\u003eAuthorization: Bearer $\u0026#x7b;\u0026#x7b; novroforge.token \u0026#x7d;\u0026#x7d;\u003c/code\u003e); other types of tokens cannot be used. The token is associated with the job, which must be still running for the request to this endpoint to succeed.\n",
         "produces": [
           "application/json"
         ],
@@ -25512,7 +25512,7 @@
         "type": {
           "type": "string",
           "enum": [
-            "forgejo",
+            "novroforge",
             "dingtalk",
             "discord",
             "gitea",
@@ -28789,7 +28789,7 @@
             "onedev",
             "gitbucket",
             "codebase",
-            "forgejo",
+            "novroforge",
             "pagure",
             "bitbucketdc"
           ],
@@ -33593,7 +33593,7 @@
     "TOTPHeader": {
       "description": "Must be used in combination with BasicAuth if two-factor authentication is enabled.",
       "type": "apiKey",
-      "name": "X-FORGEJO-OTP",
+      "name": "X-novroforge-OTP",
       "in": "header"
     }
   },

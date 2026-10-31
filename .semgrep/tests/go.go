@@ -19,7 +19,7 @@ func setPortEmptyCaseBad(port string) error {
 	setting.AppURL = strings.Replace(setting.AppURL, setting.HTTPPort, port, 1)
 	setting.HTTPPort = port
 
-	// ruleid:forgejo-switch-empty-case
+	// ruleid:novroforge-switch-empty-case
 	switch setting.Protocol {
 	case setting.HTTPUnix:
 	case setting.FCGI:
@@ -28,7 +28,7 @@ func setPortEmptyCaseBad(port string) error {
 		defaultLocalURL := string(setting.Protocol) + "://"
 	}
 
-	// ok:forgejo-switch-empty-case
+	// ok:novroforge-switch-empty-case
 	switch setting.Protocol {
 	case setting.HTTPUnix:
 		break

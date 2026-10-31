@@ -198,7 +198,7 @@ func TestRedirectsWebhooks(t *testing.T) {
 	//
 	// A redirect means the route exists but not if it performs as intended.
 	//
-	for _, kind := range []string{"forgejo", "gitea"} {
+	for _, kind := range []string{"novroforge", "gitea"} {
 		redirects := []struct {
 			from string
 			to   string

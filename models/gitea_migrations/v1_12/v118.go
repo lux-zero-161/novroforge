@@ -4,7 +4,7 @@
 package v1_12
 
 import (
-	"code.forgejo.org/xorm/xorm"
+	"code.novroforge.xyz/xorm/xorm"
 )
 
 func AddReviewCommitAndStale(x *xorm.Engine) error {

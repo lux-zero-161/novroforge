@@ -66,7 +66,7 @@ func TestGenerateGiteaContext(t *testing.T) {
 			Ref:               "refs/heads/main",
 			CommitSHA:         "abc123def456",
 			WorkflowID:        "test-workflow.yaml",
-			WorkflowDirectory: ".forgejo/workflows",
+			WorkflowDirectory: ".novroforge/workflows",
 			EventPayload:      `{"repository": {"name": "testrepo"}}`,
 		}
 
@@ -87,13 +87,13 @@ func TestGenerateGiteaContext(t *testing.T) {
 		assert.Equal(t, "abc123def456", context["sha"])
 		assert.Equal(t, "42", context["run_number"])
 		assert.Equal(t, "test-workflow.yaml", context["workflow"])
-		assert.Equal(t, "testowner/testrepo/.forgejo/workflows/test-workflow.yaml@refs/heads/main", context["workflow_ref"])
+		assert.Equal(t, "testowner/testrepo/.novroforge/workflows/test-workflow.yaml@refs/heads/main", context["workflow_ref"])
 		assert.Equal(t, false, context["ref_protected"])
 		assert.Equal(t, "Actions", context["secret_source"])
 		assert.Equal(t, setting.AppURL, context["server_url"])
 		assert.Equal(t, setting.Actions.DefaultActionsURL.URL(), context["gitea_default_actions_url"])
-		assert.Equal(t, setting.Actions.DefaultActionsURL.URL(), context["forgejo_default_actions_url"])
-		assert.Equal(t, setting.AppVer, context["forgejo_server_version"])
+		assert.Equal(t, setting.Actions.DefaultActionsURL.URL(), context["novroforge_default_actions_url"])
+		assert.Equal(t, setting.AppVer, context["novroforge_server_version"])
 
 		event, ok := context["event"].(map[string]any)
 		require.True(t, ok)
@@ -174,7 +174,7 @@ func TestGenerateGiteaContext(t *testing.T) {
 			Ref:               "refs/pull/1/merge",
 			CommitSHA:         "merge789sha",
 			WorkflowID:        "test-workflow.yaml",
-			WorkflowDirectory: ".forgejo/workflows",
+			WorkflowDirectory: ".novroforge/workflows",
 			Event:             webhook_module.HookEventPullRequest,
 			EventPayload:      string(payloadBytes),
 		}
@@ -186,7 +186,7 @@ func TestGenerateGiteaContext(t *testing.T) {
 		assert.Equal(t, "feature-branch", context["head_ref"])
 		assert.Equal(t, "refs/pull/1/merge", context["ref"])
 		assert.Equal(t, "merge789sha", context["sha"])
-		assert.Equal(t, "testowner/testrepo/.forgejo/workflows/test-workflow.yaml@refs/pull/1/merge", context["workflow_ref"])
+		assert.Equal(t, "testowner/testrepo/.novroforge/workflows/test-workflow.yaml@refs/pull/1/merge", context["workflow_ref"])
 	})
 
 	t.Run("Pull request target event", func(t *testing.T) {
@@ -284,7 +284,7 @@ func TestGenerateGiteaContextForRun(t *testing.T) {
 			Ref:               "refs/heads/main",
 			CommitSHA:         "abc123def456",
 			WorkflowID:        "test-workflow.yaml",
-			WorkflowDirectory: ".forgejo/workflows",
+			WorkflowDirectory: ".novroforge/workflows",
 			EventPayload:      `{"repository": {"name": "testrepo"}}`,
 		}
 
@@ -301,7 +301,7 @@ func TestGenerateGiteaContextForRun(t *testing.T) {
 		assert.Equal(t, "abc123def456", gitContextObj.Sha)
 		assert.Equal(t, "42", gitContextObj.RunNumber)
 		assert.Equal(t, "test-workflow.yaml", gitContextObj.Workflow)
-		assert.Equal(t, "testowner/testrepo/.forgejo/workflows/test-workflow.yaml@refs/heads/main", gitContextObj.WorkflowRef)
+		assert.Equal(t, "testowner/testrepo/.novroforge/workflows/test-workflow.yaml@refs/heads/main", gitContextObj.WorkflowRef)
 
 		assert.Equal(t, "testrepo", gitContextObj.Event["repository"].(map[string]any)["name"])
 
@@ -347,7 +347,7 @@ func TestGenerateGiteaContextForRun(t *testing.T) {
 			Ref:               "refs/pull/1/merge",
 			CommitSHA:         "merge789sha",
 			WorkflowID:        "test-workflow.yaml",
-			WorkflowDirectory: ".forgejo/workflows",
+			WorkflowDirectory: ".novroforge/workflows",
 			Event:             webhook_module.HookEventPullRequest,
 			EventPayload:      string(payloadBytes),
 		}
@@ -358,7 +358,7 @@ func TestGenerateGiteaContextForRun(t *testing.T) {
 		assert.Equal(t, "feature-branch", gitContextObj.HeadRef)
 		assert.Equal(t, "refs/pull/1/merge", gitContextObj.Ref)
 		assert.Equal(t, "merge789sha", gitContextObj.Sha)
-		assert.Equal(t, "testowner/testrepo/.forgejo/workflows/test-workflow.yaml@refs/pull/1/merge", gitContextObj.WorkflowRef)
+		assert.Equal(t, "testowner/testrepo/.novroforge/workflows/test-workflow.yaml@refs/pull/1/merge", gitContextObj.WorkflowRef)
 	})
 
 	t.Run("Pull request target event", func(t *testing.T) {

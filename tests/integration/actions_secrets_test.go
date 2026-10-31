@@ -336,7 +336,7 @@ func TestActionsSecretsEditSecretRejectsInvalidName(t *testing.T) {
 			secret := unittest.AssertExistsAndLoadBean(t, &secret_model.Secret{OwnerID: testCase.ownerID, RepoID: testCase.repoID, Name: "TEST_SECRET"})
 
 			req = NewRequestWithValues(t, "POST", fmt.Sprintf("%s/%d/edit", testCase.url, secret.ID), map[string]string{
-				"name": "FORGEJO_IS_INVALID",
+				"name": "novroforge_IS_INVALID",
 				"data": "",
 			})
 			sess.MakeRequest(t, req, http.StatusBadRequest)

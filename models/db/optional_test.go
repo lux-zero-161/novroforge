@@ -10,7 +10,7 @@ import (
 	"novroforge.xyz/models/unittest"
 	"novroforge.xyz/modules/optional"
 
-	"code.forgejo.org/xorm/xorm/schemas"
+	"code.novroforge.xyz/xorm/xorm/schemas"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

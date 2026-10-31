@@ -1,7 +1,7 @@
 // Copyright 2026 The NovroForge Authors.
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-package forgejo_migrations
+package novroforge_migrations
 
 import (
 	"testing"
@@ -10,7 +10,7 @@ import (
 	migration_tests "novroforge.xyz/models/gitea_migrations/test"
 	"novroforge.xyz/modules/timeutil"
 
-	"code.forgejo.org/xorm/xorm/convert"
+	"code.novroforge.xyz/xorm/xorm/convert"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -43,12 +43,12 @@ func Test_setOIDCSubjectFormatLegacy15(t *testing.T) {
 			Find(&records))
 	assert.Equal(t, []map[string]string{
 		{
-			"config":  "{\"OIDCSubjectFormat\":\"legacy-forgejo-v15\"}",
+			"config":  "{\"OIDCSubjectFormat\":\"legacy-novroforge-v15\"}",
 			"id":      "1",
 			"repo_id": "4",
 		},
 		{
-			"config":  "{\"DisabledWorkflows\":[\"renovate.yml\"],\"OIDCSubjectFormat\":\"legacy-forgejo-v15\"}",
+			"config":  "{\"DisabledWorkflows\":[\"renovate.yml\"],\"OIDCSubjectFormat\":\"legacy-novroforge-v15\"}",
 			"id":      "2",
 			"repo_id": "5",
 		},

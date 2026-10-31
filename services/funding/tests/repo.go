@@ -45,7 +45,7 @@ func FromDefaultBranch(t *testing.T) {
 		"Funding.yml",
 		"Funding.yaml",
 		".github/FUNDING.yml",
-		".forgejo/funding.yaml",
+		".novroforge/funding.yaml",
 	}
 	subURLs := []string{
 		"/",
@@ -90,10 +90,10 @@ func FromDefaultBranch(t *testing.T) {
 		}
 	}
 
-	t.Run("prefers .forgejo over .github", func(t *testing.T) {
+	t.Run("prefers .novroforge over .github", func(t *testing.T) {
 		repo := forgery.CreateRepository(t, nil, &forgery.CreateRepositoryOptions{
 			Files: forgery.MapFS{
-				".forgejo/funding.yml": forgery.MapFile(config1),
+				".novroforge/funding.yml": forgery.MapFile(config1),
 				".github/funding.yml":  forgery.MapFile(config2),
 			},
 		})
@@ -101,7 +101,7 @@ func FromDefaultBranch(t *testing.T) {
 		fnd, err := funding.GetFundingFromDefaultBranch(t.Context(), repo)
 		require.NoError(t, err)
 		require.NotNil(t, fnd)
-		assertEntriesMatchConfig1(t, repo, fnd, ".forgejo/funding.yml")
+		assertEntriesMatchConfig1(t, repo, fnd, ".novroforge/funding.yml")
 	})
 
 	t.Run("prefers .github over root", func(t *testing.T) {
@@ -118,10 +118,10 @@ func FromDefaultBranch(t *testing.T) {
 		assertEntriesMatchConfig1(t, repo, fnd, ".github/funding.yml")
 	})
 
-	t.Run("prefers .forgejo over root", func(t *testing.T) {
+	t.Run("prefers .novroforge over root", func(t *testing.T) {
 		repo := forgery.CreateRepository(t, nil, &forgery.CreateRepositoryOptions{
 			Files: forgery.MapFS{
-				".forgejo/funding.yml": forgery.MapFile(config1),
+				".novroforge/funding.yml": forgery.MapFile(config1),
 				"funding.yml":          forgery.MapFile(config2),
 			},
 		})
@@ -129,6 +129,6 @@ func FromDefaultBranch(t *testing.T) {
 		fnd, err := funding.GetFundingFromDefaultBranch(t.Context(), repo)
 		require.NoError(t, err)
 		require.NotNil(t, fnd)
-		assertEntriesMatchConfig1(t, repo, fnd, ".forgejo/funding.yml")
+		assertEntriesMatchConfig1(t, repo, fnd, ".novroforge/funding.yml")
 	})
 }

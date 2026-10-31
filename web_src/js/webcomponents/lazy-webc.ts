@@ -53,7 +53,7 @@ function replaceTag(elt: HTMLElement, name: string) {
 onDomReady(() => {
   // The lazy-webc component will replace itself with an element of the type given in the attribute tag.
   // This seems to be the best way without having to create a global mutationObserver.
-  // See https://codeberg.org/forgejo/forgejo/pulls/8510 for discussion.
+  // See https://codeberg.org/novroforge/novroforge/pulls/8510 for discussion.
   window.customElements.define(
     'lazy-webc',
     class extends HTMLElement {

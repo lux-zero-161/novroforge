@@ -20,8 +20,8 @@ import (
 	"novroforge.xyz/modules/timeutil"
 	webhook_module "novroforge.xyz/modules/webhook"
 
-	"code.forgejo.org/forgejo/runner/v13/act/jobparser"
-	act_model "code.forgejo.org/forgejo/runner/v13/act/model"
+	"code.novroforge.xyz/novroforge/runner/v13/act/jobparser"
+	act_model "code.novroforge.xyz/novroforge/runner/v13/act/model"
 	"github.com/gdgvda/cron"
 )
 
@@ -174,7 +174,7 @@ func CreateScheduleTask(ctx context.Context, cron *actions_model.ActionSchedule)
 		}
 	}
 
-	// In the event that local reusable workflows (eg. `uses: ./.forgejo/workflows/reusable.yml`) are present, we'll
+	// In the event that local reusable workflows (eg. `uses: ./.novroforge/workflows/reusable.yml`) are present, we'll
 	// need to read the commit of the schedule to resolve that reference:
 	expandLocalReusableWorkflow, expandCleanup := lazyRepoExpandLocalReusableWorkflow(ctx, cron.RepoID, cron.CommitSHA)
 	defer expandCleanup()

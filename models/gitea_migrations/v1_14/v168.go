@@ -3,7 +3,7 @@
 
 package v1_14
 
-import "code.forgejo.org/xorm/xorm"
+import "code.novroforge.xyz/xorm/xorm"
 
 func RecreateUserTableToFixDefaultValues(_ *xorm.Engine) error {
 	return nil

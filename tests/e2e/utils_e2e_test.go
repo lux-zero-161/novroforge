@@ -25,7 +25,7 @@ import (
 	"novroforge.xyz/modules/util"
 	"novroforge.xyz/tests"
 
-	"code.forgejo.org/go-chi/session"
+	"code.novroforge.xyz/go-chi/session"
 	"github.com/stretchr/testify/require"
 )
 

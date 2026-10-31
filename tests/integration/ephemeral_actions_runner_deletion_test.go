@@ -19,7 +19,7 @@ import (
 	repo_service "novroforge.xyz/services/repository"
 	user_service "novroforge.xyz/services/user"
 
-	runnerv1 "code.forgejo.org/forgejo/actions-proto/runner/v1"
+	runnerv1 "code.novroforge.xyz/forgejo/actions-proto/runner/v1"
 	"connectrpc.com/connect"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

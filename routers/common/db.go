@@ -15,7 +15,7 @@ import (
 	"novroforge.xyz/modules/setting"
 	"novroforge.xyz/modules/setting/config"
 
-	"code.forgejo.org/xorm/xorm"
+	"code.novroforge.xyz/xorm/xorm"
 )
 
 // InitDBEngine In case of problems connecting to DB, retry connection. Eg, PGSQL in Docker Container on Synology

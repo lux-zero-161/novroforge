@@ -49,7 +49,7 @@ services/migrations/lint-locale-usage/.* @fogti
 # Often work with, and on, the API
 modules/structs/.* @Cyborus
 routers/api/v1/.* @Cyborus
-routers/api/forgejo/.* @Cyborus
+routers/api/novroforge/.* @Cyborus
 tests/integration/api_.* @Cyborus
 
 # Federation code, requires care to be taken with regards to interoperability

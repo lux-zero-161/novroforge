@@ -4,7 +4,7 @@
 package v1_22
 
 import (
-	"code.forgejo.org/xorm/xorm"
+	"code.novroforge.xyz/xorm/xorm"
 )
 
 type RepoFlag struct {
@@ -14,7 +14,7 @@ type RepoFlag struct {
 }
 
 func (RepoFlag) TableName() string {
-	return "forgejo_repo_flag"
+	return "novroforge_repo_flag"
 }
 
 func CreateRepoFlagTable(x *xorm.Engine) error {

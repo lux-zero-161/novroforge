@@ -10,7 +10,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"novroforge.xyz/cmd/forgejo"
+	"novroforge.xyz/cmd/novroforge"
 	"novroforge.xyz/modules/log"
 	"novroforge.xyz/modules/setting"
 
@@ -126,11 +126,11 @@ func NewMainApp(version, versionExtra string) *cli.Command {
 	globalFlags := func() []cli.Flag { return []cli.Flag{} }
 
 	//
-	// If the executable is forgejo-cli, provide a NovroForge specific CLI
+	// If the executable is novroforge-cli, provide a NovroForge specific CLI
 	// that is NOT compatible with Gitea.
 	//
-	if executable == "forgejo-cli" {
-		subCmdsStandalone = append(subCmdsStandalone, forgejo.CmdActions(context.Background()))
+	if executable == "novroforge-cli" {
+		subCmdsStandalone = append(subCmdsStandalone, novroforge.CmdActions(context.Background()))
 		globalFlags = func() []cli.Flag {
 			return []cli.Flag{
 				&cli.BoolFlag{
@@ -144,11 +144,11 @@ func NewMainApp(version, versionExtra string) *cli.Command {
 	} else {
 		//
 		// Otherwise provide a Gitea compatible CLI which includes NovroForge
-		// specific additions under the forgejo-cli subcommand. It allows
+		// specific additions under the novroforge-cli subcommand. It allows
 		// admins to migration from Gitea to NovroForge by replacing the gitea
-		// binary and rename it to forgejo if they want.
+		// binary and rename it to novroforge if they want.
 		//
-		subCmdsStandalone = append(subCmdsStandalone, forgejo.CmdNovroForge(context.Background()))
+		subCmdsStandalone = append(subCmdsStandalone, novroforge.CmdNovroForge(context.Background()))
 		subCmdWithConfig = append(subCmdWithConfig, cmdActions())
 	}
 
@@ -157,9 +157,9 @@ func NewMainApp(version, versionExtra string) *cli.Command {
 
 func innerNewMainApp(version, versionExtra string, subCmdsStandaloneArgs, subCmdWithConfigArgs []*cli.Command, globalFlagsArgs func() []cli.Flag) *cli.Command {
 	app := &cli.Command{}
-	app.Name = "forgejo"
+	app.Name = "novroforge"
 	app.Usage = "Beyond coding. We forge."
-	app.Description = `By default, forgejo will start serving using the web-server with no argument, which can alternatively be run by running the subcommand "web".`
+	app.Description = `By default, novroforge will start serving using the web-server with no argument, which can alternatively be run by running the subcommand "web".`
 	app.Version = version + versionExtra
 	app.EnableShellCompletion = true
 

@@ -25,9 +25,9 @@ func ListForks(ctx *context.APIContext) {
 	}
 	apiForks := make([]*api.Repository, len(forks))
 	for i, fork := range forks {
-		// ruleid:forgejo-api-use-resource-GetUserRepoPermission
+		// ruleid:novroforge-api-use-resource-GetUserRepoPermission
 		permission, err := access_model.GetUserRepoPermissionWithReducer(ctx, fork, ctx.Doer, ctx.Reducer)
-		// ok:forgejo-api-use-resource-GetUserRepoPermission
+		// ok:novroforge-api-use-resource-GetUserRepoPermission
 		permission, err := access_model.GetUserRepoPermissionWithReducer(ctx, fork, ctx.Doer, ctx.Reducer)
 		if err != nil {
 			ctx.Error(http.StatusInternalServerError, "GetUserRepoPermission", err)
@@ -47,7 +47,7 @@ func getStarredRepos(ctx std_context.Context, user *user_model.User, private boo
 
 	repos := make([]*api.Repository, len(starredRepos))
 	for i, starred := range starredRepos {
-		// ruleid:forgejo-api-suspicious-GetUserRepoPermission
+		// ruleid:novroforge-api-suspicious-GetUserRepoPermission
 		permission, err := access_model.GetUserRepoPermission(ctx, starred, user)
 		if err != nil {
 			return nil, err

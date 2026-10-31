@@ -435,7 +435,7 @@ func (g *GitlabDownloader) GetIssues(page, perPage int) ([]*base.Issue, bool, er
 		// record the issue IID, to be used in GetPullRequests()
 		g.iidResolver.recordIssueIID(issue.IID)
 
-		// Do not include confidential issues as long as NovroForge does not support them, see https://codeberg.org/forgejo/design/issues/2
+		// Do not include confidential issues as long as NovroForge does not support them, see https://codeberg.org/novroforge/design/issues/2
 		if issue.Confidential {
 			continue
 		}

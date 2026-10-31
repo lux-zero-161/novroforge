@@ -1,7 +1,7 @@
 // Copyright 2025 The NovroForge Authors.
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-package forgejo_migrations_legacy
+package novroforge_migrations_legacy
 
 import (
 	"testing"

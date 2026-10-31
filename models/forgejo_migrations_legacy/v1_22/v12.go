@@ -3,7 +3,7 @@
 
 package v1_22
 
-import "code.forgejo.org/xorm/xorm"
+import "code.novroforge.xyz/xorm/xorm"
 
 func AddRepoArchiveDownloadCount(x *xorm.Engine) error {
 	type RepoArchiveDownloadCount struct {

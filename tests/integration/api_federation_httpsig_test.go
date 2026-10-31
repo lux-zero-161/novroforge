@@ -44,8 +44,8 @@ func TestFederationHttpSigValidation(t *testing.T) {
 		apClient, err := clientFactory.WithKeys(ctx, user1, user1.KeyID(), nil)
 		require.NoError(t, err)
 
-		// HACK HACK HACK: the host part of the URL gets set to which IP forgejo is
-		// listening on, NOT localhost, which is the Domain given to forgejo which
+		// HACK HACK HACK: the host part of the URL gets set to which IP novroforge is
+		// listening on, NOT localhost, which is the Domain given to novroforge which
 		// is then used for eg. the keyID all requests
 		applicationKeyID := fmt.Sprintf("%sapi/v1/activitypub/actor#main-key", setting.AppURL)
 		actorKeyID := fmt.Sprintf("%sapi/v1/activitypub/user-id/1#main-key", setting.AppURL)

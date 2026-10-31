@@ -6,7 +6,7 @@
   resource_all_repos: true
   name: "Example AI"
   description: "This is an authorized integration.\nThis example is just for viewing and editing."
-  issuer: "urn:forgejo:authorized-integrations:actions" # avoid an external dependency on validating an issuer on edit
+  issuer: "urn:novroforge:authorized-integrations:actions" # avoid an external dependency on validating an issuer on edit
   audience: u:2:7a6a47fb-6252-48b2-b0bb-e39158b11a36
   claim_rules: "{}"
   created_unix: 1778959784

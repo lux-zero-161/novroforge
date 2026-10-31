@@ -28,7 +28,7 @@ import (
 	"novroforge.xyz/modules/web/middleware"
 	"novroforge.xyz/services/context"
 
-	"code.forgejo.org/go-chi/session"
+	"code.novroforge.xyz/go-chi/session"
 	"github.com/go-chi/chi/v5"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
