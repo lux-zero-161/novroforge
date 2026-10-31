@@ -18,6 +18,9 @@
 					{{end}}
 				</div>
 			</div>
+			<a href="{{AppSubUrl}}/legal/imprint">{{ctx.Locale.Tr "legal.imprint"}}</a>
+			<a href="{{AppSubUrl}}/legal/privacy">{{ctx.Locale.Tr "legal.privacy"}}</a>
+			<a href="{{AppSubUrl}}/legal/tos">{{ctx.Locale.Tr "legal.tos"}}</a>
 			<a href="{{AssetUrlPrefix}}/licenses.txt">{{ctx.Locale.Tr "licenses"}}</a>
 			{{if .EnableSwagger}}<a href="{{AppSubUrl}}/api/swagger">API</a>{{end}}
 			{{template "custom/extra_links_footer" .}}
