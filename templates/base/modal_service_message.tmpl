@@ -16,7 +16,7 @@
 					<form class="ui form" method="post" action="{{AppSubUrl}}/user/confirm?sm_type=modal&redirect_to={{.CurrentURL}}">
 						<button class="ui primary ok button">{{svg "octicon-check"}} {{ctx.Locale.Tr "modal.confirm"}}</button>
 					</form>
-					<button class="ui ok button link-action" data-url="{{AppSubUrl}}/user/logout">{{svg "octicon-x"}} {{ctx.Locale.Tr "modal.cancel"}}</button>
+					<a class="ui ok button" href="{{AppSubUrl}}/user/logout">{{svg "octicon-x"}} {{ctx.Locale.Tr "modal.cancel"}}</a>
 				{{end}}
 			</div>
 		</article>

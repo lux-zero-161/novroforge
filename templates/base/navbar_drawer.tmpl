@@ -39,7 +39,7 @@
 					<a href="{{AppSubUrl}}/user/settings">{{svg "octicon-tools" 16}}<span>{{ctx.Locale.Tr "your_settings"}}</span></a>
 					{{if .IsAdmin}}<a href="{{AppSubUrl}}/admin">{{svg "octicon-server" 16}}<span>{{ctx.Locale.Tr "admin_panel"}}</span></a>{{end}}
 				{{end}}
-				<a class="link-action" href data-url="{{AppSubUrl}}/user/logout">{{svg "octicon-sign-out" 16}}<span>{{ctx.Locale.Tr "sign_out"}}</span></a>
+				<a href="{{AppSubUrl}}/user/logout">{{svg "octicon-sign-out" 16}}<span>{{ctx.Locale.Tr "sign_out"}}</span></a>
 			</div>
 		{{else}}
 			<div class="navbar-drawer-group navbar-drawer-links">
