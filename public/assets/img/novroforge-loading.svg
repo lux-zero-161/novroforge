@@ -1,14 +1,86 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 212 212">
+<svg viewBox="0 0 210 160" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-width: 300px; display: block; margin: auto;">
   <style>
-    @keyframes draw-orange{0%{stroke-dashoffset:200}25%{stroke-dashoffset:200}50%{stroke-dashoffset:0}to{stroke-dashoffset:0}}@keyframes draw-red{0%{stroke-dashoffset:130}25%{stroke-dashoffset:0}50%,to{stroke-dashoffset:0}}@keyframes red-circle{0%{opacity:0}20%{opacity:0;stroke-width:0}25%{opacity:1;stroke-width:15}to{opacity:1}}@keyframes orange-circle{0%{opacity:0}45%{opacity:0;stroke-width:0}50%{opacity:1;stroke-width:15}to{opacity:1}}@keyframes fade{0%,90%{opacity:1}to{opacity:0}}circle,path{fill:none;stroke:#000;stroke-width:15}path{stroke-width:25}.orange{stroke:#f60}.red{stroke:#d40000}
+    /* Weiße Farbgebung */
+    .ring {
+      fill: none;
+      stroke: #FFFFFF;
+      stroke-width: 10;
+      stroke-linecap: round;
+    }
+    .solid {
+      fill: #FFFFFF;
+    }
+    .connector {
+      stroke: #FFFFFF;
+      stroke-width: 10;
+      stroke-linecap: round;
+    }
+
+    /* Endlos-Ladeanimationen */
+    .anim-draw {
+      stroke-dasharray: 151;
+      stroke-dashoffset: 151;
+      animation: drawCircle 1.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+    .anim-line {
+      stroke-dasharray: 12;
+      stroke-dashoffset: 12;
+      animation: drawLine 1.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+    .anim-spin {
+      transform-origin: 155px 50px;
+      animation: spin 1.5s linear infinite;
+    }
+    .anim-pulse {
+      transform-origin: 85px 50px;
+      animation: pulse 1.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+    .anim-pulse-dot {
+      transform-origin: 178px 22px;
+      animation: pulse 1.5s cubic-bezier(0.4, 0, 0.2, 1) infinite 0.2s;
+    }
+
+    /* Keyframes für den Loader-Loop */
+    @keyframes drawCircle {
+      0% { stroke-dashoffset: 151; opacity: 0; }
+      20% { opacity: 1; }
+      80% { stroke-dashoffset: 0; opacity: 1; }
+      100% { stroke-dashoffset: 0; opacity: 0; }
+    }
+    @keyframes drawLine {
+      0%, 20% { stroke-dashoffset: 12; opacity: 0; }
+      40% { opacity: 1; }
+      80% { stroke-dashoffset: 0; opacity: 1; }
+      100% { stroke-dashoffset: 0; opacity: 0; }
+    }
+    @keyframes spin {
+      from { transform: rotate(-45deg); }
+      to { transform: rotate(315deg); }
+    }
+    @keyframes pulse {
+      0% { transform: scale(0.8); opacity: 0.3; }
+      50% { transform: scale(1.05); opacity: 1; }
+      100% { transform: scale(0.8); opacity: 0.3; }
+    }
   </style>
-  <g transform="translate(6 6)">
-    <g style="animation:fade 2000ms ease-in-out 5ms infinite">
-      <path d="M58 168V70a50 50 0 0 1 50-50h20" class="orange" style="stroke-dasharray:200;stroke-dashoffset:200;animation:draw-orange 2000ms ease-out 5ms infinite"/>
-      <path d="M58 168v-30a50 50 0 0 1 50-50h20" class="red" style="stroke-dasharray:130;stroke-dashoffset:130;animation:draw-red 2000ms ease-out 5ms infinite"/>
-      <circle cx="142" cy="20" r="18" class="orange" style="opacity:0;animation:orange-circle 2000ms ease-out 5ms infinite"/>
-      <circle cx="142" cy="88" r="18" class="red" style="opacity:0;animation:red-circle 2000ms ease-out 5ms infinite"/>
-    </g>
-    <circle cx="58" cy="180" r="18" class="red"/>
+
+  <!-- Untere Reihe: Ringe und Verbindungen -->
+  <g>
+    <circle cx="45" cy="115" r="24" class="ring anim-draw" style="animation-delay: 0s;" />
+    <line x1="69" y1="115" x2="81" y2="115" class="connector anim-line" style="animation-delay: 0.1s;" />
+    
+    <circle cx="105" cy="115" r="24" class="ring anim-draw" style="animation-delay: 0.2s;" />
+    <line x1="129" y1="115" x2="141" y2="115" class="connector anim-line" style="animation-delay: 0.3s;" />
+    
+    <circle cx="165" cy="115" r="24" class="ring anim-draw" style="animation-delay: 0.4s;" />
   </g>
+
+  <!-- Oben Links: Pulsierender weißer Kreis -->
+  <circle cx="85" cy="50" r="34" class="solid anim-pulse" />
+
+  <!-- Oben Rechts: Rotierender offener Ring -->
+  <circle cx="155" cy="50" r="26" class="ring anim-spin" stroke-dasharray="130 33" />
+
+  <!-- Oben Rechts: Pulsierender Punkt -->
+  <circle cx="178" cy="22" r="6" class="solid anim-pulse-dot" />
 </svg>
