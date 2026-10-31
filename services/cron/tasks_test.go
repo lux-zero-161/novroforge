@@ -9,7 +9,7 @@ import (
 	"strconv"
 	"testing"
 
-	"forgejo.org/modules/test"
+	"novroforge.xyz/modules/test"
 
 	"github.com/go-co-op/gocron/v2"
 	"github.com/stretchr/testify/assert"

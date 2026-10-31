@@ -10,14 +10,14 @@ import (
 	"net/http"
 	"strings"
 
-	auth_model "forgejo.org/models/auth"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/base"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/util"
-	"forgejo.org/services/auth"
-	"forgejo.org/services/auth/source/db"
+	auth_model "novroforge.xyz/models/auth"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/base"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/util"
+	"novroforge.xyz/services/auth"
+	"novroforge.xyz/services/auth/source/db"
 )
 
 // Ensure the struct implements the interface.

@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"testing"
 
-	"forgejo.org/tests"
+	"novroforge.xyz/tests"
 
 	"github.com/stretchr/testify/assert"
 )
@@ -34,7 +34,7 @@ func TestCSRFProtection(t *testing.T) {
 		req.Header.Set("Origin", "https://evil.com")
 		// Cannot set Host as header, `req.Host` is used (which is normally parsed)
 		// from the Host header, but in testing we can't do this.
-		req.Host = "forgejo.org"
+		req.Host = "novroforge.xyz"
 		return req
 	}
 
@@ -57,7 +57,7 @@ func TestCSRFProtection(t *testing.T) {
 		req.Header.Set("Origin", "https://novroforge.xyz")
 		// Cannot set Host as header, `req.Host` is used (which is normally parsed)
 		// from the Host header, but in testing we can't do this.
-		req.Host = "forgejo.org"
+		req.Host = "novroforge.xyz"
 		return req
 	}
 

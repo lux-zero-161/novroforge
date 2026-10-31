@@ -10,7 +10,7 @@ import (
 	"path"
 	"strings"
 
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/util"
 )
 
 const (

@@ -6,10 +6,10 @@ package bleve
 import (
 	"context"
 
-	indexer_internal "forgejo.org/modules/indexer/internal"
-	inner_bleve "forgejo.org/modules/indexer/internal/bleve"
-	"forgejo.org/modules/indexer/issues/internal"
-	"forgejo.org/modules/optional"
+	indexer_internal "novroforge.xyz/modules/indexer/internal"
+	inner_bleve "novroforge.xyz/modules/indexer/internal/bleve"
+	"novroforge.xyz/modules/indexer/issues/internal"
+	"novroforge.xyz/modules/optional"
 
 	"github.com/blevesearch/bleve/v2"
 	"github.com/blevesearch/bleve/v2/analysis/analyzer/custom"

@@ -6,8 +6,8 @@ package tests
 import (
 	"testing"
 
-	unit_model "forgejo.org/models/unit"
-	apiv1_permissions "forgejo.org/routers/api/v1/permissions"
+	unit_model "novroforge.xyz/models/unit"
+	apiv1_permissions "novroforge.xyz/routers/api/v1/permissions"
 )
 
 var _ = registerFunctionTestBuilder([]string{"ReqAdmin ", "ReqAdmin"}, func(t *testing.T, signatureString string, signature []any) {

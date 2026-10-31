@@ -4,8 +4,8 @@
 package v1_15
 
 import (
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/util"
 
 	"code.forgejo.org/xorm/xorm"
 	"xorm.io/builder"

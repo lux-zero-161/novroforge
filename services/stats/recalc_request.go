@@ -9,8 +9,8 @@ import (
 	"strconv"
 	"strings"
 
-	"forgejo.org/modules/optional"
-	"forgejo.org/modules/timeutil"
+	"novroforge.xyz/modules/optional"
+	"novroforge.xyz/modules/timeutil"
 )
 
 type recalcRequest struct {

@@ -8,10 +8,10 @@ import (
 	"net/http"
 	"testing"
 
-	"forgejo.org/modules/options"
-	repo_module "forgejo.org/modules/repository"
-	api "forgejo.org/modules/structs"
-	"forgejo.org/tests"
+	"novroforge.xyz/modules/options"
+	repo_module "novroforge.xyz/modules/repository"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/tests"
 
 	"github.com/stretchr/testify/assert"
 )

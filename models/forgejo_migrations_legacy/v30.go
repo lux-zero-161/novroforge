@@ -6,10 +6,10 @@ package forgejo_migrations_legacy
 import (
 	"time"
 
-	"forgejo.org/models/gitea_migrations/base"
-	"forgejo.org/modules/forgefed"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/timeutil"
+	"novroforge.xyz/models/gitea_migrations/base"
+	"novroforge.xyz/modules/forgefed"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/timeutil"
 
 	"code.forgejo.org/xorm/xorm"
 )

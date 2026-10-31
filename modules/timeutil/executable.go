@@ -9,7 +9,7 @@ import (
 	"sync"
 	"time"
 
-	"forgejo.org/modules/log"
+	"novroforge.xyz/modules/log"
 )
 
 var (

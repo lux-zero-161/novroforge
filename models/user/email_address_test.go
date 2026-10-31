@@ -8,10 +8,10 @@ import (
 	"slices"
 	"testing"
 
-	"forgejo.org/models/db"
-	"forgejo.org/models/unittest"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/optional"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/unittest"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/optional"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

@@ -17,14 +17,14 @@ import (
 	"syscall"
 	"time"
 
-	"forgejo.org/models/auth"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/base"
-	"forgejo.org/modules/httplib"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/templates"
-	"forgejo.org/modules/web/middleware"
+	"novroforge.xyz/models/auth"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/base"
+	"novroforge.xyz/modules/httplib"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/templates"
+	"novroforge.xyz/modules/web/middleware"
 )
 
 // RedirectToUser redirect to a differently-named user

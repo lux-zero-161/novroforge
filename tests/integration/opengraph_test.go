@@ -8,8 +8,8 @@ import (
 	"net/http"
 	"testing"
 
-	"forgejo.org/modules/setting"
-	"forgejo.org/tests"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/tests"
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/stretchr/testify/assert"

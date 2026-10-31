@@ -11,7 +11,7 @@ import (
 	"strconv"
 	"strings"
 
-	"forgejo.org/modules/log"
+	"novroforge.xyz/modules/log"
 
 	"github.com/redis/go-redis/v9"
 )

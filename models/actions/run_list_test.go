@@ -6,8 +6,8 @@ package actions
 import (
 	"testing"
 
-	"forgejo.org/models/unittest"
-	"forgejo.org/modules/translation"
+	"novroforge.xyz/models/unittest"
+	"novroforge.xyz/modules/translation"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

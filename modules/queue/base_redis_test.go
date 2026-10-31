@@ -7,9 +7,9 @@ import (
 	"context"
 	"testing"
 
-	"forgejo.org/modules/nosql"
-	queue_mock "forgejo.org/modules/queue/mock"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/nosql"
+	queue_mock "novroforge.xyz/modules/queue/mock"
+	"novroforge.xyz/modules/setting"
 
 	"github.com/redis/go-redis/v9"
 	"github.com/stretchr/testify/mock"

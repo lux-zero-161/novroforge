@@ -4,9 +4,9 @@
 package utils
 
 import (
-	"forgejo.org/models/db"
-	"forgejo.org/services/context"
-	"forgejo.org/services/convert"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/convert"
 )
 
 // GetListOptions returns list options using the page and limit parameters

@@ -4,10 +4,10 @@
 package indexer
 
 import (
-	code_indexer "forgejo.org/modules/indexer/code"
-	issue_indexer "forgejo.org/modules/indexer/issues"
-	stats_indexer "forgejo.org/modules/indexer/stats"
-	notify_service "forgejo.org/services/notify"
+	code_indexer "novroforge.xyz/modules/indexer/code"
+	issue_indexer "novroforge.xyz/modules/indexer/issues"
+	stats_indexer "novroforge.xyz/modules/indexer/stats"
+	notify_service "novroforge.xyz/services/notify"
 )
 
 // Init initialize the repo indexer

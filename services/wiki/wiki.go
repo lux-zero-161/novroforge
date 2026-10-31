@@ -11,17 +11,17 @@ import (
 	"os"
 	"strings"
 
-	repo_model "forgejo.org/models/repo"
-	system_model "forgejo.org/models/system"
-	"forgejo.org/models/unit"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/gitrepo"
-	"forgejo.org/modules/log"
-	repo_module "forgejo.org/modules/repository"
-	"forgejo.org/modules/sync"
-	asymkey_service "forgejo.org/services/asymkey"
-	repo_service "forgejo.org/services/repository"
+	repo_model "novroforge.xyz/models/repo"
+	system_model "novroforge.xyz/models/system"
+	"novroforge.xyz/models/unit"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/gitrepo"
+	"novroforge.xyz/modules/log"
+	repo_module "novroforge.xyz/modules/repository"
+	"novroforge.xyz/modules/sync"
+	asymkey_service "novroforge.xyz/services/asymkey"
+	repo_service "novroforge.xyz/services/repository"
 )
 
 // TODO: use clustered lock (unique queue? or *abuse* cache)

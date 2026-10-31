@@ -9,11 +9,11 @@ import (
 	"net/http"
 	"strings"
 
-	auth_model "forgejo.org/models/auth"
-	"forgejo.org/modules/structs"
-	"forgejo.org/modules/validation"
-	"forgejo.org/modules/web/middleware"
-	"forgejo.org/services/context"
+	auth_model "novroforge.xyz/models/auth"
+	"novroforge.xyz/modules/structs"
+	"novroforge.xyz/modules/validation"
+	"novroforge.xyz/modules/web/middleware"
+	"novroforge.xyz/services/context"
 
 	"code.forgejo.org/go-chi/binding"
 )

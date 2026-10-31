@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"maps"
 
-	"forgejo.org/modules/json"
+	"novroforge.xyz/modules/json"
 
 	"github.com/golang-jwt/jwt/v5"
 )

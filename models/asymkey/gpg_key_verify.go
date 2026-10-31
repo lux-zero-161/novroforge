@@ -8,10 +8,10 @@ import (
 	"strconv"
 	"time"
 
-	"forgejo.org/models/db"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/base"
-	"forgejo.org/modules/log"
+	"novroforge.xyz/models/db"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/base"
+	"novroforge.xyz/modules/log"
 )
 
 //   __________________  ________   ____  __.

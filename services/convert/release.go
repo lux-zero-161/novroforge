@@ -6,8 +6,8 @@ package convert
 import (
 	"context"
 
-	repo_model "forgejo.org/models/repo"
-	api "forgejo.org/modules/structs"
+	repo_model "novroforge.xyz/models/repo"
+	api "novroforge.xyz/modules/structs"
 )
 
 // ToAPIRelease convert a repo_model.Release to api.Release

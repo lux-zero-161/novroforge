@@ -8,9 +8,9 @@ import (
 	"slices"
 	"testing"
 
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/system"
-	"forgejo.org/modules/test"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/system"
+	"novroforge.xyz/modules/test"
 
 	"github.com/hashicorp/go-version"
 	"github.com/stretchr/testify/assert"
@@ -21,53 +21,53 @@ import (
 func TestDNSUpdate(t *testing.T) {
 	t.Run("empty", func(t *testing.T) {
 		defer test.MockVariableValue(&lookupTXT, func(domain string) ([]string, error) {
-			assert.Equal(t, "release.forgejo.org", domain)
+			assert.Equal(t, "release.novroforge.xyz", domain)
 			return []string{}, nil
 		})()
-		_, err := getVersionDNS("release.forgejo.org")
+		_, err := getVersionDNS("release.novroforge.xyz")
 		require.ErrorContains(t, err, "no TXT record")
 	})
 
 	t.Run("unrelated TXT", func(t *testing.T) {
 		defer test.MockVariableValue(&lookupTXT, func(domain string) ([]string, error) {
-			assert.Equal(t, "release.forgejo.org", domain)
+			assert.Equal(t, "release.novroforge.xyz", domain)
 			return []string{
 				"v=spf1 -all",
 			}, nil
 		})()
-		_, err := getVersionDNS("release.forgejo.org")
+		_, err := getVersionDNS("release.novroforge.xyz")
 		require.ErrorContains(t, err, "no TXT record")
 	})
 
 	t.Run("single response, single value", func(t *testing.T) {
 		defer test.MockVariableValue(&lookupTXT, func(domain string) ([]string, error) {
-			assert.Equal(t, "release.forgejo.org", domain)
+			assert.Equal(t, "release.novroforge.xyz", domain)
 			return []string{"forgejo_versions=16.0.3"}, nil
 		})()
-		versions, err := getVersionDNS("release.forgejo.org")
+		versions, err := getVersionDNS("release.novroforge.xyz")
 		require.NoError(t, err)
 		assert.Equal(t, []string{"16.0.3"}, versions)
 	})
 
 	t.Run("single response, multiple values", func(t *testing.T) {
 		defer test.MockVariableValue(&lookupTXT, func(domain string) ([]string, error) {
-			assert.Equal(t, "release.forgejo.org", domain)
+			assert.Equal(t, "release.novroforge.xyz", domain)
 			return []string{"forgejo_versions=16.0.3, 15.0.7"}, nil
 		})()
-		versions, err := getVersionDNS("release.forgejo.org")
+		versions, err := getVersionDNS("release.novroforge.xyz")
 		require.NoError(t, err)
 		assert.Equal(t, []string{"16.0.3", "15.0.7"}, versions)
 	})
 
 	t.Run("multiple responses, multiple values", func(t *testing.T) {
 		defer test.MockVariableValue(&lookupTXT, func(domain string) ([]string, error) {
-			assert.Equal(t, "blah.forgejo.org", domain)
+			assert.Equal(t, "blah.novroforge.xyz", domain)
 			return []string{
 				"forgejo_versions=16.0.3",
 				"forgejo_versions=15.0.7",
 			}, nil
 		})()
-		versions, err := getVersionDNS("blah.forgejo.org")
+		versions, err := getVersionDNS("blah.novroforge.xyz")
 		require.NoError(t, err)
 		assert.Equal(t, []string{"16.0.3", "15.0.7"}, versions)
 	})

@@ -8,10 +8,10 @@ import (
 	"reflect"
 	"strings"
 
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/translation"
-	"forgejo.org/modules/util"
-	"forgejo.org/modules/validation"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/translation"
+	"novroforge.xyz/modules/util"
+	"novroforge.xyz/modules/validation"
 
 	"code.forgejo.org/go-chi/binding"
 )

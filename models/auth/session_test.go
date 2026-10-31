@@ -7,10 +7,10 @@ import (
 	"testing"
 	"time"
 
-	"forgejo.org/models/auth"
-	"forgejo.org/models/db"
-	"forgejo.org/models/unittest"
-	"forgejo.org/modules/timeutil"
+	"novroforge.xyz/models/auth"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/unittest"
+	"novroforge.xyz/modules/timeutil"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

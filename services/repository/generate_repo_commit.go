@@ -12,10 +12,10 @@ import (
 	"strings"
 	"time"
 
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/util"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/util"
 )
 
 func generateRepoCommit(ctx context.Context, repo, templateRepo, generateRepo *repo_model.Repository, tmpDir string) error {

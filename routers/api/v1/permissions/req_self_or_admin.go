@@ -6,7 +6,7 @@ package permissions
 import (
 	"net/http"
 
-	user_model "forgejo.org/models/user"
+	user_model "novroforge.xyz/models/user"
 )
 
 func ReqSelfOrAdmin(ctx Context) {

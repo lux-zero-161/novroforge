@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"regexp"
 
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/setting"
 )
 
 // CountBadSequences looks for broken sequences from recreate-table mistakes

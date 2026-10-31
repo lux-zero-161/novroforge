@@ -11,9 +11,9 @@ import (
 	"fmt"
 	"os"
 
-	"forgejo.org/modules/indexer/internal/zoekt/meta"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/indexer/internal/zoekt/meta"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/util"
 
 	"github.com/sourcegraph/zoekt"
 	"github.com/sourcegraph/zoekt/search"

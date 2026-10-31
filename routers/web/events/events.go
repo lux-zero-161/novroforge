@@ -7,11 +7,11 @@ import (
 	"net/http"
 	"time"
 
-	"forgejo.org/modules/eventsource"
-	"forgejo.org/modules/graceful"
-	"forgejo.org/modules/log"
-	"forgejo.org/routers/web/auth"
-	"forgejo.org/services/context"
+	"novroforge.xyz/modules/eventsource"
+	"novroforge.xyz/modules/graceful"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/routers/web/auth"
+	"novroforge.xyz/services/context"
 )
 
 // Events listens for events

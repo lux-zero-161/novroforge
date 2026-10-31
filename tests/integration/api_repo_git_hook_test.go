@@ -10,12 +10,12 @@ import (
 	"slices"
 	"testing"
 
-	auth_model "forgejo.org/models/auth"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/models/unittest"
-	api "forgejo.org/modules/structs"
-	"forgejo.org/tests"
-	"forgejo.org/tests/forgery"
+	auth_model "novroforge.xyz/models/auth"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/models/unittest"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/tests"
+	"novroforge.xyz/tests/forgery"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

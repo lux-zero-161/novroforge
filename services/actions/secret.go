@@ -8,9 +8,9 @@ import (
 	"errors"
 	"fmt"
 
-	actions_model "forgejo.org/models/actions"
-	secret_model "forgejo.org/models/secret"
-	actions_module "forgejo.org/modules/actions"
+	actions_model "novroforge.xyz/models/actions"
+	secret_model "novroforge.xyz/models/secret"
+	actions_module "novroforge.xyz/modules/actions"
 
 	"code.forgejo.org/forgejo/runner/v13/act/jobparser"
 )

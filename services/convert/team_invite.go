@@ -6,10 +6,10 @@ package convert
 import (
 	"context"
 
-	org_model "forgejo.org/models/organization"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/optional"
-	api "forgejo.org/modules/structs"
+	org_model "novroforge.xyz/models/organization"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/optional"
+	api "novroforge.xyz/modules/structs"
 )
 
 func ToTeamInvite(ctx context.Context, invite *org_model.TeamInvite, doer *user_model.User) *api.TeamInvite {

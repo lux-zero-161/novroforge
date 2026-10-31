@@ -6,7 +6,7 @@ package permissions
 import (
 	"net/http"
 
-	"forgejo.org/models/perm"
+	"novroforge.xyz/models/perm"
 )
 
 func ReqPackageAccess(ctx Context, accessMode perm.AccessMode) {

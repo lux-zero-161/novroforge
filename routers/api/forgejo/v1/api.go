@@ -4,8 +4,8 @@
 package v1
 
 import (
-	"forgejo.org/modules/web"
-	"forgejo.org/routers/api/shared"
+	"novroforge.xyz/modules/web"
+	"novroforge.xyz/routers/api/shared"
 )
 
 func Routes() *web.Route {

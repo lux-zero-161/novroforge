@@ -5,8 +5,8 @@ package v1
 import (
 	"net/http"
 
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/setting"
 )
 
 type Forgejo struct{}

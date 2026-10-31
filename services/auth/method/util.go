@@ -7,11 +7,11 @@ import (
 	"net/http"
 	"strings"
 
-	"forgejo.org/modules/base"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/optional"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/base"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/optional"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/util"
 )
 
 func tokenFromForm(req *http.Request) optional.Option[string] {

@@ -9,8 +9,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/log"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/log"
 )
 
 // SessionConfig defines Session settings

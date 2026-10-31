@@ -14,12 +14,12 @@ import (
 	"strings"
 	"time"
 
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/log"
-	base "forgejo.org/modules/migration"
-	"forgejo.org/modules/proxy"
-	"forgejo.org/modules/structs"
-	"forgejo.org/services/migrations/allowlist"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/log"
+	base "novroforge.xyz/modules/migration"
+	"novroforge.xyz/modules/proxy"
+	"novroforge.xyz/modules/structs"
+	"novroforge.xyz/services/migrations/allowlist"
 
 	"github.com/google/go-github/v81/github"
 	"golang.org/x/oauth2"

@@ -6,8 +6,8 @@ package tests
 import (
 	"testing"
 
-	"forgejo.org/models/perm"
-	apiv1_permissions "forgejo.org/routers/api/v1/permissions"
+	"novroforge.xyz/models/perm"
+	apiv1_permissions "novroforge.xyz/routers/api/v1/permissions"
 )
 
 var _ = registerFunctionTestBuilder([]string{"ReqPackageAccess "}, func(_ *testing.T, signatureString string, signature []any) {

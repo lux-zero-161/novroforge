@@ -19,11 +19,11 @@ import (
 	"strings"
 	"time"
 
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/hostmatcher"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/proxy"
-	"forgejo.org/modules/setting"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/hostmatcher"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/proxy"
+	"novroforge.xyz/modules/setting"
 
 	"github.com/42wim/httpsig"
 )

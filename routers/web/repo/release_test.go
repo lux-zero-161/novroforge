@@ -6,13 +6,13 @@ package repo
 import (
 	"testing"
 
-	"forgejo.org/models/db"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/models/unit"
-	"forgejo.org/models/unittest"
-	"forgejo.org/modules/web"
-	"forgejo.org/services/contexttest"
-	"forgejo.org/services/forms"
+	"novroforge.xyz/models/db"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/models/unit"
+	"novroforge.xyz/models/unittest"
+	"novroforge.xyz/modules/web"
+	"novroforge.xyz/services/contexttest"
+	"novroforge.xyz/services/forms"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

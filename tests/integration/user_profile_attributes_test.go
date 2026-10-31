@@ -8,10 +8,10 @@ import (
 	"strconv"
 	"testing"
 
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/structs"
-	"forgejo.org/modules/test"
-	"forgejo.org/tests"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/structs"
+	"novroforge.xyz/modules/test"
+	"novroforge.xyz/tests"
 
 	"github.com/stretchr/testify/assert"
 )

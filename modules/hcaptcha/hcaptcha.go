@@ -10,8 +10,8 @@ import (
 	"net/url"
 	"strings"
 
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/setting"
 )
 
 const verifyURL = "https://hcaptcha.com/siteverify"

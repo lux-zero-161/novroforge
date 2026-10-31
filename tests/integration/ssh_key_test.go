@@ -12,9 +12,9 @@ import (
 	"testing"
 	"time"
 
-	auth_model "forgejo.org/models/auth"
-	"forgejo.org/modules/git"
-	api "forgejo.org/modules/structs"
+	auth_model "novroforge.xyz/models/auth"
+	"novroforge.xyz/modules/git"
+	api "novroforge.xyz/modules/structs"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

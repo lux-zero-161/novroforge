@@ -13,8 +13,8 @@ import (
 	"testing"
 	"time"
 
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/test"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/test"
 
 	"code.forgejo.org/go-chi/cache"
 	"github.com/stretchr/testify/assert"

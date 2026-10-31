@@ -8,8 +8,8 @@ import (
 	"os"
 	"path/filepath"
 
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/util"
 )
 
 func getHookTemplates() (hookNames, hookTpls, giteaHookTpls []string) {

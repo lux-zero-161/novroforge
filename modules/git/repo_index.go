@@ -10,8 +10,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/util"
 )
 
 // ReadTreeToIndex reads a treeish to the index

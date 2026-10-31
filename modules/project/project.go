@@ -6,8 +6,8 @@ package project
 import (
 	"fmt"
 
-	"forgejo.org/modules/util"
-	"forgejo.org/modules/validation"
+	"novroforge.xyz/modules/util"
+	"novroforge.xyz/modules/validation"
 )
 
 // ErrMismatchedOwner represents an error that

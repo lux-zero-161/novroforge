@@ -8,8 +8,8 @@ import (
 	"errors"
 	"fmt"
 
-	"forgejo.org/models/gitea_migrations/base"
-	"forgejo.org/modules/timeutil"
+	"novroforge.xyz/models/gitea_migrations/base"
+	"novroforge.xyz/modules/timeutil"
 
 	"code.forgejo.org/xorm/xorm"
 )

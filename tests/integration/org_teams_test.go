@@ -7,10 +7,10 @@ import (
 	"net/http"
 	"testing"
 
-	"forgejo.org/models/organization"
-	access_model "forgejo.org/models/perm/access"
-	"forgejo.org/models/unittest"
-	"forgejo.org/tests"
+	"novroforge.xyz/models/organization"
+	access_model "novroforge.xyz/models/perm/access"
+	"novroforge.xyz/models/unittest"
+	"novroforge.xyz/tests"
 
 	"github.com/stretchr/testify/assert"
 )

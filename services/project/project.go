@@ -7,14 +7,14 @@ import (
 	"context"
 	"fmt"
 
-	"forgejo.org/models/db"
-	project_model "forgejo.org/models/project"
-	repo_model "forgejo.org/models/repo"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/optional"
-	project_module "forgejo.org/modules/project"
-	project_structs "forgejo.org/modules/structs"
-	validation "forgejo.org/modules/validation"
+	"novroforge.xyz/models/db"
+	project_model "novroforge.xyz/models/project"
+	repo_model "novroforge.xyz/models/repo"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/optional"
+	project_module "novroforge.xyz/modules/project"
+	project_structs "novroforge.xyz/modules/structs"
+	validation "novroforge.xyz/modules/validation"
 )
 
 func getBasicSearchOpts(isShowClosed bool, sortType, keyword string, projectType project_module.APIOwnerType, pageOpts ...int) *project_model.SearchOptions {

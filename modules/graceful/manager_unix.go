@@ -13,10 +13,10 @@ import (
 	"syscall"
 	"time"
 
-	"forgejo.org/modules/graceful/releasereopen"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/process"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/graceful/releasereopen"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/process"
+	"novroforge.xyz/modules/setting"
 )
 
 func pidMsg() systemdNotifyMsg {

@@ -5,11 +5,11 @@ package user
 import (
 	"context"
 
-	model "forgejo.org/models"
-	"forgejo.org/models/db"
-	repo_model "forgejo.org/models/repo"
-	user_model "forgejo.org/models/user"
-	actions_service "forgejo.org/services/actions"
+	model "novroforge.xyz/models"
+	"novroforge.xyz/models/db"
+	repo_model "novroforge.xyz/models/repo"
+	user_model "novroforge.xyz/models/user"
+	actions_service "novroforge.xyz/services/actions"
 
 	"xorm.io/builder"
 )

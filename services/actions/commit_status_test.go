@@ -6,11 +6,11 @@ package actions
 import (
 	"testing"
 
-	actions_model "forgejo.org/models/actions"
-	git_model "forgejo.org/models/git"
-	"forgejo.org/models/unittest"
-	"forgejo.org/modules/cache"
-	"forgejo.org/modules/structs"
+	actions_model "novroforge.xyz/models/actions"
+	git_model "novroforge.xyz/models/git"
+	"novroforge.xyz/models/unittest"
+	"novroforge.xyz/modules/cache"
+	"novroforge.xyz/modules/structs"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

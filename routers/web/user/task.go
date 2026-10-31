@@ -7,9 +7,9 @@ import (
 	"net/http"
 	"strconv"
 
-	admin_model "forgejo.org/models/admin"
-	"forgejo.org/modules/json"
-	"forgejo.org/services/context"
+	admin_model "novroforge.xyz/models/admin"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/services/context"
 )
 
 // TaskStatus returns task's status

@@ -7,9 +7,9 @@ import (
 	"net/http"
 	"runtime"
 
-	"forgejo.org/modules/process"
-	"forgejo.org/modules/setting"
-	"forgejo.org/services/context"
+	"novroforge.xyz/modules/process"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/services/context"
 )
 
 // Stacktrace show admin monitor goroutines page

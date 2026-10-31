@@ -6,9 +6,9 @@ package repo
 import (
 	"net/http"
 
-	"forgejo.org/modules/base"
-	"forgejo.org/modules/git"
-	"forgejo.org/services/context"
+	"novroforge.xyz/modules/base"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/services/context"
 
 	"github.com/go-enry/go-enry/v2"
 )

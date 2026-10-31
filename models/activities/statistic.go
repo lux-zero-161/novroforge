@@ -6,18 +6,18 @@ package activities
 import (
 	"context"
 
-	asymkey_model "forgejo.org/models/asymkey"
-	"forgejo.org/models/auth"
-	"forgejo.org/models/db"
-	git_model "forgejo.org/models/git"
-	issues_model "forgejo.org/models/issues"
-	"forgejo.org/models/organization"
-	access_model "forgejo.org/models/perm/access"
-	project_model "forgejo.org/models/project"
-	repo_model "forgejo.org/models/repo"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/models/webhook"
-	"forgejo.org/modules/setting"
+	asymkey_model "novroforge.xyz/models/asymkey"
+	"novroforge.xyz/models/auth"
+	"novroforge.xyz/models/db"
+	git_model "novroforge.xyz/models/git"
+	issues_model "novroforge.xyz/models/issues"
+	"novroforge.xyz/models/organization"
+	access_model "novroforge.xyz/models/perm/access"
+	project_model "novroforge.xyz/models/project"
+	repo_model "novroforge.xyz/models/repo"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/models/webhook"
+	"novroforge.xyz/modules/setting"
 )
 
 // Statistic contains the database statistics

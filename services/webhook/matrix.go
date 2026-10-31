@@ -16,16 +16,16 @@ import (
 	"regexp"
 	"strings"
 
-	webhook_model "forgejo.org/models/webhook"
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/log"
-	api "forgejo.org/modules/structs"
-	"forgejo.org/modules/svg"
-	"forgejo.org/modules/util"
-	webhook_module "forgejo.org/modules/webhook"
-	"forgejo.org/services/forms"
-	"forgejo.org/services/webhook/shared"
+	webhook_model "novroforge.xyz/models/webhook"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/log"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/modules/svg"
+	"novroforge.xyz/modules/util"
+	webhook_module "novroforge.xyz/modules/webhook"
+	"novroforge.xyz/services/forms"
+	"novroforge.xyz/services/webhook/shared"
 )
 
 type matrixHandler struct{}

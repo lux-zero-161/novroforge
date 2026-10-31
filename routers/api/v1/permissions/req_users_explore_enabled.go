@@ -4,7 +4,7 @@
 package permissions
 
 import (
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/setting"
 )
 
 func ReqUsersExploreEnabled(ctx Context) {

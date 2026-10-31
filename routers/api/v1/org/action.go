@@ -7,17 +7,17 @@ import (
 	"errors"
 	"net/http"
 
-	actions_model "forgejo.org/models/actions"
-	"forgejo.org/models/db"
-	secret_model "forgejo.org/models/secret"
-	api "forgejo.org/modules/structs"
-	"forgejo.org/modules/util"
-	"forgejo.org/modules/web"
-	"forgejo.org/routers/api/v1/shared"
-	"forgejo.org/routers/api/v1/utils"
-	actions_service "forgejo.org/services/actions"
-	"forgejo.org/services/context"
-	secrets_service "forgejo.org/services/secrets"
+	actions_model "novroforge.xyz/models/actions"
+	"novroforge.xyz/models/db"
+	secret_model "novroforge.xyz/models/secret"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/modules/util"
+	"novroforge.xyz/modules/web"
+	"novroforge.xyz/routers/api/v1/shared"
+	"novroforge.xyz/routers/api/v1/utils"
+	actions_service "novroforge.xyz/services/actions"
+	"novroforge.xyz/services/context"
+	secrets_service "novroforge.xyz/services/secrets"
 )
 
 // ListActionsSecrets lists actions secrets of an organization

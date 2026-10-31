@@ -7,11 +7,11 @@ import (
 	"fmt"
 	"net/http"
 
-	activities_model "forgejo.org/models/activities"
-	"forgejo.org/models/db"
-	issues_model "forgejo.org/models/issues"
-	"forgejo.org/services/context"
-	"forgejo.org/services/convert"
+	activities_model "novroforge.xyz/models/activities"
+	"novroforge.xyz/models/db"
+	issues_model "novroforge.xyz/models/issues"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/convert"
 )
 
 // GetThread get notification by ID

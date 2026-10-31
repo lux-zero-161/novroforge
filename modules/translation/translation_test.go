@@ -7,7 +7,7 @@ package translation
 import (
 	"testing"
 
-	"forgejo.org/modules/translation/i18n"
+	"novroforge.xyz/modules/translation/i18n"
 
 	"github.com/stretchr/testify/assert"
 )

@@ -4,7 +4,7 @@
 package permissions
 
 import (
-	issues_model "forgejo.org/models/issues"
+	issues_model "novroforge.xyz/models/issues"
 )
 
 func ReqValidCommentID(ctx Context, comment *issues_model.Comment) {

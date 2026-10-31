@@ -10,14 +10,14 @@ import (
 	"os"
 	"strings"
 
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/log"
-	base "forgejo.org/modules/migration"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/structs"
-	"forgejo.org/modules/util"
-	"forgejo.org/services/convert"
-	"forgejo.org/services/migrations"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/log"
+	base "novroforge.xyz/modules/migration"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/structs"
+	"novroforge.xyz/modules/util"
+	"novroforge.xyz/services/convert"
+	"novroforge.xyz/services/migrations"
 
 	"github.com/urfave/cli/v3"
 )

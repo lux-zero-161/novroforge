@@ -7,10 +7,10 @@ import (
 	"context"
 	"testing"
 
-	"forgejo.org/models/db"
-	"forgejo.org/models/unittest"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/test"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/unittest"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/test"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

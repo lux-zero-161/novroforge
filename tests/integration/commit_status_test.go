@@ -6,11 +6,11 @@ package integration
 import (
 	"testing"
 
-	"forgejo.org/models/db"
-	git_model "forgejo.org/models/git"
-	"forgejo.org/models/unittest"
-	"forgejo.org/modules/structs"
-	"forgejo.org/tests"
+	"novroforge.xyz/models/db"
+	git_model "novroforge.xyz/models/git"
+	"novroforge.xyz/models/unittest"
+	"novroforge.xyz/modules/structs"
+	"novroforge.xyz/tests"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

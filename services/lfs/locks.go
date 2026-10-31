@@ -8,16 +8,16 @@ import (
 	"strconv"
 	"strings"
 
-	auth_model "forgejo.org/models/auth"
-	git_model "forgejo.org/models/git"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/modules/json"
-	lfs_module "forgejo.org/modules/lfs"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
-	api "forgejo.org/modules/structs"
-	"forgejo.org/services/context"
-	"forgejo.org/services/convert"
+	auth_model "novroforge.xyz/models/auth"
+	git_model "novroforge.xyz/models/git"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/modules/json"
+	lfs_module "novroforge.xyz/modules/lfs"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/convert"
 )
 
 func handleLockListOut(ctx *context.Context, lock *git_model.LFSLock, err error) {

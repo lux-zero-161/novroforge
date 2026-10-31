@@ -10,10 +10,10 @@ import (
 	"fmt"
 	"path/filepath"
 
-	asymkey_model "forgejo.org/models/asymkey"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/system"
+	asymkey_model "novroforge.xyz/models/asymkey"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/system"
 )
 
 func checkAuthorizedKeys(ctx context.Context, logger log.Logger, autofix bool) error {

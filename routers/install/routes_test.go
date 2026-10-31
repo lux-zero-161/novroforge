@@ -7,7 +7,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"forgejo.org/models/unittest"
+	"novroforge.xyz/models/unittest"
 
 	"github.com/stretchr/testify/assert"
 )

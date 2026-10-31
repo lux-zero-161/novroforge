@@ -9,9 +9,9 @@ import (
 	"strings"
 	"testing"
 
-	"forgejo.org/models/unittest"
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/models/unittest"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/setting"
 
 	"code.forgejo.org/forgejo/runner/v13/act/jobparser"
 	"code.forgejo.org/forgejo/runner/v13/act/model"

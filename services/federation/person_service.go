@@ -7,10 +7,10 @@ import (
 	"context"
 	"net/http"
 
-	"forgejo.org/models/user"
-	"forgejo.org/modules/forgefed"
-	"forgejo.org/modules/log"
-	app_context "forgejo.org/services/context"
+	"novroforge.xyz/models/user"
+	"novroforge.xyz/modules/forgefed"
+	"novroforge.xyz/modules/log"
+	app_context "novroforge.xyz/services/context"
 
 	ap "github.com/go-ap/activitypub"
 	"github.com/go-ap/jsonld"

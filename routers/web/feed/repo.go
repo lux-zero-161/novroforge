@@ -6,9 +6,9 @@ package feed
 import (
 	"time"
 
-	activities_model "forgejo.org/models/activities"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/services/context"
+	activities_model "novroforge.xyz/models/activities"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/services/context"
 
 	"github.com/gorilla/feeds"
 )

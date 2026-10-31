@@ -8,10 +8,10 @@ import (
 	"strings"
 	"testing"
 
-	auth_model "forgejo.org/models/auth"
-	org_model "forgejo.org/models/organization"
-	user_model "forgejo.org/models/user"
-	apiv1_permissions "forgejo.org/routers/api/v1/permissions"
+	auth_model "novroforge.xyz/models/auth"
+	org_model "novroforge.xyz/models/organization"
+	user_model "novroforge.xyz/models/user"
+	apiv1_permissions "novroforge.xyz/routers/api/v1/permissions"
 )
 
 const (

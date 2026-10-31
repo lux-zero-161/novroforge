@@ -6,12 +6,12 @@ package setting
 import (
 	"path/filepath"
 
-	repo_model "forgejo.org/models/repo"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/util"
-	"forgejo.org/services/context"
-	repo_service "forgejo.org/services/repository"
+	repo_model "novroforge.xyz/models/repo"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/util"
+	"novroforge.xyz/services/context"
+	repo_service "novroforge.xyz/services/repository"
 )
 
 // AdoptOrDeleteRepository adopts or deletes a repository

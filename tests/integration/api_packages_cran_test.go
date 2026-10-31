@@ -12,12 +12,12 @@ import (
 	"net/http"
 	"testing"
 
-	"forgejo.org/models/db"
-	"forgejo.org/models/packages"
-	"forgejo.org/models/unittest"
-	user_model "forgejo.org/models/user"
-	cran_module "forgejo.org/modules/packages/cran"
-	"forgejo.org/tests"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/packages"
+	"novroforge.xyz/models/unittest"
+	user_model "novroforge.xyz/models/user"
+	cran_module "novroforge.xyz/modules/packages/cran"
+	"novroforge.xyz/tests"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

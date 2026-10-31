@@ -13,8 +13,8 @@ import (
 	"slices"
 	"strings"
 
-	"forgejo.org/models/db"
-	"forgejo.org/modules/container"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/container"
 
 	"go.yaml.in/yaml/v3"
 )

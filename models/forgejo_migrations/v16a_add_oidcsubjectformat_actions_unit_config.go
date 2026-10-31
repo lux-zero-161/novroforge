@@ -7,9 +7,9 @@ import (
 	"context"
 	"fmt"
 
-	"forgejo.org/models/db"
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/optional"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/optional"
 
 	"code.forgejo.org/xorm/xorm"
 	"xorm.io/builder"

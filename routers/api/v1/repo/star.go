@@ -6,11 +6,11 @@ package repo
 import (
 	"net/http"
 
-	repo_model "forgejo.org/models/repo"
-	api "forgejo.org/modules/structs"
-	"forgejo.org/routers/api/v1/utils"
-	"forgejo.org/services/context"
-	"forgejo.org/services/convert"
+	repo_model "novroforge.xyz/models/repo"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/routers/api/v1/utils"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/convert"
 )
 
 // ListStargazers list a repository's stargazers

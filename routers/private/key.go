@@ -6,11 +6,11 @@ package private
 import (
 	"net/http"
 
-	asymkey_model "forgejo.org/models/asymkey"
-	"forgejo.org/models/db"
-	"forgejo.org/modules/private"
-	"forgejo.org/modules/timeutil"
-	"forgejo.org/services/context"
+	asymkey_model "novroforge.xyz/models/asymkey"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/private"
+	"novroforge.xyz/modules/timeutil"
+	"novroforge.xyz/services/context"
 )
 
 // UpdatePublicKeyInRepo update public key and deploy key updates

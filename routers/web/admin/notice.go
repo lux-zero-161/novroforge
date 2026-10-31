@@ -8,12 +8,12 @@ import (
 	"net/http"
 	"strconv"
 
-	"forgejo.org/models/db"
-	system_model "forgejo.org/models/system"
-	"forgejo.org/modules/base"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
-	"forgejo.org/services/context"
+	"novroforge.xyz/models/db"
+	system_model "novroforge.xyz/models/system"
+	"novroforge.xyz/modules/base"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/services/context"
 )
 
 const (

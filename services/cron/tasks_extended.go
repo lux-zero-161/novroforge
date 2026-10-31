@@ -7,18 +7,18 @@ import (
 	"context"
 	"time"
 
-	activities_model "forgejo.org/models/activities"
-	asymkey_model "forgejo.org/models/asymkey"
-	"forgejo.org/models/system"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/git"
-	issue_indexer "forgejo.org/modules/indexer/issues"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/updatechecker"
-	moderation_service "forgejo.org/services/moderation"
-	repo_service "forgejo.org/services/repository"
-	archiver_service "forgejo.org/services/repository/archiver"
-	user_service "forgejo.org/services/user"
+	activities_model "novroforge.xyz/models/activities"
+	asymkey_model "novroforge.xyz/models/asymkey"
+	"novroforge.xyz/models/system"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/git"
+	issue_indexer "novroforge.xyz/modules/indexer/issues"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/updatechecker"
+	moderation_service "novroforge.xyz/services/moderation"
+	repo_service "novroforge.xyz/services/repository"
+	archiver_service "novroforge.xyz/services/repository/archiver"
+	user_service "novroforge.xyz/services/user"
 )
 
 func registerDeleteInactiveUsers() {
@@ -143,7 +143,7 @@ func registerUpdateGiteaChecker() {
 			Schedule:   "@every 168h",
 		},
 		HTTPEndpoint:   "https://dl.gitea.com/gitea/version.json",
-		DomainEndpoint: "release.forgejo.org",
+		DomainEndpoint: "release.novroforge.xyz",
 	}, func(ctx context.Context, _ *user_model.User, config Config) error {
 		updateCheckerConfig := config.(*UpdateCheckerConfig)
 		return updatechecker.GiteaUpdateChecker(updateCheckerConfig.HTTPEndpoint, updateCheckerConfig.DomainEndpoint)

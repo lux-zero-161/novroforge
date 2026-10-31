@@ -6,8 +6,8 @@ package repo
 import (
 	"testing"
 
-	"forgejo.org/models/unittest"
-	"forgejo.org/services/contexttest"
+	"novroforge.xyz/models/unittest"
+	"novroforge.xyz/services/contexttest"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

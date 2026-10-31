@@ -14,12 +14,12 @@ import (
 	"strings"
 	"time"
 
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/git/pushoptions"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/private"
-	repo_module "forgejo.org/modules/repository"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/git/pushoptions"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/private"
+	repo_module "novroforge.xyz/modules/repository"
+	"novroforge.xyz/modules/setting"
 
 	"github.com/urfave/cli/v3"
 )

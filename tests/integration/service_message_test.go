@@ -8,13 +8,13 @@ import (
 	"net/http"
 	"testing"
 
-	service_message_model "forgejo.org/models/service_message"
-	"forgejo.org/models/unittest"
-	user_model "forgejo.org/models/user"
-	service_message_module "forgejo.org/modules/service_message"
-	"forgejo.org/modules/test"
-	"forgejo.org/tests"
-	"forgejo.org/tests/forgery"
+	service_message_model "novroforge.xyz/models/service_message"
+	"novroforge.xyz/models/unittest"
+	user_model "novroforge.xyz/models/user"
+	service_message_module "novroforge.xyz/modules/service_message"
+	"novroforge.xyz/modules/test"
+	"novroforge.xyz/tests"
+	"novroforge.xyz/tests/forgery"
 
 	"github.com/stretchr/testify/assert"
 )

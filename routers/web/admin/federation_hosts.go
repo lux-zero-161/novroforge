@@ -6,11 +6,11 @@ package admin
 import (
 	"net/http"
 
-	"forgejo.org/models/db"
-	"forgejo.org/models/forgefed"
-	"forgejo.org/modules/base"
-	"forgejo.org/modules/setting"
-	"forgejo.org/services/context"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/forgefed"
+	"novroforge.xyz/modules/base"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/services/context"
 )
 
 const (

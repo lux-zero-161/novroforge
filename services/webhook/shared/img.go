@@ -5,7 +5,7 @@ import (
 	"html/template"
 	"strconv"
 
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/setting"
 )
 
 func ImgIcon(name string, size int) template.HTML {

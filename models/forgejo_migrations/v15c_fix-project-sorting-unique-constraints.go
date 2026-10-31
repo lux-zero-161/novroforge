@@ -6,8 +6,8 @@ package forgejo_migrations
 import (
 	"fmt"
 
-	"forgejo.org/models/gitea_migrations/base"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/models/gitea_migrations/base"
+	"novroforge.xyz/modules/setting"
 
 	"code.forgejo.org/xorm/xorm"
 )

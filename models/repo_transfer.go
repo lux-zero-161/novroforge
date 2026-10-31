@@ -8,12 +8,12 @@ import (
 	"errors"
 	"fmt"
 
-	"forgejo.org/models/db"
-	"forgejo.org/models/organization"
-	repo_model "forgejo.org/models/repo"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/timeutil"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/organization"
+	repo_model "novroforge.xyz/models/repo"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/timeutil"
 )
 
 // RepoTransfer is used to manage repository transfers

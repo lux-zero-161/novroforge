@@ -8,8 +8,8 @@ import (
 	"reflect"
 	"testing"
 
-	"forgejo.org/modules/forgefed"
-	"forgejo.org/modules/json"
+	"novroforge.xyz/modules/forgefed"
+	"novroforge.xyz/modules/json"
 
 	ap "github.com/go-ap/activitypub"
 )

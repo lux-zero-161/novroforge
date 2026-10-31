@@ -6,7 +6,7 @@ package avatars_test
 import (
 	"testing"
 
-	"forgejo.org/models/unittest"
+	"novroforge.xyz/models/unittest"
 )
 
 func TestMain(m *testing.M) {

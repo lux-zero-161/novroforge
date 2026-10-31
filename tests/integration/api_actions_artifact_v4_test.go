@@ -14,12 +14,12 @@ import (
 	"testing"
 	"time"
 
-	actions_model "forgejo.org/models/actions"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/modules/storage"
-	"forgejo.org/routers/api/actions"
-	actions_service "forgejo.org/services/actions"
-	"forgejo.org/tests"
+	actions_model "novroforge.xyz/models/actions"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/modules/storage"
+	"novroforge.xyz/routers/api/actions"
+	actions_service "novroforge.xyz/services/actions"
+	"novroforge.xyz/tests"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

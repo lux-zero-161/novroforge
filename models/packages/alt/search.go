@@ -6,8 +6,8 @@ package alt
 import (
 	"context"
 
-	packages_model "forgejo.org/models/packages"
-	rpm_module "forgejo.org/modules/packages/rpm"
+	packages_model "novroforge.xyz/models/packages"
+	rpm_module "novroforge.xyz/modules/packages/rpm"
 )
 
 type PackageSearchOptions struct {

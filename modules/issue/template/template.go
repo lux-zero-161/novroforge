@@ -12,8 +12,8 @@ import (
 	"strconv"
 	"strings"
 
-	"forgejo.org/modules/container"
-	api "forgejo.org/modules/structs"
+	"novroforge.xyz/modules/container"
+	api "novroforge.xyz/modules/structs"
 
 	"code.forgejo.org/go-chi/binding"
 )

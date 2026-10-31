@@ -10,7 +10,7 @@ import (
 	"sync/atomic"
 	"time"
 
-	"forgejo.org/modules/log"
+	"novroforge.xyz/modules/log"
 )
 
 var (

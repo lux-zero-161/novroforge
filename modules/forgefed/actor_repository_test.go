@@ -6,8 +6,8 @@ package forgefed_test
 import (
 	"testing"
 
-	"forgejo.org/modules/forgefed"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/forgefed"
+	"novroforge.xyz/modules/setting"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

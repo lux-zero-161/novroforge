@@ -6,7 +6,7 @@ package oauth2
 import (
 	"fmt"
 
-	source_service "forgejo.org/services/auth/source"
+	source_service "novroforge.xyz/services/auth/source"
 )
 
 // RegisterSource causes an OAuth2 configuration to be registered

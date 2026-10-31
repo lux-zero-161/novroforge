@@ -9,9 +9,9 @@ import (
 	"os"
 	"testing"
 
-	"forgejo.org/models/unittest"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/testlogger"
+	"novroforge.xyz/models/unittest"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/testlogger"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

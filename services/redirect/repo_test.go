@@ -5,9 +5,9 @@ package redirect
 import (
 	"testing"
 
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/models/unittest"
-	user_model "forgejo.org/models/user"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/models/unittest"
+	user_model "novroforge.xyz/models/user"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

@@ -8,9 +8,9 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"forgejo.org/modules/translation"
-	app_context "forgejo.org/services/context"
-	"forgejo.org/tests"
+	"novroforge.xyz/modules/translation"
+	app_context "novroforge.xyz/services/context"
+	"novroforge.xyz/tests"
 
 	"github.com/stretchr/testify/assert"
 )

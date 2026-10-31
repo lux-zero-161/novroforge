@@ -9,16 +9,16 @@ import (
 	"io/fs"
 	"strings"
 
-	"forgejo.org/models/git"
-	"forgejo.org/models/packages"
-	"forgejo.org/models/repo"
-	"forgejo.org/models/user"
-	"forgejo.org/modules/base"
-	"forgejo.org/modules/log"
-	packages_module "forgejo.org/modules/packages"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/storage"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/models/git"
+	"novroforge.xyz/models/packages"
+	"novroforge.xyz/models/repo"
+	"novroforge.xyz/models/user"
+	"novroforge.xyz/modules/base"
+	"novroforge.xyz/modules/log"
+	packages_module "novroforge.xyz/modules/packages"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/storage"
+	"novroforge.xyz/modules/util"
 )
 
 type commonStorageCheckOptions struct {

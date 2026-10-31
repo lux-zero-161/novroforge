@@ -8,7 +8,7 @@ import (
 	"strings"
 	"testing"
 
-	"forgejo.org/tests"
+	"novroforge.xyz/tests"
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/stretchr/testify/assert"

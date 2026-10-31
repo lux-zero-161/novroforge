@@ -13,13 +13,13 @@ import (
 	"slices"
 	"strings"
 
-	"forgejo.org/models"
-	issues_model "forgejo.org/models/issues"
-	webhook_model "forgejo.org/models/webhook"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/structs"
-	"forgejo.org/modules/web/middleware"
-	"forgejo.org/services/context"
+	"novroforge.xyz/models"
+	issues_model "novroforge.xyz/models/issues"
+	webhook_model "novroforge.xyz/models/webhook"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/structs"
+	"novroforge.xyz/modules/web/middleware"
+	"novroforge.xyz/services/context"
 
 	"code.forgejo.org/go-chi/binding"
 )
@@ -117,8 +117,8 @@ func ParseRemoteAddr(remoteAddr, authUsername, authPassword string) (string, err
 	// Detect SCP-like remote addresses and return host.
 	if m := scpRegex.FindStringSubmatch(remoteAddr); m != nil {
 		// Match SCP-like syntax and convert it to a URL.
-		// Eg, "git@forgejo.org:user/repo" becomes
-		// "ssh://git@forgejo.org/user/repo".
+		// Eg, "git@novroforge.xyz:user/repo" becomes
+		// "ssh://git@novroforge.xyz/user/repo".
 		return fmt.Sprintf("ssh://%s@%s/%s", url.User(m[1]), m[2], m[3]), nil
 	}
 

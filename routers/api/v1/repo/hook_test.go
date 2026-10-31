@@ -7,9 +7,9 @@ import (
 	"net/http"
 	"testing"
 
-	"forgejo.org/models/unittest"
-	"forgejo.org/models/webhook"
-	"forgejo.org/services/contexttest"
+	"novroforge.xyz/models/unittest"
+	"novroforge.xyz/models/webhook"
+	"novroforge.xyz/services/contexttest"
 
 	"github.com/stretchr/testify/assert"
 )

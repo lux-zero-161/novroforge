@@ -8,16 +8,16 @@ import (
 	"context"
 	"slices"
 
-	access_model "forgejo.org/models/perm/access"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/models/unit"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/base"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/markup"
-	"forgejo.org/modules/markup/markdown"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/translation"
+	access_model "novroforge.xyz/models/perm/access"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/models/unit"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/base"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/markup"
+	"novroforge.xyz/modules/markup/markdown"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/translation"
 )
 
 const (

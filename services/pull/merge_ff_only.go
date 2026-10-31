@@ -4,9 +4,9 @@
 package pull
 
 import (
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/log"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/log"
 )
 
 // doMergeStyleFastForwardOnly merges the tracking into the current HEAD - which is assumed to be staging branch (equal to the pr.BaseBranch)

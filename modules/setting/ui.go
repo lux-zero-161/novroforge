@@ -6,7 +6,7 @@ package setting
 import (
 	"time"
 
-	"forgejo.org/modules/container"
+	"novroforge.xyz/modules/container"
 )
 
 // UI settings

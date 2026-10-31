@@ -12,10 +12,10 @@ import (
 	"strings"
 	"testing"
 
-	unit_model "forgejo.org/models/unit"
-	"forgejo.org/modules/web/routing"
-	apiv1_permissions "forgejo.org/routers/api/v1/permissions"
-	apiv1_permissions_testhelpers "forgejo.org/routers/api/v1/permissions/testhelpers"
+	unit_model "novroforge.xyz/models/unit"
+	"novroforge.xyz/modules/web/routing"
+	apiv1_permissions "novroforge.xyz/routers/api/v1/permissions"
+	apiv1_permissions_testhelpers "novroforge.xyz/routers/api/v1/permissions/testhelpers"
 )
 
 func pointerToCopyOrNil[T any](s *T) *T {

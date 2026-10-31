@@ -6,7 +6,7 @@ package repo
 import (
 	"context"
 
-	"forgejo.org/models/perm"
+	"novroforge.xyz/models/perm"
 
 	"xorm.io/builder"
 )

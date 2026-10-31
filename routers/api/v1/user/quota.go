@@ -4,8 +4,8 @@
 package user
 
 import (
-	"forgejo.org/routers/api/v1/shared"
-	"forgejo.org/services/context"
+	"novroforge.xyz/routers/api/v1/shared"
+	"novroforge.xyz/services/context"
 )
 
 // GetQuota returns the quota information for the authenticated user

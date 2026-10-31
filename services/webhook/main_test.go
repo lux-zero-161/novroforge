@@ -6,9 +6,9 @@ package webhook
 import (
 	"testing"
 
-	"forgejo.org/models/unittest"
-	"forgejo.org/modules/hostmatcher"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/models/unittest"
+	"novroforge.xyz/modules/hostmatcher"
+	"novroforge.xyz/modules/setting"
 )
 
 func TestMain(m *testing.M) {

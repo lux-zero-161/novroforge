@@ -6,9 +6,9 @@ package actions
 import (
 	"context"
 
-	"forgejo.org/models/db"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/modules/container"
+	"novroforge.xyz/models/db"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/modules/container"
 
 	"xorm.io/builder"
 )

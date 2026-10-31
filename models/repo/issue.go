@@ -6,9 +6,9 @@ package repo
 import (
 	"context"
 
-	"forgejo.org/models/unit"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/models/unit"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
 )
 
 // ___________.__             ___________                     __

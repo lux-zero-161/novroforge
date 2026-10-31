@@ -6,8 +6,8 @@ package secrets
 import (
 	"context"
 
-	"forgejo.org/models/db"
-	secret_model "forgejo.org/models/secret"
+	"novroforge.xyz/models/db"
+	secret_model "novroforge.xyz/models/secret"
 )
 
 func CreateOrUpdateSecret(ctx context.Context, ownerID, repoID int64, name, data string) (*secret_model.Secret, bool, error) {

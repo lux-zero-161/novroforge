@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"forgejo.org/modules/translation"
+	"novroforge.xyz/modules/translation"
 )
 
 // Seconds-based time units

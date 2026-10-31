@@ -13,7 +13,7 @@ import (
 	"text/template"
 	"unicode"
 
-	"forgejo.org/modules/json"
+	"novroforge.xyz/modules/json"
 
 	"golang.org/x/text/unicode/rangetable"
 )

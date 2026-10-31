@@ -7,13 +7,13 @@ import (
 	"context"
 	"fmt"
 
-	org_model "forgejo.org/models/organization"
-	packages_model "forgejo.org/models/packages"
-	access_model "forgejo.org/models/perm/access"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/models/unit"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/util"
+	org_model "novroforge.xyz/models/organization"
+	packages_model "novroforge.xyz/models/packages"
+	access_model "novroforge.xyz/models/perm/access"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/models/unit"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/util"
 )
 
 func LinkToRepository(ctx context.Context, pkg *packages_model.Package, repo *repo_model.Repository, doer *user_model.User) error {

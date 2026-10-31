@@ -9,12 +9,12 @@ import (
 	"slices"
 	"strings"
 
-	"forgejo.org/models/db"
-	"forgejo.org/models/packages"
-	"forgejo.org/modules/log"
-	packages_module "forgejo.org/modules/packages"
-	nuget_module "forgejo.org/modules/packages/nuget"
-	packages_service "forgejo.org/services/packages"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/packages"
+	"novroforge.xyz/modules/log"
+	packages_module "novroforge.xyz/modules/packages"
+	nuget_module "novroforge.xyz/modules/packages/nuget"
+	packages_service "novroforge.xyz/services/packages"
 
 	"xorm.io/builder"
 )

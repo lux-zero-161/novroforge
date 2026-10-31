@@ -6,14 +6,14 @@ package permissions
 import (
 	"context"
 
-	auth_model "forgejo.org/models/auth"
-	org_model "forgejo.org/models/organization"
-	"forgejo.org/models/perm"
-	access_model "forgejo.org/models/perm/access"
-	repo_model "forgejo.org/models/repo"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/services/auth"
-	"forgejo.org/services/authz"
+	auth_model "novroforge.xyz/models/auth"
+	org_model "novroforge.xyz/models/organization"
+	"novroforge.xyz/models/perm"
+	access_model "novroforge.xyz/models/perm/access"
+	repo_model "novroforge.xyz/models/repo"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/services/auth"
+	"novroforge.xyz/services/authz"
 )
 
 type Context interface {

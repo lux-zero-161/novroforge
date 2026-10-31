@@ -10,11 +10,11 @@ import (
 	"sort"
 	"strings"
 
-	"forgejo.org/models/db"
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/storage"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/storage"
 )
 
 // Check represents a Doctor check

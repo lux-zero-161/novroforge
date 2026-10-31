@@ -6,9 +6,9 @@ package user
 import (
 	"errors"
 
-	"forgejo.org/modules/optional"
-	"forgejo.org/services/authz"
-	"forgejo.org/services/context"
+	"novroforge.xyz/modules/optional"
+	"novroforge.xyz/services/authz"
+	"novroforge.xyz/services/context"
 )
 
 // Translate errors from [ValidateAccessToken] into user-visible messages, if the error is expected as a user-facing

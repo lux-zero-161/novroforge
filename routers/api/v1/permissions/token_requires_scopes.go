@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"net/http"
 
-	auth_model "forgejo.org/models/auth"
+	auth_model "novroforge.xyz/models/auth"
 )
 
 func TokenRequiresScopes(ctx Context, requiredScopeCategories []auth_model.AccessTokenScopeCategory, requiredScopeLevel auth_model.AccessTokenScopeLevel) {

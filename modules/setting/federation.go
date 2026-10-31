@@ -4,7 +4,7 @@
 package setting
 
 import (
-	"forgejo.org/modules/log"
+	"novroforge.xyz/modules/log"
 
 	"github.com/42wim/httpsig"
 )

@@ -11,12 +11,12 @@ import (
 	"os"
 	"strings"
 
-	auth_model "forgejo.org/models/auth"
-	"forgejo.org/models/repo"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/setting"
-	auth_service "forgejo.org/services/auth"
+	auth_model "novroforge.xyz/models/auth"
+	"novroforge.xyz/models/repo"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/setting"
+	auth_service "novroforge.xyz/services/auth"
 
 	"github.com/urfave/cli/v3"
 )

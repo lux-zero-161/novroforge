@@ -7,14 +7,14 @@ import (
 	"errors"
 	"net/http"
 
-	"forgejo.org/models/auth"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/base"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/web"
-	"forgejo.org/services/context"
-	"forgejo.org/services/externalaccount"
-	"forgejo.org/services/forms"
+	"novroforge.xyz/models/auth"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/base"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/web"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/externalaccount"
+	"novroforge.xyz/services/forms"
 )
 
 var (

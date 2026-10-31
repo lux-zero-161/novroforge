@@ -15,9 +15,9 @@ import (
 	"strings"
 	"time"
 
-	"forgejo.org/modules/container"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/container"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
 
 	"code.forgejo.org/xorm/xorm"
 	"code.forgejo.org/xorm/xorm/contexts"

@@ -6,9 +6,9 @@ package asymkey
 import (
 	"context"
 
-	"forgejo.org/models"
-	asymkey_model "forgejo.org/models/asymkey"
-	"forgejo.org/models/db"
+	"novroforge.xyz/models"
+	asymkey_model "novroforge.xyz/models/asymkey"
+	"novroforge.xyz/models/db"
 )
 
 // DeleteDeployKey deletes deploy key from its repository authorized_keys file if needed.

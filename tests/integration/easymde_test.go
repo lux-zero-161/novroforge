@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"testing"
 
-	"forgejo.org/tests"
+	"novroforge.xyz/tests"
 )
 
 func TestEasyMDESwitch(t *testing.T) {

@@ -16,9 +16,9 @@ import (
 	"testing"
 	"time"
 
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/queue"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/queue"
+	"novroforge.xyz/modules/util"
 )
 
 var (

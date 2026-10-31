@@ -16,13 +16,13 @@ import (
 	"strings"
 	"time"
 
-	issues_model "forgejo.org/models/issues"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/container"
-	"forgejo.org/modules/log"
-	base "forgejo.org/modules/migration"
-	"forgejo.org/modules/structs"
-	"forgejo.org/services/migrations/allowlist"
+	issues_model "novroforge.xyz/models/issues"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/container"
+	"novroforge.xyz/modules/log"
+	base "novroforge.xyz/modules/migration"
+	"novroforge.xyz/modules/structs"
+	"novroforge.xyz/services/migrations/allowlist"
 
 	gitlab "gitlab.com/gitlab-org/api/client-go"
 )

@@ -10,12 +10,12 @@ import (
 	"net/url"
 	"testing"
 
-	actions_model "forgejo.org/models/actions"
-	unit_model "forgejo.org/models/unit"
-	"forgejo.org/models/unittest"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/tests"
-	"forgejo.org/tests/forgery"
+	actions_model "novroforge.xyz/models/actions"
+	unit_model "novroforge.xyz/models/unit"
+	"novroforge.xyz/models/unittest"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/tests"
+	"novroforge.xyz/tests/forgery"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

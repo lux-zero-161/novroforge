@@ -7,8 +7,8 @@ package convert
 import (
 	"strings"
 
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/structs"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/structs"
 )
 
 // ToCorrectPageSize makes sure page size is in allowed range.

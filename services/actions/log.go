@@ -8,12 +8,12 @@ import (
 	"fmt"
 	"time"
 
-	actions_model "forgejo.org/models/actions"
-	"forgejo.org/models/db"
-	"forgejo.org/modules/actions"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/optional"
-	"forgejo.org/modules/timeutil"
+	actions_model "novroforge.xyz/models/actions"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/actions"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/optional"
+	"novroforge.xyz/modules/timeutil"
 )
 
 var (

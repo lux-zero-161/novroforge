@@ -9,12 +9,12 @@ import (
 	"slices"
 	"testing"
 
-	"forgejo.org/models/db"
-	git_model "forgejo.org/models/git"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/models/unittest"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/test"
+	"novroforge.xyz/models/db"
+	git_model "novroforge.xyz/models/git"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/models/unittest"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/test"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

@@ -8,9 +8,9 @@ import (
 	"io"
 	"strings"
 
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/packages/container/helm"
-	"forgejo.org/modules/validation"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/packages/container/helm"
+	"novroforge.xyz/modules/validation"
 
 	oci "github.com/opencontainers/image-spec/specs-go/v1"
 )

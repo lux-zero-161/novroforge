@@ -10,9 +10,9 @@ import (
 	"strings"
 	"testing"
 
-	migration_tests "forgejo.org/models/gitea_migrations/test"
-	"forgejo.org/models/packages"
-	packages_service "forgejo.org/services/packages"
+	migration_tests "novroforge.xyz/models/gitea_migrations/test"
+	"novroforge.xyz/models/packages"
+	packages_service "novroforge.xyz/services/packages"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

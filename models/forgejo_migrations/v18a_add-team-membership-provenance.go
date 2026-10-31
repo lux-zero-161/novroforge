@@ -4,8 +4,8 @@
 package forgejo_migrations
 
 import (
-	"forgejo.org/modules/optional"
-	"forgejo.org/modules/timeutil"
+	"novroforge.xyz/modules/optional"
+	"novroforge.xyz/modules/timeutil"
 
 	"code.forgejo.org/xorm/xorm"
 )

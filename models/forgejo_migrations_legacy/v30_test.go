@@ -7,8 +7,8 @@ import (
 	"testing"
 	"time"
 
-	migration_tests "forgejo.org/models/gitea_migrations/test"
-	"forgejo.org/modules/timeutil"
+	migration_tests "novroforge.xyz/models/gitea_migrations/test"
+	"novroforge.xyz/modules/timeutil"
 
 	"code.forgejo.org/xorm/xorm/schemas"
 	"github.com/stretchr/testify/require"

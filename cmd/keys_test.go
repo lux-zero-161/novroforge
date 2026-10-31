@@ -9,10 +9,10 @@ import (
 	"net/http"
 	"testing"
 
-	"forgejo.org/modules/optional"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/test"
-	"forgejo.org/tests/internaltest"
+	"novroforge.xyz/modules/optional"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/test"
+	"novroforge.xyz/tests/internaltest"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

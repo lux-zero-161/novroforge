@@ -9,9 +9,9 @@ import (
 	"net/http"
 	"reflect"
 
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/web/routing"
-	"forgejo.org/modules/web/types"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/web/routing"
+	"novroforge.xyz/modules/web/types"
 )
 
 var responseStatusProviders = map[reflect.Type]func(req *http.Request) types.ResponseStatusProvider{}

@@ -11,16 +11,16 @@ import (
 	"path"
 	"strings"
 
-	repo_model "forgejo.org/models/repo"
-	unit_model "forgejo.org/models/unit"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
-	api "forgejo.org/modules/structs"
-	"forgejo.org/modules/web"
-	"forgejo.org/services/attachment"
-	"forgejo.org/services/context"
-	"forgejo.org/services/context/upload"
-	"forgejo.org/services/convert"
+	repo_model "novroforge.xyz/models/repo"
+	unit_model "novroforge.xyz/models/unit"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/modules/web"
+	"novroforge.xyz/services/attachment"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/context/upload"
+	"novroforge.xyz/services/convert"
 )
 
 func checkReleaseAccess(ctx *context.APIContext, releaseID int64) *repo_model.Release {

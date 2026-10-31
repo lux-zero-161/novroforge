@@ -10,8 +10,8 @@ import (
 	"strings"
 	"time"
 
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/util"
 )
 
 // Signature represents the Author, Committer or Tagger information.

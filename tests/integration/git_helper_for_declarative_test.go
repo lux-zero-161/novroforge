@@ -17,10 +17,10 @@ import (
 	"testing"
 	"time"
 
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/util"
-	"forgejo.org/tests"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/util"
+	"novroforge.xyz/tests"
 
 	gouuid "github.com/google/uuid"
 	"github.com/stretchr/testify/assert"

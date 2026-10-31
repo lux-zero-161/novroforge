@@ -12,9 +12,9 @@ import (
 	"strconv"
 	"strings"
 
-	"forgejo.org/models/asymkey"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/models/asymkey"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
 )
 
 var logger = log.GetManager().GetLogger("ssh")

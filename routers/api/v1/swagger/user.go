@@ -4,8 +4,8 @@
 package swagger
 
 import (
-	activities_model "forgejo.org/models/activities"
-	api "forgejo.org/modules/structs"
+	activities_model "novroforge.xyz/models/activities"
+	api "novroforge.xyz/modules/structs"
 )
 
 // User

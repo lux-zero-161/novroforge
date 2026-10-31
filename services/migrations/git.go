@@ -6,7 +6,7 @@ package migrations
 import (
 	"context"
 
-	base "forgejo.org/modules/migration"
+	base "novroforge.xyz/modules/migration"
 )
 
 var _ base.Downloader = &PlainGitDownloader{}

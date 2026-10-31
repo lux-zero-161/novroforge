@@ -4,7 +4,7 @@
 package migrations
 
 import (
-	"forgejo.org/modules/structs"
+	"novroforge.xyz/modules/structs"
 )
 
 func init() {

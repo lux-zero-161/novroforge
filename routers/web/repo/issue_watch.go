@@ -7,10 +7,10 @@ import (
 	"net/http"
 	"strconv"
 
-	issues_model "forgejo.org/models/issues"
-	"forgejo.org/modules/base"
-	"forgejo.org/modules/log"
-	"forgejo.org/services/context"
+	issues_model "novroforge.xyz/models/issues"
+	"novroforge.xyz/modules/base"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/services/context"
 )
 
 const (

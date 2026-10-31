@@ -10,7 +10,7 @@ import (
 	"strings"
 	"time"
 
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/setting"
 )
 
 // SetCacheControlInHeader sets suitable cache-control headers in the response

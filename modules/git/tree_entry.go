@@ -11,7 +11,7 @@ import (
 	"sort"
 	"strings"
 
-	"forgejo.org/modules/log"
+	"novroforge.xyz/modules/log"
 )
 
 // TreeEntry the leaf in the git tree

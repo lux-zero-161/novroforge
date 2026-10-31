@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"time"
 
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/util"
 
 	"github.com/golang-jwt/jwt/v5"
 )

@@ -13,10 +13,10 @@ import (
 	"net/url"
 	"strconv"
 
-	"forgejo.org/models/forgefed"
-	"forgejo.org/models/user"
-	"forgejo.org/modules/activitypub"
-	"forgejo.org/modules/log"
+	"novroforge.xyz/models/forgefed"
+	"novroforge.xyz/models/user"
+	"novroforge.xyz/modules/activitypub"
+	"novroforge.xyz/modules/log"
 
 	ap "github.com/go-ap/activitypub"
 )

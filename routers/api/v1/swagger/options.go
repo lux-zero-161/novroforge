@@ -5,9 +5,9 @@
 package swagger
 
 import (
-	ffed "forgejo.org/modules/forgefed"
-	api "forgejo.org/modules/structs"
-	"forgejo.org/services/forms"
+	ffed "novroforge.xyz/modules/forgefed"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/services/forms"
 )
 
 // not actually a response, just a hack to get go-swagger to include definitions

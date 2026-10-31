@@ -9,11 +9,11 @@ import (
 	"errors"
 	"strings"
 
-	actions_model "forgejo.org/models/actions"
-	auth_model "forgejo.org/models/auth"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/timeutil"
-	"forgejo.org/modules/util"
+	actions_model "novroforge.xyz/models/actions"
+	auth_model "novroforge.xyz/models/auth"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/timeutil"
+	"novroforge.xyz/modules/util"
 
 	"connectrpc.com/connect"
 )

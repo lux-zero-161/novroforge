@@ -8,15 +8,15 @@ import (
 	"fmt"
 	"net/http"
 
-	"forgejo.org/models"
-	"forgejo.org/models/organization"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/base"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
-	shared_user "forgejo.org/routers/web/shared/user"
-	"forgejo.org/services/context"
-	org_service "forgejo.org/services/org"
+	"novroforge.xyz/models"
+	"novroforge.xyz/models/organization"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/base"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
+	shared_user "novroforge.xyz/routers/web/shared/user"
+	"novroforge.xyz/services/context"
+	org_service "novroforge.xyz/services/org"
 )
 
 const (

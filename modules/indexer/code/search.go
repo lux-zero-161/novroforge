@@ -9,7 +9,7 @@ import (
 	"slices"
 	"strings"
 
-	"forgejo.org/modules/indexer/code/internal"
+	"novroforge.xyz/modules/indexer/code/internal"
 )
 
 type Result = internal.Result

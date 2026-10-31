@@ -7,12 +7,12 @@ import (
 	"context"
 	"fmt"
 
-	"forgejo.org/models/db"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/avatar"
-	"forgejo.org/modules/avatarstore"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/storage"
+	"novroforge.xyz/models/db"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/avatar"
+	"novroforge.xyz/modules/avatarstore"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/storage"
 )
 
 // UploadAvatar saves custom avatar for user.

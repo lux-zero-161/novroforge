@@ -14,11 +14,11 @@ import (
 	"testing"
 	"time"
 
-	"forgejo.org/modules/optional"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/test"
-	"forgejo.org/modules/web"
-	"forgejo.org/routers"
+	"novroforge.xyz/modules/optional"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/test"
+	"novroforge.xyz/modules/web"
+	"novroforge.xyz/routers"
 
 	"github.com/stretchr/testify/require"
 )

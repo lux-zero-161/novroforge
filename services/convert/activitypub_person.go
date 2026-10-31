@@ -6,9 +6,9 @@ package convert
 import (
 	"context"
 
-	"forgejo.org/models/activities"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/activitypub"
+	"novroforge.xyz/models/activities"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/activitypub"
 
 	ap "github.com/go-ap/activitypub"
 )

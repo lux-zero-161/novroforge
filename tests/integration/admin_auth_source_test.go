@@ -8,8 +8,8 @@ import (
 	"net/http"
 	"testing"
 
-	"forgejo.org/models/auth"
-	"forgejo.org/tests"
+	"novroforge.xyz/models/auth"
+	"novroforge.xyz/tests"
 
 	"github.com/stretchr/testify/assert"
 )

@@ -4,7 +4,7 @@
 package optional
 
 import (
-	"forgejo.org/modules/json"
+	"novroforge.xyz/modules/json"
 
 	"go.yaml.in/yaml/v3"
 )

@@ -16,9 +16,9 @@ import (
 	_ "image/gif"  // for processing gif images
 	_ "image/jpeg" // for processing jpeg images
 
-	"forgejo.org/modules/avatar/identicon"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/avatar/identicon"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
 
 	"golang.org/x/image/draw"
 

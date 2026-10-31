@@ -6,12 +6,12 @@ package user
 import (
 	"net/http"
 
-	"forgejo.org/modules/optional"
-	api "forgejo.org/modules/structs"
-	"forgejo.org/modules/web"
-	"forgejo.org/services/context"
-	"forgejo.org/services/convert"
-	user_service "forgejo.org/services/user"
+	"novroforge.xyz/modules/optional"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/modules/web"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/convert"
+	user_service "novroforge.xyz/services/user"
 )
 
 // GetUserSettings returns doer's account settings

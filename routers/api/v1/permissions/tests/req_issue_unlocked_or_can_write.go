@@ -6,9 +6,9 @@ package tests
 import (
 	"testing"
 
-	unit_model "forgejo.org/models/unit"
-	user_model "forgejo.org/models/user"
-	apiv1_permissions "forgejo.org/routers/api/v1/permissions"
+	unit_model "novroforge.xyz/models/unit"
+	user_model "novroforge.xyz/models/user"
+	apiv1_permissions "novroforge.xyz/routers/api/v1/permissions"
 )
 
 var _ = registerFunctionTestWithCall(apiv1_permissions.ReqIssueUnlockedOrCanWrite, functionTest{

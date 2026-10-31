@@ -15,10 +15,10 @@ import (
 	"testing"
 	"time"
 
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/proxy"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/test"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/proxy"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/test"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

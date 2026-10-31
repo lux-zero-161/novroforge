@@ -11,14 +11,14 @@ import (
 	"strings"
 	"time"
 
-	activities_model "forgejo.org/models/activities"
-	issues_model "forgejo.org/models/issues"
-	"forgejo.org/models/repo"
-	user_model "forgejo.org/models/user"
-	fm "forgejo.org/modules/forgefed"
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/markup"
-	"forgejo.org/modules/markup/markdown"
+	activities_model "novroforge.xyz/models/activities"
+	issues_model "novroforge.xyz/models/issues"
+	"novroforge.xyz/models/repo"
+	user_model "novroforge.xyz/models/user"
+	fm "novroforge.xyz/modules/forgefed"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/markup"
+	"novroforge.xyz/modules/markup/markdown"
 )
 
 func ActionToForgeUserActivity(ctx context.Context, action *activities_model.Action) (fm.ForgeUserActivity, error) {

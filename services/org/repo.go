@@ -7,10 +7,10 @@ import (
 	"context"
 	"errors"
 
-	"forgejo.org/models"
-	"forgejo.org/models/db"
-	"forgejo.org/models/organization"
-	repo_model "forgejo.org/models/repo"
+	"novroforge.xyz/models"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/organization"
+	repo_model "novroforge.xyz/models/repo"
 )
 
 // TeamAddRepository adds new repository to team of organization.

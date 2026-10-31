@@ -8,11 +8,11 @@ import (
 	"strings"
 	"testing"
 
-	org_model "forgejo.org/models/organization"
-	project_model "forgejo.org/models/project"
-	"forgejo.org/models/unittest"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/tests"
+	org_model "novroforge.xyz/models/organization"
+	project_model "novroforge.xyz/models/project"
+	"novroforge.xyz/models/unittest"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/tests"
 
 	"github.com/stretchr/testify/assert"
 )

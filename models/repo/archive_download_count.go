@@ -6,9 +6,9 @@ package repo
 import (
 	"context"
 
-	"forgejo.org/models/db"
-	"forgejo.org/modules/git"
-	api "forgejo.org/modules/structs"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/git"
+	api "novroforge.xyz/modules/structs"
 )
 
 // RepoArchiveDownloadCount counts all archive downloads for a tag

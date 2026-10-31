@@ -8,9 +8,9 @@ import (
 	"errors"
 	"fmt"
 
-	issues_model "forgejo.org/models/issues"
-	project_model "forgejo.org/models/project"
-	project_types "forgejo.org/modules/structs"
+	issues_model "novroforge.xyz/models/issues"
+	project_model "novroforge.xyz/models/project"
+	project_types "novroforge.xyz/modules/structs"
 )
 
 // ValidIssueIDs checks if the IDs of the given issue list are valid

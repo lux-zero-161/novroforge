@@ -4,8 +4,8 @@
 package v1_17
 
 import (
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/timeutil"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/timeutil"
 
 	"code.forgejo.org/xorm/xorm"
 	"code.forgejo.org/xorm/xorm/schemas"

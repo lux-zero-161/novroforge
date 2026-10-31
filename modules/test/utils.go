@@ -9,7 +9,7 @@ import (
 	"strings"
 	"time"
 
-	"forgejo.org/modules/json"
+	"novroforge.xyz/modules/json"
 )
 
 // RedirectURL returns the redirect URL of a http response.

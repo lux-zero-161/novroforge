@@ -6,11 +6,11 @@ package org
 import (
 	"net/http"
 
-	api "forgejo.org/modules/structs"
-	"forgejo.org/modules/web"
-	"forgejo.org/routers/api/v1/utils"
-	"forgejo.org/services/context"
-	webhook_service "forgejo.org/services/webhook"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/modules/web"
+	"novroforge.xyz/routers/api/v1/utils"
+	"novroforge.xyz/services/context"
+	webhook_service "novroforge.xyz/services/webhook"
 )
 
 // ListHooks list an organization's webhooks

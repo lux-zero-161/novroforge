@@ -11,8 +11,8 @@ import (
 	"strconv"
 	"strings"
 
-	"forgejo.org/modules/container"
-	"forgejo.org/modules/log"
+	"novroforge.xyz/modules/container"
+	"novroforge.xyz/modules/log"
 
 	"github.com/go-ldap/ldap/v3"
 )

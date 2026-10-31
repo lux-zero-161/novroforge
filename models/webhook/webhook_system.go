@@ -7,7 +7,7 @@ import (
 	"context"
 	"fmt"
 
-	"forgejo.org/models/db"
+	"novroforge.xyz/models/db"
 )
 
 // GetDefaultWebhooks returns all admin-default webhooks.

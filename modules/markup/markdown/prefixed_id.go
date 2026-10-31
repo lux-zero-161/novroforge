@@ -7,9 +7,9 @@ import (
 	"bytes"
 	"fmt"
 
-	"forgejo.org/modules/container"
-	"forgejo.org/modules/markup/common"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/container"
+	"novroforge.xyz/modules/markup/common"
+	"novroforge.xyz/modules/util"
 
 	"github.com/yuin/goldmark/ast"
 )

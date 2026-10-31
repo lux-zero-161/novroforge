@@ -7,14 +7,14 @@ import (
 	"errors"
 	"net/http"
 
-	"forgejo.org/models/webhook"
-	"forgejo.org/modules/setting"
-	api "forgejo.org/modules/structs"
-	"forgejo.org/modules/util"
-	"forgejo.org/modules/web"
-	"forgejo.org/routers/api/v1/utils"
-	"forgejo.org/services/context"
-	webhook_service "forgejo.org/services/webhook"
+	"novroforge.xyz/models/webhook"
+	"novroforge.xyz/modules/setting"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/modules/util"
+	"novroforge.xyz/modules/web"
+	"novroforge.xyz/routers/api/v1/utils"
+	"novroforge.xyz/services/context"
+	webhook_service "novroforge.xyz/services/webhook"
 )
 
 // ListHooks list system webhooks

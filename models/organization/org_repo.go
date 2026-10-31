@@ -6,8 +6,8 @@ package organization
 import (
 	"context"
 
-	"forgejo.org/models/db"
-	repo_model "forgejo.org/models/repo"
+	"novroforge.xyz/models/db"
+	repo_model "novroforge.xyz/models/repo"
 )
 
 // GetOrgRepositories get repos belonging to the given organization

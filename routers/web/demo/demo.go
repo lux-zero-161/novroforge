@@ -11,11 +11,11 @@ import (
 	"strings"
 	"time"
 
-	"forgejo.org/models/asymkey"
-	"forgejo.org/models/user"
-	"forgejo.org/modules/base"
-	"forgejo.org/modules/templates"
-	"forgejo.org/services/context"
+	"novroforge.xyz/models/asymkey"
+	"novroforge.xyz/models/user"
+	"novroforge.xyz/modules/base"
+	"novroforge.xyz/modules/templates"
+	"novroforge.xyz/services/context"
 )
 
 // List all demo templates, they will be used for e2e tests for the UI components

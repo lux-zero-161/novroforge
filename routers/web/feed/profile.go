@@ -6,10 +6,10 @@ package feed
 import (
 	"time"
 
-	activities_model "forgejo.org/models/activities"
-	"forgejo.org/modules/markup"
-	"forgejo.org/modules/markup/markdown"
-	"forgejo.org/services/context"
+	activities_model "novroforge.xyz/models/activities"
+	"novroforge.xyz/modules/markup"
+	"novroforge.xyz/modules/markup/markdown"
+	"novroforge.xyz/services/context"
 
 	"github.com/gorilla/feeds"
 )

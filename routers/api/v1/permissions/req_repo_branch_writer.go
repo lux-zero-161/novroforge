@@ -7,10 +7,10 @@ import (
 	"context"
 	"net/http"
 
-	issues_model "forgejo.org/models/issues"
-	access_model "forgejo.org/models/perm/access"
-	"forgejo.org/models/repo"
-	user_model "forgejo.org/models/user"
+	issues_model "novroforge.xyz/models/issues"
+	access_model "novroforge.xyz/models/perm/access"
+	"novroforge.xyz/models/repo"
+	user_model "novroforge.xyz/models/user"
 )
 
 func ReqRepoBranchWriter(ctx Context, branch string) {

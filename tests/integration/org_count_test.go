@@ -8,12 +8,12 @@ import (
 	"strings"
 	"testing"
 
-	auth_model "forgejo.org/models/auth"
-	"forgejo.org/models/db"
-	"forgejo.org/models/organization"
-	"forgejo.org/models/unittest"
-	user_model "forgejo.org/models/user"
-	api "forgejo.org/modules/structs"
+	auth_model "novroforge.xyz/models/auth"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/organization"
+	"novroforge.xyz/models/unittest"
+	user_model "novroforge.xyz/models/user"
+	api "novroforge.xyz/modules/structs"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

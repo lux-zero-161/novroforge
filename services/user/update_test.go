@@ -6,12 +6,12 @@ package user
 import (
 	"testing"
 
-	"forgejo.org/models/db"
-	"forgejo.org/models/unittest"
-	user_model "forgejo.org/models/user"
-	password_module "forgejo.org/modules/auth/password"
-	"forgejo.org/modules/optional"
-	"forgejo.org/modules/structs"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/unittest"
+	user_model "novroforge.xyz/models/user"
+	password_module "novroforge.xyz/modules/auth/password"
+	"novroforge.xyz/modules/optional"
+	"novroforge.xyz/modules/structs"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

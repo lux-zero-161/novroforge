@@ -7,8 +7,8 @@ import (
 	"context"
 	"sync/atomic"
 
-	"forgejo.org/modules/nosql"
-	"forgejo.org/modules/queue/lqinternal"
+	"novroforge.xyz/modules/nosql"
+	"novroforge.xyz/modules/queue/lqinternal"
 
 	"code.forgejo.org/forgejo/levelqueue"
 	"github.com/syndtr/goleveldb/leveldb"

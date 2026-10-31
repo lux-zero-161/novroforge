@@ -17,10 +17,10 @@ import (
 	_ "image/jpeg" // for processing jpeg images
 	_ "image/png"  // for processing png images
 
-	"forgejo.org/modules/avatar"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/proxy"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/avatar"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/proxy"
+	"novroforge.xyz/modules/setting"
 
 	"github.com/golang/freetype"
 	"github.com/golang/freetype/truetype"

@@ -8,11 +8,11 @@ import (
 	"context"
 	"errors"
 
-	issues_model "forgejo.org/models/issues"
-	access_model "forgejo.org/models/perm/access"
-	unit_model "forgejo.org/models/unit"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/util"
+	issues_model "novroforge.xyz/models/issues"
+	access_model "novroforge.xyz/models/perm/access"
+	unit_model "novroforge.xyz/models/unit"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/util"
 )
 
 var (

@@ -10,9 +10,9 @@ import (
 	"io"
 	"os"
 
-	asymkey_model "forgejo.org/models/asymkey"
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/log"
+	asymkey_model "novroforge.xyz/models/asymkey"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/log"
 )
 
 // This file contains commit verification functions for refs passed across in hooks

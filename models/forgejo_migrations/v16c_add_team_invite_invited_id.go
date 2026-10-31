@@ -4,7 +4,7 @@
 package forgejo_migrations
 
 import (
-	"forgejo.org/modules/optional"
+	"novroforge.xyz/modules/optional"
 
 	"code.forgejo.org/xorm/xorm"
 )

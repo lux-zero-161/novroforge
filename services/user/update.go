@@ -7,14 +7,14 @@ import (
 	"context"
 	"fmt"
 
-	"forgejo.org/models"
-	auth_model "forgejo.org/models/auth"
-	user_model "forgejo.org/models/user"
-	password_module "forgejo.org/modules/auth/password"
-	"forgejo.org/modules/optional"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/structs"
-	"forgejo.org/services/mailer"
+	"novroforge.xyz/models"
+	auth_model "novroforge.xyz/models/auth"
+	user_model "novroforge.xyz/models/user"
+	password_module "novroforge.xyz/modules/auth/password"
+	"novroforge.xyz/modules/optional"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/structs"
+	"novroforge.xyz/services/mailer"
 )
 
 type UpdateOptions struct {

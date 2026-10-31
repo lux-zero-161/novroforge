@@ -6,12 +6,12 @@ package issues
 import (
 	"context"
 
-	"forgejo.org/models/db"
-	org_model "forgejo.org/models/organization"
-	project_model "forgejo.org/models/project"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/optional"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/models/db"
+	org_model "novroforge.xyz/models/organization"
+	project_model "novroforge.xyz/models/project"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/optional"
+	"novroforge.xyz/modules/util"
 )
 
 // LoadProject load the project the issue was assigned to

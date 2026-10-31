@@ -9,7 +9,7 @@ import (
 	"strings"
 	"testing"
 
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/util"
 
 	"github.com/hashicorp/go-version"
 	"github.com/stretchr/testify/assert"

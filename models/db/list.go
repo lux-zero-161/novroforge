@@ -6,7 +6,7 @@ package db
 import (
 	"context"
 
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/setting"
 
 	"code.forgejo.org/xorm/xorm"
 	"xorm.io/builder"

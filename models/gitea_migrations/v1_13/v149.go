@@ -6,7 +6,7 @@ package v1_13
 import (
 	"fmt"
 
-	"forgejo.org/modules/timeutil"
+	"novroforge.xyz/modules/timeutil"
 
 	"code.forgejo.org/xorm/xorm"
 )

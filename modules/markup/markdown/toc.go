@@ -7,8 +7,8 @@ import (
 	"fmt"
 	"net/url"
 
-	"forgejo.org/modules/markup"
-	"forgejo.org/modules/translation"
+	"novroforge.xyz/modules/markup"
+	"novroforge.xyz/modules/translation"
 
 	"github.com/yuin/goldmark/ast"
 )

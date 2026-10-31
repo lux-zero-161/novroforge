@@ -7,12 +7,12 @@ import (
 	"fmt"
 	"net/http"
 
-	"forgejo.org/models/auth"
-	"forgejo.org/models/db"
-	"forgejo.org/modules/base"
-	"forgejo.org/modules/setting"
-	user_setting "forgejo.org/routers/web/user/setting"
-	"forgejo.org/services/context"
+	"novroforge.xyz/models/auth"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/base"
+	"novroforge.xyz/modules/setting"
+	user_setting "novroforge.xyz/routers/web/user/setting"
+	"novroforge.xyz/services/context"
 )
 
 var (

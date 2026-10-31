@@ -12,11 +12,11 @@ import (
 	"strings"
 	"testing"
 
-	"forgejo.org/models/unittest"
-	"forgejo.org/modules/test"
-	"forgejo.org/modules/web/routing"
-	apiv1_permissions "forgejo.org/routers/api/v1/permissions"
-	apiv1_permissions_testhelpers "forgejo.org/routers/api/v1/permissions/testhelpers"
+	"novroforge.xyz/models/unittest"
+	"novroforge.xyz/modules/test"
+	"novroforge.xyz/modules/web/routing"
+	apiv1_permissions "novroforge.xyz/routers/api/v1/permissions"
+	apiv1_permissions_testhelpers "novroforge.xyz/routers/api/v1/permissions/testhelpers"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

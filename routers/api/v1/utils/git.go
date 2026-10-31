@@ -9,10 +9,10 @@ import (
 	"fmt"
 	"net/http"
 
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/gitrepo"
-	"forgejo.org/modules/log"
-	"forgejo.org/services/context"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/gitrepo"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/services/context"
 )
 
 // ResolveRefOrSha resolve ref to sha if exist

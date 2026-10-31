@@ -6,8 +6,8 @@ package base
 import (
 	"testing"
 
-	migrations_tests "forgejo.org/models/gitea_migrations/test"
-	"forgejo.org/modules/timeutil"
+	migrations_tests "novroforge.xyz/models/gitea_migrations/test"
+	"novroforge.xyz/modules/timeutil"
 
 	"code.forgejo.org/xorm/xorm/names"
 	"github.com/stretchr/testify/require"

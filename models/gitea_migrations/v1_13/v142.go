@@ -4,7 +4,7 @@
 package v1_13
 
 import (
-	"forgejo.org/modules/log"
+	"novroforge.xyz/modules/log"
 
 	"code.forgejo.org/xorm/xorm"
 	"xorm.io/builder"

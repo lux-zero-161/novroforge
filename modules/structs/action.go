@@ -6,7 +6,7 @@ package structs
 import (
 	"time"
 
-	"forgejo.org/modules/optional"
+	"novroforge.xyz/modules/optional"
 )
 
 // ActionRunJob represents a job of a run

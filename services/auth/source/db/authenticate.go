@@ -7,9 +7,9 @@ import (
 	"context"
 	"fmt"
 
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/util"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/util"
 )
 
 // ErrUserPasswordNotSet represents a "ErrUserPasswordNotSet" kind of error.

@@ -7,8 +7,8 @@ import (
 	"encoding/xml"
 	"io"
 
-	"forgejo.org/modules/util"
-	"forgejo.org/modules/validation"
+	"novroforge.xyz/modules/util"
+	"novroforge.xyz/modules/validation"
 
 	"golang.org/x/net/html/charset"
 )

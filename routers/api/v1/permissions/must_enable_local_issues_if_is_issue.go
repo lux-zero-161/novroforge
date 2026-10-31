@@ -4,8 +4,8 @@
 package permissions
 
 import (
-	issues_model "forgejo.org/models/issues"
-	"forgejo.org/models/unit"
+	issues_model "novroforge.xyz/models/issues"
+	"novroforge.xyz/models/unit"
 )
 
 func MustEnableLocalIssuesIfIsIssue(ctx Context, issue *issues_model.Issue) {

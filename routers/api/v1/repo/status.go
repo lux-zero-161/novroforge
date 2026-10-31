@@ -8,15 +8,15 @@ import (
 	"fmt"
 	"net/http"
 
-	"forgejo.org/models/db"
-	git_model "forgejo.org/models/git"
-	"forgejo.org/modules/git"
-	api "forgejo.org/modules/structs"
-	"forgejo.org/modules/web"
-	"forgejo.org/routers/api/v1/utils"
-	"forgejo.org/services/context"
-	"forgejo.org/services/convert"
-	commitstatus_service "forgejo.org/services/repository/commitstatus"
+	"novroforge.xyz/models/db"
+	git_model "novroforge.xyz/models/git"
+	"novroforge.xyz/modules/git"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/modules/web"
+	"novroforge.xyz/routers/api/v1/utils"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/convert"
+	commitstatus_service "novroforge.xyz/services/repository/commitstatus"
 )
 
 // NewCommitStatus creates a new CommitStatus

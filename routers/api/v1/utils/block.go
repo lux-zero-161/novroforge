@@ -6,10 +6,10 @@ package utils
 import (
 	"net/http"
 
-	user_model "forgejo.org/models/user"
-	api "forgejo.org/modules/structs"
-	"forgejo.org/services/context"
-	user_service "forgejo.org/services/user"
+	user_model "novroforge.xyz/models/user"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/services/context"
+	user_service "novroforge.xyz/services/user"
 )
 
 // ListUserBlockedUsers lists the blocked users of the provided doer.

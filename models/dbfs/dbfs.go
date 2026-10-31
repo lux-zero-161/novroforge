@@ -10,7 +10,7 @@ import (
 	"path"
 	"time"
 
-	"forgejo.org/models/db"
+	"novroforge.xyz/models/db"
 )
 
 /*

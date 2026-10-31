@@ -4,7 +4,7 @@ import (
 	"os"
 	"testing"
 
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/setting"
 
 	"github.com/stretchr/testify/suite"
 )

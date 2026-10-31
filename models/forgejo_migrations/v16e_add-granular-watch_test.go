@@ -7,9 +7,9 @@ import (
 	"context"
 	"testing"
 
-	"forgejo.org/models/db"
-	migration_tests "forgejo.org/models/gitea_migrations/test"
-	"forgejo.org/modules/timeutil"
+	"novroforge.xyz/models/db"
+	migration_tests "novroforge.xyz/models/gitea_migrations/test"
+	"novroforge.xyz/modules/timeutil"
 
 	"code.forgejo.org/xorm/xorm/schemas"
 	"github.com/stretchr/testify/assert"

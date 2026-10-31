@@ -7,7 +7,7 @@ import (
 	"os"
 	"runtime"
 
-	"forgejo.org/modules/log"
+	"novroforge.xyz/modules/log"
 )
 
 // awaitShutdown waits for the shutdown signal from the Manager

@@ -8,8 +8,8 @@ import (
 	"net/url"
 	"time"
 
-	packages_model "forgejo.org/models/packages"
-	composer_module "forgejo.org/modules/packages/composer"
+	packages_model "novroforge.xyz/models/packages"
+	composer_module "novroforge.xyz/modules/packages/composer"
 )
 
 // ServiceIndexResponse contains registry endpoints

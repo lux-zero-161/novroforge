@@ -12,7 +12,7 @@ import (
 	"path"
 	"sort"
 
-	"forgejo.org/modules/log"
+	"novroforge.xyz/modules/log"
 )
 
 // CommitInfo describes the first commit with the provided entry

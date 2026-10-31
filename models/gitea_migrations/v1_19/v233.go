@@ -6,10 +6,10 @@ package v1_19
 import (
 	"fmt"
 
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/secret"
-	"forgejo.org/modules/setting"
-	api "forgejo.org/modules/structs"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/secret"
+	"novroforge.xyz/modules/setting"
+	api "novroforge.xyz/modules/structs"
 
 	"code.forgejo.org/xorm/xorm"
 	"xorm.io/builder"

@@ -10,9 +10,9 @@ import (
 	"strconv"
 	"strings"
 
-	indexer_internal "forgejo.org/modules/indexer/internal"
-	inner_meilisearch "forgejo.org/modules/indexer/internal/meilisearch"
-	"forgejo.org/modules/indexer/issues/internal"
+	indexer_internal "novroforge.xyz/modules/indexer/internal"
+	inner_meilisearch "novroforge.xyz/modules/indexer/internal/meilisearch"
+	"novroforge.xyz/modules/indexer/issues/internal"
 
 	"github.com/meilisearch/meilisearch-go"
 )

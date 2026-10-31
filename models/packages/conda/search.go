@@ -7,9 +7,9 @@ import (
 	"context"
 	"strings"
 
-	"forgejo.org/models/db"
-	"forgejo.org/models/packages"
-	conda_module "forgejo.org/modules/packages/conda"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/packages"
+	conda_module "novroforge.xyz/modules/packages/conda"
 
 	"xorm.io/builder"
 )

@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"forgejo.org/modules/log"
+	"novroforge.xyz/modules/log"
 )
 
 // Cache represents cache settings

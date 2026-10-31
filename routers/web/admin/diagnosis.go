@@ -13,8 +13,8 @@ import (
 	"runtime/trace"
 	"time"
 
-	"forgejo.org/modules/httplib"
-	"forgejo.org/services/context"
+	"novroforge.xyz/modules/httplib"
+	"novroforge.xyz/services/context"
 )
 
 func MonitorDiagnosis(ctx *context.Context) {

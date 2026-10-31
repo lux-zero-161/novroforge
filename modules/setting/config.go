@@ -7,8 +7,8 @@ import (
 	"strings"
 	"sync"
 
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting/config"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting/config"
 )
 
 type PictureStruct struct {

@@ -7,8 +7,8 @@ import (
 	"context"
 	"sort"
 
-	"forgejo.org/models/db"
-	"forgejo.org/modules/optional"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/optional"
 
 	"github.com/gobwas/glob"
 )

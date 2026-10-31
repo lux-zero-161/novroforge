@@ -7,13 +7,13 @@ import (
 	"fmt"
 	"net/http"
 
-	user_model "forgejo.org/models/user"
-	api "forgejo.org/modules/structs"
-	"forgejo.org/modules/validation"
-	"forgejo.org/modules/web"
-	"forgejo.org/services/context"
-	"forgejo.org/services/convert"
-	user_service "forgejo.org/services/user"
+	user_model "novroforge.xyz/models/user"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/modules/validation"
+	"novroforge.xyz/modules/web"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/convert"
+	user_service "novroforge.xyz/services/user"
 )
 
 // ListEmails lists doer's all email addresses

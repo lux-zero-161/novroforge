@@ -11,11 +11,11 @@ import (
 	"strings"
 	"sync"
 
-	"forgejo.org/models"
-	"forgejo.org/models/organization"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/container"
-	"forgejo.org/modules/log"
+	"novroforge.xyz/models"
+	"novroforge.xyz/models/organization"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/container"
+	"novroforge.xyz/modules/log"
 )
 
 type syncType int

@@ -6,7 +6,7 @@ package forgejo_migrations
 import (
 	"context"
 
-	"forgejo.org/models/db"
+	"novroforge.xyz/models/db"
 
 	"code.forgejo.org/xorm/xorm"
 )

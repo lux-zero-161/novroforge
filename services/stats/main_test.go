@@ -7,8 +7,8 @@ import (
 	"fmt"
 	"testing"
 
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/test"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/test"
 )
 
 func TestMain(m *testing.M) {

@@ -6,8 +6,8 @@ package stats
 import (
 	"context"
 
-	"forgejo.org/modules/optional"
-	"forgejo.org/modules/timeutil"
+	"novroforge.xyz/modules/optional"
+	"novroforge.xyz/modules/timeutil"
 )
 
 // Queue a recalculation of the stats on a `Milestone` for a given milestone by its ID

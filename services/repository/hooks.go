@@ -6,10 +6,10 @@ package repository
 import (
 	"context"
 
-	"forgejo.org/models/db"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/models/webhook"
-	"forgejo.org/modules/gitrepo"
+	"novroforge.xyz/models/db"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/models/webhook"
+	"novroforge.xyz/modules/gitrepo"
 )
 
 // GenerateGitHooks generates git hooks from a template repository

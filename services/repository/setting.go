@@ -7,11 +7,11 @@ import (
 	"context"
 	"slices"
 
-	"forgejo.org/models/db"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/models/unit"
-	"forgejo.org/modules/log"
-	actions_service "forgejo.org/services/actions"
+	"novroforge.xyz/models/db"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/models/unit"
+	"novroforge.xyz/modules/log"
+	actions_service "novroforge.xyz/services/actions"
 )
 
 // UpdateRepositoryUnits updates a repository's units

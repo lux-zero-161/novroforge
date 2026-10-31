@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"slices"
 
-	"forgejo.org/models/unit"
+	"novroforge.xyz/models/unit"
 )
 
 func ReqOwner(ctx Context, unitTypes []unit.Type) {

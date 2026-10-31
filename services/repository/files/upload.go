@@ -10,12 +10,12 @@ import (
 	"path"
 	"strings"
 
-	git_model "forgejo.org/models/git"
-	repo_model "forgejo.org/models/repo"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/lfs"
-	"forgejo.org/modules/setting"
+	git_model "novroforge.xyz/models/git"
+	repo_model "novroforge.xyz/models/repo"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/lfs"
+	"novroforge.xyz/modules/setting"
 )
 
 // UploadRepoFileOptions contains the uploaded repository file options

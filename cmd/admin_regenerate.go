@@ -6,7 +6,7 @@ package cmd
 import (
 	"context"
 
-	asymkey_model "forgejo.org/models/asymkey"
+	asymkey_model "novroforge.xyz/models/asymkey"
 
 	"github.com/urfave/cli/v3"
 )

@@ -6,10 +6,10 @@ package issues
 import (
 	"testing"
 
-	"forgejo.org/models/db"
-	"forgejo.org/models/unittest"
-	"forgejo.org/modules/optional"
-	"forgejo.org/modules/timeutil"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/unittest"
+	"novroforge.xyz/modules/optional"
+	"novroforge.xyz/modules/timeutil"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

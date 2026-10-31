@@ -10,7 +10,7 @@ import (
 	"path/filepath"
 	"strconv"
 
-	base "forgejo.org/modules/migration"
+	base "novroforge.xyz/modules/migration"
 
 	"go.yaml.in/yaml/v3"
 )

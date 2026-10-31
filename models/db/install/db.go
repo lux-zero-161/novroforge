@@ -4,8 +4,8 @@
 package install
 
 import (
-	"forgejo.org/models/db"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/setting"
 )
 
 func getXORMEngine() db.Engine {

@@ -7,15 +7,15 @@ import (
 	"context"
 	"fmt"
 
-	activities_model "forgejo.org/models/activities"
-	issues_model "forgejo.org/models/issues"
-	access_model "forgejo.org/models/perm/access"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/models/unit"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/container"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
+	activities_model "novroforge.xyz/models/activities"
+	issues_model "novroforge.xyz/models/issues"
+	access_model "novroforge.xyz/models/perm/access"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/models/unit"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/container"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
 )
 
 func fallbackMailSubject(issue *issues_model.Issue) string {

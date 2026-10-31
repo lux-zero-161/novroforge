@@ -6,9 +6,9 @@ package doctor
 import (
 	"context"
 
-	"forgejo.org/models/db"
-	"forgejo.org/models/gitea_migrations"
-	"forgejo.org/modules/log"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/gitea_migrations"
+	"novroforge.xyz/modules/log"
 
 	"code.forgejo.org/xorm/xorm"
 )

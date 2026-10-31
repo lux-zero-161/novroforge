@@ -8,10 +8,10 @@ import (
 	"fmt"
 	"net/http"
 
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/lfs"
-	"forgejo.org/modules/setting"
-	"forgejo.org/services/auth"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/lfs"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/services/auth"
 
 	"github.com/golang-jwt/jwt/v5"
 )

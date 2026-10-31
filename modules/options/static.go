@@ -6,7 +6,7 @@
 package options
 
 import (
-	"forgejo.org/modules/assetfs"
+	"novroforge.xyz/modules/assetfs"
 )
 
 func BuiltinAssets() *assetfs.Layer {

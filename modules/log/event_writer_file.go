@@ -6,7 +6,7 @@ package log
 import (
 	"io"
 
-	"forgejo.org/modules/util/rotatingfilewriter"
+	"novroforge.xyz/modules/util/rotatingfilewriter"
 )
 
 type WriterFileOption struct {

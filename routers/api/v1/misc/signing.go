@@ -7,9 +7,9 @@ import (
 	"fmt"
 	"net/http"
 
-	"forgejo.org/modules/setting"
-	asymkey_service "forgejo.org/services/asymkey"
-	"forgejo.org/services/context"
+	"novroforge.xyz/modules/setting"
+	asymkey_service "novroforge.xyz/services/asymkey"
+	"novroforge.xyz/services/context"
 
 	"golang.org/x/crypto/ssh"
 )

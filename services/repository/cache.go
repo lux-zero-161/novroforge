@@ -6,9 +6,9 @@ package repository
 import (
 	"context"
 
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/modules/cache"
-	"forgejo.org/modules/git"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/modules/cache"
+	"novroforge.xyz/modules/git"
 )
 
 // CacheRef cachhe last commit information of the branch or the tag

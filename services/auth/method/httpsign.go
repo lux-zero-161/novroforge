@@ -11,12 +11,12 @@ import (
 	"net/http"
 	"strings"
 
-	asymkey_model "forgejo.org/models/asymkey"
-	"forgejo.org/models/db"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
-	"forgejo.org/services/auth"
+	asymkey_model "novroforge.xyz/models/asymkey"
+	"novroforge.xyz/models/db"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/services/auth"
 
 	"github.com/42wim/httpsig"
 	"golang.org/x/crypto/ssh"

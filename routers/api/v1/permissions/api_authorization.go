@@ -6,7 +6,7 @@ package permissions
 import (
 	"net/http"
 
-	"forgejo.org/services/authz"
+	"novroforge.xyz/services/authz"
 )
 
 func APIAuthorization(ctx Context) {

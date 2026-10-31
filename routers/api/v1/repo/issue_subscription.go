@@ -7,12 +7,12 @@ import (
 	"fmt"
 	"net/http"
 
-	issues_model "forgejo.org/models/issues"
-	user_model "forgejo.org/models/user"
-	api "forgejo.org/modules/structs"
-	"forgejo.org/routers/api/v1/utils"
-	"forgejo.org/services/context"
-	"forgejo.org/services/convert"
+	issues_model "novroforge.xyz/models/issues"
+	user_model "novroforge.xyz/models/user"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/routers/api/v1/utils"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/convert"
 )
 
 // AddIssueSubscription Subscribe user to issue

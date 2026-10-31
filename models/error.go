@@ -7,9 +7,9 @@ package models
 import (
 	"fmt"
 
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/util"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/util"
 )
 
 // ErrUserOwnRepos represents a "UserOwnRepos" kind of error.

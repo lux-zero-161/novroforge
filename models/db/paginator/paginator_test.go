@@ -6,8 +6,8 @@ package paginator
 import (
 	"testing"
 
-	"forgejo.org/models/db"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/setting"
 
 	"github.com/stretchr/testify/assert"
 )

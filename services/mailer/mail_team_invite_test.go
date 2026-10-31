@@ -6,13 +6,13 @@ package mailer
 import (
 	"testing"
 
-	org_model "forgejo.org/models/organization"
-	"forgejo.org/models/unittest"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/optional"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/test"
-	"forgejo.org/modules/translation"
+	org_model "novroforge.xyz/models/organization"
+	"novroforge.xyz/models/unittest"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/optional"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/test"
+	"novroforge.xyz/modules/translation"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

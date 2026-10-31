@@ -7,13 +7,13 @@ package repo
 import (
 	"net/http"
 
-	"forgejo.org/models/db"
-	access_model "forgejo.org/models/perm/access"
-	repo_model "forgejo.org/models/repo"
-	api "forgejo.org/modules/structs"
-	"forgejo.org/routers/api/v1/utils"
-	"forgejo.org/services/context"
-	"forgejo.org/services/convert"
+	"novroforge.xyz/models/db"
+	access_model "novroforge.xyz/models/perm/access"
+	repo_model "novroforge.xyz/models/repo"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/routers/api/v1/utils"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/convert"
 )
 
 // ListForks list a repository's forks

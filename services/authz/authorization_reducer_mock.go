@@ -7,8 +7,8 @@ package authz
 import (
 	"context"
 
-	"forgejo.org/models/perm"
-	"forgejo.org/models/repo"
+	"novroforge.xyz/models/perm"
+	"novroforge.xyz/models/repo"
 
 	mock "github.com/stretchr/testify/mock"
 	"xorm.io/builder"

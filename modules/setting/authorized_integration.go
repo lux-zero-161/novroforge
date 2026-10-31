@@ -6,7 +6,7 @@ package setting
 import (
 	"time"
 
-	"forgejo.org/modules/log"
+	"novroforge.xyz/modules/log"
 )
 
 var AuthorizedIntegration = struct {

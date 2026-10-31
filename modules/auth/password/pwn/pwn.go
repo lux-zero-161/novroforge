@@ -14,7 +14,7 @@ import (
 	"strconv"
 	"strings"
 
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/setting"
 )
 
 const passwordURL = "https://api.pwnedpasswords.com/range/"

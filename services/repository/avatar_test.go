@@ -9,10 +9,10 @@ import (
 	"image/png"
 	"testing"
 
-	"forgejo.org/models/db"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/models/unittest"
-	"forgejo.org/modules/avatar"
+	"novroforge.xyz/models/db"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/models/unittest"
+	"novroforge.xyz/modules/avatar"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

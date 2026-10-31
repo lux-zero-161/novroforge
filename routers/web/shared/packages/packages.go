@@ -8,17 +8,17 @@ import (
 	"fmt"
 	"net/http"
 
-	packages_model "forgejo.org/models/packages"
-	repo_model "forgejo.org/models/repo"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/base"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/util"
-	"forgejo.org/modules/web"
-	"forgejo.org/services/context"
-	"forgejo.org/services/forms"
-	cargo_service "forgejo.org/services/packages/cargo"
-	cleanup_service "forgejo.org/services/packages/cleanup"
+	packages_model "novroforge.xyz/models/packages"
+	repo_model "novroforge.xyz/models/repo"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/base"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/util"
+	"novroforge.xyz/modules/web"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/forms"
+	cargo_service "novroforge.xyz/services/packages/cargo"
+	cleanup_service "novroforge.xyz/services/packages/cleanup"
 )
 
 func SetPackagesContext(ctx *context.Context, owner *user_model.User) {

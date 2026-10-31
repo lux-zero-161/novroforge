@@ -13,8 +13,8 @@ import (
 	"strings"
 	"time"
 
-	"forgejo.org/modules/duration"
-	"forgejo.org/modules/log"
+	"novroforge.xyz/modules/duration"
+	"novroforge.xyz/modules/log"
 
 	"github.com/dustin/go-humanize"
 	"gopkg.in/ini.v1" //nolint:depguard

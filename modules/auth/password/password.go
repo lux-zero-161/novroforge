@@ -13,8 +13,8 @@ import (
 	"strings"
 	"sync"
 
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/translation"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/translation"
 )
 
 var (

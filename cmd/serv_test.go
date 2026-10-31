@@ -6,9 +6,9 @@ package cmd
 import (
 	"testing"
 
-	asymkey_model "forgejo.org/models/asymkey"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/log"
+	asymkey_model "novroforge.xyz/models/asymkey"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/log"
 )
 
 func TestGetKeyCheckMessage(t *testing.T) {

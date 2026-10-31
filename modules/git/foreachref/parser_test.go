@@ -10,8 +10,8 @@ import (
 	"strings"
 	"testing"
 
-	"forgejo.org/modules/git/foreachref"
-	"forgejo.org/modules/json"
+	"novroforge.xyz/modules/git/foreachref"
+	"novroforge.xyz/modules/json"
 
 	"github.com/stretchr/testify/require"
 )

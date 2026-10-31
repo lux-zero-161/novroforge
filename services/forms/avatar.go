@@ -10,9 +10,9 @@ import (
 	"io"
 	"mime/multipart"
 
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/translation"
-	"forgejo.org/modules/typesniffer"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/translation"
+	"novroforge.xyz/modules/typesniffer"
 )
 
 // ReadAvatar reads and validates an avatar from a multipart file header.

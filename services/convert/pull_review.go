@@ -7,9 +7,9 @@ import (
 	"context"
 	"strings"
 
-	issues_model "forgejo.org/models/issues"
-	user_model "forgejo.org/models/user"
-	api "forgejo.org/modules/structs"
+	issues_model "novroforge.xyz/models/issues"
+	user_model "novroforge.xyz/models/user"
+	api "novroforge.xyz/modules/structs"
 )
 
 // ToPullReview convert a review to api format

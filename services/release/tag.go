@@ -8,12 +8,12 @@ import (
 	"errors"
 	"fmt"
 
-	"forgejo.org/models/db"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/modules/graceful"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/queue"
-	repo_module "forgejo.org/modules/repository"
+	"novroforge.xyz/models/db"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/modules/graceful"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/queue"
+	repo_module "novroforge.xyz/modules/repository"
 
 	"xorm.io/builder"
 )

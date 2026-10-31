@@ -11,12 +11,12 @@ import (
 	"io"
 	"strings"
 
-	"forgejo.org/models/avatars"
-	"forgejo.org/models/db"
-	"forgejo.org/modules/avatar"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/storage"
+	"novroforge.xyz/models/avatars"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/avatar"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/storage"
 )
 
 // CustomAvatarRelativePath returns user custom avatar relative path.

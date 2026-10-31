@@ -3,7 +3,7 @@
 
 package swagger
 
-import api "forgejo.org/modules/structs"
+import api "novroforge.xyz/modules/structs"
 
 // GeneralRepoSettings
 // swagger:response GeneralRepoSettings

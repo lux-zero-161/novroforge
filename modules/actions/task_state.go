@@ -4,7 +4,7 @@
 package actions
 
 import (
-	actions_model "forgejo.org/models/actions"
+	actions_model "novroforge.xyz/models/actions"
 )
 
 const (

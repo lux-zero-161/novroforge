@@ -8,15 +8,15 @@ import (
 	"errors"
 	"net/http"
 
-	asymkey_model "forgejo.org/models/asymkey"
-	"forgejo.org/models/db"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/base"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/web"
-	asymkey_service "forgejo.org/services/asymkey"
-	"forgejo.org/services/context"
-	"forgejo.org/services/forms"
+	asymkey_model "novroforge.xyz/models/asymkey"
+	"novroforge.xyz/models/db"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/base"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/web"
+	asymkey_service "novroforge.xyz/services/asymkey"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/forms"
 )
 
 const (

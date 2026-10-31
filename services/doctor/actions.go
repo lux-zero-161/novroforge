@@ -7,12 +7,12 @@ import (
 	"context"
 	"fmt"
 
-	"forgejo.org/models/db"
-	repo_model "forgejo.org/models/repo"
-	unit_model "forgejo.org/models/unit"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/optional"
-	repo_service "forgejo.org/services/repository"
+	"novroforge.xyz/models/db"
+	repo_model "novroforge.xyz/models/repo"
+	unit_model "novroforge.xyz/models/unit"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/optional"
+	repo_service "novroforge.xyz/services/repository"
 )
 
 func disableMirrorActionsUnit(ctx context.Context, logger log.Logger, autofix bool) error {

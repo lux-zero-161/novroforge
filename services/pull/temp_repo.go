@@ -11,12 +11,12 @@ import (
 	"path/filepath"
 	"strings"
 
-	git_model "forgejo.org/models/git"
-	issues_model "forgejo.org/models/issues"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/log"
-	repo_module "forgejo.org/modules/repository"
+	git_model "novroforge.xyz/models/git"
+	issues_model "novroforge.xyz/models/issues"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/log"
+	repo_module "novroforge.xyz/modules/repository"
 )
 
 // Temporary repos created here use standard branch names to help simplify

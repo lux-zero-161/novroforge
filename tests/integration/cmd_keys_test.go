@@ -9,8 +9,8 @@ import (
 	"os/exec"
 	"testing"
 
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/util"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

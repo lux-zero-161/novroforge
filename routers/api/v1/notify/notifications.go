@@ -7,11 +7,11 @@ import (
 	"net/http"
 	"strings"
 
-	activities_model "forgejo.org/models/activities"
-	"forgejo.org/models/db"
-	api "forgejo.org/modules/structs"
-	"forgejo.org/routers/api/v1/utils"
-	"forgejo.org/services/context"
+	activities_model "novroforge.xyz/models/activities"
+	"novroforge.xyz/models/db"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/routers/api/v1/utils"
+	"novroforge.xyz/services/context"
 )
 
 // NewAvailable check if unread notifications exist

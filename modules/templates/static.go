@@ -8,8 +8,8 @@ package templates
 import (
 	"time"
 
-	"forgejo.org/modules/assetfs"
-	"forgejo.org/modules/timeutil"
+	"novroforge.xyz/modules/assetfs"
+	"novroforge.xyz/modules/timeutil"
 )
 
 // GlobalModTime provide a global mod time for embedded asset files

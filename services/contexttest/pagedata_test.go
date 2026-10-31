@@ -6,8 +6,8 @@ package contexttest
 import (
 	"testing"
 
-	"forgejo.org/modules/translation"
-	"forgejo.org/modules/translation/i18n"
+	"novroforge.xyz/modules/translation"
+	"novroforge.xyz/modules/translation/i18n"
 
 	"github.com/stretchr/testify/assert"
 )

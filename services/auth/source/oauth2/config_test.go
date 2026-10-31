@@ -6,9 +6,9 @@ package oauth2_test
 import (
 	"testing"
 
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/test"
-	"forgejo.org/services/auth/source/oauth2"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/test"
+	"novroforge.xyz/services/auth/source/oauth2"
 
 	"github.com/markbates/goth/gothic"
 	"github.com/stretchr/testify/require"

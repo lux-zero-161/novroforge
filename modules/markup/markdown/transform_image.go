@@ -6,8 +6,8 @@ package markdown
 import (
 	"strings"
 
-	"forgejo.org/modules/markup"
-	giteautil "forgejo.org/modules/util"
+	"novroforge.xyz/modules/markup"
+	giteautil "novroforge.xyz/modules/util"
 
 	"github.com/yuin/goldmark/ast"
 )

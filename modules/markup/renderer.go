@@ -14,10 +14,10 @@ import (
 	"strings"
 	"sync"
 
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/util"
-	"forgejo.org/modules/util/donotpanic"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/util"
+	"novroforge.xyz/modules/util/donotpanic"
 
 	"github.com/yuin/goldmark/ast"
 )

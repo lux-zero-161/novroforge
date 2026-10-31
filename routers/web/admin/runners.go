@@ -4,8 +4,8 @@
 package admin
 
 import (
-	"forgejo.org/modules/setting"
-	"forgejo.org/services/context"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/services/context"
 )
 
 func RedirectToDefaultSetting(ctx *context.Context) {

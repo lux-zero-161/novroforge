@@ -5,7 +5,7 @@ package integration
 import (
 	"testing"
 
-	"forgejo.org/services/repository/files"
+	"novroforge.xyz/services/repository/files"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

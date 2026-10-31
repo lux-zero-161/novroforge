@@ -7,13 +7,13 @@ import (
 	"net/http"
 	"strings"
 
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/base"
-	chef_module "forgejo.org/modules/packages/chef"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/util"
-	shared "forgejo.org/routers/web/shared/packages"
-	"forgejo.org/services/context"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/base"
+	chef_module "novroforge.xyz/modules/packages/chef"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/util"
+	shared "novroforge.xyz/routers/web/shared/packages"
+	"novroforge.xyz/services/context"
 )
 
 const (

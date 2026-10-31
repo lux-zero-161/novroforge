@@ -9,8 +9,8 @@ import (
 	"net/url"
 	"regexp"
 
-	"forgejo.org/modules/markup"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/markup"
+	"novroforge.xyz/modules/setting"
 )
 
 func init() {

@@ -12,12 +12,12 @@ import (
 	"testing"
 	"time"
 
-	"forgejo.org/models/unittest"
-	"forgejo.org/modules/log"
-	base "forgejo.org/modules/migration"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/test"
-	"forgejo.org/services/migrations/allowlist"
+	"novroforge.xyz/models/unittest"
+	"novroforge.xyz/modules/log"
+	base "novroforge.xyz/modules/migration"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/test"
+	"novroforge.xyz/services/migrations/allowlist"
 
 	"github.com/google/go-github/v81/github"
 	"github.com/stretchr/testify/assert"

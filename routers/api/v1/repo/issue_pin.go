@@ -6,10 +6,10 @@ package repo
 import (
 	"net/http"
 
-	issues_model "forgejo.org/models/issues"
-	api "forgejo.org/modules/structs"
-	"forgejo.org/services/context"
-	"forgejo.org/services/convert"
+	issues_model "novroforge.xyz/models/issues"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/convert"
 )
 
 // PinIssue pins a issue

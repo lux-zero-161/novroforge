@@ -5,9 +5,9 @@ package issue
 import (
 	"context"
 
-	issues_model "forgejo.org/models/issues"
-	user_model "forgejo.org/models/user"
-	notify_service "forgejo.org/services/notify"
+	issues_model "novroforge.xyz/models/issues"
+	user_model "novroforge.xyz/models/user"
+	notify_service "novroforge.xyz/services/notify"
 )
 
 // CreateIssueReaction creates a reaction on issue.

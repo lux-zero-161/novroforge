@@ -7,8 +7,8 @@ import (
 	"context"
 	"testing"
 
-	"forgejo.org/models/unittest"
-	"forgejo.org/modules/markup"
+	"novroforge.xyz/models/unittest"
+	"novroforge.xyz/modules/markup"
 )
 
 func TestMain(m *testing.M) {

@@ -6,9 +6,9 @@ package permissions
 import (
 	"net/http"
 
-	auth_model "forgejo.org/models/auth"
-	user_model "forgejo.org/models/user"
-	api "forgejo.org/modules/structs"
+	auth_model "novroforge.xyz/models/auth"
+	user_model "novroforge.xyz/models/user"
+	api "novroforge.xyz/modules/structs"
 )
 
 func CheckTokenPublicOnly(ctx Context, user, org, packageOwner *user_model.User) {

@@ -9,9 +9,9 @@ import (
 	"slices"
 	"strings"
 
-	"forgejo.org/models/db"
-	"forgejo.org/models/organization"
-	"forgejo.org/modules/timeutil"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/organization"
+	"novroforge.xyz/modules/timeutil"
 
 	"github.com/gobwas/glob"
 )

@@ -20,15 +20,15 @@ import (
 	"strconv"
 	"strings"
 
-	packages_model "forgejo.org/models/packages"
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/log"
-	packages_module "forgejo.org/modules/packages"
-	maven_module "forgejo.org/modules/packages/maven"
-	"forgejo.org/modules/sync"
-	"forgejo.org/routers/api/packages/helper"
-	"forgejo.org/services/context"
-	packages_service "forgejo.org/services/packages"
+	packages_model "novroforge.xyz/models/packages"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/log"
+	packages_module "novroforge.xyz/modules/packages"
+	maven_module "novroforge.xyz/modules/packages/maven"
+	"novroforge.xyz/modules/sync"
+	"novroforge.xyz/routers/api/packages/helper"
+	"novroforge.xyz/services/context"
+	packages_service "novroforge.xyz/services/packages"
 )
 
 const (

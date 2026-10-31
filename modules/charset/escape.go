@@ -13,9 +13,9 @@ import (
 	"slices"
 	"strings"
 
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/translation"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/translation"
 )
 
 // RuneNBSP is the codepoint for NBSP

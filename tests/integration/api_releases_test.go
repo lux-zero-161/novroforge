@@ -11,14 +11,14 @@ import (
 	"strings"
 	"testing"
 
-	auth_model "forgejo.org/models/auth"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/models/unittest"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/gitrepo"
-	api "forgejo.org/modules/structs"
-	"forgejo.org/tests"
+	auth_model "novroforge.xyz/models/auth"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/models/unittest"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/gitrepo"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/tests"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -570,7 +570,7 @@ func TestAPIReleaseExternalAsset(t *testing.T) {
 
 	r := createNewReleaseUsingAPI(t, token, owner, repo, "release-tag", "", "Release Tag", "test")
 
-	req := NewRequest(t, http.MethodPost, fmt.Sprintf("/api/v1/repos/%s/%s/releases/%d/assets?name=test-asset&external_url=https%%3A%%2F%%2Fforgejo.org%%2F", owner.Name, repo.Name, r.ID)).
+	req := NewRequest(t, http.MethodPost, fmt.Sprintf("/api/v1/repos/%s/%s/releases/%d/assets?name=test-asset&external_url=https%%3A%%2F%%2Fnovroforge.xyz%%2F", owner.Name, repo.Name, r.ID)).
 		AddTokenAuth(token)
 	resp := MakeRequest(t, req, http.StatusCreated)
 
@@ -622,7 +622,7 @@ func TestAPIReleaseDuplicateAsset(t *testing.T) {
 	body := &bytes.Buffer{}
 	contentType := tests.WriteImageBody(t, buff, filename, body)
 
-	req := NewRequestWithBody(t, http.MethodPost, fmt.Sprintf("/api/v1/repos/%s/%s/releases/%d/assets?name=test-asset&external_url=https%%3A%%2F%%2Fforgejo.org%%2F", owner.Name, repo.Name, r.ID), body).
+	req := NewRequestWithBody(t, http.MethodPost, fmt.Sprintf("/api/v1/repos/%s/%s/releases/%d/assets?name=test-asset&external_url=https%%3A%%2F%%2Fnovroforge.xyz%%2F", owner.Name, repo.Name, r.ID), body).
 		AddTokenAuth(token)
 	req.Header.Add("Content-Type", contentType)
 	MakeRequest(t, req, http.StatusBadRequest)

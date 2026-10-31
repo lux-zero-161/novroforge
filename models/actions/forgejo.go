@@ -7,9 +7,9 @@ import (
 	"crypto/subtle"
 	"fmt"
 
-	auth_model "forgejo.org/models/auth"
-	"forgejo.org/models/db"
-	"forgejo.org/modules/util"
+	auth_model "novroforge.xyz/models/auth"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/util"
 
 	gouuid "github.com/google/uuid"
 )

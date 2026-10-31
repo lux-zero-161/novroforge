@@ -8,7 +8,7 @@ import (
 	"io"
 	"strings"
 
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/util"
 )
 
 // Conaninfo represents infos of a Conan package

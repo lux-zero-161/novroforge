@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"forgejo.org/models/organization"
+	"novroforge.xyz/models/organization"
 )
 
 func CheckForkDestination(ctx Context, organizationName *string) {

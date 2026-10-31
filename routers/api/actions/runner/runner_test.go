@@ -8,8 +8,8 @@ import (
 	"strings"
 	"testing"
 
-	actions_model "forgejo.org/models/actions"
-	"forgejo.org/models/unittest"
+	actions_model "novroforge.xyz/models/actions"
+	"novroforge.xyz/models/unittest"
 
 	runnerv1 "code.forgejo.org/forgejo/actions-proto/runner/v1"
 	"connectrpc.com/connect"

@@ -9,11 +9,11 @@ import (
 	"path"
 	"testing"
 
-	"forgejo.org/models/auth"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/models/unittest"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/git"
+	"novroforge.xyz/models/auth"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/models/unittest"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/git"
 
 	"github.com/stretchr/testify/require"
 )

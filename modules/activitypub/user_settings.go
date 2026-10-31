@@ -6,8 +6,8 @@ package activitypub
 import (
 	"context"
 
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/util"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/util"
 )
 
 const rsaBits = 3072

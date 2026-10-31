@@ -11,7 +11,7 @@ import (
 	"strings"
 	"sync"
 
-	"forgejo.org/modules/git"
+	"novroforge.xyz/modules/git"
 )
 
 // NameRevStdin runs name-rev --stdin

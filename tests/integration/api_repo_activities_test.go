@@ -8,11 +8,11 @@ import (
 	"net/http"
 	"testing"
 
-	auth_model "forgejo.org/models/auth"
-	api "forgejo.org/modules/structs"
-	notify_service "forgejo.org/services/notify"
-	"forgejo.org/tests"
-	"forgejo.org/tests/forgery"
+	auth_model "novroforge.xyz/models/auth"
+	api "novroforge.xyz/modules/structs"
+	notify_service "novroforge.xyz/services/notify"
+	"novroforge.xyz/tests"
+	"novroforge.xyz/tests/forgery"
 
 	"github.com/stretchr/testify/assert"
 )

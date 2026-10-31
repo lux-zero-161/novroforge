@@ -6,8 +6,8 @@ package forgejo_migrations_legacy
 import (
 	"testing"
 
-	migration_tests "forgejo.org/models/gitea_migrations/test"
-	"forgejo.org/modules/test"
+	migration_tests "novroforge.xyz/models/gitea_migrations/test"
+	"novroforge.xyz/modules/test"
 
 	"code.forgejo.org/xorm/xorm"
 	"github.com/stretchr/testify/assert"

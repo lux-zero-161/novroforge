@@ -9,10 +9,10 @@ import (
 	"fmt"
 	"time"
 
-	"forgejo.org/models/db"
-	"forgejo.org/modules/optional"
-	"forgejo.org/modules/timeutil"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/optional"
+	"novroforge.xyz/modules/timeutil"
+	"novroforge.xyz/modules/util"
 
 	gouuid "github.com/google/uuid"
 	"xorm.io/builder"

@@ -20,9 +20,9 @@ import (
 	"strings"
 	"time"
 
-	"forgejo.org/modules/proxy"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/proxy"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/util"
 )
 
 var ErrRedirectNotAllowed = errors.New("A redirect was encountered during cloning of this git repository. Redirects are not allowed")

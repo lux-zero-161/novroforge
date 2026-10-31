@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"net/url"
 
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/setting"
 )
 
 // APActorID returns the IRI to the api endpoint of the user

@@ -13,13 +13,13 @@ import (
 	"strings"
 	"time"
 
-	actions_model "forgejo.org/models/actions"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/modules/actions"
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/optional"
-	"forgejo.org/modules/util"
+	actions_model "novroforge.xyz/models/actions"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/modules/actions"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/optional"
+	"novroforge.xyz/modules/util"
 )
 
 // Sentinel errors returned by OpenJobLogReader. The HTTP handler maps each

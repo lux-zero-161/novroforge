@@ -7,10 +7,10 @@ import (
 	"io"
 	"net/http"
 
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/private"
-	app_context "forgejo.org/services/context"
-	"forgejo.org/services/migrations"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/private"
+	app_context "novroforge.xyz/services/context"
+	"novroforge.xyz/services/migrations"
 )
 
 // RestoreRepo restore a repository from data

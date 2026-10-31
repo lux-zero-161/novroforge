@@ -8,8 +8,8 @@ import (
 	"strings"
 	"testing"
 
-	actions_model "forgejo.org/models/actions"
-	api "forgejo.org/modules/structs"
+	actions_model "novroforge.xyz/models/actions"
+	api "novroforge.xyz/modules/structs"
 
 	"github.com/stretchr/testify/assert"
 )

@@ -8,12 +8,12 @@ import (
 	"fmt"
 	"net/http"
 
-	actions_model "forgejo.org/models/actions"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/optional"
-	"forgejo.org/modules/util"
-	"forgejo.org/services/auth"
+	actions_model "novroforge.xyz/models/actions"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/optional"
+	"novroforge.xyz/modules/util"
+	"novroforge.xyz/services/auth"
 )
 
 var _ auth.Method = &ActionTaskToken{}

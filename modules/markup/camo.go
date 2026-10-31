@@ -10,8 +10,8 @@ import (
 	"net/url"
 	"strings"
 
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/util"
 )
 
 // CamoEncode encodes a lnk to fit with the go-camo and camo proxy links. The purposes of camo-proxy are:

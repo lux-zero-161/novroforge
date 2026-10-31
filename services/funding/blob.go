@@ -7,8 +7,8 @@ import (
 	"reflect"
 	"slices"
 
-	"forgejo.org/modules/setting"
-	api "forgejo.org/modules/structs"
+	"novroforge.xyz/modules/setting"
+	api "novroforge.xyz/modules/structs"
 
 	"go.yaml.in/yaml/v3"
 )

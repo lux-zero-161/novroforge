@@ -7,14 +7,14 @@ import (
 	"errors"
 	"net/http"
 
-	issues_model "forgejo.org/models/issues"
-	user_model "forgejo.org/models/user"
-	api "forgejo.org/modules/structs"
-	"forgejo.org/modules/web"
-	"forgejo.org/routers/api/v1/utils"
-	"forgejo.org/services/context"
-	"forgejo.org/services/convert"
-	issue_service "forgejo.org/services/issue"
+	issues_model "novroforge.xyz/models/issues"
+	user_model "novroforge.xyz/models/user"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/modules/web"
+	"novroforge.xyz/routers/api/v1/utils"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/convert"
+	issue_service "novroforge.xyz/services/issue"
 )
 
 // GetIssueCommentReactions list reactions of a comment from an issue

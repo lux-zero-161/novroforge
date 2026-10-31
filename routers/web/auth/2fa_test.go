@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"testing"
 
-	"forgejo.org/services/contexttest"
+	"novroforge.xyz/services/contexttest"
 
 	"github.com/stretchr/testify/assert"
 )

@@ -10,11 +10,11 @@ import (
 	"strings"
 	"time"
 
-	actions_model "forgejo.org/models/actions"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
+	actions_model "novroforge.xyz/models/actions"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
 
 	"github.com/golang-jwt/jwt/v5"
 )

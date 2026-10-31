@@ -7,16 +7,16 @@ import (
 	"bytes"
 	"net/http"
 
-	"forgejo.org/models/db"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/base"
-	"forgejo.org/modules/container"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/optional"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/sitemap"
-	"forgejo.org/modules/structs"
-	"forgejo.org/services/context"
+	"novroforge.xyz/models/db"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/base"
+	"novroforge.xyz/modules/container"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/optional"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/sitemap"
+	"novroforge.xyz/modules/structs"
+	"novroforge.xyz/services/context"
 )
 
 const (

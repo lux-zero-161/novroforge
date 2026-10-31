@@ -6,9 +6,9 @@ package repo_test
 import (
 	"testing"
 
-	"forgejo.org/models/moderation"
-	"forgejo.org/models/repo"
-	"forgejo.org/modules/timeutil"
+	"novroforge.xyz/models/moderation"
+	"novroforge.xyz/models/repo"
+	"novroforge.xyz/modules/timeutil"
 
 	"github.com/stretchr/testify/assert"
 )

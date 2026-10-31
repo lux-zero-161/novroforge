@@ -13,10 +13,10 @@ import (
 	"strings"
 	"time"
 
-	"forgejo.org/models/dbfs"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/storage"
-	"forgejo.org/modules/zstd"
+	"novroforge.xyz/models/dbfs"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/storage"
+	"novroforge.xyz/modules/zstd"
 
 	runnerv1 "code.forgejo.org/forgejo/actions-proto/runner/v1"
 	"google.golang.org/protobuf/types/known/timestamppb"

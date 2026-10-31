@@ -8,14 +8,14 @@ import (
 	"fmt"
 	"time"
 
-	git_model "forgejo.org/models/git"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/gitrepo"
-	"forgejo.org/modules/lfs"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/timeutil"
+	git_model "novroforge.xyz/models/git"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/gitrepo"
+	"novroforge.xyz/modules/lfs"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/timeutil"
 )
 
 // GarbageCollectLFSMetaObjectsOptions provides options for GarbageCollectLFSMetaObjects function

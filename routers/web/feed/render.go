@@ -4,7 +4,7 @@
 package feed
 
 import (
-	"forgejo.org/services/context"
+	"novroforge.xyz/services/context"
 )
 
 // RenderBranchFeed render format for branch or file

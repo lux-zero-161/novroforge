@@ -9,7 +9,7 @@ import (
 	"regexp"
 	"strings"
 
-	repo_model "forgejo.org/models/repo"
+	repo_model "novroforge.xyz/models/repo"
 )
 
 // NotExistError occurs when a repo has no funding config.

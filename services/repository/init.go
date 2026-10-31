@@ -9,13 +9,13 @@ import (
 	"os"
 	"time"
 
-	repo_model "forgejo.org/models/repo"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/log"
-	repo_module "forgejo.org/modules/repository"
-	"forgejo.org/modules/setting"
-	asymkey_service "forgejo.org/services/asymkey"
+	repo_model "novroforge.xyz/models/repo"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/log"
+	repo_module "novroforge.xyz/modules/repository"
+	"novroforge.xyz/modules/setting"
+	asymkey_service "novroforge.xyz/services/asymkey"
 )
 
 // initRepoCommit temporarily changes with work directory.

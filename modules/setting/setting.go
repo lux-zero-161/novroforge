@@ -13,10 +13,10 @@ import (
 	"sync"
 	"time"
 
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/optional"
-	"forgejo.org/modules/user"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/optional"
+	"novroforge.xyz/modules/user"
+	"novroforge.xyz/modules/util"
 
 	"github.com/hashicorp/go-version"
 )

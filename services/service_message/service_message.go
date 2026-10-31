@@ -7,8 +7,8 @@ import (
 	"context"
 	"fmt"
 
-	service_message_model "forgejo.org/models/service_message"
-	service_message_module "forgejo.org/modules/service_message"
+	service_message_model "novroforge.xyz/models/service_message"
+	service_message_module "novroforge.xyz/modules/service_message"
 )
 
 var SMTypeModal = "modal"

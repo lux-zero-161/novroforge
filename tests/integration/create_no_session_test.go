@@ -9,11 +9,11 @@ import (
 	"path/filepath"
 	"testing"
 
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/test"
-	"forgejo.org/routers"
-	"forgejo.org/tests"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/test"
+	"novroforge.xyz/routers"
+	"novroforge.xyz/tests"
 
 	"code.forgejo.org/go-chi/session"
 	"github.com/stretchr/testify/assert"

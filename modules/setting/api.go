@@ -7,7 +7,7 @@ import (
 	"net/url"
 	"path"
 
-	"forgejo.org/modules/log"
+	"novroforge.xyz/modules/log"
 )
 
 // API settings

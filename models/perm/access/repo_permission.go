@@ -8,15 +8,15 @@ import (
 	"fmt"
 	"strings"
 
-	actions_model "forgejo.org/models/actions"
-	"forgejo.org/models/db"
-	"forgejo.org/models/organization"
-	perm_model "forgejo.org/models/perm"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/models/unit"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/log"
-	"forgejo.org/services/authz"
+	actions_model "novroforge.xyz/models/actions"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/organization"
+	perm_model "novroforge.xyz/models/perm"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/models/unit"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/services/authz"
 )
 
 // Permission contains all the permissions related variables to a repository for a user

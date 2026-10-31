@@ -9,9 +9,9 @@ import (
 	"testing"
 	"time"
 
-	"forgejo.org/modules/proxyprotocol"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/test"
+	"novroforge.xyz/modules/proxyprotocol"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/test"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

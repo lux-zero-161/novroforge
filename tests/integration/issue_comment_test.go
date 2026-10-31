@@ -10,12 +10,12 @@ import (
 	"strings"
 	"testing"
 
-	"forgejo.org/models/db"
-	issues_model "forgejo.org/models/issues"
-	org_model "forgejo.org/models/organization"
-	"forgejo.org/models/unittest"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/tests"
+	"novroforge.xyz/models/db"
+	issues_model "novroforge.xyz/models/issues"
+	org_model "novroforge.xyz/models/organization"
+	"novroforge.xyz/models/unittest"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/tests"
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/stretchr/testify/assert"

@@ -8,7 +8,7 @@ import (
 	"regexp"
 	"strings"
 
-	"forgejo.org/modules/log"
+	"novroforge.xyz/modules/log"
 )
 
 // A funding provider, as it appears in the server config

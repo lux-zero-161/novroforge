@@ -7,10 +7,10 @@ import (
 	"strings"
 	"testing"
 
-	issues_model "forgejo.org/models/issues"
-	"forgejo.org/models/organization"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/timeutil"
+	issues_model "novroforge.xyz/models/issues"
+	"novroforge.xyz/models/organization"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/timeutil"
 
 	"github.com/stretchr/testify/assert"
 )

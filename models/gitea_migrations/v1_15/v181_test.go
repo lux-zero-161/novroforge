@@ -7,7 +7,7 @@ import (
 	"strings"
 	"testing"
 
-	migration_tests "forgejo.org/models/gitea_migrations/test"
+	migration_tests "novroforge.xyz/models/gitea_migrations/test"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

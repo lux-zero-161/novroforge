@@ -9,12 +9,12 @@ import (
 	"fmt"
 	"regexp"
 
-	"forgejo.org/models/db"
-	"forgejo.org/modules/container"
-	project_module "forgejo.org/modules/project"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/timeutil"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/container"
+	project_module "novroforge.xyz/modules/project"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/timeutil"
+	"novroforge.xyz/modules/util"
 
 	"xorm.io/builder"
 )

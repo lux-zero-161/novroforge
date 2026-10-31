@@ -6,7 +6,7 @@ package permissions
 import (
 	"slices"
 
-	"forgejo.org/models/unit"
+	"novroforge.xyz/models/unit"
 )
 
 func IsUserSiteAdmin(ctx Context) bool {

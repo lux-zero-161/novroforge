@@ -6,9 +6,9 @@ package issues
 import (
 	"context"
 
-	"forgejo.org/models/db"
-	issues_model "forgejo.org/models/issues"
-	"forgejo.org/modules/optional"
+	"novroforge.xyz/models/db"
+	issues_model "novroforge.xyz/models/issues"
+	"novroforge.xyz/modules/optional"
 )
 
 func ToSearchOptions(ctx context.Context, keyword string, opts *issues_model.IssuesOptions) *SearchOptions {

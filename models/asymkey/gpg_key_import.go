@@ -6,7 +6,7 @@ package asymkey
 import (
 	"context"
 
-	"forgejo.org/models/db"
+	"novroforge.xyz/models/db"
 )
 
 //    __________________  ________   ____  __.

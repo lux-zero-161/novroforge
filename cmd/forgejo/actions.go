@@ -12,11 +12,11 @@ import (
 	"os"
 	"strings"
 
-	actions_model "forgejo.org/models/actions"
-	"forgejo.org/modules/optional"
-	"forgejo.org/modules/private"
-	"forgejo.org/modules/setting"
-	private_routers "forgejo.org/routers/private"
+	actions_model "novroforge.xyz/models/actions"
+	"novroforge.xyz/modules/optional"
+	"novroforge.xyz/modules/private"
+	"novroforge.xyz/modules/setting"
+	private_routers "novroforge.xyz/routers/private"
 
 	"github.com/urfave/cli/v3"
 )

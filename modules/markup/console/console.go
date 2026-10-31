@@ -10,8 +10,8 @@ import (
 	"regexp"
 	"strings"
 
-	"forgejo.org/modules/markup"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/markup"
+	"novroforge.xyz/modules/setting"
 
 	trend "github.com/buildkite/terminal-to-html/v3"
 	"github.com/go-enry/go-enry/v2"

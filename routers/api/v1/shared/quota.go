@@ -6,10 +6,10 @@ package shared
 import (
 	"net/http"
 
-	quota_model "forgejo.org/models/quota"
-	"forgejo.org/routers/api/v1/utils"
-	"forgejo.org/services/context"
-	"forgejo.org/services/convert"
+	quota_model "novroforge.xyz/models/quota"
+	"novroforge.xyz/routers/api/v1/utils"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/convert"
 )
 
 func GetQuota(ctx *context.APIContext, userID int64) {

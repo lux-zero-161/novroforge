@@ -8,7 +8,7 @@ import (
 	"encoding/base64"
 	"fmt"
 
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/util"
 )
 
 const defaultJwtSecretLen = 32

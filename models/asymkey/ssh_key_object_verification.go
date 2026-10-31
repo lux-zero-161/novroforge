@@ -9,10 +9,10 @@ import (
 	"fmt"
 	"strings"
 
-	"forgejo.org/models/db"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/models/db"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
 
 	"github.com/42wim/sshsig"
 	"golang.org/x/crypto/ssh"

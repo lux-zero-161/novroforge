@@ -6,12 +6,12 @@ package avatars_test
 import (
 	"testing"
 
-	avatars_model "forgejo.org/models/avatars"
-	"forgejo.org/models/db"
-	system_model "forgejo.org/models/system"
-	"forgejo.org/modules/avatar"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/setting/config"
+	avatars_model "novroforge.xyz/models/avatars"
+	"novroforge.xyz/models/db"
+	system_model "novroforge.xyz/models/system"
+	"novroforge.xyz/modules/avatar"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/setting/config"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

@@ -11,11 +11,11 @@ import (
 	"io"
 	"net/url"
 
-	actions_model "forgejo.org/models/actions"
-	"forgejo.org/modules/httplib"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/storage"
-	"forgejo.org/services/context"
+	actions_model "novroforge.xyz/models/actions"
+	"novroforge.xyz/modules/httplib"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/storage"
+	"novroforge.xyz/services/context"
 )
 
 // ServeArtifact writes an artifact archive to the response. The given rows

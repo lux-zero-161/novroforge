@@ -7,9 +7,9 @@ import (
 	"net/http"
 	"strings"
 
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/web/middleware"
-	apiv1_permissions_testhelpers "forgejo.org/routers/api/v1/permissions/testhelpers"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/web/middleware"
+	apiv1_permissions_testhelpers "novroforge.xyz/routers/api/v1/permissions/testhelpers"
 
 	"code.forgejo.org/go-chi/binding"
 	"github.com/go-chi/chi/v5"

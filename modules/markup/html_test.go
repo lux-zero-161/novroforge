@@ -11,16 +11,16 @@ import (
 	"strings"
 	"testing"
 
-	"forgejo.org/models/unittest"
-	"forgejo.org/modules/emoji"
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/markup"
-	"forgejo.org/modules/markup/markdown"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/test"
-	"forgejo.org/modules/translation"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/models/unittest"
+	"novroforge.xyz/modules/emoji"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/markup"
+	"novroforge.xyz/modules/markup/markdown"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/test"
+	"novroforge.xyz/modules/translation"
+	"novroforge.xyz/modules/util"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -421,8 +421,8 @@ func TestRender_email(t *testing.T) {
 	)
 
 	test(
-		"@#&@forgejo.org",
-		`<p><a href="https://fedirect.toolforge.org/?id=%40%23%26%40forgejo.org" rel="nofollow">@#&amp;@forgejo.org</a></p>`,
+		"@#&@novroforge.xyz",
+		`<p><a href="https://fedirect.toolforge.org/?id=%40%23%26%40novroforge.xyz" rel="nofollow">@#&amp;@novroforge.xyz</a></p>`,
 	)
 }
 

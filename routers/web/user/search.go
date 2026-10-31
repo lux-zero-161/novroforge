@@ -6,12 +6,12 @@ package user
 import (
 	"net/http"
 
-	"forgejo.org/models/db"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/optional"
-	"forgejo.org/modules/setting"
-	"forgejo.org/services/context"
-	"forgejo.org/services/convert"
+	"novroforge.xyz/models/db"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/optional"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/convert"
 )
 
 // SearchCandidates searches candidate users for dropdown list

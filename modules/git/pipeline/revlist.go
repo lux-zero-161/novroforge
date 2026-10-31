@@ -12,8 +12,8 @@ import (
 	"strings"
 	"sync"
 
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/log"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/log"
 )
 
 // RevListObjects run rev-list --objects from headSHA to baseSHA

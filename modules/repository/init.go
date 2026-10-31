@@ -10,14 +10,14 @@ import (
 	"sort"
 	"strings"
 
-	issues_model "forgejo.org/models/issues"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/label"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/options"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/util"
+	issues_model "novroforge.xyz/models/issues"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/label"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/options"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/util"
 )
 
 type OptionFile struct {

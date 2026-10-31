@@ -4,8 +4,8 @@
 package permissions
 
 import (
-	auth_model "forgejo.org/models/auth"
-	user_model "forgejo.org/models/user"
+	auth_model "novroforge.xyz/models/auth"
+	user_model "novroforge.xyz/models/user"
 )
 
 func TokenRequiresRepoOwnerScope(ctx Context, owner *user_model.User, requiredScopeLevel auth_model.AccessTokenScopeLevel) {

@@ -8,8 +8,8 @@ import (
 	"strings"
 	"time"
 
-	packages_model "forgejo.org/models/packages"
-	nuget_module "forgejo.org/modules/packages/nuget"
+	packages_model "novroforge.xyz/models/packages"
+	nuget_module "novroforge.xyz/modules/packages/nuget"
 )
 
 type AtomTitle struct {

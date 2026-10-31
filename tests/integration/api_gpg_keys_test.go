@@ -13,10 +13,10 @@ import (
 	"testing"
 	"time"
 
-	auth_model "forgejo.org/models/auth"
-	api "forgejo.org/modules/structs"
-	"forgejo.org/modules/test"
-	"forgejo.org/tests"
+	auth_model "novroforge.xyz/models/auth"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/modules/test"
+	"novroforge.xyz/tests"
 
 	"github.com/ProtonMail/go-crypto/openpgp"
 	"github.com/ProtonMail/go-crypto/openpgp/armor"

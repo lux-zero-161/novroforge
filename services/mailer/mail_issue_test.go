@@ -6,13 +6,13 @@ package mailer_test
 import (
 	"testing"
 
-	"forgejo.org/models/db"
-	issues_model "forgejo.org/models/issues"
-	"forgejo.org/models/unittest"
-	user_model "forgejo.org/models/user"
-	issue_service "forgejo.org/services/issue"
-	"forgejo.org/services/mailer"
-	notify_service "forgejo.org/services/notify"
+	"novroforge.xyz/models/db"
+	issues_model "novroforge.xyz/models/issues"
+	"novroforge.xyz/models/unittest"
+	user_model "novroforge.xyz/models/user"
+	issue_service "novroforge.xyz/services/issue"
+	"novroforge.xyz/services/mailer"
+	notify_service "novroforge.xyz/services/notify"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

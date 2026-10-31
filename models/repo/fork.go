@@ -7,9 +7,9 @@ import (
 	"context"
 	"fmt"
 
-	"forgejo.org/models/db"
-	"forgejo.org/models/unit"
-	user_model "forgejo.org/models/user"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/unit"
+	user_model "novroforge.xyz/models/user"
 
 	"xorm.io/builder"
 )

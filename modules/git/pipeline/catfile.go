@@ -13,8 +13,8 @@ import (
 	"strings"
 	"sync"
 
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/log"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/log"
 )
 
 // CatFileBatchCheck runs cat-file with --batch-check

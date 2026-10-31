@@ -11,12 +11,12 @@ import (
 	"net/url"
 	"path"
 
-	"forgejo.org/models/db"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/storage"
-	"forgejo.org/modules/timeutil"
-	"forgejo.org/modules/util"
-	"forgejo.org/modules/validation"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/storage"
+	"novroforge.xyz/modules/timeutil"
+	"novroforge.xyz/modules/util"
+	"novroforge.xyz/modules/validation"
 
 	"xorm.io/builder"
 )

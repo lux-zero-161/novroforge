@@ -8,13 +8,13 @@ import (
 	"net/http"
 	"strconv"
 
-	issues_model "forgejo.org/models/issues"
-	"forgejo.org/modules/label"
-	api "forgejo.org/modules/structs"
-	"forgejo.org/modules/web"
-	"forgejo.org/routers/api/v1/utils"
-	"forgejo.org/services/context"
-	"forgejo.org/services/convert"
+	issues_model "novroforge.xyz/models/issues"
+	"novroforge.xyz/modules/label"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/modules/web"
+	"novroforge.xyz/routers/api/v1/utils"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/convert"
 )
 
 // ListLabels list all the labels of a repository

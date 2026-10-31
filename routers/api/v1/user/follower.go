@@ -8,13 +8,13 @@ import (
 	"errors"
 	"net/http"
 
-	user_model "forgejo.org/models/user"
-	api "forgejo.org/modules/structs"
-	"forgejo.org/modules/web"
-	"forgejo.org/routers/api/v1/utils"
-	"forgejo.org/services/context"
-	"forgejo.org/services/convert"
-	"forgejo.org/services/federation"
+	user_model "novroforge.xyz/models/user"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/modules/web"
+	"novroforge.xyz/routers/api/v1/utils"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/convert"
+	"novroforge.xyz/services/federation"
 )
 
 func responseAPIUsers(ctx *context.APIContext, users []*user_model.User) {

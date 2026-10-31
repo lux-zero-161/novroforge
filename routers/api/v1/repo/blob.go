@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"strings"
 
-	"forgejo.org/services/context"
-	files_service "forgejo.org/services/repository/files"
+	"novroforge.xyz/services/context"
+	files_service "novroforge.xyz/services/repository/files"
 )
 
 // GetBlobs gets multiple blobs of a repository.

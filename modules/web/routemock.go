@@ -6,7 +6,7 @@ package web
 import (
 	"net/http"
 
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/setting"
 )
 
 // MockAfterMiddlewares is a general mock point, it's between middlewares and the handler

@@ -6,10 +6,10 @@ package actions
 import (
 	"testing"
 
-	"forgejo.org/models/db"
-	"forgejo.org/models/repo"
-	"forgejo.org/models/unit"
-	"forgejo.org/models/unittest"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/repo"
+	"novroforge.xyz/models/unit"
+	"novroforge.xyz/models/unittest"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

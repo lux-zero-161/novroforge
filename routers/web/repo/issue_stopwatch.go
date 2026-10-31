@@ -7,10 +7,10 @@ import (
 	"net/http"
 	"strings"
 
-	"forgejo.org/models/db"
-	issues_model "forgejo.org/models/issues"
-	"forgejo.org/modules/eventsource"
-	"forgejo.org/services/context"
+	"novroforge.xyz/models/db"
+	issues_model "novroforge.xyz/models/issues"
+	"novroforge.xyz/modules/eventsource"
+	"novroforge.xyz/services/context"
 )
 
 // IssueStopwatch creates or stops a stopwatch for the given issue.

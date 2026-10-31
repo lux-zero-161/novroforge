@@ -10,11 +10,11 @@ import (
 	"net/http"
 	"strings"
 
-	"forgejo.org/modules/markup"
-	"forgejo.org/modules/markup/markdown"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/util"
-	"forgejo.org/services/context"
+	"novroforge.xyz/modules/markup"
+	"novroforge.xyz/modules/markup/markdown"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/util"
+	"novroforge.xyz/services/context"
 
 	"mvdan.cc/xurls/v2"
 )

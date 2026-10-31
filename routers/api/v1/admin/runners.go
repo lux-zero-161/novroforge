@@ -4,8 +4,8 @@
 package admin
 
 import (
-	"forgejo.org/routers/api/v1/shared"
-	"forgejo.org/services/context"
+	"novroforge.xyz/routers/api/v1/shared"
+	"novroforge.xyz/services/context"
 )
 
 // GetRunnerRegistrationToken returns a token to register global runners

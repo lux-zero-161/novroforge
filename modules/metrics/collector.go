@@ -6,9 +6,9 @@ package metrics
 import (
 	"runtime"
 
-	activities_model "forgejo.org/models/activities"
-	"forgejo.org/models/db"
-	"forgejo.org/modules/setting"
+	activities_model "novroforge.xyz/models/activities"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/setting"
 
 	"github.com/prometheus/client_golang/prometheus"
 )

@@ -10,14 +10,14 @@ import (
 	"strings"
 	"time"
 
-	asymkey_model "forgejo.org/models/asymkey"
-	"forgejo.org/models/db"
-	git_model "forgejo.org/models/git"
-	repo_model "forgejo.org/models/repo"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/container"
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/log"
+	asymkey_model "novroforge.xyz/models/asymkey"
+	"novroforge.xyz/models/db"
+	git_model "novroforge.xyz/models/git"
+	repo_model "novroforge.xyz/models/repo"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/container"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/log"
 )
 
 // NewGraph creates a basic graph

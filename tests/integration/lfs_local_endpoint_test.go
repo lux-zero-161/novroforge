@@ -10,8 +10,8 @@ import (
 	"path/filepath"
 	"testing"
 
-	"forgejo.org/modules/lfs"
-	"forgejo.org/tests"
+	"novroforge.xyz/modules/lfs"
+	"novroforge.xyz/tests"
 
 	"github.com/stretchr/testify/assert"
 )

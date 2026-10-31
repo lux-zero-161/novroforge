@@ -5,7 +5,7 @@ package asymkey
 import (
 	"context"
 
-	"forgejo.org/models/db"
+	"novroforge.xyz/models/db"
 )
 
 // HasAsymKeyByUID returns true if the user has a GPG key or SSH key associated

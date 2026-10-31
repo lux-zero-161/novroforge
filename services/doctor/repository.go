@@ -6,10 +6,10 @@ package doctor
 import (
 	"context"
 
-	"forgejo.org/models/db"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/storage"
-	repo_service "forgejo.org/services/repository"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/storage"
+	repo_service "novroforge.xyz/services/repository"
 
 	"xorm.io/builder"
 )

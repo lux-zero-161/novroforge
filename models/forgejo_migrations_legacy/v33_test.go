@@ -7,9 +7,9 @@ import (
 	"testing"
 	"time"
 
-	migration_tests "forgejo.org/models/gitea_migrations/test"
-	"forgejo.org/modules/log"
-	ft "forgejo.org/modules/test"
+	migration_tests "novroforge.xyz/models/gitea_migrations/test"
+	"novroforge.xyz/modules/log"
+	ft "novroforge.xyz/modules/test"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

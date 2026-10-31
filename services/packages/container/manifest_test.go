@@ -9,10 +9,10 @@ import (
 	"strings"
 	"testing"
 
-	"forgejo.org/models/unittest"
-	user_model "forgejo.org/models/user"
-	packages_module "forgejo.org/modules/packages"
-	packages_service "forgejo.org/services/packages"
+	"novroforge.xyz/models/unittest"
+	user_model "novroforge.xyz/models/user"
+	packages_module "novroforge.xyz/modules/packages"
+	packages_service "novroforge.xyz/services/packages"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/models/unittest"
-	"forgejo.org/modules/git"
-	"forgejo.org/tests"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/models/unittest"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/tests"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

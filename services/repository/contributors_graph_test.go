@@ -9,11 +9,11 @@ import (
 	"testing"
 	"time"
 
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/models/unittest"
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/test"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/models/unittest"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/test"
 
 	"code.forgejo.org/go-chi/cache"
 	"github.com/stretchr/testify/assert"

@@ -4,9 +4,9 @@
 package internal
 
 import (
-	"forgejo.org/models/db"
-	"forgejo.org/modules/optional"
-	"forgejo.org/modules/timeutil"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/optional"
+	"novroforge.xyz/modules/timeutil"
 )
 
 // IndexerData data stored in the issue indexer

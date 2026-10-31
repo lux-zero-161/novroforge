@@ -12,12 +12,12 @@ import (
 	"strconv"
 	"strings"
 
-	"forgejo.org/models/db"
-	"forgejo.org/modules/label"
-	"forgejo.org/modules/optional"
-	"forgejo.org/modules/timeutil"
-	"forgejo.org/modules/util"
-	"forgejo.org/services/stats"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/label"
+	"novroforge.xyz/modules/optional"
+	"novroforge.xyz/modules/timeutil"
+	"novroforge.xyz/modules/util"
+	"novroforge.xyz/services/stats"
 
 	"xorm.io/builder"
 )

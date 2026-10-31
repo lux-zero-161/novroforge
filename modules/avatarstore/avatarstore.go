@@ -11,9 +11,9 @@ import (
 	"io"
 	"os"
 
-	"forgejo.org/modules/avatar"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/storage"
+	"novroforge.xyz/modules/avatar"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/storage"
 
 	"golang.org/x/image/draw"
 )

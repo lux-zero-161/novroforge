@@ -13,7 +13,7 @@ import (
 	"io"
 	"strings"
 
-	"forgejo.org/modules/log"
+	"novroforge.xyz/modules/log"
 )
 
 // BranchPrefix base dir of the branch information file store on git

@@ -8,13 +8,13 @@ import (
 	"net/http"
 	"strings"
 
-	"forgejo.org/models/db"
-	"forgejo.org/modules/base"
-	"forgejo.org/modules/git"
-	code_indexer "forgejo.org/modules/indexer/code"
-	"forgejo.org/modules/setting"
-	"forgejo.org/routers/common"
-	"forgejo.org/services/context"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/base"
+	"novroforge.xyz/modules/git"
+	code_indexer "novroforge.xyz/modules/indexer/code"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/routers/common"
+	"novroforge.xyz/services/context"
 )
 
 const tplSearch base.TplName = "repo/search"

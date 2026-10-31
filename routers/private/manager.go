@@ -7,16 +7,16 @@ import (
 	"fmt"
 	"net/http"
 
-	"forgejo.org/models/db"
-	"forgejo.org/modules/graceful"
-	"forgejo.org/modules/graceful/releasereopen"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/private"
-	"forgejo.org/modules/queue"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/templates"
-	"forgejo.org/modules/web"
-	"forgejo.org/services/context"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/graceful"
+	"novroforge.xyz/modules/graceful/releasereopen"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/private"
+	"novroforge.xyz/modules/queue"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/templates"
+	"novroforge.xyz/modules/web"
+	"novroforge.xyz/services/context"
 )
 
 // ReloadTemplates reloads all the templates

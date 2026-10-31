@@ -8,11 +8,11 @@ import (
 	"path"
 	"strings"
 
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/modules/git"
-	api "forgejo.org/modules/structs"
-	"forgejo.org/modules/util"
-	"forgejo.org/services/convert"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/modules/git"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/modules/util"
+	"novroforge.xyz/services/convert"
 )
 
 // To define the wiki related concepts:

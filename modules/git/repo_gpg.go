@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"strings"
 
-	"forgejo.org/modules/process"
+	"novroforge.xyz/modules/process"
 )
 
 // LoadPublicKeyContent will load the key from gpg

@@ -13,10 +13,10 @@ import (
 	"strings"
 	"time"
 
-	"forgejo.org/modules/log"
-	base "forgejo.org/modules/migration"
-	"forgejo.org/modules/structs"
-	"forgejo.org/services/migrations/allowlist"
+	"novroforge.xyz/modules/log"
+	base "novroforge.xyz/modules/migration"
+	"novroforge.xyz/modules/structs"
+	"novroforge.xyz/services/migrations/allowlist"
 
 	gitea_sdk "code.gitea.io/sdk/gitea"
 )

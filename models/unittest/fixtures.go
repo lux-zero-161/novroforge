@@ -10,10 +10,10 @@ import (
 	"sync"
 	"time"
 
-	"forgejo.org/models/db"
-	"forgejo.org/modules/auth/password/hash"
-	"forgejo.org/modules/container"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/auth/password/hash"
+	"novroforge.xyz/modules/container"
+	"novroforge.xyz/modules/setting"
 
 	"code.forgejo.org/xorm/xorm"
 	"code.forgejo.org/xorm/xorm/schemas"

@@ -13,11 +13,11 @@ import (
 	"strconv"
 	"strings"
 
-	"forgejo.org/modules/graceful"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/process"
-	"forgejo.org/modules/proxy"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/graceful"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/process"
+	"novroforge.xyz/modules/proxy"
+	"novroforge.xyz/modules/setting"
 
 	"github.com/caddyserver/certmagic"
 )

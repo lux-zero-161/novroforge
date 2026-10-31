@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"testing"
 
-	"forgejo.org/modules/test"
-	"forgejo.org/tests"
+	"novroforge.xyz/modules/test"
+	"novroforge.xyz/tests"
 
 	"github.com/stretchr/testify/assert"
 )

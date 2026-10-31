@@ -8,11 +8,11 @@ import (
 	"fmt"
 	"net/http"
 
-	"forgejo.org/modules/git"
-	api "forgejo.org/modules/structs"
-	"forgejo.org/modules/web"
-	"forgejo.org/services/context"
-	"forgejo.org/services/convert"
+	"novroforge.xyz/modules/git"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/modules/web"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/convert"
 )
 
 // GetNote Get a note corresponding to a single commit from a repository

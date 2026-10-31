@@ -7,8 +7,8 @@ import (
 	"context"
 	"fmt"
 
-	"forgejo.org/models/auth"
-	"forgejo.org/models/db"
+	"novroforge.xyz/models/auth"
+	"novroforge.xyz/models/db"
 )
 
 // UserList is a list of user.

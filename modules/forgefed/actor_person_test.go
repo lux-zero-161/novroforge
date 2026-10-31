@@ -8,8 +8,8 @@ import (
 	"strings"
 	"testing"
 
-	"forgejo.org/modules/forgefed"
-	"forgejo.org/modules/validation"
+	"novroforge.xyz/modules/forgefed"
+	"novroforge.xyz/modules/validation"
 
 	ap "github.com/go-ap/activitypub"
 	"github.com/stretchr/testify/assert"

@@ -7,9 +7,9 @@ import (
 	"strings"
 	"testing"
 
-	"forgejo.org/models/unittest"
-	"forgejo.org/modules/keying"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/models/unittest"
+	"novroforge.xyz/modules/keying"
+	"novroforge.xyz/modules/util"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

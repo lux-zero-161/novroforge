@@ -10,12 +10,12 @@ import (
 	"strconv"
 	"strings"
 
-	issues_model "forgejo.org/models/issues"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/gitrepo"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/queue"
+	issues_model "novroforge.xyz/models/issues"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/gitrepo"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/queue"
 )
 
 // PRAutoMergeQueue represents a queue to handle update pull request tests

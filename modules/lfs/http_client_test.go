@@ -11,9 +11,9 @@ import (
 	"strings"
 	"testing"
 
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/test"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/test"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

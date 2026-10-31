@@ -6,9 +6,9 @@ package repo
 import (
 	"net/http"
 
-	git_model "forgejo.org/models/git"
-	"forgejo.org/services/context"
-	repo_service "forgejo.org/services/repository"
+	git_model "novroforge.xyz/models/git"
+	"novroforge.xyz/services/context"
+	repo_service "novroforge.xyz/services/repository"
 )
 
 func getSyncForkInfo(ctx *context.APIContext, branch string) {

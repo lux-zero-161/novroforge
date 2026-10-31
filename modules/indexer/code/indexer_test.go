@@ -7,12 +7,12 @@ import (
 	"os"
 	"testing"
 
-	"forgejo.org/models/db"
-	"forgejo.org/models/unittest"
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/indexer/code/bleve"
-	"forgejo.org/modules/indexer/code/elasticsearch"
-	"forgejo.org/modules/indexer/code/internal"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/unittest"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/indexer/code/bleve"
+	"novroforge.xyz/modules/indexer/code/elasticsearch"
+	"novroforge.xyz/modules/indexer/code/internal"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

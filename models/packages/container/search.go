@@ -8,11 +8,11 @@ import (
 	"strings"
 	"time"
 
-	"forgejo.org/models/db"
-	"forgejo.org/models/packages"
-	user_model "forgejo.org/models/user"
-	container_module "forgejo.org/modules/packages/container"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/packages"
+	user_model "novroforge.xyz/models/user"
+	container_module "novroforge.xyz/modules/packages/container"
+	"novroforge.xyz/modules/util"
 
 	"xorm.io/builder"
 )

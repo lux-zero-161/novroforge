@@ -19,13 +19,13 @@ import (
 	"strings"
 	"time"
 
-	"forgejo.org/modules/avatar"
-	"forgejo.org/modules/httpcache"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/storage"
-	"forgejo.org/modules/util"
-	"forgejo.org/modules/web/routing"
+	"novroforge.xyz/modules/avatar"
+	"novroforge.xyz/modules/httpcache"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/storage"
+	"novroforge.xyz/modules/util"
+	"novroforge.xyz/modules/web/routing"
 
 	"golang.org/x/image/draw"
 )

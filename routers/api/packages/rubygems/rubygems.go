@@ -13,14 +13,14 @@ import (
 	"net/http"
 	"strings"
 
-	packages_model "forgejo.org/models/packages"
-	"forgejo.org/modules/optional"
-	packages_module "forgejo.org/modules/packages"
-	rubygems_module "forgejo.org/modules/packages/rubygems"
-	"forgejo.org/modules/util"
-	"forgejo.org/routers/api/packages/helper"
-	"forgejo.org/services/context"
-	packages_service "forgejo.org/services/packages"
+	packages_model "novroforge.xyz/models/packages"
+	"novroforge.xyz/modules/optional"
+	packages_module "novroforge.xyz/modules/packages"
+	rubygems_module "novroforge.xyz/modules/packages/rubygems"
+	"novroforge.xyz/modules/util"
+	"novroforge.xyz/routers/api/packages/helper"
+	"novroforge.xyz/services/context"
+	packages_service "novroforge.xyz/services/packages"
 )
 
 const (

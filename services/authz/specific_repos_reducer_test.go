@@ -6,11 +6,11 @@ package authz
 import (
 	"testing"
 
-	"forgejo.org/models/auth"
-	"forgejo.org/models/db"
-	"forgejo.org/models/perm"
-	"forgejo.org/models/repo"
-	"forgejo.org/models/unittest"
+	"novroforge.xyz/models/auth"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/perm"
+	"novroforge.xyz/models/repo"
+	"novroforge.xyz/models/unittest"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

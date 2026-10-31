@@ -6,8 +6,8 @@ package service_message
 import (
 	"testing"
 
-	service_message_module "forgejo.org/modules/service_message"
-	"forgejo.org/modules/timeutil"
+	service_message_module "novroforge.xyz/modules/service_message"
+	"novroforge.xyz/modules/timeutil"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

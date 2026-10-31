@@ -8,8 +8,8 @@ import (
 	"net/url"
 	"strings"
 
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/structs"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/structs"
 )
 
 // IsSystem returns true if the user has a fixed
@@ -55,7 +55,7 @@ const (
 	ActionsUserID   = -2
 	ActionsUserName = "forgejo-actions"
 	ActionsFullName = "Forgejo Actions"
-	ActionsEmail    = "noreply@forgejo.org"
+	ActionsEmail    = "noreply@novroforge.xyz"
 )
 
 // NewActionsUser creates and returns a fake user for running the actions.
@@ -82,7 +82,7 @@ func (u *User) IsActions() bool {
 const (
 	APServerActorUserID   = -3
 	APServerActorUserName = "actor"
-	APServerActorEmail    = "noreply@forgejo.org"
+	APServerActorEmail    = "noreply@novroforge.xyz"
 )
 
 func NewAPServerActor() *User {

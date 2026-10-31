@@ -7,7 +7,7 @@ import (
 	"context"
 	"slices"
 
-	"forgejo.org/models/db"
+	"novroforge.xyz/models/db"
 )
 
 type Rule struct {

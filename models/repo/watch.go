@@ -7,10 +7,10 @@ import (
 	"context"
 	"errors"
 
-	"forgejo.org/models/db"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/timeutil"
+	"novroforge.xyz/models/db"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/timeutil"
 
 	"xorm.io/builder"
 )

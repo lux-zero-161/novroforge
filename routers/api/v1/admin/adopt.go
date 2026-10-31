@@ -6,12 +6,12 @@ package admin
 import (
 	"net/http"
 
-	repo_model "forgejo.org/models/repo"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/util"
-	"forgejo.org/routers/api/v1/utils"
-	"forgejo.org/services/context"
-	repo_service "forgejo.org/services/repository"
+	repo_model "novroforge.xyz/models/repo"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/util"
+	"novroforge.xyz/routers/api/v1/utils"
+	"novroforge.xyz/services/context"
+	repo_service "novroforge.xyz/services/repository"
 )
 
 // ListUnadoptedRepositories lists the unadopted repositories that match the provided names

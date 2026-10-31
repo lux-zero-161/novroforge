@@ -7,13 +7,13 @@ import (
 	"fmt"
 	"net/http"
 
-	"forgejo.org/models/auth"
-	"forgejo.org/modules/base"
-	"forgejo.org/modules/util"
-	"forgejo.org/modules/web"
-	shared_user "forgejo.org/routers/web/shared/user"
-	"forgejo.org/services/context"
-	"forgejo.org/services/forms"
+	"novroforge.xyz/models/auth"
+	"novroforge.xyz/modules/base"
+	"novroforge.xyz/modules/util"
+	"novroforge.xyz/modules/web"
+	shared_user "novroforge.xyz/routers/web/shared/user"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/forms"
 )
 
 type OAuth2CommonHandlers struct {

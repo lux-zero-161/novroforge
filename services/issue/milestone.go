@@ -8,11 +8,11 @@ import (
 	"errors"
 	"fmt"
 
-	"forgejo.org/models/db"
-	issues_model "forgejo.org/models/issues"
-	user_model "forgejo.org/models/user"
-	notify_service "forgejo.org/services/notify"
-	"forgejo.org/services/stats"
+	"novroforge.xyz/models/db"
+	issues_model "novroforge.xyz/models/issues"
+	user_model "novroforge.xyz/models/user"
+	notify_service "novroforge.xyz/services/notify"
+	"novroforge.xyz/services/stats"
 )
 
 func updateMilestoneCounters(ctx context.Context, issue *issues_model.Issue, id int64) error {

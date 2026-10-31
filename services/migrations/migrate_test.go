@@ -9,8 +9,8 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"forgejo.org/modules/migration"
-	"forgejo.org/services/migrations/allowlist"
+	"novroforge.xyz/modules/migration"
+	"novroforge.xyz/services/migrations/allowlist"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

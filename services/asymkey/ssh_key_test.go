@@ -6,13 +6,13 @@ package asymkey
 import (
 	"testing"
 
-	asymkey_model "forgejo.org/models/asymkey"
-	"forgejo.org/models/auth"
-	"forgejo.org/models/db"
-	"forgejo.org/models/unittest"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/test"
+	asymkey_model "novroforge.xyz/models/asymkey"
+	"novroforge.xyz/models/auth"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/unittest"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/test"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

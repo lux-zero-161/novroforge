@@ -7,8 +7,8 @@ import (
 	"strconv"
 	"strings"
 
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/setting"
 )
 
 func MarshalBool(value string) (string, error) {

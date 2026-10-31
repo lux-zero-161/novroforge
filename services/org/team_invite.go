@@ -6,12 +6,12 @@ package org
 import (
 	"context"
 
-	"forgejo.org/models"
-	org_model "forgejo.org/models/organization"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
-	"forgejo.org/services/mailer"
+	"novroforge.xyz/models"
+	org_model "novroforge.xyz/models/organization"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/services/mailer"
 )
 
 // CreateTeamInviteByEmail makes a persistent invite in db for someone without an account and mails it to them.

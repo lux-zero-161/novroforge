@@ -9,7 +9,7 @@ import (
 	"strings"
 	"unicode"
 
-	"forgejo.org/modules/translation"
+	"novroforge.xyz/modules/translation"
 )
 
 // AmbiguousTablesForLocale provides the table of ambiguous characters for this locale.

@@ -12,10 +12,10 @@ import (
 	"strings"
 	"time"
 
-	"forgejo.org/modules/httplib"
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/httplib"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
 )
 
 // Response is used for internal request response (for user message and error message)

@@ -8,12 +8,12 @@ import (
 	"net/http"
 	"testing"
 
-	repo_model "forgejo.org/models/repo"
-	secret_model "forgejo.org/models/secret"
-	"forgejo.org/models/unittest"
-	user_model "forgejo.org/models/user"
-	app_context "forgejo.org/services/context"
-	"forgejo.org/tests"
+	repo_model "novroforge.xyz/models/repo"
+	secret_model "novroforge.xyz/models/secret"
+	"novroforge.xyz/models/unittest"
+	user_model "novroforge.xyz/models/user"
+	app_context "novroforge.xyz/services/context"
+	"novroforge.xyz/tests"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

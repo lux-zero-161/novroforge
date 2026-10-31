@@ -7,11 +7,11 @@ import (
 	"context"
 	"errors"
 
-	"forgejo.org/models/db"
-	"forgejo.org/modules/log"
-	service_message_types "forgejo.org/modules/service_message"
-	"forgejo.org/modules/timeutil"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/log"
+	service_message_types "novroforge.xyz/modules/service_message"
+	"novroforge.xyz/modules/timeutil"
+	"novroforge.xyz/modules/util"
 )
 
 func init() {

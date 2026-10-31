@@ -7,9 +7,9 @@ import (
 	"html/template"
 	"testing"
 
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/test"
-	"forgejo.org/modules/translation"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/test"
+	"novroforge.xyz/modules/translation"
 
 	"github.com/stretchr/testify/assert"
 )

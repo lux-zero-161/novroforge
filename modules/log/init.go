@@ -9,8 +9,8 @@ import (
 	"runtime"
 	"strings"
 
-	"forgejo.org/modules/process"
-	"forgejo.org/modules/util/rotatingfilewriter"
+	"novroforge.xyz/modules/process"
+	"novroforge.xyz/modules/util/rotatingfilewriter"
 )
 
 var projectPackagePrefix string

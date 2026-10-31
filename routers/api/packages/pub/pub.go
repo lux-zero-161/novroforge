@@ -13,16 +13,16 @@ import (
 	"strings"
 	"time"
 
-	packages_model "forgejo.org/models/packages"
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/log"
-	packages_module "forgejo.org/modules/packages"
-	pub_module "forgejo.org/modules/packages/pub"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/util"
-	"forgejo.org/routers/api/packages/helper"
-	"forgejo.org/services/context"
-	packages_service "forgejo.org/services/packages"
+	packages_model "novroforge.xyz/models/packages"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/log"
+	packages_module "novroforge.xyz/modules/packages"
+	pub_module "novroforge.xyz/modules/packages/pub"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/util"
+	"novroforge.xyz/routers/api/packages/helper"
+	"novroforge.xyz/services/context"
+	packages_service "novroforge.xyz/services/packages"
 )
 
 func jsonResponse(ctx *context.Context, status int, obj any) {

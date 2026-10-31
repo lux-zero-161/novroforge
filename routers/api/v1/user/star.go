@@ -8,15 +8,15 @@ package user
 import (
 	"net/http"
 
-	"forgejo.org/models/db"
-	access_model "forgejo.org/models/perm/access"
-	repo_model "forgejo.org/models/repo"
-	user_model "forgejo.org/models/user"
-	api "forgejo.org/modules/structs"
-	"forgejo.org/routers/api/v1/utils"
-	"forgejo.org/services/context"
-	"forgejo.org/services/convert"
-	"forgejo.org/services/repository"
+	"novroforge.xyz/models/db"
+	access_model "novroforge.xyz/models/perm/access"
+	repo_model "novroforge.xyz/models/repo"
+	user_model "novroforge.xyz/models/user"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/routers/api/v1/utils"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/convert"
+	"novroforge.xyz/services/repository"
 )
 
 // getStarredRepos returns the repos that the user with the specified userID has

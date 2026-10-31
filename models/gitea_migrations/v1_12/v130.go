@@ -4,8 +4,8 @@
 package v1_12
 
 import (
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/setting"
 
 	"code.forgejo.org/xorm/xorm"
 )

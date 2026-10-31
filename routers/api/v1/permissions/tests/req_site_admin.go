@@ -6,7 +6,7 @@ package tests
 import (
 	"testing"
 
-	apiv1_permissions "forgejo.org/routers/api/v1/permissions"
+	apiv1_permissions "novroforge.xyz/routers/api/v1/permissions"
 )
 
 var _ = registerFunctionTest(apiv1_permissions.ReqSiteAdmin, functionTest{

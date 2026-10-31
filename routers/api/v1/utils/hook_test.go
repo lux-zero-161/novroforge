@@ -8,10 +8,10 @@ import (
 	"reflect"
 	"testing"
 
-	"forgejo.org/models/unittest"
-	"forgejo.org/modules/structs"
-	webhook_module "forgejo.org/modules/webhook"
-	"forgejo.org/services/contexttest"
+	"novroforge.xyz/models/unittest"
+	"novroforge.xyz/modules/structs"
+	webhook_module "novroforge.xyz/modules/webhook"
+	"novroforge.xyz/services/contexttest"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

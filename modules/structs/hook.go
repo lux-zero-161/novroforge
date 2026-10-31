@@ -9,7 +9,7 @@ import (
 	"strings"
 	"time"
 
-	"forgejo.org/modules/json"
+	"novroforge.xyz/modules/json"
 )
 
 // ErrInvalidReceiveHook FIXME

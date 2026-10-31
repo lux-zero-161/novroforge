@@ -6,10 +6,10 @@ import (
 	"fmt"
 	"testing"
 
-	"forgejo.org/models/db"
-	"forgejo.org/models/unittest"
-	"forgejo.org/modules/container"
-	"forgejo.org/modules/timeutil"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/unittest"
+	"novroforge.xyz/modules/container"
+	"novroforge.xyz/modules/timeutil"
 
 	"code.forgejo.org/forgejo/runner/v13/act/jobparser"
 	"github.com/stretchr/testify/assert"

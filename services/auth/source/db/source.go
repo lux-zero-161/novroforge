@@ -6,8 +6,8 @@ package db
 import (
 	"context"
 
-	"forgejo.org/models/auth"
-	user_model "forgejo.org/models/user"
+	"novroforge.xyz/models/auth"
+	user_model "novroforge.xyz/models/user"
 )
 
 // Source is a password authentication service

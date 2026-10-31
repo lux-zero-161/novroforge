@@ -8,7 +8,7 @@ import (
 	"slices"
 	"strings"
 
-	"forgejo.org/models/perm"
+	"novroforge.xyz/models/perm"
 )
 
 // AccessTokenScopeCategory represents the scope category for an access token

@@ -10,14 +10,14 @@ import (
 	"fmt"
 	"net/url"
 
-	repo_model "forgejo.org/models/repo"
-	system_model "forgejo.org/models/system"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/log"
-	base "forgejo.org/modules/migration"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/structs"
-	"forgejo.org/services/migrations/allowlist"
+	repo_model "novroforge.xyz/models/repo"
+	system_model "novroforge.xyz/models/system"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/log"
+	base "novroforge.xyz/modules/migration"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/structs"
+	"novroforge.xyz/services/migrations/allowlist"
 )
 
 // MigrateOptions is equal to base.MigrateOptions

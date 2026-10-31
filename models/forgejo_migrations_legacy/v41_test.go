@@ -6,9 +6,9 @@ package forgejo_migrations_legacy
 import (
 	"testing"
 
-	"forgejo.org/models/db"
-	migration_tests "forgejo.org/models/gitea_migrations/test"
-	"forgejo.org/modules/timeutil"
+	"novroforge.xyz/models/db"
+	migration_tests "novroforge.xyz/models/gitea_migrations/test"
+	"novroforge.xyz/modules/timeutil"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

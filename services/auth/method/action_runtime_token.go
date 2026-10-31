@@ -8,11 +8,11 @@ import (
 	"errors"
 	"net/http"
 
-	actions_model "forgejo.org/models/actions"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/optional"
-	"forgejo.org/services/actions"
-	"forgejo.org/services/auth"
+	actions_model "novroforge.xyz/models/actions"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/optional"
+	"novroforge.xyz/services/actions"
+	"novroforge.xyz/services/auth"
 )
 
 var _ auth.Method = &ActionRuntimeToken{}

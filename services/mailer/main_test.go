@@ -7,13 +7,13 @@ import (
 	"context"
 	"testing"
 
-	"forgejo.org/models/unittest"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/templates"
-	"forgejo.org/modules/test"
-	"forgejo.org/modules/translation"
+	"novroforge.xyz/models/unittest"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/templates"
+	"novroforge.xyz/modules/test"
+	"novroforge.xyz/modules/translation"
 
-	_ "forgejo.org/modules/testimport"
+	_ "novroforge.xyz/modules/testimport"
 
 	"github.com/stretchr/testify/assert"
 )

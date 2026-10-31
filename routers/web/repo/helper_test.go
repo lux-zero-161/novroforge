@@ -6,7 +6,7 @@ package repo
 import (
 	"testing"
 
-	"forgejo.org/models/user"
+	"novroforge.xyz/models/user"
 
 	"github.com/stretchr/testify/assert"
 )

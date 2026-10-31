@@ -7,18 +7,18 @@ package repo
 import (
 	"net/http"
 
-	"forgejo.org/models/db"
-	"forgejo.org/models/perm"
-	access_model "forgejo.org/models/perm/access"
-	"forgejo.org/models/webhook"
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/setting"
-	api "forgejo.org/modules/structs"
-	"forgejo.org/modules/web"
-	"forgejo.org/routers/api/v1/utils"
-	"forgejo.org/services/context"
-	"forgejo.org/services/convert"
-	webhook_service "forgejo.org/services/webhook"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/perm"
+	access_model "novroforge.xyz/models/perm/access"
+	"novroforge.xyz/models/webhook"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/setting"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/modules/web"
+	"novroforge.xyz/routers/api/v1/utils"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/convert"
+	webhook_service "novroforge.xyz/services/webhook"
 )
 
 // ListHooks list all hooks of a repository

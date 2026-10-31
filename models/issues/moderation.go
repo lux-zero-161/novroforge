@@ -7,9 +7,9 @@ import (
 	"context"
 	"strconv"
 
-	"forgejo.org/models/moderation"
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/timeutil"
+	"novroforge.xyz/models/moderation"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/timeutil"
 )
 
 // IssueData represents a trimmed down issue that is used for preserving

@@ -4,8 +4,8 @@
 package remote
 
 import (
-	"forgejo.org/models/auth"
-	"forgejo.org/modules/json"
+	"novroforge.xyz/models/auth"
+	"novroforge.xyz/modules/json"
 )
 
 type Source struct {

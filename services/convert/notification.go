@@ -6,10 +6,10 @@ package convert
 import (
 	"context"
 
-	activities_model "forgejo.org/models/activities"
-	"forgejo.org/models/perm"
-	access_model "forgejo.org/models/perm/access"
-	api "forgejo.org/modules/structs"
+	activities_model "novroforge.xyz/models/activities"
+	"novroforge.xyz/models/perm"
+	access_model "novroforge.xyz/models/perm/access"
+	api "novroforge.xyz/modules/structs"
 )
 
 // ToNotificationThread convert a Notification to api.NotificationThread

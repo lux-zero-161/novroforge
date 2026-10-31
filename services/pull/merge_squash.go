@@ -7,11 +7,11 @@ import (
 	"fmt"
 	"strings"
 
-	repo_model "forgejo.org/models/repo"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/container"
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/log"
+	repo_model "novroforge.xyz/models/repo"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/container"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/log"
 )
 
 // doMergeStyleSquash gets a commit author signature for squash commits

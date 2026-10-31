@@ -6,11 +6,11 @@ package activities
 import (
 	"context"
 
-	"forgejo.org/models/db"
-	"forgejo.org/models/organization"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/timeutil"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/organization"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/timeutil"
 )
 
 const (

@@ -4,7 +4,7 @@
 package v1_16
 
 import (
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/setting"
 
 	"code.forgejo.org/xorm/xorm"
 )

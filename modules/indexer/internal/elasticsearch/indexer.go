@@ -8,7 +8,7 @@ import (
 	"errors"
 	"fmt"
 
-	"forgejo.org/modules/indexer/internal"
+	"novroforge.xyz/modules/indexer/internal"
 
 	"github.com/olivere/elastic/v7"
 )

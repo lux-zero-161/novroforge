@@ -15,7 +15,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/util"
 )
 
 func main() {

@@ -9,11 +9,11 @@ import (
 	"strings"
 	"testing"
 
-	actions_model "forgejo.org/models/actions"
-	webhook_model "forgejo.org/models/webhook"
-	"forgejo.org/modules/json"
-	api "forgejo.org/modules/structs"
-	webhook_module "forgejo.org/modules/webhook"
+	actions_model "novroforge.xyz/models/actions"
+	webhook_model "novroforge.xyz/models/webhook"
+	"novroforge.xyz/modules/json"
+	api "novroforge.xyz/modules/structs"
+	webhook_module "novroforge.xyz/modules/webhook"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

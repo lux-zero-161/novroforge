@@ -8,8 +8,8 @@ import (
 	"errors"
 	"fmt"
 
-	"forgejo.org/modules/auth/password/pwn"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/auth/password/pwn"
+	"novroforge.xyz/modules/setting"
 )
 
 var ErrIsPwned = errors.New("password has been pwned")

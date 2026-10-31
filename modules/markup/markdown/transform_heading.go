@@ -6,9 +6,9 @@ package markdown
 import (
 	"fmt"
 
-	"forgejo.org/modules/markup"
-	mdutil "forgejo.org/modules/markup/markdown/util"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/markup"
+	mdutil "novroforge.xyz/modules/markup/markdown/util"
+	"novroforge.xyz/modules/util"
 
 	"github.com/yuin/goldmark/ast"
 	"github.com/yuin/goldmark/text"

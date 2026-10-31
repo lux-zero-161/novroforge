@@ -10,7 +10,7 @@ import (
 	"io"
 	"testing"
 
-	"forgejo.org/modules/zstd"
+	"novroforge.xyz/modules/zstd"
 
 	"github.com/blakesmith/ar"
 	"github.com/stretchr/testify/assert"

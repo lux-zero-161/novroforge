@@ -7,11 +7,11 @@ import (
 	"net/http"
 	"testing"
 
-	"forgejo.org/modules/setting"
-	api "forgejo.org/modules/structs"
-	"forgejo.org/modules/test"
-	"forgejo.org/routers"
-	"forgejo.org/tests"
+	"novroforge.xyz/modules/setting"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/modules/test"
+	"novroforge.xyz/routers"
+	"novroforge.xyz/tests"
 
 	"github.com/stretchr/testify/assert"
 )

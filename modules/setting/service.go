@@ -11,8 +11,8 @@ import (
 	"strings"
 	"time"
 
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/structs"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/structs"
 
 	"github.com/gobwas/glob"
 )

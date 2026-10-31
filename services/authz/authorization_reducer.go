@@ -4,7 +4,7 @@
 package authz
 
 import (
-	repo_model "forgejo.org/models/repo"
+	repo_model "novroforge.xyz/models/repo"
 )
 
 // Defines an API for reducing available permissions to specific resources.  Typically associated with a fine-grained

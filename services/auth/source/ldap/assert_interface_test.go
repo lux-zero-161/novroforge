@@ -4,9 +4,9 @@
 package ldap_test
 
 import (
-	auth_model "forgejo.org/models/auth"
-	"forgejo.org/services/auth"
-	"forgejo.org/services/auth/source/ldap"
+	auth_model "novroforge.xyz/models/auth"
+	"novroforge.xyz/services/auth"
+	"novroforge.xyz/services/auth/source/ldap"
 )
 
 // This test file exists to assert that our Source exposes the interfaces that we expect

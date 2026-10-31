@@ -7,7 +7,7 @@ import (
 	"slices"
 	"testing"
 
-	"forgejo.org/modules/test"
+	"novroforge.xyz/modules/test"
 
 	"github.com/stretchr/testify/assert"
 )

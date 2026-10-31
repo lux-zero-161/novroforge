@@ -6,9 +6,9 @@ package admin
 import (
 	"net/http"
 
-	quota_model "forgejo.org/models/quota"
-	"forgejo.org/services/context"
-	"forgejo.org/services/convert"
+	quota_model "novroforge.xyz/models/quota"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/convert"
 )
 
 // GetUserQuota return information about a user's quota

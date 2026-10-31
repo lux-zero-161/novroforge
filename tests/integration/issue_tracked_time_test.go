@@ -7,11 +7,11 @@ import (
 	"net/http"
 	"testing"
 
-	issues_model "forgejo.org/models/issues"
-	"forgejo.org/models/unittest"
-	user_model "forgejo.org/models/user"
-	app_context "forgejo.org/services/context"
-	"forgejo.org/tests"
+	issues_model "novroforge.xyz/models/issues"
+	"novroforge.xyz/models/unittest"
+	user_model "novroforge.xyz/models/user"
+	app_context "novroforge.xyz/services/context"
+	"novroforge.xyz/tests"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

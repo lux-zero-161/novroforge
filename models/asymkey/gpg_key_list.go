@@ -6,7 +6,7 @@ package asymkey
 import (
 	"context"
 
-	"forgejo.org/models/db"
+	"novroforge.xyz/models/db"
 )
 
 type GPGKeyList []*GPGKey

@@ -10,7 +10,7 @@ import (
 	"strconv"
 	"strings"
 
-	"forgejo.org/modules/log"
+	"novroforge.xyz/modules/log"
 )
 
 const (

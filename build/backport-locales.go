@@ -12,8 +12,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"forgejo.org/modules/container"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/container"
+	"novroforge.xyz/modules/setting"
 )
 
 func main() {

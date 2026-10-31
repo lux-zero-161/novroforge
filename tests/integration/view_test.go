@@ -10,11 +10,11 @@ import (
 	"strings"
 	"testing"
 
-	unit_model "forgejo.org/models/unit"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/test"
-	"forgejo.org/tests"
-	"forgejo.org/tests/forgery"
+	unit_model "novroforge.xyz/models/unit"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/test"
+	"novroforge.xyz/tests"
+	"novroforge.xyz/tests/forgery"
 
 	"github.com/stretchr/testify/assert"
 )

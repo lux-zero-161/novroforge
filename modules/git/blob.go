@@ -11,8 +11,8 @@ import (
 	"fmt"
 	"io"
 
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/typesniffer"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/typesniffer"
 )
 
 // Blob represents a Git object.

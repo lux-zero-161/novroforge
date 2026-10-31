@@ -6,9 +6,9 @@ package utils
 import (
 	"testing"
 
-	"forgejo.org/models/unittest"
-	"forgejo.org/modules/setting"
-	webhook_service "forgejo.org/services/webhook"
+	"novroforge.xyz/models/unittest"
+	"novroforge.xyz/modules/setting"
+	webhook_service "novroforge.xyz/services/webhook"
 )
 
 func TestMain(m *testing.M) {

@@ -6,8 +6,8 @@ package tests
 import (
 	"testing"
 
-	"forgejo.org/models/unit"
-	apiv1_permissions "forgejo.org/routers/api/v1/permissions"
+	"novroforge.xyz/models/unit"
+	apiv1_permissions "novroforge.xyz/routers/api/v1/permissions"
 )
 
 var _ = registerFunctionTest(apiv1_permissions.MustEnableIssues, functionTest{

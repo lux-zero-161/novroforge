@@ -7,9 +7,9 @@ import (
 	"fmt"
 	"time"
 
-	activities_model "forgejo.org/models/activities"
-	issues_model "forgejo.org/models/issues"
-	"forgejo.org/services/context"
+	activities_model "novroforge.xyz/models/activities"
+	issues_model "novroforge.xyz/models/issues"
+	"novroforge.xyz/services/context"
 
 	"github.com/gorilla/feeds"
 )

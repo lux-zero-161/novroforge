@@ -6,8 +6,8 @@ package queue
 import (
 	"testing"
 
-	"forgejo.org/modules/queue/lqinternal"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/queue/lqinternal"
+	"novroforge.xyz/modules/setting"
 
 	"code.forgejo.org/forgejo/levelqueue"
 	"github.com/stretchr/testify/assert"

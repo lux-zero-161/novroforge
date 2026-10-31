@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"sync/atomic"
 
-	"forgejo.org/modules/log"
+	"novroforge.xyz/modules/log"
 
 	xormlog "code.forgejo.org/xorm/xorm/log"
 )

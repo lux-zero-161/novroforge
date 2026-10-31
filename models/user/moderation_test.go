@@ -6,9 +6,9 @@ package user_test
 import (
 	"testing"
 
-	"forgejo.org/models/moderation"
-	"forgejo.org/models/user"
-	"forgejo.org/modules/timeutil"
+	"novroforge.xyz/models/moderation"
+	"novroforge.xyz/models/user"
+	"novroforge.xyz/modules/timeutil"
 
 	"github.com/stretchr/testify/assert"
 )

@@ -11,12 +11,12 @@ import (
 	"strings"
 	"testing"
 
-	"forgejo.org/models/auth"
-	"forgejo.org/models/unittest"
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/jwtx"
-	"forgejo.org/modules/test"
-	"forgejo.org/services/authz"
+	"novroforge.xyz/models/auth"
+	"novroforge.xyz/models/unittest"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/jwtx"
+	"novroforge.xyz/modules/test"
+	"novroforge.xyz/services/authz"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

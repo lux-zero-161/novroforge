@@ -10,13 +10,13 @@ import (
 	"html/template"
 	"io"
 
-	auth_model "forgejo.org/models/auth"
-	"forgejo.org/modules/base"
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/svg"
-	"forgejo.org/modules/templates"
-	auth_service "forgejo.org/services/auth"
-	"forgejo.org/services/context"
+	auth_model "novroforge.xyz/models/auth"
+	"novroforge.xyz/modules/base"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/svg"
+	"novroforge.xyz/modules/templates"
+	auth_service "novroforge.xyz/services/auth"
+	"novroforge.xyz/services/context"
 )
 
 var (

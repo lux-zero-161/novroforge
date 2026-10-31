@@ -7,8 +7,8 @@ import (
 	"context"
 	"os"
 
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
 
 	"github.com/urfave/cli/v3"
 )

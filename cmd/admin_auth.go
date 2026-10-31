@@ -10,9 +10,9 @@ import (
 	"os"
 	"text/tabwriter"
 
-	auth_model "forgejo.org/models/auth"
-	"forgejo.org/models/db"
-	auth_service "forgejo.org/services/auth"
+	auth_model "novroforge.xyz/models/auth"
+	"novroforge.xyz/models/db"
+	auth_service "novroforge.xyz/services/auth"
 
 	"github.com/urfave/cli/v3"
 )

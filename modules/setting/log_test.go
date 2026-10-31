@@ -9,9 +9,9 @@ import (
 	"strings"
 	"testing"
 
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/test"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/test"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

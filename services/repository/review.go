@@ -6,9 +6,9 @@ package repository
 import (
 	"context"
 
-	"forgejo.org/models/organization"
-	"forgejo.org/models/perm"
-	repo_model "forgejo.org/models/repo"
+	"novroforge.xyz/models/organization"
+	"novroforge.xyz/models/perm"
+	repo_model "novroforge.xyz/models/repo"
 )
 
 // GetReviewerTeams get all teams can be requested to review

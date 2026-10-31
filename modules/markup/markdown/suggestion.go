@@ -7,7 +7,7 @@ import (
 	"bytes"
 	"strings"
 
-	giteautil "forgejo.org/modules/util"
+	giteautil "novroforge.xyz/modules/util"
 
 	"github.com/yuin/goldmark"
 	"github.com/yuin/goldmark/ast"

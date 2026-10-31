@@ -9,8 +9,8 @@ import (
 	"strings"
 	"testing"
 
-	"forgejo.org/modules/translation"
-	"forgejo.org/tests/forgery"
+	"novroforge.xyz/modules/translation"
+	"novroforge.xyz/tests/forgery"
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/stretchr/testify/assert"

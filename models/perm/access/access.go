@@ -8,13 +8,13 @@ import (
 	"context"
 	"fmt"
 
-	"forgejo.org/models/db"
-	"forgejo.org/models/perm"
-	repo_model "forgejo.org/models/repo"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/container"
-	"forgejo.org/modules/optional"
-	"forgejo.org/services/authz"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/perm"
+	repo_model "novroforge.xyz/models/repo"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/container"
+	"novroforge.xyz/modules/optional"
+	"novroforge.xyz/services/authz"
 
 	"xorm.io/builder"
 )

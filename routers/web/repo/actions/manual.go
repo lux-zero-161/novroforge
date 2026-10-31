@@ -6,8 +6,8 @@ package actions
 import (
 	"net/url"
 
-	actions_service "forgejo.org/services/actions"
-	app_context "forgejo.org/services/context"
+	actions_service "novroforge.xyz/services/actions"
+	app_context "novroforge.xyz/services/context"
 )
 
 func ManualRunWorkflow(ctx *app_context.Context) {

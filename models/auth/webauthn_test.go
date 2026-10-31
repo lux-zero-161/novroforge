@@ -6,9 +6,9 @@ package auth_test
 import (
 	"testing"
 
-	auth_model "forgejo.org/models/auth"
-	"forgejo.org/models/db"
-	"forgejo.org/models/unittest"
+	auth_model "novroforge.xyz/models/auth"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/unittest"
 
 	"github.com/go-webauthn/webauthn/webauthn"
 	"github.com/stretchr/testify/assert"

@@ -11,10 +11,10 @@ import (
 	"path"
 	"strings"
 
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/util"
-	"forgejo.org/services/context"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/util"
+	"novroforge.xyz/services/context"
 )
 
 func goGet(ctx *context.Context) {

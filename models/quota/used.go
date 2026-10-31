@@ -6,10 +6,10 @@ package quota
 import (
 	"context"
 
-	actions_model "forgejo.org/models/actions"
-	"forgejo.org/models/db"
-	packages_model "forgejo.org/models/packages"
-	repo_model "forgejo.org/models/repo"
+	actions_model "novroforge.xyz/models/actions"
+	"novroforge.xyz/models/db"
+	packages_model "novroforge.xyz/models/packages"
+	repo_model "novroforge.xyz/models/repo"
 
 	"xorm.io/builder"
 )

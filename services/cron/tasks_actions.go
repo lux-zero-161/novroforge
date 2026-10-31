@@ -7,9 +7,9 @@ import (
 	"context"
 	"time"
 
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/setting"
-	actions_service "forgejo.org/services/actions"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/setting"
+	actions_service "novroforge.xyz/services/actions"
 )
 
 func initActionsTasks() {

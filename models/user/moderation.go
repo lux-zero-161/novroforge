@@ -9,9 +9,9 @@ import (
 	"slices"
 	"sync"
 
-	"forgejo.org/models/moderation"
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/timeutil"
+	"novroforge.xyz/models/moderation"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/timeutil"
 
 	"code.forgejo.org/xorm/xorm/names"
 )

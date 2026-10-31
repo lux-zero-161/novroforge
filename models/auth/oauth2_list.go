@@ -4,7 +4,7 @@
 package auth
 
 import (
-	"forgejo.org/models/db"
+	"novroforge.xyz/models/db"
 
 	"xorm.io/builder"
 )

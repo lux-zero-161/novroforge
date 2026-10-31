@@ -8,11 +8,11 @@ import (
 	"errors"
 	"os"
 
-	packages_model "forgejo.org/models/packages"
-	container_model "forgejo.org/models/packages/container"
-	"forgejo.org/modules/log"
-	packages_module "forgejo.org/modules/packages"
-	"forgejo.org/modules/util"
+	packages_model "novroforge.xyz/models/packages"
+	container_model "novroforge.xyz/models/packages/container"
+	"novroforge.xyz/modules/log"
+	packages_module "novroforge.xyz/modules/packages"
+	"novroforge.xyz/modules/util"
 )
 
 // FIXME: Workaround to be removed in v1.20

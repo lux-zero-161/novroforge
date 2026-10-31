@@ -8,7 +8,7 @@ import (
 	"go/token"
 	"strconv"
 
-	llu "forgejo.org/build/lint-locale-usage"
+	llu "novroforge.xyz/build/lint-locale-usage"
 )
 
 func HandleCompositeUnit(handler llu.Handler, fset *token.FileSet, n *ast.CompositeLit) {

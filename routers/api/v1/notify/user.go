@@ -7,11 +7,11 @@ import (
 	"net/http"
 	"time"
 
-	activities_model "forgejo.org/models/activities"
-	"forgejo.org/models/db"
-	"forgejo.org/modules/structs"
-	"forgejo.org/services/context"
-	"forgejo.org/services/convert"
+	activities_model "novroforge.xyz/models/activities"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/structs"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/convert"
 )
 
 // ListNotifications list users's notification threads

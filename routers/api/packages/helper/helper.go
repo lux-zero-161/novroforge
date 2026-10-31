@@ -8,11 +8,11 @@ import (
 	"net/http"
 	"net/url"
 
-	packages_model "forgejo.org/models/packages"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
-	"forgejo.org/services/context"
-	packages_service "forgejo.org/services/packages"
+	packages_model "novroforge.xyz/models/packages"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/services/context"
+	packages_service "novroforge.xyz/services/packages"
 )
 
 // LogAndProcessError logs an error and calls a custom callback with the processed error message.

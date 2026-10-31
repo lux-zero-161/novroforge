@@ -6,11 +6,11 @@ package doctor
 import (
 	"context"
 
-	"forgejo.org/models"
-	"forgejo.org/models/db"
-	org_model "forgejo.org/models/organization"
-	"forgejo.org/models/perm"
-	"forgejo.org/modules/log"
+	"novroforge.xyz/models"
+	"novroforge.xyz/models/db"
+	org_model "novroforge.xyz/models/organization"
+	"novroforge.xyz/models/perm"
+	"novroforge.xyz/modules/log"
 
 	"xorm.io/builder"
 )

@@ -9,12 +9,12 @@ import (
 	"runtime/trace"
 	"strings"
 
-	"forgejo.org/modules/cache"
-	"forgejo.org/modules/process"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/web/middleware"
-	"forgejo.org/modules/web/routing"
-	"forgejo.org/services/context"
+	"novroforge.xyz/modules/cache"
+	"novroforge.xyz/modules/process"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/web/middleware"
+	"novroforge.xyz/modules/web/routing"
+	"novroforge.xyz/services/context"
 
 	"code.forgejo.org/go-chi/session"
 	"github.com/chi-middleware/proxy"

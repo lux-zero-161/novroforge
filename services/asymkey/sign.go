@@ -8,17 +8,17 @@ import (
 	"fmt"
 	"strings"
 
-	asymkey_model "forgejo.org/models/asymkey"
-	"forgejo.org/models/auth"
-	git_model "forgejo.org/models/git"
-	issues_model "forgejo.org/models/issues"
-	repo_model "forgejo.org/models/repo"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/gitrepo"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/process"
-	"forgejo.org/modules/setting"
+	asymkey_model "novroforge.xyz/models/asymkey"
+	"novroforge.xyz/models/auth"
+	git_model "novroforge.xyz/models/git"
+	issues_model "novroforge.xyz/models/issues"
+	repo_model "novroforge.xyz/models/repo"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/gitrepo"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/process"
+	"novroforge.xyz/modules/setting"
 )
 
 type signingMode string

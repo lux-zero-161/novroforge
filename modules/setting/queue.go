@@ -7,8 +7,8 @@ import (
 	"path/filepath"
 	"runtime"
 
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/log"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/log"
 )
 
 // QueueSettings represent the settings for a queue from the ini

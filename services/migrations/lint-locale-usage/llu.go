@@ -7,8 +7,8 @@ import (
 	"go/ast"
 	"go/token"
 
-	llu "forgejo.org/build/lint-locale-usage"
-	"forgejo.org/modules/container"
+	llu "novroforge.xyz/build/lint-locale-usage"
+	"novroforge.xyz/modules/container"
 )
 
 // special case: services/migrations/migrate.go

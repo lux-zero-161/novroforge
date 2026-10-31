@@ -11,8 +11,8 @@ import (
 	"regexp"
 	"strings"
 
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/util"
 
 	"github.com/hashicorp/go-version"
 )

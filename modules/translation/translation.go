@@ -11,11 +11,11 @@ import (
 	"strings"
 	"sync"
 
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/options"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/translation/i18n"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/options"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/translation/i18n"
+	"novroforge.xyz/modules/util"
 
 	"github.com/dustin/go-humanize"
 	"golang.org/x/text/language"

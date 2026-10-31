@@ -3,9 +3,9 @@ package git
 import (
 	"testing"
 
-	"forgejo.org/models/db"
-	"forgejo.org/models/unittest"
-	api "forgejo.org/modules/structs"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/unittest"
+	api "novroforge.xyz/modules/structs"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

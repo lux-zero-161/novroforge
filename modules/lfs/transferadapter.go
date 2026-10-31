@@ -9,8 +9,8 @@ import (
 	"io"
 	"net/http"
 
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/log"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/log"
 )
 
 // TransferAdapter represents an adapter for downloading/uploading LFS objects.

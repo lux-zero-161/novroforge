@@ -8,16 +8,16 @@ import (
 	"errors"
 	"time"
 
-	"forgejo.org/models/db"
-	"forgejo.org/models/issues"
-	"forgejo.org/models/moderation"
-	"forgejo.org/models/perm"
-	access_model "forgejo.org/models/perm/access"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/models/unit"
-	"forgejo.org/models/user"
-	"forgejo.org/modules/log"
-	"forgejo.org/services/context"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/issues"
+	"novroforge.xyz/models/moderation"
+	"novroforge.xyz/models/perm"
+	access_model "novroforge.xyz/models/perm/access"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/models/unit"
+	"novroforge.xyz/models/user"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/services/context"
 )
 
 var (

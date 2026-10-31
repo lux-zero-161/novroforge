@@ -6,9 +6,9 @@ package actions
 import (
 	"net/http"
 
-	"forgejo.org/modules/web"
-	"forgejo.org/routers/api/actions/ping"
-	"forgejo.org/routers/api/actions/runner"
+	"novroforge.xyz/modules/web"
+	"novroforge.xyz/routers/api/actions/ping"
+	"novroforge.xyz/routers/api/actions/runner"
 )
 
 func Routes(prefix string) *web.Route {

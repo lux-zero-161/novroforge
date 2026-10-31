@@ -9,15 +9,15 @@ import (
 	"strconv"
 	"time"
 
-	"forgejo.org/models/db"
-	issues_model "forgejo.org/models/issues"
-	"forgejo.org/modules/optional"
-	api "forgejo.org/modules/structs"
-	"forgejo.org/modules/timeutil"
-	"forgejo.org/modules/web"
-	"forgejo.org/routers/api/v1/utils"
-	"forgejo.org/services/context"
-	"forgejo.org/services/convert"
+	"novroforge.xyz/models/db"
+	issues_model "novroforge.xyz/models/issues"
+	"novroforge.xyz/modules/optional"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/modules/timeutil"
+	"novroforge.xyz/modules/web"
+	"novroforge.xyz/routers/api/v1/utils"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/convert"
 )
 
 // ListMilestones list milestones for a repository

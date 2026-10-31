@@ -16,14 +16,14 @@ import (
 	"strings"
 	"time"
 
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/base"
-	"forgejo.org/modules/markup"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/svg"
-	"forgejo.org/modules/templates/eval"
-	"forgejo.org/modules/util"
-	"forgejo.org/services/gitdiff"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/base"
+	"novroforge.xyz/modules/markup"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/svg"
+	"novroforge.xyz/modules/templates/eval"
+	"novroforge.xyz/modules/util"
+	"novroforge.xyz/services/gitdiff"
 )
 
 // NewFuncMap returns functions for injecting to templates

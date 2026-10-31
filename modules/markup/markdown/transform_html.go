@@ -6,7 +6,7 @@ package markdown
 import (
 	"strings"
 
-	"forgejo.org/modules/markup"
+	"novroforge.xyz/modules/markup"
 
 	"github.com/yuin/goldmark/ast"
 	"github.com/yuin/goldmark/text"

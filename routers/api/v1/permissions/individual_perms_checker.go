@@ -4,7 +4,7 @@
 package permissions
 
 import (
-	api "forgejo.org/modules/structs"
+	api "novroforge.xyz/modules/structs"
 )
 
 func IndividualPermsChecker(ctx Context) {

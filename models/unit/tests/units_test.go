@@ -6,8 +6,8 @@ package tests
 import (
 	"testing"
 
-	unit_model "forgejo.org/models/unit"
-	"forgejo.org/modules/setting"
+	unit_model "novroforge.xyz/models/unit"
+	"novroforge.xyz/modules/setting"
 
 	"github.com/stretchr/testify/assert"
 )

@@ -6,10 +6,10 @@ package user
 import (
 	"strings"
 
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/timeutil"
-	"forgejo.org/services/context"
-	service_message_service "forgejo.org/services/service_message"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/timeutil"
+	"novroforge.xyz/services/context"
+	service_message_service "novroforge.xyz/services/service_message"
 )
 
 func SetConfirm(ctx *context.Context) {

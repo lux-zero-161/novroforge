@@ -14,8 +14,8 @@ import (
 	"sync"
 	"time"
 
-	"forgejo.org/modules/graceful/releasereopen"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/graceful/releasereopen"
+	"novroforge.xyz/modules/util"
 )
 
 type Options struct {

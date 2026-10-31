@@ -6,9 +6,9 @@ package forms
 import (
 	"net/http"
 
-	"forgejo.org/models/moderation"
-	"forgejo.org/modules/web/middleware"
-	"forgejo.org/services/context"
+	"novroforge.xyz/models/moderation"
+	"novroforge.xyz/modules/web/middleware"
+	"novroforge.xyz/services/context"
 
 	"code.forgejo.org/go-chi/binding"
 )

@@ -6,7 +6,7 @@ package project
 import (
 	"testing"
 
-	val "forgejo.org/modules/validation"
+	val "novroforge.xyz/modules/validation"
 
 	"github.com/stretchr/testify/assert"
 )

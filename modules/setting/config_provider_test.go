@@ -8,7 +8,7 @@ import (
 	"testing"
 	"time"
 
-	"forgejo.org/modules/duration"
+	"novroforge.xyz/modules/duration"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

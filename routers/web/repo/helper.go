@@ -7,9 +7,9 @@ import (
 	"net/url"
 	"slices"
 
-	"forgejo.org/models/user"
-	"forgejo.org/modules/git"
-	"forgejo.org/services/context"
+	"novroforge.xyz/models/user"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/services/context"
 )
 
 func MakeSelfOnTop(doer *user.User, users []*user.User) []*user.User {

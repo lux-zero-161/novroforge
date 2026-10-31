@@ -7,9 +7,9 @@ import (
 	"fmt"
 	"testing"
 
-	actions_model "forgejo.org/models/actions"
-	"forgejo.org/models/db"
-	"forgejo.org/tests"
+	actions_model "novroforge.xyz/models/actions"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/tests"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

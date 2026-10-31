@@ -8,13 +8,13 @@ import (
 	"fmt"
 	"strings"
 
-	asymkey_model "forgejo.org/models/asymkey"
-	"forgejo.org/models/auth"
-	user_model "forgejo.org/models/user"
-	auth_module "forgejo.org/modules/auth"
-	"forgejo.org/modules/optional"
-	source_service "forgejo.org/services/auth/source"
-	user_service "forgejo.org/services/user"
+	asymkey_model "novroforge.xyz/models/asymkey"
+	"novroforge.xyz/models/auth"
+	user_model "novroforge.xyz/models/user"
+	auth_module "novroforge.xyz/modules/auth"
+	"novroforge.xyz/modules/optional"
+	source_service "novroforge.xyz/services/auth/source"
+	user_service "novroforge.xyz/services/user"
 )
 
 // Authenticate queries if login/password is valid against the LDAP directory pool,

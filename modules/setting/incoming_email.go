@@ -9,7 +9,7 @@ import (
 	"net/mail"
 	"strings"
 
-	"forgejo.org/modules/log"
+	"novroforge.xyz/modules/log"
 )
 
 var IncomingEmail = struct {

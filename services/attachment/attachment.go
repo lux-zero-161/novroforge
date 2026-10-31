@@ -9,12 +9,12 @@ import (
 	"fmt"
 	"io"
 
-	"forgejo.org/models/db"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/modules/storage"
-	"forgejo.org/modules/util"
-	"forgejo.org/modules/validation"
-	"forgejo.org/services/context/upload"
+	"novroforge.xyz/models/db"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/modules/storage"
+	"novroforge.xyz/modules/util"
+	"novroforge.xyz/modules/validation"
+	"novroforge.xyz/services/context/upload"
 
 	"github.com/google/uuid"
 )

@@ -6,13 +6,13 @@ package repo
 import (
 	"net/http"
 
-	"forgejo.org/models/db"
-	"forgejo.org/models/packages"
-	"forgejo.org/models/unit"
-	"forgejo.org/modules/base"
-	"forgejo.org/modules/optional"
-	"forgejo.org/modules/setting"
-	"forgejo.org/services/context"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/packages"
+	"novroforge.xyz/models/unit"
+	"novroforge.xyz/modules/base"
+	"novroforge.xyz/modules/optional"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/services/context"
 )
 
 const (

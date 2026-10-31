@@ -7,12 +7,12 @@ import (
 	"net/http"
 	"strings"
 
-	auth_model "forgejo.org/models/auth"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/optional"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/timeutil"
-	"forgejo.org/modules/web/middleware"
+	auth_model "novroforge.xyz/models/auth"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/optional"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/timeutil"
+	"novroforge.xyz/modules/web/middleware"
 )
 
 const CookieNameFlash = "flash"

@@ -4,8 +4,8 @@
 package permissions
 
 import (
-	"forgejo.org/models/unit"
-	"forgejo.org/modules/log"
+	"novroforge.xyz/models/unit"
+	"novroforge.xyz/modules/log"
 )
 
 func MustEnableIssues(ctx Context) {

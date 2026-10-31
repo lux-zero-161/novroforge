@@ -7,14 +7,14 @@ import (
 	"strings"
 	"testing"
 
-	webhook_model "forgejo.org/models/webhook"
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/setting"
-	api "forgejo.org/modules/structs"
-	"forgejo.org/modules/test"
-	webhook_module "forgejo.org/modules/webhook"
-	"forgejo.org/services/webhook/shared"
+	webhook_model "novroforge.xyz/models/webhook"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/setting"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/modules/test"
+	webhook_module "novroforge.xyz/modules/webhook"
+	"novroforge.xyz/services/webhook/shared"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -31,7 +31,7 @@ func gitInit(t testing.TB) {
 func TestSourcehutBuildsPayload(t *testing.T) {
 	gitInit(t)
 	defer test.MockVariableValue(&setting.RepoRootPath, ".")()
-	defer test.MockVariableValue(&setting.AppURL, "https://example.forgejo.org/")()
+	defer test.MockVariableValue(&setting.AppURL, "https://example.novroforge.xyz/")()
 
 	repo := &api.Repository{
 		HTMLURL:  "http://localhost:3000/testdata/repo",
@@ -67,7 +67,7 @@ func TestSourcehutBuildsPayload(t *testing.T) {
     - http://localhost:3000/testdata/repo.git#58771003157b81abc6bf41df0c5db4147a3e3c83
 environment:
     BUILD_SUBMITTER: forgejo
-    BUILD_SUBMITTER_URL: https://example.forgejo.org/
+    BUILD_SUBMITTER_URL: https://example.novroforge.xyz/
     GIT_REF: refs/heads/test
 image: alpine/edge
 tasks:
@@ -100,7 +100,7 @@ tasks:
     - http://localhost:3000/testdata/repo.git#58771003157b81abc6bf41df0c5db4147a3e3c83
 environment:
     BUILD_SUBMITTER: forgejo
-    BUILD_SUBMITTER_URL: https://example.forgejo.org/
+    BUILD_SUBMITTER_URL: https://example.novroforge.xyz/
     GIT_REF: refs/tags/v1.0.0
 image: alpine/edge
 tasks:
@@ -152,7 +152,7 @@ tasks:
     - http://localhost:3000/testdata/repo.git#58771003157b81abc6bf41df0c5db4147a3e3c83
 environment:
     BUILD_SUBMITTER: forgejo
-    BUILD_SUBMITTER_URL: https://example.forgejo.org/
+    BUILD_SUBMITTER_URL: https://example.novroforge.xyz/
     GIT_REF: refs/heads/main
 image: alpine/edge
 tasks:
@@ -189,7 +189,7 @@ tasks:
     - http://localhost:3000/testdata/repo.git#b0404943256a1f5a50c3726f4378756b4c1e5704
 environment:
     BUILD_SUBMITTER: forgejo
-    BUILD_SUBMITTER_URL: https://example.forgejo.org/
+    BUILD_SUBMITTER_URL: https://example.novroforge.xyz/
     GIT_REF: refs/heads/main
     deploy: synapse@synapse-bt.org
 image: archlinux
@@ -334,7 +334,7 @@ triggers:
 func TestSourcehutJSONPayload(t *testing.T) {
 	gitInit(t)
 	defer test.MockVariableValue(&setting.RepoRootPath, ".")()
-	defer test.MockVariableValue(&setting.AppURL, "https://example.forgejo.org/")()
+	defer test.MockVariableValue(&setting.AppURL, "https://example.novroforge.xyz/")()
 
 	repo := &api.Repository{
 		HTMLURL:  "http://localhost:3000/testdata/repo",
@@ -386,7 +386,7 @@ func TestSourcehutJSONPayload(t *testing.T) {
 }
 
 func TestSourcehutAdjustManifest(t *testing.T) {
-	defer test.MockVariableValue(&setting.AppURL, "https://example.forgejo.org/")()
+	defer test.MockVariableValue(&setting.AppURL, "https://example.novroforge.xyz/")()
 	t.Run("without sources", func(t *testing.T) {
 		repo := &api.Repository{
 			CloneURL: "http://localhost:3000/testdata/repo.git",
@@ -403,7 +403,7 @@ tasks:
     - http://localhost:3000/testdata/repo.git#58771003157b81abc6bf41df0c5db4147a3e3c83
 environment:
     BUILD_SUBMITTER: forgejo
-    BUILD_SUBMITTER_URL: https://example.forgejo.org/
+    BUILD_SUBMITTER_URL: https://example.novroforge.xyz/
     GIT_REF: refs/heads/main
 image: alpine/edge
 tasks:
@@ -430,7 +430,7 @@ tasks:
     - http://localhost:3000/testdata/repo.git#58771003157b81abc6bf41df0c5db4147a3e3c83
 environment:
     BUILD_SUBMITTER: forgejo
-    BUILD_SUBMITTER_URL: https://example.forgejo.org/
+    BUILD_SUBMITTER_URL: https://example.novroforge.xyz/
     GIT_REF: refs/heads/main
 image: alpine/edge
 tasks:
@@ -456,7 +456,7 @@ tasks:
     - http://other.example.conm/repo.git
 environment:
     BUILD_SUBMITTER: forgejo
-    BUILD_SUBMITTER_URL: https://example.forgejo.org/
+    BUILD_SUBMITTER_URL: https://example.novroforge.xyz/
     GIT_REF: refs/heads/main
 image: alpine/edge
 tasks:
@@ -483,7 +483,7 @@ tasks:
     - http://other.example.conm/repo.git
 environment:
     BUILD_SUBMITTER: forgejo
-    BUILD_SUBMITTER_URL: https://example.forgejo.org/
+    BUILD_SUBMITTER_URL: https://example.novroforge.xyz/
     GIT_REF: refs/heads/main
 image: alpine/edge
 tasks:
@@ -507,7 +507,7 @@ tasks:
     - git@localhost:testdata/repo.git#58771003157b81abc6bf41df0c5db4147a3e3c83
 environment:
     BUILD_SUBMITTER: forgejo
-    BUILD_SUBMITTER_URL: https://example.forgejo.org/
+    BUILD_SUBMITTER_URL: https://example.novroforge.xyz/
     GIT_REF: refs/heads/main
 image: alpine/edge
 tasks:

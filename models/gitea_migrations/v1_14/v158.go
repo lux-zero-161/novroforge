@@ -7,8 +7,8 @@ import (
 	"errors"
 	"strconv"
 
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
 
 	"code.forgejo.org/xorm/xorm"
 )

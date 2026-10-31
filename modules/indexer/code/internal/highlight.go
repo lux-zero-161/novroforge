@@ -8,8 +8,8 @@ import (
 	"html/template"
 	"strings"
 
-	"forgejo.org/modules/highlight"
-	"forgejo.org/services/gitdiff"
+	"novroforge.xyz/modules/highlight"
+	"novroforge.xyz/services/gitdiff"
 )
 
 func WriteStrings(buf *bytes.Buffer, strs ...string) error {

@@ -9,8 +9,8 @@ import (
 	"io"
 	"regexp"
 
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/validation"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/validation"
 
 	"github.com/hashicorp/go-version"
 )

@@ -6,14 +6,14 @@ package secrets
 import (
 	"errors"
 
-	"forgejo.org/models/db"
-	secret_model "forgejo.org/models/secret"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/util"
-	"forgejo.org/modules/web"
-	"forgejo.org/services/context"
-	"forgejo.org/services/forms"
-	secrets_service "forgejo.org/services/secrets"
+	"novroforge.xyz/models/db"
+	secret_model "novroforge.xyz/models/secret"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/util"
+	"novroforge.xyz/modules/web"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/forms"
+	secrets_service "novroforge.xyz/services/secrets"
 )
 
 func SetSecretsContext(ctx *context.Context, ownerID, repoID int64) {

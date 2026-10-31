@@ -8,15 +8,15 @@ import (
 	"encoding/base64"
 	"fmt"
 
-	"forgejo.org/models/db"
-	repo_model "forgejo.org/models/repo"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/keying"
-	"forgejo.org/modules/migration"
-	"forgejo.org/modules/structs"
-	"forgejo.org/modules/timeutil"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/models/db"
+	repo_model "novroforge.xyz/models/repo"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/keying"
+	"novroforge.xyz/modules/migration"
+	"novroforge.xyz/modules/structs"
+	"novroforge.xyz/modules/timeutil"
+	"novroforge.xyz/modules/util"
 )
 
 // Task represents a task

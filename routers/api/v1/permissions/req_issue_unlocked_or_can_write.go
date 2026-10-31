@@ -6,7 +6,7 @@ package permissions
 import (
 	"net/http"
 
-	issues_model "forgejo.org/models/issues"
+	issues_model "novroforge.xyz/models/issues"
 )
 
 func ReqIssueUnlockedOrCanWrite(ctx Context, issue *issues_model.Issue) {

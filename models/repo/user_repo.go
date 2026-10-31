@@ -8,12 +8,12 @@ import (
 	"slices"
 	"strings"
 
-	"forgejo.org/models/db"
-	"forgejo.org/models/perm"
-	"forgejo.org/models/unit"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/container"
-	api "forgejo.org/modules/structs"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/perm"
+	"novroforge.xyz/models/unit"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/container"
+	api "novroforge.xyz/modules/structs"
 
 	"xorm.io/builder"
 )

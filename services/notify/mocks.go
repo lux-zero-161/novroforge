@@ -7,13 +7,13 @@ package notify
 import (
 	"context"
 
-	"forgejo.org/models/actions"
-	"forgejo.org/models/issues"
-	"forgejo.org/models/packages"
-	"forgejo.org/models/repo"
-	"forgejo.org/models/user"
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/repository"
+	"novroforge.xyz/models/actions"
+	"novroforge.xyz/models/issues"
+	"novroforge.xyz/models/packages"
+	"novroforge.xyz/models/repo"
+	"novroforge.xyz/models/user"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/repository"
 
 	mock "github.com/stretchr/testify/mock"
 )

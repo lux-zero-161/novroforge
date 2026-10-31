@@ -7,15 +7,15 @@ import (
 	"context"
 	"fmt"
 
-	issues_model "forgejo.org/models/issues"
-	"forgejo.org/models/perm"
-	access_model "forgejo.org/models/perm/access"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/cache"
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/gitrepo"
-	"forgejo.org/modules/log"
-	api "forgejo.org/modules/structs"
+	issues_model "novroforge.xyz/models/issues"
+	"novroforge.xyz/models/perm"
+	access_model "novroforge.xyz/models/perm/access"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/cache"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/gitrepo"
+	"novroforge.xyz/modules/log"
+	api "novroforge.xyz/modules/structs"
 )
 
 // ToAPIPullRequest assumes following fields have been assigned with valid values:

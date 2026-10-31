@@ -7,9 +7,9 @@ import (
 	"context"
 	"strings"
 
-	"forgejo.org/models/db"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/timeutil"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/timeutil"
 
 	"xorm.io/builder"
 )

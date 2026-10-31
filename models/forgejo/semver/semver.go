@@ -5,7 +5,7 @@ package semver
 import (
 	"context"
 
-	"forgejo.org/models/db"
+	"novroforge.xyz/models/db"
 
 	"github.com/hashicorp/go-version"
 )

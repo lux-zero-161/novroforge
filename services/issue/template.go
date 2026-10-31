@@ -10,11 +10,11 @@ import (
 	"path"
 	"strings"
 
-	"forgejo.org/models/repo"
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/issue/template"
-	"forgejo.org/modules/log"
-	api "forgejo.org/modules/structs"
+	"novroforge.xyz/models/repo"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/issue/template"
+	"novroforge.xyz/modules/log"
+	api "novroforge.xyz/modules/structs"
 
 	"go.yaml.in/yaml/v3"
 )

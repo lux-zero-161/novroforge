@@ -7,9 +7,9 @@ import (
 	"strconv"
 	"testing"
 
-	auth_model "forgejo.org/models/auth"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/test"
+	auth_model "novroforge.xyz/models/auth"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/test"
 
 	"github.com/gobwas/glob"
 	"github.com/stretchr/testify/assert"

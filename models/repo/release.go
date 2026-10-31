@@ -13,13 +13,13 @@ import (
 	"strconv"
 	"strings"
 
-	"forgejo.org/models/db"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/container"
-	"forgejo.org/modules/optional"
-	"forgejo.org/modules/structs"
-	"forgejo.org/modules/timeutil"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/models/db"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/container"
+	"novroforge.xyz/modules/optional"
+	"novroforge.xyz/modules/structs"
+	"novroforge.xyz/modules/timeutil"
+	"novroforge.xyz/modules/util"
 
 	"xorm.io/builder"
 )

@@ -8,7 +8,7 @@ import (
 	"strconv"
 	"strings"
 
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/util"
 )
 
 type Num struct {

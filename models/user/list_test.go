@@ -6,8 +6,8 @@ package user
 import (
 	"testing"
 
-	"forgejo.org/models/auth"
-	"forgejo.org/models/unittest"
+	"novroforge.xyz/models/auth"
+	"novroforge.xyz/models/unittest"
 
 	"github.com/stretchr/testify/require"
 )

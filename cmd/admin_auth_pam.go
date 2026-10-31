@@ -7,8 +7,8 @@ import (
 	"context"
 	"errors"
 
-	auth_model "forgejo.org/models/auth"
-	"forgejo.org/services/auth/source/pam"
+	auth_model "novroforge.xyz/models/auth"
+	"novroforge.xyz/services/auth/source/pam"
 
 	"github.com/urfave/cli/v3"
 )

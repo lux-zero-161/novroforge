@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	activities_model "forgejo.org/models/activities"
-	auth_model "forgejo.org/models/auth"
-	"forgejo.org/modules/timeutil"
-	"forgejo.org/tests"
+	activities_model "novroforge.xyz/models/activities"
+	auth_model "novroforge.xyz/models/auth"
+	"novroforge.xyz/modules/timeutil"
+	"novroforge.xyz/tests"
 
 	"github.com/stretchr/testify/assert"
 )

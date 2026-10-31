@@ -7,14 +7,14 @@ import (
 	"net/http"
 	"time"
 
-	"forgejo.org/models"
-	git_model "forgejo.org/models/git"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/modules/git"
-	api "forgejo.org/modules/structs"
-	"forgejo.org/modules/web"
-	"forgejo.org/services/context"
-	"forgejo.org/services/repository/files"
+	"novroforge.xyz/models"
+	git_model "novroforge.xyz/models/git"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/modules/git"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/modules/web"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/repository/files"
 )
 
 // ApplyDiffPatch handles API call for applying a patch

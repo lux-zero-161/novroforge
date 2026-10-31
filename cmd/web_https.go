@@ -9,9 +9,9 @@ import (
 	"os"
 	"strings"
 
-	"forgejo.org/modules/graceful"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/graceful"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
 )
 
 var tlsVersionStringMap = map[string]uint16{

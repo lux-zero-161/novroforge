@@ -6,11 +6,11 @@ package actions
 import (
 	"testing"
 
-	actions_model "forgejo.org/models/actions"
-	issues_model "forgejo.org/models/issues"
-	"forgejo.org/models/unittest"
-	user_model "forgejo.org/models/user"
-	webhook_module "forgejo.org/modules/webhook"
+	actions_model "novroforge.xyz/models/actions"
+	issues_model "novroforge.xyz/models/issues"
+	"novroforge.xyz/models/unittest"
+	user_model "novroforge.xyz/models/user"
+	webhook_module "novroforge.xyz/modules/webhook"
 
 	gouuid "github.com/google/uuid"
 	"github.com/stretchr/testify/assert"

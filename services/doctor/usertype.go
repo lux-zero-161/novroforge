@@ -6,8 +6,8 @@ package doctor
 import (
 	"context"
 
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/log"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/log"
 )
 
 func checkUserType(ctx context.Context, logger log.Logger, autofix bool) error {

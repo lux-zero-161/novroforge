@@ -6,12 +6,12 @@ package forgery
 import (
 	"testing"
 
-	org_model "forgejo.org/models/organization"
-	project_model "forgejo.org/models/project"
-	repo_model "forgejo.org/models/repo"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/optional"
-	project_module "forgejo.org/modules/project"
+	org_model "novroforge.xyz/models/organization"
+	project_model "novroforge.xyz/models/project"
+	repo_model "novroforge.xyz/models/repo"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/optional"
+	project_module "novroforge.xyz/modules/project"
 
 	"github.com/stretchr/testify/require"
 )

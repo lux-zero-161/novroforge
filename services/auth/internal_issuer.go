@@ -6,7 +6,7 @@ package auth
 import (
 	"testing"
 
-	"forgejo.org/modules/jwtx"
+	"novroforge.xyz/modules/jwtx"
 )
 
 var internalIssuers = make(map[string]InternalIssuer)

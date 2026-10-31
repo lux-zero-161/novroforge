@@ -6,8 +6,8 @@ package middleware
 import (
 	"net/http"
 
-	"forgejo.org/modules/translation"
-	"forgejo.org/modules/translation/i18n"
+	"novroforge.xyz/modules/translation"
+	"novroforge.xyz/modules/translation/i18n"
 
 	"golang.org/x/text/language"
 )

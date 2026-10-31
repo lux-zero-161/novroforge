@@ -6,8 +6,8 @@ package tests
 import (
 	"testing"
 
-	user_model "forgejo.org/models/user"
-	apiv1_permissions "forgejo.org/routers/api/v1/permissions"
+	user_model "novroforge.xyz/models/user"
+	apiv1_permissions "novroforge.xyz/routers/api/v1/permissions"
 )
 
 var _ = registerFunctionTestWithCall(apiv1_permissions.ReqValidCommentID, functionTest{

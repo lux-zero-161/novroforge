@@ -6,10 +6,10 @@ package feed
 import (
 	"time"
 
-	"forgejo.org/models/db"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/modules/setting"
-	"forgejo.org/services/context"
+	"novroforge.xyz/models/db"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/services/context"
 
 	"github.com/gorilla/feeds"
 )

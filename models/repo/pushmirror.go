@@ -10,14 +10,14 @@ import (
 	"strings"
 	"time"
 
-	"forgejo.org/models/db"
-	"forgejo.org/modules/git"
-	giturl "forgejo.org/modules/git/url"
-	"forgejo.org/modules/keying"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/timeutil"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/git"
+	giturl "novroforge.xyz/modules/git/url"
+	"novroforge.xyz/modules/keying"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/timeutil"
+	"novroforge.xyz/modules/util"
 
 	"xorm.io/builder"
 )

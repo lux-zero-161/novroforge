@@ -9,11 +9,11 @@ import (
 	"os"
 	"time"
 
-	"forgejo.org/models/db"
-	"forgejo.org/modules/cache"
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/cache"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
 )
 
 type status string

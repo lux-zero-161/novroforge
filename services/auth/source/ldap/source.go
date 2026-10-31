@@ -6,10 +6,10 @@ package ldap
 import (
 	"strings"
 
-	"forgejo.org/models/auth"
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/secret"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/models/auth"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/secret"
+	"novroforge.xyz/modules/setting"
 )
 
 // .____     ________      _____ __________

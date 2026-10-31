@@ -9,8 +9,8 @@ import (
 	"net/url"
 	"strings"
 
-	"forgejo.org/modules/session"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/session"
+	"novroforge.xyz/modules/setting"
 )
 
 // SetRedirectToCookie convenience function to set the RedirectTo cookie consistently

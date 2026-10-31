@@ -9,12 +9,12 @@ import (
 	"net/url"
 	"testing"
 
-	auth_model "forgejo.org/models/auth"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/models/unittest"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/setting"
+	auth_model "novroforge.xyz/models/auth"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/models/unittest"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/setting"
 
 	runnerv1 "code.forgejo.org/forgejo/actions-proto/runner/v1"
 	"connectrpc.com/connect"

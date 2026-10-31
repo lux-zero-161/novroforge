@@ -10,8 +10,8 @@ import (
 	"os"
 	"strings"
 
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/setting"
 )
 
 // GetCommitGraph return a list of commit (GraphItems) from all branches

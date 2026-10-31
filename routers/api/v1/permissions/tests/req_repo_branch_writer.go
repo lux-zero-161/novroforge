@@ -7,7 +7,7 @@ import (
 	"strings"
 	"testing"
 
-	apiv1_permissions "forgejo.org/routers/api/v1/permissions"
+	apiv1_permissions "novroforge.xyz/routers/api/v1/permissions"
 
 	"github.com/stretchr/testify/require"
 )

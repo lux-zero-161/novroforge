@@ -14,8 +14,8 @@ import (
 	"regexp"
 	"strings"
 
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/util"
 
 	"gopkg.in/ini.v1" //nolint:depguard // used to read .gitmodules
 )

@@ -7,9 +7,9 @@ import (
 	"net/http"
 	"strings"
 
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/modules/log"
-	"forgejo.org/services/context"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/services/context"
 )
 
 // TopicsPost response for creating repository

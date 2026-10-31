@@ -8,9 +8,9 @@ import (
 	"errors"
 	"time"
 
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
-	"forgejo.org/services/repository"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/services/repository"
 )
 
 func init() {

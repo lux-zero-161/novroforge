@@ -6,7 +6,7 @@ package regexplru
 import (
 	"regexp"
 
-	"forgejo.org/modules/log"
+	"novroforge.xyz/modules/log"
 
 	lru "github.com/hashicorp/golang-lru/v2"
 )

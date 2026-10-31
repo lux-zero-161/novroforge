@@ -6,7 +6,7 @@ package internal
 import (
 	"html/template"
 
-	"forgejo.org/modules/timeutil"
+	"novroforge.xyz/modules/timeutil"
 )
 
 type FileUpdate struct {

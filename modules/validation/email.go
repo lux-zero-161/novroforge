@@ -10,8 +10,8 @@ import (
 	"net/mail"
 	"strings"
 
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/util"
 
 	"github.com/gobwas/glob"
 )

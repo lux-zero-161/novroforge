@@ -6,9 +6,9 @@ package repo
 import (
 	"testing"
 
-	"forgejo.org/models/perm"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/test"
+	"novroforge.xyz/models/perm"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/test"
 
 	"github.com/stretchr/testify/assert"
 )

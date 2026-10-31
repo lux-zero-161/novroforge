@@ -14,8 +14,8 @@ import (
 	"runtime"
 	"sync"
 
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
 )
 
 // Repository represents a Git repository.

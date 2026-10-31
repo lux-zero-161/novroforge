@@ -8,9 +8,9 @@ import (
 	"slices"
 	"strings"
 
-	"forgejo.org/modules/markup"
-	"forgejo.org/modules/setting"
-	giteautil "forgejo.org/modules/util"
+	"novroforge.xyz/modules/markup"
+	"novroforge.xyz/modules/setting"
+	giteautil "novroforge.xyz/modules/util"
 
 	"github.com/yuin/goldmark/ast"
 )

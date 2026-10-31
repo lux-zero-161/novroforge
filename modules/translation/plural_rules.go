@@ -13,8 +13,8 @@ package translation
 import (
 	"strings"
 
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/translation/i18n"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/translation/i18n"
 )
 
 // The constants refer to indices below in `PluralRules` and also in web_src/js/webcomponents/relative-time.js, keep them in sync!

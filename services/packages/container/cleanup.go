@@ -7,10 +7,10 @@ import (
 	"context"
 	"time"
 
-	packages_model "forgejo.org/models/packages"
-	container_model "forgejo.org/models/packages/container"
-	"forgejo.org/modules/optional"
-	packages_service "forgejo.org/services/packages"
+	packages_model "novroforge.xyz/models/packages"
+	container_model "novroforge.xyz/models/packages/container"
+	"novroforge.xyz/modules/optional"
+	packages_service "novroforge.xyz/services/packages"
 
 	digest "github.com/opencontainers/go-digest"
 )

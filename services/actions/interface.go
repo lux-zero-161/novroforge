@@ -3,7 +3,7 @@
 
 package actions
 
-import "forgejo.org/services/context"
+import "novroforge.xyz/services/context"
 
 // API for actions of a user, repository or organization
 type API interface {

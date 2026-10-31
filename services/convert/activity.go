@@ -6,12 +6,12 @@ package convert
 import (
 	"context"
 
-	activities_model "forgejo.org/models/activities"
-	perm_model "forgejo.org/models/perm"
-	access_model "forgejo.org/models/perm/access"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/log"
-	api "forgejo.org/modules/structs"
+	activities_model "novroforge.xyz/models/activities"
+	perm_model "novroforge.xyz/models/perm"
+	access_model "novroforge.xyz/models/perm/access"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/log"
+	api "novroforge.xyz/modules/structs"
 )
 
 func ToActivity(ctx context.Context, ac *activities_model.Action, doer *user_model.User) *api.Activity {

@@ -24,10 +24,10 @@ import (
 	"strings"
 	"time"
 
-	user_model "forgejo.org/models/user"
-	chef_module "forgejo.org/modules/packages/chef"
-	"forgejo.org/modules/util"
-	"forgejo.org/services/auth"
+	user_model "novroforge.xyz/models/user"
+	chef_module "novroforge.xyz/modules/packages/chef"
+	"novroforge.xyz/modules/util"
+	"novroforge.xyz/services/auth"
 )
 
 const (

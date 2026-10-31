@@ -9,10 +9,10 @@ import (
 	"net/url"
 	"time"
 
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/git/pushoptions"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/repository"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/git/pushoptions"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/repository"
 )
 
 // Git environment variables

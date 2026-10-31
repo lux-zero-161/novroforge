@@ -11,7 +11,7 @@ import (
 	"database/sql/driver"
 	"errors"
 
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/setting"
 
 	"code.forgejo.org/xorm/xorm/dialects"
 	"github.com/jackc/pgx/v5/stdlib"

@@ -7,8 +7,8 @@ import (
 	"fmt"
 	"strings"
 
-	"forgejo.org/modules/process"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/process"
+	"novroforge.xyz/modules/util"
 )
 
 // ErrNotExist commit not exist error

@@ -9,9 +9,9 @@ import (
 	"path"
 	"strings"
 
-	gitea_html "forgejo.org/modules/html"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/public"
+	gitea_html "novroforge.xyz/modules/html"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/public"
 )
 
 var svgIcons map[string]string

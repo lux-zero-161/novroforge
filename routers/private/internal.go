@@ -5,9 +5,9 @@
 package private
 
 import (
-	"forgejo.org/modules/private"
-	"forgejo.org/modules/web"
-	"forgejo.org/services/context"
+	"novroforge.xyz/modules/private"
+	"novroforge.xyz/modules/web"
+	"novroforge.xyz/services/context"
 
 	"code.forgejo.org/go-chi/binding"
 	chi_middleware "github.com/go-chi/chi/v5/middleware"

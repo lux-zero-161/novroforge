@@ -16,8 +16,8 @@ import (
 	"testing"
 	"time"
 
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/test"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/test"
 
 	"github.com/minio/minio-go/v7"
 	"github.com/stretchr/testify/assert"

@@ -7,10 +7,10 @@ import (
 	"strings"
 	"time"
 
-	"forgejo.org/models/avatars"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/httpcache"
-	"forgejo.org/services/context"
+	"novroforge.xyz/models/avatars"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/httpcache"
+	"novroforge.xyz/services/context"
 )
 
 func cacheableRedirect(ctx *context.Context, location string) {

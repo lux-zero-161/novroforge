@@ -4,8 +4,8 @@
 package method
 
 import (
-	user_model "forgejo.org/models/user"
-	"forgejo.org/services/auth"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/services/auth"
 )
 
 var _ auth.AuthenticationResult = &httpSignAuthenticationResult{}

@@ -7,13 +7,13 @@ import (
 	"strings"
 	"testing"
 
-	auth_model "forgejo.org/models/auth"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/models/unittest"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/storage"
-	repo_service "forgejo.org/services/repository"
-	"forgejo.org/tests/forgery"
+	auth_model "novroforge.xyz/models/auth"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/models/unittest"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/storage"
+	repo_service "novroforge.xyz/services/repository"
+	"novroforge.xyz/tests/forgery"
 
 	"github.com/stretchr/testify/require"
 )

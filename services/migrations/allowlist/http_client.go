@@ -7,10 +7,10 @@ import (
 	"crypto/tls"
 	"net/http"
 
-	"forgejo.org/modules/hostmatcher"
-	"forgejo.org/modules/migration"
-	"forgejo.org/modules/proxy"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/hostmatcher"
+	"novroforge.xyz/modules/migration"
+	"novroforge.xyz/modules/proxy"
+	"novroforge.xyz/modules/setting"
 )
 
 // NewMigrationHTTPClient returns a HTTP client for migration

@@ -9,12 +9,12 @@ import (
 	"fmt"
 	"slices"
 
-	actions_model "forgejo.org/models/actions"
-	"forgejo.org/models/db"
-	"forgejo.org/models/unit"
-	"forgejo.org/modules/container"
-	"forgejo.org/modules/timeutil"
-	"forgejo.org/modules/util"
+	actions_model "novroforge.xyz/models/actions"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/unit"
+	"novroforge.xyz/modules/container"
+	"novroforge.xyz/modules/timeutil"
+	"novroforge.xyz/modules/util"
 )
 
 var (

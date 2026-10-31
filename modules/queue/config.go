@@ -4,7 +4,7 @@
 package queue
 
 import (
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/setting"
 )
 
 type BaseConfig struct {

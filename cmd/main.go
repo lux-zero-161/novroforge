@@ -10,9 +10,9 @@ import (
 	"path/filepath"
 	"strings"
 
-	"forgejo.org/cmd/forgejo"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/cmd/forgejo"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
 
 	"github.com/urfave/cli/v3"
 )

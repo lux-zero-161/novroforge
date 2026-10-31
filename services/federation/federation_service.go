@@ -10,13 +10,13 @@ import (
 	"net/url"
 	"strings"
 
-	"forgejo.org/models/forgefed"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/activitypub"
-	fm "forgejo.org/modules/forgefed"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/validation"
+	"novroforge.xyz/models/forgefed"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/activitypub"
+	fm "novroforge.xyz/modules/forgefed"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/validation"
 
 	"github.com/google/uuid"
 )

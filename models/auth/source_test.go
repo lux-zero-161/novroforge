@@ -7,10 +7,10 @@ import (
 	"strings"
 	"testing"
 
-	auth_model "forgejo.org/models/auth"
-	"forgejo.org/models/db"
-	"forgejo.org/models/unittest"
-	"forgejo.org/modules/json"
+	auth_model "novroforge.xyz/models/auth"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/unittest"
+	"novroforge.xyz/modules/json"
 
 	"code.forgejo.org/xorm/xorm/schemas"
 	"github.com/stretchr/testify/assert"

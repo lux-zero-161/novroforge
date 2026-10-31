@@ -9,7 +9,7 @@ import (
 	"sync"
 	"time"
 
-	"forgejo.org/modules/process"
+	"novroforge.xyz/modules/process"
 
 	"github.com/redis/go-redis/v9"
 	"github.com/syndtr/goleveldb/leveldb"

@@ -8,10 +8,10 @@ import (
 	"net/http"
 	"testing"
 
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/test"
-	"forgejo.org/routers"
-	"forgejo.org/tests"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/test"
+	"novroforge.xyz/routers"
+	"novroforge.xyz/tests"
 
 	ap "github.com/go-ap/activitypub"
 	"github.com/stretchr/testify/assert"

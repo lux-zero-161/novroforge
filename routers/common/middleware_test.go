@@ -7,7 +7,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"forgejo.org/modules/web"
+	"novroforge.xyz/modules/web"
 
 	chi "github.com/go-chi/chi/v5"
 	"github.com/stretchr/testify/assert"

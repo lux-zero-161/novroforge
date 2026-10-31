@@ -6,11 +6,11 @@ package admin
 import (
 	"testing"
 
-	activities_model "forgejo.org/models/activities"
-	"forgejo.org/models/unittest"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/test"
-	"forgejo.org/services/contexttest"
+	activities_model "novroforge.xyz/models/activities"
+	"novroforge.xyz/models/unittest"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/test"
+	"novroforge.xyz/services/contexttest"
 
 	"github.com/stretchr/testify/assert"
 )

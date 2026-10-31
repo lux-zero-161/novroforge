@@ -9,9 +9,9 @@ import (
 	"path/filepath"
 	"strings"
 
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/util"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/util"
 )
 
 // ErrWikiAlreadyExist represents a "WikiAlreadyExist" kind of error.

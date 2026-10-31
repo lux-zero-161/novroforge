@@ -8,8 +8,8 @@ import (
 	"slices"
 	"testing"
 
-	unit_model "forgejo.org/models/unit"
-	"forgejo.org/tests"
+	unit_model "novroforge.xyz/models/unit"
+	"novroforge.xyz/tests"
 )
 
 func TestOrgProjectAccess(t *testing.T) {

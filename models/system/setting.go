@@ -9,10 +9,10 @@ import (
 	"sync"
 	"time"
 
-	"forgejo.org/models/db"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting/config"
-	"forgejo.org/modules/timeutil"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting/config"
+	"novroforge.xyz/modules/timeutil"
 
 	"xorm.io/builder"
 )

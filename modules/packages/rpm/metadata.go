@@ -8,8 +8,8 @@ import (
 	"io"
 	"strings"
 
-	"forgejo.org/modules/timeutil"
-	"forgejo.org/modules/validation"
+	"novroforge.xyz/modules/timeutil"
+	"novroforge.xyz/modules/validation"
 
 	"code.forgejo.org/forgejo/go-rpmutils"
 )

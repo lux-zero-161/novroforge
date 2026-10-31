@@ -9,10 +9,10 @@ import (
 	"regexp"
 	"strings"
 
-	"forgejo.org/modules/markup"
-	"forgejo.org/modules/markup/common"
-	markdownutil "forgejo.org/modules/markup/markdown/util"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/markup"
+	"novroforge.xyz/modules/markup/common"
+	markdownutil "novroforge.xyz/modules/markup/markdown/util"
+	"novroforge.xyz/modules/setting"
 
 	"github.com/yuin/goldmark/ast"
 	east "github.com/yuin/goldmark/extension/ast"

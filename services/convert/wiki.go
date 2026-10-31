@@ -6,8 +6,8 @@ package convert
 import (
 	"time"
 
-	"forgejo.org/modules/git"
-	api "forgejo.org/modules/structs"
+	"novroforge.xyz/modules/git"
+	api "novroforge.xyz/modules/structs"
 )
 
 // ToWikiCommit convert a git commit into a WikiCommit

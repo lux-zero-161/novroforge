@@ -8,12 +8,12 @@ import (
 	"net/http"
 	"net/url"
 
-	"forgejo.org/modules/options"
-	repo_module "forgejo.org/modules/repository"
-	"forgejo.org/modules/setting"
-	api "forgejo.org/modules/structs"
-	"forgejo.org/modules/util"
-	"forgejo.org/services/context"
+	"novroforge.xyz/modules/options"
+	repo_module "novroforge.xyz/modules/repository"
+	"novroforge.xyz/modules/setting"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/modules/util"
+	"novroforge.xyz/services/context"
 )
 
 // Returns a list of all License templates

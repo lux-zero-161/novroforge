@@ -6,7 +6,7 @@ package templates
 import (
 	"context"
 
-	"forgejo.org/modules/translation"
+	"novroforge.xyz/modules/translation"
 )
 
 type Context struct {

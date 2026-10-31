@@ -6,14 +6,14 @@ package setting
 import (
 	"net/http"
 
-	asymkey_model "forgejo.org/models/asymkey"
-	"forgejo.org/models/db"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/web"
-	asymkey_service "forgejo.org/services/asymkey"
-	"forgejo.org/services/context"
-	"forgejo.org/services/forms"
+	asymkey_model "novroforge.xyz/models/asymkey"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/web"
+	asymkey_service "novroforge.xyz/services/asymkey"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/forms"
 )
 
 // DeployKeys render the deploy keys list of a repository page

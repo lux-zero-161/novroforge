@@ -6,7 +6,7 @@ package permissions
 import (
 	"net/http"
 
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/setting"
 )
 
 func ReqWebhooksEnabled(ctx Context) {

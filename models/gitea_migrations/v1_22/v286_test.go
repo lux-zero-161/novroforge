@@ -6,7 +6,7 @@ package v1_22
 import (
 	"testing"
 
-	migration_tests "forgejo.org/models/gitea_migrations/test"
+	migration_tests "novroforge.xyz/models/gitea_migrations/test"
 
 	"code.forgejo.org/xorm/xorm"
 	"github.com/stretchr/testify/assert"

@@ -7,15 +7,15 @@ import (
 	"io"
 	"time"
 
-	git_model "forgejo.org/models/git"
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/httpcache"
-	"forgejo.org/modules/httplib"
-	"forgejo.org/modules/lfs"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/storage"
-	"forgejo.org/services/context"
+	git_model "novroforge.xyz/models/git"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/httpcache"
+	"novroforge.xyz/modules/httplib"
+	"novroforge.xyz/modules/lfs"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/storage"
+	"novroforge.xyz/services/context"
 )
 
 // ServeBlob serves a [git.Blob] (redirects to LFS if necessary,

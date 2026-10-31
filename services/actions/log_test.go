@@ -7,11 +7,11 @@ import (
 	"testing"
 	"time"
 
-	actions_model "forgejo.org/models/actions"
-	dbfs_model "forgejo.org/models/dbfs"
-	"forgejo.org/models/unittest"
-	"forgejo.org/modules/test"
-	"forgejo.org/modules/timeutil"
+	actions_model "novroforge.xyz/models/actions"
+	dbfs_model "novroforge.xyz/models/dbfs"
+	"novroforge.xyz/models/unittest"
+	"novroforge.xyz/modules/test"
+	"novroforge.xyz/modules/timeutil"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

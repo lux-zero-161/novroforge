@@ -9,13 +9,13 @@ import (
 	"html"
 	"html/template"
 
-	activities_model "forgejo.org/models/activities"
-	"forgejo.org/models/avatars"
-	"forgejo.org/models/organization"
-	repo_model "forgejo.org/models/repo"
-	user_model "forgejo.org/models/user"
-	gitea_html "forgejo.org/modules/html"
-	"forgejo.org/modules/setting"
+	activities_model "novroforge.xyz/models/activities"
+	"novroforge.xyz/models/avatars"
+	"novroforge.xyz/models/organization"
+	repo_model "novroforge.xyz/models/repo"
+	user_model "novroforge.xyz/models/user"
+	gitea_html "novroforge.xyz/modules/html"
+	"novroforge.xyz/modules/setting"
 )
 
 type AvatarUtils struct {

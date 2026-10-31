@@ -9,7 +9,7 @@ import (
 	"fmt"
 	"strconv"
 
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/setting"
 )
 
 // ResourceIndex represents a resource index which could be used as issue/release and others

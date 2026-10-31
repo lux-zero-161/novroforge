@@ -7,7 +7,7 @@ import (
 	"crypto/subtle"
 	"net/http"
 
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/setting"
 
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 )

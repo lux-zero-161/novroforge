@@ -8,16 +8,16 @@ import (
 	"fmt"
 	"strings"
 
-	asymkey_model "forgejo.org/models/asymkey"
-	"forgejo.org/models/db"
-	"forgejo.org/models/organization"
-	user_model "forgejo.org/models/user"
-	auth_module "forgejo.org/modules/auth"
-	"forgejo.org/modules/container"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/optional"
-	source_service "forgejo.org/services/auth/source"
-	user_service "forgejo.org/services/user"
+	asymkey_model "novroforge.xyz/models/asymkey"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/organization"
+	user_model "novroforge.xyz/models/user"
+	auth_module "novroforge.xyz/modules/auth"
+	"novroforge.xyz/modules/container"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/optional"
+	source_service "novroforge.xyz/services/auth/source"
+	user_service "novroforge.xyz/services/user"
 )
 
 // Sync causes this ldap source to synchronize its users with the db

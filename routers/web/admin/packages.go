@@ -8,14 +8,14 @@ import (
 	"net/url"
 	"time"
 
-	"forgejo.org/models/db"
-	packages_model "forgejo.org/models/packages"
-	"forgejo.org/modules/base"
-	"forgejo.org/modules/optional"
-	"forgejo.org/modules/setting"
-	"forgejo.org/services/context"
-	packages_service "forgejo.org/services/packages"
-	packages_cleanup_service "forgejo.org/services/packages/cleanup"
+	"novroforge.xyz/models/db"
+	packages_model "novroforge.xyz/models/packages"
+	"novroforge.xyz/modules/base"
+	"novroforge.xyz/modules/optional"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/services/context"
+	packages_service "novroforge.xyz/services/packages"
+	packages_cleanup_service "novroforge.xyz/services/packages/cleanup"
 )
 
 const (

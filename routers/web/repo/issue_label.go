@@ -6,17 +6,17 @@ package repo
 import (
 	"net/http"
 
-	"forgejo.org/models/db"
-	issues_model "forgejo.org/models/issues"
-	"forgejo.org/models/organization"
-	"forgejo.org/modules/base"
-	"forgejo.org/modules/label"
-	"forgejo.org/modules/log"
-	repo_module "forgejo.org/modules/repository"
-	"forgejo.org/modules/web"
-	"forgejo.org/services/context"
-	"forgejo.org/services/forms"
-	issue_service "forgejo.org/services/issue"
+	"novroforge.xyz/models/db"
+	issues_model "novroforge.xyz/models/issues"
+	"novroforge.xyz/models/organization"
+	"novroforge.xyz/modules/base"
+	"novroforge.xyz/modules/label"
+	"novroforge.xyz/modules/log"
+	repo_module "novroforge.xyz/modules/repository"
+	"novroforge.xyz/modules/web"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/forms"
+	issue_service "novroforge.xyz/services/issue"
 )
 
 const (

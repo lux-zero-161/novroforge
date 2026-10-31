@@ -15,7 +15,7 @@ import (
 	"strconv"
 	"strings"
 
-	"forgejo.org/modules/log"
+	"novroforge.xyz/modules/log"
 )
 
 // RawDiffType type of a raw diff.

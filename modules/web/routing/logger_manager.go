@@ -9,8 +9,8 @@ import (
 	"sync"
 	"time"
 
-	"forgejo.org/modules/graceful"
-	"forgejo.org/modules/process"
+	"novroforge.xyz/modules/graceful"
+	"novroforge.xyz/modules/process"
 )
 
 // Event indicates when the printer is triggered

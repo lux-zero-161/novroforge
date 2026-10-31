@@ -11,9 +11,9 @@ import (
 	"strings"
 	"unicode"
 
-	"forgejo.org/modules/analyze"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/optional"
+	"novroforge.xyz/modules/analyze"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/optional"
 
 	"github.com/go-enry/go-enry/v2"
 )

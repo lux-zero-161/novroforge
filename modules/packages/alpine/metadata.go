@@ -13,8 +13,8 @@ import (
 	"strconv"
 	"strings"
 
-	"forgejo.org/modules/util"
-	"forgejo.org/modules/validation"
+	"novroforge.xyz/modules/util"
+	"novroforge.xyz/modules/validation"
 )
 
 var (

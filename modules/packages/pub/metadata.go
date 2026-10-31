@@ -10,8 +10,8 @@ import (
 	"regexp"
 	"strings"
 
-	"forgejo.org/modules/util"
-	"forgejo.org/modules/validation"
+	"novroforge.xyz/modules/util"
+	"novroforge.xyz/modules/validation"
 
 	"github.com/hashicorp/go-version"
 	"go.yaml.in/yaml/v3"

@@ -10,11 +10,11 @@ import (
 	"strings"
 	"testing"
 
-	"forgejo.org/modules/markup"
-	"forgejo.org/modules/setting"
-	api "forgejo.org/modules/structs"
-	"forgejo.org/modules/web"
-	"forgejo.org/services/contexttest"
+	"novroforge.xyz/modules/markup"
+	"novroforge.xyz/modules/setting"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/modules/web"
+	"novroforge.xyz/services/contexttest"
 
 	"github.com/stretchr/testify/assert"
 )

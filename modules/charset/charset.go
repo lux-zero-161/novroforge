@@ -10,9 +10,9 @@ import (
 	"strings"
 	"unicode/utf8"
 
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/util"
 
 	"github.com/gogs/chardet"
 	"golang.org/x/net/html/charset"

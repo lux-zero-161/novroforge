@@ -9,17 +9,17 @@ import (
 	"strconv"
 	"strings"
 
-	"forgejo.org/models/db"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/models/webhook"
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/setting"
-	api "forgejo.org/modules/structs"
-	"forgejo.org/modules/util"
-	"forgejo.org/modules/validation"
-	webhook_module "forgejo.org/modules/webhook"
-	"forgejo.org/services/context"
-	webhook_service "forgejo.org/services/webhook"
+	"novroforge.xyz/models/db"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/models/webhook"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/setting"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/modules/util"
+	"novroforge.xyz/modules/validation"
+	webhook_module "novroforge.xyz/modules/webhook"
+	"novroforge.xyz/services/context"
+	webhook_service "novroforge.xyz/services/webhook"
 )
 
 // ListOwnerHooks lists the webhooks of the provided owner

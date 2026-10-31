@@ -13,7 +13,7 @@ import (
 	"sync"
 	"time"
 
-	"forgejo.org/modules/git"
+	"novroforge.xyz/modules/git"
 )
 
 // LFSResult represents commits found using a provided pointer file hash

@@ -6,9 +6,9 @@ package system
 import (
 	"context"
 
-	"forgejo.org/models/system"
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/models/system"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/util"
 )
 
 // DBStore can be used to store app state items in local filesystem

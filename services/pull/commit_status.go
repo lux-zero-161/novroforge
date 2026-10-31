@@ -9,12 +9,12 @@ import (
 	"errors"
 	"fmt"
 
-	"forgejo.org/models/db"
-	git_model "forgejo.org/models/git"
-	issues_model "forgejo.org/models/issues"
-	"forgejo.org/modules/gitrepo"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/structs"
+	"novroforge.xyz/models/db"
+	git_model "novroforge.xyz/models/git"
+	issues_model "novroforge.xyz/models/issues"
+	"novroforge.xyz/modules/gitrepo"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/structs"
 
 	"github.com/gobwas/glob"
 )

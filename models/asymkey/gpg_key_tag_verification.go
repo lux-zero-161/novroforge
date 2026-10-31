@@ -6,7 +6,7 @@ package asymkey
 import (
 	"context"
 
-	"forgejo.org/modules/git"
+	"novroforge.xyz/modules/git"
 )
 
 func ParseTagWithSignature(ctx context.Context, gitRepo *git.Repository, t *git.Tag) *ObjectVerification {

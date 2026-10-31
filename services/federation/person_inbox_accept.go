@@ -6,7 +6,7 @@ package federation
 import (
 	"net/http"
 
-	"forgejo.org/modules/log"
+	"novroforge.xyz/modules/log"
 
 	ap "github.com/go-ap/activitypub"
 )

@@ -13,10 +13,10 @@ import (
 	"slices"
 	"time"
 
-	"forgejo.org/modules/container"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/process"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/container"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/process"
+	"novroforge.xyz/modules/util"
 
 	"github.com/fsnotify/fsnotify"
 )

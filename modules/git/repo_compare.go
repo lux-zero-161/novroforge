@@ -18,7 +18,7 @@ import (
 	"strings"
 	"time"
 
-	logger "forgejo.org/modules/log"
+	logger "novroforge.xyz/modules/log"
 )
 
 // CompareInfo represents needed information for comparing references.

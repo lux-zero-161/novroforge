@@ -6,7 +6,7 @@ package setting
 import (
 	"testing"
 
-	"forgejo.org/modules/container"
+	"novroforge.xyz/modules/container"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

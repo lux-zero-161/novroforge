@@ -13,15 +13,15 @@ import (
 	"regexp"
 	"strings"
 
-	packages_model "forgejo.org/models/packages"
-	packages_module "forgejo.org/modules/packages"
-	arch_module "forgejo.org/modules/packages/arch"
-	"forgejo.org/modules/sync"
-	"forgejo.org/modules/util"
-	"forgejo.org/routers/api/packages/helper"
-	"forgejo.org/services/context"
-	packages_service "forgejo.org/services/packages"
-	arch_service "forgejo.org/services/packages/arch"
+	packages_model "novroforge.xyz/models/packages"
+	packages_module "novroforge.xyz/modules/packages"
+	arch_module "novroforge.xyz/modules/packages/arch"
+	"novroforge.xyz/modules/sync"
+	"novroforge.xyz/modules/util"
+	"novroforge.xyz/routers/api/packages/helper"
+	"novroforge.xyz/services/context"
+	packages_service "novroforge.xyz/services/packages"
+	arch_service "novroforge.xyz/services/packages/arch"
 )
 
 var (

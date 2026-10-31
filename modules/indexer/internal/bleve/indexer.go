@@ -7,8 +7,8 @@ import (
 	"context"
 	"errors"
 
-	"forgejo.org/modules/indexer/internal"
-	"forgejo.org/modules/log"
+	"novroforge.xyz/modules/indexer/internal"
+	"novroforge.xyz/modules/log"
 
 	"github.com/blevesearch/bleve/v2"
 	"github.com/blevesearch/bleve/v2/mapping"

@@ -4,7 +4,7 @@
 package swagger
 
 import (
-	api "forgejo.org/modules/structs"
+	api "novroforge.xyz/modules/structs"
 )
 
 // PublicKey

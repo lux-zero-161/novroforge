@@ -7,11 +7,11 @@ import (
 	"fmt"
 	"net/http"
 
-	"forgejo.org/models/organization"
-	"forgejo.org/services/context"
-	"forgejo.org/services/convert"
-	org_service "forgejo.org/services/org"
-	repo_service "forgejo.org/services/repository"
+	"novroforge.xyz/models/organization"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/convert"
+	org_service "novroforge.xyz/services/org"
+	repo_service "novroforge.xyz/services/repository"
 )
 
 // ListTeams list a repository's teams

@@ -8,9 +8,9 @@ import (
 	"fmt"
 	"net/http"
 
-	"forgejo.org/models/user"
-	"forgejo.org/modules/forgefed"
-	"forgejo.org/modules/log"
+	"novroforge.xyz/models/user"
+	"novroforge.xyz/modules/forgefed"
+	"novroforge.xyz/modules/log"
 
 	ap "github.com/go-ap/activitypub"
 	"github.com/go-ap/jsonld"

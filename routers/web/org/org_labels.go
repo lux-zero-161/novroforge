@@ -6,13 +6,13 @@ package org
 import (
 	"net/http"
 
-	"forgejo.org/models/db"
-	issues_model "forgejo.org/models/issues"
-	"forgejo.org/modules/label"
-	repo_module "forgejo.org/modules/repository"
-	"forgejo.org/modules/web"
-	"forgejo.org/services/context"
-	"forgejo.org/services/forms"
+	"novroforge.xyz/models/db"
+	issues_model "novroforge.xyz/models/issues"
+	"novroforge.xyz/modules/label"
+	repo_module "novroforge.xyz/modules/repository"
+	"novroforge.xyz/modules/web"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/forms"
 )
 
 // RetrieveLabels find all the labels of an organization

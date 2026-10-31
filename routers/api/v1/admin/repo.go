@@ -4,10 +4,10 @@
 package admin
 
 import (
-	api "forgejo.org/modules/structs"
-	"forgejo.org/modules/web"
-	"forgejo.org/routers/api/v1/repo"
-	"forgejo.org/services/context"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/modules/web"
+	"novroforge.xyz/routers/api/v1/repo"
+	"novroforge.xyz/services/context"
 )
 
 // CreateRepo api for creating a repository

@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	"forgejo.org/models/db"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/test"
-	"forgejo.org/tests"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/test"
+	"novroforge.xyz/tests"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

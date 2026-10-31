@@ -8,12 +8,12 @@ import (
 	"errors"
 	"time"
 
-	"forgejo.org/models/db"
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/timeutil"
-	webhook_module "forgejo.org/modules/webhook"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/timeutil"
+	webhook_module "novroforge.xyz/modules/webhook"
 
 	gouuid "github.com/google/uuid"
 	"xorm.io/builder"

@@ -7,8 +7,8 @@ import (
 	"fmt"
 	"sync"
 
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/log"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/log"
 
 	"code.forgejo.org/go-chi/session"
 	memcache "code.forgejo.org/go-chi/session/memcache"

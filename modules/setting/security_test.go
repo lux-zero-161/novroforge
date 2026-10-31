@@ -10,8 +10,8 @@ import (
 	"strings"
 	"testing"
 
-	"forgejo.org/modules/jwtx"
-	"forgejo.org/modules/test"
+	"novroforge.xyz/modules/jwtx"
+	"novroforge.xyz/modules/test"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

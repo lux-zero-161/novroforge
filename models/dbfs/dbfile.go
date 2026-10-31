@@ -14,7 +14,7 @@ import (
 	"strings"
 	"time"
 
-	"forgejo.org/models/db"
+	"novroforge.xyz/models/db"
 )
 
 var defaultFileBlockSize int64 = 32 * 1024

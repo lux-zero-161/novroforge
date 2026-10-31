@@ -6,8 +6,8 @@ package quota_test
 import (
 	"testing"
 
-	quota_model "forgejo.org/models/quota"
-	"forgejo.org/models/unittest"
+	quota_model "novroforge.xyz/models/quota"
+	"novroforge.xyz/models/unittest"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

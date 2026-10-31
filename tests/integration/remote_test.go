@@ -8,12 +8,12 @@ import (
 	"net/http"
 	"testing"
 
-	auth_model "forgejo.org/models/auth"
-	"forgejo.org/models/unittest"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/test"
-	remote_service "forgejo.org/services/remote"
-	"forgejo.org/tests"
+	auth_model "novroforge.xyz/models/auth"
+	"novroforge.xyz/models/unittest"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/test"
+	remote_service "novroforge.xyz/services/remote"
+	"novroforge.xyz/tests"
 
 	"github.com/markbates/goth"
 	"github.com/stretchr/testify/assert"

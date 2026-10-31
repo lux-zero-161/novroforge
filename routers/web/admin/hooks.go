@@ -6,12 +6,12 @@ package admin
 import (
 	"net/http"
 
-	"forgejo.org/models/db"
-	"forgejo.org/models/webhook"
-	"forgejo.org/modules/base"
-	"forgejo.org/modules/setting"
-	"forgejo.org/services/context"
-	webhook_service "forgejo.org/services/webhook"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/webhook"
+	"novroforge.xyz/modules/base"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/services/context"
+	webhook_service "novroforge.xyz/services/webhook"
 )
 
 const (

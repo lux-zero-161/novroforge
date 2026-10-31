@@ -9,9 +9,9 @@ import (
 	"os"
 	"testing"
 
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/util"
 )
 
 const testReposDir = "tests/repos/"

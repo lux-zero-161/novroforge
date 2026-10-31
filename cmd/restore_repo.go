@@ -7,8 +7,8 @@ import (
 	"context"
 	"strings"
 
-	"forgejo.org/modules/private"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/private"
+	"novroforge.xyz/modules/setting"
 
 	"github.com/urfave/cli/v3"
 )

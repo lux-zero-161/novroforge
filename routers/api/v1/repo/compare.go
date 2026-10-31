@@ -7,10 +7,10 @@ import (
 	"net/http"
 	"strings"
 
-	user_model "forgejo.org/models/user"
-	api "forgejo.org/modules/structs"
-	"forgejo.org/services/context"
-	"forgejo.org/services/convert"
+	user_model "novroforge.xyz/models/user"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/convert"
 )
 
 // CompareDiff compare two branches or commits

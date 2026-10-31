@@ -14,7 +14,7 @@ import (
 	"slices"
 	"strings"
 
-	"forgejo.org/modules/translation/localeiter"
+	"novroforge.xyz/modules/translation/localeiter"
 
 	"github.com/microcosm-cc/bluemonday"
 	"github.com/sergi/go-diff/diffmatchpatch"

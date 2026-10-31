@@ -21,7 +21,7 @@ import (
 	"strings"
 	"unicode/utf8"
 
-	"forgejo.org/modules/json"
+	"novroforge.xyz/modules/json"
 )
 
 const gemojiURL = "https://raw.githubusercontent.com/github/gemoji/master/db/emoji.json"

@@ -9,7 +9,7 @@ import (
 	"os"
 	"text/tabwriter"
 
-	user_model "forgejo.org/models/user"
+	user_model "novroforge.xyz/models/user"
 
 	"github.com/urfave/cli/v3"
 )

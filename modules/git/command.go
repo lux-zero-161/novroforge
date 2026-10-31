@@ -17,10 +17,10 @@ import (
 	"strings"
 	"time"
 
-	"forgejo.org/modules/git/internal" //nolint:depguard // only this file can use the internal type CmdArg, other files and packages should use AddXxx functions
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/process"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/git/internal" //nolint:depguard // only this file can use the internal type CmdArg, other files and packages should use AddXxx functions
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/process"
+	"novroforge.xyz/modules/util"
 )
 
 // TrustedCmdArgs returns the trusted arguments for git command.

@@ -10,7 +10,7 @@ import (
 	"testing"
 	"time"
 
-	"forgejo.org/modules/git"
+	"novroforge.xyz/modules/git"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

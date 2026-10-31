@@ -4,8 +4,8 @@
 package v1_17
 
 import (
-	packages_model "forgejo.org/models/packages"
-	container_module "forgejo.org/modules/packages/container"
+	packages_model "novroforge.xyz/models/packages"
+	container_module "novroforge.xyz/modules/packages/container"
 
 	"code.forgejo.org/xorm/xorm"
 	"code.forgejo.org/xorm/xorm/schemas"

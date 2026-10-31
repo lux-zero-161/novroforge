@@ -13,10 +13,10 @@ import (
 	"net/url"
 	"strings"
 
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/proxy"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/proxy"
+	"novroforge.xyz/modules/setting"
 
 	"golang.org/x/sync/errgroup"
 )

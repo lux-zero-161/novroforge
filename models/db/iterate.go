@@ -10,7 +10,7 @@ import (
 	"reflect"
 	"strings"
 
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/setting"
 
 	"xorm.io/builder"
 )

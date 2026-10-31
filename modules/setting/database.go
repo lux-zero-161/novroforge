@@ -14,7 +14,7 @@ import (
 	"strings"
 	"time"
 
-	"forgejo.org/modules/log"
+	"novroforge.xyz/modules/log"
 
 	"code.forgejo.org/xorm/xorm"
 )

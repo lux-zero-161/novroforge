@@ -7,13 +7,13 @@ import (
 	"net/http"
 	"net/url"
 
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/auth/openid"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/web"
-	"forgejo.org/services/context"
-	"forgejo.org/services/forms"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/auth/openid"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/web"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/forms"
 
 	gouuid "github.com/google/uuid"
 )

@@ -16,7 +16,7 @@ import (
 	"strings"
 	"testing"
 
-	"forgejo.org/modules/log"
+	"novroforge.xyz/modules/log"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

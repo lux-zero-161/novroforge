@@ -7,15 +7,15 @@ import (
 	"context"
 	"fmt"
 
-	issues_model "forgejo.org/models/issues"
-	org_model "forgejo.org/models/organization"
-	access_model "forgejo.org/models/perm/access"
-	"forgejo.org/models/unit"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/gitrepo"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
+	issues_model "novroforge.xyz/models/issues"
+	org_model "novroforge.xyz/models/organization"
+	access_model "novroforge.xyz/models/perm/access"
+	"novroforge.xyz/models/unit"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/gitrepo"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
 )
 
 type ReviewRequestNotifier struct {

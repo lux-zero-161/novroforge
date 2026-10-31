@@ -8,8 +8,8 @@ import (
 	"strings"
 	"time"
 
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/web/types"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/web/types"
 
 	chi_middleware "github.com/go-chi/chi/v5/middleware"
 )

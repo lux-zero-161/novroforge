@@ -6,9 +6,9 @@ package misc
 import (
 	"net/http"
 
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/structs"
-	"forgejo.org/services/context"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/structs"
+	"novroforge.xyz/services/context"
 )
 
 // Version shows the version of the Gitea server

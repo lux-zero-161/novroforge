@@ -9,17 +9,17 @@ import (
 	"net/http"
 	"strings"
 
-	"forgejo.org/models"
-	git_model "forgejo.org/models/git"
-	"forgejo.org/models/organization"
-	repo_model "forgejo.org/models/repo"
-	user_model "forgejo.org/models/user"
-	api "forgejo.org/modules/structs"
-	"forgejo.org/modules/web"
-	"forgejo.org/routers/api/v1/utils"
-	"forgejo.org/services/context"
-	"forgejo.org/services/convert"
-	release_service "forgejo.org/services/release"
+	"novroforge.xyz/models"
+	git_model "novroforge.xyz/models/git"
+	"novroforge.xyz/models/organization"
+	repo_model "novroforge.xyz/models/repo"
+	user_model "novroforge.xyz/models/user"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/modules/web"
+	"novroforge.xyz/routers/api/v1/utils"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/convert"
+	release_service "novroforge.xyz/services/release"
 )
 
 // ListTags list all the tags of a repository

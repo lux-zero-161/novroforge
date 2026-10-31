@@ -17,17 +17,17 @@ import (
 	"path/filepath"
 	"testing"
 
-	"forgejo.org/models/unittest"
-	"forgejo.org/modules/graceful"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/test"
-	"forgejo.org/modules/testlogger"
-	"forgejo.org/modules/util"
-	"forgejo.org/modules/web"
-	"forgejo.org/routers"
-	"forgejo.org/tests"
-	"forgejo.org/tests/internaltest"
+	"novroforge.xyz/models/unittest"
+	"novroforge.xyz/modules/graceful"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/test"
+	"novroforge.xyz/modules/testlogger"
+	"novroforge.xyz/modules/util"
+	"novroforge.xyz/modules/web"
+	"novroforge.xyz/routers"
+	"novroforge.xyz/tests"
+	"novroforge.xyz/tests/internaltest"
 )
 
 var testE2eWebRoutes *web.Route

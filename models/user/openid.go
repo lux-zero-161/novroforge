@@ -7,8 +7,8 @@ import (
 	"context"
 	"fmt"
 
-	"forgejo.org/models/db"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/util"
 )
 
 // ErrOpenIDNotExist openid is not known

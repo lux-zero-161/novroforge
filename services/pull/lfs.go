@@ -11,12 +11,12 @@ import (
 	"strconv"
 	"sync"
 
-	"forgejo.org/models/db"
-	git_model "forgejo.org/models/git"
-	issues_model "forgejo.org/models/issues"
-	"forgejo.org/modules/git/pipeline"
-	"forgejo.org/modules/lfs"
-	"forgejo.org/modules/log"
+	"novroforge.xyz/models/db"
+	git_model "novroforge.xyz/models/git"
+	issues_model "novroforge.xyz/models/issues"
+	"novroforge.xyz/modules/git/pipeline"
+	"novroforge.xyz/modules/lfs"
+	"novroforge.xyz/modules/log"
 )
 
 // LFSPush pushes lfs objects referred to in new commits in the head repository from the base repository

@@ -11,13 +11,13 @@ import (
 
 	_ "image/jpeg" // Needed for jpeg support
 
-	asymkey_model "forgejo.org/models/asymkey"
-	"forgejo.org/models/db"
-	issues_model "forgejo.org/models/issues"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/models/unit"
-	"forgejo.org/modules/log"
-	"forgejo.org/services/stats"
+	asymkey_model "novroforge.xyz/models/asymkey"
+	"novroforge.xyz/models/db"
+	issues_model "novroforge.xyz/models/issues"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/models/unit"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/services/stats"
 
 	"xorm.io/builder"
 )

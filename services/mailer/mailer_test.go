@@ -8,9 +8,9 @@ import (
 	"testing"
 	"time"
 
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/test"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/test"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

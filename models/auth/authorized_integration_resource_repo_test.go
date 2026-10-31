@@ -6,8 +6,8 @@ package auth_test
 import (
 	"testing"
 
-	auth_model "forgejo.org/models/auth"
-	"forgejo.org/models/unittest"
+	auth_model "novroforge.xyz/models/auth"
+	"novroforge.xyz/models/unittest"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

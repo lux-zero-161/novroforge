@@ -14,10 +14,10 @@ import (
 	"strings"
 	"time"
 
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/process"
-	"forgejo.org/modules/setting"
-	"forgejo.org/services/mailer/token"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/process"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/services/mailer/token"
 
 	"code.forgejo.org/forgejo/reply"
 	"github.com/emersion/go-imap"

@@ -9,7 +9,7 @@ import (
 	"slices"
 	"sync"
 
-	"forgejo.org/modules/container"
+	"novroforge.xyz/modules/container"
 
 	"code.forgejo.org/xorm/xorm/schemas"
 )

@@ -7,14 +7,14 @@ import (
 	"context"
 	"slices"
 
-	actions_model "forgejo.org/models/actions"
-	issues_model "forgejo.org/models/issues"
-	packages_model "forgejo.org/models/packages"
-	repo_model "forgejo.org/models/repo"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/repository"
+	actions_model "novroforge.xyz/models/actions"
+	issues_model "novroforge.xyz/models/issues"
+	packages_model "novroforge.xyz/models/packages"
+	repo_model "novroforge.xyz/models/repo"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/repository"
 )
 
 var notifiers []Notifier

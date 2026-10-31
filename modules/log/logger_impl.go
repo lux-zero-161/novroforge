@@ -11,8 +11,8 @@ import (
 	"sync/atomic"
 	"time"
 
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/util"
 )
 
 type LoggerImpl struct {

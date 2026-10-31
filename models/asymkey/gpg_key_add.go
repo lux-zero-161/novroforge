@@ -7,8 +7,8 @@ import (
 	"context"
 	"strings"
 
-	"forgejo.org/models/db"
-	"forgejo.org/modules/log"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/log"
 
 	"github.com/ProtonMail/go-crypto/openpgp"
 )

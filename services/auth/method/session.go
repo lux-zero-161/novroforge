@@ -7,9 +7,9 @@ import (
 	"fmt"
 	"net/http"
 
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/log"
-	"forgejo.org/services/auth"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/services/auth"
 )
 
 // Ensure the struct implements the interface.

@@ -6,14 +6,14 @@ package templates
 import (
 	"testing"
 
-	activities_model "forgejo.org/models/activities"
-	asymkey_model "forgejo.org/models/asymkey"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/models/unittest"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/repository"
+	activities_model "novroforge.xyz/models/activities"
+	asymkey_model "novroforge.xyz/models/asymkey"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/models/unittest"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/repository"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

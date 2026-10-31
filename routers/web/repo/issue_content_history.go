@@ -10,12 +10,12 @@ import (
 	"net/http"
 	"strings"
 
-	"forgejo.org/models/avatars"
-	issues_model "forgejo.org/models/issues"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/templates"
-	"forgejo.org/services/context"
+	"novroforge.xyz/models/avatars"
+	issues_model "novroforge.xyz/models/issues"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/templates"
+	"novroforge.xyz/services/context"
 
 	"github.com/sergi/go-diff/diffmatchpatch"
 )

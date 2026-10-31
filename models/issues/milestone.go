@@ -9,13 +9,13 @@ import (
 	"html/template"
 	"strings"
 
-	"forgejo.org/models/db"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/modules/optional"
-	api "forgejo.org/modules/structs"
-	"forgejo.org/modules/timeutil"
-	"forgejo.org/modules/util"
-	"forgejo.org/services/stats"
+	"novroforge.xyz/models/db"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/modules/optional"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/modules/timeutil"
+	"novroforge.xyz/modules/util"
+	"novroforge.xyz/services/stats"
 
 	"xorm.io/builder"
 )

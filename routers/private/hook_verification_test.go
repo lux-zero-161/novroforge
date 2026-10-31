@@ -6,8 +6,8 @@ package private
 import (
 	"testing"
 
-	"forgejo.org/models/unittest"
-	"forgejo.org/modules/git"
+	"novroforge.xyz/models/unittest"
+	"novroforge.xyz/modules/git"
 
 	"github.com/stretchr/testify/require"
 )

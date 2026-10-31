@@ -7,11 +7,11 @@ import (
 	"context"
 	"fmt"
 
-	"forgejo.org/models/db"
-	secret_model "forgejo.org/models/secret"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/secret"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/models/db"
+	secret_model "novroforge.xyz/models/secret"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/secret"
+	"novroforge.xyz/modules/setting"
 
 	"code.forgejo.org/xorm/xorm"
 	"code.forgejo.org/xorm/xorm/schemas"

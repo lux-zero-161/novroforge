@@ -6,7 +6,7 @@ package forgefed
 import (
 	"net/url"
 
-	"forgejo.org/modules/validation"
+	"novroforge.xyz/modules/validation"
 
 	"github.com/valyala/fastjson"
 )

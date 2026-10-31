@@ -9,12 +9,12 @@ import (
 	"strconv"
 	"testing"
 
-	perm_model "forgejo.org/models/perm"
-	access_model "forgejo.org/models/perm/access"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/test"
-	"forgejo.org/services/authz"
+	perm_model "novroforge.xyz/models/perm"
+	access_model "novroforge.xyz/models/perm/access"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/test"
+	"novroforge.xyz/services/authz"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

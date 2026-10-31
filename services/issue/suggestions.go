@@ -7,10 +7,10 @@ import (
 	"context"
 	"strconv"
 
-	issues_model "forgejo.org/models/issues"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/modules/optional"
-	"forgejo.org/modules/structs"
+	issues_model "novroforge.xyz/models/issues"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/modules/optional"
+	"novroforge.xyz/modules/structs"
 )
 
 func GetSuggestions(ctx context.Context, repo *repo_model.Repository, isPull optional.Option[bool], keyword string) ([]*structs.IssueSuggestion, error) {

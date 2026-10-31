@@ -14,10 +14,10 @@ import (
 	"fmt"
 	"strings"
 
-	"forgejo.org/models/db"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/timeutil"
-	"forgejo.org/modules/validation"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/timeutil"
+	"novroforge.xyz/modules/validation"
 
 	"code.forgejo.org/xorm/xorm"
 )

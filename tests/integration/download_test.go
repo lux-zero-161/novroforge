@@ -7,9 +7,9 @@ import (
 	"net/http"
 	"testing"
 
-	auth_model "forgejo.org/models/auth"
-	"forgejo.org/modules/setting"
-	"forgejo.org/tests"
+	auth_model "novroforge.xyz/models/auth"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/tests"
 
 	"github.com/stretchr/testify/assert"
 )

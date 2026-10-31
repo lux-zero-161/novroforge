@@ -4,7 +4,7 @@
 package actions
 
 import (
-	"forgejo.org/modules/container"
+	"novroforge.xyz/modules/container"
 )
 
 const (

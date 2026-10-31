@@ -6,8 +6,8 @@ package auth
 import (
 	"context"
 
-	"forgejo.org/models/db"
-	"forgejo.org/modules/timeutil"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/timeutil"
 )
 
 // Represents a many-to-many join table which indicates specific repositories (RepoID) that can be accessed by an

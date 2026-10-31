@@ -7,7 +7,7 @@ import (
 	"encoding/base32"
 	"fmt"
 
-	"forgejo.org/modules/timeutil"
+	"novroforge.xyz/modules/timeutil"
 
 	"code.forgejo.org/xorm/xorm"
 )

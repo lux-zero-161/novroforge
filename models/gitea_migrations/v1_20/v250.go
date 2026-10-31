@@ -6,7 +6,7 @@ package v1_20
 import (
 	"strings"
 
-	"forgejo.org/modules/json"
+	"novroforge.xyz/modules/json"
 
 	"code.forgejo.org/xorm/xorm"
 )

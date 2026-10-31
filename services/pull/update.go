@@ -8,15 +8,15 @@ import (
 	"errors"
 	"fmt"
 
-	git_model "forgejo.org/models/git"
-	issues_model "forgejo.org/models/issues"
-	access_model "forgejo.org/models/perm/access"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/models/unit"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/repository"
+	git_model "novroforge.xyz/models/git"
+	issues_model "novroforge.xyz/models/issues"
+	access_model "novroforge.xyz/models/perm/access"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/models/unit"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/repository"
 )
 
 var ErrPullRequestIsUpdateToDate = errors.New("update failed: already up-to-date")

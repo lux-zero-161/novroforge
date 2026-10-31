@@ -7,13 +7,13 @@ import (
 	"errors"
 	"net/http"
 
-	"forgejo.org/models/moderation"
-	"forgejo.org/modules/base"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/web"
-	"forgejo.org/services/context"
-	"forgejo.org/services/forms"
-	moderation_service "forgejo.org/services/moderation"
+	"novroforge.xyz/models/moderation"
+	"novroforge.xyz/modules/base"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/web"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/forms"
+	moderation_service "novroforge.xyz/services/moderation"
 )
 
 const (

@@ -6,7 +6,7 @@ package structs
 import (
 	"time"
 
-	"forgejo.org/modules/json"
+	"novroforge.xyz/modules/json"
 )
 
 // User represents a user

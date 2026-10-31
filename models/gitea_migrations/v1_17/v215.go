@@ -4,8 +4,8 @@
 package v1_17
 
 import (
-	"forgejo.org/models/pull"
-	"forgejo.org/modules/timeutil"
+	"novroforge.xyz/models/pull"
+	"novroforge.xyz/modules/timeutil"
 
 	"code.forgejo.org/xorm/xorm"
 )

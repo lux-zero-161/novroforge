@@ -8,11 +8,11 @@ import (
 	"strconv"
 	"strings"
 
-	"forgejo.org/models/db"
-	"forgejo.org/models/packages"
-	conan_module "forgejo.org/modules/packages/conan"
-	"forgejo.org/modules/timeutil"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/packages"
+	conan_module "novroforge.xyz/modules/packages/conan"
+	"novroforge.xyz/modules/timeutil"
+	"novroforge.xyz/modules/util"
 
 	"xorm.io/builder"
 )

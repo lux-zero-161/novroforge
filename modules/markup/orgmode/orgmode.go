@@ -13,11 +13,11 @@ import (
 	"strings"
 	"sync"
 
-	"forgejo.org/modules/highlight"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/markup"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/highlight"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/markup"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/util"
 
 	"github.com/alecthomas/chroma/v2"
 	"github.com/alecthomas/chroma/v2/lexers"

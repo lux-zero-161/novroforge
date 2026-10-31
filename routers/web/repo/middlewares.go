@@ -7,13 +7,13 @@ import (
 	"fmt"
 	"strconv"
 
-	system_model "forgejo.org/models/system"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/optional"
-	"forgejo.org/services/context"
-	user_service "forgejo.org/services/user"
+	system_model "novroforge.xyz/models/system"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/optional"
+	"novroforge.xyz/services/context"
+	user_service "novroforge.xyz/services/user"
 )
 
 // SetEditorconfigIfExists set editor config as render variable

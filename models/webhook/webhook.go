@@ -9,14 +9,14 @@ import (
 	"fmt"
 	"strings"
 
-	"forgejo.org/models/db"
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/keying"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/optional"
-	"forgejo.org/modules/timeutil"
-	"forgejo.org/modules/util"
-	webhook_module "forgejo.org/modules/webhook"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/keying"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/optional"
+	"novroforge.xyz/modules/timeutil"
+	"novroforge.xyz/modules/util"
+	webhook_module "novroforge.xyz/modules/webhook"
 
 	"xorm.io/builder"
 )

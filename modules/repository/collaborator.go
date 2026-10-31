@@ -7,12 +7,12 @@ import (
 	"context"
 	"fmt"
 
-	"forgejo.org/models"
-	"forgejo.org/models/db"
-	"forgejo.org/models/perm"
-	access_model "forgejo.org/models/perm/access"
-	repo_model "forgejo.org/models/repo"
-	user_model "forgejo.org/models/user"
+	"novroforge.xyz/models"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/perm"
+	access_model "novroforge.xyz/models/perm/access"
+	repo_model "novroforge.xyz/models/repo"
+	user_model "novroforge.xyz/models/user"
 
 	"xorm.io/builder"
 )

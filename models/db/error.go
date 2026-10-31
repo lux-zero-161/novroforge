@@ -6,7 +6,7 @@ package db
 import (
 	"fmt"
 
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/util"
 )
 
 // ErrCancelled represents an error due to context cancellation

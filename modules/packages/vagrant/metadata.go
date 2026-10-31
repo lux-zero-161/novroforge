@@ -9,8 +9,8 @@ import (
 	"io"
 	"strings"
 
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/validation"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/validation"
 )
 
 const (

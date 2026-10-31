@@ -18,12 +18,12 @@ import (
 	"testing"
 	"testing/fstest"
 
-	"forgejo.org/models/db"
-	"forgejo.org/models/packages"
-	"forgejo.org/models/unittest"
-	user_model "forgejo.org/models/user"
-	arch_model "forgejo.org/modules/packages/arch"
-	"forgejo.org/tests"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/packages"
+	"novroforge.xyz/models/unittest"
+	user_model "novroforge.xyz/models/user"
+	arch_model "novroforge.xyz/modules/packages/arch"
+	"novroforge.xyz/tests"
 
 	"github.com/ProtonMail/go-crypto/openpgp/armor"
 	"github.com/ProtonMail/go-crypto/openpgp/packet"

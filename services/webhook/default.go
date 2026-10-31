@@ -11,14 +11,14 @@ import (
 	"net/url"
 	"strings"
 
-	webhook_model "forgejo.org/models/webhook"
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/svg"
-	webhook_module "forgejo.org/modules/webhook"
-	"forgejo.org/services/forms"
-	"forgejo.org/services/webhook/shared"
+	webhook_model "novroforge.xyz/models/webhook"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/svg"
+	webhook_module "novroforge.xyz/modules/webhook"
+	"novroforge.xyz/services/forms"
+	"novroforge.xyz/services/webhook/shared"
 )
 
 var _ Handler = defaultHandler{}

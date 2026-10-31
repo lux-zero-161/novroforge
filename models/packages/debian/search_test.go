@@ -7,12 +7,12 @@ import (
 	"strings"
 	"testing"
 
-	"forgejo.org/models/db"
-	packages_model "forgejo.org/models/packages"
-	"forgejo.org/models/unittest"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/packages"
-	packages_service "forgejo.org/services/packages"
+	"novroforge.xyz/models/db"
+	packages_model "novroforge.xyz/models/packages"
+	"novroforge.xyz/models/unittest"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/packages"
+	packages_service "novroforge.xyz/services/packages"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

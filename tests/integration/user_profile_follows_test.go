@@ -9,7 +9,7 @@ import (
 	"strings"
 	"testing"
 
-	"forgejo.org/tests"
+	"novroforge.xyz/tests"
 
 	"github.com/stretchr/testify/assert"
 )

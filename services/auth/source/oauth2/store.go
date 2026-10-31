@@ -8,8 +8,8 @@ import (
 	"fmt"
 	"net/http"
 
-	"forgejo.org/modules/log"
-	session_module "forgejo.org/modules/session"
+	"novroforge.xyz/modules/log"
+	session_module "novroforge.xyz/modules/session"
 
 	chiSession "code.forgejo.org/go-chi/session"
 	"github.com/gorilla/sessions"

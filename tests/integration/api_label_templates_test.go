@@ -10,9 +10,9 @@ import (
 	"strings"
 	"testing"
 
-	repo_module "forgejo.org/modules/repository"
-	api "forgejo.org/modules/structs"
-	"forgejo.org/tests"
+	repo_module "novroforge.xyz/modules/repository"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/tests"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

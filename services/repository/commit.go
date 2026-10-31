@@ -7,8 +7,8 @@ import (
 	"context"
 	"fmt"
 
-	"forgejo.org/modules/util"
-	app_context "forgejo.org/services/context"
+	"novroforge.xyz/modules/util"
+	app_context "novroforge.xyz/services/context"
 )
 
 type ContainedLinks struct { // TODO: better name?

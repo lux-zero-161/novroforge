@@ -7,10 +7,10 @@ import (
 	"context"
 	"strings"
 
-	"forgejo.org/models/db"
-	"forgejo.org/models/perm"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/models/unit"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/perm"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/models/unit"
 
 	"xorm.io/builder"
 )

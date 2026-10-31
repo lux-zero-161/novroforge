@@ -6,7 +6,7 @@ package asymkey
 import (
 	"fmt"
 
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/util"
 )
 
 // ErrKeyUnableVerify represents a "KeyUnableVerify" kind of error.

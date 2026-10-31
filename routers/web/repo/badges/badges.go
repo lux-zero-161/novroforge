@@ -8,11 +8,11 @@ import (
 	"net/url"
 	"strings"
 
-	actions_model "forgejo.org/models/actions"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/models/unit"
-	"forgejo.org/modules/setting"
-	app_context "forgejo.org/services/context"
+	actions_model "novroforge.xyz/models/actions"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/models/unit"
+	"novroforge.xyz/modules/setting"
+	app_context "novroforge.xyz/services/context"
 )
 
 func getBadgeURL(ctx *app_context.Context, label, text, color string) string {

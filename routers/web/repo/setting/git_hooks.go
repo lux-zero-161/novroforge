@@ -6,8 +6,8 @@ package setting
 import (
 	"net/http"
 
-	"forgejo.org/modules/git"
-	"forgejo.org/services/context"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/services/context"
 )
 
 // GitHooks hooks of a repository

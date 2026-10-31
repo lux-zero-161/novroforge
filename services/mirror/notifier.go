@@ -6,10 +6,10 @@ package mirror
 import (
 	"context"
 
-	repo_model "forgejo.org/models/repo"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/repository"
-	notify_service "forgejo.org/services/notify"
+	repo_model "novroforge.xyz/models/repo"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/repository"
+	notify_service "novroforge.xyz/services/notify"
 )
 
 func init() {

@@ -17,9 +17,9 @@ import (
 	"sort"
 	"strings"
 
-	llu "forgejo.org/build/lint-locale-usage"
-	"forgejo.org/modules/container"
-	"forgejo.org/modules/translation/localeiter"
+	llu "novroforge.xyz/build/lint-locale-usage"
+	"novroforge.xyz/modules/container"
+	"novroforge.xyz/modules/translation/localeiter"
 )
 
 // this works by first gathering all valid source string IDs from `en-US` reference files

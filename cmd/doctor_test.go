@@ -7,8 +7,8 @@ import (
 	"context"
 	"testing"
 
-	"forgejo.org/modules/log"
-	"forgejo.org/services/doctor"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/services/doctor"
 
 	"github.com/stretchr/testify/require"
 	"github.com/urfave/cli/v3"

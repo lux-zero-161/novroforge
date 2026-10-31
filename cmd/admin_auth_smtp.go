@@ -8,9 +8,9 @@ import (
 	"errors"
 	"strings"
 
-	auth_model "forgejo.org/models/auth"
-	"forgejo.org/modules/util"
-	"forgejo.org/services/auth/source/smtp"
+	auth_model "novroforge.xyz/models/auth"
+	"novroforge.xyz/modules/util"
+	"novroforge.xyz/services/auth/source/smtp"
 
 	"github.com/urfave/cli/v3"
 )

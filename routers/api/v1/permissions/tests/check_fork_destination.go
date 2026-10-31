@@ -6,11 +6,11 @@ package tests
 import (
 	"testing"
 
-	org_model "forgejo.org/models/organization"
-	"forgejo.org/models/perm"
-	user_model "forgejo.org/models/user"
-	apiv1_permissions "forgejo.org/routers/api/v1/permissions"
-	"forgejo.org/tests/forgery"
+	org_model "novroforge.xyz/models/organization"
+	"novroforge.xyz/models/perm"
+	user_model "novroforge.xyz/models/user"
+	apiv1_permissions "novroforge.xyz/routers/api/v1/permissions"
+	"novroforge.xyz/tests/forgery"
 
 	"github.com/stretchr/testify/require"
 )

@@ -9,9 +9,9 @@ import (
 	"io"
 	"testing"
 
-	"forgejo.org/modules/markup"
-	"forgejo.org/modules/markup/markdown"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/markup"
+	"novroforge.xyz/modules/markup/markdown"
+	"novroforge.xyz/modules/setting"
 )
 
 var renderContext = markup.RenderContext{

@@ -10,10 +10,10 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	auth_model "forgejo.org/models/auth"
-	"forgejo.org/modules/structs"
-	"forgejo.org/modules/translation"
-	"forgejo.org/tests"
+	auth_model "novroforge.xyz/models/auth"
+	"novroforge.xyz/modules/structs"
+	"novroforge.xyz/modules/translation"
+	"novroforge.xyz/tests"
 
 	"github.com/stretchr/testify/assert"
 )

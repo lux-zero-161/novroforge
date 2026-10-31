@@ -186,7 +186,7 @@ Copyright (C) 2023 by Gitea teabot@gitea.io
 			name: "BSD-4-Clause",
 			args: args{
 				name:   "BSD-4-Clause",
-				values: &LicenseValues{Year: "2025", Owner: "Forgejo", Email: "hello@forgejo.org", Repo: "forgejo"},
+				values: &LicenseValues{Year: "2025", Owner: "Forgejo", Email: "hello@novroforge.xyz", Repo: "forgejo"},
 				origin: `
 Copyright (c) <year> <owner>. All rights reserved.
 

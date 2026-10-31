@@ -8,9 +8,9 @@ import (
 	"regexp"
 	"strings"
 
-	"forgejo.org/models/db"
-	"forgejo.org/modules/container"
-	"forgejo.org/modules/timeutil"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/container"
+	"novroforge.xyz/modules/timeutil"
 
 	"xorm.io/builder"
 )

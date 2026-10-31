@@ -7,13 +7,13 @@ package user
 import (
 	"net/http"
 
-	auth_model "forgejo.org/models/auth"
-	"forgejo.org/models/db"
-	api "forgejo.org/modules/structs"
-	"forgejo.org/modules/web"
-	"forgejo.org/routers/api/v1/utils"
-	"forgejo.org/services/context"
-	"forgejo.org/services/convert"
+	auth_model "novroforge.xyz/models/auth"
+	"novroforge.xyz/models/db"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/modules/web"
+	"novroforge.xyz/routers/api/v1/utils"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/convert"
 )
 
 // ListAccessTokens list all the access tokens

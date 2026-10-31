@@ -4,9 +4,9 @@
 package common
 
 import (
-	"forgejo.org/modules/web/middleware"
-	auth_service "forgejo.org/services/auth"
-	"forgejo.org/services/context"
+	"novroforge.xyz/modules/web/middleware"
+	auth_service "novroforge.xyz/services/auth"
+	"novroforge.xyz/services/context"
 )
 
 func AuthShared(ctx *context.Base, sessionStore auth_service.SessionStore, authMethod auth_service.Method) auth_service.MethodOutput {

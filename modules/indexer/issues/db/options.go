@@ -7,11 +7,11 @@ import (
 	"context"
 	"fmt"
 
-	"forgejo.org/models/db"
-	issues_model "forgejo.org/models/issues"
-	"forgejo.org/modules/container"
-	"forgejo.org/modules/indexer/issues/internal"
-	"forgejo.org/modules/optional"
+	"novroforge.xyz/models/db"
+	issues_model "novroforge.xyz/models/issues"
+	"novroforge.xyz/modules/container"
+	"novroforge.xyz/modules/indexer/issues/internal"
+	"novroforge.xyz/modules/optional"
 )
 
 func ToDBOptions(ctx context.Context, options *internal.SearchOptions) (*issues_model.IssuesOptions, error) {

@@ -11,10 +11,10 @@ import (
 	"runtime"
 	"time"
 
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/private"
-	process_module "forgejo.org/modules/process"
-	"forgejo.org/services/context"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/private"
+	process_module "novroforge.xyz/modules/process"
+	"novroforge.xyz/services/context"
 )
 
 // Processes prints out the processes

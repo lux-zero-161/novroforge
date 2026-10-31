@@ -7,7 +7,7 @@ import (
 	"context"
 	"fmt"
 
-	auth_model "forgejo.org/models/auth"
+	auth_model "novroforge.xyz/models/auth"
 )
 
 func GetAuthorizationReducerForAuthorizedIntegration(ctx context.Context, ai *auth_model.AuthorizedIntegration) (AuthorizationReducer, error) {

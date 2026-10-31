@@ -8,8 +8,8 @@ import (
 	"strconv"
 	"time"
 
-	"forgejo.org/modules/graceful"
-	"forgejo.org/modules/nosql"
+	"novroforge.xyz/modules/graceful"
+	"novroforge.xyz/modules/nosql"
 
 	"code.forgejo.org/go-chi/cache"
 )

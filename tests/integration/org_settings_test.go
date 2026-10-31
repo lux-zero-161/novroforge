@@ -9,11 +9,11 @@ import (
 	"strings"
 	"testing"
 
-	auth_model "forgejo.org/models/auth"
-	"forgejo.org/modules/setting"
-	api "forgejo.org/modules/structs"
-	"forgejo.org/modules/test"
-	"forgejo.org/tests"
+	auth_model "novroforge.xyz/models/auth"
+	"novroforge.xyz/modules/setting"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/modules/test"
+	"novroforge.xyz/tests"
 
 	"github.com/stretchr/testify/assert"
 )

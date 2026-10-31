@@ -16,8 +16,8 @@ import (
 	"strings"
 	"unicode/utf8"
 
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/log"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/log"
 
 	"github.com/dustin/go-humanize"
 )

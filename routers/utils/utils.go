@@ -7,10 +7,10 @@ import (
 	"html"
 	"strings"
 
-	"forgejo.org/models/db"
-	"forgejo.org/modules/setting"
-	"forgejo.org/services/context"
-	"forgejo.org/services/gitdiff"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/gitdiff"
 )
 
 // SanitizeFlashErrorString will sanitize a flash error string

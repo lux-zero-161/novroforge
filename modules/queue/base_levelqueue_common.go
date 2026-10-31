@@ -11,7 +11,7 @@ import (
 	"sync"
 	"time"
 
-	"forgejo.org/modules/nosql"
+	"novroforge.xyz/modules/nosql"
 
 	"code.forgejo.org/forgejo/levelqueue"
 	"github.com/syndtr/goleveldb/leveldb"

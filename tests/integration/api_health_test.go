@@ -4,9 +4,9 @@ import (
 	"net/http"
 	"testing"
 
-	"forgejo.org/modules/setting"
-	"forgejo.org/routers/web/healthcheck"
-	"forgejo.org/tests"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/routers/web/healthcheck"
+	"novroforge.xyz/tests"
 
 	"github.com/stretchr/testify/assert"
 )

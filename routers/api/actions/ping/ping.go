@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"forgejo.org/modules/log"
+	"novroforge.xyz/modules/log"
 
 	pingv1 "code.forgejo.org/forgejo/actions-proto/ping/v1"
 	"code.forgejo.org/forgejo/actions-proto/ping/v1/pingv1connect"

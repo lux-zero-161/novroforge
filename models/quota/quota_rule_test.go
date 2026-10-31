@@ -6,7 +6,7 @@ package quota_test
 import (
 	"testing"
 
-	quota_model "forgejo.org/models/quota"
+	quota_model "novroforge.xyz/models/quota"
 
 	"github.com/stretchr/testify/assert"
 )

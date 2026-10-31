@@ -6,12 +6,12 @@ package federation
 import (
 	"context"
 
-	activities_model "forgejo.org/models/activities"
-	"forgejo.org/models/forgefed"
-	"forgejo.org/models/user"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
-	"forgejo.org/services/convert"
+	activities_model "novroforge.xyz/models/activities"
+	"novroforge.xyz/models/forgefed"
+	"novroforge.xyz/models/user"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/services/convert"
 
 	ap "github.com/go-ap/activitypub"
 	"github.com/go-ap/jsonld"

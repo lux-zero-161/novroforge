@@ -10,10 +10,10 @@ import (
 	"strings"
 	"time"
 
-	"forgejo.org/models/db"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/modules/optional"
-	"forgejo.org/modules/timeutil"
+	"novroforge.xyz/models/db"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/modules/optional"
+	"novroforge.xyz/modules/timeutil"
 
 	"github.com/gdgvda/cron"
 )

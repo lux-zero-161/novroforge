@@ -8,10 +8,10 @@ import (
 	"fmt"
 	"strings"
 
-	"forgejo.org/models/db"
-	"forgejo.org/modules/container"
-	"forgejo.org/modules/optional"
-	"forgejo.org/modules/structs"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/container"
+	"novroforge.xyz/modules/optional"
+	"novroforge.xyz/modules/structs"
 
 	"code.forgejo.org/xorm/xorm"
 	"xorm.io/builder"

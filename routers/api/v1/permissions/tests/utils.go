@@ -9,9 +9,9 @@ import (
 	"strings"
 	"time"
 
-	auth_model "forgejo.org/models/auth"
-	unit_model "forgejo.org/models/unit"
-	api "forgejo.org/modules/structs"
+	auth_model "novroforge.xyz/models/auth"
+	unit_model "novroforge.xyz/models/unit"
+	api "novroforge.xyz/modules/structs"
 )
 
 var (

@@ -13,16 +13,16 @@ import (
 	"strings"
 	"time"
 
-	"forgejo.org/models/db"
-	packages_model "forgejo.org/models/packages"
-	"forgejo.org/modules/optional"
-	packages_module "forgejo.org/modules/packages"
-	chef_module "forgejo.org/modules/packages/chef"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/util"
-	"forgejo.org/routers/api/packages/helper"
-	"forgejo.org/services/context"
-	packages_service "forgejo.org/services/packages"
+	"novroforge.xyz/models/db"
+	packages_model "novroforge.xyz/models/packages"
+	"novroforge.xyz/modules/optional"
+	packages_module "novroforge.xyz/modules/packages"
+	chef_module "novroforge.xyz/modules/packages/chef"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/util"
+	"novroforge.xyz/routers/api/packages/helper"
+	"novroforge.xyz/services/context"
+	packages_service "novroforge.xyz/services/packages"
 )
 
 func apiError(ctx *context.Context, status int, obj any) {

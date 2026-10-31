@@ -9,12 +9,12 @@ import (
 	"io"
 	"strconv"
 
-	"forgejo.org/models/db"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/modules/avatar"
-	"forgejo.org/modules/avatarstore"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/storage"
+	"novroforge.xyz/models/db"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/modules/avatar"
+	"novroforge.xyz/modules/avatarstore"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/storage"
 )
 
 // UploadAvatar saves custom avatar for repository.

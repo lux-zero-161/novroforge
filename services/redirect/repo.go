@@ -5,9 +5,9 @@ package redirect
 import (
 	"context"
 
-	access_model "forgejo.org/models/perm/access"
-	repo_model "forgejo.org/models/repo"
-	user_model "forgejo.org/models/user"
+	access_model "novroforge.xyz/models/perm/access"
+	repo_model "novroforge.xyz/models/repo"
+	user_model "novroforge.xyz/models/user"
 )
 
 // LookupRepoRedirect returns the repository ID if there's a redirect registered for

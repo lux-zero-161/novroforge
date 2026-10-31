@@ -10,7 +10,7 @@ import (
 	"unicode"
 	"unicode/utf8"
 
-	"forgejo.org/modules/translation"
+	"novroforge.xyz/modules/translation"
 
 	"golang.org/x/net/html"
 )

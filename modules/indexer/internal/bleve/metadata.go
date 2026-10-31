@@ -9,7 +9,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"forgejo.org/modules/json"
+	"novroforge.xyz/modules/json"
 )
 
 const metaFilename = "rupture_meta.json"

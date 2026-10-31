@@ -11,13 +11,13 @@ import (
 	"net/url"
 	"strings"
 
-	webhook_model "forgejo.org/models/webhook"
-	"forgejo.org/modules/git"
-	api "forgejo.org/modules/structs"
-	"forgejo.org/modules/util"
-	webhook_module "forgejo.org/modules/webhook"
-	"forgejo.org/services/forms"
-	"forgejo.org/services/webhook/shared"
+	webhook_model "novroforge.xyz/models/webhook"
+	"novroforge.xyz/modules/git"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/modules/util"
+	webhook_module "novroforge.xyz/modules/webhook"
+	"novroforge.xyz/services/forms"
+	"novroforge.xyz/services/webhook/shared"
 )
 
 type dingtalkHandler struct{}

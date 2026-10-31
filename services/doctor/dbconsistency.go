@@ -6,16 +6,16 @@ package doctor
 import (
 	"context"
 
-	actions_model "forgejo.org/models/actions"
-	activities_model "forgejo.org/models/activities"
-	auth_model "forgejo.org/models/auth"
-	"forgejo.org/models/db"
-	"forgejo.org/models/gitea_migrations"
-	issues_model "forgejo.org/models/issues"
-	org_model "forgejo.org/models/organization"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
+	actions_model "novroforge.xyz/models/actions"
+	activities_model "novroforge.xyz/models/activities"
+	auth_model "novroforge.xyz/models/auth"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/gitea_migrations"
+	issues_model "novroforge.xyz/models/issues"
+	org_model "novroforge.xyz/models/organization"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
 )
 
 type consistencyCheck struct {

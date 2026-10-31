@@ -6,10 +6,10 @@ package convert
 import (
 	"testing"
 
-	"forgejo.org/models/db"
-	"forgejo.org/models/unittest"
-	user_model "forgejo.org/models/user"
-	api "forgejo.org/modules/structs"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/unittest"
+	user_model "novroforge.xyz/models/user"
+	api "novroforge.xyz/modules/structs"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

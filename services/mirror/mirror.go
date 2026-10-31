@@ -7,12 +7,12 @@ import (
 	"context"
 	"errors"
 
-	quota_model "forgejo.org/models/quota"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/modules/graceful"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/queue"
-	"forgejo.org/modules/setting"
+	quota_model "novroforge.xyz/models/quota"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/modules/graceful"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/queue"
+	"novroforge.xyz/modules/setting"
 )
 
 // doMirrorSync causes this request to mirror itself

@@ -7,10 +7,10 @@ import (
 	"html/template"
 	"net/http"
 
-	webhook_model "forgejo.org/models/webhook"
-	webhook_module "forgejo.org/modules/webhook"
-	"forgejo.org/services/forms"
-	"forgejo.org/services/webhook/shared"
+	webhook_model "novroforge.xyz/models/webhook"
+	webhook_module "novroforge.xyz/modules/webhook"
+	"novroforge.xyz/services/forms"
+	"novroforge.xyz/services/webhook/shared"
 )
 
 type gogsHandler struct{ defaultHandler }

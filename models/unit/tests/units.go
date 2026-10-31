@@ -4,9 +4,9 @@
 package tests
 
 import (
-	unit_model "forgejo.org/models/unit"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/test"
+	unit_model "novroforge.xyz/models/unit"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/test"
 )
 
 func SaveUnits() func() {

@@ -8,11 +8,11 @@ import (
 	"fmt"
 	"net/url"
 
-	"forgejo.org/models"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/setting"
-	api "forgejo.org/modules/structs"
+	"novroforge.xyz/models"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/setting"
+	api "novroforge.xyz/modules/structs"
 )
 
 // GetTreeBySHA get the GitTreeResponse of a repository using a sha hash.

@@ -7,9 +7,9 @@ import (
 	"log"
 	"sync"
 
-	"forgejo.org/models/auth"
-	"forgejo.org/models/db"
-	"forgejo.org/modules/timeutil"
+	"novroforge.xyz/models/auth"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/timeutil"
 
 	"code.forgejo.org/go-chi/session"
 )

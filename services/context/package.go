@@ -7,11 +7,11 @@ import (
 	"fmt"
 	"net/http"
 
-	packages_model "forgejo.org/models/packages"
-	"forgejo.org/models/perm"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/templates"
-	packages_service "forgejo.org/services/packages"
+	packages_model "novroforge.xyz/models/packages"
+	"novroforge.xyz/models/perm"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/templates"
+	packages_service "novroforge.xyz/services/packages"
 )
 
 // Package contains owner, access mode and optional the package descriptor

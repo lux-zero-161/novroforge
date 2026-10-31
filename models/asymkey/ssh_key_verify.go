@@ -7,9 +7,9 @@ import (
 	"bytes"
 	"context"
 
-	"forgejo.org/models/db"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
 
 	"github.com/42wim/sshsig"
 )

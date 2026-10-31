@@ -6,10 +6,10 @@ package org
 import (
 	"testing"
 
-	"forgejo.org/models/db"
-	"forgejo.org/models/organization"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/models/unittest"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/organization"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/models/unittest"
 
 	"github.com/stretchr/testify/require"
 )

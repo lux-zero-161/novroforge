@@ -6,9 +6,9 @@ package repo
 import (
 	"net/http"
 
-	"forgejo.org/modules/base"
-	"forgejo.org/modules/util"
-	"forgejo.org/services/context"
+	"novroforge.xyz/modules/base"
+	"novroforge.xyz/modules/util"
+	"novroforge.xyz/services/context"
 )
 
 const (

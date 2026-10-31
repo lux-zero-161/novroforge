@@ -9,12 +9,12 @@ import (
 	"fmt"
 	"strings"
 
-	auth_model "forgejo.org/models/auth"
-	"forgejo.org/models/db"
-	user_model "forgejo.org/models/user"
-	pwd "forgejo.org/modules/auth/password"
-	"forgejo.org/modules/optional"
-	"forgejo.org/modules/setting"
+	auth_model "novroforge.xyz/models/auth"
+	"novroforge.xyz/models/db"
+	user_model "novroforge.xyz/models/user"
+	pwd "novroforge.xyz/modules/auth/password"
+	"novroforge.xyz/modules/optional"
+	"novroforge.xyz/modules/setting"
 
 	"github.com/urfave/cli/v3"
 )

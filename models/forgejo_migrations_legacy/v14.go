@@ -4,7 +4,7 @@
 package forgejo_migrations_legacy
 
 import (
-	"forgejo.org/models/gitea_migrations/base"
+	"novroforge.xyz/models/gitea_migrations/base"
 
 	"code.forgejo.org/xorm/xorm"
 )

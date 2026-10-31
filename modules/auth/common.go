@@ -4,9 +4,9 @@
 package auth
 
 import (
-	"forgejo.org/modules/container"
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/log"
+	"novroforge.xyz/modules/container"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/log"
 )
 
 func UnmarshalGroupTeamMapping(raw string) (map[string]map[string][]string, error) {

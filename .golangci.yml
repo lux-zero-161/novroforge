@@ -36,14 +36,14 @@ linters:
               desc: use gitea's modules/json instead of encoding/json
             - pkg: golang.org/x/exp
               desc: it's experimental and unreliable
-            - pkg: forgejo.org/modules/git/internal
+            - pkg: novroforge.xyz/modules/git/internal
               desc: do not use the internal package, use AddXxx function instead
             - pkg: gopkg.in/ini.v1
               desc: do not use the ini package, use gitea's config system instead
             - pkg: github.com/minio/sha256-simd
               desc: use crypto/sha256 instead, see https://codeberg.org/forgejo/forgejo/pulls/1528
             - pkg: github.com/go-git/go-git
-              desc: use forgejo.org/modules/git instead, see https://codeberg.org/forgejo/forgejo/pulls/4941
+              desc: use novroforge.xyz/modules/git instead, see https://codeberg.org/forgejo/forgejo/pulls/4941
             - pkg: gopkg.in/yaml.v3
               desc: use go.yaml.in/yaml instead, see https://codeberg.org/forgejo/forgejo/pulls/8956
         migration-isolation:
@@ -51,40 +51,40 @@ linters:
           files:
             - "**/models/forgejo_migrations/**"
           deny:
-            - pkg: "forgejo.org/models"
+            - pkg: "novroforge.xyz/models"
               desc: >
                 Migrations must not import application models. Application models will be the most recent schema for
                 Forgejo, while migrations will be operating against the database schema that existed when they were
                 authored.
-            - pkg: "forgejo.org/services"
+            - pkg: "novroforge.xyz/services"
               desc: >
                 Migrations must not import application services. Application services will reference application
                 models which will use the most recent schema for Forgejo, while migrations will be operating against the
                 database schema that existed when they were authored.
           allow:
-            - "forgejo.org/models/db"
-            - "forgejo.org/models/gitea_migrations/base"
-            - "forgejo.org/models/gitea_migrations/test"
+            - "novroforge.xyz/models/db"
+            - "novroforge.xyz/models/gitea_migrations/base"
+            - "novroforge.xyz/models/gitea_migrations/test"
     gocritic:
       disabled-checks:
         - ifElseChain
     importas:
       alias:
         # Specific overrides that would violate the default rules further below.
-        - pkg: forgejo.org/models/db
+        - pkg: novroforge.xyz/models/db
           alias: ""
-        - pkg: forgejo.org/models/organization
+        - pkg: novroforge.xyz/models/organization
           alias: org_model
 
-        - pkg: forgejo.org/services/context
+        - pkg: novroforge.xyz/services/context
           alias: app_context
-        - pkg: forgejo.org/services/doctor
+        - pkg: novroforge.xyz/services/doctor
           alias: doctor
-        - pkg: forgejo.org/services/repository
+        - pkg: novroforge.xyz/services/repository
           alias: repo_service
 
         # Make sure that we follow a consistent naming for model and service aliases.
-        - pkg: 'forgejo.org/(model|service)s/(\w+)'
+        - pkg: 'novroforge.xyz/(model|service)s/(\w+)'
           alias: '${2}_${1}'
 
     revive:

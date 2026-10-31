@@ -7,15 +7,15 @@ import (
 	stdCtx "context"
 	"time"
 
-	"forgejo.org/models"
-	"forgejo.org/models/db"
-	"forgejo.org/models/perm"
-	access_model "forgejo.org/models/perm/access"
-	repo_model "forgejo.org/models/repo"
-	unit_model "forgejo.org/models/unit"
-	"forgejo.org/modules/log"
-	api "forgejo.org/modules/structs"
-	"forgejo.org/services/context"
+	"novroforge.xyz/models"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/perm"
+	access_model "novroforge.xyz/models/perm/access"
+	repo_model "novroforge.xyz/models/repo"
+	unit_model "novroforge.xyz/models/unit"
+	"novroforge.xyz/modules/log"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/services/context"
 )
 
 // ToRepo converts a Repository to api.Repository

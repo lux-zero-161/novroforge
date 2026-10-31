@@ -7,14 +7,14 @@ import (
 	"net/http"
 	"net/url"
 
-	"forgejo.org/models"
-	"forgejo.org/models/organization"
-	"forgejo.org/modules/setting"
-	api "forgejo.org/modules/structs"
-	"forgejo.org/routers/api/v1/user"
-	"forgejo.org/routers/api/v1/utils"
-	"forgejo.org/services/context"
-	"forgejo.org/services/convert"
+	"novroforge.xyz/models"
+	"novroforge.xyz/models/organization"
+	"novroforge.xyz/modules/setting"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/routers/api/v1/user"
+	"novroforge.xyz/routers/api/v1/utils"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/convert"
 )
 
 // listMembers list an organization's members

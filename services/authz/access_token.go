@@ -8,7 +8,7 @@ import (
 	"errors"
 	"fmt"
 
-	auth_model "forgejo.org/models/auth"
+	auth_model "novroforge.xyz/models/auth"
 )
 
 func GetAuthorizationReducerForAccessToken(ctx context.Context, token *auth_model.AccessToken) (AuthorizationReducer, error) {

@@ -10,8 +10,8 @@ import (
 	"slices"
 	"strings"
 
-	"forgejo.org/models/db"
-	"forgejo.org/modules/timeutil"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/timeutil"
 
 	"github.com/go-enry/go-enry/v2"
 )

@@ -11,14 +11,14 @@ import (
 	"strings"
 	"testing"
 
-	"forgejo.org/models/auth"
-	"forgejo.org/models/unittest"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/test"
-	"forgejo.org/modules/translation"
-	"forgejo.org/services/forms"
-	"forgejo.org/tests"
+	"novroforge.xyz/models/auth"
+	"novroforge.xyz/models/unittest"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/test"
+	"novroforge.xyz/modules/translation"
+	"novroforge.xyz/services/forms"
+	"novroforge.xyz/tests"
 
 	"github.com/stretchr/testify/assert"
 )

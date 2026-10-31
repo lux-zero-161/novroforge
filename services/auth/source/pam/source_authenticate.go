@@ -9,12 +9,12 @@ import (
 	"fmt"
 	"strings"
 
-	"forgejo.org/models/auth"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/auth/pam"
-	"forgejo.org/modules/optional"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/validation"
+	"novroforge.xyz/models/auth"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/auth/pam"
+	"novroforge.xyz/modules/optional"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/validation"
 
 	"github.com/google/uuid"
 )

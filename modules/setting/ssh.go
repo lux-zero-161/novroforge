@@ -11,8 +11,8 @@ import (
 	"text/template"
 	"time"
 
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/util"
 
 	gossh "golang.org/x/crypto/ssh"
 )

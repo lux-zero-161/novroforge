@@ -6,7 +6,7 @@ package structs
 import (
 	"time"
 
-	"forgejo.org/modules/optional"
+	"novroforge.xyz/modules/optional"
 )
 
 // TeamInvite represents an invitation of a user to a team

@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"testing"
 
-	"forgejo.org/modules/optional"
+	"novroforge.xyz/modules/optional"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

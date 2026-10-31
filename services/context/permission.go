@@ -8,11 +8,11 @@ import (
 	"net/http"
 	"slices"
 
-	auth_model "forgejo.org/models/auth"
-	"forgejo.org/models/perm"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/models/unit"
-	"forgejo.org/modules/log"
+	auth_model "novroforge.xyz/models/auth"
+	"novroforge.xyz/models/perm"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/models/unit"
+	"novroforge.xyz/modules/log"
 )
 
 // RequireRepoAdmin returns a middleware for requiring repository admin permission

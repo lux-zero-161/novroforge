@@ -7,12 +7,12 @@ import (
 	"encoding/base64"
 	"testing"
 
-	migration_tests "forgejo.org/models/gitea_migrations/test"
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/keying"
-	"forgejo.org/modules/migration"
-	"forgejo.org/modules/structs"
-	"forgejo.org/modules/timeutil"
+	migration_tests "novroforge.xyz/models/gitea_migrations/test"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/keying"
+	"novroforge.xyz/modules/migration"
+	"novroforge.xyz/modules/structs"
+	"novroforge.xyz/modules/timeutil"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

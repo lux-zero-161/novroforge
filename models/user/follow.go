@@ -6,8 +6,8 @@ package user
 import (
 	"context"
 
-	"forgejo.org/models/db"
-	"forgejo.org/modules/timeutil"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/timeutil"
 )
 
 // Follow represents relations of user and their followers.

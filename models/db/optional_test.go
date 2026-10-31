@@ -6,9 +6,9 @@ package db_test
 import (
 	"testing"
 
-	"forgejo.org/models/db"
-	"forgejo.org/models/unittest"
-	"forgejo.org/modules/optional"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/unittest"
+	"novroforge.xyz/modules/optional"
 
 	"code.forgejo.org/xorm/xorm/schemas"
 	"github.com/stretchr/testify/assert"

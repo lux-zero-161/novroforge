@@ -11,10 +11,10 @@ import (
 	"os/signal"
 	"syscall"
 
-	"forgejo.org/models/db"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/private"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/private"
+	"novroforge.xyz/modules/setting"
 
 	"github.com/urfave/cli/v3"
 )

@@ -7,17 +7,17 @@ import (
 	"net/http"
 	"time"
 
-	issues_model "forgejo.org/models/issues"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
-	api "forgejo.org/modules/structs"
-	"forgejo.org/modules/web"
-	"forgejo.org/services/attachment"
-	"forgejo.org/services/context"
-	"forgejo.org/services/context/upload"
-	"forgejo.org/services/convert"
-	issue_service "forgejo.org/services/issue"
+	issues_model "novroforge.xyz/models/issues"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/modules/web"
+	"novroforge.xyz/services/attachment"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/context/upload"
+	"novroforge.xyz/services/convert"
+	issue_service "novroforge.xyz/services/issue"
 )
 
 // GetIssueAttachment gets a single attachment of the issue

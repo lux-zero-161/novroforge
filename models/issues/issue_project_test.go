@@ -6,14 +6,14 @@ package issues_test
 import (
 	"testing"
 
-	"forgejo.org/models/db"
-	"forgejo.org/models/issues"
-	"forgejo.org/models/organization"
-	"forgejo.org/models/project"
-	"forgejo.org/models/unittest"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/optional"
-	"forgejo.org/tests"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/issues"
+	"novroforge.xyz/models/organization"
+	"novroforge.xyz/models/project"
+	"novroforge.xyz/models/unittest"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/optional"
+	"novroforge.xyz/tests"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

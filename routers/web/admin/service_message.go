@@ -8,16 +8,16 @@ import (
 	"net/http"
 	"strings"
 
-	service_message_model "forgejo.org/models/service_message"
-	"forgejo.org/modules/base"
-	"forgejo.org/modules/log"
-	service_message_module "forgejo.org/modules/service_message"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/templates"
-	"forgejo.org/modules/web"
-	"forgejo.org/services/context"
-	"forgejo.org/services/forms"
-	service_message_service "forgejo.org/services/service_message"
+	service_message_model "novroforge.xyz/models/service_message"
+	"novroforge.xyz/modules/base"
+	"novroforge.xyz/modules/log"
+	service_message_module "novroforge.xyz/modules/service_message"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/templates"
+	"novroforge.xyz/modules/web"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/forms"
+	service_message_service "novroforge.xyz/services/service_message"
 )
 
 const (

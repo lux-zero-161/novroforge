@@ -4,8 +4,8 @@
 package v1_22
 
 import (
-	"forgejo.org/modules/timeutil"
-	webhook_module "forgejo.org/modules/webhook"
+	"novroforge.xyz/modules/timeutil"
+	webhook_module "novroforge.xyz/modules/webhook"
 
 	"code.forgejo.org/xorm/xorm"
 )

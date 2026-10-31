@@ -8,15 +8,15 @@ package context
 import (
 	"strings"
 
-	"forgejo.org/models/organization"
-	"forgejo.org/models/perm"
-	"forgejo.org/models/unit"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/markup"
-	"forgejo.org/modules/markup/markdown"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/structs"
-	redirect_service "forgejo.org/services/redirect"
+	"novroforge.xyz/models/organization"
+	"novroforge.xyz/models/perm"
+	"novroforge.xyz/models/unit"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/markup"
+	"novroforge.xyz/modules/markup/markdown"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/structs"
+	redirect_service "novroforge.xyz/services/redirect"
 )
 
 // Organization contains organization context

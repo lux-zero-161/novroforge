@@ -10,11 +10,11 @@ import (
 	"regexp"
 	"strconv"
 
-	"forgejo.org/modules/csv"
-	"forgejo.org/modules/markup"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/translation"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/csv"
+	"novroforge.xyz/modules/markup"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/translation"
+	"novroforge.xyz/modules/util"
 )
 
 func init() {

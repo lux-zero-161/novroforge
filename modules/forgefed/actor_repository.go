@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"strings"
 
-	"forgejo.org/modules/validation"
+	"novroforge.xyz/modules/validation"
 )
 
 // ----------------------------- RepositoryID --------------------------------------------

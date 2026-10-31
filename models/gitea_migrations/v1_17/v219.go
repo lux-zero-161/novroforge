@@ -6,8 +6,8 @@ package v1_17
 import (
 	"time"
 
-	"forgejo.org/models/repo"
-	"forgejo.org/modules/timeutil"
+	"novroforge.xyz/models/repo"
+	"novroforge.xyz/modules/timeutil"
 
 	"code.forgejo.org/xorm/xorm"
 )

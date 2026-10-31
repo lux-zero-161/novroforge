@@ -8,7 +8,7 @@ import (
 	"sync"
 	"time"
 
-	"forgejo.org/modules/log"
+	"novroforge.xyz/modules/log"
 )
 
 // cacheContext is a context that can be used to cache data in a request level context

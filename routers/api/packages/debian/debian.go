@@ -11,16 +11,16 @@ import (
 	"net/http"
 	"strings"
 
-	"forgejo.org/models/db"
-	packages_model "forgejo.org/models/packages"
-	packages_module "forgejo.org/modules/packages"
-	debian_module "forgejo.org/modules/packages/debian"
-	"forgejo.org/modules/util"
-	"forgejo.org/routers/api/packages/helper"
-	"forgejo.org/services/context"
-	notify_service "forgejo.org/services/notify"
-	packages_service "forgejo.org/services/packages"
-	debian_service "forgejo.org/services/packages/debian"
+	"novroforge.xyz/models/db"
+	packages_model "novroforge.xyz/models/packages"
+	packages_module "novroforge.xyz/modules/packages"
+	debian_module "novroforge.xyz/modules/packages/debian"
+	"novroforge.xyz/modules/util"
+	"novroforge.xyz/routers/api/packages/helper"
+	"novroforge.xyz/services/context"
+	notify_service "novroforge.xyz/services/notify"
+	packages_service "novroforge.xyz/services/packages"
+	debian_service "novroforge.xyz/services/packages/debian"
 )
 
 func apiError(ctx *context.Context, status int, obj any) {

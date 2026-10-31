@@ -12,9 +12,9 @@ import (
 	"slices"
 	"time"
 
-	packages_model "forgejo.org/models/packages"
-	npm_module "forgejo.org/modules/packages/npm"
-	"forgejo.org/modules/setting"
+	packages_model "novroforge.xyz/models/packages"
+	npm_module "novroforge.xyz/modules/packages/npm"
+	"novroforge.xyz/modules/setting"
 )
 
 func createPackageMetadataResponse(registryURL string, pds []*packages_model.PackageDescriptor) *npm_module.PackageMetadata {

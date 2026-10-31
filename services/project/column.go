@@ -7,9 +7,9 @@ import (
 	"context"
 	"fmt"
 
-	project_model "forgejo.org/models/project"
-	project_module "forgejo.org/modules/project"
-	"forgejo.org/modules/validation"
+	project_model "novroforge.xyz/models/project"
+	project_module "novroforge.xyz/modules/project"
+	"novroforge.xyz/modules/validation"
 )
 
 func getColumnByID(ctx context.Context, columnID int64) (*project_model.Column, error) {

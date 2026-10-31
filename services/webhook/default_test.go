@@ -6,9 +6,9 @@ package webhook
 import (
 	"testing"
 
-	webhook_model "forgejo.org/models/webhook"
-	"forgejo.org/modules/json"
-	webhook_module "forgejo.org/modules/webhook"
+	webhook_model "novroforge.xyz/models/webhook"
+	"novroforge.xyz/modules/json"
+	webhook_module "novroforge.xyz/modules/webhook"
 
 	jsoniter "github.com/json-iterator/go"
 	"github.com/stretchr/testify/assert"

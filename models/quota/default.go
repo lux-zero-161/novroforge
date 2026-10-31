@@ -4,7 +4,7 @@
 package quota
 
 import (
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/setting"
 )
 
 func EvaluateDefault(used Used, forSubject LimitSubject) bool {

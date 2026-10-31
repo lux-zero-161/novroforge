@@ -10,15 +10,15 @@ import (
 	"net/http"
 	"strings"
 
-	actions_model "forgejo.org/models/actions"
-	repo_model "forgejo.org/models/repo"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/optional"
-	"forgejo.org/modules/private"
-	"forgejo.org/modules/util"
-	"forgejo.org/services/context"
+	actions_model "novroforge.xyz/models/actions"
+	repo_model "novroforge.xyz/models/repo"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/optional"
+	"novroforge.xyz/modules/private"
+	"novroforge.xyz/modules/util"
+	"novroforge.xyz/services/context"
 )
 
 // GenerateActionsRunnerToken generates a new runner token for a given scope

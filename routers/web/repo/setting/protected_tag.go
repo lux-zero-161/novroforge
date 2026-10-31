@@ -8,15 +8,15 @@ import (
 	"net/http"
 	"strings"
 
-	git_model "forgejo.org/models/git"
-	"forgejo.org/models/organization"
-	"forgejo.org/models/perm"
-	access_model "forgejo.org/models/perm/access"
-	"forgejo.org/modules/base"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/web"
-	"forgejo.org/services/context"
-	"forgejo.org/services/forms"
+	git_model "novroforge.xyz/models/git"
+	"novroforge.xyz/models/organization"
+	"novroforge.xyz/models/perm"
+	access_model "novroforge.xyz/models/perm/access"
+	"novroforge.xyz/modules/base"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/web"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/forms"
 )
 
 const (

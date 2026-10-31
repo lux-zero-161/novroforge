@@ -10,9 +10,9 @@ import (
 	"testing"
 	"time"
 
-	auth_model "forgejo.org/models/auth"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/timeutil"
+	auth_model "novroforge.xyz/models/auth"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/timeutil"
 
 	pingv1 "code.forgejo.org/forgejo/actions-proto/ping/v1"
 	"code.forgejo.org/forgejo/actions-proto/ping/v1/pingv1connect"

@@ -9,14 +9,14 @@ import (
 	"net/http"
 	"strconv"
 
-	"forgejo.org/models/db"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/private"
-	"forgejo.org/modules/setting"
-	"forgejo.org/services/context"
-	"forgejo.org/services/mailer"
+	"novroforge.xyz/models/db"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/private"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/mailer"
 )
 
 // SendEmail pushes messages to mail queue

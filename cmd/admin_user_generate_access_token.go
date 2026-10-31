@@ -8,8 +8,8 @@ import (
 	"errors"
 	"fmt"
 
-	auth_model "forgejo.org/models/auth"
-	user_model "forgejo.org/models/user"
+	auth_model "novroforge.xyz/models/auth"
+	user_model "novroforge.xyz/models/user"
 
 	"github.com/urfave/cli/v3"
 )

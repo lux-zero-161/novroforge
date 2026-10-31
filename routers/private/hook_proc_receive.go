@@ -6,12 +6,12 @@ package private
 import (
 	"net/http"
 
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/private"
-	"forgejo.org/modules/web"
-	"forgejo.org/services/agit"
-	app_context "forgejo.org/services/context"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/private"
+	"novroforge.xyz/modules/web"
+	"novroforge.xyz/services/agit"
+	app_context "novroforge.xyz/services/context"
 )
 
 // HookProcReceive proc-receive hook - only handles agit Proc-Receive requests at present

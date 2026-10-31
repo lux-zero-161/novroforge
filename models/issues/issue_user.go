@@ -7,8 +7,8 @@ import (
 	"context"
 	"fmt"
 
-	"forgejo.org/models/db"
-	repo_model "forgejo.org/models/repo"
+	"novroforge.xyz/models/db"
+	repo_model "novroforge.xyz/models/repo"
 )
 
 // IssueUser represents an issue-user relation.

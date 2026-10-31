@@ -13,8 +13,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"forgejo.org/modules/packages"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/packages"
+	"novroforge.xyz/modules/util"
 )
 
 var (

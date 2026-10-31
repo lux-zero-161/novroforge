@@ -11,9 +11,9 @@ import (
 	"regexp"
 	"strings"
 
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
-	"forgejo.org/services/context"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/services/context"
 )
 
 // ErrFileTypeForbidden not allowed file type error

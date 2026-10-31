@@ -11,9 +11,9 @@ import (
 	"strings"
 	texttmpl "text/template"
 
-	"forgejo.org/modules/base"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/base"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
 )
 
 var mailSubjectSplit = regexp.MustCompile(`(?m)^-{3,}\s*$`)

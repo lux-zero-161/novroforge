@@ -10,7 +10,7 @@ import (
 	"strings"
 	"testing"
 
-	"forgejo.org/modules/json"
+	"novroforge.xyz/modules/json"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

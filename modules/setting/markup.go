@@ -7,7 +7,7 @@ import (
 	"regexp"
 	"strings"
 
-	"forgejo.org/modules/log"
+	"novroforge.xyz/modules/log"
 )
 
 // ExternalMarkupRenderers represents the external markup renderers

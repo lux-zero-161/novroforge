@@ -6,8 +6,8 @@
 package templates
 
 import (
-	"forgejo.org/modules/assetfs"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/assetfs"
+	"novroforge.xyz/modules/setting"
 )
 
 func BuiltinAssets() *assetfs.Layer {

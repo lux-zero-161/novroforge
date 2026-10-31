@@ -10,8 +10,8 @@ import (
 	"fmt"
 	"strings"
 
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/private"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/private"
 
 	"github.com/urfave/cli/v3"
 	"golang.org/x/crypto/ssh"

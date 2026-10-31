@@ -8,14 +8,14 @@ import (
 	"testing"
 	"time"
 
-	"forgejo.org/models/db"
-	issues_model "forgejo.org/models/issues"
-	"forgejo.org/models/unittest"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/test"
+	"novroforge.xyz/models/db"
+	issues_model "novroforge.xyz/models/issues"
+	"novroforge.xyz/models/unittest"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/test"
 
-	_ "forgejo.org/cmd" // for TestPrimaryKeys
+	_ "novroforge.xyz/cmd" // for TestPrimaryKeys
 
 	"code.forgejo.org/xorm/xorm"
 	"github.com/stretchr/testify/assert"
@@ -70,7 +70,7 @@ func TestPrimaryKeys(t *testing.T) {
 	//   https://github.com/go-gitea/gitea/issues/21086
 	//   https://github.com/go-gitea/gitea/issues/16802
 	// To avoid creating tables without primary key again, this test will check them.
-	// Import "forgejo.org/cmd" to make sure each db.RegisterModel in init functions has been called.
+	// Import "novroforge.xyz/cmd" to make sure each db.RegisterModel in init functions has been called.
 
 	beans, err := db.NamesToBean()
 	if err != nil {

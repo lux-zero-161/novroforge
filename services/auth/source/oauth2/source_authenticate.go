@@ -6,8 +6,8 @@ package oauth2
 import (
 	"context"
 
-	user_model "forgejo.org/models/user"
-	"forgejo.org/services/auth/source/db"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/services/auth/source/db"
 )
 
 // Authenticate falls back to the db authenticator

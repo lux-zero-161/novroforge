@@ -10,9 +10,9 @@ import (
 	"net/url"
 	"testing"
 
-	"forgejo.org/models/unittest"
-	"forgejo.org/modules/test"
-	"forgejo.org/modules/web/middleware"
+	"novroforge.xyz/models/unittest"
+	"novroforge.xyz/modules/test"
+	"novroforge.xyz/modules/web/middleware"
 
 	"github.com/stretchr/testify/assert"
 )

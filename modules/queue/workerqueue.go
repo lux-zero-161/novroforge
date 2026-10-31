@@ -10,10 +10,10 @@ import (
 	"sync/atomic"
 	"time"
 
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/process"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/process"
+	"novroforge.xyz/modules/setting"
 )
 
 // WorkerPoolQueue is a queue that uses a pool of workers to process items

@@ -6,11 +6,11 @@ package stats
 import (
 	"errors"
 
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/modules/graceful"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/queue"
-	"forgejo.org/modules/setting"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/modules/graceful"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/queue"
+	"novroforge.xyz/modules/setting"
 )
 
 // statsQueue represents a queue to handle repository stats updates

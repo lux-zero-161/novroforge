@@ -6,7 +6,7 @@ package templates
 import (
 	"bytes"
 
-	"forgejo.org/modules/json"
+	"novroforge.xyz/modules/json"
 )
 
 type JsonUtils struct{} //nolint:revive

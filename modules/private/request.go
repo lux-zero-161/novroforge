@@ -8,8 +8,8 @@ import (
 	"io"
 	"net/http"
 
-	"forgejo.org/modules/httplib"
-	"forgejo.org/modules/json"
+	"novroforge.xyz/modules/httplib"
+	"novroforge.xyz/modules/json"
 )
 
 // ResponseText is used to get the response as text, instead of parsing it as JSON.

@@ -7,9 +7,9 @@ import (
 	"context"
 	"sync"
 
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/util"
 )
 
 type CfgSecKey struct {

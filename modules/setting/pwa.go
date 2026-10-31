@@ -4,8 +4,8 @@
 package setting
 
 import (
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/log"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/log"
 )
 
 type PwaConfig struct {

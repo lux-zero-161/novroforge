@@ -7,10 +7,10 @@ import (
 	"errors"
 	"testing"
 
-	actions_model "forgejo.org/models/actions"
-	"forgejo.org/models/repo"
-	"forgejo.org/models/user"
-	"forgejo.org/modules/webhook"
+	actions_model "novroforge.xyz/models/actions"
+	"novroforge.xyz/models/repo"
+	"novroforge.xyz/models/user"
+	"novroforge.xyz/modules/webhook"
 
 	"code.forgejo.org/forgejo/runner/v13/act/jobparser"
 	act_model "code.forgejo.org/forgejo/runner/v13/act/model"

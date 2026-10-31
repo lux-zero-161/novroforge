@@ -4,8 +4,8 @@
 package forgejo_migrations
 
 import (
-	service_message "forgejo.org/modules/service_message"
-	"forgejo.org/modules/timeutil"
+	service_message "novroforge.xyz/modules/service_message"
+	"novroforge.xyz/modules/timeutil"
 
 	"code.forgejo.org/xorm/xorm"
 )

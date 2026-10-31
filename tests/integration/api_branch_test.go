@@ -9,12 +9,12 @@ import (
 	"net/url"
 	"testing"
 
-	auth_model "forgejo.org/models/auth"
-	git_model "forgejo.org/models/git"
-	"forgejo.org/models/unittest"
-	"forgejo.org/modules/git"
-	api "forgejo.org/modules/structs"
-	"forgejo.org/tests"
+	auth_model "novroforge.xyz/models/auth"
+	git_model "novroforge.xyz/models/git"
+	"novroforge.xyz/models/unittest"
+	"novroforge.xyz/modules/git"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/tests"
 
 	"github.com/stretchr/testify/assert"
 )

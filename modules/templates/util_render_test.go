@@ -8,14 +8,14 @@ import (
 	"html/template"
 	"testing"
 
-	"forgejo.org/models/db"
-	issues_model "forgejo.org/models/issues"
-	org_model "forgejo.org/models/organization"
-	"forgejo.org/models/unittest"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/test"
-	"forgejo.org/modules/translation"
+	"novroforge.xyz/models/db"
+	issues_model "novroforge.xyz/models/issues"
+	org_model "novroforge.xyz/models/organization"
+	"novroforge.xyz/models/unittest"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/test"
+	"novroforge.xyz/modules/translation"
 
 	"github.com/stretchr/testify/assert"
 )

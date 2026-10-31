@@ -11,10 +11,10 @@ import (
 	"encoding/hex"
 	"fmt"
 
-	"forgejo.org/models/db"
-	"forgejo.org/modules/keying"
-	"forgejo.org/modules/timeutil"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/keying"
+	"novroforge.xyz/modules/timeutil"
+	"novroforge.xyz/modules/util"
 
 	"github.com/pquerna/otp/totp"
 	"golang.org/x/crypto/pbkdf2"

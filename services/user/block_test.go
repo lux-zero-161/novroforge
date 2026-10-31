@@ -6,13 +6,13 @@ package user
 import (
 	"testing"
 
-	model "forgejo.org/models"
-	actions_model "forgejo.org/models/actions"
-	"forgejo.org/models/db"
-	issues_model "forgejo.org/models/issues"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/models/unittest"
-	user_model "forgejo.org/models/user"
+	model "novroforge.xyz/models"
+	actions_model "novroforge.xyz/models/actions"
+	"novroforge.xyz/models/db"
+	issues_model "novroforge.xyz/models/issues"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/models/unittest"
+	user_model "novroforge.xyz/models/user"
 
 	gouuid "github.com/google/uuid"
 	"github.com/stretchr/testify/assert"

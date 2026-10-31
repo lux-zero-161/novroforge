@@ -10,12 +10,12 @@ import (
 	"net/http"
 	"strings"
 
-	webhook_model "forgejo.org/models/webhook"
-	"forgejo.org/modules/git"
-	api "forgejo.org/modules/structs"
-	webhook_module "forgejo.org/modules/webhook"
-	"forgejo.org/services/forms"
-	"forgejo.org/services/webhook/shared"
+	webhook_model "novroforge.xyz/models/webhook"
+	"novroforge.xyz/modules/git"
+	api "novroforge.xyz/modules/structs"
+	webhook_module "novroforge.xyz/modules/webhook"
+	"novroforge.xyz/services/forms"
+	"novroforge.xyz/services/webhook/shared"
 )
 
 type wechatworkHandler struct{}

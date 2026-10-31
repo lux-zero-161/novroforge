@@ -6,9 +6,9 @@ package activitypub_test
 import (
 	"testing"
 
-	"forgejo.org/models/unittest"
+	"novroforge.xyz/models/unittest"
 
-	_ "forgejo.org/modules/testimport"
+	_ "novroforge.xyz/modules/testimport"
 )
 
 func TestMain(m *testing.M) {

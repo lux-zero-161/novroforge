@@ -12,17 +12,17 @@ import (
 	"strings"
 	"time"
 
-	"forgejo.org/models"
-	git_model "forgejo.org/models/git"
-	repo_model "forgejo.org/models/repo"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/gitrepo"
-	"forgejo.org/modules/lfs"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/structs"
-	asymkey_service "forgejo.org/services/asymkey"
+	"novroforge.xyz/models"
+	git_model "novroforge.xyz/models/git"
+	repo_model "novroforge.xyz/models/repo"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/gitrepo"
+	"novroforge.xyz/modules/lfs"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/structs"
+	asymkey_service "novroforge.xyz/services/asymkey"
 )
 
 // IdentityOptions for a person's identity like an author or committer

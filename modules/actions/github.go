@@ -4,7 +4,7 @@
 package actions
 
 import (
-	webhook_module "forgejo.org/modules/webhook"
+	webhook_module "novroforge.xyz/modules/webhook"
 )
 
 const (

@@ -9,7 +9,7 @@ import (
 	"image/png"
 	"testing"
 
-	"forgejo.org/modules/avatar"
+	"novroforge.xyz/modules/avatar"
 
 	"github.com/stretchr/testify/assert"
 )

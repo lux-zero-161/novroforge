@@ -11,8 +11,8 @@ import (
 	"io"
 	"os"
 
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/util"
 )
 
 // BlamePart represents block of blame - continuous lines with one sha

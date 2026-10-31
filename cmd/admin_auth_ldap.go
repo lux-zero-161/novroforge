@@ -8,8 +8,8 @@ import (
 	"fmt"
 	"strings"
 
-	"forgejo.org/models/auth"
-	"forgejo.org/services/auth/source/ldap"
+	"novroforge.xyz/models/auth"
+	"novroforge.xyz/services/auth/source/ldap"
 
 	"github.com/urfave/cli/v3"
 )

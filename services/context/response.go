@@ -6,7 +6,7 @@ package context
 import (
 	"net/http"
 
-	web_types "forgejo.org/modules/web/types"
+	web_types "novroforge.xyz/modules/web/types"
 )
 
 // ResponseWriter represents a response writer for HTTP

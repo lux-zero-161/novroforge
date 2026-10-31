@@ -6,10 +6,10 @@ package setting
 import (
 	"fmt"
 
-	"forgejo.org/modules/web"
-	"forgejo.org/services/context"
-	"forgejo.org/services/forms"
-	repo_service "forgejo.org/services/repository"
+	"novroforge.xyz/modules/web"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/forms"
+	repo_service "novroforge.xyz/services/repository"
 )
 
 // UpdateAvatarSetting update repo's avatar

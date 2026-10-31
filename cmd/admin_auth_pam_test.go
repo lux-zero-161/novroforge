@@ -8,9 +8,9 @@ import (
 	"context"
 	"testing"
 
-	"forgejo.org/models/auth"
-	"forgejo.org/modules/test"
-	"forgejo.org/services/auth/source/pam"
+	"novroforge.xyz/models/auth"
+	"novroforge.xyz/modules/test"
+	"novroforge.xyz/services/auth/source/pam"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

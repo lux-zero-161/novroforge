@@ -7,12 +7,12 @@ package packages
 import (
 	"context"
 
-	"forgejo.org/models/organization"
-	"forgejo.org/models/perm"
-	"forgejo.org/models/unit"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/setting"
-	api "forgejo.org/modules/structs"
+	"novroforge.xyz/models/organization"
+	"novroforge.xyz/models/perm"
+	"novroforge.xyz/models/unit"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/setting"
+	api "novroforge.xyz/modules/structs"
 )
 
 func DeterminePackageAccessMode(ctx context.Context, owner, doer *user_model.User) (perm.AccessMode, error) {

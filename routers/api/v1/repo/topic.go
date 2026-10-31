@@ -7,13 +7,13 @@ import (
 	"net/http"
 	"strings"
 
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/modules/log"
-	api "forgejo.org/modules/structs"
-	"forgejo.org/modules/web"
-	"forgejo.org/routers/api/v1/utils"
-	"forgejo.org/services/context"
-	"forgejo.org/services/convert"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/modules/log"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/modules/web"
+	"novroforge.xyz/routers/api/v1/utils"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/convert"
 )
 
 // ListTopics returns list of current topics for repo

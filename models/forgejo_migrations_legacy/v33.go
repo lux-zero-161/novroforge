@@ -6,8 +6,8 @@ package forgejo_migrations_legacy
 import (
 	"fmt"
 
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/timeutil"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/timeutil"
 
 	"code.forgejo.org/xorm/xorm"
 )

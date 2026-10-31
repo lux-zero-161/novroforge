@@ -7,7 +7,7 @@ import (
 	"slices"
 	"testing"
 
-	migration_tests "forgejo.org/models/gitea_migrations/test"
+	migration_tests "novroforge.xyz/models/gitea_migrations/test"
 
 	"code.forgejo.org/xorm/xorm/schemas"
 	"github.com/stretchr/testify/assert"

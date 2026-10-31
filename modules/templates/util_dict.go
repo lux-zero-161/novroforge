@@ -10,9 +10,9 @@ import (
 	"html/template"
 	"reflect"
 
-	"forgejo.org/modules/container"
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/container"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/setting"
 )
 
 func dictMerge(base map[string]any, arg any) bool {

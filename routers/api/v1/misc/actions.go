@@ -6,9 +6,9 @@ package misc
 import (
 	"net/http"
 
-	"forgejo.org/models/actions"
-	"forgejo.org/services/context"
-	"forgejo.org/services/convert"
+	"novroforge.xyz/models/actions"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/convert"
 )
 
 // Retrieves a workflow run associated with a token

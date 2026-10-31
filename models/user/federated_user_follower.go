@@ -3,7 +3,7 @@
 
 package user
 
-import "forgejo.org/modules/validation"
+import "novroforge.xyz/modules/validation"
 
 type FederatedUserFollower struct {
 	ID              int64 `xorm:"pk autoincr"`

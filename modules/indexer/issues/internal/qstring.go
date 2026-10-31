@@ -11,9 +11,9 @@ import (
 	"strings"
 	"time"
 
-	"forgejo.org/models/user"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/optional"
+	"novroforge.xyz/models/user"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/optional"
 )
 
 type BoolOpt int

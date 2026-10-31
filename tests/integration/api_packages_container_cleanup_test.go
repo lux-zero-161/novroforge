@@ -7,11 +7,11 @@ import (
 	"testing"
 	"time"
 
-	packages_model "forgejo.org/models/packages"
-	"forgejo.org/models/unittest"
-	packages_service "forgejo.org/services/packages"
-	packages_cleanup "forgejo.org/services/packages/cleanup"
-	"forgejo.org/tests"
+	packages_model "novroforge.xyz/models/packages"
+	"novroforge.xyz/models/unittest"
+	packages_service "novroforge.xyz/services/packages"
+	packages_cleanup "novroforge.xyz/services/packages/cleanup"
+	"novroforge.xyz/tests"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

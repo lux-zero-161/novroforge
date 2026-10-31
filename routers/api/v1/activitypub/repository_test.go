@@ -6,7 +6,7 @@ package activitypub
 import (
 	"testing"
 
-	"forgejo.org/modules/validation"
+	"novroforge.xyz/modules/validation"
 
 	"github.com/stretchr/testify/require"
 )

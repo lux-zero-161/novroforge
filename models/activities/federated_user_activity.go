@@ -7,12 +7,12 @@ import (
 	"context"
 	"fmt"
 
-	"forgejo.org/models/db"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/timeutil"
-	"forgejo.org/modules/validation"
+	"novroforge.xyz/models/db"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/timeutil"
+	"novroforge.xyz/modules/validation"
 
 	ap "github.com/go-ap/activitypub"
 )

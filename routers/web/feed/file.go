@@ -8,10 +8,10 @@ import (
 	"strings"
 	"time"
 
-	"forgejo.org/models/repo"
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/util"
-	"forgejo.org/services/context"
+	"novroforge.xyz/models/repo"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/util"
+	"novroforge.xyz/services/context"
 
 	"github.com/gorilla/feeds"
 )

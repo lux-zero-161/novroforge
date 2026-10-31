@@ -12,10 +12,10 @@ import (
 	"path/filepath"
 	"time"
 
-	"forgejo.org/modules/container"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/container"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/util"
 
 	"code.forgejo.org/xorm/xorm"
 )

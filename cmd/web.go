@@ -17,14 +17,14 @@ import (
 
 	_ "net/http/pprof" // Used for debugging if enabled and a web server is running
 
-	"forgejo.org/modules/container"
-	"forgejo.org/modules/graceful"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/process"
-	"forgejo.org/modules/public"
-	"forgejo.org/modules/setting"
-	"forgejo.org/routers"
-	"forgejo.org/routers/install"
+	"novroforge.xyz/modules/container"
+	"novroforge.xyz/modules/graceful"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/process"
+	"novroforge.xyz/modules/public"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/routers"
+	"novroforge.xyz/routers/install"
 
 	"github.com/felixge/fgprof"
 	"github.com/urfave/cli/v3"

@@ -6,11 +6,11 @@ package permissions
 import (
 	"net/http"
 
-	actions_model "forgejo.org/models/actions"
-	"forgejo.org/models/perm"
-	access_model "forgejo.org/models/perm/access"
-	"forgejo.org/models/unit"
-	user_model "forgejo.org/models/user"
+	actions_model "novroforge.xyz/models/actions"
+	"novroforge.xyz/models/perm"
+	access_model "novroforge.xyz/models/perm/access"
+	"novroforge.xyz/models/unit"
+	user_model "novroforge.xyz/models/user"
 )
 
 func RepoAccess(ctx Context) {

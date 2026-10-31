@@ -15,11 +15,11 @@ import (
 	"net/url"
 	"strings"
 
-	"forgejo.org/models/db"
-	"forgejo.org/modules/container"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/timeutil"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/container"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/timeutil"
+	"novroforge.xyz/modules/util"
 
 	"code.forgejo.org/xorm/xorm"
 	uuid "github.com/google/uuid"

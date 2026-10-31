@@ -7,11 +7,11 @@ import (
 	"context"
 	"fmt"
 
-	actions_model "forgejo.org/models/actions"
-	"forgejo.org/models/db"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/util"
-	notify_service "forgejo.org/services/notify"
+	actions_model "novroforge.xyz/models/actions"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/util"
+	notify_service "novroforge.xyz/services/notify"
 
 	"code.forgejo.org/forgejo/runner/v13/act/jobparser"
 	gouuid "github.com/google/uuid"

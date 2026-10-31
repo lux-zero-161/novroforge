@@ -10,9 +10,9 @@ import (
 	"strings"
 	"time"
 
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/timeutil"
-	"forgejo.org/modules/translation"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/timeutil"
+	"novroforge.xyz/modules/translation"
 )
 
 type DateUtils struct{}

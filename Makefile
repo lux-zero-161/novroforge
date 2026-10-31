@@ -16,7 +16,7 @@ else
 
 DIST := dist
 DIST_DIRS := $(DIST)/binaries $(DIST)/release
-IMPORT := forgejo.org
+IMPORT := novroforge.xyz
 
 GO ?= $(shell go env GOROOT)/bin/go
 SHASUM ?= shasum -a 256
@@ -123,7 +123,7 @@ LDFLAGS := $(LDFLAGS) -X "main.ReleaseVersion=$(RELEASE_VERSION)" -X "main.MakeV
 LINUX_ARCHS ?= linux/amd64,linux/386,linux/arm-5,linux/arm-6,linux/arm64
 
 REMOTE_CACHER_MODULES ?= cache nosql session queue
-GO_TEST_REMOTE_CACHER_PACKAGES ?= $(addprefix forgejo.org/modules/,$(REMOTE_CACHER_MODULES))
+GO_TEST_REMOTE_CACHER_PACKAGES ?= $(addprefix novroforge.xyz/modules/,$(REMOTE_CACHER_MODULES))
 
 FOMANTIC_WORK_DIR := web_src/fomantic
 
@@ -295,14 +295,14 @@ show-version-api: verify-version
 .PHONY: compute-go-test-packages
 compute-go-test-packages:
 ifeq ($(HAS_GO), yes)
-	$(eval GO_TEST_PACKAGES ?= $(filter-out $(shell $(GO) list forgejo.org/models/gitea_migrations/...) $(shell $(GO) list forgejo.org/models/forgejo_migrations_legacy/...) $(shell $(GO) list forgejo.org/models/forgejo_migrations/...) forgejo.org/tests/integration/migration-test forgejo.org/tests forgejo.org/tests/integration forgejo.org/tests/e2e,$(shell $(GO) list ./...)))
+	$(eval GO_TEST_PACKAGES ?= $(filter-out $(shell $(GO) list novroforge.xyz/models/gitea_migrations/...) $(shell $(GO) list novroforge.xyz/models/forgejo_migrations_legacy/...) $(shell $(GO) list novroforge.xyz/models/forgejo_migrations/...) novroforge.xyz/tests/integration/migration-test novroforge.xyz/tests novroforge.xyz/tests/integration novroforge.xyz/tests/e2e,$(shell $(GO) list ./...)))
 endif
 
 # Target to compute MIGRATION_PACKAGES - only runs when needed
 .PHONY: compute-migration-packages
 compute-migration-packages:
 ifeq ($(HAS_GO), yes)
-	$(eval MIGRATION_PACKAGES := $(shell $(GO) list forgejo.org/models/gitea_migrations/... forgejo.org/models/forgejo_migrations_legacy/... forgejo.org/models/forgejo_migrations/...))
+	$(eval MIGRATION_PACKAGES := $(shell $(GO) list novroforge.xyz/models/gitea_migrations/... novroforge.xyz/models/forgejo_migrations_legacy/... novroforge.xyz/models/forgejo_migrations/...))
 endif
 
 ###
@@ -489,7 +489,7 @@ lint-locale-usage:
 lint-md: node_modules
 	npx markdownlint docs *.md
 
-RUN_DEADCODE = $(GO) run $(DEADCODE_PACKAGE) -generated=false -f='{{println .Path}}{{range .Funcs}}{{printf "\t%s\n" .Name}}{{end}}{{println}}' -test forgejo.org
+RUN_DEADCODE = $(GO) run $(DEADCODE_PACKAGE) -generated=false -f='{{println .Path}}{{range .Funcs}}{{printf "\t%s\n" .Name}}{{end}}{{println}}' -test novroforge.xyz
 
 .PHONY: lint-go
 lint-go:
@@ -637,19 +637,19 @@ coverage-run-%: coverage-run-migration-% coverage-run-integration-%
 
 .PHONY: coverage-run-migration-%
 coverage-run-migration-%: generate-ini-% | compute-migration-packages
-	$(MAKE) PROJECT_ROOT="$(CURDIR)" PROJECT_CONF=tests/$*.ini COVERAGE_TEST_ARGS= COVERAGE_TEST_PACKAGES=forgejo.org/tests/integration/migration-test coverage-run
+	$(MAKE) PROJECT_ROOT="$(CURDIR)" PROJECT_CONF=tests/$*.ini COVERAGE_TEST_ARGS= COVERAGE_TEST_PACKAGES=novroforge.xyz/tests/integration/migration-test coverage-run
 	for pkg in $(MIGRATION_PACKAGES); do \
 		$(MAKE) PROJECT_ROOT="$(CURDIR)" PROJECT_CONF=tests/$*.ini COVERAGE_TEST_NAME=$* COVERAGE_TEST_ARGS= COVERAGE_TEST_PACKAGES=$$pkg coverage-run ; \
 	done
 
 .PHONY: coverage-run-integration-%
 coverage-run-integration-%: generate-ini-%
-	$(MAKE) PROJECT_ROOT="$(CURDIR)" PROJECT_CONF=tests/$*.ini COVERAGE_TEST_NAME=$* COVERAGE_TEST_PACKAGES=forgejo.org/tests/integration coverage-run
+	$(MAKE) PROJECT_ROOT="$(CURDIR)" PROJECT_CONF=tests/$*.ini COVERAGE_TEST_NAME=$* COVERAGE_TEST_PACKAGES=novroforge.xyz/tests/integration coverage-run
 
 COVERAGE_E2E_RUN ?= -test.run TestE2e
 
 coverage-run-e2e: playwright generate-ini-sqlite
-		$(MAKE) PROJECT_ROOT="$(CURDIR)" PROJECT_CONF=tests/sqlite.ini COVERAGE_TEST_NAME=e2e PLAYWRIGHT_PROJECT=firefox COVERAGE_TEST_PACKAGES=forgejo.org/tests/e2e COVERAGE_TEST_ARGS="${COVERAGE_E2E_RUN} ${COVERAGE_TEST_ARGS}" coverage-run
+		$(MAKE) PROJECT_ROOT="$(CURDIR)" PROJECT_CONF=tests/sqlite.ini COVERAGE_TEST_NAME=e2e PLAYWRIGHT_PROJECT=firefox COVERAGE_TEST_PACKAGES=novroforge.xyz/tests/e2e COVERAGE_TEST_ARGS="${COVERAGE_E2E_RUN} ${COVERAGE_TEST_ARGS}" coverage-run
 
 .PHONY: tidy
 tidy:
@@ -670,7 +670,7 @@ tidy-check: tidy
 go-licenses: $(GO_LICENSE_FILE)
 
 $(GO_LICENSE_FILE): go.mod go.sum
-	-$(GO) run $(GO_LICENSES_PACKAGE) save . --force --ignore forgejo.org --ignore github.com/alecthomas/chroma/v2 --save_path=$(GO_LICENSE_TMP_DIR) 2>/dev/null
+	-$(GO) run $(GO_LICENSES_PACKAGE) save . --force --ignore novroforge.xyz --ignore github.com/alecthomas/chroma/v2 --save_path=$(GO_LICENSE_TMP_DIR) 2>/dev/null
 	@mkdir -p "$(GO_LICENSE_TMP_DIR)/github.com/alecthomas/chroma/v2"
 	@cp "$$($(GO) list -f '{{.Dir}}' github.com/alecthomas/chroma/v2)/COPYING" $(GO_LICENSE_TMP_DIR)/github.com/alecthomas/chroma/v2/COPYING
 	$(GO) run build/generate-go-licenses.go $(GO_LICENSE_TMP_DIR) $(GO_LICENSE_FILE)
@@ -686,11 +686,11 @@ generate-ini-sqlite:
 
 .PHONY: test-sqlite
 test-sqlite: git-check $(GO_SOURCES) generate-ini-sqlite
-	PROJECT_ROOT="$(CURDIR)" PROJECT_CONF=tests/sqlite.ini $(GOTEST) $(GOTESTFLAGS) forgejo.org/tests/integration -tags '$(TEST_TAGS)'
+	PROJECT_ROOT="$(CURDIR)" PROJECT_CONF=tests/sqlite.ini $(GOTEST) $(GOTESTFLAGS) novroforge.xyz/tests/integration -tags '$(TEST_TAGS)'
 
 .PHONY: test-sqlite\#%
 test-sqlite\#%: git-check $(GO_SOURCES) generate-ini-sqlite
-	PROJECT_ROOT="$(CURDIR)" PROJECT_CONF=tests/sqlite.ini $(GOTEST) $(GOTESTFLAGS) forgejo.org/tests/integration -tags '$(TEST_TAGS)' -test.run $(subst .,/,$*)
+	PROJECT_ROOT="$(CURDIR)" PROJECT_CONF=tests/sqlite.ini $(GOTEST) $(GOTESTFLAGS) novroforge.xyz/tests/integration -tags '$(TEST_TAGS)' -test.run $(subst .,/,$*)
 
 .PHONY: test-sqlite-migration
 test-sqlite-migration: migrations.sqlite.test migrations.individual.sqlite.test
@@ -709,11 +709,11 @@ generate-ini-mysql:
 
 .PHONY: test-mysql
 test-mysql: git-check $(GO_SOURCES) generate-ini-mysql
-	PROJECT_ROOT="$(CURDIR)" PROJECT_CONF=tests/mysql.ini $(GOTEST) $(GOTESTFLAGS) forgejo.org/tests/integration
+	PROJECT_ROOT="$(CURDIR)" PROJECT_CONF=tests/mysql.ini $(GOTEST) $(GOTESTFLAGS) novroforge.xyz/tests/integration
 
 .PHONY: test-mysql\#%
 test-mysql\#%: git-check $(GO_SOURCES) generate-ini-mysql
-	PROJECT_ROOT="$(CURDIR)" PROJECT_CONF=tests/mysql.ini $(GOTEST) $(GOTESTFLAGS) forgejo.org/tests/integration -test.run $(subst .,/,$*)
+	PROJECT_ROOT="$(CURDIR)" PROJECT_CONF=tests/mysql.ini $(GOTEST) $(GOTESTFLAGS) novroforge.xyz/tests/integration -test.run $(subst .,/,$*)
 
 .PHONY: test-mysql-migration
 test-mysql-migration: migrations.mysql.test migrations.individual.mysql.test
@@ -735,11 +735,11 @@ generate-ini-pgsql:
 
 .PHONY: test-pgsql
 test-pgsql: git-check $(GO_SOURCES) generate-ini-pgsql
-	PROJECT_ROOT="$(CURDIR)" PROJECT_CONF=tests/pgsql.ini $(GOTEST) $(GOTESTFLAGS) forgejo.org/tests/integration
+	PROJECT_ROOT="$(CURDIR)" PROJECT_CONF=tests/pgsql.ini $(GOTEST) $(GOTESTFLAGS) novroforge.xyz/tests/integration
 
 .PHONY: test-pgsql\#%
 test-pgsql\#%: git-check $(GO_SOURCES) generate-ini-pgsql
-	PROJECT_ROOT="$(CURDIR)" PROJECT_CONF=tests/pgsql.ini $(GOTEST) $(GOTESTFLAGS) forgejo.org/tests/integration -test.run $(subst .,/,$*)
+	PROJECT_ROOT="$(CURDIR)" PROJECT_CONF=tests/pgsql.ini $(GOTEST) $(GOTESTFLAGS) novroforge.xyz/tests/integration -test.run $(subst .,/,$*)
 
 .PHONY: test-pgsql-migration
 test-pgsql-migration: migrations.pgsql.test migrations.individual.pgsql.test
@@ -758,59 +758,59 @@ test-e2e: test-e2e-sqlite
 
 .PHONY: test-e2e-sqlite
 test-e2e-sqlite: playwright $(GO_SOURCES) generate-ini-sqlite
-	PROJECT_ROOT="$(CURDIR)" PROJECT_CONF=tests/sqlite.ini $(GOTEST) $(GOTESTFLAGS) forgejo.org/tests/e2e -tags '$(TEST_TAGS)' -test.run TestE2e
+	PROJECT_ROOT="$(CURDIR)" PROJECT_CONF=tests/sqlite.ini $(GOTEST) $(GOTESTFLAGS) novroforge.xyz/tests/e2e -tags '$(TEST_TAGS)' -test.run TestE2e
 
 .PHONY: test-e2e-sqlite\#%
 test-e2e-sqlite\#%: playwright $(GO_SOURCES) generate-ini-sqlite
-	PROJECT_ROOT="$(CURDIR)" PROJECT_CONF=tests/sqlite.ini $(GOTEST) $(GOTESTFLAGS) forgejo.org/tests/e2e -tags '$(TEST_TAGS)' -test.run TestE2e/$*
+	PROJECT_ROOT="$(CURDIR)" PROJECT_CONF=tests/sqlite.ini $(GOTEST) $(GOTESTFLAGS) novroforge.xyz/tests/e2e -tags '$(TEST_TAGS)' -test.run TestE2e/$*
 
 .PHONY: test-e2e-sqlite-firefox\#%
 test-e2e-sqlite-firefox\#%: playwright $(GO_SOURCES) generate-ini-sqlite
-	PROJECT_ROOT="$(CURDIR)" PROJECT_CONF=tests/sqlite.ini PLAYWRIGHT_PROJECT=firefox $(GOTEST) $(GOTESTFLAGS) forgejo.org/tests/e2e -tags '$(TEST_TAGS)' -test.run TestE2e/$*
+	PROJECT_ROOT="$(CURDIR)" PROJECT_CONF=tests/sqlite.ini PLAYWRIGHT_PROJECT=firefox $(GOTEST) $(GOTESTFLAGS) novroforge.xyz/tests/e2e -tags '$(TEST_TAGS)' -test.run TestE2e/$*
 
 .PHONY: test-e2e-mysql
 test-e2e-mysql: playwright $(GO_SOURCES) generate-ini-mysql
-	PROJECT_ROOT="$(CURDIR)" PROJECT_CONF=tests/mysql.ini $(GOTEST) $(GOTESTFLAGS) forgejo.org/tests/e2e -test.run TestE2e
+	PROJECT_ROOT="$(CURDIR)" PROJECT_CONF=tests/mysql.ini $(GOTEST) $(GOTESTFLAGS) novroforge.xyz/tests/e2e -test.run TestE2e
 
 .PHONY: test-e2e-mysql\#%
 test-e2e-mysql\#%: playwright $(GO_SOURCES) generate-ini-mysql
-	PROJECT_ROOT="$(CURDIR)" PROJECT_CONF=tests/mysql.ini $(GOTEST) $(GOTESTFLAGS) forgejo.org/tests/e2e -test.run TestE2e/$*
+	PROJECT_ROOT="$(CURDIR)" PROJECT_CONF=tests/mysql.ini $(GOTEST) $(GOTESTFLAGS) novroforge.xyz/tests/e2e -test.run TestE2e/$*
 
 .PHONY: test-e2e-pgsql
 PROJECT_ROOT="$(CURDIR)" PROJECT_CONF=tests/sqlite.initest-e2e-pgsql: playwright $(GO_SOURCES) generate-ini-pgsql
-	PROJECT_ROOT="$(CURDIR)" PROJECT_CONF=tests/pgsql.ini $(GOTEST) $(GOTESTFLAGS) forgejo.org/tests/e2e -test.run TestE2e
+	PROJECT_ROOT="$(CURDIR)" PROJECT_CONF=tests/pgsql.ini $(GOTEST) $(GOTESTFLAGS) novroforge.xyz/tests/e2e -test.run TestE2e
 
 .PHONY: test-e2e-pgsql\#%
 test-e2e-pgsql\#%: playwright $(GO_SOURCES) generate-ini-pgsql
-	PROJECT_ROOT="$(CURDIR)" PROJECT_CONF=tests/pgsql.ini $(GOTEST) $(GOTESTFLAGS) forgejo.org/tests/e2e -test.run TestE2e/$*
+	PROJECT_ROOT="$(CURDIR)" PROJECT_CONF=tests/pgsql.ini $(GOTEST) $(GOTESTFLAGS) novroforge.xyz/tests/e2e -test.run TestE2e/$*
 
 .PHONY: test-e2e-debugserver
 test-e2e-debugserver: $(GO_SOURCES) generate-ini-sqlite
-	PROJECT_ROOT="$(CURDIR)" PROJECT_CONF=tests/sqlite.ini $(GOTEST) $(GOTESTFLAGS) forgejo.org/tests/e2e -tags '$(TEST_TAGS)' -test.run TestDebugserver
+	PROJECT_ROOT="$(CURDIR)" PROJECT_CONF=tests/sqlite.ini $(GOTEST) $(GOTESTFLAGS) novroforge.xyz/tests/e2e -tags '$(TEST_TAGS)' -test.run TestDebugserver
 
 .PHONY: bench-sqlite
 bench-sqlite: git-check $(GO_SOURCES) generate-ini-sqlite
-	PROJECT_ROOT="$(CURDIR)" PROJECT_CONF=tests/sqlite.ini $(GOTEST) $(GOTESTFLAGS) forgejo.org/tests/integration -tags '$(TEST_TAGS)' -test.cpuprofile=cpu.out -test.run DontRunTests -test.bench .
+	PROJECT_ROOT="$(CURDIR)" PROJECT_CONF=tests/sqlite.ini $(GOTEST) $(GOTESTFLAGS) novroforge.xyz/tests/integration -tags '$(TEST_TAGS)' -test.cpuprofile=cpu.out -test.run DontRunTests -test.bench .
 
 .PHONY: bench-mysql
 bench-mysql: git-check $(GO_SOURCES) generate-ini-mysql
-	PROJECT_ROOT="$(CURDIR)" PROJECT_CONF=tests/mysql.ini $(GOTEST) $(GOTESTFLAGS) forgejo.org/tests/integration -test.cpuprofile=cpu.out -test.run DontRunTests -test.bench .
+	PROJECT_ROOT="$(CURDIR)" PROJECT_CONF=tests/mysql.ini $(GOTEST) $(GOTESTFLAGS) novroforge.xyz/tests/integration -test.cpuprofile=cpu.out -test.run DontRunTests -test.bench .
 
 .PHONY: bench-pgsql
 bench-pgsql: git-check $(GO_SOURCES) generate-ini-pgsql
-	PROJECT_ROOT="$(CURDIR)" PROJECT_CONF=tests/pgsql.ini $(GOTEST) $(GOTESTFLAGS) forgejo.org/tests/integration -test.cpuprofile=cpu.out -test.run DontRunTests -test.bench .
+	PROJECT_ROOT="$(CURDIR)" PROJECT_CONF=tests/pgsql.ini $(GOTEST) $(GOTESTFLAGS) novroforge.xyz/tests/integration -test.cpuprofile=cpu.out -test.run DontRunTests -test.bench .
 
 .PHONY: migrations.mysql.test
 migrations.mysql.test: $(GO_SOURCES) generate-ini-mysql
-	PROJECT_ROOT="$(CURDIR)" PROJECT_CONF=tests/mysql.ini $(GOTEST) $(GOTESTFLAGS) forgejo.org/tests/integration/migration-test
+	PROJECT_ROOT="$(CURDIR)" PROJECT_CONF=tests/mysql.ini $(GOTEST) $(GOTESTFLAGS) novroforge.xyz/tests/integration/migration-test
 
 .PHONY: migrations.pgsql.test
 migrations.pgsql.test: $(GO_SOURCES) generate-ini-pgsql
-	PROJECT_ROOT="$(CURDIR)" PROJECT_CONF=tests/pgsql.ini $(GOTEST) $(GOTESTFLAGS) forgejo.org/tests/integration/migration-test
+	PROJECT_ROOT="$(CURDIR)" PROJECT_CONF=tests/pgsql.ini $(GOTEST) $(GOTESTFLAGS) novroforge.xyz/tests/integration/migration-test
 
 .PHONY: migrations.sqlite.test
 migrations.sqlite.test: $(GO_SOURCES) generate-ini-sqlite
-	PROJECT_ROOT="$(CURDIR)" PROJECT_CONF=tests/sqlite.ini $(GOTEST) $(GOTESTFLAGS) forgejo.org/tests/integration/migration-test -tags '$(TEST_TAGS)'
+	PROJECT_ROOT="$(CURDIR)" PROJECT_CONF=tests/sqlite.ini $(GOTEST) $(GOTESTFLAGS) novroforge.xyz/tests/integration/migration-test -tags '$(TEST_TAGS)'
 
 .PHONY: migrations.individual.mysql.test
 migrations.individual.mysql.test: $(GO_SOURCES) | compute-migration-packages
@@ -820,7 +820,7 @@ migrations.individual.mysql.test: $(GO_SOURCES) | compute-migration-packages
 
 .PHONY: migrations.individual.sqlite.test\#%
 migrations.individual.sqlite.test\#%: $(GO_SOURCES) generate-ini-sqlite
-	PROJECT_ROOT="$(CURDIR)" PROJECT_CONF=tests/sqlite.ini $(GOTEST) $(GOTESTFLAGS) -tags '$(TEST_TAGS)' forgejo.org/models/gitea_migrations/$*
+	PROJECT_ROOT="$(CURDIR)" PROJECT_CONF=tests/sqlite.ini $(GOTEST) $(GOTESTFLAGS) -tags '$(TEST_TAGS)' novroforge.xyz/models/gitea_migrations/$*
 
 .PHONY: migrations.individual.pgsql.test
 migrations.individual.pgsql.test: $(GO_SOURCES) | compute-migration-packages
@@ -830,7 +830,7 @@ migrations.individual.pgsql.test: $(GO_SOURCES) | compute-migration-packages
 
 .PHONY: migrations.individual.pgsql.test\#%
 migrations.individual.pgsql.test\#%: $(GO_SOURCES) generate-ini-pgsql
-	PROJECT_ROOT="$(CURDIR)" PROJECT_CONF=tests/pgsql.ini $(GOTEST) $(GOTESTFLAGS) -tags '$(TEST_TAGS)' forgejo.org/models/gitea_migrations/$*
+	PROJECT_ROOT="$(CURDIR)" PROJECT_CONF=tests/pgsql.ini $(GOTEST) $(GOTESTFLAGS) -tags '$(TEST_TAGS)' novroforge.xyz/models/gitea_migrations/$*
 
 .PHONY: migrations.individual.sqlite.test
 migrations.individual.sqlite.test: $(GO_SOURCES) generate-ini-sqlite | compute-migration-packages
@@ -840,7 +840,7 @@ migrations.individual.sqlite.test: $(GO_SOURCES) generate-ini-sqlite | compute-m
 
 .PHONY: migrations.individual.sqlite.test\#%
 migrations.individual.sqlite.test\#%: $(GO_SOURCES) generate-ini-sqlite
-	PROJECT_ROOT="$(CURDIR)" PROJECT_CONF=tests/sqlite.ini $(GOTEST) $(GOTESTFLAGS) -tags '$(TEST_TAGS)' forgejo.org/models/gitea_migrations/$*
+	PROJECT_ROOT="$(CURDIR)" PROJECT_CONF=tests/sqlite.ini $(GOTEST) $(GOTESTFLAGS) -tags '$(TEST_TAGS)' novroforge.xyz/models/gitea_migrations/$*
 
 .PHONY: check
 check: test

@@ -11,7 +11,7 @@ import (
 	"regexp"
 	"strings"
 
-	"forgejo.org/modules/options"
+	"novroforge.xyz/modules/options"
 )
 
 type LicenseValues struct {

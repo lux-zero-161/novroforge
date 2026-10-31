@@ -9,13 +9,13 @@ import (
 	"strings"
 	"time"
 
-	"forgejo.org/models/db"
-	repo_model "forgejo.org/models/repo"
-	system_model "forgejo.org/models/system"
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/log"
-	repo_module "forgejo.org/modules/repository"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/models/db"
+	repo_model "novroforge.xyz/models/repo"
+	system_model "novroforge.xyz/models/system"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/log"
+	repo_module "novroforge.xyz/modules/repository"
+	"novroforge.xyz/modules/util"
 
 	"xorm.io/builder"
 )

@@ -6,7 +6,7 @@ package a
 import (
 	"errors"
 
-	"forgejo.org/routers/api/v1/permissions"
+	"novroforge.xyz/routers/api/v1/permissions"
 )
 
 func directPermissionsCallFine(ctx permissions.Context) {

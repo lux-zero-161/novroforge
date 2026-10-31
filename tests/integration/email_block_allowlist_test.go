@@ -6,10 +6,10 @@ package integration
 import (
 	"testing"
 
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/test"
-	"forgejo.org/modules/validation"
-	"forgejo.org/tests"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/test"
+	"novroforge.xyz/modules/validation"
+	"novroforge.xyz/tests"
 
 	"github.com/gobwas/glob"
 	"github.com/stretchr/testify/assert"

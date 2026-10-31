@@ -6,7 +6,7 @@ package hash
 import (
 	"strconv"
 
-	"forgejo.org/modules/log"
+	"novroforge.xyz/modules/log"
 )
 
 func parseIntParam(value, param, algorithmName, config string, previousErr error) (int, error) {

@@ -6,10 +6,10 @@ package repo
 import (
 	"net/http"
 
-	issues_model "forgejo.org/models/issues"
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/log"
-	"forgejo.org/services/context"
+	issues_model "novroforge.xyz/models/issues"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/services/context"
 )
 
 // IssuePinOrUnpin pin or unpin a Issue

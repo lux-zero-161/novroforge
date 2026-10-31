@@ -9,10 +9,10 @@ import (
 	"fmt"
 	"strings"
 
-	"forgejo.org/models/db"
-	"forgejo.org/modules/cache"
-	setting_module "forgejo.org/modules/setting"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/cache"
+	setting_module "novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/util"
 
 	"xorm.io/builder"
 )

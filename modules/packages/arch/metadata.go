@@ -16,9 +16,9 @@ import (
 	"strconv"
 	"strings"
 
-	"forgejo.org/modules/packages"
-	"forgejo.org/modules/util"
-	"forgejo.org/modules/validation"
+	"novroforge.xyz/modules/packages"
+	"novroforge.xyz/modules/util"
+	"novroforge.xyz/modules/validation"
 
 	"github.com/mholt/archives"
 )

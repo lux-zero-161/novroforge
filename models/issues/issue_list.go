@@ -8,11 +8,11 @@ import (
 	"fmt"
 	"slices"
 
-	"forgejo.org/models/db"
-	project_model "forgejo.org/models/project"
-	repo_model "forgejo.org/models/repo"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/container"
+	"novroforge.xyz/models/db"
+	project_model "novroforge.xyz/models/project"
+	repo_model "novroforge.xyz/models/repo"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/container"
 
 	"xorm.io/builder"
 )

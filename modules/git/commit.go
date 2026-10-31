@@ -14,8 +14,8 @@ import (
 	"strconv"
 	"strings"
 
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/util"
 )
 
 // Commit represents a git commit.

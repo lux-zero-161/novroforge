@@ -11,7 +11,7 @@ import (
 	"sync/atomic"
 	"time"
 
-	"forgejo.org/modules/log"
+	"novroforge.xyz/modules/log"
 )
 
 type LogChecker struct {

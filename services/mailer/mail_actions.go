@@ -8,11 +8,11 @@ import (
 	"context"
 	"fmt"
 
-	actions_model "forgejo.org/models/actions"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/base"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/translation"
+	actions_model "novroforge.xyz/models/actions"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/base"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/translation"
 )
 
 const (

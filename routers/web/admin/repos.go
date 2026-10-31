@@ -8,16 +8,16 @@ import (
 	"net/url"
 	"strings"
 
-	"forgejo.org/models/db"
-	repo_model "forgejo.org/models/repo"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/base"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/util"
-	"forgejo.org/routers/web/explore"
-	"forgejo.org/services/context"
-	repo_service "forgejo.org/services/repository"
+	"novroforge.xyz/models/db"
+	repo_model "novroforge.xyz/models/repo"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/base"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/util"
+	"novroforge.xyz/routers/web/explore"
+	"novroforge.xyz/services/context"
+	repo_service "novroforge.xyz/services/repository"
 )
 
 const (

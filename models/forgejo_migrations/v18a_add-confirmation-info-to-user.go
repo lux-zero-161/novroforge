@@ -4,7 +4,7 @@
 package forgejo_migrations
 
 import (
-	"forgejo.org/modules/timeutil"
+	"novroforge.xyz/modules/timeutil"
 
 	"code.forgejo.org/xorm/xorm"
 )

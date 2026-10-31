@@ -8,10 +8,10 @@ import (
 	"context"
 	"fmt"
 
-	"forgejo.org/models/db"
-	"forgejo.org/models/organization"
-	access_model "forgejo.org/models/perm/access"
-	repo_model "forgejo.org/models/repo"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/organization"
+	access_model "novroforge.xyz/models/perm/access"
+	repo_model "novroforge.xyz/models/repo"
 )
 
 // RemoveOrgUser removes user from given organization.

@@ -7,12 +7,12 @@ import (
 	"net/http"
 	"testing"
 
-	"forgejo.org/models/unittest"
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/test"
-	"forgejo.org/modules/web"
-	"forgejo.org/services/contexttest"
-	"forgejo.org/services/forms"
+	"novroforge.xyz/models/unittest"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/test"
+	"novroforge.xyz/modules/web"
+	"novroforge.xyz/services/contexttest"
+	"novroforge.xyz/services/forms"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

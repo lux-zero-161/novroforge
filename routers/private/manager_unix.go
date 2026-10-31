@@ -6,8 +6,8 @@ package private
 import (
 	"net/http"
 
-	"forgejo.org/modules/graceful"
-	"forgejo.org/services/context"
+	"novroforge.xyz/modules/graceful"
+	"novroforge.xyz/services/context"
 )
 
 // Restart causes the server to perform a graceful restart

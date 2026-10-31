@@ -8,7 +8,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/setting"
 
 	"github.com/stretchr/testify/assert"
 )

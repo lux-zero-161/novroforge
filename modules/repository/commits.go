@@ -10,14 +10,14 @@ import (
 	"net/url"
 	"time"
 
-	asymkey_model "forgejo.org/models/asymkey"
-	"forgejo.org/models/avatars"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/cache"
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
-	api "forgejo.org/modules/structs"
+	asymkey_model "novroforge.xyz/models/asymkey"
+	"novroforge.xyz/models/avatars"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/cache"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
+	api "novroforge.xyz/modules/structs"
 )
 
 // PushCommit represents a commit in a push operation.

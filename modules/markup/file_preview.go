@@ -14,11 +14,11 @@ import (
 	"strconv"
 	"strings"
 
-	"forgejo.org/modules/charset"
-	"forgejo.org/modules/highlight"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/translation"
+	"novroforge.xyz/modules/charset"
+	"novroforge.xyz/modules/highlight"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/translation"
 
 	"golang.org/x/net/html"
 	"golang.org/x/net/html/atom"

@@ -7,11 +7,11 @@ package activitypub
 import (
 	"net/http"
 
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/activitypub"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
-	"forgejo.org/services/context"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/activitypub"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/services/context"
 
 	ap "github.com/go-ap/activitypub"
 	"github.com/go-ap/jsonld"

@@ -6,16 +6,16 @@ package indexer
 import (
 	"context"
 
-	issues_model "forgejo.org/models/issues"
-	repo_model "forgejo.org/models/repo"
-	user_model "forgejo.org/models/user"
-	code_indexer "forgejo.org/modules/indexer/code"
-	issue_indexer "forgejo.org/modules/indexer/issues"
-	stats_indexer "forgejo.org/modules/indexer/stats"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/repository"
-	"forgejo.org/modules/setting"
-	notify_service "forgejo.org/services/notify"
+	issues_model "novroforge.xyz/models/issues"
+	repo_model "novroforge.xyz/models/repo"
+	user_model "novroforge.xyz/models/user"
+	code_indexer "novroforge.xyz/modules/indexer/code"
+	issue_indexer "novroforge.xyz/modules/indexer/issues"
+	stats_indexer "novroforge.xyz/modules/indexer/stats"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/repository"
+	"novroforge.xyz/modules/setting"
+	notify_service "novroforge.xyz/services/notify"
 )
 
 type indexerNotifier struct {

@@ -6,8 +6,8 @@ package issues
 import (
 	"context"
 
-	"forgejo.org/models/db"
-	user_model "forgejo.org/models/user"
+	"novroforge.xyz/models/db"
+	user_model "novroforge.xyz/models/user"
 )
 
 // IssueLockOptions defines options for locking and/or unlocking an issue/PR

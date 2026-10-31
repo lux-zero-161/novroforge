@@ -6,11 +6,11 @@ package models
 import (
 	"testing"
 
-	activities_model "forgejo.org/models/activities"
-	"forgejo.org/models/organization"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/models/unittest"
-	user_model "forgejo.org/models/user"
+	activities_model "novroforge.xyz/models/activities"
+	"novroforge.xyz/models/organization"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/models/unittest"
+	user_model "novroforge.xyz/models/user"
 
 	"github.com/stretchr/testify/require"
 )

@@ -6,10 +6,10 @@ package misc
 import (
 	"net/http"
 
-	repo_module "forgejo.org/modules/repository"
-	"forgejo.org/modules/util"
-	"forgejo.org/services/context"
-	"forgejo.org/services/convert"
+	repo_module "novroforge.xyz/modules/repository"
+	"novroforge.xyz/modules/util"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/convert"
 )
 
 // Shows a list of all Label templates

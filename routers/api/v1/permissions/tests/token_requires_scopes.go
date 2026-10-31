@@ -8,8 +8,8 @@ import (
 	"strings"
 	"testing"
 
-	auth_model "forgejo.org/models/auth"
-	apiv1_permissions "forgejo.org/routers/api/v1/permissions"
+	auth_model "novroforge.xyz/models/auth"
+	apiv1_permissions "novroforge.xyz/routers/api/v1/permissions"
 )
 
 var _ = registerFunctionTestBuilder([]string{"TokenRequiresScopes "}, func(t *testing.T, signatureString string, signature []any) {

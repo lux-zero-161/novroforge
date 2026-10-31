@@ -11,9 +11,9 @@ import (
 	"net/url"
 	"strings"
 
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/util"
 )
 
 // Response is the structure of JSON returned from API

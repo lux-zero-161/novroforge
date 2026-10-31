@@ -10,7 +10,7 @@ import (
 	"strings"
 	"testing"
 
-	"forgejo.org/tests/forgery"
+	"novroforge.xyz/tests/forgery"
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/stretchr/testify/assert"

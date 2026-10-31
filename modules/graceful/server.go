@@ -15,9 +15,9 @@ import (
 	"syscall"
 	"time"
 
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/proxyprotocol"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/proxyprotocol"
+	"novroforge.xyz/modules/setting"
 )
 
 // GetListener returns a net listener

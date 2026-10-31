@@ -10,17 +10,17 @@ import (
 	"net/http"
 	"net/url"
 
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/gitrepo"
-	"forgejo.org/modules/setting"
-	api "forgejo.org/modules/structs"
-	"forgejo.org/modules/util"
-	"forgejo.org/modules/web"
-	"forgejo.org/services/context"
-	"forgejo.org/services/convert"
-	notify_service "forgejo.org/services/notify"
-	wiki_service "forgejo.org/services/wiki"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/gitrepo"
+	"novroforge.xyz/modules/setting"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/modules/util"
+	"novroforge.xyz/modules/web"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/convert"
+	notify_service "novroforge.xyz/services/notify"
+	wiki_service "novroforge.xyz/services/wiki"
 )
 
 // NewWikiPage response for wiki create request

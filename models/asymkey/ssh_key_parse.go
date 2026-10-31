@@ -17,10 +17,10 @@ import (
 	"strconv"
 	"strings"
 
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/process"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/process"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/util"
 
 	"golang.org/x/crypto/ssh"
 )

@@ -4,8 +4,8 @@
 package swagger
 
 import (
-	api "forgejo.org/modules/structs"
-	shared "forgejo.org/routers/api/v1/shared"
+	api "novroforge.xyz/modules/structs"
+	shared "novroforge.xyz/routers/api/v1/shared"
 )
 
 // SecretList

@@ -6,9 +6,9 @@ package repo
 import (
 	"net/http"
 
-	api "forgejo.org/modules/structs"
-	"forgejo.org/modules/web"
-	"forgejo.org/services/context"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/modules/web"
+	"novroforge.xyz/services/context"
 )
 
 func ListFlags(ctx *context.APIContext) {

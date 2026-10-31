@@ -9,10 +9,10 @@ import (
 	"net/url"
 	"testing"
 
-	git_model "forgejo.org/models/git"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/models/unittest"
-	app_context "forgejo.org/services/context"
+	git_model "novroforge.xyz/models/git"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/models/unittest"
+	app_context "novroforge.xyz/services/context"
 
 	"github.com/stretchr/testify/assert"
 )

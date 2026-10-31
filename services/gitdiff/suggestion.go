@@ -8,12 +8,12 @@ import (
 	"fmt"
 	"strings"
 
-	issues_model "forgejo.org/models/issues"
-	"forgejo.org/modules/gitrepo"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/markup/markdown"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/typesniffer"
+	issues_model "novroforge.xyz/models/issues"
+	"novroforge.xyz/modules/gitrepo"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/markup/markdown"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/typesniffer"
 )
 
 // SuggestionDiff is the rendered before/after view of one ```suggestion block; Index is its 0-based

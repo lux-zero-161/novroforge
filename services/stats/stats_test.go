@@ -9,9 +9,9 @@ import (
 	"sync"
 	"testing"
 
-	"forgejo.org/models/db"
-	"forgejo.org/modules/optional"
-	"forgejo.org/modules/timeutil"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/optional"
+	"novroforge.xyz/modules/timeutil"
 
 	"code.forgejo.org/xorm/xorm"
 	"github.com/stretchr/testify/assert"

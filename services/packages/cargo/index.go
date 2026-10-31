@@ -13,17 +13,17 @@ import (
 	"strconv"
 	"time"
 
-	packages_model "forgejo.org/models/packages"
-	repo_model "forgejo.org/models/repo"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/json"
-	cargo_module "forgejo.org/modules/packages/cargo"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/structs"
-	"forgejo.org/modules/util"
-	repo_service "forgejo.org/services/repository"
-	files_service "forgejo.org/services/repository/files"
+	packages_model "novroforge.xyz/models/packages"
+	repo_model "novroforge.xyz/models/repo"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/json"
+	cargo_module "novroforge.xyz/modules/packages/cargo"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/structs"
+	"novroforge.xyz/modules/util"
+	repo_service "novroforge.xyz/services/repository"
+	files_service "novroforge.xyz/services/repository/files"
 )
 
 const (

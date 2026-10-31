@@ -8,10 +8,10 @@ import (
 	"regexp"
 	"strings"
 
-	actions_model "forgejo.org/models/actions"
-	"forgejo.org/models/secret"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/util"
+	actions_model "novroforge.xyz/models/actions"
+	"novroforge.xyz/models/secret"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/util"
 )
 
 func CreateVariable(ctx context.Context, ownerID, repoID int64, name, data string) (*actions_model.ActionVariable, error) {

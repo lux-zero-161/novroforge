@@ -7,7 +7,7 @@ import (
 	"slices"
 	"strings"
 
-	"forgejo.org/modules/highlight"
+	"novroforge.xyz/modules/highlight"
 
 	"github.com/sergi/go-diff/diffmatchpatch"
 )

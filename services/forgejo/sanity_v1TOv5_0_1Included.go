@@ -6,9 +6,9 @@ import (
 	"fmt"
 	"strings"
 
-	"forgejo.org/models/db"
-	"forgejo.org/models/forgejo/semver"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/forgejo/semver"
+	"novroforge.xyz/modules/setting"
 
 	"github.com/hashicorp/go-version"
 )

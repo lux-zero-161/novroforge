@@ -7,10 +7,10 @@ import (
 	"fmt"
 	"net/http"
 
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/modules/gitrepo"
-	"forgejo.org/modules/private"
-	app_context "forgejo.org/services/context"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/modules/gitrepo"
+	"novroforge.xyz/modules/private"
+	app_context "novroforge.xyz/services/context"
 )
 
 // SetDefaultBranch updates the default branch

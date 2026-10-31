@@ -4,7 +4,7 @@
 package permissions
 
 import (
-	"forgejo.org/models/unit"
+	"novroforge.xyz/models/unit"
 )
 
 func MustEnableWiki(ctx Context) {

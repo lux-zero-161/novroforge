@@ -8,10 +8,10 @@ import (
 	"fmt"
 	"sort"
 
-	"forgejo.org/models/db"
-	access_model "forgejo.org/models/perm/access"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/services/stats"
+	"novroforge.xyz/models/db"
+	access_model "novroforge.xyz/models/perm/access"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/services/stats"
 
 	"xorm.io/builder"
 )

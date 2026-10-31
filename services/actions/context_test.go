@@ -6,14 +6,14 @@ package actions
 import (
 	"testing"
 
-	actions_model "forgejo.org/models/actions"
-	"forgejo.org/models/repo"
-	"forgejo.org/models/unittest"
-	"forgejo.org/models/user"
-	actions_module "forgejo.org/modules/actions"
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/setting"
-	webhook_module "forgejo.org/modules/webhook"
+	actions_model "novroforge.xyz/models/actions"
+	"novroforge.xyz/models/repo"
+	"novroforge.xyz/models/unittest"
+	"novroforge.xyz/models/user"
+	actions_module "novroforge.xyz/modules/actions"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/setting"
+	webhook_module "novroforge.xyz/modules/webhook"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

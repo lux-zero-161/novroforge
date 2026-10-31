@@ -9,8 +9,8 @@ import (
 	"testing"
 	"time"
 
-	"forgejo.org/models/unittest"
-	base "forgejo.org/modules/migration"
+	"novroforge.xyz/models/unittest"
+	base "novroforge.xyz/modules/migration"
 
 	"github.com/stretchr/testify/assert"
 )

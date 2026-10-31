@@ -7,9 +7,9 @@ import (
 	"errors"
 	"net/http"
 
-	"forgejo.org/modules/base"
-	"forgejo.org/services/context"
-	repo_service "forgejo.org/services/repository"
+	"novroforge.xyz/modules/base"
+	"novroforge.xyz/services/context"
+	repo_service "novroforge.xyz/services/repository"
 )
 
 const (

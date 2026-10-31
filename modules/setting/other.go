@@ -3,7 +3,7 @@
 
 package setting
 
-import "forgejo.org/modules/log"
+import "novroforge.xyz/modules/log"
 
 type OtherConfig struct {
 	ShowFooterVersion          bool

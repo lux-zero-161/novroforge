@@ -4,7 +4,7 @@
 package web
 
 import (
-	"forgejo.org/services/context"
+	"novroforge.xyz/services/context"
 )
 
 // SwaggerV1Json render swagger v1 json

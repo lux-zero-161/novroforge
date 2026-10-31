@@ -10,12 +10,12 @@ import (
 	"net/http"
 	"net/url"
 
-	webhook_model "forgejo.org/models/webhook"
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/log"
-	webhook_module "forgejo.org/modules/webhook"
-	"forgejo.org/services/forms"
-	"forgejo.org/services/webhook/shared"
+	webhook_model "novroforge.xyz/models/webhook"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/log"
+	webhook_module "novroforge.xyz/modules/webhook"
+	"novroforge.xyz/services/forms"
+	"novroforge.xyz/services/webhook/shared"
 )
 
 type packagistHandler struct{}

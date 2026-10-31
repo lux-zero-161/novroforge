@@ -6,8 +6,8 @@ package quota
 import (
 	"context"
 
-	"forgejo.org/models/db"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/setting"
 )
 
 func init() {

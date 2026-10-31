@@ -8,10 +8,10 @@ package zoekt
 import (
 	"context"
 
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/modules/indexer/code/internal"
-	indexer_internal "forgejo.org/modules/indexer/internal"
-	inner_zoekt "forgejo.org/modules/indexer/internal/zoekt"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/modules/indexer/code/internal"
+	indexer_internal "novroforge.xyz/modules/indexer/internal"
+	inner_zoekt "novroforge.xyz/modules/indexer/internal/zoekt"
 )
 
 type Indexer struct {

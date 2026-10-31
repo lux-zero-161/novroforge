@@ -14,12 +14,12 @@ import (
 	"strings"
 	"time"
 
-	"forgejo.org/modules/httplib"
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/optional"
-	"forgejo.org/modules/translation"
-	"forgejo.org/modules/web/middleware"
+	"novroforge.xyz/modules/httplib"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/optional"
+	"novroforge.xyz/modules/translation"
+	"novroforge.xyz/modules/web/middleware"
 
 	"github.com/go-chi/chi/v5"
 )

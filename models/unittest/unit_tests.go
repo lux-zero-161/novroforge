@@ -7,8 +7,8 @@ import (
 	"math"
 	"testing"
 
-	"forgejo.org/models/db"
-	"forgejo.org/services/stats"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/services/stats"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

@@ -8,8 +8,8 @@ import (
 	"net/http"
 	"strings"
 
-	issues_model "forgejo.org/models/issues"
-	api "forgejo.org/modules/structs"
+	issues_model "novroforge.xyz/models/issues"
+	api "novroforge.xyz/modules/structs"
 )
 
 func ReqEditIssue(ctx Context, issue *issues_model.Issue, opt *api.EditIssueOption) {

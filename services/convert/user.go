@@ -6,9 +6,9 @@ package convert
 import (
 	"context"
 
-	"forgejo.org/models/perm"
-	user_model "forgejo.org/models/user"
-	api "forgejo.org/modules/structs"
+	"novroforge.xyz/models/perm"
+	user_model "novroforge.xyz/models/user"
+	api "novroforge.xyz/modules/structs"
 )
 
 // ToUser convert user_model.User to api.User

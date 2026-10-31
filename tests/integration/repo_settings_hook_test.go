@@ -8,9 +8,9 @@ import (
 	"strings"
 	"testing"
 
-	"forgejo.org/models/db"
-	"forgejo.org/models/webhook"
-	"forgejo.org/tests"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/webhook"
+	"novroforge.xyz/tests"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

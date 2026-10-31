@@ -7,9 +7,9 @@ import (
 	"context"
 	"testing"
 
-	"forgejo.org/models/auth"
-	"forgejo.org/modules/test"
-	"forgejo.org/services/auth/source/oauth2"
+	"novroforge.xyz/models/auth"
+	"novroforge.xyz/modules/test"
+	"novroforge.xyz/services/auth/source/oauth2"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

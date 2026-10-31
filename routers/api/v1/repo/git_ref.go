@@ -7,10 +7,10 @@ import (
 	"net/http"
 	"net/url"
 
-	api "forgejo.org/modules/structs"
-	"forgejo.org/modules/util"
-	"forgejo.org/routers/api/v1/utils"
-	"forgejo.org/services/context"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/modules/util"
+	"novroforge.xyz/routers/api/v1/utils"
+	"novroforge.xyz/services/context"
 )
 
 // GetGitAllRefs get ref or an list all the refs of a repository

@@ -6,10 +6,10 @@ package forgejo_migrations
 import (
 	"testing"
 
-	migration_tests "forgejo.org/models/gitea_migrations/test"
-	"forgejo.org/modules/keying"
-	"forgejo.org/modules/timeutil"
-	webhook_module "forgejo.org/modules/webhook"
+	migration_tests "novroforge.xyz/models/gitea_migrations/test"
+	"novroforge.xyz/modules/keying"
+	"novroforge.xyz/modules/timeutil"
+	webhook_module "novroforge.xyz/modules/webhook"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

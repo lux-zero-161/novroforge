@@ -6,8 +6,8 @@ package httplib
 import (
 	"testing"
 
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/test"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/test"
 
 	"github.com/stretchr/testify/assert"
 )
@@ -68,7 +68,7 @@ func TestIsRiskyRedirectURL(t *testing.T) {
 }
 
 func TestIsRiskyRedirectURLWithoutSubURL(t *testing.T) {
-	defer test.MockVariableValue(&setting.AppURL, "https://next.forgejo.org/")()
+	defer test.MockVariableValue(&setting.AppURL, "https://next.novroforge.xyz/")()
 	defer test.MockVariableValue(&setting.AppSubURL, "")()
 
 	tests := []struct {
@@ -80,24 +80,24 @@ func TestIsRiskyRedirectURLWithoutSubURL(t *testing.T) {
 		{"./", false},
 		{"?key=val", false},
 		{"/sub/", false},
-		{"https://next.forgejo.org/sub/", false},
+		{"https://next.novroforge.xyz/sub/", false},
 		{"/sub/foo", false},
-		{"https://next.forgejo.org/sub/foo", false},
-		{"https://next.forgejo.org/sub/test?param=false", false},
-		{"https://next.forgejo.org/sub/../", false},
+		{"https://next.novroforge.xyz/sub/foo", false},
+		{"https://next.novroforge.xyz/sub/test?param=false", false},
+		{"https://next.novroforge.xyz/sub/../", false},
 		{"/sub/../", false},
 		{"/sUb/", false},
-		{"https://next.forgejo.org/sUb/foo", false},
+		{"https://next.novroforge.xyz/sUb/foo", false},
 		{"/sub", false},
 		{"/foo?k=%20#abc", false},
 		{"/", false},
 		{"a/", false},
 		{"test?param=false", false},
 		{"/hey/hey/hey#3244", false},
-		{"https://next.forgejo.org/test?param=false", false},
-		{"https://next.forgejo.org/foo", false},
-		{"https://next.forgejo.org/sub", false},
-		{"https://next.forgejo.org/sub?key=val", false},
+		{"https://next.novroforge.xyz/test?param=false", false},
+		{"https://next.novroforge.xyz/foo", false},
+		{"https://next.novroforge.xyz/sub", false},
+		{"https://next.novroforge.xyz/sub?key=val", false},
 
 		{"//", true},
 		{"\\\\", true},
@@ -110,11 +110,11 @@ func TestIsRiskyRedirectURLWithoutSubURL(t *testing.T) {
 		{"http://example.com", true},
 		{"://missing protocol scheme", true},
 		{"https://novroforge.xyz", true},
-		{"https://example.org?url=https://next.forgejo.org", true},
+		{"https://example.org?url=https://next.novroforge.xyz", true},
 		// FIXME: should probably be false
-		{"https://next.forgejo.org", true},
-		{"//next.forgejo.org/test?param=false", true},
-		{"//next.forgejo.org/sub/test?param=false", true},
+		{"https://next.novroforge.xyz", true},
+		{"//next.novroforge.xyz/test?param=false", true},
+		{"//next.novroforge.xyz/sub/test?param=false", true},
 		{"/a/../\\example.com", true},
 		{"/a/%2e%2e/\\example.com", true},
 	}

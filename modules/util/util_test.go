@@ -10,8 +10,8 @@ import (
 	"testing"
 	"testing/cryptotest"
 
-	"forgejo.org/modules/test"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/test"
+	"novroforge.xyz/modules/util"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

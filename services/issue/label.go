@@ -6,10 +6,10 @@ package issue
 import (
 	"context"
 
-	"forgejo.org/models/db"
-	issues_model "forgejo.org/models/issues"
-	user_model "forgejo.org/models/user"
-	notify_service "forgejo.org/services/notify"
+	"novroforge.xyz/models/db"
+	issues_model "novroforge.xyz/models/issues"
+	user_model "novroforge.xyz/models/user"
+	notify_service "novroforge.xyz/services/notify"
 )
 
 // ClearLabels clears all of an issue's labels

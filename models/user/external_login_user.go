@@ -8,8 +8,8 @@ import (
 	"fmt"
 	"time"
 
-	"forgejo.org/models/db"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/util"
 
 	"xorm.io/builder"
 )

@@ -7,8 +7,8 @@ import (
 	"fmt"
 	"net/http"
 
-	"forgejo.org/modules/setting"
-	"forgejo.org/services/context"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/services/context"
 )
 
 type nodeInfoLinks struct {

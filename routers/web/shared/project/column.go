@@ -4,9 +4,9 @@
 package project
 
 import (
-	project_model "forgejo.org/models/project"
-	"forgejo.org/modules/json"
-	"forgejo.org/services/context"
+	project_model "novroforge.xyz/models/project"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/services/context"
 )
 
 // MoveColumns moves or keeps columns in a project and sorts them inside that project

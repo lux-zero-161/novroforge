@@ -7,18 +7,18 @@ import (
 	"context"
 	"strings"
 
-	"forgejo.org/models/auth"
-	"forgejo.org/models/db"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/optional"
-	auth_service "forgejo.org/services/auth"
-	"forgejo.org/services/auth/source/oauth2"
-	"forgejo.org/services/auth/source/smtp"
+	"novroforge.xyz/models/auth"
+	"novroforge.xyz/models/db"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/optional"
+	auth_service "novroforge.xyz/services/auth"
+	"novroforge.xyz/services/auth/source/oauth2"
+	"novroforge.xyz/services/auth/source/smtp"
 
-	_ "forgejo.org/services/auth/source/db"   // register the sources (and below)
-	_ "forgejo.org/services/auth/source/ldap" // register the ldap source
-	_ "forgejo.org/services/auth/source/pam"  // register the pam source
+	_ "novroforge.xyz/services/auth/source/db"   // register the sources (and below)
+	_ "novroforge.xyz/services/auth/source/ldap" // register the ldap source
+	_ "novroforge.xyz/services/auth/source/pam"  // register the pam source
 )
 
 // UserSignIn validates user name and password.

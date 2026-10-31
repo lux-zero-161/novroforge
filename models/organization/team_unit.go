@@ -6,9 +6,9 @@ package organization
 import (
 	"context"
 
-	"forgejo.org/models/db"
-	"forgejo.org/models/perm"
-	"forgejo.org/models/unit"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/perm"
+	"novroforge.xyz/models/unit"
 )
 
 // TeamUnit describes all units of a repository

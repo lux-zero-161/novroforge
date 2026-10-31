@@ -6,8 +6,8 @@ package alpine
 import (
 	"context"
 
-	packages_model "forgejo.org/models/packages"
-	alpine_module "forgejo.org/modules/packages/alpine"
+	packages_model "novroforge.xyz/models/packages"
+	alpine_module "novroforge.xyz/modules/packages/alpine"
 )
 
 // GetBranches gets all available branches

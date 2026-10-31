@@ -6,8 +6,8 @@ package oauth2
 import (
 	"time"
 
-	"forgejo.org/modules/jwtx"
-	"forgejo.org/modules/timeutil"
+	"novroforge.xyz/modules/jwtx"
+	"novroforge.xyz/modules/timeutil"
 
 	"github.com/golang-jwt/jwt/v5"
 )

@@ -7,11 +7,11 @@ import (
 	"net/http"
 	"strings"
 
-	conan_model "forgejo.org/models/packages/conan"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/json"
-	conan_module "forgejo.org/modules/packages/conan"
-	"forgejo.org/services/context"
+	conan_model "novroforge.xyz/models/packages/conan"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/json"
+	conan_module "novroforge.xyz/modules/packages/conan"
+	"novroforge.xyz/services/context"
 )
 
 // SearchResult contains the found recipe names

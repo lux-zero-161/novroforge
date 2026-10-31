@@ -6,11 +6,11 @@ package issues
 import (
 	"context"
 
-	"forgejo.org/models/db"
-	org_model "forgejo.org/models/organization"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/container"
-	"forgejo.org/modules/optional"
+	"novroforge.xyz/models/db"
+	org_model "novroforge.xyz/models/organization"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/container"
+	"novroforge.xyz/modules/optional"
 
 	"xorm.io/builder"
 )

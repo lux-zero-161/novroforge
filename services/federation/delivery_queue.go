@@ -8,12 +8,12 @@ import (
 	"io"
 	"net/url"
 
-	"forgejo.org/models/user"
-	"forgejo.org/modules/activitypub"
-	"forgejo.org/modules/graceful"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/process"
-	"forgejo.org/modules/queue"
+	"novroforge.xyz/models/user"
+	"novroforge.xyz/modules/activitypub"
+	"novroforge.xyz/modules/graceful"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/process"
+	"novroforge.xyz/modules/queue"
 )
 
 type deliveryQueueItem struct {

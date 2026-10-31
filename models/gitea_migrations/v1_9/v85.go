@@ -6,10 +6,10 @@ package v1_9
 import (
 	"fmt"
 
-	"forgejo.org/models/gitea_migrations/base"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/timeutil"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/models/gitea_migrations/base"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/timeutil"
+	"novroforge.xyz/modules/util"
 
 	"code.forgejo.org/xorm/xorm"
 )

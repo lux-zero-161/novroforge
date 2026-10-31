@@ -6,7 +6,7 @@ package actions
 import (
 	"context"
 
-	"forgejo.org/models/db"
+	"novroforge.xyz/models/db"
 )
 
 // ActionTaskOutput represents an output of ActionTask.

@@ -7,15 +7,15 @@ import (
 	"errors"
 	"net/http"
 
-	"forgejo.org/models/packages"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/modules/optional"
-	api "forgejo.org/modules/structs"
-	"forgejo.org/modules/util"
-	"forgejo.org/routers/api/v1/utils"
-	"forgejo.org/services/context"
-	"forgejo.org/services/convert"
-	packages_service "forgejo.org/services/packages"
+	"novroforge.xyz/models/packages"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/modules/optional"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/modules/util"
+	"novroforge.xyz/routers/api/v1/utils"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/convert"
+	packages_service "novroforge.xyz/services/packages"
 )
 
 // ListPackages gets all packages of an owner

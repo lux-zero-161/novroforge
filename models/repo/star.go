@@ -6,9 +6,9 @@ package repo
 import (
 	"context"
 
-	"forgejo.org/models/db"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/timeutil"
+	"novroforge.xyz/models/db"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/timeutil"
 )
 
 // Star represents a starred repo by an user.

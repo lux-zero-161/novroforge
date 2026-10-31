@@ -4,10 +4,10 @@
 package repo
 
 import (
-	issues_model "forgejo.org/models/issues"
-	"forgejo.org/modules/web"
-	"forgejo.org/services/context"
-	"forgejo.org/services/forms"
+	issues_model "novroforge.xyz/models/issues"
+	"novroforge.xyz/modules/web"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/forms"
 )
 
 // LockIssue locks an issue. This would limit commenting abilities to

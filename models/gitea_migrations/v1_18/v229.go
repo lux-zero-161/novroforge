@@ -6,7 +6,7 @@ package v1_18
 import (
 	"fmt"
 
-	"forgejo.org/models/issues"
+	"novroforge.xyz/models/issues"
 
 	"code.forgejo.org/xorm/xorm"
 	"xorm.io/builder"

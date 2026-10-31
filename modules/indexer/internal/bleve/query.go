@@ -4,7 +4,7 @@
 package bleve
 
 import (
-	"forgejo.org/modules/optional"
+	"novroforge.xyz/modules/optional"
 
 	"github.com/blevesearch/bleve/v2"
 	"github.com/blevesearch/bleve/v2/search/query"

@@ -8,9 +8,9 @@ import (
 	"strings"
 	"time"
 
-	"forgejo.org/models/db"
-	"forgejo.org/modules/timeutil"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/timeutil"
+	"novroforge.xyz/modules/util"
 )
 
 // ErrPackageBlobUploadNotExist indicates a package blob upload not exist error

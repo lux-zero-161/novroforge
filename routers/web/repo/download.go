@@ -8,9 +8,9 @@ package repo
 import (
 	"time"
 
-	"forgejo.org/modules/git"
-	"forgejo.org/routers/common"
-	"forgejo.org/services/context"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/routers/common"
+	"novroforge.xyz/services/context"
 )
 
 func getBlobForEntry(ctx *context.Context) (*git.Blob, *time.Time) {

@@ -4,7 +4,7 @@
 package repository
 
 import (
-	"forgejo.org/modules/git"
+	"novroforge.xyz/modules/git"
 )
 
 // PushUpdateOptions defines the push update options

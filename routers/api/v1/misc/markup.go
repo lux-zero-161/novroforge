@@ -6,12 +6,12 @@ package misc
 import (
 	"net/http"
 
-	"forgejo.org/modules/markup"
-	"forgejo.org/modules/markup/markdown"
-	api "forgejo.org/modules/structs"
-	"forgejo.org/modules/web"
-	"forgejo.org/routers/common"
-	"forgejo.org/services/context"
+	"novroforge.xyz/modules/markup"
+	"novroforge.xyz/modules/markup/markdown"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/modules/web"
+	"novroforge.xyz/routers/common"
+	"novroforge.xyz/services/context"
 )
 
 // Markup render markup document to HTML

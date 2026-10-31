@@ -10,16 +10,16 @@ import (
 	"net/url"
 	"strings"
 
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/charset"
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/highlight"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/templates"
-	"forgejo.org/modules/util"
-	"forgejo.org/services/context"
-	files_service "forgejo.org/services/repository/files"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/charset"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/highlight"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/templates"
+	"novroforge.xyz/modules/util"
+	"novroforge.xyz/services/context"
+	files_service "novroforge.xyz/services/repository/files"
 )
 
 type blameRow struct {

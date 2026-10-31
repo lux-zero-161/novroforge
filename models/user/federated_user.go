@@ -7,7 +7,7 @@ import (
 	"database/sql"
 	"fmt"
 
-	"forgejo.org/modules/validation"
+	"novroforge.xyz/modules/validation"
 )
 
 type FederatedUser struct {

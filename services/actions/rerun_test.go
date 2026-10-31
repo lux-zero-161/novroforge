@@ -8,12 +8,12 @@ import (
 	"testing"
 	"time"
 
-	actions_model "forgejo.org/models/actions"
-	"forgejo.org/models/unit"
-	"forgejo.org/models/unittest"
-	"forgejo.org/modules/test"
-	"forgejo.org/modules/timeutil"
-	notify_service "forgejo.org/services/notify"
+	actions_model "novroforge.xyz/models/actions"
+	"novroforge.xyz/models/unit"
+	"novroforge.xyz/models/unittest"
+	"novroforge.xyz/modules/test"
+	"novroforge.xyz/modules/timeutil"
+	notify_service "novroforge.xyz/services/notify"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"

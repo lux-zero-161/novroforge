@@ -8,8 +8,8 @@ import (
 	"fmt"
 	"os"
 
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/util"
 )
 
 // CheckIfDiffDiffers returns if the diff of the newCommitID and

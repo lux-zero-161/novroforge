@@ -6,10 +6,10 @@ package repo
 import (
 	"net/http"
 
-	issues_model "forgejo.org/models/issues"
-	access_model "forgejo.org/models/perm/access"
-	"forgejo.org/modules/setting"
-	"forgejo.org/services/context"
+	issues_model "novroforge.xyz/models/issues"
+	access_model "novroforge.xyz/models/perm/access"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/services/context"
 )
 
 // AddDependency adds new dependencies

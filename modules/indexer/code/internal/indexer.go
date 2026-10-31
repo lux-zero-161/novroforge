@@ -7,9 +7,9 @@ import (
 	"context"
 	"errors"
 
-	"forgejo.org/models/db"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/modules/indexer/internal"
+	"novroforge.xyz/models/db"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/modules/indexer/internal"
 )
 
 // Indexer defines an interface to index and search code contents

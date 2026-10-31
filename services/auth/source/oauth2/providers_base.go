@@ -6,8 +6,8 @@ package oauth2
 import (
 	"html/template"
 
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/svg"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/svg"
 )
 
 // BaseProvider represents a common base for Provider

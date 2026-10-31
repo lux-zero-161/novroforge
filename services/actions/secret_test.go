@@ -6,9 +6,9 @@ package actions
 import (
 	"testing"
 
-	actions_model "forgejo.org/models/actions"
-	secret_model "forgejo.org/models/secret"
-	"forgejo.org/models/unittest"
+	actions_model "novroforge.xyz/models/actions"
+	secret_model "novroforge.xyz/models/secret"
+	"novroforge.xyz/models/unittest"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

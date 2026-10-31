@@ -7,8 +7,8 @@ import (
 	"os"
 	"testing"
 
-	"forgejo.org/modules/generate"
-	"forgejo.org/modules/test"
+	"novroforge.xyz/modules/generate"
+	"novroforge.xyz/modules/test"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

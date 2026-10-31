@@ -14,7 +14,7 @@ import (
 	"strings"
 	"sync/atomic"
 
-	"forgejo.org/modules/optional"
+	"novroforge.xyz/modules/optional"
 )
 
 var LinguistAttributes = []string{"linguist-vendored", "linguist-generated", "linguist-language", "gitlab-language", "linguist-documentation", "linguist-detectable"}

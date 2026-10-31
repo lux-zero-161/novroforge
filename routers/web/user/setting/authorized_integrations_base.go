@@ -7,11 +7,11 @@ import (
 	"fmt"
 	"strings"
 
-	auth_model "forgejo.org/models/auth"
-	"forgejo.org/models/db"
-	access_model "forgejo.org/models/perm/access"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/services/context"
+	auth_model "novroforge.xyz/models/auth"
+	"novroforge.xyz/models/db"
+	access_model "novroforge.xyz/models/perm/access"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/services/context"
 )
 
 type baseAuthorizedIntegrationForm struct {

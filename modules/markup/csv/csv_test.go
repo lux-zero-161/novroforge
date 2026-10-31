@@ -7,8 +7,8 @@ import (
 	"strings"
 	"testing"
 
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/markup"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/markup"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

@@ -6,12 +6,12 @@ package admin
 import (
 	"net/http"
 
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/structs"
-	"forgejo.org/modules/util"
-	"forgejo.org/routers/api/v1/utils"
-	"forgejo.org/services/context"
-	"forgejo.org/services/cron"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/structs"
+	"novroforge.xyz/modules/util"
+	"novroforge.xyz/routers/api/v1/utils"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/cron"
 )
 
 // ListCronTasks api for getting cron tasks

@@ -5,7 +5,7 @@ package redirect
 import (
 	"context"
 
-	user_model "forgejo.org/models/user"
+	user_model "novroforge.xyz/models/user"
 )
 
 // LookupUserRedirect returns the userID if there's a redirect registered for the

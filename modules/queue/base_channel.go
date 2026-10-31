@@ -9,8 +9,8 @@ import (
 	"sync"
 	"time"
 
-	"forgejo.org/modules/container"
-	"forgejo.org/modules/log"
+	"novroforge.xyz/modules/container"
+	"novroforge.xyz/modules/log"
 )
 
 var errChannelClosed = errors.New("channel is closed")

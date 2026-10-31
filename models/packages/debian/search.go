@@ -7,9 +7,9 @@ import (
 	"context"
 	"strconv"
 
-	"forgejo.org/models/db"
-	"forgejo.org/models/packages"
-	debian_module "forgejo.org/modules/packages/debian"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/packages"
+	debian_module "novroforge.xyz/modules/packages/debian"
 
 	"xorm.io/builder"
 )

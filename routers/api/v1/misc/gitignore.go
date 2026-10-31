@@ -6,11 +6,11 @@ package misc
 import (
 	"net/http"
 
-	"forgejo.org/modules/options"
-	repo_module "forgejo.org/modules/repository"
-	"forgejo.org/modules/structs"
-	"forgejo.org/modules/util"
-	"forgejo.org/services/context"
+	"novroforge.xyz/modules/options"
+	repo_module "novroforge.xyz/modules/repository"
+	"novroforge.xyz/modules/structs"
+	"novroforge.xyz/modules/util"
+	"novroforge.xyz/services/context"
 )
 
 // Shows a list of all Gitignore templates

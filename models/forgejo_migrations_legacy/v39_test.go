@@ -6,10 +6,10 @@ package forgejo_migrations_legacy
 import (
 	"testing"
 
-	migration_tests "forgejo.org/models/gitea_migrations/test"
-	"forgejo.org/models/secret"
-	"forgejo.org/modules/keying"
-	"forgejo.org/modules/timeutil"
+	migration_tests "novroforge.xyz/models/gitea_migrations/test"
+	"novroforge.xyz/models/secret"
+	"novroforge.xyz/modules/keying"
+	"novroforge.xyz/modules/timeutil"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

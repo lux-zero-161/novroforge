@@ -7,10 +7,10 @@ package files
 import (
 	"context"
 
-	asymkey_model "forgejo.org/models/asymkey"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/structs"
+	asymkey_model "novroforge.xyz/models/asymkey"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/structs"
 )
 
 // CountDivergingCommits determines how many commits a branch is ahead or behind the repository's base branch

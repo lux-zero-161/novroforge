@@ -7,9 +7,9 @@ import (
 	"net/http"
 	"testing"
 
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/test"
-	"forgejo.org/tests"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/test"
+	"novroforge.xyz/tests"
 )
 
 func testIssueCommentContextMenuItems(t *testing.T, page *HTMLDoc, quoteReference, editDelete, report bool) {

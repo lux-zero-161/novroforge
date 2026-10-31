@@ -6,10 +6,10 @@ package source
 import (
 	"context"
 
-	"forgejo.org/models/quota"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/container"
-	"forgejo.org/modules/log"
+	"novroforge.xyz/models/quota"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/container"
+	"novroforge.xyz/modules/log"
 )
 
 func SyncGroupsToQuotaGroups(ctx context.Context, user *user_model.User, sourceUserGroups container.Set[string], sourceGroupQuotaGroupMapping map[string]container.Set[string], performRemoval bool) error {

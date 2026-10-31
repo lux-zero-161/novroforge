@@ -3,7 +3,7 @@
 
 package context
 
-import "forgejo.org/models/organization"
+import "novroforge.xyz/models/organization"
 
 // APIOrganization contains organization and team
 type APIOrganization struct {

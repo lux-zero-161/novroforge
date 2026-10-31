@@ -17,7 +17,7 @@ import (
 	"syscall"
 	"testing"
 
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/setting"
 )
 
 func TestDebugserver(t *testing.T) {

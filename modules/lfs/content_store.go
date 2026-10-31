@@ -11,8 +11,8 @@ import (
 	"io"
 	"os"
 
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/storage"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/storage"
 )
 
 var (

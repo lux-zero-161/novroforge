@@ -6,11 +6,11 @@ package db
 import (
 	"context"
 
-	"forgejo.org/models/db"
-	issues_model "forgejo.org/models/issues"
-	indexer_internal "forgejo.org/modules/indexer/internal"
-	inner_db "forgejo.org/modules/indexer/internal/db"
-	"forgejo.org/modules/indexer/issues/internal"
+	"novroforge.xyz/models/db"
+	issues_model "novroforge.xyz/models/issues"
+	indexer_internal "novroforge.xyz/modules/indexer/internal"
+	inner_db "novroforge.xyz/modules/indexer/internal/db"
+	"novroforge.xyz/modules/indexer/issues/internal"
 
 	"xorm.io/builder"
 )

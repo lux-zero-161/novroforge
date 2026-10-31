@@ -7,8 +7,8 @@ import (
 	"fmt"
 	"path/filepath"
 
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/util"
 
 	"code.forgejo.org/xorm/xorm"
 	"xorm.io/builder"

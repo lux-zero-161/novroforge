@@ -4,12 +4,12 @@
 package method
 
 import (
-	auth_model "forgejo.org/models/auth"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/optional"
-	"forgejo.org/modules/timeutil"
-	"forgejo.org/services/auth"
-	"forgejo.org/services/authz"
+	auth_model "novroforge.xyz/models/auth"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/optional"
+	"novroforge.xyz/modules/timeutil"
+	"novroforge.xyz/services/auth"
+	"novroforge.xyz/services/authz"
 )
 
 var _ auth.AuthenticationResult = &authorizedIntegrationAuthenticationResult{}

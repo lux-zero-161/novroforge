@@ -9,12 +9,12 @@ import (
 	"strings"
 	"testing"
 
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/test"
-	repo_service "forgejo.org/services/repository"
-	"forgejo.org/tests"
-	"forgejo.org/tests/forgery"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/test"
+	repo_service "novroforge.xyz/services/repository"
+	"novroforge.xyz/tests"
+	"novroforge.xyz/tests/forgery"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

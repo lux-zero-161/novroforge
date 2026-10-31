@@ -7,10 +7,10 @@ import (
 	"net/url"
 	"testing"
 
-	"forgejo.org/models/actions"
-	"forgejo.org/models/unittest"
-	"forgejo.org/modules/optional"
-	"forgejo.org/modules/private"
+	"novroforge.xyz/models/actions"
+	"novroforge.xyz/models/unittest"
+	"novroforge.xyz/modules/optional"
+	"novroforge.xyz/modules/private"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

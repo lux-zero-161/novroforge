@@ -8,11 +8,11 @@ import (
 	"fmt"
 	"time"
 
-	"forgejo.org/models/db"
-	"forgejo.org/models/repo"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/timeutil"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/repo"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/timeutil"
+	"novroforge.xyz/modules/util"
 )
 
 // ErrIssueStopwatchNotExist represents an error that stopwatch is not exist

@@ -4,8 +4,8 @@
 package admin
 
 import (
-	"forgejo.org/routers/api/v1/utils"
-	"forgejo.org/services/context"
+	"novroforge.xyz/routers/api/v1/utils"
+	"novroforge.xyz/services/context"
 )
 
 // ListUserAccessTokens lists all access tokens for a given user.

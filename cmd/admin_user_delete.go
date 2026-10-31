@@ -9,9 +9,9 @@ import (
 	"fmt"
 	"strings"
 
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/storage"
-	user_service "forgejo.org/services/user"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/storage"
+	user_service "novroforge.xyz/services/user"
 
 	"github.com/urfave/cli/v3"
 )

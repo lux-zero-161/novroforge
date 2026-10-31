@@ -6,7 +6,7 @@ package actions
 import (
 	"testing"
 
-	actions_model "forgejo.org/models/actions"
+	actions_model "novroforge.xyz/models/actions"
 
 	"github.com/stretchr/testify/assert"
 )

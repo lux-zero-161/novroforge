@@ -9,10 +9,10 @@ import (
 	"html/template"
 	"slices"
 
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/translation/localeiter"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/translation/localeiter"
+	"novroforge.xyz/modules/util"
 )
 
 // This file implements the static LocaleStore that will not watch for changes

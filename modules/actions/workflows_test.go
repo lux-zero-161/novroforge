@@ -9,11 +9,11 @@ import (
 	"testing"
 	"time"
 
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/setting"
-	api "forgejo.org/modules/structs"
-	"forgejo.org/modules/test"
-	webhook_module "forgejo.org/modules/webhook"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/setting"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/modules/test"
+	webhook_module "novroforge.xyz/modules/webhook"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

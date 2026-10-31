@@ -7,9 +7,9 @@ import (
 	"context"
 	"fmt"
 
-	"forgejo.org/models/perm"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/modules/structs"
+	"novroforge.xyz/models/perm"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/modules/structs"
 
 	"xorm.io/builder"
 )

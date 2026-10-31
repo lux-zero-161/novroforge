@@ -6,15 +6,15 @@ package automerge
 import (
 	"testing"
 
-	"forgejo.org/models/db"
-	issues_model "forgejo.org/models/issues"
-	"forgejo.org/models/perm"
-	access_model "forgejo.org/models/perm/access"
-	pull_model "forgejo.org/models/pull"
-	"forgejo.org/models/unit"
-	"forgejo.org/models/unittest"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/models/db"
+	issues_model "novroforge.xyz/models/issues"
+	"novroforge.xyz/models/perm"
+	access_model "novroforge.xyz/models/perm/access"
+	pull_model "novroforge.xyz/models/pull"
+	"novroforge.xyz/models/unit"
+	"novroforge.xyz/models/unittest"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/util"
 
 	"github.com/stretchr/testify/require"
 )

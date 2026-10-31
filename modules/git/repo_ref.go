@@ -9,7 +9,7 @@ import (
 	"io"
 	"strings"
 
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/util"
 )
 
 // GetRefs returns all references of the repository.

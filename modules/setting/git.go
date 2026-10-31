@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	"forgejo.org/modules/log"
+	"novroforge.xyz/modules/log"
 )
 
 // Git settings

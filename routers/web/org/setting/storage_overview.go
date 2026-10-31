@@ -4,9 +4,9 @@
 package setting
 
 import (
-	"forgejo.org/modules/base"
-	"forgejo.org/routers/web/shared"
-	"forgejo.org/services/context"
+	"novroforge.xyz/modules/base"
+	"novroforge.xyz/routers/web/shared"
+	"novroforge.xyz/services/context"
 )
 
 const (

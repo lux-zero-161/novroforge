@@ -5,7 +5,7 @@
 package auth
 
 import (
-	"forgejo.org/modules/jwtx"
+	"novroforge.xyz/modules/jwtx"
 
 	mock "github.com/stretchr/testify/mock"
 )

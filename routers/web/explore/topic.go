@@ -6,11 +6,11 @@ package explore
 import (
 	"net/http"
 
-	"forgejo.org/models/db"
-	repo_model "forgejo.org/models/repo"
-	api "forgejo.org/modules/structs"
-	"forgejo.org/services/context"
-	"forgejo.org/services/convert"
+	"novroforge.xyz/models/db"
+	repo_model "novroforge.xyz/models/repo"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/convert"
 )
 
 // TopicSearch search for creating topic

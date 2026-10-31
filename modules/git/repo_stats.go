@@ -13,7 +13,7 @@ import (
 	"strings"
 	"time"
 
-	"forgejo.org/modules/container"
+	"novroforge.xyz/modules/container"
 )
 
 // CodeActivityStats represents git statistics data

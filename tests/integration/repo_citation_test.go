@@ -9,9 +9,9 @@ import (
 	"strings"
 	"testing"
 
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/tests"
-	"forgejo.org/tests/forgery"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/tests"
+	"novroforge.xyz/tests/forgery"
 
 	"github.com/stretchr/testify/assert"
 )

@@ -11,13 +11,13 @@ import (
 	"sort"
 	"strings"
 
-	packages_model "forgejo.org/models/packages"
-	packages_module "forgejo.org/modules/packages"
-	vagrant_module "forgejo.org/modules/packages/vagrant"
-	"forgejo.org/modules/setting"
-	"forgejo.org/routers/api/packages/helper"
-	"forgejo.org/services/context"
-	packages_service "forgejo.org/services/packages"
+	packages_model "novroforge.xyz/models/packages"
+	packages_module "novroforge.xyz/modules/packages"
+	vagrant_module "novroforge.xyz/modules/packages/vagrant"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/routers/api/packages/helper"
+	"novroforge.xyz/services/context"
+	packages_service "novroforge.xyz/services/packages"
 
 	"github.com/hashicorp/go-version"
 )

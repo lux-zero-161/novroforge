@@ -7,9 +7,9 @@ import (
 	"strings"
 	"testing"
 
-	org_model "forgejo.org/models/organization"
-	user_model "forgejo.org/models/user"
-	apiv1_permissions "forgejo.org/routers/api/v1/permissions"
+	org_model "novroforge.xyz/models/organization"
+	user_model "novroforge.xyz/models/user"
+	apiv1_permissions "novroforge.xyz/routers/api/v1/permissions"
 
 	"github.com/stretchr/testify/require"
 )

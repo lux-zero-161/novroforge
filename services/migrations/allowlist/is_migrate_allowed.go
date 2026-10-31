@@ -10,12 +10,12 @@ import (
 	"path/filepath"
 	"strings"
 
-	"forgejo.org/models"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/hostmatcher"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/models"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/hostmatcher"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/util"
 )
 
 var (

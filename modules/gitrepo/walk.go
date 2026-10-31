@@ -6,7 +6,7 @@ package gitrepo
 import (
 	"context"
 
-	"forgejo.org/modules/git"
+	"novroforge.xyz/modules/git"
 )
 
 // WalkReferences walks all the references from the repository

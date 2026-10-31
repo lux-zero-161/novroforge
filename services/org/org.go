@@ -7,15 +7,15 @@ import (
 	"context"
 	"fmt"
 
-	"forgejo.org/models"
-	"forgejo.org/models/db"
-	org_model "forgejo.org/models/organization"
-	packages_model "forgejo.org/models/packages"
-	repo_model "forgejo.org/models/repo"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/storage"
-	"forgejo.org/modules/util"
-	repo_service "forgejo.org/services/repository"
+	"novroforge.xyz/models"
+	"novroforge.xyz/models/db"
+	org_model "novroforge.xyz/models/organization"
+	packages_model "novroforge.xyz/models/packages"
+	repo_model "novroforge.xyz/models/repo"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/storage"
+	"novroforge.xyz/modules/util"
+	repo_service "novroforge.xyz/services/repository"
 )
 
 // DeleteOrganization completely and permanently deletes everything of organization.

@@ -6,7 +6,7 @@ package container
 import (
 	"testing"
 
-	packages_model "forgejo.org/models/packages"
+	packages_model "novroforge.xyz/models/packages"
 
 	"github.com/stretchr/testify/assert"
 )

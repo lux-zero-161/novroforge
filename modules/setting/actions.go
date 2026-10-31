@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	"forgejo.org/modules/jwtx"
+	"novroforge.xyz/modules/jwtx"
 )
 
 // Actions settings

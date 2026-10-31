@@ -6,8 +6,8 @@ package forms
 import (
 	"net/http"
 
-	"forgejo.org/modules/web/middleware"
-	"forgejo.org/services/context"
+	"novroforge.xyz/modules/web/middleware"
+	"novroforge.xyz/services/context"
 
 	"code.forgejo.org/go-chi/binding"
 )

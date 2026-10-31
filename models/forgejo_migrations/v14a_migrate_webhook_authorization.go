@@ -7,12 +7,12 @@ import (
 	"context"
 	"fmt"
 
-	"forgejo.org/models/db"
-	"forgejo.org/modules/keying"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/secret"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/timeutil"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/keying"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/secret"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/timeutil"
 
 	"code.forgejo.org/xorm/xorm"
 	"code.forgejo.org/xorm/xorm/schemas"

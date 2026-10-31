@@ -9,17 +9,17 @@ import (
 	"strings"
 	"time"
 
-	"forgejo.org/models/db"
-	git_model "forgejo.org/models/git"
-	repo_model "forgejo.org/models/repo"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/gitrepo"
-	"forgejo.org/modules/log"
-	repo_module "forgejo.org/modules/repository"
-	"forgejo.org/modules/structs"
-	"forgejo.org/modules/util"
-	notify_service "forgejo.org/services/notify"
+	"novroforge.xyz/models/db"
+	git_model "novroforge.xyz/models/git"
+	repo_model "novroforge.xyz/models/repo"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/gitrepo"
+	"novroforge.xyz/modules/log"
+	repo_module "novroforge.xyz/modules/repository"
+	"novroforge.xyz/modules/structs"
+	"novroforge.xyz/modules/util"
+	notify_service "novroforge.xyz/services/notify"
 )
 
 // ErrForkAlreadyExist represents a "ForkAlreadyExist" kind of error.

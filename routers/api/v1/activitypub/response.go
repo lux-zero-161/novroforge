@@ -6,11 +6,11 @@ package activitypub
 import (
 	"net/http"
 
-	"forgejo.org/modules/activitypub"
-	"forgejo.org/modules/forgefed"
-	"forgejo.org/modules/log"
-	"forgejo.org/services/context"
-	"forgejo.org/services/federation"
+	"novroforge.xyz/modules/activitypub"
+	"novroforge.xyz/modules/forgefed"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/federation"
 
 	ap "github.com/go-ap/activitypub"
 	"github.com/go-ap/jsonld"

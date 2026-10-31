@@ -6,8 +6,8 @@ package v1_18
 import (
 	"testing"
 
-	migration_tests "forgejo.org/models/gitea_migrations/test"
-	"forgejo.org/models/issues"
+	migration_tests "novroforge.xyz/models/gitea_migrations/test"
+	"novroforge.xyz/models/issues"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

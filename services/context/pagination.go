@@ -9,7 +9,7 @@ import (
 	"net/url"
 	"strings"
 
-	"forgejo.org/modules/paginator"
+	"novroforge.xyz/modules/paginator"
 )
 
 // Pagination provides a pagination via paginator.Paginator and additional configurations for the link params used in rendering

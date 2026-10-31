@@ -6,9 +6,9 @@ package organization
 import (
 	"context"
 
-	"forgejo.org/models/db"
-	"forgejo.org/models/perm"
-	repo_model "forgejo.org/models/repo"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/perm"
+	repo_model "novroforge.xyz/models/repo"
 
 	"xorm.io/builder"
 )

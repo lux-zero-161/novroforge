@@ -41,12 +41,12 @@ import (
 	"errors"
 	"time"
 
-	"forgejo.org/models/db"
-	"forgejo.org/modules/graceful"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/optional"
-	"forgejo.org/modules/queue"
-	"forgejo.org/modules/timeutil"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/graceful"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/optional"
+	"novroforge.xyz/modules/queue"
+	"novroforge.xyz/modules/timeutil"
 )
 
 type RecalcType int

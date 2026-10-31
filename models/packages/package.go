@@ -9,8 +9,8 @@ import (
 	"fmt"
 	"strings"
 
-	"forgejo.org/models/db"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/util"
 
 	"code.forgejo.org/xorm/xorm"
 	"xorm.io/builder"

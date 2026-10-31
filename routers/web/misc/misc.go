@@ -9,10 +9,10 @@ import (
 	"path"
 	"sync"
 
-	"forgejo.org/modules/httpcache"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/httpcache"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/util"
 )
 
 func SSHInfo(rw http.ResponseWriter, req *http.Request) {

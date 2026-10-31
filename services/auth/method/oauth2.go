@@ -12,13 +12,13 @@ import (
 	"strings"
 	"time"
 
-	auth_model "forgejo.org/models/auth"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/optional"
-	"forgejo.org/modules/setting"
-	"forgejo.org/services/auth"
-	"forgejo.org/services/auth/source/oauth2"
+	auth_model "novroforge.xyz/models/auth"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/optional"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/services/auth"
+	"novroforge.xyz/services/auth/source/oauth2"
 )
 
 // Ensure the struct implements the interface.

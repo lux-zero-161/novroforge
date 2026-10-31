@@ -8,16 +8,16 @@ import (
 	"fmt"
 	"strings"
 
-	"forgejo.org/models"
-	"forgejo.org/models/db"
-	issues_model "forgejo.org/models/issues"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/models/unit"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/timeutil"
-	notify_service "forgejo.org/services/notify"
+	"novroforge.xyz/models"
+	"novroforge.xyz/models/db"
+	issues_model "novroforge.xyz/models/issues"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/models/unit"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/timeutil"
+	notify_service "novroforge.xyz/services/notify"
 )
 
 // MergedManually mark pr as merged manually

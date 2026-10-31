@@ -7,10 +7,10 @@ import (
 	"context"
 	"net/http"
 
-	"forgejo.org/models/activities"
-	"forgejo.org/models/user"
-	fm "forgejo.org/modules/forgefed"
-	"forgejo.org/modules/log"
+	"novroforge.xyz/models/activities"
+	"novroforge.xyz/models/user"
+	fm "novroforge.xyz/modules/forgefed"
+	"novroforge.xyz/modules/log"
 
 	ap "github.com/go-ap/activitypub"
 )

@@ -8,11 +8,11 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"forgejo.org/models/db"
-	"forgejo.org/models/unittest"
-	"forgejo.org/models/user"
-	app_context "forgejo.org/services/context"
-	"forgejo.org/services/contexttest"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/unittest"
+	"novroforge.xyz/models/user"
+	app_context "novroforge.xyz/services/context"
+	"novroforge.xyz/services/contexttest"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

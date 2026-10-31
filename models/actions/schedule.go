@@ -6,12 +6,12 @@ package actions
 import (
 	"context"
 
-	"forgejo.org/models/db"
-	repo_model "forgejo.org/models/repo"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/timeutil"
-	"forgejo.org/modules/util"
-	webhook_module "forgejo.org/modules/webhook"
+	"novroforge.xyz/models/db"
+	repo_model "novroforge.xyz/models/repo"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/timeutil"
+	"novroforge.xyz/modules/util"
+	webhook_module "novroforge.xyz/modules/webhook"
 
 	"xorm.io/builder"
 )

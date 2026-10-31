@@ -6,9 +6,9 @@ package actions
 import (
 	"testing"
 
-	actions_model "forgejo.org/models/actions"
-	"forgejo.org/models/unittest"
-	notify_service "forgejo.org/services/notify"
+	actions_model "novroforge.xyz/models/actions"
+	"novroforge.xyz/models/unittest"
+	notify_service "novroforge.xyz/services/notify"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"

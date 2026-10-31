@@ -28,14 +28,14 @@ func run(pass *analysis.Pass) (any, error) {
 	cfgs := pass.ResultOf[ctrlflow.Analyzer].(*ctrlflow.CFGs)
 
 	terminatingFuncs := map[string]map[string]any{
-		"*forgejo.org/services/context.APIContext": {
+		"*novroforge.xyz/services/context.APIContext": {
 			"Error":                 true,
 			"InternalServerError":   true,
 			"NotFound":              true,
 			"NotFoundOrServerError": true,
 			"ServerError":           true,
 		},
-		"*forgejo.org/services/context.Base": {
+		"*novroforge.xyz/services/context.Base": {
 			"Error":               true,
 			"JSON":                true,
 			"JSONWithContentType": true,
@@ -44,7 +44,7 @@ func run(pass *analysis.Pass) (any, error) {
 			"Redirect":            true,
 			"ServeContent":        true,
 		},
-		"*forgejo.org/services/context.Context": {
+		"*novroforge.xyz/services/context.Context": {
 			"HTML":                  true,
 			"JSONError":             true,
 			"JSONOK":                true,
@@ -56,7 +56,7 @@ func run(pass *analysis.Pass) (any, error) {
 			"RenderWithErr":         true,
 			"ServerError":           true,
 		},
-		"forgejo.org/routers/api/v1/permissions.Context": {
+		"novroforge.xyz/routers/api/v1/permissions.Context": {
 			"Error":               true,
 			"InternalServerError": true,
 			"NotFound":            true,

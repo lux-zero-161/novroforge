@@ -6,10 +6,10 @@ package repo
 import (
 	"net/http"
 
-	"forgejo.org/models/unit"
-	"forgejo.org/modules/optional"
-	"forgejo.org/services/context"
-	issue_service "forgejo.org/services/issue"
+	"novroforge.xyz/models/unit"
+	"novroforge.xyz/modules/optional"
+	"novroforge.xyz/services/context"
+	issue_service "novroforge.xyz/services/issue"
 )
 
 // IssueSuggestions returns a list of issue suggestions

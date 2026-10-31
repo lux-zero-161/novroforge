@@ -10,16 +10,16 @@ import (
 	"strings"
 	"time"
 
-	"forgejo.org/cmd"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/cmd"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
 
 	// register supported doc types
-	_ "forgejo.org/modules/markup/asciicast"
-	_ "forgejo.org/modules/markup/console"
-	_ "forgejo.org/modules/markup/csv"
-	_ "forgejo.org/modules/markup/markdown"
-	_ "forgejo.org/modules/markup/orgmode"
+	_ "novroforge.xyz/modules/markup/asciicast"
+	_ "novroforge.xyz/modules/markup/console"
+	_ "novroforge.xyz/modules/markup/csv"
+	_ "novroforge.xyz/modules/markup/markdown"
+	_ "novroforge.xyz/modules/markup/orgmode"
 
 	"github.com/urfave/cli/v3"
 )

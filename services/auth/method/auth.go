@@ -8,11 +8,11 @@ import (
 	"fmt"
 	"net/http"
 
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/auth/webauthn"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/session"
-	"forgejo.org/services/auth"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/auth/webauthn"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/session"
+	"novroforge.xyz/services/auth"
 )
 
 // Init should be called exactly once when the application starts to allow plugins

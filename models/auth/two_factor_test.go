@@ -5,7 +5,7 @@ package auth
 import (
 	"testing"
 
-	"forgejo.org/models/unittest"
+	"novroforge.xyz/models/unittest"
 
 	"github.com/pquerna/otp/totp"
 	"github.com/stretchr/testify/assert"

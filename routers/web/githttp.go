@@ -6,10 +6,10 @@ package web
 import (
 	"net/http"
 
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/web"
-	"forgejo.org/routers/web/repo"
-	"forgejo.org/services/context"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/web"
+	"novroforge.xyz/routers/web/repo"
+	"novroforge.xyz/services/context"
 )
 
 func requireSignIn(ctx *context.Context) {

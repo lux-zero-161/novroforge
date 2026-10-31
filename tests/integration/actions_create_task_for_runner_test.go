@@ -9,11 +9,11 @@ import (
 	"testing"
 	"time"
 
-	actions_model "forgejo.org/models/actions"
-	"forgejo.org/models/unittest"
-	"forgejo.org/modules/setting"
-	"forgejo.org/services/actions"
-	"forgejo.org/tests"
+	actions_model "novroforge.xyz/models/actions"
+	"novroforge.xyz/models/unittest"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/services/actions"
+	"novroforge.xyz/tests"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

@@ -7,7 +7,7 @@ import (
 	"go/ast"
 	"go/token"
 
-	llu "forgejo.org/build/lint-locale-usage"
+	llu "novroforge.xyz/build/lint-locale-usage"
 )
 
 // special case: models/asymkey/*.go,

@@ -12,9 +12,9 @@ import (
 	"slices"
 	"strings"
 
-	"forgejo.org/modules/git/foreachref"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/git/foreachref"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/util"
 )
 
 // TagPrefix tags prefix path on the repository

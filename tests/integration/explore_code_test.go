@@ -4,10 +4,10 @@ import (
 	"net/http"
 	"testing"
 
-	code_indexer "forgejo.org/modules/indexer/code"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/test"
-	"forgejo.org/tests"
+	code_indexer "novroforge.xyz/modules/indexer/code"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/test"
+	"novroforge.xyz/tests"
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/stretchr/testify/assert"

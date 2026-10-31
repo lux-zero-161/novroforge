@@ -9,10 +9,10 @@ import (
 	"net/http"
 	"time"
 
-	"forgejo.org/modules/graceful"
-	"forgejo.org/modules/process"
-	"forgejo.org/modules/web"
-	web_types "forgejo.org/modules/web/types"
+	"novroforge.xyz/modules/graceful"
+	"novroforge.xyz/modules/process"
+	"novroforge.xyz/modules/web"
+	web_types "novroforge.xyz/modules/web/types"
 )
 
 // PrivateContext represents a context for private routes

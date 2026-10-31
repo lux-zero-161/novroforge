@@ -6,9 +6,9 @@ package git
 import (
 	"context"
 
-	"forgejo.org/models/db"
-	"forgejo.org/modules/setting"
-	api "forgejo.org/modules/structs"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/setting"
+	api "novroforge.xyz/modules/structs"
 
 	"xorm.io/builder"
 )

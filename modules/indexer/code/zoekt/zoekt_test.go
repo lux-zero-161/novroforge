@@ -6,7 +6,7 @@ package zoekt
 import (
 	"testing"
 
-	"forgejo.org/modules/indexer/code/internal"
+	"novroforge.xyz/modules/indexer/code/internal"
 
 	"github.com/sourcegraph/zoekt"
 	"github.com/stretchr/testify/assert"

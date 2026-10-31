@@ -8,11 +8,11 @@ import (
 	"sync"
 	"time"
 
-	"forgejo.org/modules/graceful"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/process"
-	"forgejo.org/modules/queue"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/graceful"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/process"
+	"novroforge.xyz/modules/queue"
+	"novroforge.xyz/modules/setting"
 )
 
 var testQueueOnce sync.Once

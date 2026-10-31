@@ -6,12 +6,12 @@ package repo
 import (
 	"net/http"
 
-	"forgejo.org/models"
-	repo_model "forgejo.org/models/repo"
-	unit_model "forgejo.org/models/unit"
-	"forgejo.org/services/context"
-	"forgejo.org/services/convert"
-	release_service "forgejo.org/services/release"
+	"novroforge.xyz/models"
+	repo_model "novroforge.xyz/models/repo"
+	unit_model "novroforge.xyz/models/unit"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/convert"
+	release_service "novroforge.xyz/services/release"
 )
 
 // GetReleaseByTag get a single release of a repository by tag name

@@ -8,8 +8,8 @@ import (
 	"net/http"
 	"strings"
 
-	quota_model "forgejo.org/models/quota"
-	"forgejo.org/modules/base"
+	quota_model "novroforge.xyz/models/quota"
+	"novroforge.xyz/modules/base"
 )
 
 type QuotaTargetType int

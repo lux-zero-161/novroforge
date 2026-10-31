@@ -14,13 +14,13 @@ import (
 	"strings"
 	"time"
 
-	"forgejo.org/models"
-	issues_model "forgejo.org/models/issues"
-	repo_model "forgejo.org/models/repo"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/log"
-	asymkey_service "forgejo.org/services/asymkey"
+	"novroforge.xyz/models"
+	issues_model "novroforge.xyz/models/issues"
+	repo_model "novroforge.xyz/models/repo"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/log"
+	asymkey_service "novroforge.xyz/services/asymkey"
 )
 
 type mergeContext struct {

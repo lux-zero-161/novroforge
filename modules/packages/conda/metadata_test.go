@@ -11,7 +11,7 @@ import (
 	"io"
 	"testing"
 
-	"forgejo.org/modules/zstd"
+	"novroforge.xyz/modules/zstd"
 
 	"github.com/dsnet/compress/bzip2"
 	"github.com/stretchr/testify/assert"

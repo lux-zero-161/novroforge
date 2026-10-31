@@ -7,7 +7,7 @@ package callout
 import (
 	"strings"
 
-	"forgejo.org/modules/markup/markdown/util"
+	"novroforge.xyz/modules/markup/markdown/util"
 
 	"github.com/yuin/goldmark/ast"
 	"github.com/yuin/goldmark/parser"

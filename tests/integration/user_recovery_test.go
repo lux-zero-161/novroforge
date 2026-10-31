@@ -7,12 +7,12 @@ import (
 	"net/http"
 	"testing"
 
-	"forgejo.org/models/unittest"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/test"
-	"forgejo.org/modules/translation"
-	"forgejo.org/services/mailer"
-	"forgejo.org/tests"
+	"novroforge.xyz/models/unittest"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/test"
+	"novroforge.xyz/modules/translation"
+	"novroforge.xyz/services/mailer"
+	"novroforge.xyz/tests"
 
 	"github.com/stretchr/testify/assert"
 )

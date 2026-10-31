@@ -8,7 +8,7 @@ import (
 	"maps"
 	"time"
 
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/setting"
 )
 
 // ContextDataStore represents a data store

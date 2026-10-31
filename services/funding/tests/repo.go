@@ -7,11 +7,11 @@ import (
 	"fmt"
 	"testing"
 
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/test"
-	"forgejo.org/services/funding"
-	"forgejo.org/tests/forgery"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/test"
+	"novroforge.xyz/services/funding"
+	"novroforge.xyz/tests/forgery"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

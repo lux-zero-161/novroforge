@@ -6,7 +6,7 @@ package setting
 import (
 	"net/url"
 
-	"forgejo.org/modules/log"
+	"novroforge.xyz/modules/log"
 )
 
 // Proxy settings

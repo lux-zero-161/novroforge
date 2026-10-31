@@ -11,8 +11,8 @@ import (
 	"net/url"
 	"os"
 
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
 )
 
 // ErrURLNotSupported represents url is not supported

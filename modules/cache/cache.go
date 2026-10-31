@@ -9,9 +9,9 @@ import (
 	"strconv"
 	"time"
 
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/sync"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/sync"
 
 	mc "code.forgejo.org/go-chi/cache"
 

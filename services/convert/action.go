@@ -7,11 +7,11 @@ import (
 	"context"
 	"fmt"
 
-	actions_model "forgejo.org/models/actions"
-	access_model "forgejo.org/models/perm/access"
-	user_model "forgejo.org/models/user"
-	api "forgejo.org/modules/structs"
-	"forgejo.org/modules/util"
+	actions_model "novroforge.xyz/models/actions"
+	access_model "novroforge.xyz/models/perm/access"
+	user_model "novroforge.xyz/models/user"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/modules/util"
 )
 
 // ToActionRun convert actions_model.User to api.ActionRun

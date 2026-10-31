@@ -11,9 +11,9 @@ import (
 	"regexp"
 	"strings"
 
-	"forgejo.org/modules/markup"
-	"forgejo.org/modules/translation"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/markup"
+	"novroforge.xyz/modules/translation"
+	"novroforge.xyz/modules/util"
 )
 
 const (

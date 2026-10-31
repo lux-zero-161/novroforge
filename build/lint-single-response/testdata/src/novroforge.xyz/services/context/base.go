@@ -1,7 +1,7 @@
 // Copyright 2026 The Forgejo Authors. All rights reserved.
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-// Skeletal implementation of forgejo.org/services/context which allows for test data to access realistic methods on
+// Skeletal implementation of novroforge.xyz/services/context which allows for test data to access realistic methods on
 // Base, Context, APIContext, etc.
 
 package context

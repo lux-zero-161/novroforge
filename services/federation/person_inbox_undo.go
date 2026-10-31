@@ -7,8 +7,8 @@ import (
 	"context"
 	"net/http"
 
-	"forgejo.org/models/user"
-	"forgejo.org/modules/log"
+	"novroforge.xyz/models/user"
+	"novroforge.xyz/modules/log"
 
 	ap "github.com/go-ap/activitypub"
 )

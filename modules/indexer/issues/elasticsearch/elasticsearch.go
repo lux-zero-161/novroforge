@@ -9,10 +9,10 @@ import (
 	"strconv"
 	"strings"
 
-	"forgejo.org/modules/graceful"
-	indexer_internal "forgejo.org/modules/indexer/internal"
-	inner_elasticsearch "forgejo.org/modules/indexer/internal/elasticsearch"
-	"forgejo.org/modules/indexer/issues/internal"
+	"novroforge.xyz/modules/graceful"
+	indexer_internal "novroforge.xyz/modules/indexer/internal"
+	inner_elasticsearch "novroforge.xyz/modules/indexer/internal/elasticsearch"
+	"novroforge.xyz/modules/indexer/issues/internal"
 
 	"github.com/olivere/elastic/v7"
 )

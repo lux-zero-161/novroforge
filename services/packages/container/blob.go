@@ -12,14 +12,14 @@ import (
 	"strings"
 	"sync"
 
-	"forgejo.org/models/db"
-	packages_model "forgejo.org/models/packages"
-	container_model "forgejo.org/models/packages/container"
-	"forgejo.org/modules/log"
-	packages_module "forgejo.org/modules/packages"
-	container_module "forgejo.org/modules/packages/container"
-	"forgejo.org/modules/util"
-	packages_service "forgejo.org/services/packages"
+	"novroforge.xyz/models/db"
+	packages_model "novroforge.xyz/models/packages"
+	container_model "novroforge.xyz/models/packages/container"
+	"novroforge.xyz/modules/log"
+	packages_module "novroforge.xyz/modules/packages"
+	container_module "novroforge.xyz/modules/packages/container"
+	"novroforge.xyz/modules/util"
+	packages_service "novroforge.xyz/services/packages"
 
 	oci_digest "github.com/opencontainers/go-digest"
 )

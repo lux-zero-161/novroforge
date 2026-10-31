@@ -6,10 +6,10 @@ package stats
 import (
 	"context"
 
-	"forgejo.org/models/db"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/modules/graceful"
-	"forgejo.org/modules/log"
+	"novroforge.xyz/models/db"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/modules/graceful"
+	"novroforge.xyz/modules/log"
 )
 
 // Indexer defines an interface to index repository stats

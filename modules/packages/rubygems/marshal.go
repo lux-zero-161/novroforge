@@ -9,7 +9,7 @@ import (
 	"io"
 	"reflect"
 
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/util"
 )
 
 const (

@@ -7,15 +7,15 @@ import (
 	"context"
 	"time"
 
-	activities_model "forgejo.org/models/activities"
-	issues_model "forgejo.org/models/issues"
-	"forgejo.org/modules/graceful"
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/process"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/timeutil"
-	"forgejo.org/services/convert"
+	activities_model "novroforge.xyz/models/activities"
+	issues_model "novroforge.xyz/models/issues"
+	"novroforge.xyz/modules/graceful"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/process"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/timeutil"
+	"novroforge.xyz/services/convert"
 )
 
 // Init starts this eventsource

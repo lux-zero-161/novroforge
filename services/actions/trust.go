@@ -8,15 +8,15 @@ import (
 	"errors"
 	"fmt"
 
-	actions_model "forgejo.org/models/actions"
-	issues_model "forgejo.org/models/issues"
-	access_model "forgejo.org/models/perm/access"
-	repo_model "forgejo.org/models/repo"
-	unit_model "forgejo.org/models/unit"
-	user_model "forgejo.org/models/user"
-	actions_module "forgejo.org/modules/actions"
-	"forgejo.org/modules/log"
-	webhook_module "forgejo.org/modules/webhook"
+	actions_model "novroforge.xyz/models/actions"
+	issues_model "novroforge.xyz/models/issues"
+	access_model "novroforge.xyz/models/perm/access"
+	repo_model "novroforge.xyz/models/repo"
+	unit_model "novroforge.xyz/models/unit"
+	user_model "novroforge.xyz/models/user"
+	actions_module "novroforge.xyz/modules/actions"
+	"novroforge.xyz/modules/log"
+	webhook_module "novroforge.xyz/modules/webhook"
 )
 
 type TrustUpdate string

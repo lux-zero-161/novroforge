@@ -8,9 +8,9 @@ import (
 	"os"
 	"strings"
 
-	repo_model "forgejo.org/models/repo"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/setting"
+	repo_model "novroforge.xyz/models/repo"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/setting"
 )
 
 // env keys for git hooks need

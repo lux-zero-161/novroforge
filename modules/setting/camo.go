@@ -6,7 +6,7 @@ package setting
 import (
 	"strconv"
 
-	"forgejo.org/modules/log"
+	"novroforge.xyz/modules/log"
 )
 
 var Camo = struct {

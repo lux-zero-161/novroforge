@@ -7,12 +7,12 @@ import (
 	go_context "context"
 	"net/http"
 
-	"forgejo.org/models/db"
-	quota_model "forgejo.org/models/quota"
-	api "forgejo.org/modules/structs"
-	"forgejo.org/modules/web"
-	"forgejo.org/services/context"
-	"forgejo.org/services/convert"
+	"novroforge.xyz/models/db"
+	quota_model "novroforge.xyz/models/quota"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/modules/web"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/convert"
 )
 
 // ListQuotaGroups returns all the quota groups

@@ -10,7 +10,7 @@ import (
 	"strconv"
 	"strings"
 
-	"forgejo.org/modules/validation"
+	"novroforge.xyz/modules/validation"
 )
 
 // ----------------------------- ActorID --------------------------------------------

@@ -6,13 +6,13 @@ package moderation
 import (
 	"slices"
 
-	"forgejo.org/models/issues"
-	"forgejo.org/models/moderation"
-	"forgejo.org/models/repo"
-	"forgejo.org/models/user"
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/log"
-	"forgejo.org/services/context"
+	"novroforge.xyz/models/issues"
+	"novroforge.xyz/models/moderation"
+	"novroforge.xyz/models/repo"
+	"novroforge.xyz/models/user"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/services/context"
 )
 
 type ReportAction int

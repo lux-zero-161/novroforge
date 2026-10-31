@@ -14,12 +14,12 @@ import (
 	"strings"
 	"sync"
 
-	auth_model "forgejo.org/models/auth"
-	"forgejo.org/models/perm"
-	"forgejo.org/models/unit"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/web/routing"
+	auth_model "novroforge.xyz/models/auth"
+	"novroforge.xyz/models/perm"
+	"novroforge.xyz/models/unit"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/web/routing"
 )
 
 // Helpers to keep track of the ordered sequence of permissions middleware used by

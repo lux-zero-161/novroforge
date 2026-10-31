@@ -12,9 +12,9 @@ import (
 	"io"
 	"time"
 
-	auth_model "forgejo.org/models/auth"
-	"forgejo.org/modules/timeutil"
-	"forgejo.org/modules/util"
+	auth_model "novroforge.xyz/models/auth"
+	"novroforge.xyz/modules/timeutil"
+	"novroforge.xyz/modules/util"
 )
 
 func generateSaltedToken() (string, string, string, string) {

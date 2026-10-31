@@ -6,11 +6,11 @@ package source
 import (
 	"testing"
 
-	"forgejo.org/models/db"
-	quota_model "forgejo.org/models/quota"
-	"forgejo.org/models/unittest"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/container"
+	"novroforge.xyz/models/db"
+	quota_model "novroforge.xyz/models/quota"
+	"novroforge.xyz/models/unittest"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/container"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

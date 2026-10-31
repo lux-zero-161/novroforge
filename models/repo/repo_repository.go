@@ -5,8 +5,8 @@ package repo
 import (
 	"context"
 
-	"forgejo.org/models/db"
-	"forgejo.org/modules/validation"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/validation"
 )
 
 func init() {

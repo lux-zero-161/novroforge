@@ -8,12 +8,12 @@ import (
 	"html"
 	"net/http"
 
-	"forgejo.org/modules/public"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/web"
-	"forgejo.org/routers/common"
-	"forgejo.org/routers/web/healthcheck"
-	"forgejo.org/services/forms"
+	"novroforge.xyz/modules/public"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/web"
+	"novroforge.xyz/routers/common"
+	"novroforge.xyz/routers/web/healthcheck"
+	"novroforge.xyz/services/forms"
 )
 
 // Routes registers the installation routes

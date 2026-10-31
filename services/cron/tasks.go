@@ -11,14 +11,14 @@ import (
 	"sync"
 	"time"
 
-	"forgejo.org/models/db"
-	system_model "forgejo.org/models/system"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/graceful"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/process"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/translation"
+	"novroforge.xyz/models/db"
+	system_model "novroforge.xyz/models/system"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/graceful"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/process"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/translation"
 
 	"github.com/go-co-op/gocron/v2"
 )

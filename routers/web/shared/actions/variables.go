@@ -4,13 +4,13 @@
 package actions
 
 import (
-	actions_model "forgejo.org/models/actions"
-	"forgejo.org/models/db"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/web"
-	actions_service "forgejo.org/services/actions"
-	"forgejo.org/services/context"
-	"forgejo.org/services/forms"
+	actions_model "novroforge.xyz/models/actions"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/web"
+	actions_service "novroforge.xyz/services/actions"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/forms"
 )
 
 func SetVariablesContext(ctx *context.Context, ownerID, repoID int64) {

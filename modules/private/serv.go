@@ -9,9 +9,9 @@ import (
 	"net/url"
 	"strings"
 
-	asymkey_model "forgejo.org/models/asymkey"
-	"forgejo.org/models/perm"
-	user_model "forgejo.org/models/user"
+	asymkey_model "novroforge.xyz/models/asymkey"
+	"novroforge.xyz/models/perm"
+	user_model "novroforge.xyz/models/user"
 )
 
 // KeyAndOwner is the response from ServNoCommand

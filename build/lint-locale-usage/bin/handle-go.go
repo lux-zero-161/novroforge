@@ -14,10 +14,10 @@ import (
 	"strconv"
 	"strings"
 
-	llu "forgejo.org/build/lint-locale-usage"
-	lluAsymKey "forgejo.org/models/asymkey/lint-locale-usage"
-	lluUnit "forgejo.org/models/unit/lint-locale-usage"
-	lluMigrate "forgejo.org/services/migrations/lint-locale-usage"
+	llu "novroforge.xyz/build/lint-locale-usage"
+	lluAsymKey "novroforge.xyz/models/asymkey/lint-locale-usage"
+	lluUnit "novroforge.xyz/models/unit/lint-locale-usage"
+	lluMigrate "novroforge.xyz/services/migrations/lint-locale-usage"
 )
 
 // the `Handle*File` functions follow the following calling convention:

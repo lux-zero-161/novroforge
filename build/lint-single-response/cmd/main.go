@@ -4,7 +4,7 @@
 package main
 
 import (
-	singleresponse "forgejo.org/build/lint-single-response"
+	singleresponse "novroforge.xyz/build/lint-single-response"
 
 	"golang.org/x/tools/go/analysis/singlechecker"
 )

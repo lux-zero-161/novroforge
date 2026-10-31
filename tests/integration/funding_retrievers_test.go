@@ -7,9 +7,9 @@ import (
 	"net/url"
 	"testing"
 
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/test"
-	funding_tests "forgejo.org/services/funding/tests"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/test"
+	funding_tests "novroforge.xyz/services/funding/tests"
 )
 
 func TestFundingRetrieval(t *testing.T) {

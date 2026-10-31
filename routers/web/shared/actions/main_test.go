@@ -6,10 +6,10 @@ package actions
 import (
 	"testing"
 
-	"forgejo.org/models/unittest"
+	"novroforge.xyz/models/unittest"
 
-	_ "forgejo.org/models"
-	_ "forgejo.org/models/forgefed"
+	_ "novroforge.xyz/models"
+	_ "novroforge.xyz/models/forgefed"
 )
 
 func TestMain(m *testing.M) {

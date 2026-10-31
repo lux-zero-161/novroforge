@@ -13,12 +13,12 @@ import (
 	"strconv"
 	"strings"
 
-	"forgejo.org/models/db"
-	"forgejo.org/models/packages"
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/packages/maven"
-	packages_service "forgejo.org/services/packages"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/packages"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/packages/maven"
+	packages_service "novroforge.xyz/services/packages"
 
 	"code.forgejo.org/xorm/xorm"
 )

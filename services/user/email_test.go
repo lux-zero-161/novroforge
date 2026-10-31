@@ -6,12 +6,12 @@ package user
 import (
 	"testing"
 
-	auth_model "forgejo.org/models/auth"
-	"forgejo.org/models/db"
-	org_model "forgejo.org/models/organization"
-	"forgejo.org/models/unittest"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/setting"
+	auth_model "novroforge.xyz/models/auth"
+	"novroforge.xyz/models/db"
+	org_model "novroforge.xyz/models/organization"
+	"novroforge.xyz/models/unittest"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/setting"
 
 	"github.com/gobwas/glob"
 	"github.com/stretchr/testify/assert"

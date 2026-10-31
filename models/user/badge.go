@@ -6,7 +6,7 @@ package user
 import (
 	"context"
 
-	"forgejo.org/models/db"
+	"novroforge.xyz/models/db"
 )
 
 // Badge represents a user badge

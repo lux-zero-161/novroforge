@@ -11,11 +11,11 @@ import (
 	"os"
 	"strings"
 
-	user_model "forgejo.org/models/user"
-	auth_password "forgejo.org/modules/auth/password"
-	"forgejo.org/modules/optional"
-	"forgejo.org/modules/setting"
-	user_service "forgejo.org/services/user"
+	user_model "novroforge.xyz/models/user"
+	auth_password "novroforge.xyz/modules/auth/password"
+	"novroforge.xyz/modules/optional"
+	"novroforge.xyz/modules/setting"
+	user_service "novroforge.xyz/services/user"
 
 	"github.com/urfave/cli/v3"
 	"golang.org/x/term"

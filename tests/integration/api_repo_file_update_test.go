@@ -12,14 +12,14 @@ import (
 	"path/filepath"
 	"testing"
 
-	"forgejo.org/models/asymkey"
-	auth_model "forgejo.org/models/auth"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/models/unittest"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/gitrepo"
-	"forgejo.org/modules/setting"
-	api "forgejo.org/modules/structs"
+	"novroforge.xyz/models/asymkey"
+	auth_model "novroforge.xyz/models/auth"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/models/unittest"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/gitrepo"
+	"novroforge.xyz/modules/setting"
+	api "novroforge.xyz/modules/structs"
 
 	"github.com/stretchr/testify/assert"
 )

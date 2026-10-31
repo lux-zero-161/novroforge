@@ -8,9 +8,9 @@ import (
 	"fmt"
 	"time"
 
-	"forgejo.org/models/db"
-	"forgejo.org/models/perm"
-	"forgejo.org/modules/timeutil"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/perm"
+	"novroforge.xyz/modules/timeutil"
 
 	"xorm.io/builder"
 )

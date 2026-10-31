@@ -6,12 +6,12 @@ package access_test
 import (
 	"testing"
 
-	"forgejo.org/models/db"
-	perm_model "forgejo.org/models/perm"
-	access_model "forgejo.org/models/perm/access"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/models/unittest"
-	user_model "forgejo.org/models/user"
+	"novroforge.xyz/models/db"
+	perm_model "novroforge.xyz/models/perm"
+	access_model "novroforge.xyz/models/perm/access"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/models/unittest"
+	user_model "novroforge.xyz/models/user"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

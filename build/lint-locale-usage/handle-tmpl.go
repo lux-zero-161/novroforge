@@ -12,8 +12,8 @@ import (
 	"text/template"
 	tmplParser "text/template/parse"
 
-	fjTemplates "forgejo.org/modules/templates"
-	"forgejo.org/modules/util"
+	fjTemplates "novroforge.xyz/modules/templates"
+	"novroforge.xyz/modules/util"
 )
 
 // derived from source: modules/templates/scopedtmpl/scopedtmpl.go, L169-L213

@@ -13,10 +13,10 @@ import (
 	"testing"
 	"time"
 
-	"forgejo.org/models/db"
-	"forgejo.org/modules/indexer/issues/internal"
-	"forgejo.org/modules/optional"
-	"forgejo.org/modules/timeutil"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/indexer/issues/internal"
+	"novroforge.xyz/modules/optional"
+	"novroforge.xyz/modules/timeutil"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

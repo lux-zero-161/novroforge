@@ -7,10 +7,10 @@ import (
 	"context"
 	"strings"
 
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/modules/lfs"
-	"forgejo.org/modules/util"
-	"forgejo.org/services/gitdiff"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/modules/lfs"
+	"novroforge.xyz/modules/util"
+	"novroforge.xyz/services/gitdiff"
 )
 
 // GetDiffPreview produces and returns diff result of a file which is not yet committed.

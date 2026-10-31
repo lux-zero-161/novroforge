@@ -5,10 +5,10 @@
 package misc
 
 import (
-	api "forgejo.org/modules/structs"
-	"forgejo.org/modules/web"
-	"forgejo.org/routers/common"
-	"forgejo.org/services/context"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/modules/web"
+	"novroforge.xyz/routers/common"
+	"novroforge.xyz/services/context"
 )
 
 // Markup render markup document to HTML

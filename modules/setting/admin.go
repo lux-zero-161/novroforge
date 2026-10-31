@@ -4,7 +4,7 @@
 package setting
 
 import (
-	"forgejo.org/modules/container"
+	"novroforge.xyz/modules/container"
 )
 
 // Admin settings

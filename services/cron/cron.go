@@ -9,11 +9,11 @@ import (
 	"runtime/pprof"
 	"time"
 
-	"forgejo.org/modules/graceful"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/process"
-	"forgejo.org/modules/sync"
-	"forgejo.org/modules/translation"
+	"novroforge.xyz/modules/graceful"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/process"
+	"novroforge.xyz/modules/sync"
+	"novroforge.xyz/modules/translation"
 
 	"github.com/go-co-op/gocron/v2"
 )

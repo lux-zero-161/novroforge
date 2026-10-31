@@ -9,9 +9,9 @@ import (
 	"net/url"
 	"strings"
 
-	"forgejo.org/modules/log"
-	base "forgejo.org/modules/migration"
-	"forgejo.org/modules/structs"
+	"novroforge.xyz/modules/log"
+	base "novroforge.xyz/modules/migration"
+	"novroforge.xyz/modules/structs"
 )
 
 var (

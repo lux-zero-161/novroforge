@@ -6,12 +6,12 @@ package remote
 import (
 	"context"
 
-	auth_model "forgejo.org/models/auth"
-	"forgejo.org/models/db"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/log"
-	"forgejo.org/services/auth/source/oauth2"
-	remote_source "forgejo.org/services/auth/source/remote"
+	auth_model "novroforge.xyz/models/auth"
+	"novroforge.xyz/models/db"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/services/auth/source/oauth2"
+	remote_source "novroforge.xyz/services/auth/source/remote"
 )
 
 type Reason int

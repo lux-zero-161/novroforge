@@ -7,10 +7,10 @@ import (
 	"net/http"
 	"time"
 
-	activities_model "forgejo.org/models/activities"
-	"forgejo.org/models/unit"
-	"forgejo.org/modules/base"
-	"forgejo.org/services/context"
+	activities_model "novroforge.xyz/models/activities"
+	"novroforge.xyz/models/unit"
+	"novroforge.xyz/modules/base"
+	"novroforge.xyz/services/context"
 )
 
 const (

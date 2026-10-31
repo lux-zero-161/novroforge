@@ -9,12 +9,12 @@ import (
 	"strconv"
 	"testing"
 
-	"forgejo.org/models/issues"
-	"forgejo.org/models/unittest"
-	"forgejo.org/modules/gitrepo"
-	issue_service "forgejo.org/services/issue"
-	pull_service "forgejo.org/services/pull"
-	"forgejo.org/tests/forgery"
+	"novroforge.xyz/models/issues"
+	"novroforge.xyz/models/unittest"
+	"novroforge.xyz/modules/gitrepo"
+	issue_service "novroforge.xyz/services/issue"
+	pull_service "novroforge.xyz/services/pull"
+	"novroforge.xyz/tests/forgery"
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/stretchr/testify/assert"

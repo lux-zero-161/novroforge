@@ -6,10 +6,10 @@ package forgery
 import (
 	"testing"
 
-	issues_model "forgejo.org/models/issues"
-	repo_model "forgejo.org/models/repo"
-	user_model "forgejo.org/models/user"
-	issue_service "forgejo.org/services/issue"
+	issues_model "novroforge.xyz/models/issues"
+	repo_model "novroforge.xyz/models/repo"
+	user_model "novroforge.xyz/models/user"
+	issue_service "novroforge.xyz/services/issue"
 
 	"github.com/stretchr/testify/require"
 )

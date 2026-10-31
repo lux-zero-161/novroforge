@@ -12,12 +12,12 @@ import (
 	"net/http"
 	"strings"
 
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/optional"
-	"forgejo.org/modules/proxy"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/system"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/optional"
+	"novroforge.xyz/modules/proxy"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/system"
 
 	"github.com/hashicorp/go-version"
 )

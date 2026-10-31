@@ -8,8 +8,8 @@ import (
 	"regexp"
 	"testing"
 
-	"forgejo.org/models/unittest"
-	"forgejo.org/tests"
+	"novroforge.xyz/models/unittest"
+	"novroforge.xyz/tests"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

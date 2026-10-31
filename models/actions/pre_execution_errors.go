@@ -8,7 +8,7 @@ import (
 	"html"
 	"html/template"
 
-	"forgejo.org/modules/translation"
+	"novroforge.xyz/modules/translation"
 )
 
 type PreExecutionError int64

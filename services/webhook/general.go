@@ -9,12 +9,12 @@ import (
 	"net/url"
 	"strings"
 
-	actions_model "forgejo.org/models/actions"
-	webhook_model "forgejo.org/models/webhook"
-	"forgejo.org/modules/setting"
-	api "forgejo.org/modules/structs"
-	"forgejo.org/modules/util"
-	webhook_module "forgejo.org/modules/webhook"
+	actions_model "novroforge.xyz/models/actions"
+	webhook_model "novroforge.xyz/models/webhook"
+	"novroforge.xyz/modules/setting"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/modules/util"
+	webhook_module "novroforge.xyz/modules/webhook"
 )
 
 var (

@@ -7,12 +7,12 @@ import (
 	"context"
 	"strconv"
 
-	actions_model "forgejo.org/models/actions"
-	issues_model "forgejo.org/models/issues"
-	packages_model "forgejo.org/models/packages"
-	quota_model "forgejo.org/models/quota"
-	repo_model "forgejo.org/models/repo"
-	api "forgejo.org/modules/structs"
+	actions_model "novroforge.xyz/models/actions"
+	issues_model "novroforge.xyz/models/issues"
+	packages_model "novroforge.xyz/models/packages"
+	quota_model "novroforge.xyz/models/quota"
+	repo_model "novroforge.xyz/models/repo"
+	api "novroforge.xyz/modules/structs"
 )
 
 func ToQuotaRuleInfo(rule quota_model.Rule, withName bool) api.QuotaRuleInfo {

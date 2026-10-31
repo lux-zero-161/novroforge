@@ -10,11 +10,11 @@ import (
 	"slices"
 	"strings"
 
-	actions_model "forgejo.org/models/actions"
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/log"
-	api "forgejo.org/modules/structs"
-	webhook_module "forgejo.org/modules/webhook"
+	actions_model "novroforge.xyz/models/actions"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/log"
+	api "novroforge.xyz/modules/structs"
+	webhook_module "novroforge.xyz/modules/webhook"
 
 	"code.forgejo.org/forgejo/runner/v13/act/jobparser"
 	"code.forgejo.org/forgejo/runner/v13/act/model"

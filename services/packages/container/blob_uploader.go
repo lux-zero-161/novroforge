@@ -9,10 +9,10 @@ import (
 	"io"
 	"os"
 
-	packages_model "forgejo.org/models/packages"
-	packages_module "forgejo.org/modules/packages"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/util"
+	packages_model "novroforge.xyz/models/packages"
+	packages_module "novroforge.xyz/modules/packages"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/util"
 )
 
 var (

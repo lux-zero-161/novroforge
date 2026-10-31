@@ -19,12 +19,12 @@ import (
 	"sync/atomic"
 	texttemplate "text/template"
 
-	"forgejo.org/modules/assetfs"
-	"forgejo.org/modules/graceful"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/templates/scopedtmpl"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/assetfs"
+	"novroforge.xyz/modules/graceful"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/templates/scopedtmpl"
+	"novroforge.xyz/modules/util"
 )
 
 type TemplateExecutor scopedtmpl.TemplateExecutor

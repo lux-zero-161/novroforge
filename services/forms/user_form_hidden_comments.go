@@ -6,9 +6,9 @@ package forms
 import (
 	"math/big"
 
-	issues_model "forgejo.org/models/issues"
-	"forgejo.org/modules/log"
-	"forgejo.org/services/context"
+	issues_model "novroforge.xyz/models/issues"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/services/context"
 )
 
 type hiddenCommentTypeGroupsType map[string][]issues_model.CommentType

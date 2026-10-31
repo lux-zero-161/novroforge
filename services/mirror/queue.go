@@ -4,10 +4,10 @@
 package mirror
 
 import (
-	"forgejo.org/modules/graceful"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/queue"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/graceful"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/queue"
+	"novroforge.xyz/modules/setting"
 )
 
 var mirrorQueue *queue.WorkerPoolQueue[*SyncRequest]

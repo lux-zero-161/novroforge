@@ -10,10 +10,10 @@ import (
 	"net/textproto"
 	"strings"
 
-	auth_model "forgejo.org/models/auth"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/optional"
-	"forgejo.org/modules/util"
+	auth_model "novroforge.xyz/models/auth"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/optional"
+	"novroforge.xyz/modules/util"
 )
 
 // Authenticate queries if the provided login/password is authenticates against the SMTP server

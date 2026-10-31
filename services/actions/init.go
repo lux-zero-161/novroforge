@@ -4,11 +4,11 @@
 package actions
 
 import (
-	"forgejo.org/modules/graceful"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/queue"
-	"forgejo.org/modules/setting"
-	notify_service "forgejo.org/services/notify"
+	"novroforge.xyz/modules/graceful"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/queue"
+	"novroforge.xyz/modules/setting"
+	notify_service "novroforge.xyz/services/notify"
 )
 
 func Init() {

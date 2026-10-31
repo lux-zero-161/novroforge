@@ -8,12 +8,12 @@ import (
 	"fmt"
 	"slices"
 
-	git_model "forgejo.org/models/git"
-	repo_model "forgejo.org/models/repo"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/git"
-	repo_module "forgejo.org/modules/repository"
-	api "forgejo.org/modules/structs"
+	git_model "novroforge.xyz/models/git"
+	repo_model "novroforge.xyz/models/repo"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/git"
+	repo_module "novroforge.xyz/modules/repository"
+	api "novroforge.xyz/modules/structs"
 )
 
 // SyncFork syncs a branch of a fork with the base repo

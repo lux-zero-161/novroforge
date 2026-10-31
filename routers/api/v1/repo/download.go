@@ -7,10 +7,10 @@ import (
 	"fmt"
 	"net/http"
 
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/gitrepo"
-	"forgejo.org/services/context"
-	archiver_service "forgejo.org/services/repository/archiver"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/gitrepo"
+	"novroforge.xyz/services/context"
+	archiver_service "novroforge.xyz/services/repository/archiver"
 )
 
 func DownloadArchive(ctx *context.APIContext) {

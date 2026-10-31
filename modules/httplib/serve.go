@@ -17,13 +17,13 @@ import (
 	"strings"
 	"time"
 
-	charsetModule "forgejo.org/modules/charset"
-	"forgejo.org/modules/container"
-	"forgejo.org/modules/httpcache"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/typesniffer"
-	"forgejo.org/modules/util"
+	charsetModule "novroforge.xyz/modules/charset"
+	"novroforge.xyz/modules/container"
+	"novroforge.xyz/modules/httpcache"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/typesniffer"
+	"novroforge.xyz/modules/util"
 
 	"github.com/klauspost/compress/gzhttp"
 )

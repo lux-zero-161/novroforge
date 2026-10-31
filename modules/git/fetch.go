@@ -7,8 +7,8 @@ import (
 	"fmt"
 	"strings"
 
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/util"
 )
 
 var ErrRemoteRefNotFound = errors.New("unable to find remote ref")

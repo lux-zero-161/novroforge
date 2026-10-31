@@ -10,14 +10,14 @@ import (
 	"net/url"
 	"time"
 
-	"forgejo.org/models/forgefed"
-	"forgejo.org/models/repo"
-	"forgejo.org/models/user"
-	"forgejo.org/modules/activitypub"
-	fm "forgejo.org/modules/forgefed"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/validation"
-	app_context "forgejo.org/services/context"
+	"novroforge.xyz/models/forgefed"
+	"novroforge.xyz/models/repo"
+	"novroforge.xyz/models/user"
+	"novroforge.xyz/modules/activitypub"
+	fm "novroforge.xyz/modules/forgefed"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/validation"
+	app_context "novroforge.xyz/services/context"
 
 	ap "github.com/go-ap/activitypub"
 )

@@ -6,13 +6,13 @@ package integration
 import (
 	"testing"
 
-	"forgejo.org/models/db"
-	"forgejo.org/models/organization"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/models/unittest"
-	user_model "forgejo.org/models/user"
-	webhook_model "forgejo.org/models/webhook"
-	repo_service "forgejo.org/services/repository"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/organization"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/models/unittest"
+	user_model "novroforge.xyz/models/user"
+	webhook_model "novroforge.xyz/models/webhook"
+	repo_service "novroforge.xyz/services/repository"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

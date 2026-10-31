@@ -8,8 +8,8 @@ import (
 	"fmt"
 	"strings"
 
-	"forgejo.org/models/db"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/util"
 )
 
 // ErrRedirectNotExist represents a "RedirectNotExist" kind of error.

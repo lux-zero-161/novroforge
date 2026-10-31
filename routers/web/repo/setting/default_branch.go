@@ -6,12 +6,12 @@ package setting
 import (
 	"net/http"
 
-	git_model "forgejo.org/models/git"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
-	"forgejo.org/routers/web/repo"
-	"forgejo.org/services/context"
-	repo_service "forgejo.org/services/repository"
+	git_model "novroforge.xyz/models/git"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/routers/web/repo"
+	"novroforge.xyz/services/context"
+	repo_service "novroforge.xyz/services/repository"
 )
 
 // SetDefaultBranchPost set default branch

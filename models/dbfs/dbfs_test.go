@@ -9,7 +9,7 @@ import (
 	"os"
 	"testing"
 
-	"forgejo.org/models/db"
+	"novroforge.xyz/models/db"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

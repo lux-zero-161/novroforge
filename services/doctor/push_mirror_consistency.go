@@ -7,9 +7,9 @@ import (
 	"context"
 	"strings"
 
-	"forgejo.org/models/db"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/modules/log"
+	"novroforge.xyz/models/db"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/modules/log"
 
 	"xorm.io/builder"
 )

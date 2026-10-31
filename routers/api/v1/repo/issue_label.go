@@ -10,12 +10,12 @@ import (
 	"reflect"
 	"strconv"
 
-	issues_model "forgejo.org/models/issues"
-	api "forgejo.org/modules/structs"
-	"forgejo.org/modules/web"
-	"forgejo.org/services/context"
-	"forgejo.org/services/convert"
-	issue_service "forgejo.org/services/issue"
+	issues_model "novroforge.xyz/models/issues"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/modules/web"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/convert"
+	issue_service "novroforge.xyz/services/issue"
 )
 
 // ListIssueLabels list all the labels of an issue

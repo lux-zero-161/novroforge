@@ -6,11 +6,11 @@ package pull_test
 import (
 	"testing"
 
-	"forgejo.org/models/db"
-	issues_model "forgejo.org/models/issues"
-	"forgejo.org/models/unittest"
-	user_model "forgejo.org/models/user"
-	pull_service "forgejo.org/services/pull"
+	"novroforge.xyz/models/db"
+	issues_model "novroforge.xyz/models/issues"
+	"novroforge.xyz/models/unittest"
+	user_model "novroforge.xyz/models/user"
+	pull_service "novroforge.xyz/services/pull"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

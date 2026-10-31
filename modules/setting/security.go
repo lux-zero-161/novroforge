@@ -11,12 +11,12 @@ import (
 	"path/filepath"
 	"strings"
 
-	"forgejo.org/modules/auth/password/hash"
-	"forgejo.org/modules/generate"
-	"forgejo.org/modules/jwtx"
-	"forgejo.org/modules/keying"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/auth/password/hash"
+	"novroforge.xyz/modules/generate"
+	"novroforge.xyz/modules/jwtx"
+	"novroforge.xyz/modules/keying"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/util"
 )
 
 var (

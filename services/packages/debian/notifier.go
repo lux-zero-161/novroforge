@@ -6,11 +6,11 @@ package debian
 import (
 	"context"
 
-	packages_model "forgejo.org/models/packages"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/log"
-	debian_module "forgejo.org/modules/packages/debian"
-	"forgejo.org/services/notify"
+	packages_model "novroforge.xyz/models/packages"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/log"
+	debian_module "novroforge.xyz/modules/packages/debian"
+	"novroforge.xyz/services/notify"
 )
 
 func init() {

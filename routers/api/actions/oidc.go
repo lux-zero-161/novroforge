@@ -9,13 +9,13 @@ import (
 	"reflect"
 	"strings"
 
-	"forgejo.org/modules/jwtx"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/web"
-	web_types "forgejo.org/modules/web/types"
-	actions_service "forgejo.org/services/actions"
-	"forgejo.org/services/auth"
-	"forgejo.org/services/context"
+	"novroforge.xyz/modules/jwtx"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/web"
+	web_types "novroforge.xyz/modules/web/types"
+	actions_service "novroforge.xyz/services/actions"
+	"novroforge.xyz/services/auth"
+	"novroforge.xyz/services/context"
 )
 
 type oidcRoutes struct {

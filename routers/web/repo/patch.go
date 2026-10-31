@@ -6,16 +6,16 @@ package repo
 import (
 	"strings"
 
-	"forgejo.org/models"
-	git_model "forgejo.org/models/git"
-	"forgejo.org/models/unit"
-	"forgejo.org/modules/base"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/util"
-	"forgejo.org/modules/web"
-	"forgejo.org/services/context"
-	"forgejo.org/services/forms"
-	"forgejo.org/services/repository/files"
+	"novroforge.xyz/models"
+	git_model "novroforge.xyz/models/git"
+	"novroforge.xyz/models/unit"
+	"novroforge.xyz/modules/base"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/util"
+	"novroforge.xyz/modules/web"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/forms"
+	"novroforge.xyz/services/repository/files"
 )
 
 const (

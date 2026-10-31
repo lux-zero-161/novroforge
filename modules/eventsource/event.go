@@ -10,7 +10,7 @@ import (
 	"strings"
 	"time"
 
-	"forgejo.org/modules/json"
+	"novroforge.xyz/modules/json"
 )
 
 func wrapNewlines(w io.Writer, prefix, value []byte) (sum int64, err error) {

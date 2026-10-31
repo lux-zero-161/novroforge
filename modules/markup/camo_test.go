@@ -6,7 +6,7 @@ package markup
 import (
 	"testing"
 
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/setting"
 
 	"github.com/stretchr/testify/assert"
 )

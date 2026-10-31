@@ -6,7 +6,7 @@ package donotpanic
 import (
 	"fmt"
 
-	"forgejo.org/modules/log"
+	"novroforge.xyz/modules/log"
 )
 
 type FuncWithError func() error

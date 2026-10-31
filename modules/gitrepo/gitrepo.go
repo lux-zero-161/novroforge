@@ -9,8 +9,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/setting"
 )
 
 type Repository interface {

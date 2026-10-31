@@ -6,9 +6,9 @@ package repository
 import (
 	"context"
 
-	"forgejo.org/models/organization"
-	repo_model "forgejo.org/models/repo"
-	user_model "forgejo.org/models/user"
+	"novroforge.xyz/models/organization"
+	repo_model "novroforge.xyz/models/repo"
+	user_model "novroforge.xyz/models/user"
 )
 
 // CanUserForkRepo returns true if specified user can fork repository.

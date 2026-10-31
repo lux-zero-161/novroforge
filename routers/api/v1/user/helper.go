@@ -6,9 +6,9 @@ package user
 import (
 	"net/http"
 
-	user_model "forgejo.org/models/user"
-	"forgejo.org/services/context"
-	redirect_service "forgejo.org/services/redirect"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/services/context"
+	redirect_service "novroforge.xyz/services/redirect"
 )
 
 // GetUserByParamsName get user by name

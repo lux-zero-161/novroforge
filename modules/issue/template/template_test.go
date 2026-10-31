@@ -7,8 +7,8 @@ import (
 	"net/url"
 	"testing"
 
-	"forgejo.org/modules/json"
-	api "forgejo.org/modules/structs"
+	"novroforge.xyz/modules/json"
+	api "novroforge.xyz/modules/structs"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

@@ -7,11 +7,11 @@ import (
 	"fmt"
 	"testing"
 
-	project_model "forgejo.org/models/project"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/models/unittest"
-	"forgejo.org/services/contexttest"
-	"forgejo.org/tests/forgery"
+	project_model "novroforge.xyz/models/project"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/models/unittest"
+	"novroforge.xyz/services/contexttest"
+	"novroforge.xyz/tests/forgery"
 
 	"github.com/stretchr/testify/assert"
 )

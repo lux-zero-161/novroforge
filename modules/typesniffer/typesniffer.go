@@ -11,7 +11,7 @@ import (
 	"regexp"
 	"strings"
 
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/util"
 )
 
 // Use at most this many bytes to determine Content Type.

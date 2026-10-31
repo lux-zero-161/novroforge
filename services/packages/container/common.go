@@ -7,9 +7,9 @@ import (
 	"context"
 	"strings"
 
-	packages_model "forgejo.org/models/packages"
-	user_model "forgejo.org/models/user"
-	container_module "forgejo.org/modules/packages/container"
+	packages_model "novroforge.xyz/models/packages"
+	user_model "novroforge.xyz/models/user"
+	container_module "novroforge.xyz/modules/packages/container"
 )
 
 // UpdateRepositoryNames updates the repository name property for all packages of the specific owner

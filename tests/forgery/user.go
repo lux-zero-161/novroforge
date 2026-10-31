@@ -10,8 +10,8 @@ import (
 	"strings"
 	"testing"
 
-	org_model "forgejo.org/models/organization"
-	user_model "forgejo.org/models/user"
+	org_model "novroforge.xyz/models/organization"
+	user_model "novroforge.xyz/models/user"
 
 	"github.com/stretchr/testify/require"
 )
@@ -47,7 +47,7 @@ func CreateUser(t testing.TB, opts *CreateUserOptions) *user_model.User {
 	name := "user-" + uniqueSafeName(t.Name())
 
 	u.Name = name
-	u.Email = name + "@test.forgejo.org"
+	u.Email = name + "@test.novroforge.xyz"
 	u.Passwd = userPassword
 	u.IsAdmin = opts.IsAdmin
 

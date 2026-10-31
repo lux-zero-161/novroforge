@@ -7,8 +7,8 @@ import (
 	"slices"
 	"strings"
 
-	"forgejo.org/modules/assetfs"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/assetfs"
+	"novroforge.xyz/modules/setting"
 )
 
 func AssetFS() *assetfs.LayeredFS {

@@ -8,14 +8,14 @@ import (
 	"net/url"
 	"testing"
 
-	"forgejo.org/models/admin"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/models/unittest"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/structs"
-	"forgejo.org/modules/test"
-	migrations_allowlist "forgejo.org/services/migrations/allowlist"
+	"novroforge.xyz/models/admin"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/models/unittest"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/structs"
+	"novroforge.xyz/modules/test"
+	migrations_allowlist "novroforge.xyz/services/migrations/allowlist"
 
 	"github.com/stretchr/testify/require"
 )

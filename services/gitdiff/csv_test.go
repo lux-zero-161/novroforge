@@ -8,9 +8,9 @@ import (
 	"strings"
 	"testing"
 
-	"forgejo.org/models/db"
-	csv_module "forgejo.org/modules/csv"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/models/db"
+	csv_module "novroforge.xyz/modules/csv"
+	"novroforge.xyz/modules/setting"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

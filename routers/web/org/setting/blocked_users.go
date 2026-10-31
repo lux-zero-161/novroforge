@@ -8,11 +8,11 @@ import (
 	"net/http"
 	"strings"
 
-	"forgejo.org/models/db"
-	user_model "forgejo.org/models/user"
-	shared_user "forgejo.org/routers/web/shared/user"
-	"forgejo.org/services/context"
-	user_service "forgejo.org/services/user"
+	"novroforge.xyz/models/db"
+	user_model "novroforge.xyz/models/user"
+	shared_user "novroforge.xyz/routers/web/shared/user"
+	"novroforge.xyz/services/context"
+	user_service "novroforge.xyz/services/user"
 )
 
 const tplBlockedUsers = "org/settings/blocked_users"

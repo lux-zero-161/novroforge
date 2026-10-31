@@ -6,9 +6,9 @@ package issues_test
 import (
 	"testing"
 
-	"forgejo.org/models/issues"
-	"forgejo.org/models/moderation"
-	"forgejo.org/modules/timeutil"
+	"novroforge.xyz/models/issues"
+	"novroforge.xyz/models/moderation"
+	"novroforge.xyz/modules/timeutil"
 
 	"github.com/stretchr/testify/assert"
 )

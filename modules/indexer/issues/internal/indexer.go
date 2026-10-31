@@ -7,7 +7,7 @@ import (
 	"context"
 	"errors"
 
-	"forgejo.org/modules/indexer/internal"
+	"novroforge.xyz/modules/indexer/internal"
 )
 
 // Indexer defines an interface to indexer issues contents

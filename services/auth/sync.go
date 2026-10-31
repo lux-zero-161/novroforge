@@ -6,9 +6,9 @@ package auth
 import (
 	"context"
 
-	"forgejo.org/models/auth"
-	"forgejo.org/models/db"
-	"forgejo.org/modules/log"
+	"novroforge.xyz/models/auth"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/modules/log"
 )
 
 // SyncExternalUsers is used to synchronize users with external authorization source

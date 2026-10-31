@@ -6,12 +6,12 @@ package actions
 import (
 	"testing"
 
-	actions_model "forgejo.org/models/actions"
-	"forgejo.org/models/repo"
-	"forgejo.org/models/unittest"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/timeutil"
-	notify_service "forgejo.org/services/notify"
+	actions_model "novroforge.xyz/models/actions"
+	"novroforge.xyz/models/repo"
+	"novroforge.xyz/models/unittest"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/timeutil"
+	notify_service "novroforge.xyz/services/notify"
 
 	"code.forgejo.org/forgejo/runner/v13/act/jobparser"
 	"github.com/stretchr/testify/assert"

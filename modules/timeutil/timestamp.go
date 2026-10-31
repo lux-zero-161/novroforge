@@ -6,8 +6,8 @@ package timeutil
 import (
 	"time"
 
-	"forgejo.org/modules/optional"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/optional"
+	"novroforge.xyz/modules/setting"
 )
 
 // TimeStamp defines a timestamp

@@ -5,8 +5,8 @@ package semver
 import (
 	"testing"
 
-	"forgejo.org/models/db"
-	"forgejo.org/models/unittest"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/unittest"
 
 	"github.com/hashicorp/go-version"
 	"github.com/stretchr/testify/assert"

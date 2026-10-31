@@ -7,7 +7,7 @@ import (
 	"bytes"
 	"strings"
 
-	"forgejo.org/modules/json"
+	"novroforge.xyz/modules/json"
 )
 
 // Level is the level of the logger

@@ -7,8 +7,8 @@ import (
 	"encoding/binary"
 	"fmt"
 
-	"forgejo.org/models/gitea_migrations/base"
-	"forgejo.org/modules/json"
+	"novroforge.xyz/models/gitea_migrations/base"
+	"novroforge.xyz/modules/json"
 
 	"code.forgejo.org/xorm/xorm"
 )

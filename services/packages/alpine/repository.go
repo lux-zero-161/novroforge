@@ -20,14 +20,14 @@ import (
 	"io"
 	"strings"
 
-	packages_model "forgejo.org/models/packages"
-	alpine_model "forgejo.org/models/packages/alpine"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/json"
-	packages_module "forgejo.org/modules/packages"
-	alpine_module "forgejo.org/modules/packages/alpine"
-	"forgejo.org/modules/util"
-	packages_service "forgejo.org/services/packages"
+	packages_model "novroforge.xyz/models/packages"
+	alpine_model "novroforge.xyz/models/packages/alpine"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/json"
+	packages_module "novroforge.xyz/modules/packages"
+	alpine_module "novroforge.xyz/modules/packages/alpine"
+	"novroforge.xyz/modules/util"
+	packages_service "novroforge.xyz/services/packages"
 )
 
 const (

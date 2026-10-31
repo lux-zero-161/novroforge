@@ -10,7 +10,7 @@ import (
 	"strings"
 	"sync/atomic"
 
-	"forgejo.org/modules/log"
+	"novroforge.xyz/modules/log"
 )
 
 // This package takes care of hashing passwords, verifying passwords, defining

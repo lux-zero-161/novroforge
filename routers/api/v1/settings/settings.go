@@ -6,9 +6,9 @@ package settings
 import (
 	"net/http"
 
-	"forgejo.org/modules/setting"
-	api "forgejo.org/modules/structs"
-	"forgejo.org/services/context"
+	"novroforge.xyz/modules/setting"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/services/context"
 )
 
 // GetGeneralUISettings returns instance's global settings for ui

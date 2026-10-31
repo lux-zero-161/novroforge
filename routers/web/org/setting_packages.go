@@ -7,11 +7,11 @@ import (
 	"fmt"
 	"net/http"
 
-	"forgejo.org/modules/base"
-	"forgejo.org/modules/setting"
-	shared "forgejo.org/routers/web/shared/packages"
-	shared_user "forgejo.org/routers/web/shared/user"
-	"forgejo.org/services/context"
+	"novroforge.xyz/modules/base"
+	"novroforge.xyz/modules/setting"
+	shared "novroforge.xyz/routers/web/shared/packages"
+	shared_user "novroforge.xyz/routers/web/shared/user"
+	"novroforge.xyz/services/context"
 )
 
 const (

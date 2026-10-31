@@ -9,17 +9,17 @@ import (
 	"fmt"
 	"slices"
 
-	"forgejo.org/models/db"
-	git_model "forgejo.org/models/git"
-	repo_model "forgejo.org/models/repo"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/cache"
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/gitrepo"
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/log"
-	api "forgejo.org/modules/structs"
-	shared_automerge "forgejo.org/services/shared/automerge"
+	"novroforge.xyz/models/db"
+	git_model "novroforge.xyz/models/git"
+	repo_model "novroforge.xyz/models/repo"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/cache"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/gitrepo"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/log"
+	api "novroforge.xyz/modules/structs"
+	shared_automerge "novroforge.xyz/services/shared/automerge"
 )
 
 func getCacheKey(repoID int64, branchName string) string {

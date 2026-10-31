@@ -7,7 +7,7 @@ package migration
 import (
 	"context"
 
-	"forgejo.org/modules/structs"
+	"novroforge.xyz/modules/structs"
 )
 
 // Downloader downloads the site repo information

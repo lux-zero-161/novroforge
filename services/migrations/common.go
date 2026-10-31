@@ -7,10 +7,10 @@ import (
 	"fmt"
 	"strings"
 
-	system_model "forgejo.org/models/system"
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/log"
-	base "forgejo.org/modules/migration"
+	system_model "novroforge.xyz/models/system"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/log"
+	base "novroforge.xyz/modules/migration"
 )
 
 // WarnAndNotice will log the provided message and send a repository notice

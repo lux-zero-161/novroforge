@@ -7,13 +7,13 @@ import (
 	"context"
 	"net/http"
 
-	auth_model "forgejo.org/models/auth"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/optional"
-	"forgejo.org/modules/session"
-	"forgejo.org/modules/timeutil"
-	"forgejo.org/modules/web/middleware"
-	"forgejo.org/services/authz"
+	auth_model "novroforge.xyz/models/auth"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/optional"
+	"novroforge.xyz/modules/session"
+	"novroforge.xyz/modules/timeutil"
+	"novroforge.xyz/modules/web/middleware"
+	"novroforge.xyz/services/authz"
 )
 
 // DataStore represents a data store

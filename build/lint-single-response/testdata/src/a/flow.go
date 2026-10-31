@@ -8,7 +8,7 @@ import (
 	"html/template"
 	"math/rand/v2"
 
-	"forgejo.org/services/context"
+	"novroforge.xyz/services/context"
 )
 
 func controlFlowIf(ctx *context.APIContext) {

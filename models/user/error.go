@@ -6,7 +6,7 @@ package user
 import (
 	"fmt"
 
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/util"
 )
 
 // ErrUserAlreadyExist represents a "user already exists" error.

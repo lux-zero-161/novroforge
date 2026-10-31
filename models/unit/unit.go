@@ -11,10 +11,10 @@ import (
 	"strings"
 	"sync/atomic"
 
-	"forgejo.org/models/perm"
-	"forgejo.org/modules/container"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/models/perm"
+	"novroforge.xyz/modules/container"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
 )
 
 // Type is Unit's Type

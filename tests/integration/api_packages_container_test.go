@@ -16,20 +16,20 @@ import (
 	"sync"
 	"testing"
 
-	auth_model "forgejo.org/models/auth"
-	"forgejo.org/models/db"
-	packages_model "forgejo.org/models/packages"
-	container_model "forgejo.org/models/packages/container"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/models/unittest"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/git"
-	container_module "forgejo.org/modules/packages/container"
-	"forgejo.org/modules/setting"
-	api "forgejo.org/modules/structs"
-	"forgejo.org/modules/test"
-	packages_service "forgejo.org/services/packages"
-	"forgejo.org/tests"
+	auth_model "novroforge.xyz/models/auth"
+	"novroforge.xyz/models/db"
+	packages_model "novroforge.xyz/models/packages"
+	container_model "novroforge.xyz/models/packages/container"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/models/unittest"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/git"
+	container_module "novroforge.xyz/modules/packages/container"
+	"novroforge.xyz/modules/setting"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/modules/test"
+	packages_service "novroforge.xyz/services/packages"
+	"novroforge.xyz/tests"
 
 	oci "github.com/opencontainers/image-spec/specs-go/v1"
 	"github.com/stretchr/testify/assert"
@@ -70,7 +70,7 @@ func TestPackageContainer(t *testing.T) {
 
 	blobContent, _ := base64.StdEncoding.DecodeString(`H4sIAAAJbogA/2IYBaNgFIxYAAgAAP//Lq+17wAEAAA=`)
 	blobDigest := "sha256:" + sha256Hash(string(blobContent))
-	maintainer := "contact@forgejo.org"
+	maintainer := "contact@novroforge.xyz"
 	description := "PACKAGE DESCRIPTION"
 	labelDescription := "org.opencontainers.image.description"
 

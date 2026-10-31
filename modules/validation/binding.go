@@ -8,9 +8,9 @@ import (
 	"regexp"
 	"strings"
 
-	"forgejo.org/modules/auth"
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/auth"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/util"
 
 	"code.forgejo.org/go-chi/binding"
 	"github.com/gobwas/glob"

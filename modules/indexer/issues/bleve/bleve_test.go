@@ -6,7 +6,7 @@ package bleve
 import (
 	"testing"
 
-	"forgejo.org/modules/indexer/issues/internal/tests"
+	"novroforge.xyz/modules/indexer/issues/internal/tests"
 )
 
 func TestBleveIndexer(t *testing.T) {

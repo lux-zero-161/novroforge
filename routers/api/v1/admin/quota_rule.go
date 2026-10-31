@@ -7,11 +7,11 @@ import (
 	"errors"
 	"net/http"
 
-	quota_model "forgejo.org/models/quota"
-	api "forgejo.org/modules/structs"
-	"forgejo.org/modules/web"
-	"forgejo.org/services/context"
-	"forgejo.org/services/convert"
+	quota_model "novroforge.xyz/models/quota"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/modules/web"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/convert"
 )
 
 func toLimitSubjects(subjStrings []string) (*quota_model.LimitSubjects, error) {

@@ -6,7 +6,7 @@ package actions
 import (
 	"slices"
 
-	"forgejo.org/modules/translation"
+	"novroforge.xyz/modules/translation"
 
 	runnerv1 "code.forgejo.org/forgejo/actions-proto/runner/v1"
 )

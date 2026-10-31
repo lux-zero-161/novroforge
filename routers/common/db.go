@@ -8,12 +8,12 @@ import (
 	"errors"
 	"time"
 
-	"forgejo.org/models/db"
-	"forgejo.org/models/gitea_migrations"
-	system_model "forgejo.org/models/system"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/setting/config"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/gitea_migrations"
+	system_model "novroforge.xyz/models/system"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/setting/config"
 
 	"code.forgejo.org/xorm/xorm"
 )

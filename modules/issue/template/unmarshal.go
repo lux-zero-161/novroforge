@@ -9,11 +9,11 @@ import (
 	"path"
 	"strconv"
 
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/markup/markdown"
-	"forgejo.org/modules/setting"
-	api "forgejo.org/modules/structs"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/markup/markdown"
+	"novroforge.xyz/modules/setting"
+	api "novroforge.xyz/modules/structs"
+	"novroforge.xyz/modules/util"
 
 	"go.yaml.in/yaml/v3"
 )

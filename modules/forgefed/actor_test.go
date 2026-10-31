@@ -6,7 +6,7 @@ package forgefed_test
 import (
 	"testing"
 
-	"forgejo.org/modules/forgefed"
+	"novroforge.xyz/modules/forgefed"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

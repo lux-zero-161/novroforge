@@ -9,8 +9,8 @@ import (
 	"strings"
 	"testing"
 
-	"forgejo.org/modules/structs"
-	"forgejo.org/modules/test"
+	"novroforge.xyz/modules/structs"
+	"novroforge.xyz/modules/test"
 
 	"github.com/gobwas/glob"
 	"github.com/stretchr/testify/assert"

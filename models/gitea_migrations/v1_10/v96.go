@@ -6,8 +6,8 @@ package v1_10
 import (
 	"path/filepath"
 
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/util"
 
 	"code.forgejo.org/xorm/xorm"
 )

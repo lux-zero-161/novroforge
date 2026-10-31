@@ -4,8 +4,8 @@
 package swagger
 
 import (
-	"forgejo.org/modules/forgefed"
-	api "forgejo.org/modules/structs"
+	"novroforge.xyz/modules/forgefed"
+	api "novroforge.xyz/modules/structs"
 )
 
 // ActivityPub

@@ -7,8 +7,8 @@ package pull
 import (
 	"testing"
 
-	git_model "forgejo.org/models/git"
-	"forgejo.org/modules/structs"
+	git_model "novroforge.xyz/models/git"
+	"novroforge.xyz/modules/structs"
 
 	"github.com/stretchr/testify/assert"
 )

@@ -4,7 +4,7 @@
 package setting
 
 import (
-	"forgejo.org/services/context"
+	"novroforge.xyz/services/context"
 )
 
 func RedirectToDefaultSetting(ctx *context.Context) {

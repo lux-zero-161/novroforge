@@ -4,8 +4,8 @@
 package pam
 
 import (
-	"forgejo.org/models/auth"
-	"forgejo.org/modules/json"
+	"novroforge.xyz/models/auth"
+	"novroforge.xyz/modules/json"
 )
 
 // __________  _____      _____

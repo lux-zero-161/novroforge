@@ -7,7 +7,7 @@ import (
 	"context"
 	"fmt"
 
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/modules/setting"
 
 	"codeberg.org/gusted/mcaptcha"
 )

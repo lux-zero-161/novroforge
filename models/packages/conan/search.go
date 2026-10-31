@@ -9,10 +9,10 @@ import (
 	"strconv"
 	"strings"
 
-	"forgejo.org/models/db"
-	"forgejo.org/models/packages"
-	"forgejo.org/modules/container"
-	conan_module "forgejo.org/modules/packages/conan"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/packages"
+	"novroforge.xyz/modules/container"
+	conan_module "novroforge.xyz/modules/packages/conan"
 
 	"xorm.io/builder"
 )

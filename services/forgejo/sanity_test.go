@@ -7,9 +7,9 @@ import (
 	"path/filepath"
 	"testing"
 
-	"forgejo.org/models/db"
-	"forgejo.org/models/unittest"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/unittest"
+	"novroforge.xyz/modules/setting"
 
 	"github.com/stretchr/testify/require"
 )

@@ -4,9 +4,9 @@
 package common
 
 import (
-	code_indexer "forgejo.org/modules/indexer/code"
-	"forgejo.org/modules/setting"
-	"forgejo.org/services/context"
+	code_indexer "novroforge.xyz/modules/indexer/code"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/services/context"
 )
 
 type CodeSearchOptions struct {

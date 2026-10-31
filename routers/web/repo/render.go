@@ -9,11 +9,11 @@ import (
 	"net/http"
 	"path"
 
-	"forgejo.org/modules/charset"
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/markup"
-	"forgejo.org/services/context"
+	"novroforge.xyz/modules/charset"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/markup"
+	"novroforge.xyz/services/context"
 )
 
 // RenderFile renders a file by repos path

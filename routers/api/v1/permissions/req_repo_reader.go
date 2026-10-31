@@ -6,7 +6,7 @@ package permissions
 import (
 	"net/http"
 
-	"forgejo.org/models/unit"
+	"novroforge.xyz/models/unit"
 )
 
 func ReqRepoReader(ctx Context, unitType unit.Type) {

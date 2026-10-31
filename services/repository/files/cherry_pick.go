@@ -9,13 +9,13 @@ import (
 	"fmt"
 	"strings"
 
-	"forgejo.org/models"
-	repo_model "forgejo.org/models/repo"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/structs"
-	"forgejo.org/services/pull"
+	"novroforge.xyz/models"
+	repo_model "novroforge.xyz/models/repo"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/structs"
+	"novroforge.xyz/services/pull"
 )
 
 // CherryPick cherrypicks or reverts a commit to the given repository

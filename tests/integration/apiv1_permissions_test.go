@@ -6,11 +6,11 @@ package integration
 import (
 	"testing"
 
-	"forgejo.org/models/unittest"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/test"
-	apiv1 "forgejo.org/routers/api/v1"
-	apiv1_permissions_tests "forgejo.org/routers/api/v1/permissions/tests"
+	"novroforge.xyz/models/unittest"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/test"
+	apiv1 "novroforge.xyz/routers/api/v1"
+	apiv1_permissions_tests "novroforge.xyz/routers/api/v1/permissions/tests"
 )
 
 func TestAPIv1Permissions(t *testing.T) {

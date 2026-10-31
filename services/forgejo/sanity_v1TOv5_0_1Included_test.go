@@ -6,10 +6,10 @@ import (
 	"fmt"
 	"testing"
 
-	"forgejo.org/models/db"
-	"forgejo.org/models/forgejo/semver"
-	"forgejo.org/models/unittest"
-	"forgejo.org/modules/log"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/forgejo/semver"
+	"novroforge.xyz/models/unittest"
+	"novroforge.xyz/modules/log"
 
 	"github.com/stretchr/testify/require"
 )

@@ -8,8 +8,8 @@ import (
 	"html/template"
 	"strings"
 
-	"forgejo.org/modules/base"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/base"
+	"novroforge.xyz/modules/util"
 )
 
 type StringUtils struct{}

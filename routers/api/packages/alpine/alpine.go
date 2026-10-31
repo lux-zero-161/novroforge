@@ -13,16 +13,16 @@ import (
 	"net/http"
 	"strings"
 
-	packages_model "forgejo.org/models/packages"
-	alpine_model "forgejo.org/models/packages/alpine"
-	"forgejo.org/modules/json"
-	packages_module "forgejo.org/modules/packages"
-	alpine_module "forgejo.org/modules/packages/alpine"
-	"forgejo.org/modules/util"
-	"forgejo.org/routers/api/packages/helper"
-	"forgejo.org/services/context"
-	packages_service "forgejo.org/services/packages"
-	alpine_service "forgejo.org/services/packages/alpine"
+	packages_model "novroforge.xyz/models/packages"
+	alpine_model "novroforge.xyz/models/packages/alpine"
+	"novroforge.xyz/modules/json"
+	packages_module "novroforge.xyz/modules/packages"
+	alpine_module "novroforge.xyz/modules/packages/alpine"
+	"novroforge.xyz/modules/util"
+	"novroforge.xyz/routers/api/packages/helper"
+	"novroforge.xyz/services/context"
+	packages_service "novroforge.xyz/services/packages"
+	alpine_service "novroforge.xyz/services/packages/alpine"
 )
 
 func apiError(ctx *context.Context, status int, obj any) {

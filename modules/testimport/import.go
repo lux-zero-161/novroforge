@@ -8,10 +8,10 @@ package testimport
 // is trying to figure out the ordering of foreign keys, for instance
 
 import ( //revive:disable:blank-imports
-	_ "forgejo.org/models/actions"
-	_ "forgejo.org/models/activities"
-	_ "forgejo.org/models/auth"
-	_ "forgejo.org/models/forgefed"
-	_ "forgejo.org/models/perm/access"
-	_ "forgejo.org/models/repo"
+	_ "novroforge.xyz/models/actions"
+	_ "novroforge.xyz/models/activities"
+	_ "novroforge.xyz/models/auth"
+	_ "novroforge.xyz/models/forgefed"
+	_ "novroforge.xyz/models/perm/access"
+	_ "novroforge.xyz/models/repo"
 )

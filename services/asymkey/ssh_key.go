@@ -6,9 +6,9 @@ package asymkey
 import (
 	"context"
 
-	asymkey_model "forgejo.org/models/asymkey"
-	"forgejo.org/models/db"
-	user_model "forgejo.org/models/user"
+	asymkey_model "novroforge.xyz/models/asymkey"
+	"novroforge.xyz/models/db"
+	user_model "novroforge.xyz/models/user"
 )
 
 // DeletePublicKey deletes SSH key information both in database and authorized_keys file.

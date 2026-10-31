@@ -13,12 +13,12 @@ import (
 	"strings"
 	"time"
 
-	"forgejo.org/modules/assetfs"
-	"forgejo.org/modules/container"
-	"forgejo.org/modules/httpcache"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/modules/assetfs"
+	"novroforge.xyz/modules/container"
+	"novroforge.xyz/modules/httpcache"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/util"
 )
 
 func CustomAssets() *assetfs.Layer {

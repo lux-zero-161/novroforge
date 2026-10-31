@@ -7,8 +7,8 @@ import (
 	"context"
 	"slices"
 
-	"forgejo.org/models/organization"
-	user_model "forgejo.org/models/user"
+	"novroforge.xyz/models/organization"
+	user_model "novroforge.xyz/models/user"
 )
 
 type ActionAggregator struct {

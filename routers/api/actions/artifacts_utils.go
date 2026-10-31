@@ -10,9 +10,9 @@ import (
 	"strconv"
 	"strings"
 
-	"forgejo.org/models/actions"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/util"
+	"novroforge.xyz/models/actions"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/util"
 )
 
 const (

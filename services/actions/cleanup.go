@@ -10,13 +10,13 @@ import (
 	"os"
 	"time"
 
-	actions_model "forgejo.org/models/actions"
-	"forgejo.org/models/db"
-	actions_module "forgejo.org/modules/actions"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/storage"
-	"forgejo.org/modules/timeutil"
+	actions_model "novroforge.xyz/models/actions"
+	"novroforge.xyz/models/db"
+	actions_module "novroforge.xyz/modules/actions"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/storage"
+	"novroforge.xyz/modules/timeutil"
 
 	"xorm.io/builder"
 )

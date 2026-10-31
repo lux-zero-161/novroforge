@@ -6,8 +6,8 @@ package oauth2
 import (
 	"strings"
 
-	"forgejo.org/models/auth"
-	"forgejo.org/modules/json"
+	"novroforge.xyz/models/auth"
+	"novroforge.xyz/modules/json"
 )
 
 // Source holds configuration for the OAuth2 login source.

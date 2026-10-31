@@ -6,7 +6,7 @@ package permissions
 import (
 	"net/http"
 
-	"forgejo.org/models/organization"
+	"novroforge.xyz/models/organization"
 )
 
 func ReqOrgMembership(ctx Context) {

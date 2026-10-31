@@ -6,8 +6,8 @@ package forgefed
 import (
 	"time"
 
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/validation"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/validation"
 
 	ap "github.com/go-ap/activitypub"
 )

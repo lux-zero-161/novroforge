@@ -6,10 +6,10 @@ package repository
 import (
 	"context"
 
-	"forgejo.org/models/repo"
-	"forgejo.org/models/user"
-	"forgejo.org/modules/setting"
-	"forgejo.org/services/federation"
+	"novroforge.xyz/models/repo"
+	"novroforge.xyz/models/user"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/services/federation"
 )
 
 func StarRepoAndSendLikeActivities(ctx context.Context, doer user.User, repoID int64, star bool) error {

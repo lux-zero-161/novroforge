@@ -4,8 +4,8 @@
 package v1_21
 
 import (
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/modules/setting"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/modules/setting"
 
 	"code.forgejo.org/xorm/xorm"
 )

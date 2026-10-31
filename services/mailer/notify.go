@@ -7,13 +7,13 @@ import (
 	"context"
 	"fmt"
 
-	actions_model "forgejo.org/models/actions"
-	activities_model "forgejo.org/models/activities"
-	issues_model "forgejo.org/models/issues"
-	repo_model "forgejo.org/models/repo"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/log"
-	notify_service "forgejo.org/services/notify"
+	actions_model "novroforge.xyz/models/actions"
+	activities_model "novroforge.xyz/models/activities"
+	issues_model "novroforge.xyz/models/issues"
+	repo_model "novroforge.xyz/models/repo"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/log"
+	notify_service "novroforge.xyz/services/notify"
 )
 
 type mailNotifier struct {

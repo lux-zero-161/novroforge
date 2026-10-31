@@ -6,9 +6,9 @@ package convert
 import (
 	"context"
 
-	git_model "forgejo.org/models/git"
-	user_model "forgejo.org/models/user"
-	api "forgejo.org/modules/structs"
+	git_model "novroforge.xyz/models/git"
+	user_model "novroforge.xyz/models/user"
+	api "novroforge.xyz/modules/structs"
 )
 
 // ToCommitStatus converts git_model.CommitStatus to api.CommitStatus

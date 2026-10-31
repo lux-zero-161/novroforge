@@ -10,11 +10,11 @@ import (
 	"testing"
 	"time"
 
-	"forgejo.org/models/unittest"
-	base "forgejo.org/modules/migration"
-	"forgejo.org/modules/setting"
-	"forgejo.org/modules/test"
-	"forgejo.org/services/migrations/allowlist"
+	"novroforge.xyz/models/unittest"
+	base "novroforge.xyz/modules/migration"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/modules/test"
+	"novroforge.xyz/services/migrations/allowlist"
 
 	gitea_sdk "code.gitea.io/sdk/gitea"
 	"github.com/stretchr/testify/assert"

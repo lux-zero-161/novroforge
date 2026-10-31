@@ -8,12 +8,12 @@ import (
 	"errors"
 	"fmt"
 
-	"forgejo.org/models/db"
-	issues_model "forgejo.org/models/issues"
-	"forgejo.org/modules/container"
-	"forgejo.org/modules/indexer/issues/internal"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/queue"
+	"novroforge.xyz/models/db"
+	issues_model "novroforge.xyz/models/issues"
+	"novroforge.xyz/modules/container"
+	"novroforge.xyz/modules/indexer/issues/internal"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/queue"
 )
 
 // getIssueIndexerData returns the indexer data of an issue and a bool value indicating whether the issue exists.

@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"strings"
 
-	"forgejo.org/modules/options"
+	"novroforge.xyz/modules/options"
 
 	"go.yaml.in/yaml/v3"
 )

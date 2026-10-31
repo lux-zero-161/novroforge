@@ -7,10 +7,10 @@ import (
 	"fmt"
 	"net/http"
 
-	project_model "forgejo.org/models/project"
-	"forgejo.org/models/unit"
-	"forgejo.org/modules/log"
-	project_module "forgejo.org/modules/project"
+	project_model "novroforge.xyz/models/project"
+	"novroforge.xyz/models/unit"
+	"novroforge.xyz/modules/log"
+	project_module "novroforge.xyz/modules/project"
 )
 
 func ReqProjectIDAssignableToIssueAndSetData(ctx *Context, projectID int64) {

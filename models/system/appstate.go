@@ -6,7 +6,7 @@ package system
 import (
 	"context"
 
-	"forgejo.org/models/db"
+	"novroforge.xyz/models/db"
 )
 
 // AppState represents a state record in database

@@ -7,9 +7,9 @@ import (
 	"net/http"
 	"strconv"
 
-	"forgejo.org/modules/queue"
-	"forgejo.org/modules/setting"
-	"forgejo.org/services/context"
+	"novroforge.xyz/modules/queue"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/services/context"
 )
 
 func Queues(ctx *context.Context) {

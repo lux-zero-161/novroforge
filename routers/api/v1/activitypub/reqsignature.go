@@ -6,10 +6,10 @@ package activitypub
 import (
 	"net/http"
 
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
-	app_context "forgejo.org/services/context"
-	"forgejo.org/services/federation"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
+	app_context "novroforge.xyz/services/context"
+	"novroforge.xyz/services/federation"
 
 	"github.com/42wim/httpsig"
 )

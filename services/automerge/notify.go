@@ -6,10 +6,10 @@ package automerge
 import (
 	"context"
 
-	issues_model "forgejo.org/models/issues"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/log"
-	notify_service "forgejo.org/services/notify"
+	issues_model "novroforge.xyz/models/issues"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/log"
+	notify_service "novroforge.xyz/services/notify"
 )
 
 type automergeNotifier struct {

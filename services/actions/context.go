@@ -8,13 +8,13 @@ import (
 	"fmt"
 	"strconv"
 
-	actions_model "forgejo.org/models/actions"
-	"forgejo.org/models/db"
-	actions_module "forgejo.org/modules/actions"
-	"forgejo.org/modules/container"
-	"forgejo.org/modules/git"
-	"forgejo.org/modules/json"
-	"forgejo.org/modules/setting"
+	actions_model "novroforge.xyz/models/actions"
+	"novroforge.xyz/models/db"
+	actions_module "novroforge.xyz/modules/actions"
+	"novroforge.xyz/modules/container"
+	"novroforge.xyz/modules/git"
+	"novroforge.xyz/modules/json"
+	"novroforge.xyz/modules/setting"
 
 	"code.forgejo.org/forgejo/runner/v13/act/model"
 )

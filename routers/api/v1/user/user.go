@@ -8,12 +8,12 @@ import (
 	"fmt"
 	"net/http"
 
-	activities_model "forgejo.org/models/activities"
-	user_model "forgejo.org/models/user"
-	"forgejo.org/modules/structs"
-	"forgejo.org/routers/api/v1/utils"
-	"forgejo.org/services/context"
-	"forgejo.org/services/convert"
+	activities_model "novroforge.xyz/models/activities"
+	user_model "novroforge.xyz/models/user"
+	"novroforge.xyz/modules/structs"
+	"novroforge.xyz/routers/api/v1/utils"
+	"novroforge.xyz/services/context"
+	"novroforge.xyz/services/convert"
 )
 
 // Search search users

@@ -6,10 +6,10 @@ package cmd
 import (
 	"context"
 
-	"forgejo.org/models/db"
-	"forgejo.org/models/gitea_migrations"
-	"forgejo.org/modules/log"
-	"forgejo.org/modules/setting"
+	"novroforge.xyz/models/db"
+	"novroforge.xyz/models/gitea_migrations"
+	"novroforge.xyz/modules/log"
+	"novroforge.xyz/modules/setting"
 
 	"github.com/urfave/cli/v3"
 )

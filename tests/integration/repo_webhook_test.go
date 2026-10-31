@@ -10,9 +10,9 @@ import (
 	"net/url"
 	"testing"
 
-	app_context "forgejo.org/services/context"
-	"forgejo.org/services/webhook"
-	"forgejo.org/tests"
+	app_context "novroforge.xyz/services/context"
+	"novroforge.xyz/services/webhook"
+	"novroforge.xyz/tests"
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/stretchr/testify/assert"

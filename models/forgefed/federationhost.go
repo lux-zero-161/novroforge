@@ -10,8 +10,8 @@ import (
 	"strings"
 	"time"
 
-	"forgejo.org/modules/timeutil"
-	"forgejo.org/modules/validation"
+	"novroforge.xyz/modules/timeutil"
+	"novroforge.xyz/modules/validation"
 )
 
 // FederationHost data type

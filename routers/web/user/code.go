@@ -7,14 +7,14 @@ package user
 import (
 	"net/http"
 
-	"forgejo.org/models/db"
-	repo_model "forgejo.org/models/repo"
-	"forgejo.org/modules/base"
-	code_indexer "forgejo.org/modules/indexer/code"
-	"forgejo.org/modules/setting"
-	"forgejo.org/routers/common"
-	shared_user "forgejo.org/routers/web/shared/user"
-	"forgejo.org/services/context"
+	"novroforge.xyz/models/db"
+	repo_model "novroforge.xyz/models/repo"
+	"novroforge.xyz/modules/base"
+	code_indexer "novroforge.xyz/modules/indexer/code"
+	"novroforge.xyz/modules/setting"
+	"novroforge.xyz/routers/common"
+	shared_user "novroforge.xyz/routers/web/shared/user"
+	"novroforge.xyz/services/context"
 )
 
 const (
