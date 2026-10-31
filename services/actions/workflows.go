@@ -23,8 +23,8 @@ import (
 	"novroforge.xyz/modules/webhook"
 	"novroforge.xyz/services/convert"
 
-	"code.novroforge.xyz/novroforge/runner/v13/act/jobparser"
-	act_model "code.novroforge.xyz/novroforge/runner/v13/act/model"
+	"code.forgejo.org/forgejo/runner/v13/act/jobparser"
+	act_model "code.forgejo.org/forgejo/runner/v13/act/model"
 )
 
 type InputRequiredErr struct {
@@ -113,7 +113,7 @@ func (entry *Workflow) Dispatch(ctx context.Context, inputGetter InputValueGette
 			inputsAny[key] = value
 			// To match the behaviour of the runner when parsing map[string]string into map[string]any, check for
 			// boolean type inputs and convert them to booleans for expression evaluation:
-			// https://code.novroforge.xyz/novroforge/runner/src/commit/d5693e379c034a3afcb920087570d9a6e179e86e/act/runner/expression.go#L435-L439
+			// https://code.forgejo.org/forgejo/runner/src/commit/d5693e379c034a3afcb920087570d9a6e179e86e/act/runner/expression.go#L435-L439
 			if input.Type == "boolean" {
 				inputsAny[key] = value == "true"
 			}

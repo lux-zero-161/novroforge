@@ -10,7 +10,7 @@ import (
 	"novroforge.xyz/modules/web/middleware"
 	"novroforge.xyz/services/context"
 
-	"code.novroforge.xyz/go-chi/binding"
+	"code.forgejo.org/go-chi/binding"
 )
 
 // ReportAbuseForm is used to interact with the UI of the form that submits new abuse reports.

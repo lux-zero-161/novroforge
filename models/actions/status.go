@@ -8,7 +8,7 @@ import (
 
 	"novroforge.xyz/modules/translation"
 
-	runnerv1 "code.novroforge.xyz/novroforge/actions-proto/runner/v1"
+	runnerv1 "code.forgejo.org/forgejo/actions-proto/runner/v1"
 )
 
 // Status represents the status of ActionRun, ActionRunJob, ActionTask, or ActionTaskStep

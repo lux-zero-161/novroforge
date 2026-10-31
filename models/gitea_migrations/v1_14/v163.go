@@ -6,7 +6,7 @@ package v1_14
 import (
 	"novroforge.xyz/models/gitea_migrations/base"
 
-	"code.novroforge.xyz/xorm/xorm"
+	"code.forgejo.org/xorm/xorm"
 )
 
 func ConvertTopicNameFrom25To50(x *xorm.Engine) error {

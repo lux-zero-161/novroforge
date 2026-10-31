@@ -6,7 +6,7 @@ package v1_14
 import (
 	"fmt"
 
-	"code.novroforge.xyz/xorm/xorm"
+	"code.forgejo.org/xorm/xorm"
 )
 
 func AddChangedProtectedFilesPullRequestColumn(x *xorm.Engine) error {

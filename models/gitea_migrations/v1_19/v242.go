@@ -6,7 +6,7 @@ package v1_19
 import (
 	"novroforge.xyz/modules/setting"
 
-	"code.novroforge.xyz/xorm/xorm"
+	"code.forgejo.org/xorm/xorm"
 )
 
 // AlterPublicGPGKeyImportContentFieldToMediumText: set GPGKeyImport Content field to MEDIUMTEXT

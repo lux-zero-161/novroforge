@@ -10,7 +10,7 @@ import (
 
 	"novroforge.xyz/modules/json"
 
-	mc "code.novroforge.xyz/go-chi/cache"
+	mc "code.forgejo.org/go-chi/cache"
 	lru "github.com/hashicorp/golang-lru/v2"
 )
 

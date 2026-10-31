@@ -26,7 +26,7 @@ import (
 	api "novroforge.xyz/modules/structs"
 	"novroforge.xyz/modules/sync"
 
-	"code.novroforge.xyz/go-chi/cache"
+	"code.forgejo.org/go-chi/cache"
 )
 
 const contributorStatsCacheKey = "GetContributorStats/%s/%s"

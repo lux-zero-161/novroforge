@@ -6,8 +6,8 @@ package v1_14
 import (
 	"novroforge.xyz/models/gitea_migrations/base"
 
-	"code.novroforge.xyz/xorm/xorm"
-	"code.novroforge.xyz/xorm/xorm/schemas"
+	"code.forgejo.org/xorm/xorm"
+	"code.forgejo.org/xorm/xorm/schemas"
 )
 
 func ConvertHookTaskTypeToVarcharAndTrim(x *xorm.Engine) error {

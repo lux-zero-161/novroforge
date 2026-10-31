@@ -24,7 +24,7 @@ import (
 	"novroforge.xyz/modules/testlogger"
 	"novroforge.xyz/modules/util"
 
-	"code.novroforge.xyz/xorm/xorm"
+	"code.forgejo.org/xorm/xorm"
 	"github.com/stretchr/testify/require"
 
 	_ "github.com/jackc/pgx/v5/stdlib" // Import pgx driver

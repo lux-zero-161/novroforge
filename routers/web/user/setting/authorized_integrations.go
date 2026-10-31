@@ -25,7 +25,7 @@ import (
 	"novroforge.xyz/services/authz"
 	"novroforge.xyz/services/context"
 
-	"code.novroforge.xyz/go-chi/binding"
+	"code.forgejo.org/go-chi/binding"
 	"xorm.io/builder"
 )
 

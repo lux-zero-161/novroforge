@@ -22,7 +22,7 @@ import (
 	"novroforge.xyz/modules/setting"
 	"novroforge.xyz/modules/storage"
 
-	"code.novroforge.xyz/xorm/xorm"
+	"code.forgejo.org/xorm/xorm"
 	"github.com/urfave/cli/v3"
 )
 

@@ -11,8 +11,8 @@ import (
 	"novroforge.xyz/modules/log"
 	"novroforge.xyz/modules/setting"
 
-	"code.novroforge.xyz/xorm/xorm"
-	"code.novroforge.xyz/xorm/xorm/schemas"
+	"code.forgejo.org/xorm/xorm"
+	"code.forgejo.org/xorm/xorm/schemas"
 )
 
 func SetDefaultPasswordToArgon2(x *xorm.Engine) error {

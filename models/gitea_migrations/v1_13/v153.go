@@ -4,7 +4,7 @@
 package v1_13
 
 import (
-	"code.novroforge.xyz/xorm/xorm"
+	"code.forgejo.org/xorm/xorm"
 )
 
 func AddTeamReviewRequestSupport(x *xorm.Engine) error {

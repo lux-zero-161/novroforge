@@ -35,7 +35,7 @@ import (
 	"novroforge.xyz/services/auth"
 	"novroforge.xyz/services/authz"
 
-	"code.novroforge.xyz/go-chi/cache"
+	"code.forgejo.org/go-chi/cache"
 )
 
 var ghMediaRE = regexp.MustCompile(`application/vnd\.github(\.[^+]+)?\+json`)

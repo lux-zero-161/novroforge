@@ -6,7 +6,7 @@ package v1_21
 import (
 	"novroforge.xyz/models/gitea_migrations/base"
 
-	"code.novroforge.xyz/xorm/xorm"
+	"code.forgejo.org/xorm/xorm"
 )
 
 func DropCustomLabelsColumnOfActionRunner(x *xorm.Engine) error {

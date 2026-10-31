@@ -6,7 +6,7 @@ package v1_21
 import (
 	"fmt"
 
-	"code.novroforge.xyz/xorm/xorm"
+	"code.forgejo.org/xorm/xorm"
 )
 
 // AddGitSizeAndLFSSizeToRepositoryTable: add GitSize and LFSSize columns to Repository

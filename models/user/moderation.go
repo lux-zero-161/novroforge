@@ -13,7 +13,7 @@ import (
 	"novroforge.xyz/modules/json"
 	"novroforge.xyz/modules/timeutil"
 
-	"code.novroforge.xyz/xorm/xorm/names"
+	"code.forgejo.org/xorm/xorm/names"
 )
 
 // UserData represents a trimmed down user that is used for preserving

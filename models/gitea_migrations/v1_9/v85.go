@@ -11,7 +11,7 @@ import (
 	"novroforge.xyz/modules/timeutil"
 	"novroforge.xyz/modules/util"
 
-	"code.novroforge.xyz/xorm/xorm"
+	"code.forgejo.org/xorm/xorm"
 )
 
 func HashAppToken(x *xorm.Engine) error {

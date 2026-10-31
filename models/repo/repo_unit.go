@@ -17,8 +17,8 @@ import (
 	"novroforge.xyz/modules/timeutil"
 	"novroforge.xyz/modules/util"
 
-	"code.novroforge.xyz/xorm/xorm"
-	"code.novroforge.xyz/xorm/xorm/convert"
+	"code.forgejo.org/xorm/xorm"
+	"code.forgejo.org/xorm/xorm/convert"
 )
 
 // ErrUnitTypeNotExist represents a "UnitTypeNotExist" kind of error.

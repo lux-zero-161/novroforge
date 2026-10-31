@@ -4,7 +4,7 @@
 package v1_11
 
 import (
-	"code.novroforge.xyz/xorm/xorm"
+	"code.forgejo.org/xorm/xorm"
 )
 
 func AddTeamIncludesAllRepositories(x *xorm.Engine) error {

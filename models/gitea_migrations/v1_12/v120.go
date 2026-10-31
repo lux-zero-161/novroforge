@@ -4,7 +4,7 @@
 package v1_12
 
 import (
-	"code.novroforge.xyz/xorm/xorm"
+	"code.forgejo.org/xorm/xorm"
 )
 
 func AddOwnerNameOnRepository(x *xorm.Engine) error {

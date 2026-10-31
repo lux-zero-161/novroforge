@@ -4,7 +4,7 @@
 package v1_22
 
 import (
-	"code.novroforge.xyz/xorm/xorm"
+	"code.forgejo.org/xorm/xorm"
 )
 
 type BadgeUnique struct {

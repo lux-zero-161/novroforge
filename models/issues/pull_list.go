@@ -16,7 +16,7 @@ import (
 	"novroforge.xyz/modules/log"
 	"novroforge.xyz/modules/util"
 
-	"code.novroforge.xyz/xorm/xorm"
+	"code.forgejo.org/xorm/xorm"
 )
 
 // PullRequestsOptions holds the options for PRs

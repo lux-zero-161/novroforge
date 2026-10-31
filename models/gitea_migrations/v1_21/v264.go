@@ -10,7 +10,7 @@ import (
 	"novroforge.xyz/models/db"
 	"novroforge.xyz/modules/timeutil"
 
-	"code.novroforge.xyz/xorm/xorm"
+	"code.forgejo.org/xorm/xorm"
 )
 
 func AddBranchTable(x *xorm.Engine) error {

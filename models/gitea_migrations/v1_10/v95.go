@@ -3,7 +3,7 @@
 
 package v1_10
 
-import "code.novroforge.xyz/xorm/xorm"
+import "code.forgejo.org/xorm/xorm"
 
 func AddCrossReferenceColumns(x *xorm.Engine) error {
 	// Comment see models/comment.go

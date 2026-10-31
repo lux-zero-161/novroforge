@@ -49,7 +49,7 @@ GO_LICENSES_PACKAGE ?= github.com/google/go-licenses/v2@v2.0.1 # renovate: datas
 GOVULNCHECK_PACKAGE ?= golang.org/x/vuln/cmd/govulncheck@v1 # renovate: datasource=go
 DEADCODE_PACKAGE ?= golang.org/x/tools/cmd/deadcode@v0.50.0 # renovate: datasource=go
 ERRORTYPE_PACKAGE ?= fillmore-labs.com/errortype@v0.0.11 # renovate: datasource=go
-RENOVATE_NPM_PACKAGE ?= renovate@44.171.1 # renovate: datasource=docker packageName=data.novroforge.xyz/renovate/renovate
+RENOVATE_NPM_PACKAGE ?= renovate@44.171.1 # renovate: datasource=docker packageName=data.forgejo.org/renovate/renovate
 MOCKERY_PACKAGE ?= github.com/vektra/mockery/v3@v3.8.1 # renovate: datasource=go
 
 # https://github.com/disposable-email-domains/disposable-email-domains/commits/main/
@@ -90,10 +90,10 @@ GITEA_COMPATIBILITY ?= gitea-1.22.0
 
 STORED_VERSION=$(shell cat $(STORED_VERSION_FILE) 2>/dev/null)
 ifneq ($(STORED_VERSION),)
-  novroforgerge_VERSION ?= $(STORED_VERSION)
+  NOVROFORGE_VERSION ?= $(STORED_VERSION)
 else
   ifneq ($(GITEA_VERSION),)
-    novroforgerge_VERSION ?= $(GITEA_VERSION)
+    NOVROFORGE_VERSION ?= $(GITEA_VERSION)
     novroforge_VERSION_API ?= $(GITEA_VERSION)+${GITEA_COMPATIBILITY}
   else
     # drop the "g" prefix prepended by git describe to the commit hash

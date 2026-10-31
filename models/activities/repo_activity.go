@@ -16,7 +16,7 @@ import (
 	"novroforge.xyz/modules/git"
 	"novroforge.xyz/modules/gitrepo"
 
-	"code.novroforge.xyz/xorm/xorm"
+	"code.forgejo.org/xorm/xorm"
 )
 
 // ActivityAuthorData represents statistical git commit count data

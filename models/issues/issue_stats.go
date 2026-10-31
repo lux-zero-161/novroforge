@@ -9,7 +9,7 @@ import (
 
 	"novroforge.xyz/models/db"
 
-	"code.novroforge.xyz/xorm/xorm"
+	"code.forgejo.org/xorm/xorm"
 	"xorm.io/builder"
 )
 

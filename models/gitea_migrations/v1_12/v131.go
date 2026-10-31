@@ -6,7 +6,7 @@ package v1_12
 import (
 	"fmt"
 
-	"code.novroforge.xyz/xorm/xorm"
+	"code.forgejo.org/xorm/xorm"
 )
 
 func AddSystemWebhookColumn(x *xorm.Engine) error {

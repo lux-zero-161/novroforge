@@ -11,7 +11,7 @@ import (
 	"novroforge.xyz/modules/setting"
 	api "novroforge.xyz/modules/structs"
 
-	"code.novroforge.xyz/xorm/xorm"
+	"code.forgejo.org/xorm/xorm"
 	"xorm.io/builder"
 )
 

@@ -59,8 +59,8 @@ import (
 
 	_ "novroforge.xyz/modules/session" // to registers all internal adapters
 
-	"code.novroforge.xyz/go-chi/binding"
-	"code.novroforge.xyz/go-chi/captcha"
+	"code.forgejo.org/go-chi/binding"
+	"code.forgejo.org/go-chi/captcha"
 	chi_middleware "github.com/go-chi/chi/v5/middleware"
 	"github.com/go-chi/cors"
 	"github.com/klauspost/compress/gzhttp"

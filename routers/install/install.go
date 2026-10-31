@@ -36,7 +36,7 @@ import (
 	"novroforge.xyz/services/context"
 	"novroforge.xyz/services/forms"
 
-	"code.novroforge.xyz/go-chi/session"
+	"code.forgejo.org/go-chi/session"
 )
 
 const (

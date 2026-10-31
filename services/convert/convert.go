@@ -31,7 +31,7 @@ import (
 	"novroforge.xyz/modules/util"
 	"novroforge.xyz/services/gitdiff"
 
-	runnerv1 "code.novroforge.xyz/novroforge/actions-proto/runner/v1"
+	runnerv1 "code.forgejo.org/forgejo/actions-proto/runner/v1"
 )
 
 // ToEmail convert models.EmailAddress to api.Email

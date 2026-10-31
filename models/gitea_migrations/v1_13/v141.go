@@ -6,7 +6,7 @@ package v1_13
 import (
 	"fmt"
 
-	"code.novroforge.xyz/xorm/xorm"
+	"code.forgejo.org/xorm/xorm"
 )
 
 func AddKeepActivityPrivateUserColumn(x *xorm.Engine) error {

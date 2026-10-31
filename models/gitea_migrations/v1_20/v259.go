@@ -9,7 +9,7 @@ import (
 
 	"novroforge.xyz/modules/log"
 
-	"code.novroforge.xyz/xorm/xorm"
+	"code.forgejo.org/xorm/xorm"
 )
 
 // unknownAccessTokenScope represents the scope for an access token that isn't

@@ -11,7 +11,7 @@ import (
 	"novroforge.xyz/modules/git"
 	"novroforge.xyz/modules/setting"
 
-	"code.novroforge.xyz/xorm/xorm"
+	"code.forgejo.org/xorm/xorm"
 )
 
 func FixReleaseSha1OnReleaseTable(x *xorm.Engine) error {

@@ -4,7 +4,7 @@
 package v1_14
 
 import (
-	"code.novroforge.xyz/xorm/xorm"
+	"code.forgejo.org/xorm/xorm"
 )
 
 func FixRepoTopics(x *xorm.Engine) error {

@@ -13,7 +13,7 @@ packages:
   novroforge.xyz/services/authz:
     config:
       filename: authorization_reducer_mock.go # make mocks public so that external packages can use
-  code.novroforge.xyz/go-chi/cache:
+  code.forgejo.org/go-chi/cache:
     interfaces:
       Cache:
         config:

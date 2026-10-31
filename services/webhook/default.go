@@ -29,7 +29,7 @@ type defaultHandler struct {
 
 func (dh defaultHandler) Type() webhook_module.HookType {
 	if dh.novroforge {
-		return webhook_module.novroforge
+		return webhook_module.NOVROFORGE
 	}
 	return webhook_module.GITEA
 }

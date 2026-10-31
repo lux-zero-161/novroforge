@@ -7,7 +7,7 @@ import (
 	"novroforge.xyz/modules/timeutil"
 	webhook_module "novroforge.xyz/modules/webhook"
 
-	"code.novroforge.xyz/xorm/xorm"
+	"code.forgejo.org/xorm/xorm"
 )
 
 // HookTask represents a hook task.

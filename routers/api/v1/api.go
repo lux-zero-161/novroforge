@@ -89,7 +89,7 @@ import (
 
 	_ "novroforge.xyz/routers/api/v1/swagger" // for swagger generation
 
-	"code.novroforge.xyz/go-chi/binding"
+	"code.forgejo.org/go-chi/binding"
 	ap "github.com/go-ap/activitypub"
 )
 

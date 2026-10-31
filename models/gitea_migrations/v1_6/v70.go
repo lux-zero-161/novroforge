@@ -9,7 +9,7 @@ import (
 
 	"novroforge.xyz/modules/setting"
 
-	"code.novroforge.xyz/xorm/xorm"
+	"code.forgejo.org/xorm/xorm"
 )
 
 func AddIssueDependencies(x *xorm.Engine) (err error) {

@@ -4,7 +4,7 @@
 package v1_16
 
 import (
-	"code.novroforge.xyz/xorm/xorm"
+	"code.forgejo.org/xorm/xorm"
 )
 
 func AddWebAuthnCred(x *xorm.Engine) error {

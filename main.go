@@ -42,9 +42,9 @@ func init() {
 	setting.AppStartTime = time.Now().UTC()
 }
 
-func novroforgergeEnv() {
+func novroforgeEnv() {
 	for _, k := range []string{"CUSTOM", "WORK_DIR"} {
-		if v, ok := os.LookupEnv("novroforgerge_" + k); ok {
+		if v, ok := os.LookupEnv("NOVROFORGE_" + k); ok {
 			os.Setenv("GITEA_"+k, v)
 		}
 	}

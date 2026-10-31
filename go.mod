@@ -5,17 +5,17 @@ go 1.26.0
 toolchain go1.27.3
 
 require (
-	code.novroforge.xyz/novroforgerge-contrib/go-libravatar v0.0.0-20260301104140-add494e31dab
-	code.novroforge.xyz/novroforgergergerge/actions-proto v0.8.0
-	code.novroforge.xyz/novroforge/go-rpmutils v1.0.0
-	code.novroforge.xyz/novroforge/levelqueue v1.1.0
-	code.novroforge.xyz/novroforge/reply v1.0.2
-	code.novroforge.xyz/novroforge/runner/v13 v13.2.0
-	code.novroforge.xyz/go-chi/binding v1.0.1
-	code.novroforge.xyz/go-chi/cache v1.0.1
-	code.novroforge.xyz/go-chi/captcha v1.0.3
-	code.novroforge.xyz/go-chi/session v1.1.0
-	code.novroforge.xyz/xorm/xorm v1.5.0
+	code.forgejo.org/forgejo-contrib/go-libravatar v0.0.0-20260301104140-add494e31dab
+	code.forgejo.org/forgejo/actions-proto v0.8.0
+	code.forgejo.org/forgejo/go-rpmutils v1.0.0
+	code.forgejo.org/forgejo/levelqueue v1.1.0
+	code.forgejo.org/forgejo/reply v1.0.2
+	code.forgejo.org/forgejo/runner/v13 v13.2.0
+	code.forgejo.org/go-chi/binding v1.0.1
+	code.forgejo.org/go-chi/cache v1.0.1
+	code.forgejo.org/go-chi/captcha v1.0.3
+	code.forgejo.org/go-chi/session v1.1.0
+	code.forgejo.org/xorm/xorm v1.5.0
 	code.gitea.io/sdk/gitea v0.21.0
 	codeberg.org/gusted/mcaptcha v0.0.0-20220723083913-4f3072e1d570
 	connectrpc.com/connect v1.21.1
@@ -260,8 +260,8 @@ require (
 
 replace github.com/hashicorp/go-version => github.com/6543/go-version v1.3.1
 
-replace github.com/mholt/archiver/v3 => code.novroforge.xyz/novroforge/archiver/v3 v3.5.1
+replace github.com/mholt/archiver/v3 => code.forgejo.org/forgejo/archiver/v3 v3.5.1
 
-replace github.com/gliderlabs/ssh => code.novroforge.xyz/novroforge/ssh v0.0.0-20241211213324-5fc306ca0616
+replace github.com/gliderlabs/ssh => code.forgejo.org/forgejo/ssh v0.0.0-20241211213324-5fc306ca0616
 
-replace git.sr.ht/~mariusor/go-xsd-duration => code.novroforge.xyz/novroforge/go-xsd-duration v0.0.0-20220703122237-02e73435a078
+replace git.sr.ht/~mariusor/go-xsd-duration => code.forgejo.org/forgejo/go-xsd-duration v0.0.0-20220703122237-02e73435a078

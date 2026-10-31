@@ -23,7 +23,7 @@ import (
 	"novroforge.xyz/services/convert"
 	notify_service "novroforge.xyz/services/notify"
 
-	"code.novroforge.xyz/novroforge/runner/v13/act/jobparser"
+	"code.forgejo.org/forgejo/runner/v13/act/jobparser"
 )
 
 type actionsNotifier struct {
@@ -840,7 +840,7 @@ func calculateWarnings(run *actions_model.ActionRun, swfs []*jobparser.SingleWor
 		id, j := swf.Job()
 		// j != nil is a workaround for a jobparser bug -- swf.HasPermissions() doesn't nil-check the job from Job(),
 		// which occurs in an invalid workflow with no job. We need to do `.Job()` here for the job name anyway, so no
-		// harm in handling it here. (https://code.novroforge.xyz/novroforge/runner/issues/1579)
+		// harm in handling it here. (https://code.forgejo.org/forgejo/runner/issues/1579)
 		if j != nil && swf.HasPermissions() {
 			warnings = append(warnings, actions_model.WarningCodePermissions)
 			warningDetails = append(warningDetails, []any{id, setting.AppDocsURL("user/api/authorized-integrations/")})

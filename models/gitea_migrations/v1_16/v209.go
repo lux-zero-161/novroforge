@@ -4,7 +4,7 @@
 package v1_16
 
 import (
-	"code.novroforge.xyz/xorm/xorm"
+	"code.forgejo.org/xorm/xorm"
 )
 
 func IncreaseCredentialIDTo410(x *xorm.Engine) error {

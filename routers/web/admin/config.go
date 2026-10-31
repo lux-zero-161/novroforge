@@ -23,7 +23,7 @@ import (
 	"novroforge.xyz/services/context"
 	"novroforge.xyz/services/mailer"
 
-	"code.novroforge.xyz/go-chi/session"
+	"code.forgejo.org/go-chi/session"
 )
 
 const (

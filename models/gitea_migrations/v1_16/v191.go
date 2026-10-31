@@ -6,7 +6,7 @@ package v1_16
 import (
 	"novroforge.xyz/modules/setting"
 
-	"code.novroforge.xyz/xorm/xorm"
+	"code.forgejo.org/xorm/xorm"
 )
 
 func AlterIssueAndCommentTextFieldsToLongText(x *xorm.Engine) error {

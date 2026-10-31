@@ -7,7 +7,7 @@ import (
 	"crypto/sha1"
 	"fmt"
 
-	"code.novroforge.xyz/xorm/xorm"
+	"code.forgejo.org/xorm/xorm"
 )
 
 func hashContext(context string) string {

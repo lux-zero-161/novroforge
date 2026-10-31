@@ -1,6 +1,6 @@
-FROM --platform=$BUILDPLATFORM data.novroforge.xyz/oci/xx AS xx
+FROM --platform=$BUILDPLATFORM data.forgejo.org/oci/xx AS xx
 
-FROM --platform=$BUILDPLATFORM data.novroforge.xyz/oci/golang:1.27-alpine3.24 AS build-env
+FROM --platform=$BUILDPLATFORM data.forgejo.org/oci/golang:1.27-alpine3.24 AS build-env
 
 ARG GOPROXY
 ENV GOPROXY=${GOPROXY:-https://proxy.golang.org,direct}
@@ -55,7 +55,7 @@ RUN chmod 755 /tmp/local/usr/bin/entrypoint \
               /go/src/novroforge.xyz/environment-to-ini
 RUN chmod 644 /go/src/novroforge.xyz/contrib/autocompletion/bash_autocomplete
 
-FROM data.novroforge.xyz/oci/alpine:3.24
+FROM data.forgejo.org/oci/alpine:3.24
 ARG RELEASE_VERSION
 LABEL maintainer="contact@novroforge.xyz" \
       org.opencontainers.image.authors="NovroForge" \

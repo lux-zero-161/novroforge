@@ -20,7 +20,7 @@ import (
 	"novroforge.xyz/modules/structs"
 	"novroforge.xyz/modules/util"
 
-	"code.novroforge.xyz/novroforge/runner/v13/act/jobparser"
+	"code.forgejo.org/forgejo/runner/v13/act/jobparser"
 	"xorm.io/builder"
 )
 

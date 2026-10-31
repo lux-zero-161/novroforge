@@ -11,7 +11,7 @@ import (
 	"novroforge.xyz/modules/graceful"
 	"novroforge.xyz/modules/nosql"
 
-	"code.novroforge.xyz/go-chi/cache"
+	"code.forgejo.org/go-chi/cache"
 )
 
 // RedisCacher represents a redis cache adapter implementation.

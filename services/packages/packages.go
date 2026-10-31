@@ -24,7 +24,7 @@ import (
 	"novroforge.xyz/modules/storage"
 	notify_service "novroforge.xyz/services/notify"
 
-	"code.novroforge.xyz/xorm/xorm"
+	"code.forgejo.org/xorm/xorm"
 )
 
 var (

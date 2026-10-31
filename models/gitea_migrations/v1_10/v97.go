@@ -3,7 +3,7 @@
 
 package v1_10
 
-import "code.novroforge.xyz/xorm/xorm"
+import "code.forgejo.org/xorm/xorm"
 
 func AddRepoAdminChangeTeamAccessColumnForUser(x *xorm.Engine) error {
 	type User struct {

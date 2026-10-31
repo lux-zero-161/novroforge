@@ -11,7 +11,7 @@ import (
 
 	"novroforge.xyz/modules/container"
 
-	"code.novroforge.xyz/xorm/xorm/schemas"
+	"code.forgejo.org/xorm/xorm/schemas"
 )
 
 type schemaWithDefaultBean struct {

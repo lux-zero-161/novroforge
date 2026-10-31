@@ -3,7 +3,7 @@
 
 package v1_20
 
-import "code.novroforge.xyz/xorm/xorm"
+import "code.forgejo.org/xorm/xorm"
 
 func AddVersionToActionRunner(x *xorm.Engine) error {
 	type ActionRunner struct {

@@ -6,7 +6,7 @@ package v1_23
 import (
 	"novroforge.xyz/modules/timeutil"
 
-	"code.novroforge.xyz/xorm/xorm"
+	"code.forgejo.org/xorm/xorm"
 )
 
 func AddIndexToActionTaskStoppedLogExpired(x *xorm.Engine) error {

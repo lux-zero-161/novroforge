@@ -6,7 +6,7 @@ package v1_22
 import (
 	"novroforge.xyz/modules/timeutil"
 
-	"code.novroforge.xyz/xorm/xorm"
+	"code.forgejo.org/xorm/xorm"
 )
 
 type Blocking struct {

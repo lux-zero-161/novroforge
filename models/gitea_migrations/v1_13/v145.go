@@ -8,7 +8,7 @@ import (
 
 	"novroforge.xyz/modules/setting"
 
-	"code.novroforge.xyz/xorm/xorm"
+	"code.forgejo.org/xorm/xorm"
 )
 
 func IncreaseLanguageField(x *xorm.Engine) error {

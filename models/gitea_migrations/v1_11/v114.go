@@ -6,7 +6,7 @@ package v1_11
 import (
 	"net/url"
 
-	"code.novroforge.xyz/xorm/xorm"
+	"code.forgejo.org/xorm/xorm"
 )
 
 func SanitizeOriginalURL(x *xorm.Engine) error {

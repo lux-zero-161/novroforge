@@ -123,7 +123,7 @@ type HookType = string
 
 // Types of webhooks
 const (
-	novroforge          HookType = "novroforge"
+	NOVROFORGE          HookType = "novroforge"
 	GITEA            HookType = "gitea"
 	GOGS             HookType = "gogs"
 	SLACK            HookType = "slack"

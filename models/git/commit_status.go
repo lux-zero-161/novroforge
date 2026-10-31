@@ -24,7 +24,7 @@ import (
 	"novroforge.xyz/modules/timeutil"
 	"novroforge.xyz/modules/translation"
 
-	"code.novroforge.xyz/xorm/xorm"
+	"code.forgejo.org/xorm/xorm"
 	"xorm.io/builder"
 )
 

@@ -13,8 +13,8 @@ import (
 	"novroforge.xyz/modules/git"
 	"novroforge.xyz/modules/gitrepo"
 
-	"code.novroforge.xyz/novroforge/runner/v13/act/jobparser"
-	"code.novroforge.xyz/novroforge/runner/v13/act/model"
+	"code.forgejo.org/forgejo/runner/v13/act/jobparser"
+	"code.forgejo.org/forgejo/runner/v13/act/model"
 )
 
 type CleanupFunc func()

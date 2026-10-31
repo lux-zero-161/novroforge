@@ -4,7 +4,7 @@
 package v1_17
 
 import (
-	"code.novroforge.xyz/xorm/xorm"
+	"code.forgejo.org/xorm/xorm"
 )
 
 func AddAutoMergeTable(x *xorm.Engine) error {

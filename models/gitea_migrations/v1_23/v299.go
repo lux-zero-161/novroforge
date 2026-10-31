@@ -3,7 +3,7 @@
 
 package v1_23
 
-import "code.novroforge.xyz/xorm/xorm"
+import "code.forgejo.org/xorm/xorm"
 
 func AddContentVersionToIssueAndComment(x *xorm.Engine) error {
 	type Issue struct {

@@ -4,7 +4,7 @@
 package v1_15
 
 import (
-	"code.novroforge.xyz/xorm/xorm"
+	"code.forgejo.org/xorm/xorm"
 )
 
 func AddLFSMirrorColumns(x *xorm.Engine) error {

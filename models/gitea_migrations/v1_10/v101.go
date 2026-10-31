@@ -4,7 +4,7 @@
 package v1_10
 
 import (
-	"code.novroforge.xyz/xorm/xorm"
+	"code.forgejo.org/xorm/xorm"
 )
 
 func ChangeSomeColumnsLengthOfExternalLoginUser(x *xorm.Engine) error {

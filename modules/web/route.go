@@ -11,7 +11,7 @@ import (
 	"novroforge.xyz/modules/web/middleware"
 	apiv1_permissions_testhelpers "novroforge.xyz/routers/api/v1/permissions/testhelpers"
 
-	"code.novroforge.xyz/go-chi/binding"
+	"code.forgejo.org/go-chi/binding"
 	"github.com/go-chi/chi/v5"
 )
 

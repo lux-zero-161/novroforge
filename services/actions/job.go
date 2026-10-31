@@ -13,7 +13,7 @@ import (
 	"novroforge.xyz/modules/util"
 	notify_service "novroforge.xyz/services/notify"
 
-	"code.novroforge.xyz/novroforge/runner/v13/act/jobparser"
+	"code.forgejo.org/forgejo/runner/v13/act/jobparser"
 	gouuid "github.com/google/uuid"
 	"xorm.io/builder"
 )

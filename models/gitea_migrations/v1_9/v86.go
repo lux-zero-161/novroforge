@@ -4,7 +4,7 @@
 package v1_9
 
 import (
-	"code.novroforge.xyz/xorm/xorm"
+	"code.forgejo.org/xorm/xorm"
 )
 
 func AddHTTPMethodToWebhook(x *xorm.Engine) error {

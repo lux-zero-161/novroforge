@@ -6,7 +6,7 @@ package v1_16
 import (
 	"fmt"
 
-	"code.novroforge.xyz/xorm/xorm"
+	"code.forgejo.org/xorm/xorm"
 )
 
 func AddAgitFlowPullRequest(x *xorm.Engine) error {
