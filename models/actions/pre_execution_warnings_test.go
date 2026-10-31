@@ -1,4 +1,4 @@
-// Copyright 2026 The Forgejo Authors. All rights reserved.
+// Copyright 2026 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 package actions
@@ -47,7 +47,7 @@ func TestTranslatePreExecutionWarning(t *testing.T) {
 					{"job1", "https://novroforge.xyz/docs/foo/user/api/authorized-integrations/"},
 				},
 			},
-			expected: []template.HTML{"Job <code>job1</code> or its workflow has a <code>permissions</code> field, which is not supported in Forgejo and will be ignored. Use <a href=\"https://novroforge.xyz/docs/foo/user/api/authorized-integrations/\">Authorized Integrations</a> to grant capabilities to this job instead."},
+			expected: []template.HTML{"Job <code>job1</code> or its workflow has a <code>permissions</code> field, which is not supported in NovroForge and will be ignored. Use <a href=\"https://novroforge.xyz/docs/foo/user/api/authorized-integrations/\">Authorized Integrations</a> to grant capabilities to this job instead."},
 		},
 		{
 			name: "WarningCodePermissionsEncoding",
@@ -58,7 +58,7 @@ func TestTranslatePreExecutionWarning(t *testing.T) {
 					{"<img src=x onerror=alert(document.domain)>", "https://novroforge.xyz/docs/foo/user/api/authorized-integrations/"},
 				},
 			},
-			expected: []template.HTML{"Job <code>&lt;img src=x onerror=alert(document.domain)&gt;</code> or its workflow has a <code>permissions</code> field, which is not supported in Forgejo and will be ignored. Use <a href=\"https://novroforge.xyz/docs/foo/user/api/authorized-integrations/\">Authorized Integrations</a> to grant capabilities to this job instead."},
+			expected: []template.HTML{"Job <code>&lt;img src=x onerror=alert(document.domain)&gt;</code> or its workflow has a <code>permissions</code> field, which is not supported in NovroForge and will be ignored. Use <a href=\"https://novroforge.xyz/docs/foo/user/api/authorized-integrations/\">Authorized Integrations</a> to grant capabilities to this job instead."},
 		},
 		{
 			name: "MultipleWarnings",
@@ -70,8 +70,8 @@ func TestTranslatePreExecutionWarning(t *testing.T) {
 				},
 			},
 			expected: []template.HTML{
-				"Job <code>job1</code> or its workflow has a <code>permissions</code> field, which is not supported in Forgejo and will be ignored. Use <a href=\"https://novroforge.xyz/docs/foo/user/api/authorized-integrations/\">Authorized Integrations</a> to grant capabilities to this job instead.",
-				"Job <code>job4</code> or its workflow has a <code>permissions</code> field, which is not supported in Forgejo and will be ignored. Use <a href=\"https://novroforge.xyz/docs/foo/user/api/authorized-integrations/\">Authorized Integrations</a> to grant capabilities to this job instead.",
+				"Job <code>job1</code> or its workflow has a <code>permissions</code> field, which is not supported in NovroForge and will be ignored. Use <a href=\"https://novroforge.xyz/docs/foo/user/api/authorized-integrations/\">Authorized Integrations</a> to grant capabilities to this job instead.",
+				"Job <code>job4</code> or its workflow has a <code>permissions</code> field, which is not supported in NovroForge and will be ignored. Use <a href=\"https://novroforge.xyz/docs/foo/user/api/authorized-integrations/\">Authorized Integrations</a> to grant capabilities to this job instead.",
 			},
 		},
 	}

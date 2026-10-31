@@ -1,4 +1,4 @@
-// Copyright 2026 The Forgejo Authors. All rights reserved.
+// Copyright 2026 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: GPLv3-or-later
 
 package setting
@@ -18,7 +18,7 @@ type FundingProviderConfig struct {
 
 	// A template string that defines a URL, ideally to a given user profile, to
 	// which users should be sent to support a project. This string should
-	// contain at least one instance of '%s' or '%[1]s', which Forgejo will
+	// contain at least one instance of '%s' or '%[1]s', which NovroForge will
 	// replace with the string given in a repo's funding config.
 	//
 	// This is the only required config key; the other details may be derived
@@ -98,7 +98,7 @@ func addFundingProvider(provider *FundingProviderConfig) {
 }
 
 // GetFundingProviderByName returns a reference to the configured funding
-// provider that has the given Name, or nil if Forgejo knows no such provider.
+// provider that has the given Name, or nil if NovroForge knows no such provider.
 func GetFundingProviderByName(name string) *FundingProviderConfig {
 	return FundingProviders[name]
 }

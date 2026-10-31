@@ -143,9 +143,9 @@ func (s *Service) FetchTask(
 
 	requestKey := getRequestKey(ctx)
 	if requestKey != nil {
-		// It's possible for Forgejo to receive multiple concurrent requests for a given request key if the client made
+		// It's possible for NovroForge to receive multiple concurrent requests for a given request key if the client made
 		// a request (A), request (A) took longer than the client's HTTP timeout, request (A) continues to run on
-		// Forgejo, and the client sends request (B).  In that case, we need to protect against reading from the
+		// NovroForge, and the client sends request (B).  In that case, we need to protect against reading from the
 		// database and sending only *some* of the tasks for the request key back to the runner, as they get assigned
 		// and committed to the database from request (A), but while request (A) is still running and request (B) is
 		// received.  To do this, we lock on the request key with a MutexMap.

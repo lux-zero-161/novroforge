@@ -1,6 +1,6 @@
 # Web Components
 
-This `webcomponents` directory contains the source code for the web components used in the Forgejo Web UI.
+This `webcomponents` directory contains the source code for the web components used in the NovroForge Web UI.
 
 https://developer.mozilla.org/en-US/docs/Web/Web_Components
 

@@ -1,4 +1,4 @@
-// Copyright 2024-2026 The Forgejo Authors
+// Copyright 2024-2026 The NovroForge Authors
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 // @watch start
@@ -45,7 +45,7 @@ test.describe('Releases', () => {
     await page.click('#add-external-link');
     await page.click('#add-external-link');
     await page.fill('input[name=attachment-new-name-2]', 'Test');
-    await page.fill('input[name=attachment-new-exturl-2]', 'https://forgejo.org/');
+    await page.fill('input[name=attachment-new-exturl-2]', 'https://novroforge.xyz/');
     await page.click('.remove-rel-attach');
     await screenshot(page);
     await page.getByRole('button', {name: 'Publish release'}).click();
@@ -55,7 +55,7 @@ test.describe('Releases', () => {
     await expect(page.locator('.download[open] li')).toHaveCount(3);
 
     await expect(page.locator('.download[open] li:nth-of-type(1)')).toContainText('Test');
-    await expect(page.locator('.download[open] li:nth-of-type(1) a')).toHaveAttribute('href', 'https://forgejo.org/');
+    await expect(page.locator('.download[open] li:nth-of-type(1) a')).toHaveAttribute('href', 'https://novroforge.xyz/');
 
     await expect(page.locator('.download[open] li:nth-of-type(2)')).toContainText('Source code (ZIP)');
     await expect(page.locator('.download[open] li:nth-of-type(2) span[data-tooltip-content]')).toHaveAttribute('data-tooltip-content', 'This attachment is automatically generated.');
@@ -74,7 +74,7 @@ test.describe('Releases', () => {
     await validate_form({page}, 'fieldset');
     await expect(page.locator('.attachment_edit:visible')).toHaveCount(2);
     await expect(page.locator('.attachment_edit:visible').nth(0)).toHaveValue('Test');
-    await expect(page.locator('.attachment_edit:visible').nth(1)).toHaveValue('https://forgejo.org/');
+    await expect(page.locator('.attachment_edit:visible').nth(1)).toHaveValue('https://novroforge.xyz/');
     await page.locator('.attachment_edit:visible').nth(0).fill('Test2');
     await page.locator('.attachment_edit:visible').nth(1).fill('https://gitea.io/');
     await page.click('#add-external-link');
@@ -122,7 +122,7 @@ test.describe('Releases', () => {
     await page.locator('input[name=title]').pressSequentially('v'.repeat(200));
     await page.locator('textarea[name=content]').pressSequentially('v'.repeat(200)); // Description
 
-    // Submit form. Mobile Chrome can't press the button in Playwright (not a Forgejo
+    // Submit form. Mobile Chrome can't press the button in Playwright (not a NovroForge
     // bug). Work around this by pressing Enter on submit button
     await page.getByRole('button', {name: 'Publish release'}).press('Enter');
 

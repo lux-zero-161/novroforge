@@ -183,9 +183,9 @@ func runHookPreReceive(ctx context.Context, c *cli.Command) error {
 
 	if len(os.Getenv("SSH_ORIGINAL_COMMAND")) == 0 {
 		if setting.OnlyAllowPushIfGiteaEnvironmentSet {
-			return fail(ctx, `Rejecting changes as Forgejo environment not set.
+			return fail(ctx, `Rejecting changes as NovroForge environment not set.
 If you are pushing over SSH you must push with a key managed by
-Forgejo or set your environment appropriately.`, "")
+NovroForge or set your environment appropriately.`, "")
 		}
 		return nil
 	}
@@ -316,9 +316,9 @@ func runHookPostReceive(ctx context.Context, c *cli.Command) error {
 
 	if len(os.Getenv("SSH_ORIGINAL_COMMAND")) == 0 {
 		if setting.OnlyAllowPushIfGiteaEnvironmentSet {
-			return fail(ctx, `Rejecting changes as Forgejo environment not set.
+			return fail(ctx, `Rejecting changes as NovroForge environment not set.
 If you are pushing over SSH you must push with a key managed by
-Forgejo or set your environment appropriately.`, "")
+NovroForge or set your environment appropriately.`, "")
 		}
 		return nil
 	}
@@ -477,9 +477,9 @@ func runHookProcReceive(ctx context.Context, c *cli.Command) error {
 
 	if len(os.Getenv("SSH_ORIGINAL_COMMAND")) == 0 {
 		if setting.OnlyAllowPushIfGiteaEnvironmentSet {
-			return fail(ctx, `Rejecting changes as Forgejo environment not set.
+			return fail(ctx, `Rejecting changes as NovroForge environment not set.
 If you are pushing over SSH you must push with a key managed by
-Forgejo or set your environment appropriately.`, "")
+NovroForge or set your environment appropriately.`, "")
 		}
 		return nil
 	}

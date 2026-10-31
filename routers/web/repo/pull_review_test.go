@@ -77,7 +77,7 @@ func TestRenderConversation(t *testing.T) {
 	run("diff without outdated", func(t *testing.T, ctx *context.Context, resp *httptest.ResponseRecorder) {
 		ctx.Data["ShowOutdatedComments"] = false
 		renderConversation(ctx, preparedComment, "diff")
-		// unlike gitea, Forgejo renders the conversation (with the "outdated" label)
+		// unlike gitea, NovroForge renders the conversation (with the "outdated" label)
 		assert.Contains(t, resp.Body.String(), `repo.issues.review.outdated_description`)
 	})
 	run("timeline with outdated", func(t *testing.T, ctx *context.Context, resp *httptest.ResponseRecorder) {

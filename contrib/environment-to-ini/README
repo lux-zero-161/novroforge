@@ -1,10 +1,10 @@
 Environment To Ini
 ==================
 
-This tool allows defining Forgejo's entire configuration via environment
+This tool allows defining NovroForge's entire configuration via environment
 variables, mostly geared towards usage in Docker.
 
-Forgejo needs to use an INI file for configuration because the running
+NovroForge needs to use an INI file for configuration because the running
 environment that starts the container may not be the same as the one used
 by the hooks. An INI file also gives a good default and means that
 users do not have to provide the entire set of environment variables.

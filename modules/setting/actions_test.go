@@ -1,5 +1,5 @@
 // Copyright 2023 The Gitea Authors. All rights reserved.
-// Copyright 2026 The Forgejo Authors. All rights reserved.
+// Copyright 2026 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: MIT
 
 package setting
@@ -235,7 +235,7 @@ func Test_getIDTokenSettingsForActions(t *testing.T) {
 
 	iniStr = `
   [actions]
-	ID_TOKEN_KEYS_ACCEPTED = HS384:ForgejoForgejoForgejoForgejoForgejoForgejo_
+	ID_TOKEN_KEYS_ACCEPTED = HS384:NovroForgeNovroForgeNovroForgeNovroForgeNovroForgeNovroForge_
 	`
 	cfg, err = NewConfigProviderFromData(iniStr)
 	require.NoError(t, err)

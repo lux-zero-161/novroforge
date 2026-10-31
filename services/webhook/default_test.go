@@ -1,4 +1,4 @@
-// Copyright 2024 The Forgejo Authors. All rights reserved.
+// Copyright 2024 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: MIT
 
 package webhook
@@ -120,7 +120,7 @@ func TestGiteaPayload(t *testing.T) {
 	})
 }
 
-func TestForgejoPayload(t *testing.T) {
+func TestNovroForgePayload(t *testing.T) {
 	dh := defaultHandler{
 		forgejo: true,
 	}

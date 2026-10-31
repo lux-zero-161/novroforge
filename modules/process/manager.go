@@ -56,7 +56,7 @@ var (
 
 	// This closure is invoked in the event that SIGKILL is sent after a grace period has expired.  Intended for logging
 	// the situation, which cannot be performed inside the process module as it would cause a cyclical dependency on
-	// Forgejo's log module.
+	// NovroForge's log module.
 	NotifyTerminateGraceExhausted func(cmd *exec.Cmd)
 )
 

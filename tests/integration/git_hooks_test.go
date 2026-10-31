@@ -1,4 +1,4 @@
-// Copyright 2026 The Forgejo Authors c/o Codeberg e.V.. All rights reserved.
+// Copyright 2026 The NovroForge Authors c/o Codeberg e.V.. All rights reserved.
 // SPDX-License-Identifier: MIT
 package integration
 

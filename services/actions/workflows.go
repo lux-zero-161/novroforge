@@ -1,4 +1,4 @@
-// Copyright The Forgejo Authors.
+// Copyright The NovroForge Authors.
 // SPDX-License-Identifier: MIT
 
 package actions
@@ -66,7 +66,7 @@ func resolveDispatchInput(key, value string, input act_model.WorkflowDispatchInp
 			return "", ErrSkipDispatchInput
 		}
 	} else if input.Type == "boolean" {
-		// Temporary compatibility shim for people that upgrade to Forgejo 14. Can be removed with Forgejo 15.
+		// Temporary compatibility shim for people that upgrade to NovroForge 14. Can be removed with NovroForge 15.
 		if value == "on" {
 			value = "true"
 		}

@@ -106,7 +106,7 @@ func TestAPIGetRawFileOrLFS(t *testing.T) {
 					// Sanity check, caching tested in modules/httpcache/httpcache_test.go
 					//
 					// This is here to check that the redirect (URL -> file) is OK.
-					assert.Equal(t, "file", respLFS.Header().Get("X-Forgejo-Object-Type"))
+					assert.Equal(t, "file", respLFS.Header().Get("X-NovroForge-Object-Type"))
 				})
 
 				// checking for the lfs file in the correct repo with proper token.
@@ -137,7 +137,7 @@ func TestAPIGetRawFileOrLFS(t *testing.T) {
 					// Sanity check, caching tested in modules/httpcache/httpcache_test.go
 					//
 					// This is here to check that the redirect (URL -> file) is OK.
-					assert.Equal(t, "file", respLFS.Header().Get("X-Forgejo-Object-Type"))
+					assert.Equal(t, "file", respLFS.Header().Get("X-NovroForge-Object-Type"))
 				})
 
 				doAPIDeleteRepository(httpContext)(t)

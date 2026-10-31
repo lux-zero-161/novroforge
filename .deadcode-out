@@ -1,7 +1,7 @@
-forgejo.org/cmd
+novroforge.xyz/cmd
 	NoMainListener
 
-forgejo.org/cmd/forgejo
+novroforge.xyz/cmd/forgejo
 	ContextSetNoInit
 	ContextSetNoExit
 	ContextSetStderr
@@ -9,14 +9,14 @@ forgejo.org/cmd/forgejo
 	ContextSetStdout
 	ContextSetStdin
 
-forgejo.org/models
+novroforge.xyz/models
 	IsErrSHANotFound
 	IsErrMergeDivergingFastForwardOnly
 
-forgejo.org/models/auth
+novroforge.xyz/models/auth
 	WebAuthnCredentials
 
-forgejo.org/models/db
+novroforge.xyz/models/db
 	TruncateBeans
 	TruncateBeansCascade
 	DumpTables
@@ -24,31 +24,31 @@ forgejo.org/models/db
 	extendBeansForCascade
 	IsErrNameActivityPubInvalid
 
-forgejo.org/models/dbfs
+novroforge.xyz/models/dbfs
 	file.renameTo
 	Create
 	Rename
 
-forgejo.org/models/forgejo/semver
+novroforge.xyz/models/forgejo/semver
 	GetVersion
 	SetVersionString
 	SetVersion
 
-forgejo.org/models/forgejo_migrations
+novroforge.xyz/models/forgejo_migrations
 	resetMigrations
 
-forgejo.org/models/git
+novroforge.xyz/models/git
 	RemoveDeletedBranchByID
 
-forgejo.org/models/issues
+novroforge.xyz/models/issues
 	IsErrUnknownDependencyType
 	IsErrIssueWasClosed
 
-forgejo.org/models/perm/access
+novroforge.xyz/models/perm/access
 	AccessLevel
 	GetRepoWriters
 
-forgejo.org/models/user
+novroforge.xyz/models/user
 	IsErrUserWrongType
 	IsErrExternalLoginUserAlreadyExist
 	IsErrExternalLoginUserNotExist
@@ -57,34 +57,34 @@ forgejo.org/models/user
 	GetUserAllSettings
 	DeleteUserSetting
 
-forgejo.org/modules/activitypub
+novroforge.xyz/modules/activitypub
 	NewContext
 	Context.APClientFactory
 
-forgejo.org/modules/assetfs
+novroforge.xyz/modules/assetfs
 	Bindata
 
-forgejo.org/modules/auth/password/hash
+novroforge.xyz/modules/auth/password/hash
 	DummyHasher.HashWithSaltBytes
 	NewDummyHasher
 
-forgejo.org/modules/auth/password/pwn
+novroforge.xyz/modules/auth/password/pwn
 	WithHTTP
 
-forgejo.org/modules/base
+novroforge.xyz/modules/base
 	SetupProjectRoot
 
-forgejo.org/modules/cache
+novroforge.xyz/modules/cache
 	WithNoCacheContext
 	RemoveContextData
 
-forgejo.org/modules/emoji
+novroforge.xyz/modules/emoji
 	ReplaceCodes
 
-forgejo.org/modules/eventsource
+novroforge.xyz/modules/eventsource
 	Event.String
 
-forgejo.org/modules/forgefed
+novroforge.xyz/modules/forgefed
 	NewForgeUndoLike
 	ForgeUndoLike.UnmarshalJSON
 	ForgeUndoLike.Validate
@@ -95,7 +95,7 @@ forgejo.org/modules/forgefed
 	ToRepository
 	OnRepository
 
-forgejo.org/modules/git
+novroforge.xyz/modules/git
 	AllowLFSFiltersArgs
 	AddChanges
 	AddChangesWithArgs
@@ -106,63 +106,63 @@ forgejo.org/modules/git
 	openRepositoryWithDefaultContext
 	ToEntryMode
 
-forgejo.org/modules/gitrepo
+novroforge.xyz/modules/gitrepo
 	GetBranchCommitID
 	GetWikiDefaultBranch
 
-forgejo.org/modules/graceful
+novroforge.xyz/modules/graceful
 	Manager.TerminateContext
 	Manager.Err
 	Manager.Value
 	Manager.Deadline
 
-forgejo.org/modules/hcaptcha
+novroforge.xyz/modules/hcaptcha
 	WithHTTP
 
-forgejo.org/modules/hostmatcher
+novroforge.xyz/modules/hostmatcher
 	HostMatchList.AppendPattern
 
-forgejo.org/modules/json
+novroforge.xyz/modules/json
 	StdJSON.Marshal
 	StdJSON.Unmarshal
 	StdJSON.NewEncoder
 	StdJSON.NewDecoder
 	StdJSON.Indent
 
-forgejo.org/modules/jwtx
+novroforge.xyz/modules/jwtx
 	savePublicKey
 	NewVerifier
 	Verifier.Parse
 
-forgejo.org/modules/log
+novroforge.xyz/modules/log
 	eventWriterBuffer.Close
 	eventWriterBuffer.Write
 	eventWriterBuffer.GetString
 	NewEventWriterBuffer
 
-forgejo.org/modules/markup
+novroforge.xyz/modules/markup
 	GetRendererByType
 	RenderString
 	IsMarkupFile
 
-forgejo.org/modules/markup/console
+novroforge.xyz/modules/markup/console
 	Render
 	RenderString
 
-forgejo.org/modules/markup/markdown
+novroforge.xyz/modules/markup/markdown
 	RenderRawString
 
-forgejo.org/modules/markup/mdstripper
+novroforge.xyz/modules/markup/mdstripper
 	stripRenderer.AddOptions
 	StripMarkdown
 
-forgejo.org/modules/markup/orgmode
+novroforge.xyz/modules/markup/orgmode
 	RenderString
 
-forgejo.org/modules/process
+novroforge.xyz/modules/process
 	Manager.ExecTimeout
 
-forgejo.org/modules/queue
+novroforge.xyz/modules/queue
 	newBaseChannelSimple
 	newBaseChannelUnique
 	newBaseRedisSimple
@@ -171,12 +171,12 @@ forgejo.org/modules/queue
 	testStateRecorder.Reset
 	newWorkerPoolQueueForTest
 
-forgejo.org/modules/queue/lqinternal
+novroforge.xyz/modules/queue/lqinternal
 	QueueItemIDBytes
 	QueueItemKeyBytes
 	ListLevelQueueKeys
 
-forgejo.org/modules/setting
+novroforge.xyz/modules/setting
 	NewConfigProviderFromData
 	NewVolatileConfigProvider
 	volatileConfig.WriteTo
@@ -199,16 +199,16 @@ forgejo.org/modules/setting
 	checkValidationOnlyHS256
 	onlyHS256
 
-forgejo.org/modules/sync
+novroforge.xyz/modules/sync
 	StatusTable.Start
 	StatusTable.IsRunning
 
-forgejo.org/modules/timeutil
+novroforge.xyz/modules/timeutil
 	GetExecutableModTime
 	MockSet
 	MockUnset
 
-forgejo.org/modules/translation
+novroforge.xyz/modules/translation
 	MockLocale.Language
 	MockLocale.TrString
 	MockLocale.Tr
@@ -219,28 +219,28 @@ forgejo.org/modules/translation
 	MockLocale.HasKey
 	MockLocale.PrettyNumber
 
-forgejo.org/modules/translation/localeiter
+novroforge.xyz/modules/translation/localeiter
 	IterateMessagesContent
 
-forgejo.org/modules/util
+novroforge.xyz/modules/util
 	OptionalArg
 
-forgejo.org/modules/util/filebuffer
+novroforge.xyz/modules/util/filebuffer
 	CreateFromReader
 
-forgejo.org/modules/validation
+novroforge.xyz/modules/validation
 	IsErrNotValid
 
-forgejo.org/modules/web
+novroforge.xyz/modules/web
 	RouteMock
 	RouteMockReset
 
-forgejo.org/modules/zstd
+novroforge.xyz/modules/zstd
 	NewWriter
 	Writer.Write
 	Writer.Close
 
-forgejo.org/routers/api/v1/permissions
+novroforge.xyz/routers/api/v1/permissions
 	Permissions.Context
 	Permissions.SetContext
 	Permissions.GetToken
@@ -283,36 +283,36 @@ forgejo.org/routers/api/v1/permissions
 	Permissions.String
 	Permissions.Strings
 
-forgejo.org/routers/api/v1/permissions/testhelpers
+novroforge.xyz/routers/api/v1/permissions/testhelpers
 	GetSignatureStringToSignature
 	GetUniquePermissionsSequences
 	GetShortestPermissionSequenceForEachSignature
 
-forgejo.org/routers/web/org
+novroforge.xyz/routers/web/org
 	MustEnableProjects
 
-forgejo.org/services/auth
+novroforge.xyz/services/auth
 	RegisterInternalIssuerForTesting
 
-forgejo.org/services/context
+novroforge.xyz/services/context
 	GetPrivateContext
 
-forgejo.org/services/notify
+novroforge.xyz/services/notify
 	UnregisterNotifier
 
-forgejo.org/services/repository
+novroforge.xyz/services/repository
 	IsErrForkAlreadyExist
 
-forgejo.org/services/repository/files
+novroforge.xyz/services/repository/files
 	ContentType.String
 	RepoFileOptionMode
 
-forgejo.org/services/repository/gitgraph
+novroforge.xyz/services/repository/gitgraph
 	Parser.Reset
 
-forgejo.org/services/stats
+novroforge.xyz/services/stats
 	Flush
 
-forgejo.org/services/webhook
+novroforge.xyz/services/webhook
 	NewNotifier
 

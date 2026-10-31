@@ -1,4 +1,4 @@
-// Copyright 2025 The Forgejo Authors. All rights reserved.
+// Copyright 2025 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 package integration
@@ -218,7 +218,7 @@ func TestActionsIDToken(t *testing.T) {
 		resp = MakeRequest(t, req, http.StatusOK)
 		DecodeJSON(t, resp, &getResponse)
 
-		// Should be able to make a Forgejo API call with the JWT, authenticated by the Authorized Integration:
+		// Should be able to make a NovroForge API call with the JWT, authenticated by the Authorized Integration:
 		req := NewRequest(t, "GET", "/api/v1/user").AddTokenAuth(getResponse.Value)
 		resp := MakeRequest(t, req, http.StatusOK)
 		var user api.User

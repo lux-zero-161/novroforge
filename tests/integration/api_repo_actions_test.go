@@ -1,4 +1,4 @@
-// Copyright 2025 The Forgejo Authors. All rights reserved.
+// Copyright 2025 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: MIT
 
 package integration
@@ -140,7 +140,7 @@ func TestActionsAPIWorkflowDispatchReturnInfo(t *testing.T) {
 			workflowDirectory: ".gitea/workflows",
 		},
 		{
-			name:              "Forgejo",
+			name:              "NovroForge",
 			workflowID:        "build.yml",
 			workflowDirectory: ".forgejo/workflows",
 		},

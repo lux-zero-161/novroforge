@@ -224,7 +224,7 @@ func (job *ActionRunJob) CanAccessSecrets(ctx context.Context) (bool, error) {
 		return true, nil
 	}
 
-	// When Forgejo receives events from a pull request, we want to avoid running untrusted workflows that are contained
+	// When NovroForge receives events from a pull request, we want to avoid running untrusted workflows that are contained
 	// within the pull request while providing them secrets.  The rules involved in which events run workflows from
 	// which branch are intricate, implemented in IsDefaultBranchWorkflow & getPullRequestCommitAndApproval, based upon
 	// the PR, the user making the action, and the event being triggered.

@@ -28,7 +28,7 @@ func Routes() *web.Route {
 	r := web.NewRoute()
 	r.Use(context.PrivateContexter())
 	// Log the real ip address of the request from SSH is really helpful for diagnosing sometimes.
-	// Since internal API will be sent only from Forgejo sub commands and it's under control (checked by InternalToken), we can trust the headers.
+	// Since internal API will be sent only from NovroForge sub commands and it's under control (checked by InternalToken), we can trust the headers.
 	r.Use(chi_middleware.ClientIPFromHeader("X-Real-IP"))
 
 	r.Post("/ssh/authorized_keys", AuthorizedPublicKeyByFingerprint)

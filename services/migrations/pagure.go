@@ -1,4 +1,4 @@
-// Copyright 2025 The Forgejo Authors. All rights reserved.
+// Copyright 2025 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: MIT
 
 package migrations
@@ -33,7 +33,7 @@ func init() {
 // PagureDownloaderFactory defines a downloader factory
 type PagureDownloaderFactory struct{}
 
-// PagureUser defines a user on Pagure to be migrated over to Forgejo
+// PagureUser defines a user on Pagure to be migrated over to NovroForge
 type PagureUser struct {
 	FullURL  string `json:"full_url"`
 	Fullname string `json:"fullname"`
@@ -287,7 +287,7 @@ func (d *PagureDownloader) callAPI(endpoint string, parameter map[string]string,
 
 	// pagure.io is protected by Anubis and requires proper headers
 	req.Header.Add("Accept", "*/*")
-	req.Header.Add("User-Agent", "Forgejo/"+setting.AppVer)
+	req.Header.Add("User-Agent", "NovroForge/"+setting.AppVer)
 
 	if d.privateIssuesOnlyRepo {
 		req.Header.Set("Authorization", "token "+d.token)

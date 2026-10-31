@@ -260,7 +260,7 @@ func TestPackageMaven(t *testing.T) {
 		req.SetBasicAuth(user.Name, "invalid")
 		resp := MakeRequest(t, req, http.StatusUnauthorized)
 
-		// Verify that headers from other package endpoints do not leak into the Maven registry. That Forgejo responds
+		// Verify that headers from other package endpoints do not leak into the Maven registry. That NovroForge responds
 		// with 401 Unauthorized without including any WWW-Authenticate header is *wrong*, though.
 		assert.Empty(t, resp.Header().Values("WWW-Authenticate"))
 

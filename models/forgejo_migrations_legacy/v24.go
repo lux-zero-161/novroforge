@@ -1,16 +1,16 @@
-// Copyright 2024 The Forgejo Authors. All rights reserved.
+// Copyright 2024 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: MIT
 
 package forgejo_migrations_legacy
 
 import "code.forgejo.org/xorm/xorm"
 
-func AddPurposeToForgejoAuthToken(x *xorm.Engine) error {
-	type ForgejoAuthToken struct {
+func AddPurposeToNovroForgeAuthToken(x *xorm.Engine) error {
+	type NovroForgeAuthToken struct {
 		ID      int64  `xorm:"pk autoincr"`
 		Purpose string `xorm:"NOT NULL DEFAULT 'long_term_authorization'"`
 	}
-	if err := x.Sync(new(ForgejoAuthToken)); err != nil {
+	if err := x.Sync(new(NovroForgeAuthToken)); err != nil {
 		return err
 	}
 

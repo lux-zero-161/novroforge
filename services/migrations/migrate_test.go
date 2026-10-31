@@ -1,4 +1,4 @@
-// Copyright 2026 The Forgejo Authors. All rights reserved.
+// Copyright 2026 The NovroForge Authors. All rights reserved.
 // Copyright 2019 The Gitea Authors. All rights reserved.
 // SPDX-License-Identifier: MIT
 
@@ -128,7 +128,7 @@ func TestMigrateRepository(t *testing.T) {
 func TestMigrationUserAgent(t *testing.T) {
 	testServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		userAgent := r.Header.Get("User-Agent")
-		assert.Equal(t, "Forgejo-migration-http-client/1.1", userAgent)
+		assert.Equal(t, "NovroForge-migration-http-client/1.1", userAgent)
 	}))
 	defer testServer.Close()
 

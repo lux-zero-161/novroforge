@@ -34,8 +34,8 @@ RUN cp /*-alpine-linux-musl*/lib/ld-musl-*.so.1 /lib || true
 
 RUN apk --no-cache add build-base git nodejs npm
 
-COPY . ${GOPATH}/src/forgejo.org
-WORKDIR ${GOPATH}/src/forgejo.org
+COPY . ${GOPATH}/src/novroforge.xyz
+WORKDIR ${GOPATH}/src/novroforge.xyz
 
 RUN make clean-no-bindata
 RUN make frontend
@@ -49,22 +49,22 @@ COPY docker/rootless /tmp/local
 RUN chmod 755 /tmp/local/usr/local/bin/docker-entrypoint.sh \
               /tmp/local/usr/local/bin/docker-setup.sh \
               /tmp/local/usr/local/bin/gitea \
-              /go/src/forgejo.org/gitea \
-              /go/src/forgejo.org/environment-to-ini
-RUN chmod 644 /go/src/forgejo.org/contrib/autocompletion/bash_autocomplete
+              /go/src/novroforge.xyz/gitea \
+              /go/src/novroforge.xyz/environment-to-ini
+RUN chmod 644 /go/src/novroforge.xyz/contrib/autocompletion/bash_autocomplete
 
 FROM data.forgejo.org/oci/alpine:3.24
 ARG RELEASE_VERSION
-LABEL maintainer="contact@forgejo.org" \
-      org.opencontainers.image.authors="Forgejo" \
-      org.opencontainers.image.url="https://forgejo.org" \
-      org.opencontainers.image.documentation="https://forgejo.org/download/#container-image" \
+LABEL maintainer="contact@novroforge.xyz" \
+      org.opencontainers.image.authors="NovroForge" \
+      org.opencontainers.image.url="https://novroforge.xyz" \
+      org.opencontainers.image.documentation="https://novroforge.xyz/download/#container-image" \
       org.opencontainers.image.source="https://codeberg.org/forgejo/forgejo" \
       org.opencontainers.image.version="${RELEASE_VERSION}" \
-      org.opencontainers.image.vendor="Forgejo" \
+      org.opencontainers.image.vendor="NovroForge" \
       org.opencontainers.image.licenses="GPL-3.0-or-later" \
-      org.opencontainers.image.title="Forgejo. Beyond coding. We forge." \
-      org.opencontainers.image.description="Forgejo is a self-hosted lightweight software forge. Easy to install and low maintenance, it just does the job."
+      org.opencontainers.image.title="NovroForge. Beyond coding. We forge." \
+      org.opencontainers.image.description="NovroForge is a self-hosted lightweight software forge. Easy to install and low maintenance, it just does the job."
 
 EXPOSE 2222 3000
 
@@ -98,10 +98,10 @@ RUN mkdir -p /run/forgejo && \
 
 COPY --from=build-env /tmp/local /
 RUN cd /usr/local/bin ; ln -s gitea forgejo
-COPY --from=build-env --chown=root:root /go/src/forgejo.org/gitea /app/gitea/gitea
+COPY --from=build-env --chown=root:root /go/src/novroforge.xyz/gitea /app/gitea/gitea
 RUN ln -s /app/gitea/gitea /app/gitea/forgejo-cli
-COPY --from=build-env --chown=root:root /go/src/forgejo.org/environment-to-ini /usr/local/bin/environment-to-ini
-COPY --from=build-env /go/src/forgejo.org/contrib/autocompletion/bash_autocomplete /etc/profile.d/gitea_bash_autocomplete.sh
+COPY --from=build-env --chown=root:root /go/src/novroforge.xyz/environment-to-ini /usr/local/bin/environment-to-ini
+COPY --from=build-env /go/src/novroforge.xyz/contrib/autocompletion/bash_autocomplete /etc/profile.d/gitea_bash_autocomplete.sh
 
 #git:git
 USER 1000:1000

@@ -1,4 +1,4 @@
-// Copyright 2026 The Forgejo Authors. All rights reserved.
+// Copyright 2026 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: GPLv3-or-later
 
 package process
@@ -53,7 +53,7 @@ func genericGracefulCancel(cmd *exec.Cmd) func() error {
 		//
 		// The arbitrary delay between loops isn't ideal when compared to letting the OS wake us when the process is
 		// done (as the Linux pidfd implementation does), but it's cross-platform.  As this is already an edge-case
-		// where a subprocess has an abnormal termination caused by Forgejo, which isn't very frequent, a loop and wait
+		// where a subprocess has an abnormal termination caused by NovroForge, which isn't very frequent, a loop and wait
 		// implementation shouldn't have significant performance impact.
 		deadline := time.Now().Add(TerminateGraceTimeout)
 		for time.Until(deadline) >= 0 {

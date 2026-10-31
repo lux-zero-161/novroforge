@@ -1,8 +1,8 @@
 # SPDX-License-Identifier: MIT
 #
-# See also https://forgejo.org/docs/next/contributor/release/#stable-release-process
+# See also https://novroforge.xyz/docs/next/contributor/release/#stable-release-process
 #
-# TOKEN_NEXT_DIGEST is a token with write repository access to https://invisible.forgejo.org/infrastructure/next-digest issued by https://invisible.forgejo.org/forgejo-next-digest
+# TOKEN_NEXT_DIGEST is a token with write repository access to https://invisible.novroforge.xyz/infrastructure/next-digest issued by https://invisible.novroforge.xyz/forgejo-next-digest
 #
 # https://codeberg.org/forgejo-experimental/forgejo
 #
@@ -16,7 +16,7 @@
 #  vars.DOER: forgejo-experimental-ci
 #  secrets.TOKEN: <generated from codeberg.org/forgejo-experimental-ci>
 #
-# http://invisible.forgejo.org/forgejo/forgejo
+# http://invisible.novroforge.xyz/forgejo/forgejo
 #
 #  Copies & sign a release from codeberg.org/forgejo-integration to codeberg.org/forgejo
 #
@@ -79,10 +79,10 @@ jobs:
           label-wait-if-exists: 3600
           label: trigger
 
-      - name: upgrade v*.next.forgejo.org
+      - name: upgrade v*.next.novroforge.xyz
         uses: https://data.forgejo.org/infrastructure/next-digest@e22026170bac6fd38c3034dbc33e66b52fe069d1 # v1.2.2
         with:
-          url: https://placeholder:${{ secrets.TOKEN_NEXT_DIGEST }}@invisible.forgejo.org/infrastructure/next-digest
+          url: https://placeholder:${{ secrets.TOKEN_NEXT_DIGEST }}@invisible.novroforge.xyz/infrastructure/next-digest
           ref_name: '${{ github.ref_name }}'
           image: 'codeberg.org/forgejo-experimental/forgejo'
           tag_suffix: '-rootless'

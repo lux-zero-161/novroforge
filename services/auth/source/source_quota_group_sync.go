@@ -1,4 +1,4 @@
-// Copyright 2025 The Forgejo Contributors. All rights reserved.
+// Copyright 2025 The NovroForge Contributors. All rights reserved.
 // SPDX-License-Identifier: MIT
 
 package source

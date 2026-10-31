@@ -1,5 +1,5 @@
 // Copyright 2018 The Gitea Authors. All rights reserved.
-// Copyright 2026 The Forgejo Authors. All rights reserved.
+// Copyright 2026 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: MIT
 
 package cmd
@@ -22,7 +22,7 @@ func cmdKeys() *cli.Command {
 	return &cli.Command{
 		Name:        "keys",
 		Usage:       "(internal) Should only be called by SSH server",
-		Description: "Queries the Forgejo database to get the authorized command for a given ssh key fingerprint",
+		Description: "Queries the NovroForge database to get the authorized command for a given ssh key fingerprint",
 		Before:      multipleBefore(noDanglingArgs, PrepareConsoleLoggerLevel(log.FATAL)),
 		Action:      runKeys,
 		Flags: []cli.Flag{

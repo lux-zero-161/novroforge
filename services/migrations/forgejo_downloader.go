@@ -1,4 +1,4 @@
-// Copyright 2023 The Forgejo Authors
+// Copyright 2023 The NovroForge Authors
 // SPDX-License-Identifier: MIT
 
 package migrations
@@ -8,13 +8,13 @@ import (
 )
 
 func init() {
-	RegisterDownloaderFactory(&ForgejoDownloaderFactory{})
+	RegisterDownloaderFactory(&NovroForgeDownloaderFactory{})
 }
 
-type ForgejoDownloaderFactory struct {
+type NovroForgeDownloaderFactory struct {
 	GiteaDownloaderFactory
 }
 
-func (f *ForgejoDownloaderFactory) GitServiceType() structs.GitServiceType {
-	return structs.ForgejoService
+func (f *NovroForgeDownloaderFactory) GitServiceType() structs.GitServiceType {
+	return structs.NovroForgeService
 }

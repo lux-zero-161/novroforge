@@ -1,4 +1,4 @@
-// Copyright 2025 The Forgejo Authors. All rights reserved.
+// Copyright 2025 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 // @watch start
@@ -30,6 +30,6 @@ test('Mismatched ROOT_URL', async ({browser}) => {
 
   await screenshot(page);
   const globalError = page.locator('.js-global-error');
-  await expect(globalError).toContainText('This Forgejo instance is configured to be served on ');
-  await expect(globalError).toContainText('You are currently viewing Forgejo through a different URL, which may cause parts of the application to break. The canonical URL is controlled by Forgejo admins via the ROOT_URL setting in the app.ini.');
+  await expect(globalError).toContainText('This NovroForge instance is configured to be served on ');
+  await expect(globalError).toContainText('You are currently viewing NovroForge through a different URL, which may cause parts of the application to break. The canonical URL is controlled by NovroForge admins via the ROOT_URL setting in the app.ini.');
 });

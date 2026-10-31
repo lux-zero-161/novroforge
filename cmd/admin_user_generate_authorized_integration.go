@@ -1,4 +1,4 @@
-// Copyright 2026 The Forgejo Authors. All rights reserved.
+// Copyright 2026 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 package cmd
@@ -24,12 +24,12 @@ import (
 func microcmdUserCreateAuthorizedIntegration() *cli.Command {
 	return &cli.Command{
 		Name: "create-authorized-integration",
-		Description: `Creates an authorized integration. Authorized integrations allow Forgejo to
+		Description: `Creates an authorized integration. Authorized integrations allow NovroForge to
 receive JWTs from external sources, validate their claims against
-user-defined rules, and grant access to Forgejo's API on behalf of a user.
+user-defined rules, and grant access to NovroForge's API on behalf of a user.
 
 The issuer may be set to "urn:forgejo:authorized-integrations:actions"
-to support JWTs from the local instance's Forgejo Actions, utilizing the
+to support JWTs from the local instance's NovroForge Actions, utilizing the
 enable-openid-connect flag in a workflow.`,
 
 		// `--claim-in sub=v1,v2,v3` needs to be parsed as a single parameter so that we can comma-split the value into

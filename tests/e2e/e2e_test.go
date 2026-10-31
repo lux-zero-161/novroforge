@@ -137,7 +137,7 @@ func TestE2e(t *testing.T) {
 			}
 
 			// Default 2 minute timeout
-			onForgejoRun(t, func(*testing.T, *url.URL) {
+			onNovroForgeRun(t, func(*testing.T, *url.URL) {
 				DeclareGitRepos(t)
 				thisTest := runArgs
 				// when all tests are run, use unique artifacts directories per test to preserve artifacts from other tests

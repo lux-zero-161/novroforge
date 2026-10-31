@@ -537,7 +537,7 @@ func loadSecurityFrom(rootCfg ConfigProvider) {
 
 	// warn if the setting is set to false explicitly
 	if sectionHasDisableQueryAuthToken && !DisableQueryAuthToken {
-		log.Warn("Enabling Query API Auth tokens is not recommended. DISABLE_QUERY_AUTH_TOKEN will be removed in Forgejo v13.0.0.")
+		log.Warn("Enabling Query API Auth tokens is not recommended. DISABLE_QUERY_AUTH_TOKEN will be removed in NovroForge v13.0.0.")
 	}
 
 	if sec.HasKey("INTERNAL_TOKEN") || sec.HasKey("INTERNAL_TOKEN_URI") {

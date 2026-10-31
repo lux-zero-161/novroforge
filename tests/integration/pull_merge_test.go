@@ -1290,7 +1290,7 @@ func bulkCreatePRs(t *testing.T, prCount int, repo *repo_model.Repository, token
 
 			// We're going to create two branches; a new target branch where the PR will merge *into*, and a new
 			// head branch where the PR will merge *from*.  This test is about finding internal concurrency
-			// conflicts within Forgejo that prevent merges, and, merging simultaneously into the *same branch*
+			// conflicts within NovroForge that prevent merges, and, merging simultaneously into the *same branch*
 			// would have natural conflicts that aren't what we're attempting to test.
 			targetBranchName := fmt.Sprintf("target-branch-%d", i)
 			req := NewRequestWithJSON(t,
@@ -1465,7 +1465,7 @@ func TestMergeHTTPRequestCancellation(t *testing.T) {
 		// The purpose of this test is to interrupt the HTTP request to "/%s/%s/pulls/%d/merge" by cancelling the
 		// context at various times during the request, and ensuring that we don't get into any states where the request
 		// has partially succeeded but then been cancelled -- for example, wrote the merge to the repo, but didn't
-		// update Forgejo's database. To do this we're going to create a bunch of PRs, merge them, and cancel request
+		// update NovroForge's database. To do this we're going to create a bunch of PRs, merge them, and cancel request
 		// during merge -- evenly distributing the cancellation times like this:
 		cancellationChecks := 5                                                       // number of pull requests to create and attempt to merge
 		measuredMergeTime := 283 * time.Millisecond                                   // time measured on a test system for one POST /%s/%s/pulls/%d/merge

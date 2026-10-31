@@ -226,7 +226,7 @@ func (run *ActionRun) SetConcurrencyGroup(concurrencyGroup string) {
 }
 
 func (run *ActionRun) SetDefaultConcurrencyGroup() {
-	// Before ConcurrencyGroups were supported, Forgejo would automatically cancel runs with matching git refs, workflow
+	// Before ConcurrencyGroups were supported, NovroForge would automatically cancel runs with matching git refs, workflow
 	// IDs, and trigger events.  For backwards compatibility we emulate that behavior:
 	run.SetConcurrencyGroup(fmt.Sprintf(
 		"%s_%s_%s__auto",

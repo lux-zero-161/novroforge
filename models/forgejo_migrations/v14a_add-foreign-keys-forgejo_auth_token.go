@@ -1,4 +1,4 @@
-// Copyright 2025 The Forgejo Authors. All rights reserved.
+// Copyright 2025 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 package forgejo_migrations
@@ -11,16 +11,16 @@ import (
 func init() {
 	registerMigration(&Migration{
 		Description: "add foreign keys to table forgejo_auth_token",
-		Upgrade:     addForeignKeysForgejoAuthToken,
+		Upgrade:     addForeignKeysNovroForgeAuthToken,
 	})
 }
 
-func addForeignKeysForgejoAuthToken(x *xorm.Engine) error {
-	type ForgejoAuthToken struct {
+func addForeignKeysNovroForgeAuthToken(x *xorm.Engine) error {
+	type NovroForgeAuthToken struct {
 		UID int64 `xorm:"INDEX REFERENCES(user, id)"`
 	}
 	return syncForeignKeyWithDelete(x,
-		new(ForgejoAuthToken),
+		new(NovroForgeAuthToken),
 		builder.Expr("NOT EXISTS (SELECT id FROM `user` WHERE `user`.id = forgejo_auth_token.uid)"),
 	)
 }

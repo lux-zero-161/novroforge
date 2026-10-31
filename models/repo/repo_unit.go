@@ -224,8 +224,8 @@ func (cfg *PullRequestsConfig) GetDefaultUpdateStyle() UpdateStyle {
 //
 // We try to follow GitHub's format for the `sub` claim because it should allow third-party integrations, which may have
 // existing knowledge and code that works with GitHub's OIDC tokens, to reuse that knowledge and code in the future to
-// implement Forgejo support.  As GitHub's format changes, we may implement those format changes to maintain that
-// familarity.  Forgejo isn't required to do so, though -- if future changes from GitHub don't make sense for Forgejo,
+// implement NovroForge support.  As GitHub's format changes, we may implement those format changes to maintain that
+// familarity.  NovroForge isn't required to do so, though -- if future changes from GitHub don't make sense for NovroForge,
 // or vice-versa, this format matching effort may be discarded.
 type OIDCSubjectFormat string
 
@@ -236,7 +236,7 @@ var (
 	// repository where the action occurred, their immutable identifiers (ID numbers), and the event that triggered the
 	// Action.
 	//
-	// Immutable identifiers have been added since OIDCSubjectFormatLegacyForgejo15.  The intent of adding them is to
+	// Immutable identifiers have been added since OIDCSubjectFormatLegacyNovroForge15.  The intent of adding them is to
 	// protect resource servers which may be requiring a specific subject claim from having that claim be impersonated
 	// when a user or repository are renamed or deleted.  For example, if a JWT from my-org/my-repo is trusted, but then
 	// my-org is deleted and a new user takes ownership of the name my-org, they should not be granted the same trust.
@@ -244,11 +244,11 @@ var (
 	// Example: repo:my-org-123456/my-repo-456789:ref:refs/heads/main
 	OIDCSubjectFormatDefault OIDCSubjectFormat // defaults to ""
 
-	// The `sub` JWT claim generation that was shipped in Forgejo 15.  Contains information about the repository owner
+	// The `sub` JWT claim generation that was shipped in NovroForge 15.  Contains information about the repository owner
 	// and repository where the action occurred and the event that triggered the Action.
 	//
 	// Example: repo:my-org/my-repo:ref:refs/heads/main
-	OIDCSubjectFormatLegacyForgejo15 OIDCSubjectFormat = "legacy-forgejo-v15"
+	OIDCSubjectFormatLegacyNovroForge15 OIDCSubjectFormat = "legacy-forgejo-v15"
 )
 
 type ActionsConfig struct {

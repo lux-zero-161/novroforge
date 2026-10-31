@@ -1,13 +1,13 @@
 # forgejo_migrations
 
-Forgejo has three database migration mechanisms:
+NovroForge has three database migration mechanisms:
 
 - `models/gitea_migrations`
-    - Original database schema migrations from Forgejo's legacy as a fork of Gitea.
+    - Original database schema migrations from NovroForge's legacy as a fork of Gitea.
     - A linear set of migrations referenced in `models/gitea_migrations/migrations.go`, each represented by a number (eg. migration 304).
     - The current version is recorded in the database in the table `version`.
 - `models/forgejo_migrations_legacy`
-    - The next 50-ish database schema migrations reflecting change in Forgejo's database structure between Forgejo v7.0 and v14.0
+    - The next 50-ish database schema migrations reflecting change in NovroForge's database structure between NovroForge v7.0 and v14.0
     - A linear set of migrations referenced in `models/forgejo_migrations_legacy/migrate.go`, each represented by a number (eg. migration 43).
     - The current version is recorded in the database in the table `forgejo_version`.
 - `models/forgejo_migrations`
@@ -34,12 +34,12 @@ For example, valid migration file names would look like this:
 
 ## Migration Ordering
 
-Forgejo executes registered migrations in `forgejo_migrations` in the `strings.Compare()` ordering of their filename.
+NovroForge executes registered migrations in `forgejo_migrations` in the `strings.Compare()` ordering of their filename.
 
 There are edge cases where migrations may not be executed in this exact order:
-- If a schema change is backported to an earlier Forgejo release.  For example, if a bugfix during the v15 development cycle was backported into a v14 patch release, then a migration labeled `v15a_fix-unusual-data-corruption.go` could be applied during a v14 software upgrade.  In the future when a v15 software release occurs, that migration will be identified as already applied and will be skipped.
-- If a developer working on Forgejo switches between different branches with different schema migrations.
-- If the contents of the `forgejo_migrations` database table are changed outside of Forgejo modifying it.
+- If a schema change is backported to an earlier NovroForge release.  For example, if a bugfix during the v15 development cycle was backported into a v14 patch release, then a migration labeled `v15a_fix-unusual-data-corruption.go` could be applied during a v14 software upgrade.  In the future when a v15 software release occurs, that migration will be identified as already applied and will be skipped.
+- If a developer working on NovroForge switches between different branches with different schema migrations.
+- If the contents of the `forgejo_migrations` database table are changed outside of NovroForge modifying it.
 
 
 ## Creating a new Migration
@@ -53,13 +53,13 @@ There are two exceptions:
 Once you've determined the migration filename, then you can copy this template into the file:
 
 ```go
-// Copyright 2025 The Forgejo Authors. All rights reserved.
+// Copyright 2025 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 package forgejo_migrations
 
 import (
-	"forgejo.org/modules/timeutil"
+	"novroforge.xyz/modules/timeutil"
 
 	"code.forgejo.org/xorm/xorm"
 )
@@ -98,7 +98,7 @@ Once migrations are executed, a record of their execution is stored in the datab
  v15a_another-example-again        |   1760402457
 ```
 
-If your migration successfully executes once, it will be recorded in this table and it will never execute again, even if you change the migration code.  It is common during development to need to re-run a migration, in which case you can delete the record that you're working on developing.  The migration will be re-run as soon as the Forgejo server is restarted:
+If your migration successfully executes once, it will be recorded in this table and it will never execute again, even if you change the migration code.  It is common during development to need to re-run a migration, in which case you can delete the record that you're working on developing.  The migration will be re-run as soon as the NovroForge server is restarted:
 
 ```sql
 => DELETE FROM forgejo_migration WHERE id = 'v15a_another-example-again';

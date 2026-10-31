@@ -416,7 +416,7 @@ var slackChannel = regexp.MustCompile(`^#?[a-z0-9_-]{1,80}$`)
 // IsValidSlackChannel validates a channel name conforms to what slack expects:
 // https://api.slack.com/methods/conversations.rename#naming
 // Conversation names can only contain lowercase letters, numbers, hyphens, and underscores, and must be 80 characters or less.
-// Forgejo accepts if it starts with a #.
+// NovroForge accepts if it starts with a #.
 func IsValidSlackChannel(name string) bool {
 	return slackChannel.MatchString(name)
 }

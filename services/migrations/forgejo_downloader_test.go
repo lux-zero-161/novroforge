@@ -1,4 +1,4 @@
-// Copyright 2023 The Forgejo Authors
+// Copyright 2023 The NovroForge Authors
 // SPDX-License-Identifier: MIT
 
 package migrations
@@ -11,6 +11,6 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestForgejoDownload(t *testing.T) {
-	require.NotNil(t, getFactoryFromServiceType(structs.ForgejoService))
+func TestNovroForgeDownload(t *testing.T) {
+	require.NotNil(t, getFactoryFromServiceType(structs.NovroForgeService))
 }

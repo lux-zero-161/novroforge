@@ -1,4 +1,4 @@
-// Copyright 2026 The Forgejo Authors
+// Copyright 2026 The NovroForge Authors
 // SPDX-License-Identifier: MIT
 
 package testimport

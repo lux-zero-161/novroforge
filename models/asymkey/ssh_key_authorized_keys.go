@@ -273,7 +273,7 @@ func regeneratePublicKeys(ctx context.Context, t io.StringWriter) error {
 		return err
 	}
 
-	// Preserve any authorized_keys contents that are not generated from Forgejo
+	// Preserve any authorized_keys contents that are not generated from NovroForge
 	if setting.SSH.AllowUnexpectedAuthorizedKeys {
 		fPath := filepath.Join(setting.SSH.RootPath, "authorized_keys")
 		isExist, err := util.IsExist(fPath)

@@ -534,7 +534,7 @@ func TestPackageCleanup(t *testing.T) {
 		component := "main"
 		architecture := "amd64"
 		packageName := "runner"
-		packageDescription := "Forgejo Runner"
+		packageDescription := "NovroForge Runner"
 
 		rootURL := fmt.Sprintf("/api/packages/%s/debian", user.Name)
 		uploadURL := fmt.Sprintf("%s/pool/%s/%s/upload", rootURL, distribution, component)
@@ -860,7 +860,7 @@ func TestPackageWithTwoFactor(t *testing.T) {
 
 			req = NewRequest(t, "GET", url).
 				AddBasicAuth(doer.Name)
-			req.Header.Set("X-Forgejo-OTP", passcode)
+			req.Header.Set("X-NovroForge-OTP", passcode)
 		}
 
 		MakeRequest(t, req, expectedStatus)

@@ -18,7 +18,7 @@ func countFormalHeaders(h http.Header) (c int) {
 		if strings.HasPrefix(k, "X-Gitea-") {
 			continue
 		}
-		if strings.HasPrefix(k, "X-Forgejo-") {
+		if strings.HasPrefix(k, "X-NovroForge-") {
 			continue
 		}
 		c++

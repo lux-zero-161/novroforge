@@ -104,7 +104,7 @@ func CreateAuthorizationToken(task *actions_model.ActionTask, gitGtx map[string]
 		switch actionsConfig.OIDCSubjectFormat {
 		case repo_model.OIDCSubjectFormatDefault:
 			claims.OIDCSub = generateOIDCSub(gitGtx)
-		case repo_model.OIDCSubjectFormatLegacyForgejo15:
+		case repo_model.OIDCSubjectFormatLegacyNovroForge15:
 			claims.OIDCSub = legacyGenerateOIDCSub(gitGtx)
 		default:
 			return "", fmt.Errorf("unexpected oidc subject format: %q", actionsConfig.OIDCSubjectFormat)

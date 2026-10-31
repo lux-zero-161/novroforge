@@ -1,4 +1,4 @@
-// Copyright 2026 The Forgejo Authors.
+// Copyright 2026 The NovroForge Authors.
 // SPDX-License-Identifier: GPLv3-or-later
 
 package tests
@@ -58,7 +58,7 @@ var _ = registerFunctionTest(apiv1_permissions.RepoAccess, functionTest{
 			error: "Not Found",
 		},
 		{
-			// The Forgejo Actions user token can access the repository
+			// The NovroForge Actions user token can access the repository
 			// because it is bound to it
 			data: newTestData(map[string]string{}, newSharedData().
 				SetDoer().SetDoerName(user_model.ActionsUserName).
@@ -67,7 +67,7 @@ var _ = registerFunctionTest(apiv1_permissions.RepoAccess, functionTest{
 			),
 		},
 		{
-			// The Forgejo Actions user token cannot access the repository
+			// The NovroForge Actions user token cannot access the repository
 			// although it is publicly readable
 			// because it is bound to a different repository
 			data: newTestData(map[string]string{}, newSharedData().
@@ -79,7 +79,7 @@ var _ = registerFunctionTest(apiv1_permissions.RepoAccess, functionTest{
 			error: "Not Found",
 		},
 		{
-			// The Forgejo Actions user token can access the repository
+			// The NovroForge Actions user token can access the repository
 			// because it is bound to it even when it was created from a
 			// forked pull request event
 			data: newTestData(map[string]string{}, newSharedData().

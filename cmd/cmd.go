@@ -1,5 +1,5 @@
 // Copyright 2018 The Gitea Authors. All rights reserved.
-// Copyright 2026 The Forgejo Authors. All rights reserved.
+// Copyright 2026 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: MIT
 
 // Package cmd provides subcommands to the gitea binary - such as "web" or

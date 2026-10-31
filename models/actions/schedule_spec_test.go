@@ -134,7 +134,7 @@ func TestActionScheduleSpec_Parse(t *testing.T) {
 		{
 			// The various cron implementations handle the DST jump forwards differently. The most popular approaches
 			// are (a) scheduling all jobs at 3 o'clock that were supposed to run between 2 and 3 o'clock, or (b)
-			// skipping the execution on that day because any time between 2 and 3 o'clock never happened. Forgejo uses
+			// skipping the execution on that day because any time between 2 and 3 o'clock never happened. NovroForge uses
 			// option B because the code it inherited already did that and was exposed to users.
 			name:     "skips execution during DST jump forwards",
 			refTime:  time.Date(2025, 3, 30, 0, 55, 0, 0, time.UTC), // 01:55 local time

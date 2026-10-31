@@ -1,5 +1,5 @@
 // Copyright 2023 The Gitea Authors. All rights reserved.
-// Copyright 2026 The Forgejo Authors. All rights reserved.
+// Copyright 2026 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: MIT
 //
 // This extension of the ConfigProvider interface is to test saving config

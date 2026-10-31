@@ -1,4 +1,4 @@
-// Copyright 2026 The Forgejo Authors. All rights reserved.
+// Copyright 2026 The NovroForge Authors. All rights reserved.
 // Copyright 2021 The Gitea Authors. All rights reserved.
 // SPDX-License-Identifier: MIT
 
@@ -105,7 +105,7 @@ func MainTest(m *testing.M, testOpts ...*TestOptions) {
 		// It worked before dropping the need for the gitea binary because in case of wiki push,
 		// the git hooks do not perform http requests (access permission is checked before git invocation).
 		log.Println("Fake git hook which accepts everything (GIT_DIR is set).")
-		log.Println("Forgejo with proper http hooks is available in integration tests.")
+		log.Println("NovroForge with proper http hooks is available in integration tests.")
 		os.Exit(0)
 	}
 

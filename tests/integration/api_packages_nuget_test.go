@@ -96,7 +96,7 @@ func TestPackageNuGet(t *testing.T) {
 	packageName := "test.package"
 	packageVersion := "1.0.3"
 	packageAuthors := "KN4CK3R"
-	packageDescription := "Forgejo Test Package"
+	packageDescription := "NovroForge Test Package"
 	symbolFilename := "test.pdb"
 	symbolID := "d910bb6948bd4c6cb40155bcf52c3c94"
 

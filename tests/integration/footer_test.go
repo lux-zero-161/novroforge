@@ -1,4 +1,4 @@
-// Copyright 2026 The Forgejo Authors
+// Copyright 2026 The NovroForge Authors
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 package integration
@@ -20,7 +20,7 @@ func TestFooterContent(t *testing.T) {
 	footer := page.Find("footer").Text()
 
 	assert.Contains(t, footer, "Copyright © 2026 NovroForge")
-	assert.NotContains(t, footer, "Powered by Forgejo")
+	assert.NotContains(t, footer, "Powered by NovroForge")
 	assert.NotContains(t, footer, "Version")
 	assert.NotContains(t, footer, "Template")
 	assert.NotContains(t, footer, "Licenses")

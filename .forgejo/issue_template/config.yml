@@ -1,17 +1,17 @@
 blank_issues_enabled: false
 contact_links:
   - name: 🔓 Security Reports
-    url: mailto:security@forgejo.org
-    about: "Please email <security@forgejo.org> (See https://forgejo.org/.well-known/security.txt)."
+    url: mailto:security@novroforge.xyz
+    about: "Please email <security@novroforge.xyz> (See https://novroforge.xyz/.well-known/security.txt)."
   - name: 💬 Matrix Chat Room
     url: https://matrix.to/#/#forgejo-chat:matrix.org
     about: Please ask questions and discuss configuration or deployment problems here.
   - name: 💬 Matrix Space
     url: https://matrix.to/#/#forgejo:matrix.org
-    about: A collection of Matrix rooms relating to Forgejo in addition to the main chat room.
+    about: A collection of Matrix rooms relating to NovroForge in addition to the main chat room.
   - name: 📚 Documentation
-    url: https://forgejo.org/docs/latest/
-    about: Documentation about Forgejo.
+    url: https://novroforge.xyz/docs/latest/
+    about: Documentation about NovroForge.
   - name: ❓ Frequently Asked Questions
-    url: https://forgejo.org/faq/
+    url: https://novroforge.xyz/faq/
     about: Please check if your question is mentioned here.

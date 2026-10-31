@@ -42,7 +42,7 @@ func (suite *baseRedisWithServerTestSuite) TestWithPrefix() {
 func (suite *baseRedisWithServerTestSuite) testRedisHost() string {
 	host := os.Getenv("TEST_REDIS_SERVER")
 	if host == "" {
-		suite.T().Skip("redis-server not found in Forgejo test yet")
+		suite.T().Skip("redis-server not found in NovroForge test yet")
 	}
 	return host
 }

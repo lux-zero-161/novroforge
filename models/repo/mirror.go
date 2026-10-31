@@ -107,7 +107,7 @@ func (m *Mirror) UpdateRemoteAddress(ctx context.Context, addr string) error {
 }
 
 // Retrieves the encrypted remote address and decrypts it. Note that this field is expected to be absent for mirrors
-// created before the introduction of EncryptedRemoteAddress, in which case credentials are not known to Forgejo
+// created before the introduction of EncryptedRemoteAddress, in which case credentials are not known to NovroForge
 // directly (but may be on-disk in the repository's config file) and None will be returned.
 func (m *Mirror) DecryptRemoteAddress() (optional.Option[string], error) {
 	if m.EncryptedRemoteAddress == nil {

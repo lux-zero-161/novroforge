@@ -1,4 +1,4 @@
-// Copyright 2026 The Forgejo Authors. All rights reserved.
+// Copyright 2026 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 package method
@@ -19,7 +19,7 @@ import (
 var _ auth.Method = &LFSToken{}
 
 // LFSToken is an authentication method used when access a git repository over ssh which has LFS resources in-use.  The
-// LFS client will issue a `git-lfs-authenticate` command over the ssh connection, and Forgejo will provide a
+// LFS client will issue a `git-lfs-authenticate` command over the ssh connection, and NovroForge will provide a
 // supplemental HTTP header "Authorization: Bearer ..." with a JWT.  The LFS client can then make HTTP requests to LFS
 // endpoints with that supplemental header in order to inherit the permissions of the SSH user and to retrieve LFS
 // objects.

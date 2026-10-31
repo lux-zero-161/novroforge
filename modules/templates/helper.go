@@ -1,4 +1,4 @@
-// Copyright 2024 The Forgejo Authors. All rights reserved.
+// Copyright 2024 The NovroForge Authors. All rights reserved.
 // Copyright 2018 The Gitea Authors. All rights reserved.
 // Copyright 2014 The Gogs Authors. All rights reserved.
 // SPDX-License-Identifier: MIT
@@ -304,5 +304,5 @@ func Eval(tokens ...any) (any, error) {
 }
 
 func FileSizePanic(s int64) string {
-	panic("Usage of FileSize in templates is deprecated in Forgejo. Locale.TrSize should be used instead.")
+	panic("Usage of FileSize in templates is deprecated in NovroForge. Locale.TrSize should be used instead.")
 }

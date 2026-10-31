@@ -1,5 +1,5 @@
 // Copyright 2017 The Gitea Authors. All rights reserved.
-// Copyright 2024 The Forgejo Authors. All rights reserved.
+// Copyright 2024 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: MIT
 
 package web
@@ -150,7 +150,7 @@ func buildGitLfsAuthGroup() *auth_method.Group {
 		PermitBasic: true,
 		// PermitBearer is left at default `false`.  This behaviour is maintained from when one auth method performed
 		// all the "Basic ..." handling, and one performed all the "Bearer ..." handling, and access to LFS paths
-		// weren't permitted in the bearer codepath.  There isn't a clear reason from Forgejo's perspective to deny
+		// weren't permitted in the bearer codepath.  There isn't a clear reason from NovroForge's perspective to deny
 		// usage in this case, it's just maintained because it previously worked that way.
 	})
 	group.Add(&auth_method.ActionTaskToken{

@@ -1,4 +1,4 @@
-// Copyright 2026 The Forgejo Authors. All rights reserved.
+// Copyright 2026 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 package integration
@@ -83,7 +83,7 @@ jobs:
 			expectedCronSpecs:     []expectedSpec{{cron: "* * * * *", timeZone: optional.None[string]()}},
 		},
 		{
-			name:              "Forgejo with time zone",
+			name:              "NovroForge with time zone",
 			workflowID:        "tz.yml",
 			workflowDirectory: ".forgejo/workflows",
 			workflowContent: `
@@ -201,7 +201,7 @@ jobs:
 				require.NoError(t, err)
 
 				// Merge the PR *without* deleting the branch, so that, depending on the merge style, the commit can
-				// exist in two separate branches. That is necessary to verify that Forgejo looks at the correct branch.
+				// exist in two separate branches. That is necessary to verify that NovroForge looks at the correct branch.
 				mergeOpts := &forms.MergePullRequestForm{Do: string(mergeStyle), DeleteBranchAfterMerge: false}
 				doAPIMergePullRequestForm(t, testContext, user2.Name, repo.Name, pr.Index, mergeOpts)
 
@@ -317,7 +317,7 @@ func TestActionsScheduleDetection_DefaultBranchChange(t *testing.T) {
 		updatedWorkflowContent string
 		expectedWorkflowTitle  string
 	}{
-		name:              "Forgejo",
+		name:              "NovroForge",
 		workflowID:        "scheduled.yml",
 		workflowDirectory: ".forgejo/workflows",
 		workflowContent: `

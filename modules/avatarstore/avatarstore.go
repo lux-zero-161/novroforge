@@ -1,4 +1,4 @@
-// Copyright 2026 the Forgejo authors. All rights reserved.
+// Copyright 2026 the NovroForge authors. All rights reserved.
 // SPDX-License-Identifier: MIT
 
 package avatarstore

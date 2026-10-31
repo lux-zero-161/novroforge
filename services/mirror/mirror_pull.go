@@ -282,7 +282,7 @@ func ModernizePullMirrorConfig(ctx context.Context, m *repo_model.Mirror) error 
 	repoPath := m.GetRepository(ctx).RepoPath()
 
 	// New pull mirrors are created with http.followRedirects=false to mitigate SSRF risks, as redirection URLs may not
-	// meet Forgejo's configured migration allow/deny host lists. Migrate to that setting if it is not present:
+	// meet NovroForge's configured migration allow/deny host lists. Migrate to that setting if it is not present:
 	followRedirects, _, err := git.
 		NewCommand(ctx, "config", "--get", "http.followRedirects").
 		RunStdString(&git.RunOpts{Dir: repoPath})

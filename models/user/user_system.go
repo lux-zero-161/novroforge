@@ -1,5 +1,5 @@
 // Copyright 2022 The Gitea Authors. All rights reserved.
-// Copyright 2024 The Forgejo Authors. All rights reserved.
+// Copyright 2024 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: MIT
 
 package user
@@ -54,7 +54,7 @@ func NewReplaceUser(name string) *User {
 const (
 	ActionsUserID   = -2
 	ActionsUserName = "forgejo-actions"
-	ActionsFullName = "Forgejo Actions"
+	ActionsFullName = "NovroForge Actions"
 	ActionsEmail    = "noreply@novroforge.xyz"
 )
 

@@ -1,4 +1,4 @@
-// Copyright 2024 The Forgejo Authors. All rights reserved.
+// Copyright 2024 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: MIT
 
 package integration
@@ -45,7 +45,7 @@ func TestWebQuotaEnforcementRepoMigrate(t *testing.T) {
 		env.RunVisitAndPostToPageTests(t, "/repo/migrate", &Payload{
 			"repo_name":  "migration-test",
 			"clone_addr": env.Users.Limited.Repo.Link() + ".git",
-			"service":    fmt.Sprintf("%d", api.ForgejoService),
+			"service":    fmt.Sprintf("%d", api.NovroForgeService),
 		}, http.StatusOK)
 	})
 }

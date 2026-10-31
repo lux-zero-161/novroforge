@@ -22,7 +22,7 @@ tests/e2e/.* @fnetx
 
 # Files related to Go development.
 
-# The modules usually don't require much knowledge about Forgejo and could
+# The modules usually don't require much knowledge about NovroForge and could
 # be reviewed by Go developers.
 modules/.* @gusted
 
@@ -30,7 +30,7 @@ modules/.* @gusted
 models/.* @gusted
 
 # The routers directory contains the most amount code that requires a good grasp
-# of how Forgejo comes together. It's tedious to write good integration testing
+# of how NovroForge comes together. It's tedious to write good integration testing
 # for code that lives in here.
 routers/.* @gusted
 

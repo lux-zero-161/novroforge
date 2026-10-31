@@ -137,7 +137,7 @@ func NewJSONRequestWithPayload(payload any, w *webhook_model.Webhook, t *webhook
 	return req, body, nil
 }
 
-// AddDefaultHeaders adds the X-Forgejo, X-Gitea, X-Gogs, X-Hub, X-GitHub headers to the given request
+// AddDefaultHeaders adds the X-NovroForge, X-Gitea, X-Gogs, X-Hub, X-GitHub headers to the given request
 func AddDefaultHeaders(req *http.Request, secret []byte, t *webhook_model.HookTask, payloadContent []byte) error {
 	var signatureSHA1 string
 	var signatureSHA256 string
@@ -155,10 +155,10 @@ func AddDefaultHeaders(req *http.Request, secret []byte, t *webhook_model.HookTa
 
 	event := t.EventType.Event()
 	eventType := string(t.EventType)
-	req.Header.Add("X-Forgejo-Delivery", t.UUID)
-	req.Header.Add("X-Forgejo-Event", event)
-	req.Header.Add("X-Forgejo-Event-Type", eventType)
-	req.Header.Add("X-Forgejo-Signature", signatureSHA256)
+	req.Header.Add("X-NovroForge-Delivery", t.UUID)
+	req.Header.Add("X-NovroForge-Event", event)
+	req.Header.Add("X-NovroForge-Event-Type", eventType)
+	req.Header.Add("X-NovroForge-Signature", signatureSHA256)
 	req.Header.Add("X-Gitea-Delivery", t.UUID)
 	req.Header.Add("X-Gitea-Event", event)
 	req.Header.Add("X-Gitea-Event-Type", eventType)

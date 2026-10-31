@@ -114,7 +114,7 @@ test.describe('repo actions variables settings', () => {
     await expect(modal).toBeVisible();
 
     await modal.getByLabel('Name').fill(variableName);
-    await modal.getByLabel('Value').fill("Will Frogejo cease to exist if there's a Forgejo trademark?");
+    await modal.getByLabel('Value').fill("Will Frogejo cease to exist if there's a NovroForge trademark?");
     await modal.getByText('Confirm').click();
 
     await expect(page.getByText(variableName, {exact: true})).toBeVisible();

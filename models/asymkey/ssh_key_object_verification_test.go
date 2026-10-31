@@ -1,4 +1,4 @@
-// Copyright 2023 The Forgejo Authors. All rights reserved.
+// Copyright 2023 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: MIT
 
 package asymkey
@@ -51,7 +51,7 @@ parent 45b03601635a1f463b81963a4022c7f87ce96ef9
 author user2 <non-existent> 1699710556 +0100
 committer user2 <non-existent> 1699710556 +0100
 
-Using email that isn't known to Forgejo
+Using email that isn't known to NovroForge
 `,
 				Signature: `-----BEGIN SSH SIGNATURE-----
 U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgoGSe9Zy7Ez9bSJcaTNjh/Y7p95

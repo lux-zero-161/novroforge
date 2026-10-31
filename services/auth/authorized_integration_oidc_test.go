@@ -1,4 +1,4 @@
-// Copyright 2026 The Forgejo Authors. All rights reserved.
+// Copyright 2026 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 package auth
@@ -12,7 +12,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-// Real-world Forgejo Actions .well-known/openid-configuration from Forgejo v15
+// Real-world NovroForge Actions .well-known/openid-configuration from NovroForge v15
 const forgejoOIDC = `
 {
     "issuer": "https://example.org/api/actions",
@@ -55,7 +55,7 @@ const forgejoOIDC = `
 }
 `
 
-// Real-world Forgejo Actions JWKS from Forgejo v15
+// Real-world NovroForge Actions JWKS from NovroForge v15
 const forgejoJWKS = `
 {
     "keys": [
@@ -231,7 +231,7 @@ const awsJWKS = `
 `
 
 func TestParseOpenIDConfiguration(t *testing.T) {
-	t.Run("Forgejo", func(t *testing.T) {
+	t.Run("NovroForge", func(t *testing.T) {
 		var retval AuthorizedIntegrationOpenIDConfiguration
 		data := []byte(forgejoOIDC)
 		require.NoError(t, json.Unmarshal(data, &retval))
@@ -252,7 +252,7 @@ func TestParseOpenIDConfiguration(t *testing.T) {
 }
 
 func TestParseJSONWebKeySet(t *testing.T) {
-	t.Run("Forgejo", func(t *testing.T) {
+	t.Run("NovroForge", func(t *testing.T) {
 		var retval AuthorizedIntegrationOpenIDKeys
 		data := []byte(forgejoJWKS)
 		require.NoError(t, json.Unmarshal(data, &retval))

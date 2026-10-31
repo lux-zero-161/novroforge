@@ -1,4 +1,4 @@
-// Copyright 2026 The Forgejo Authors. All rights reserved.
+// Copyright 2026 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: MIT
 
 package migration
@@ -10,6 +10,6 @@ type UserAgentTransport struct {
 }
 
 func (t *UserAgentTransport) RoundTrip(req *http.Request) (*http.Response, error) {
-	req.Header.Set("User-Agent", "Forgejo-migration-http-client/1.1")
+	req.Header.Set("User-Agent", "NovroForge-migration-http-client/1.1")
 	return t.Transport.RoundTrip(req)
 }

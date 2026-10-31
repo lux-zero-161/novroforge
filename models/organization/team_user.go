@@ -21,7 +21,7 @@ import (
 type MembershipReason int
 
 const (
-	// MembershipReasonUnknown represents a membership created before Forgejo started to track membership provenance
+	// MembershipReasonUnknown represents a membership created before NovroForge started to track membership provenance
 	MembershipReasonUnknown MembershipReason = iota // Represented as zero to match the default values created by the SQL migration
 
 	// MembershipReasonOrgCreator represents a membership that was induced by creating the organization

@@ -107,7 +107,7 @@ func TestCreateAuthorizationToken(t *testing.T) {
 			}
 
 			token, err = CreateAuthorizationToken(task, tc.gitCtx, tc.enableOpenIDConnect,
-				&repo_model.ActionsConfig{OIDCSubjectFormat: repo_model.OIDCSubjectFormatLegacyForgejo15})
+				&repo_model.ActionsConfig{OIDCSubjectFormat: repo_model.OIDCSubjectFormatLegacyNovroForge15})
 			require.NoError(t, err)
 			assert.NotEmpty(t, token)
 			claims = jwt.MapClaims{}
@@ -178,7 +178,7 @@ func TestParseAuthorizationTokenClaims(t *testing.T) {
 		"workflow":            "test.yml",
 		"workflow_ref":        "pretend-ref",
 	}
-	token, err := CreateAuthorizationToken(task, gitCtx, true, &repo_model.ActionsConfig{OIDCSubjectFormat: repo_model.OIDCSubjectFormatLegacyForgejo15})
+	token, err := CreateAuthorizationToken(task, gitCtx, true, &repo_model.ActionsConfig{OIDCSubjectFormat: repo_model.OIDCSubjectFormatLegacyNovroForge15})
 	require.NoError(t, err)
 	assert.NotEmpty(t, token)
 	headers := http.Header{}

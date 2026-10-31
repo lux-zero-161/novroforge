@@ -31,7 +31,7 @@ import (
 
 var rootPathRe = regexp.MustCompile("\\[repository\\]\nROOT\\s=\\s.*")
 
-func onForgejoRunTB(t testing.TB, callback func(testing.TB, *url.URL), prepare ...bool) {
+func onNovroForgeRunTB(t testing.TB, callback func(testing.TB, *url.URL), prepare ...bool) {
 	if len(prepare) == 0 || prepare[0] {
 		defer tests.PrepareTestEnv(t, 1)()
 	}
@@ -71,8 +71,8 @@ func onForgejoRunTB(t testing.TB, callback func(testing.TB, *url.URL), prepare .
 	callback(t, u)
 }
 
-func onForgejoRun(t *testing.T, callback func(*testing.T, *url.URL), prepare ...bool) {
-	onForgejoRunTB(t, func(t testing.TB, u *url.URL) {
+func onNovroForgeRun(t *testing.T, callback func(*testing.T, *url.URL), prepare ...bool) {
+	onNovroForgeRunTB(t, func(t testing.TB, u *url.URL) {
 		callback(t.(*testing.T), u)
 	}, prepare...)
 }

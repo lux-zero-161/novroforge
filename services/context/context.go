@@ -1,6 +1,6 @@
 // Copyright 2014 The Gogs Authors. All rights reserved.
 // Copyright 2020 The Gitea Authors. All rights reserved.
-// Copyright 2024 The Forgejo Authors.
+// Copyright 2024 The NovroForge Authors.
 // SPDX-License-Identifier: MIT
 
 package context

@@ -98,7 +98,7 @@ All fixtures are dynamically created (they are not using the global fixtures fou
 - The `created fixture` line shows the `testData` added after calling the `fulfillNeeds` function for each function in the sequence
 - The indented lines that follow shows the content of the `routers/api/v1/permissions.Permission` object before calling a permission function. To reduce the verbosity modifications are shown in a diff style fashion.
 - The `calling` line shows the function and its arguments before it is called
-- Running a single test (note the `/` is replaced with a `.` in the test name to comply with the Makefile rule) `make RACE_ENABLED=true GOTESTFLAGS=-v GO_TEST_PACKAGES=forgejo.org/routers/api/v1/permissions/tests/... 'test#TestAPIv1Permissions.APIAuthorization,TokenRequiresScopes_Repository,RepoAccess,CheckTokenPublicOnly,ReqToken,ReqRepoReader_TypeCode,CheckForkDestination'`
+- Running a single test (note the `/` is replaced with a `.` in the test name to comply with the Makefile rule) `make RACE_ENABLED=true GOTESTFLAGS=-v GO_TEST_PACKAGES=novroforge.xyz/routers/api/v1/permissions/tests/... 'test#TestAPIv1Permissions.APIAuthorization,TokenRequiresScopes_Repository,RepoAccess,CheckTokenPublicOnly,ReqToken,ReqRepoReader_TypeCode,CheckForkDestination'`
 
 ## The call function
 
@@ -118,10 +118,10 @@ The `args` are the mandatory arguments to the function call.
 ### `routers/api/v1/permissions`
 
 - At the root of the source tree
-- `COVERAGE_TEST_ARGS='-test.v -test.run=TestAPIv1Permissions' make coverage-reset coverage-run-integration-sqlite coverage-show-percentage | grep v1/permissions | grep -v v1/permissions/permissions.go | grep -v v1/permissions/test | sed -e 's/\t\t*/ /g' -e 's|forgejo.org/routers/||'`
+- `COVERAGE_TEST_ARGS='-test.v -test.run=TestAPIv1Permissions' make coverage-reset coverage-run-integration-sqlite coverage-show-percentage | grep v1/permissions | grep -v v1/permissions/permissions.go | grep -v v1/permissions/test | sed -e 's/\t\t*/ /g' -e 's|novroforge.xyz/routers/||'`
 - `go run codeberg.org/clouds666/unkai@latest --functions ReqOrgOwnership`
 
-### Forgejo development branch
+### NovroForge development branch
 
 - Run https://codeberg.org/forgejo/forgejo/actions?workflow=coverage.yml
 - Download the `coverage.zip` artifact

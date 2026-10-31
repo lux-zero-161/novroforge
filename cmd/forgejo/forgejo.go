@@ -1,4 +1,4 @@
-// Copyright The Forgejo Authors.
+// Copyright The NovroForge Authors.
 // SPDX-License-Identifier: MIT
 
 package forgejo
@@ -29,10 +29,10 @@ const (
 	stdinKey
 )
 
-func CmdForgejo(ctx context.Context) *cli.Command {
+func CmdNovroForge(ctx context.Context) *cli.Command {
 	return &cli.Command{
 		Name:  "forgejo-cli",
-		Usage: "Forgejo CLI",
+		Usage: "NovroForge CLI",
 		Flags: []cli.Flag{},
 		Commands: []*cli.Command{
 			CmdActions(ctx),

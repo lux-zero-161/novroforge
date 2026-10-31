@@ -246,7 +246,7 @@ func TestGogsDownloaderAvatarDownload(t *testing.T) {
 	assertRepositoryEqual(t, &base.Repository{
 		Name:          "example-repo",
 		Owner:         "example",
-		Description:   "An example repo for Forgejo migration testing.",
+		Description:   "An example repo for NovroForge migration testing.",
 		CloneURL:      server.URL + "/example/example-repo.git",
 		OriginalURL:   server.URL + "/example/example-repo",
 		DefaultBranch: "main",

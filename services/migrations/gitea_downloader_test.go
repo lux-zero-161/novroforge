@@ -323,7 +323,7 @@ func TestGiteaDownloadRepo(t *testing.T) {
 	}, reviews)
 }
 
-func TestForgejoDownloadRepo(t *testing.T) {
+func TestNovroForgeDownloadRepo(t *testing.T) {
 	defer test.MockVariableValueWithReset(&setting.Migrations.AllowLocalNetworks, true, func() { require.NoError(t, allowlist.Init()) })()
 	token := os.Getenv("CODE_FORGEJO_TOKEN")
 
@@ -393,7 +393,7 @@ func createGiteaIssueComments(number int) []*gitea_sdk.Comment {
 	return giteaComments
 }
 
-func createForgejoIssueComments(comments []*gitea_sdk.Comment) []*base.Comment {
+func createNovroForgeIssueComments(comments []*gitea_sdk.Comment) []*base.Comment {
 	forgejoComments := make([]*base.Comment, 0, len(comments))
 	for _, comment := range comments {
 		forgejoComments = append(forgejoComments, &base.Comment{
@@ -442,16 +442,16 @@ func TestBreakConditions(t *testing.T) {
 	downloader.maxPerPage = pageSize
 
 	bugResponse := createGiteaIssueComments(buggyPageSize)
-	commentsWithBug := createForgejoIssueComments(bugResponse)
+	commentsWithBug := createNovroForgeIssueComments(bugResponse)
 
 	shorterListResponse := createGiteaIssueComments(smallerPageSize)
-	commentsShortList := createForgejoIssueComments(shorterListResponse)
+	commentsShortList := createNovroForgeIssueComments(shorterListResponse)
 
 	fullListResponse := createGiteaIssueComments(pageSize)
 	differentFullListResponse := createGiteaIssueComments(pageSize)
 	differentFullListResponse[0].Body = "Different String"
 	differentFullListResponse[len(differentFullListResponse)-1].Body = "Different String"
-	commentsFullList := createForgejoIssueComments(fullListResponse)
+	commentsFullList := createNovroForgeIssueComments(fullListResponse)
 
 	assert.True(t, downloader.isSinglePage(commentsWithBug))
 	assert.True(t, downloader.isSinglePage(commentsShortList))
@@ -492,7 +492,7 @@ func TestGiteaDownloaderAvatarURL(t *testing.T) {
 	assertRepositoryEqual(t, &base.Repository{
 		Name:          "forgejo-12921",
 		Owner:         "birdgoose",
-		Description:   "An example repo for testing Forgejo migrations.",
+		Description:   "An example repo for testing NovroForge migrations.",
 		CloneURL:      server.URL + "/birdgoose/forgejo-12921.git",
 		OriginalURL:   server.URL + "/birdgoose/forgejo-12921",
 		DefaultBranch: "main",

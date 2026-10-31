@@ -84,7 +84,7 @@
   content_type: 3   # Issue (issues or pull requests)
   content_id: 1001  # contributor/first#1
   category: 1       # Other
-  remarks: Just because you are the administrator of this Forgejo instance this doesn't mean that you should be more privileged compared to the rest of average users. I believe it is my right to post links to external websites where users can find more about myself and my own work, even if they are professional services. I strongly believe you should reconsider your totalitarian behaviour. The users of this instance deserve better, more inclusive rules that should prevent abuses from administrators or mod.
+  remarks: Just because you are the administrator of this NovroForge instance this doesn't mean that you should be more privileged compared to the rest of average users. I believe it is my right to post links to external websites where users can find more about myself and my own work, even if they are professional services. I strongly believe you should reconsider your totalitarian behaviour. The users of this instance deserve better, more inclusive rules that should prevent abuses from administrators or mod.
   shadow_copy_id: null
   created_unix: 1121424000 # 2005-07-15 10:40:00
 

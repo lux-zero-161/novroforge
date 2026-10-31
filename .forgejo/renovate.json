@@ -46,7 +46,7 @@
       "extends": ["schedule:quarterly"]
     },
     {
-      "description": "devcontainer is an optional tool used by some Forgejo contributors when working on the codebase",
+      "description": "devcontainer is an optional tool used by some NovroForge contributors when working on the codebase",
       "groupName": "devcontainer packages",
       "extends": ["schedule:quarterly"],
       "automerge": true,
@@ -71,7 +71,7 @@
       "groupName": "postcss"
     },
     {
-      "description": "Group Forgejo go-chi packages",
+      "description": "Group NovroForge go-chi packages",
       "matchUpdateTypes": ["minor", "patch", "digest"],
       "matchPackageNames": ["code.forgejo.org/go-chi/**"],
       "groupName": "forgejo go-chi packages"

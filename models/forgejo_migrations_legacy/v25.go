@@ -1,4 +1,4 @@
-// Copyright 2024 The Forgejo Authors. All rights reserved.
+// Copyright 2024 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: MIT
 
 package forgejo_migrations_legacy
@@ -22,13 +22,13 @@ import (
 func MigrateTwoFactorToKeying(x *xorm.Engine) error {
 	var err error
 
-	// When upgrading from Forgejo v9 to v10, this migration will already be
+	// When upgrading from NovroForge v9 to v10, this migration will already be
 	// called from models/gitea_migrations/migrations.go migration 304 and must not
 	// be run twice.
 	var version int
 	_, err = x.Table("version").Where("`id` = 1").Select("version").Get(&version)
 	if err != nil {
-		// the version table does not exist when a test environment only applies Forgejo migrations
+		// the version table does not exist when a test environment only applies NovroForge migrations
 	} else if version > 304 {
 		return nil
 	}
@@ -83,9 +83,9 @@ func MigrateTwoFactorToKeying(x *xorm.Engine) error {
 	})
 	if err == nil {
 		if len(ids) > 0 {
-			log.Error("Forgejo migration[25]: The following TOTP secrets were found to be corrupted and removed from the database. TOTP is no longer required to login with the associated users. They should be informed because they will need to visit their security settings and configure TOTP again. No other action is required. See https://codeberg.org/forgejo/forgejo/issues/6637 for more context on the various causes for such a corruption.")
+			log.Error("NovroForge migration[25]: The following TOTP secrets were found to be corrupted and removed from the database. TOTP is no longer required to login with the associated users. They should be informed because they will need to visit their security settings and configure TOTP again. No other action is required. See https://codeberg.org/forgejo/forgejo/issues/6637 for more context on the various causes for such a corruption.")
 			for _, message := range messages {
-				log.Error("Forgejo migration[25]: %s", message)
+				log.Error("NovroForge migration[25]: %s", message)
 			}
 
 			_, err = db.GetEngine(context.Background()).In("id", ids).NoAutoCondition().NoAutoTime().Delete(&auth.TwoFactor{})

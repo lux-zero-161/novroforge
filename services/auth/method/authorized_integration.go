@@ -1,4 +1,4 @@
-// Copyright 2026 The Forgejo Authors. All rights reserved.
+// Copyright 2026 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 package method
@@ -149,7 +149,7 @@ func (a *AuthorizedIntegration) Verify(req *http.Request, w http.ResponseWriter,
 				return nil, fmt.Errorf("failed parsing jwks_uri: %w", err)
 			} else if jwksURI.Host != issuerURL.Host {
 				// Prevent SSRF which could occur if a malicious openid-connection response returned a jwks_uri field
-				// that causes Forgejo to access other hostnames.  This could be considered a valid case as well and we
+				// that causes NovroForge to access other hostnames.  This could be considered a valid case as well and we
 				// can rely on the config-based allowed and blocked domains for the [authorized_integration] section,
 				// but until a real-world case comes up where that is needed, this is a safety-first restriction.
 				return nil, fmt.Errorf("jwks_uri host mismatch: must be the same as issuer host %q, but was %q", issuerURL.Host, jwksURI.Host)

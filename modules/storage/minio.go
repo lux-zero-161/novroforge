@@ -228,7 +228,7 @@ func (m *MinioStorage) Save(path string, r io.Reader, size int64) (int64, error)
 		// default to supporting it's default maximum file size (5 TB) divided by its maximum number of parts (10,000),
 		// which is about 528 MB, and minio will allocate an in-memory buffer to read from `r` for that size.
 		//
-		// The most common case in Forgejo for a -1 file size is from action log uploads, where the zstd compression
+		// The most common case in NovroForge for a -1 file size is from action log uploads, where the zstd compression
 		// that is occurring into a pipe prevents us from knowing the file size before upload; the other case in the
 		// code is repo archiving.  Those cases doesn't need a 528 MB buffer, so we provide an explicit smaller buffer.
 		// This does limit uploads in this case to 10000 (minio's default max part count) * 16 MB, which is 160 GB, but

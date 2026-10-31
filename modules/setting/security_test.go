@@ -1,4 +1,4 @@
-// Copyright 2026 The Forgejo Authors. All rights reserved
+// Copyright 2026 The NovroForge Authors. All rights reserved
 // SPDX-License-Identifier: MIT
 
 package setting
@@ -69,7 +69,7 @@ func TestLoadVerificationKeyCfgErr(t *testing.T) {
 // OK tests
 var (
 	// symmetric key test data b64 / binary
-	testVKCs1 = "ForgejoForgejoForgejoForgejoForgejoForgejo_"
+	testVKCs1 = "NovroForgeNovroForgeNovroForgeNovroForgeNovroForgeNovroForge_"
 	testVKCs2 = "forgejoforgejoforgejoforgejoforgejoforgejo_"
 	testVKCb1 = []byte{
 		0x16, 0x8a, 0xe0, 0x7a, 0x3a, 0x05, 0xa2, 0xb8, 0x1e, 0x8e, 0x81, 0x68, 0xae, 0x07, 0xa3, 0xa0, 0x5a, 0x2b, 0x81, 0xe8, 0xe8, 0x16, 0x8a, 0xe0, 0x7a, 0x3a, 0x05, 0xa2, 0xb8, 0x1e, 0x8e, 0x8f,
@@ -288,7 +288,7 @@ func TestLoadVerificationKeyCfg(t *testing.T) {
 
 // XXX avoid config being changed to create secret, could use
 // volatileConfigProvider after #14403 merge
-var defSecret = "X_SECRET = ForgejoForgejoForgejoForgejoForgejoForgejo_\n"
+var defSecret = "X_SECRET = NovroForgeNovroForgeNovroForgeNovroForgeNovroForgeNovroForge_\n"
 
 // error tests
 var testCKCerr = []struct {

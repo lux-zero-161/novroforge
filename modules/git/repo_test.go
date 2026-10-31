@@ -77,7 +77,7 @@ func TestCloneCredentials(t *testing.T) {
 		// Get basic authorization.
 		auth, ok := strings.CutPrefix(req.Header.Get("Authorization"), "Basic ")
 		if !ok {
-			w.Header().Set("WWW-Authenticate", `Basic realm="Forgejo"`)
+			w.Header().Set("WWW-Authenticate", `Basic realm="NovroForge"`)
 			http.Error(w, "require credentials", http.StatusUnauthorized)
 			return
 		}
@@ -93,7 +93,7 @@ func TestCloneCredentials(t *testing.T) {
 			assert.EqualValues(t, "oauth2", user)
 			calledWithoutPassword = true
 
-			w.Header().Set("WWW-Authenticate", `Basic realm="Forgejo"`)
+			w.Header().Set("WWW-Authenticate", `Basic realm="NovroForge"`)
 			http.Error(w, "require credentials", http.StatusUnauthorized)
 			return
 		}

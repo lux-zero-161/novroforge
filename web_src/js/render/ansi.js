@@ -90,7 +90,7 @@ function hardenRenderedAnsiLinks(html) {
 
 // render ANSI to HTML, turning OSC 8 hyperlink escape codes into links. a job opts in by
 // emitting OSC 8, the escape code terminals use for links, so output from a standalone
-// Forgejo Runner is linked too. plain-text URLs are left as text.
+// NovroForge Runner is linked too. plain-text URLs are left as text.
 export function renderAnsiWithLinks(line) {
   return hardenRenderedAnsiLinks(renderAnsi(line));
 }

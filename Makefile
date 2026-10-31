@@ -118,7 +118,7 @@ STRIP ?= 1
 ifeq ($(STRIP),1)
 	LDFLAGS := $(LDFLAGS) -s -w
 endif
-LDFLAGS := $(LDFLAGS) -X "main.ReleaseVersion=$(RELEASE_VERSION)" -X "main.MakeVersion=$(MAKE_VERSION)" -X "main.Version=$(FORGEJO_VERSION)" -X "main.Tags=$(TAGS)" -X "main.ForgejoVersion=$(FORGEJO_VERSION_API)"
+LDFLAGS := $(LDFLAGS) -X "main.ReleaseVersion=$(RELEASE_VERSION)" -X "main.MakeVersion=$(MAKE_VERSION)" -X "main.Version=$(FORGEJO_VERSION)" -X "main.Tags=$(TAGS)" -X "main.NovroForgeVersion=$(FORGEJO_VERSION_API)"
 
 LINUX_ARCHS ?= linux/amd64,linux/386,linux/arm-5,linux/arm-6,linux/arm64
 
@@ -181,7 +181,7 @@ SWAGGER_SPEC_S_TMPL := s|"basePath": *"/api/v1"|"basePath": "{{AppSubUrl \| JSEs
 SWAGGER_SPEC_S_JSON := s|"basePath": *"{{AppSubUrl \| JSEscape}}/api/v1"|"basePath": "/api/v1"|g
 SWAGGER_EXCLUDE := code.gitea.io/sdk
 SWAGGER_NEWLINE_COMMAND := -e '$$a\'
-SWAGGER_SPEC_BRANDING := s|Gitea API|Forgejo API|g
+SWAGGER_SPEC_BRANDING := s|Gitea API|NovroForge API|g
 SWAGGER_SPEC_LICENSE := s|"name": "MIT"|"name": "This file is distributed under the MIT license for the purpose of interoperability"|
 
 TEST_MYSQL_HOST ?= mysql:3306
@@ -315,14 +315,14 @@ go-check:
 	$(eval MIN_GO_VERSION := $(shell printf "%03d%03d" $(shell echo '$(MIN_GO_VERSION_STR)' | tr '.' ' ')))
 	$(eval GO_VERSION := $(shell printf "%03d%03d" $(shell $(GO) version | grep -Eo '[0-9]+\.[0-9]+' | tr '.' ' ');))
 	@if [ "$(GO_VERSION)" -lt "$(MIN_GO_VERSION)" ]; then \
-		echo "Forgejo requires Go $(MIN_GO_VERSION_STR) or greater to build. You can get it at https://go.dev/dl/"; \
+		echo "NovroForge requires Go $(MIN_GO_VERSION_STR) or greater to build. You can get it at https://go.dev/dl/"; \
 		exit 1; \
 	fi
 
 .PHONY: git-check
 git-check:
 	@if git lfs >/dev/null 2>&1 ; then : ; else \
-		echo "Forgejo requires git with lfs support to run tests." ; \
+		echo "NovroForge requires git with lfs support to run tests." ; \
 		exit 1; \
 	fi
 
@@ -333,7 +333,7 @@ node-check:
 	$(eval NODE_VERSION := $(shell printf "%03d%03d%03d" $(shell node -v | cut -c2- | sed 's:-.*::' | tr '.' ' ');))
 	$(eval NPM_MISSING := $(shell hash npm > /dev/null 2>&1 || echo 1))
 	@if [ "$(NODE_VERSION)" -lt "$(MIN_NODE_VERSION)" -o "$(NPM_MISSING)" = "1" ]; then \
-		echo "Forgejo requires Node.js $(MIN_NODE_VERSION_STR) or greater and npm to build. You can get it at https://nodejs.org/en/download/"; \
+		echo "NovroForge requires Node.js $(MIN_NODE_VERSION_STR) or greater and npm to build. You can get it at https://nodejs.org/en/download/"; \
 		exit 1; \
 	fi
 
@@ -876,7 +876,7 @@ generate-go: $(TAGS_PREREQ)
 
 .PHONY: merge-locales
 merge-locales:
-	@echo "NOT NEEDED: THIS IS A NOOP AS OF Forgejo 7.0 BUT KEPT FOR BACKWARD COMPATIBILITY"
+	@echo "NOT NEEDED: THIS IS A NOOP AS OF NovroForge 7.0 BUT KEPT FOR BACKWARD COMPATIBILITY"
 
 $(EXECUTABLE): $(GO_SOURCES) $(TAGS_PREREQ) | verify-version
 	CGO_CFLAGS="$(CGO_CFLAGS)" $(GO) build $(GOFLAGS) $(EXTRA_GOFLAGS) -tags '$(TAGS)' -ldflags '$(LDFLAGS)' -o $@

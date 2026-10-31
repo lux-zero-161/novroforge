@@ -214,7 +214,7 @@ func syncGitConfig() (err error) {
 	// Git requires setting user.name and user.email in order to commit changes - old comment: "if they're not set just add some defaults"
 	// They're used in a few uncommon places, such as when creating a release and tag via the web interface.
 	for configKey, defaultValue := range map[string]string{
-		"user.name":  "Forgejo",
+		"user.name":  "NovroForge",
 		"user.email": "forgejo@fake.local",
 	} {
 		if err := configSetNonExist(configKey, defaultValue); err != nil {

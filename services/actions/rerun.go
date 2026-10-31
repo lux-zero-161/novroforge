@@ -22,7 +22,7 @@ var (
 	// errors.
 	ErrRerunWorkflowInvalid = errors.New("workflow is invalid")
 	// ErrRerunWorkflowDisabled indicates that the workflow cannot be run because it has been disabled by the user or
-	// Forgejo.
+	// NovroForge.
 	ErrRerunWorkflowDisabled = errors.New("workflow is disabled")
 	// ErrRerunWorkflowStillRunning signals that the workflow cannot be rerun because at least one job is still running.
 	ErrRerunWorkflowStillRunning = errors.New("workflow is still running")

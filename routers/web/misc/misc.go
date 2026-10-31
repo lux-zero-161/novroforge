@@ -1,5 +1,5 @@
 // Copyright 2023 The Gitea Authors. All rights reserved.
-// Copyright 2026 The Forgejo Authors. All rights reserved.
+// Copyright 2026 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: MIT
 
 package misc
@@ -60,7 +60,7 @@ func StaticRedirect(target string) func(w http.ResponseWriter, req *http.Request
 }
 
 var defaultRobotsTxt = sync.OnceValue(func() []byte {
-	return []byte(`# The default Forgejo robots.txt
+	return []byte(`# The default NovroForge robots.txt
 # For more information: ` + setting.AppDocsURL("admin/advanced/search-engines/") + `
 
 User-agent: *

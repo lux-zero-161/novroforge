@@ -17,7 +17,7 @@ import (
 func cmdActions() *cli.Command {
 	return &cli.Command{
 		Name:  "actions",
-		Usage: "Manage Forgejo Actions",
+		Usage: "Manage NovroForge Actions",
 		Commands: []*cli.Command{
 			subcmdActionsGenRunnerToken(),
 		},

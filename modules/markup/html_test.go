@@ -1,5 +1,5 @@
 // Copyright 2017 The Gitea Authors. All rights reserved.
-// Copyright 2025 The Forgejo Authors.
+// Copyright 2025 The NovroForge Authors.
 // SPDX-License-Identifier: MIT
 
 package markup_test

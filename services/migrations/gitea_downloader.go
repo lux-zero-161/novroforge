@@ -566,13 +566,13 @@ func (g *GiteaDownloader) isLastPage(forgejoComments []*base.Comment, giteaComme
 	return false
 }
 
-type ForgejoPullRequest struct {
+type NovroForgePullRequest struct {
 	gitea_sdk.PullRequest
 	Flow int64 `json:"flow"`
 }
 
 // Extracted from https://gitea.com/gitea/go-sdk/src/commit/164e3358bc02213954fb4380b821bed80a14824d/gitea/pull.go#L347-L364
-func (g *GiteaDownloader) fixPullHeadSha(pr *ForgejoPullRequest) error {
+func (g *GiteaDownloader) fixPullHeadSha(pr *NovroForgePullRequest) error {
 	if pr.Base != nil && pr.Base.Repository != nil && pr.Base.Repository.Owner != nil && pr.Head != nil && pr.Head.Ref != "" && pr.Head.Sha == "" {
 		owner := pr.Base.Repository.Owner.UserName
 		repo := pr.Base.Repository.Name
@@ -595,7 +595,7 @@ func (g *GiteaDownloader) GetPullRequests(page, perPage int) ([]*base.PullReques
 	}
 	allPRs := make([]*base.PullRequest, 0, perPage)
 
-	prs := make([]*ForgejoPullRequest, 0, perPage)
+	prs := make([]*NovroForgePullRequest, 0, perPage)
 	opt := gitea_sdk.ListPullRequestsOptions{
 		ListOptions: gitea_sdk.ListOptions{
 			Page:     page,

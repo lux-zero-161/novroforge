@@ -265,7 +265,7 @@ func tryGetHighestLTSRelease(supportedVersions []*version.Version) *ReleaseState
 	var targetLtsVersion *version.Version
 	for _, s := range supportedVersions {
 		seg := s.Segments()
-		// Forgejo's LTS releases are 11, 15, 19, ... n%4 == 3.  Hard-coding this is a bit odd, but if the strategy
+		// NovroForge's LTS releases are 11, 15, 19, ... n%4 == 3.  Hard-coding this is a bit odd, but if the strategy
 		// changes we can backport to the supported releases, and anyone very out-of-date wouldn't be terribly served by
 		// this logic.  It probably works poorly for any distributed (non-SaaS) forks, but they can change it.
 		if len(seg) > 0 && (seg[0]%4) == 3 {

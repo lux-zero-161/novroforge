@@ -24,7 +24,7 @@ const FALLBACK_DATETIME_FORMAT = new Intl.RelativeTimeFormat(lang, {style: 'long
 
 // Fallback formatter for duration units, used only when the corresponding
 // `relativetime.duration.*` string is untranslated. Localizes via the browser
-// rather than Forgejo's translations, so it follows navigator.language.
+// rather than NovroForge's translations, so it follows navigator.language.
 const DURATION_FORMATTERS: {[u in Intl.RelativeTimeFormatUnit]?: Intl.NumberFormat;} = {};
 function GetDurationFormatter(unit: Intl.RelativeTimeFormatUnit): Intl.NumberFormat {
   if (!DURATION_FORMATTERS[unit]) {
@@ -38,7 +38,7 @@ function GetDurationFormatter(unit: Intl.RelativeTimeFormatUnit): Intl.NumberFor
 }
 
 // Joins the (up to two) duration units with a locale-correct separator, e.g.
-// "1 year, 5 days". The unit words themselves come from Forgejo translations;
+// "1 year, 5 days". The unit words themselves come from NovroForge translations;
 // this only supplies the punctuation/conjunction between them.
 const DURATION_LIST_FORMAT = new Intl.ListFormat(navigator.language, {
   style: 'long',
@@ -131,7 +131,7 @@ const DURATION_KEYS = {
 
 /**
  * Format amount `n` of the given time unit as a localized, suffix-free duration
- * word (e.g. "5 days") using Forgejo's translations, falling back to the
+ * word (e.g. "5 days") using NovroForge's translations, falling back to the
  * browser's Intl formatting when the string is untranslated.
  */
 function FormatDurationUnit(n: number, unit: Intl.RelativeTimeFormatUnit): string {

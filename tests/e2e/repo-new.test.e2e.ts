@@ -82,14 +82,14 @@ test('New repo: initialize later', async ({page}) => {
   // The editor has race conditions, likely related to https://codeberg.org/forgejo/forgejo/issues/3371
   await expect(page.locator('.is-loading')).toBeHidden();
   await page.locator('.cm-content').click();
-  await page.keyboard.type('# Heading\n\nHello Forgejo!');
+  await page.keyboard.type('# Heading\n\nHello NovroForge!');
   await page.getByPlaceholder('Name your file…').fill('README.md');
   await expect(page.getByText('Preview')).toBeVisible();
   await page.getByPlaceholder('Add "<filename>"').fill('My first commit message');
   await page.getByRole('button', {name: 'Commit changes'}).click();
   expect(page.url()).toBe(`http://localhost:3003/user2/${reponame}/src/branch/devbranch/README.md`);
   await expect(page.getByRole('link', {name: 'My first commit message'})).toBeVisible();
-  await expect(page.getByText('Hello Forgejo!')).toBeVisible();
+  await expect(page.getByText('Hello NovroForge!')).toBeVisible();
   await screenshot(page);
 });
 

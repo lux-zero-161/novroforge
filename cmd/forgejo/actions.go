@@ -1,4 +1,4 @@
-// Copyright The Forgejo Authors.
+// Copyright The NovroForge Authors.
 // SPDX-License-Identifier: MIT
 
 package forgejo
@@ -24,7 +24,7 @@ import (
 func CmdActions(ctx context.Context) *cli.Command {
 	return &cli.Command{
 		Name:  "actions",
-		Usage: "Commands for managing Forgejo Actions",
+		Usage: "Commands for managing NovroForge Actions",
 		Commands: []*cli.Command{
 			SubcmdActionsGenerateRunnerToken(ctx),
 			SubcmdActionsGenerateRunnerSecret(ctx),
@@ -106,7 +106,7 @@ func SubcmdActionsRegister(ctx context.Context) *cli.Command {
 			&cli.BoolFlag{
 				Name:  "ephemeral",
 				Value: false,
-				Usage: "instruct Forgejo to permanently unregister this runner after it has run one job",
+				Usage: "instruct NovroForge to permanently unregister this runner after it has run one job",
 			},
 		},
 	}

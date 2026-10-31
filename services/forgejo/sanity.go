@@ -9,9 +9,9 @@ import (
 )
 
 var (
-	ForgejoV6DatabaseVersion = int64(261) // must be updated once v6 / Gitea v1.21  is out
-	ForgejoV5DatabaseVersion = int64(260)
-	ForgejoV4DatabaseVersion = int64(244)
+	NovroForgeV6DatabaseVersion = int64(261) // must be updated once v6 / Gitea v1.21  is out
+	NovroForgeV5DatabaseVersion = int64(260)
+	NovroForgeV4DatabaseVersion = int64(244)
 )
 
 var logFatal = log.Fatal

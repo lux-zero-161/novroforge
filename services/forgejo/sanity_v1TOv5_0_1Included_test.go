@@ -14,7 +14,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestForgejo_v1TOv5_0_1Included(t *testing.T) {
+func TestNovroForge_v1TOv5_0_1Included(t *testing.T) {
 	require.NoError(t, unittest.PrepareTestDatabase())
 
 	logFatal = func(string, ...any) {}
@@ -26,15 +26,15 @@ func TestForgejo_v1TOv5_0_1Included(t *testing.T) {
 [storage]
 PATH = /something
 `
-	verifyForgejoV1TOv5_0_1Included(t, configWithSoragePath, "[storage].PATH is set")
+	verifyNovroForgeV1TOv5_0_1Included(t, configWithSoragePath, "[storage].PATH is set")
 
 	for _, c := range v1TOv5_0_1IncludedStorageSections {
 		config := fmt.Sprintf("[%s]\n[%s]\n", c.section, c.storageSection)
-		verifyForgejoV1TOv5_0_1Included(t, config, fmt.Sprintf("[%s] and [%s]", c.section, c.storageSection))
+		verifyNovroForgeV1TOv5_0_1Included(t, config, fmt.Sprintf("[%s] and [%s]", c.section, c.storageSection))
 	}
 }
 
-func verifyForgejoV1TOv5_0_1Included(t *testing.T, config, message string) {
+func verifyNovroForgeV1TOv5_0_1Included(t *testing.T, config, message string) {
 	ctx := db.DefaultContext
 	e := db.GetEngine(ctx)
 
@@ -46,25 +46,25 @@ func verifyForgejoV1TOv5_0_1Included(t *testing.T, config, message string) {
 	}{
 		{
 			name:      "5.0.0 with no " + message,
-			dbVersion: ForgejoV5DatabaseVersion,
+			dbVersion: NovroForgeV5DatabaseVersion,
 			semver:    "5.0.0+0-gitea-1.20.1",
 			config:    "",
 		},
 		{
 			name:      "5.0.1 with no " + message,
-			dbVersion: ForgejoV5DatabaseVersion,
+			dbVersion: NovroForgeV5DatabaseVersion,
 			semver:    "5.0.1+0-gitea-1.20.2",
 			config:    "",
 		},
 		{
 			name:      "5.0.2 with " + message,
-			dbVersion: ForgejoV5DatabaseVersion,
+			dbVersion: NovroForgeV5DatabaseVersion,
 			semver:    "5.0.2+0-gitea-1.20.3",
 			config:    config,
 		},
 		{
 			name:      "6.0.0 with " + message,
-			dbVersion: ForgejoV6DatabaseVersion,
+			dbVersion: NovroForgeV6DatabaseVersion,
 			semver:    "6.0.0+0-gitea-1.21.0",
 			config:    config,
 		},
@@ -82,13 +82,13 @@ func verifyForgejoV1TOv5_0_1Included(t *testing.T, config, message string) {
 	}{
 		{
 			name:      "5.0.0 with  " + message,
-			dbVersion: ForgejoV5DatabaseVersion,
+			dbVersion: NovroForgeV5DatabaseVersion,
 			semver:    "5.0.0+0-gitea-1.20.1",
 			config:    config,
 		},
 		{
 			name:      "5.0.1 with " + message,
-			dbVersion: ForgejoV5DatabaseVersion,
+			dbVersion: NovroForgeV5DatabaseVersion,
 			semver:    "5.0.1+0-gitea-1.20.2",
 			config:    config,
 		},
@@ -96,14 +96,14 @@ func verifyForgejoV1TOv5_0_1Included(t *testing.T, config, message string) {
 			//
 			// When upgrading from
 			//
-			// Forgejo >= 5.0.1+0-gitea-1.20.2
+			// NovroForge >= 5.0.1+0-gitea-1.20.2
 			// Gitea > v1.21
 			//
 			// The version that the server was running prior to the upgrade
 			// is not available.
 			//
 			name:      semver.DefaultVersionString + " with " + message,
-			dbVersion: ForgejoV4DatabaseVersion,
+			dbVersion: NovroForgeV4DatabaseVersion,
 			semver:    semver.DefaultVersionString,
 			config:    config,
 		},

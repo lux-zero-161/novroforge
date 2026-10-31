@@ -576,8 +576,8 @@ func (n *actionsNotifier) PushCommits(ctx context.Context, pusher *user_model.Us
 		return
 	}
 
-	// In addition to the Git ref, the ID of the head commit has to be supplied to ensure that Forgejo triggers
-	// workflows for this head commit. Without the ID of the head commit, Forgejo would try to rediscover it and might
+	// In addition to the Git ref, the ID of the head commit has to be supplied to ensure that NovroForge triggers
+	// workflows for this head commit. Without the ID of the head commit, NovroForge would try to rediscover it and might
 	// end up with a newer commit if new commits were pushed simultaneously.
 	headCommit := ""
 	if commits != nil && commits.HeadCommit != nil {
@@ -656,8 +656,8 @@ func (n *actionsNotifier) SyncPushCommits(ctx context.Context, pusher *user_mode
 		return
 	}
 
-	// In addition to the Git ref, the ID of the head commit has to be supplied to ensure that Forgejo triggers
-	// workflows for this head commit. Without the ID of the head commit, Forgejo would try to rediscover it and might
+	// In addition to the Git ref, the ID of the head commit has to be supplied to ensure that NovroForge triggers
+	// workflows for this head commit. Without the ID of the head commit, NovroForge would try to rediscover it and might
 	// end up with a newer commit if new commits were pushed simultaneously.
 	headCommit := ""
 	if commits != nil && commits.HeadCommit != nil {

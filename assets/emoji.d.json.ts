@@ -1,4 +1,4 @@
-// Copyright 2026 The Forgejo Authors. All rights reserved.
+// Copyright 2026 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 // Declaration file and `allowArbitraryExtensions` needed until https://github.com/microsoft/TypeScript/issues/32063 is resolved

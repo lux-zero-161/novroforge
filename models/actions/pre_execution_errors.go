@@ -1,4 +1,4 @@
-// Copyright 2025 The Forgejo Authors. All rights reserved.
+// Copyright 2025 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 package actions
@@ -37,7 +37,7 @@ const (
 
 func TranslatePreExecutionError(lang translation.Locale, run *ActionRun) template.HTML {
 	if run.PreExecutionError != "" {
-		// legacy: Forgejo v13 stored value pre-translated, preventing correct translation to active user. HTML escaping
+		// legacy: NovroForge v13 stored value pre-translated, preventing correct translation to active user. HTML escaping
 		// the entire string probably isn't right, but we do not have the details to reconstruct the string any smarter
 		// than this, so it's a safe default.
 		return template.HTML(html.EscapeString(run.PreExecutionError))

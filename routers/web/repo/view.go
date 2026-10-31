@@ -1,6 +1,6 @@
 // Copyright 2014 The Gogs Authors. All rights reserved.
 // Copyright 2017 The Gitea Authors. All rights reserved.
-// Copyright 2023 The Forgejo Authors. All rights reserved.
+// Copyright 2023 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: MIT
 
 package repo
@@ -586,7 +586,7 @@ func renderFile(ctx *context.Context, entry *git.TreeEntry) {
 
 			// The Open Group Base Specification: https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap03.html
 			//   empty: 0 lines; "a": 1 incomplete-line; "a\n": 1 line; "a\nb": 1 line, 1 incomplete-line;
-			// Forgejo uses the definition (like most modern editors):
+			// NovroForge uses the definition (like most modern editors):
 			//   empty: 0 lines; "a": 1 line; "a\n": 1 line; "a\nb": 2 lines;
 			//   When rendering, the last empty line is not rendered in U and isn't counted towards the number of lines.
 			//   To tell users that the file not contains a trailing EOL, text with a tooltip is displayed in the file header.

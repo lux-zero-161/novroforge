@@ -1,5 +1,5 @@
 // Copyright 2017 The Gitea Authors. All rights reserved.
-// Copyright 2025 The Forgejo Authors.
+// Copyright 2025 The NovroForge Authors.
 // SPDX-License-Identifier: MIT
 
 package markup
@@ -977,7 +977,7 @@ func issueIndexPatternProcessor(ctx *RenderContext, node *html.Node) {
 		} else {
 			// Path determines the type of link that will be rendered. It's unknown at this point whether
 			// the linked item is actually a PR or an issue. Luckily it's of no real consequence because
-			// Forgejo will redirect on click as appropriate.
+			// NovroForge will redirect on click as appropriate.
 			path := "issues"
 			if ref.IsPull {
 				path = "pulls"
@@ -1050,7 +1050,7 @@ func fullHashPatternProcessor(ctx *RenderContext, node *html.Node) {
 		// `https://domain.tld/<owner>/<repo>/<path>/<sha>`.
 		// The amount of components in `<path>` is variable, but that alone is doable with regexp.
 		//
-		// However, Forgejo also allows being hosted on a sub path, i.e.
+		// However, NovroForge also allows being hosted on a sub path, i.e.
 		// `https://domain.tld/<sub>/<owner>/<repo>/<path>/<sha>`.
 		// And this sub path can also have any amount of components. But fishing out a section
 		// between two variable length matches is not something regular grammars are capable of.

@@ -1,4 +1,4 @@
-// Copyright 2025 The Forgejo Authors. All rights reserved.
+// Copyright 2025 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 package forgejo_migrations
@@ -14,9 +14,9 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func Test_addForeignKeysForgejoAuthToken(t *testing.T) {
+func Test_addForeignKeysNovroForgeAuthToken(t *testing.T) {
 	type AuthorizationPurpose string
-	type ForgejoAuthToken struct {
+	type NovroForgeAuthToken struct {
 		ID              int64  `xorm:"pk autoincr"`
 		UID             int64  `xorm:"INDEX"`
 		LookupKey       string `xorm:"INDEX UNIQUE"`
@@ -27,15 +27,15 @@ func Test_addForeignKeysForgejoAuthToken(t *testing.T) {
 	type User struct {
 		ID int64 `xorm:"pk autoincr"`
 	}
-	x, deferable := migration_tests.PrepareTestEnv(t, 0, new(User), new(ForgejoAuthToken))
+	x, deferable := migration_tests.PrepareTestEnv(t, 0, new(User), new(NovroForgeAuthToken))
 	defer deferable()
 	if x == nil || t.Failed() {
 		return
 	}
 
-	require.NoError(t, addForeignKeysForgejoAuthToken(x))
+	require.NoError(t, addForeignKeysNovroForgeAuthToken(x))
 
-	var remainingRecords []*ForgejoAuthToken
+	var remainingRecords []*NovroForgeAuthToken
 	require.NoError(t,
 		db.GetEngine(t.Context()).
 			Table("forgejo_auth_token").
@@ -43,7 +43,7 @@ func Test_addForeignKeysForgejoAuthToken(t *testing.T) {
 			OrderBy("`id`").
 			Find(&remainingRecords))
 	assert.Equal(t,
-		[]*ForgejoAuthToken{
+		[]*NovroForgeAuthToken{
 			{ID: 1, UID: 1},
 		},
 		remainingRecords)

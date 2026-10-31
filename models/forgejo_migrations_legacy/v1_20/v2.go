@@ -7,9 +7,9 @@ import (
 )
 
 func CreateSemVerTable(x *xorm.Engine) error {
-	type ForgejoSemVer struct {
+	type NovroForgeSemVer struct {
 		Version string
 	}
 
-	return x.Sync(new(ForgejoSemVer))
+	return x.Sync(new(NovroForgeSemVer))
 }

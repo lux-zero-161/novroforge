@@ -13,7 +13,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestForgejoSemVerSetGet(t *testing.T) {
+func TestNovroForgeSemVerSetGet(t *testing.T) {
 	require.NoError(t, unittest.PrepareTestDatabase())
 	ctx := db.DefaultContext
 
@@ -26,7 +26,7 @@ func TestForgejoSemVerSetGet(t *testing.T) {
 	assert.True(t, newVersion.Equal(databaseVersion))
 }
 
-func TestForgejoSemVerMissing(t *testing.T) {
+func TestNovroForgeSemVerMissing(t *testing.T) {
 	require.NoError(t, unittest.PrepareTestDatabase())
 	ctx := db.DefaultContext
 	e := db.GetEngine(ctx)

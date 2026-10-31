@@ -1,5 +1,5 @@
 // Copyright 2010 The Go Authors. All rights reserved.
-// Copyright 2025 The Forgejo Authors. All rights reserved.
+// Copyright 2025 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: BSD-3-Clause
 //
 // Original source code: https://cs.opensource.google/go/go/+/refs/tags/go1.25.4:src/time/format.go;l=1621

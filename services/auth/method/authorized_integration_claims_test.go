@@ -1,4 +1,4 @@
-// Copyright 2026 The Forgejo Authors. All rights reserved.
+// Copyright 2026 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 package method
@@ -14,7 +14,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-// Real-world Forgejo Actions claims, Forgejo v15
+// Real-world NovroForge Actions claims, NovroForge v15
 const forgejoClaims = `
 {
   "actor": "coolguy",
@@ -98,7 +98,7 @@ const awsClaims = `
 `
 
 func TestFlexibleClaimsUnmarshal(t *testing.T) {
-	t.Run("Forgejo", func(t *testing.T) {
+	t.Run("NovroForge", func(t *testing.T) {
 		var retval flexibleClaims
 		data := []byte(forgejoClaims)
 		require.NoError(t, json.Unmarshal(data, &retval))

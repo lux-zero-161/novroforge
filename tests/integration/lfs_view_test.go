@@ -1,5 +1,5 @@
 // Copyright 2022 The Gitea Authors. All rights reserved.
-// Copyright 2026 The Forgejo Authors. All right reserved.
+// Copyright 2026 The NovroForge Authors. All right reserved.
 // SPDX-License-Identifier: MIT
 
 package integration

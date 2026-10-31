@@ -20,7 +20,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestActions_CmdForgejo_Actions(t *testing.T) {
+func TestActions_CmdNovroForge_Actions(t *testing.T) {
 	onApplicationRun(t, func(*testing.T, *url.URL) {
 		token, err := runMainApp("forgejo-cli", "actions", "generate-runner-token")
 		require.NoError(t, err)

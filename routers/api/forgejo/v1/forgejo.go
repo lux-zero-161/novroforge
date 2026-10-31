@@ -9,16 +9,16 @@ import (
 	"novroforge.xyz/modules/setting"
 )
 
-type Forgejo struct{}
+type NovroForge struct{}
 
-var _ ServerInterface = &Forgejo{}
+var _ ServerInterface = &NovroForge{}
 
-func NewForgejo() *Forgejo {
-	return &Forgejo{}
+func NewNovroForge() *NovroForge {
+	return &NovroForge{}
 }
 
-func (f *Forgejo) GetVersion(w http.ResponseWriter, r *http.Request) {
+func (f *NovroForge) GetVersion(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json; charset=utf-8")
 	w.WriteHeader(http.StatusOK)
-	_ = json.NewEncoder(w).Encode(Version{&setting.ForgejoVersion})
+	_ = json.NewEncoder(w).Encode(Version{&setting.NovroForgeVersion})
 }

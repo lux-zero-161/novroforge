@@ -145,7 +145,7 @@ func TestGitlabDownloadRepo(t *testing.T) {
 			Assets: []*base.ReleaseAsset{
 				{
 					ID:            10694714,
-					Name:          "Forgejo logo",
+					Name:          "NovroForge logo",
 					Size:          &size,
 					DownloadCount: &dc,
 				},
@@ -163,7 +163,7 @@ func TestGitlabDownloadRepo(t *testing.T) {
 				},
 				{
 					ID:            10687292,
-					Name:          "Forgejo",
+					Name:          "NovroForge",
 					Size:          &size,
 					DownloadCount: &dc,
 				},
@@ -527,7 +527,7 @@ func TestGitlabSkippedIssueNumber(t *testing.T) {
 	require.NoError(t, err)
 	// the only merge request in this repository has number 1,
 	// but we offset it by the maximum issue number so it becomes
-	// pull request 3 in Forgejo
+	// pull request 3 in NovroForge
 	assert.Len(t, prs, 1)
 	assert.EqualValues(t, 3, prs[0].Number)
 	assert.Equal(t, "cleanup README.md", prs[0].Title)
@@ -886,7 +886,7 @@ func TestGitlabConfidential(t *testing.T) {
 	require.NoError(t, err)
 	// the only merge request in this repository has number 1,
 	// but we offset it by the maximum issue number so it becomes
-	// pull request 2 in Forgejo
+	// pull request 2 in NovroForge
 	assert.Len(t, prs, 1)
 	assert.EqualValues(t, 3, prs[0].Number)
 
@@ -938,7 +938,7 @@ func TestGitlabDownloaderAvatarURL(t *testing.T) {
 
 	assertRepositoryEqual(t, &base.Repository{
 		Name:          "forgejo-12921",
-		Description:   "An example repo for testing Forgejo migrations.",
+		Description:   "An example repo for testing NovroForge migrations.",
 		CloneURL:      server.URL + "/forgejo/forgejo-12921.git",
 		OriginalURL:   server.URL + "/forgejo/forgejo-12921",
 		DefaultBranch: "master",

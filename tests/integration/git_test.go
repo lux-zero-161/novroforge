@@ -883,12 +883,12 @@ func doInternalReferences(ctx *APITestContext, dstPath string) func(t *testing.T
 		t.Run("deletion", func(t *testing.T) {
 			_, stdErr, gitErr := git.NewCommand(git.DefaultContext, "push", "origin").AddDynamicArguments(fmt.Sprintf(":refs/pull/%d/head", pr1.Index)).RunStdString(&git.RunOpts{Dir: dstPath})
 			require.NoError(t, gitErr)
-			assert.Contains(t, stdErr, "(Forgejo ignored PR deletion attempt)")
+			assert.Contains(t, stdErr, "(NovroForge ignored PR deletion attempt)")
 		})
 
 		_, stdErr, gitErr := git.NewCommand(git.DefaultContext, "push", "origin", "--force").AddDynamicArguments(fmt.Sprintf("HEAD~1:refs/pull/%d/head", pr1.Index)).RunStdString(&git.RunOpts{Dir: dstPath})
 		require.Error(t, gitErr)
-		assert.Contains(t, stdErr, fmt.Sprintf("Forgejo: Only AGit pull-requests can be pushed via refs/pull/%d/head", pr1.Index))
+		assert.Contains(t, stdErr, fmt.Sprintf("NovroForge: Only AGit pull-requests can be pushed via refs/pull/%d/head", pr1.Index))
 		assert.Contains(t, stdErr, pr1.HeadBranch)
 		assert.Contains(t, stdErr, fmt.Sprintf("[remote rejected] HEAD~1 -> refs/pull/%d/head", pr1.Index))
 	}
@@ -1345,9 +1345,9 @@ func doLFSNoAccess(ctx APITestContext, publicKeyID int64, objectFormat git.Objec
 
 		require.ErrorContains(t, cmd.Run(), "exit status 1")
 		if objectFormat.Name() == "sha1" {
-			assert.Contains(t, stderr.String(), fmt.Sprintf("Forgejo: User: 2:user2 with Key: %d:test-key-sha1 is not authorized to write to user40/repo60.", publicKeyID))
+			assert.Contains(t, stderr.String(), fmt.Sprintf("NovroForge: User: 2:user2 with Key: %d:test-key-sha1 is not authorized to write to user40/repo60.", publicKeyID))
 		} else {
-			assert.Contains(t, stderr.String(), fmt.Sprintf("Forgejo: User: 2:user2 with Key: %d:test-key-sha256 is not authorized to write to user40/repo60.", publicKeyID))
+			assert.Contains(t, stderr.String(), fmt.Sprintf("NovroForge: User: 2:user2 with Key: %d:test-key-sha256 is not authorized to write to user40/repo60.", publicKeyID))
 		}
 	}
 }

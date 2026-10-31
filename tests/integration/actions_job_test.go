@@ -1093,7 +1093,7 @@ func TestActionsRunsEvaluateIf(t *testing.T) {
 			defer tests.PrintCurrentTest(t)()
 
 			arif := newActionsRunIfTester(t)
-			runID := arif.dispatchForgejoTesting().ID
+			runID := arif.dispatchNovroForgeTesting().ID
 
 			run := unittest.AssertExistsAndLoadBean(t, &actions_model.ActionRun{ID: runID})
 			assert.Equal(t, actions_model.StatusWaiting.String(), run.Status.String())
@@ -1140,7 +1140,7 @@ func TestActionsRunsEvaluateIf(t *testing.T) {
 			defer tests.PrintCurrentTest(t)()
 
 			arif := newActionsRunIfTester(t)
-			runID := arif.dispatchForgejoConditional().ID
+			runID := arif.dispatchNovroForgeConditional().ID
 
 			run := unittest.AssertExistsAndLoadBean(t, &actions_model.ActionRun{ID: runID})
 			assert.Equal(t, actions_model.StatusWaiting.String(), run.Status.String())
@@ -1160,7 +1160,7 @@ func TestActionsRunsEvaluateIf(t *testing.T) {
 			defer tests.PrintCurrentTest(t)()
 
 			arif := newActionsRunIfTester(t)
-			runID := arif.scheduleForgejoConditional().ID
+			runID := arif.scheduleNovroForgeConditional().ID
 
 			run := unittest.AssertExistsAndLoadBean(t, &actions_model.ActionRun{ID: runID})
 			assert.Equal(t, actions_model.StatusWaiting.String(), run.Status.String())
@@ -1180,7 +1180,7 @@ func TestActionsRunsEvaluateIf(t *testing.T) {
 			defer tests.PrintCurrentTest(t)()
 
 			arif := newActionsRunIfTester(t)
-			runID := arif.eventForgejoConditional().ID
+			runID := arif.eventNovroForgeConditional().ID
 
 			run := unittest.AssertExistsAndLoadBean(t, &actions_model.ActionRun{ID: runID})
 			assert.Equal(t, actions_model.StatusWaiting.String(), run.Status.String())
@@ -1540,7 +1540,7 @@ jobs:
 `)
 }
 
-func (tester *ActionsRunIfTester) dispatchForgejoTesting() *api.DispatchWorkflowRun {
+func (tester *ActionsRunIfTester) dispatchNovroForgeTesting() *api.DispatchWorkflowRun {
 	// Trimmed down copy of `.forgejo/workflows/testing.yml` to create a more complex & realistic `needs` tree with `if`
 	// conditions on every job:
 	return tester.dispatch(`
@@ -1615,7 +1615,7 @@ jobs:
 `)
 }
 
-func (tester *ActionsRunIfTester) dispatchForgejoConditional() *api.DispatchWorkflowRun {
+func (tester *ActionsRunIfTester) dispatchNovroForgeConditional() *api.DispatchWorkflowRun {
 	return tester.dispatch(`
 on:
   workflow_dispatch:
@@ -1634,7 +1634,7 @@ jobs:
 `)
 }
 
-func (tester *ActionsRunIfTester) eventForgejoConditional() *actions_model.ActionRun {
+func (tester *ActionsRunIfTester) eventNovroForgeConditional() *actions_model.ActionRun {
 	return tester.pushEvent(`
 on:
   push:
@@ -1653,7 +1653,7 @@ jobs:
 `)
 }
 
-func (tester *ActionsRunIfTester) scheduleForgejoConditional() *actions_model.ActionRun {
+func (tester *ActionsRunIfTester) scheduleNovroForgeConditional() *actions_model.ActionRun {
 	return tester.forceSchedule(`
 on:
   schedule:

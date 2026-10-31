@@ -629,7 +629,7 @@ func tryAutolinkByLabel(ctx context.Context, p *packages_model.Package, labels m
 
 	fullBasePath := fmt.Sprintf("%s://%s/", u.Scheme, u.Host)
 	if setting.AppURL != fullBasePath {
-		log.Warn("Failed to extract label value org.opencontainers.image.source: host does not match Forgejo AppURL (is: %s, want: %s)", fullBasePath, setting.AppURL)
+		log.Warn("Failed to extract label value org.opencontainers.image.source: host does not match NovroForge AppURL (is: %s, want: %s)", fullBasePath, setting.AppURL)
 		return false, nil
 	}
 

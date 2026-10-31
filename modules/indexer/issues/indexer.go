@@ -89,7 +89,7 @@ func InitIssueIndexer(syncReindex bool) <-chan struct{} {
 				if err := recover(); err != nil {
 					log.Error("PANIC whilst initializing issue indexer: %v\nStacktrace: %s", err, log.Stack(2))
 					log.Error("The indexer files are likely corrupted and may need to be deleted")
-					log.Error("You can completely remove the %q directory to make Forgejo recreate the indexes", setting.Indexer.IssuePath)
+					log.Error("You can completely remove the %q directory to make NovroForge recreate the indexes", setting.Indexer.IssuePath)
 					globalIndexer.Store(dummyIndexer)
 					log.Fatal("PID: %d Unable to initialize the Bleve Issue Indexer at path: %s Error: %v", os.Getpid(), setting.Indexer.IssuePath, err)
 				}

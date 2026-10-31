@@ -1,4 +1,4 @@
-// Copyright 2026 The Forgejo Authors. All rights reserved.
+// Copyright 2026 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 package singleresponse
@@ -18,7 +18,7 @@ import (
 
 var Analyzer = &analysis.Analyzer{
 	Name:     "singleresponse",
-	Doc:      "checks that Forgejo web response methods are only invoked once in a control flow",
+	Doc:      "checks that NovroForge web response methods are only invoked once in a control flow",
 	Requires: []*analysis.Analyzer{inspect.Analyzer, ctrlflow.Analyzer},
 	Run:      run,
 }
@@ -177,7 +177,7 @@ func inspectCallSite(callingBlock *cfg.Block, callingNodeIndex int, trace bool) 
 			println(fmt.Sprintf("\tnextStmt = %#v", nextStmt))
 		}
 		// Only `return` is permitted after one of the web return functions; maybe this needs to expand in the future
-		// but haven't identified any cases in Forgejo yet.
+		// but haven't identified any cases in NovroForge yet.
 		_, stmtOk := nextStmt.(*ast.ReturnStmt)
 		if !stmtOk {
 			if trace {

@@ -1,4 +1,4 @@
-// Copyright 2024 The Forgejo Authors. All rights reserved.
+// Copyright 2024 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: MIT
 package main
 
@@ -35,7 +35,7 @@ func TestLocalizationPolicy(t *testing.T) {
 	t.Run("General safe tags", func(t *testing.T) {
 		assert.Empty(t, checkLocaleContent([]byte("error404 = The page you are trying to reach either <strong>does not exist</strong> or <strong>you are not authorized</strong> to view it.")))
 		assert.Empty(t, checkLocaleContent([]byte("teams.specific_repositories_helper = Members will only have access to repositories explicitly added to the team. Selecting this <strong>will not</strong> automatically remove repositories already added with <i>All repositories</i>.")))
-		assert.Empty(t, checkLocaleContent([]byte("sqlite_helper = File path for the SQLite3 database.<br>Enter an absolute path if you run Forgejo as a service.")))
+		assert.Empty(t, checkLocaleContent([]byte("sqlite_helper = File path for the SQLite3 database.<br>Enter an absolute path if you run NovroForge as a service.")))
 		assert.Empty(t, checkLocaleContent([]byte("hi_user_x = Hi <b>%s</b>,")))
 		assert.Empty(t, checkLocaleContent([]byte("key = Press <kbd>Shift</kbd>")))
 

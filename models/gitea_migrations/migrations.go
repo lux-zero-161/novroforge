@@ -365,7 +365,7 @@ func prepareMigrationTasks() []*migration {
 		newMigration(301, "Add skip_secondary_authorization option to oauth2 application table", v1_23.AddSkipSecondaryAuthColumnToOAuth2ApplicationTable),
 		newMigration(302, "Add index to action_task stopped log_expired", v1_23.AddIndexToActionTaskStoppedLogExpired),
 
-		// Migration to Forgejo v10
+		// Migration to NovroForge v10
 		newMigration(303, "Gitea last drop", v1_23.GiteaLastDrop),
 		newMigration(304, "Migrate `secret` column to store keying material", forgejo_migrations_legacy.MigrateTwoFactorToKeying),
 	}
@@ -465,7 +465,7 @@ func Migrate(x *xorm.Engine) error {
 		versionRecords = []*Version{upToDate}
 	} else if len(versionRecords) > 1 {
 		return fmt.Errorf(
-			"corrupt migrations: Forgejo database has unexpected records in the table `version`; a single record is expected w/ ID=1, but %d records were found",
+			"corrupt migrations: NovroForge database has unexpected records in the table `version`; a single record is expected w/ ID=1, but %d records were found",
 			len(versionRecords),
 		)
 	} else {
@@ -474,22 +474,22 @@ func Migrate(x *xorm.Engine) error {
 	currentVersion := versionRecords[0]
 	if currentVersion.ID != 1 {
 		return fmt.Errorf(
-			"corrupt migrations: Forgejo database has corrupted records in the table `version`; a single record with ID=1 is expected, but a record with ID=%d was found instead", currentVersion.ID,
+			"corrupt migrations: NovroForge database has corrupted records in the table `version`; a single record with ID=1 is expected, but a record with ID=%d was found instead", currentVersion.ID,
 		)
 	}
 
 	curDBVer := currentVersion.Version
-	// Outdated Forgejo database version is not supported
+	// Outdated NovroForge database version is not supported
 	if curDBVer < minDBVersion {
-		log.Fatal(`Forgejo no longer supports auto-migration from your previously installed version.
+		log.Fatal(`NovroForge no longer supports auto-migration from your previously installed version.
 Please try upgrading to a lower version first (suggested v1.6.4), then upgrade to this version.`)
 		return nil
 	}
 
-	// Downgrading Forgejo's database version not supported
+	// Downgrading NovroForge's database version not supported
 	if maxDBVer < curDBVer {
-		msg := fmt.Sprintf("Your database (migration version: %d) is for a newer Forgejo, you can not use the newer database for this old Forgejo release (%d).", curDBVer, maxDBVer)
-		msg += "\nForgejo will exit to keep your database safe and unchanged. Please use the correct Forgejo release, do not change the migration version manually (incorrect manual operation may lose data)."
+		msg := fmt.Sprintf("Your database (migration version: %d) is for a newer NovroForge, you can not use the newer database for this old NovroForge release (%d).", curDBVer, maxDBVer)
+		msg += "\nNovroForge will exit to keep your database safe and unchanged. Please use the correct NovroForge release, do not change the migration version manually (incorrect manual operation may lose data)."
 		if !setting.IsProd {
 			msg += fmt.Sprintf("\nIf you are in development and really know what you're doing, you can force changing the migration version by executing: UPDATE version SET version=%d WHERE id=1;", maxDBVer)
 		}
@@ -522,7 +522,7 @@ Please try upgrading to a lower version first (suggested v1.6.4), then upgrade t
 		}
 	}
 
-	// Execute Forgejo specific migrations.
+	// Execute NovroForge specific migrations.
 	return forgejo_migrations_legacy.Migrate(x)
 }
 

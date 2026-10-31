@@ -1,4 +1,4 @@
-// Copyright 2025 The Forgejo Authors. All rights reserved.
+// Copyright 2025 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 package forgejo_migrations_legacy
@@ -65,9 +65,9 @@ func MigrateActionSecretsToKeying(x *xorm.Engine) error {
 
 		if err == nil {
 			if len(ids) > 0 {
-				log.Error("Forgejo migration[37]: The following action secrets were found to be corrupted and removed from the database.")
+				log.Error("NovroForge migration[37]: The following action secrets were found to be corrupted and removed from the database.")
 				for _, message := range messages {
-					log.Error("Forgejo migration[37]: %s", message)
+					log.Error("NovroForge migration[37]: %s", message)
 				}
 
 				_, err = sess.In("id", ids).NoAutoCondition().NoAutoTime().Delete(&secret_model.Secret{})

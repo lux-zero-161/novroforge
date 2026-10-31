@@ -1,4 +1,4 @@
-// Copyright 2025 The Forgejo Authors. All rights reserved.
+// Copyright 2025 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 // @watch start
@@ -19,7 +19,7 @@ test('CITATION.cff switch', async ({page}) => {
   await page.getByRole('button', {name: 'BibTeX'}).click();
   await expect(page.getByText('cff-version: 1.2.0')).toBeHidden();
   await expect(
-    page.getByText('howpublished = {https://forgejo.org/},'),
+    page.getByText('howpublished = {https://novroforge.xyz/},'),
   ).toBeVisible();
 
   await page.getByRole('button', {name: 'Citation File Format'}).click();

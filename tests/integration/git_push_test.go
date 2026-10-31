@@ -282,7 +282,7 @@ func testOptionsGitPush(t *testing.T, u *url.URL) {
 			doGitCreateBranch(gitPath, branchName)(t)
 			stderr := doGitPushTestRepositoryFail(t, gitPath, "collaborator", branchName)
 
-			assert.Contains(t, stderr, `remote: Forgejo: User 'user5' is not allowed to push to branch 'branch3' in 'user2/repo-to-push'.`)
+			assert.Contains(t, stderr, `remote: NovroForge: User 'user5' is not allowed to push to branch 'branch3' in 'user2/repo-to-push'.`)
 			assert.Contains(t, stderr, `remote: If you instead wanted to create a pull request to the branch 'branch3', please use:`)
 			assert.Contains(t, stderr, `remote: git push origin HEAD:refs/for/branch3/choose-a-descriptor`)
 			assert.Contains(t, stderr, `remote: You might want to replace 'origin' with the name of your Git remote if it is different from origin. You can freely choose the descriptor to set it to a topic.`)
@@ -302,7 +302,7 @@ func testOptionsGitPush(t *testing.T, u *url.URL) {
 			branchName := "branch5"
 			doGitCreateBranch(gitPath, branchName)(t)
 			stderr := doGitPushTestRepositoryFail(t, gitPath, "collaborator", branchName, "-o", "repo.private=true", "-o", "repo.template=true")
-			assert.Contains(t, stderr, "Forgejo: options validation failed: permission denied for changing repo settings")
+			assert.Contains(t, stderr, "NovroForge: options validation failed: permission denied for changing repo settings")
 
 			repo, err = repo_model.GetRepositoryByOwnerAndName(db.DefaultContext, user.Name, "repo-to-push")
 			require.NoError(t, err)
@@ -440,7 +440,7 @@ func TestGitPushMirror(t *testing.T) {
 		// push --mirror
 		var stderr bytes.Buffer
 		err = git.NewCommand(git.DefaultContext, "push", "--mirror").Run(&git.RunOpts{Dir: repoPath, Stderr: &stderr})
-		assert.Contains(t, stderr.String(), "(Forgejo ignored PR deletion attempt)")
+		assert.Contains(t, stderr.String(), "(NovroForge ignored PR deletion attempt)")
 		require.NoError(t, err, stderr.String())
 
 		// ensure both PRs can still be fetched

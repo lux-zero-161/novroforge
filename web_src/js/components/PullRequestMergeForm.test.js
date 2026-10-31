@@ -1,4 +1,4 @@
-// Copyright 2024 The Forgejo Authors. All rights reserved.
+// Copyright 2024 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: MIT
 import {flushPromises, mount} from '@vue/test-utils';
 import PullRequestMergeForm from './PullRequestMergeForm.vue';

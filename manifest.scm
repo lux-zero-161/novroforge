@@ -1,10 +1,10 @@
-;;; Copyright 2025 The Forgejo Authors. All rights reserved.
+;;; Copyright 2025 The NovroForge Authors. All rights reserved.
 ;;; SPDX-License-Identifier: MIT
 ;;;
 ;;; Commentary:
 ;;;
 ;;; This is a GNU Guix manifest that can be used to create a
-;;; development environment to build and test Forgejo.
+;;; development environment to build and test NovroForge.
 ;;;
 ;;; The following is a usage example to create a containerized
 ;;; environment, with HOME shared for the Go cache and the network
@@ -27,7 +27,7 @@ make watch                   # run an instance/rebuild on changes
 # For debugging, you can either attach the delve debugger like this:
 dlv attach $(pgrep gitea)
 
-# Or start Forgejo directly with it:
+# Or start NovroForge directly with it:
 dlv exec ./gitea
 
 |#
@@ -35,7 +35,7 @@ dlv exec ./gitea
 (use-modules (guix packages)
              (guix utils))
 
-(define go-1.26                         ;minimal version required by Forgejo
+(define go-1.26                         ;minimal version required by NovroForge
   (specification->package "go@1.26"))
 
 (define (package-with-go base go)

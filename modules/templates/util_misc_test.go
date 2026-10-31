@@ -1,4 +1,4 @@
-// Copyright 2025 The Forgejo Authors. All rights reserved.
+// Copyright 2025 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 package templates
@@ -44,14 +44,14 @@ func pushCommits() *repository.PushCommits {
 			CommitterName:  "user2",
 			AuthorEmail:    "non-existent",
 			AuthorName:     "user2",
-			Message:        "Using email that isn't known to Forgejo",
+			Message:        "Using email that isn't known to NovroForge",
 			Signature: &git.ObjectSignature{
 				Payload: `tree 2d491b2985a7ff848d5c02748e7ea9f9f7619f9f
 parent 45b03601635a1f463b81963a4022c7f87ce96ef9
 author user2 <non-existent> 1699710556 +0100
 committer user2 <non-existent> 1699710556 +0100
 
-Using email that isn't known to Forgejo
+Using email that isn't known to NovroForge
 `,
 				Signature: `-----BEGIN SSH SIGNATURE-----
 U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgoGSe9Zy7Ez9bSJcaTNjh/Y7p95

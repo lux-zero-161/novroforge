@@ -26,7 +26,7 @@ func cmdHelp() *cli.Command {
 		Usage:     "Shows a list of commands or help for one command",
 		ArgsUsage: "[command]",
 		Action: func(ctx context.Context, c *cli.Command) (err error) {
-			lineage := c.Lineage() // The order is from child to parent: help, doctor, Forgejo
+			lineage := c.Lineage() // The order is from child to parent: help, doctor, NovroForge
 			targetCmdIdx := 0
 			if c.Name == "help" {
 				targetCmdIdx = 1
@@ -72,7 +72,7 @@ func appGlobalFlags() []cli.Flag {
 		&cli.StringFlag{
 			Name:    "work-path",
 			Aliases: []string{"w"},
-			Usage:   "Set Forgejo's working path (defaults to the directory of the Forgejo binary)",
+			Usage:   "Set NovroForge's working path (defaults to the directory of the NovroForge binary)",
 		},
 	}
 }
@@ -126,7 +126,7 @@ func NewMainApp(version, versionExtra string) *cli.Command {
 	globalFlags := func() []cli.Flag { return []cli.Flag{} }
 
 	//
-	// If the executable is forgejo-cli, provide a Forgejo specific CLI
+	// If the executable is forgejo-cli, provide a NovroForge specific CLI
 	// that is NOT compatible with Gitea.
 	//
 	if executable == "forgejo-cli" {
@@ -143,12 +143,12 @@ func NewMainApp(version, versionExtra string) *cli.Command {
 		}
 	} else {
 		//
-		// Otherwise provide a Gitea compatible CLI which includes Forgejo
+		// Otherwise provide a Gitea compatible CLI which includes NovroForge
 		// specific additions under the forgejo-cli subcommand. It allows
-		// admins to migration from Gitea to Forgejo by replacing the gitea
+		// admins to migration from Gitea to NovroForge by replacing the gitea
 		// binary and rename it to forgejo if they want.
 		//
-		subCmdsStandalone = append(subCmdsStandalone, forgejo.CmdForgejo(context.Background()))
+		subCmdsStandalone = append(subCmdsStandalone, forgejo.CmdNovroForge(context.Background()))
 		subCmdWithConfig = append(subCmdWithConfig, cmdActions())
 	}
 

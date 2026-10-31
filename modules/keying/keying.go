@@ -1,4 +1,4 @@
-// Copyright 2024 The Forgejo Authors. All rights reserved.
+// Copyright 2024 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: MIT
 
 // Keying is a module that allows for subkeys to be deterministically generated
@@ -8,7 +8,7 @@
 // happened, the panic should be seen as an non-recoverable error.
 //
 // HKDF (per RFC 5869) is used to derive new subkeys in a safe manner. It
-// provides a KDF security property, which is required for Forgejo, as the
+// provides a KDF security property, which is required for NovroForge, as the
 // secret key would be an ASCII string and isn't a random uniform bit string.
 // XChaCha-Poly1305 (per draft-irtf-cfrg-xchacha-01) is used as AEAD to encrypt
 // and decrypt messages. A new fresh random nonce is generated for every
@@ -56,7 +56,7 @@ var (
 
 // Set the main IKM for this module.
 func Init(ikm []byte) {
-	// Salt is intentionally left empty, it's not useful to Forgejo's use case.
+	// Salt is intentionally left empty, it's not useful to NovroForge's use case.
 	buf, err := hkdf.Extract(hash, ikm, nil)
 	if err != nil {
 		panic(err)

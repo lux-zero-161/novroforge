@@ -268,7 +268,7 @@ func TestAPISearchRepo(t *testing.T) {
 			user:  {count: 1, includesPrivate: true},
 			user4: {count: 1, includesPrivate: true},
 		}},
-		{name: "ForgejoActionsUser/UID", requestURL: fmt.Sprintf("/api/v1/repos/search?uid=%d", actionsUser.ID), expectedResults: expectedResults{
+		{name: "NovroForgeActionsUser/UID", requestURL: fmt.Sprintf("/api/v1/repos/search?uid=%d", actionsUser.ID), expectedResults: expectedResults{
 			nil:         {count: 0},
 			actionsUser: {count: 0},
 			user:        {count: 0},

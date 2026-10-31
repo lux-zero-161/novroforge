@@ -1,5 +1,5 @@
 // Copyright 2023 The Gitea Authors. All rights reserved.
-// Copyright 2026 The Forgejo Authors. All rights reserved.
+// Copyright 2026 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: MIT
 
 package repo
@@ -486,13 +486,13 @@ func (Action) ListVariables(ctx *context.APIContext) {
 
 // GetRegistrationToken returns the runner registration token to register runners for the repository
 //
-// Deprecated: This operation has been deprecated in Forgejo 15. Use the web UI or RegisterRunner instead.
+// Deprecated: This operation has been deprecated in NovroForge 15. Use the web UI or RegisterRunner instead.
 func (Action) GetRegistrationToken(ctx *context.APIContext) {
 	// swagger:operation GET /repos/{owner}/{repo}/actions/runners/registration-token repository repoGetRunnerRegistrationToken
 	// ---
 	// summary: Get a repository's runner registration token
 	// description: >
-	//   This operation has been deprecated in Forgejo 15.
+	//   This operation has been deprecated in NovroForge 15.
 	//   Use the web UI or [`/repos/{owner}/{repo}/actions/runners`](#/repository/registerRepoRunner) instead.
 	// deprecated: true
 	// produces:
@@ -907,7 +907,7 @@ func ListActionRuns(ctx *context.APIContext) {
 	// - name: status
 	//   in: query
 	//   description: |
-	//     Returns workflow runs with the check run status or conclusion that is specified. For example, a conclusion can be success or a status can be in_progress. Only Forgejo Actions can set a status of waiting, pending, or requested.
+	//     Returns workflow runs with the check run status or conclusion that is specified. For example, a conclusion can be success or a status can be in_progress. Only NovroForge Actions can set a status of waiting, pending, or requested.
 	//   type: array
 	//   items:
 	//     type: string

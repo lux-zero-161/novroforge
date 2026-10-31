@@ -358,7 +358,7 @@ var (
 	ErrNoJobUpdated       = errors.New("no job updated")
 )
 
-// Placeholder tasks are created when the status/content of an [ActionRunJob] is resolved by Forgejo without dispatch to
+// Placeholder tasks are created when the status/content of an [ActionRunJob] is resolved by NovroForge without dispatch to
 // a runner, specifically in the case of a workflow call's outer job.
 func CreatePlaceholderTask(ctx context.Context, job *ActionRunJob, outputs map[string]string) (*ActionTask, error) {
 	actionTask := &ActionTask{

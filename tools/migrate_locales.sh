@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Copyright 2024 The Forgejo Authors. All rights reserved.
+# Copyright 2024 The NovroForge Authors. All rights reserved.
 # SPDX-License-Identifier: MIT
 
 if [ -z "$1" ] || [ -z "$2" ]

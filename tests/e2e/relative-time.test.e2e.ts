@@ -1,4 +1,4 @@
-// Copyright 2025 The Forgejo Authors. All rights reserved.
+// Copyright 2025 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 // @watch start
@@ -13,7 +13,7 @@ import {test} from './utils_e2e.ts';
 test.use({user: 'user1'});
 
 // The <relative-time> tooltip shows the absolute datetime, formatted with the language
-// selected in Forgejo's settings (document.documentElement.lang), not the browser's language.
+// selected in NovroForge's settings (document.documentElement.lang), not the browser's language.
 const browserLang = 'en-US';
 
 for (const lang of ['en-US', 'es-ES', 'de-DE']) {

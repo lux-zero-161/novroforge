@@ -1,8 +1,8 @@
 # Integration tests
 
-Thank you for your effort to provide good software tests for Forgejo.
+Thank you for your effort to provide good software tests for NovroForge.
 Please also read the general testing instructions in the
-[Forgejo contributor documentation](https://forgejo.org/docs/next/contributor/testing/).
+[NovroForge contributor documentation](https://novroforge.xyz/docs/next/contributor/testing/).
 
 This file is meant to provide specific information for the integration tests
 as well as some tips and tricks you should know.

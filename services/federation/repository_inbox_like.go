@@ -1,4 +1,4 @@
-// Copyright 2024 The Forgejo Authors. All rights reserved.
+// Copyright 2024 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: MIT
 
 package federation
@@ -49,7 +49,7 @@ func ProcessLikeActivity(ctx context.Context, activity *ap.Activity, repositoryI
 	}
 
 	// parse objectID (repository)
-	objectID, err := fm.NewRepositoryID(constructorLikeActivity.Object.GetID().String(), string(forgefed.ForgejoSourceType))
+	objectID, err := fm.NewRepositoryID(constructorLikeActivity.Object.GetID().String(), string(forgefed.NovroForgeSourceType))
 	if err != nil {
 		return ServiceResult{}, NewErrNotAcceptablef("Parsing repo objectID failed: %v", err)
 	}

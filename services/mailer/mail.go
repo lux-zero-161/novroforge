@@ -66,7 +66,7 @@ func SendTestMail(email string) error {
 		// No mail service configured
 		return nil
 	}
-	return gomail.Send(Sender, NewMessage(email, "Forgejo Test Email!", "Forgejo Test Email!").ToMessage())
+	return gomail.Send(Sender, NewMessage(email, "NovroForge Test Email!", "NovroForge Test Email!").ToMessage())
 }
 
 // sendUserMail sends a mail to the user
@@ -438,7 +438,7 @@ func generateAdditionalHeaders(ctx *mailCommentContext, reason string, recipient
 		// https://datatracker.ietf.org/doc/html/rfc2369
 		"List-Archive": fmt.Sprintf("<%s>", repo.HTMLURL()),
 
-		"X-Mailer":                  "Forgejo",
+		"X-Mailer":                  "NovroForge",
 		"X-Gitea-Reason":            reason,
 		"X-Gitea-Sender":            ctx.Doer.Name,
 		"X-Gitea-Recipient":         recipient.Name,
@@ -449,15 +449,15 @@ func generateAdditionalHeaders(ctx *mailCommentContext, reason string, recipient
 		"X-Gitea-Issue-ID":          strconv.FormatInt(ctx.Issue.Index, 10),
 		"X-Gitea-Issue-Link":        ctx.Issue.HTMLURL(),
 
-		"X-Forgejo-Reason":            reason,
-		"X-Forgejo-Sender":            ctx.Doer.Name,
-		"X-Forgejo-Recipient":         recipient.Name,
-		"X-Forgejo-Recipient-Address": recipient.Email,
-		"X-Forgejo-Repository":        repo.Name,
-		"X-Forgejo-Repository-Path":   repo.FullName(),
-		"X-Forgejo-Repository-Link":   repo.HTMLURL(),
-		"X-Forgejo-Issue-ID":          strconv.FormatInt(ctx.Issue.Index, 10),
-		"X-Forgejo-Issue-Link":        ctx.Issue.HTMLURL(),
+		"X-NovroForge-Reason":            reason,
+		"X-NovroForge-Sender":            ctx.Doer.Name,
+		"X-NovroForge-Recipient":         recipient.Name,
+		"X-NovroForge-Recipient-Address": recipient.Email,
+		"X-NovroForge-Repository":        repo.Name,
+		"X-NovroForge-Repository-Path":   repo.FullName(),
+		"X-NovroForge-Repository-Link":   repo.HTMLURL(),
+		"X-NovroForge-Issue-ID":          strconv.FormatInt(ctx.Issue.Index, 10),
+		"X-NovroForge-Issue-Link":        ctx.Issue.HTMLURL(),
 
 		"X-GitHub-Reason":            reason,
 		"X-GitHub-Sender":            ctx.Doer.Name,

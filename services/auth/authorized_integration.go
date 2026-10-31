@@ -1,4 +1,4 @@
-// Copyright 2026 The Forgejo Authors. All rights reserved.
+// Copyright 2026 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 package auth
@@ -193,7 +193,7 @@ func ValidateAuthorizedIntegration(ai *auth_model.AuthorizedIntegration, repoRes
 
 	switch ai.UI {
 	case auth_model.AuthorizedIntegrationUIGeneric,
-		auth_model.AuthorizedIntegrationUIForgejoActionsLocal:
+		auth_model.AuthorizedIntegrationUINovroForgeActionsLocal:
 		break
 	default:
 		return fmt.Errorf("%w: invalid UI: %q", ErrAuthorizedIntegrationBadUI, ai.UI)

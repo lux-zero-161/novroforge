@@ -1,4 +1,4 @@
-// Copyright 2025 The Forgejo Authors. All rights reserved.
+// Copyright 2025 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 package forgejo_migrations
@@ -20,11 +20,11 @@ import (
 	"code.forgejo.org/xorm/xorm/names"
 )
 
-// ForgejoMigration table contains a record of migrations applied to the database.  (Note that there are older
+// NovroForgeMigration table contains a record of migrations applied to the database.  (Note that there are older
 // migrations in the forgejo_version table from before this table was introduced, and the `version` table from Gitea
 // migrations). Each record in this table represents one successfully completed migration which was completed at the
 // `CreatedUnix` time.
-type ForgejoMigration struct {
+type NovroForgeMigration struct {
 	ID          string             `xorm:"pk"`
 	CreatedUnix timeutil.TimeStamp `xorm:"created"`
 }
@@ -99,7 +99,7 @@ func resolveMigrations() {
 }
 
 func getInDBMigrationIDs(x *xorm.Engine) (container.Set[string], error) {
-	var inDBMigrations []ForgejoMigration
+	var inDBMigrations []NovroForgeMigration
 	err := x.Find(&inDBMigrations)
 	if err != nil {
 		return nil, err
@@ -113,7 +113,7 @@ func getInDBMigrationIDs(x *xorm.Engine) (container.Set[string], error) {
 	return inDBMigrationIDs, nil
 }
 
-// EnsureUpToDate will check if the Forgejo database is at the correct version.
+// EnsureUpToDate will check if the NovroForge database is at the correct version.
 func EnsureUpToDate(x *xorm.Engine) error {
 	resolveMigrations()
 
@@ -125,20 +125,20 @@ func EnsureUpToDate(x *xorm.Engine) error {
 	// invalidMigrations are those that are in the database, but aren't registered.
 	invalidMigrations := inDBMigrationIDs.Difference(inMemoryMigrationIDs)
 	if len(invalidMigrations) > 0 {
-		return fmt.Errorf("current Forgejo database has migration(s) %s applied, which are not registered migrations", strings.Join(invalidMigrations.Slice(), ", "))
+		return fmt.Errorf("current NovroForge database has migration(s) %s applied, which are not registered migrations", strings.Join(invalidMigrations.Slice(), ", "))
 	}
 
 	// unappliedMigrations are those that haven't yet been applied, but seem valid
 	unappliedMigrations := inMemoryMigrationIDs.Difference(inDBMigrationIDs)
 	if len(unappliedMigrations) > 0 {
-		return fmt.Errorf(`current Forgejo database is missing migration(s) %s. Please run "forgejo [--config /path/to/app.ini] migrate" to update the database version`, strings.Join(unappliedMigrations.Slice(), ", "))
+		return fmt.Errorf(`current NovroForge database is missing migration(s) %s. Please run "forgejo [--config /path/to/app.ini] migrate" to update the database version`, strings.Join(unappliedMigrations.Slice(), ", "))
 	}
 
 	return nil
 }
 
 func recordMigrationComplete(x *xorm.Engine, migration *Migration) error {
-	affected, err := x.Insert(&ForgejoMigration{ID: migration.id})
+	affected, err := x.Insert(&NovroForgeMigration{ID: migration.id})
 	if err != nil {
 		return err
 	} else if affected != 1 {
@@ -147,13 +147,13 @@ func recordMigrationComplete(x *xorm.Engine, migration *Migration) error {
 	return nil
 }
 
-// Migrate Forgejo database to current version.
+// Migrate NovroForge database to current version.
 func Migrate(x *xorm.Engine, freshDB bool) error {
 	resolveMigrations()
 
 	// Set a new clean the default mapper to GonicMapper as that is the default for .
 	x.SetMapper(names.GonicMapper{})
-	if _, err := x.SyncWithOptions(xorm.SyncOptions{IgnoreDropIndices: true}, new(ForgejoMigration)); err != nil {
+	if _, err := x.SyncWithOptions(xorm.SyncOptions{IgnoreDropIndices: true}, new(NovroForgeMigration)); err != nil {
 		return fmt.Errorf("sync: %w", err)
 	}
 
@@ -181,9 +181,9 @@ func Migrate(x *xorm.Engine, freshDB bool) error {
 	// invalidMigrations are those that are in the database, but aren't registered.
 	invalidMigrations := inDBMigrationIDs.Difference(inMemoryMigrationIDs)
 	if len(invalidMigrations) > 0 {
-		// Downgrading Forgejo's database version not supported
-		msg := fmt.Sprintf("Your Forgejo database has %d migration(s) (%s) for a newer version of Forgejo, you cannot use the newer database for this old Forgejo release.", len(invalidMigrations), strings.Join(invalidMigrations.Slice(), ", "))
-		msg += "\nForgejo will exit to keep your database safe and unchanged. Please use the correct Forgejo release, do not change the migration version manually (incorrect manual operation may cause data loss)."
+		// Downgrading NovroForge's database version not supported
+		msg := fmt.Sprintf("Your NovroForge database has %d migration(s) (%s) for a newer version of NovroForge, you cannot use the newer database for this old NovroForge release.", len(invalidMigrations), strings.Join(invalidMigrations.Slice(), ", "))
+		msg += "\nNovroForge will exit to keep your database safe and unchanged. Please use the correct NovroForge release, do not change the migration version manually (incorrect manual operation may cause data loss)."
 		if !setting.IsProd {
 			msg += "\nIf you are in development and know what you're doing, you can remove the migration records from the forgejo_migration table.  The affect of those migrations will still be present."
 			quoted := slices.Clone(invalidMigrations.Slice())

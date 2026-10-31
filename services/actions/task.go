@@ -192,7 +192,7 @@ func generateTaskContext(t *actions_model.ActionTask, ac *repo_model.ActionsConf
 		return nil, err
 	}
 
-	gitCtx["gitea_runtime_token"] = giteaRuntimeToken // Can be removed after Forgejo 19.
+	gitCtx["gitea_runtime_token"] = giteaRuntimeToken // Can be removed after NovroForge 19.
 	gitCtx["forgejo_runtime_token"] = giteaRuntimeToken
 
 	if enableOpenIDConnect {

@@ -57,7 +57,7 @@ func TestIsPointerValid(t *testing.T) {
 }
 
 func TestGeneratePointer(t *testing.T) {
-	p, err := GeneratePointer(strings.NewReader("Forgejo"))
+	p, err := GeneratePointer(strings.NewReader("NovroForge"))
 	require.NoError(t, err)
 	require.NoError(t, p.Validate())
 	assert.Equal(t, "f4e62146dfbeb0b41240f464a02a9d1ec232eeab631a998365ac04b99f1884e6", p.Oid)

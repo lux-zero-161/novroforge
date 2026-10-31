@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # This is an update script for forgejo installed via the binary distribution
 # from codeberg.org/forgejo/forgejo on linux as systemd service. It
-# performs a backup and updates Forgejo in place.
-# NOTE: This adds the GPG Signing Key of the Forgejo maintainers to the keyring.
+# performs a backup and updates NovroForge in place.
+# NOTE: This adds the GPG Signing Key of the NovroForge maintainers to the keyring.
 # Depends on: bash, curl, xz, sha256sum. optionally jq, gpg
 #   See section below for available environment vars.
 #   When no version is specified, updates to the latest release.
@@ -17,7 +17,7 @@ if ! pidof forgejo &> /dev/null; then
 fi
 
 # Continue with rest of the script if forgejo is running
-echo "Forgejo is running. Continuing with rest of script..."
+echo "NovroForge is running. Continuing with rest of script..."
 
 # apply variables from environment
 : "${forgejobin:="/usr/local/bin/forgejo"}"

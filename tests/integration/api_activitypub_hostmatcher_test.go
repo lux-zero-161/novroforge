@@ -1,4 +1,4 @@
-// Copyright 2024, 2025 The Forgejo Authors. All rights reserved.
+// Copyright 2024, 2025 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: GPL-3.0
 
 package integration
@@ -111,7 +111,7 @@ func TestActivityPubHostMatcherFederationHost(t *testing.T) {
 		if strings.Contains(r.URL.Path, "well-known") {
 			w.Write(fmt.Appendf(nil, `{"links":[{"href":"http://%s/api/v1/activitypub/actor"}]}`, r.Host))
 		} else {
-			w.Write(fmt.Appendf(nil, `{"software":{"name":"%s"}}`, forgefed.ForgejoSourceType))
+			w.Write(fmt.Appendf(nil, `{"software":{"name":"%s"}}`, forgefed.NovroForgeSourceType))
 		}
 	}))
 

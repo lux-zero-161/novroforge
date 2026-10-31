@@ -368,7 +368,7 @@ func TestGenerateAdditionalHeaders(t *testing.T) {
 	expected := map[string]string{
 		"List-ID":                   "user2/repo1 <repo1.user2.localhost>",
 		"List-Archive":              "<https://try.gitea.io/user2/repo1>",
-		"X-Mailer":                  "Forgejo",
+		"X-Mailer":                  "NovroForge",
 		"X-Gitea-Reason":            "dummy-reason",
 		"X-Gitea-Sender":            "user2",
 		"X-Gitea-Recipient":         "test",
@@ -378,8 +378,8 @@ func TestGenerateAdditionalHeaders(t *testing.T) {
 		"X-Gitea-Repository-Link":   "https://try.gitea.io/user2/repo1",
 		"X-Gitea-Issue-ID":          "1",
 		"X-Gitea-Issue-Link":        "https://try.gitea.io/user2/repo1/issues/1",
-		"X-Forgejo-Sender":          "user2",
-		"X-Forgejo-Recipient":       "test",
+		"X-NovroForge-Sender":          "user2",
+		"X-NovroForge-Recipient":       "test",
 	}
 
 	for key, value := range expected {

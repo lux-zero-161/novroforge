@@ -137,7 +137,7 @@ var (
 	logBackwardCompatibleFileName = "gitea.log"
 )
 
-func logBackwardCompatibleDefaultToForgejo(fileName, configFileName string) string {
+func logBackwardCompatibleDefaultToNovroForge(fileName, configFileName string) string {
 	// do not default to forgejo.log if the log file is explicitly
 	// specified in the config file
 	if configFileName != "" {
@@ -192,7 +192,7 @@ func LogPrepareFilenameForWriter(configFileName, defaultFileName string) string 
 	// only relevant for the forgejo.log default (not when the default is
 	// access.log for instance)
 	if defaultFileName == logDefaultFileName {
-		fileName = logBackwardCompatibleDefaultToForgejo(fileName, configFileName)
+		fileName = logBackwardCompatibleDefaultToNovroForge(fileName, configFileName)
 	}
 	return fileName
 }

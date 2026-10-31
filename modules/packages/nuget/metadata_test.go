@@ -13,11 +13,11 @@ import (
 )
 
 const (
-	id                = "System.Forgejo"
+	id                = "System.NovroForge"
 	title             = "Package Title"
 	language          = "Package Language"
 	semver            = "1.0.1"
-	authors           = "Forgejo Authors"
+	authors           = "NovroForge Authors"
 	owners            = "Package Owners"
 	copyright         = "Package Copyright"
 	projectURL        = "https://novroforge.xyz"

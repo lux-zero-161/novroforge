@@ -1,4 +1,4 @@
-// Copyright 2025 The Forgejo Authors. All rights reserved.
+// Copyright 2025 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 // Due to a mistake during code review, this code was merged with the prefix 14a
@@ -71,7 +71,7 @@ func changeActivityPubUsernameFormat(x *xorm.Engine) error {
 	// (db.Iterate) don't return an error.
 	//
 	// This migration was originally authored with those cases in mind, but it was later agreed that
-	// migrations concerning Forgejo's federation-related components should not return any errors at
+	// migrations concerning NovroForge's federation-related components should not return any errors at
 	// this point in time, as federation is not considered to be stable at the moment. For more
 	// information, check the relevant discussion here:
 	// https://codeberg.org/forgejo-contrib/federation/issues/67
@@ -130,7 +130,7 @@ func changeActivityPubUsernameFormat(x *xorm.Engine) error {
 					return nil
 				}
 
-				// Were a running Forgejo instance to create a new federated account, would the port
+				// Were a running NovroForge instance to create a new federated account, would the port
 				// have been marked as "supplemented" (thus leading to its omission)?
 				var newUsername string
 				if (federationHost.HostPort == 443 && federationHost.HostSchema == "https") || (federationHost.HostPort == 80 && federationHost.HostSchema == "http") {

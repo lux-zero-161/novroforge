@@ -38,8 +38,8 @@ var PIDFile = "/run/gitea.pid"
 func cmdWeb() *cli.Command {
 	return &cli.Command{
 		Name:  "web",
-		Usage: "Start the Forgejo web server",
-		Description: `The Forgejo web server is the only thing you need to run,
+		Usage: "Start the NovroForge web server",
+		Description: `The NovroForge web server is the only thing you need to run,
 and it takes care of all the other things for you`,
 		Before: multipleBefore(noDanglingArgs, PrepareConsoleLoggerLevel(log.INFO)),
 		Action: runWeb,
@@ -113,7 +113,7 @@ func createPIDFile(pidPath string) {
 }
 
 func showWebStartupMessage(msg string) {
-	log.Info("Forgejo version: %s%s", setting.AppVer, setting.AppBuiltWith)
+	log.Info("NovroForge version: %s%s", setting.AppVer, setting.AppBuiltWith)
 	log.Info("* RunMode: %s", setting.RunMode)
 	log.Info("* AppPath: %s", setting.AppPath)
 	log.Info("* WorkPath: %s", setting.AppWorkPath)
@@ -151,13 +151,13 @@ func serveInstall(_ context.Context, ctx *cli.Command) error {
 	c := install.Routes()
 	err := listen(c, false)
 	if err != nil {
-		log.Critical("Unable to open listener for installer. Is Forgejo already running?")
+		log.Critical("Unable to open listener for installer. Is NovroForge already running?")
 		graceful.GetManager().DoGracefulShutdown()
 	}
 	select {
 	case <-graceful.GetManager().IsShutdown():
 		<-graceful.GetManager().Done()
-		log.Info("PID: %d Forgejo Web Finished", os.Getpid())
+		log.Info("PID: %d NovroForge Web Finished", os.Getpid())
 		log.GetManager().Close()
 		return err
 	default:
@@ -226,7 +226,7 @@ func serveInstalled(_ context.Context, ctx *cli.Command) error {
 		return nil
 	}
 	<-graceful.GetManager().Done()
-	log.Info("PID: %d Forgejo Web Finished", os.Getpid())
+	log.Info("PID: %d NovroForge Web Finished", os.Getpid())
 	log.GetManager().Close()
 	return nil
 }
@@ -252,9 +252,9 @@ func runWeb(ctx context.Context, cli *cli.Command) error {
 	defer cancel()
 
 	if os.Getppid() > 1 && len(os.Getenv("LISTEN_FDS")) > 0 {
-		log.Info("Restarting Forgejo on PID: %d from parent PID: %d", os.Getpid(), os.Getppid())
+		log.Info("Restarting NovroForge on PID: %d from parent PID: %d", os.Getpid(), os.Getppid())
 	} else {
-		log.Info("Starting Forgejo on PID: %d", os.Getpid())
+		log.Info("Starting NovroForge on PID: %d", os.Getpid())
 	}
 
 	// Set pid file setting
@@ -317,7 +317,7 @@ func listen(m http.Handler, handleRedirector bool) error {
 	if setting.Protocol != setting.HTTPUnix && setting.Protocol != setting.FCGIUnix {
 		listenAddr = net.JoinHostPort(listenAddr, setting.HTTPPort)
 	}
-	_, _, finished := process.GetManager().AddTypedContext(graceful.GetManager().HammerContext(), "Web: Forgejo Server", process.SystemProcessType, true)
+	_, _, finished := process.GetManager().AddTypedContext(graceful.GetManager().HammerContext(), "Web: NovroForge Server", process.SystemProcessType, true)
 	defer finished()
 	log.Info("Listen: %v://%s%s", setting.Protocol, listenAddr, setting.AppSubURL)
 	// This can be useful for users, many users do wrong to their config and get strange behaviors behind a reverse-proxy.

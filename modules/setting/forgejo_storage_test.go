@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 
 //
-// Tests verifying the Forgejo documentation on storage settings is correct
+// Tests verifying the NovroForge documentation on storage settings is correct
 //
 // https://novroforge.xyz/docs/v1.20/admin/storage/
 //
@@ -17,7 +17,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestForgejoDocs_StorageTypes(t *testing.T) {
+func TestNovroForgeDocs_StorageTypes(t *testing.T) {
 	iniStr := `
 [server]
 APP_DATA_PATH = /

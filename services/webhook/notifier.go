@@ -894,7 +894,7 @@ func (m *webhookNotifier) PackageDelete(ctx context.Context, doer *user_model.Us
 func (m *webhookNotifier) NewWorkflowRunAttempt(ctx context.Context, run *actions_model.ActionRun) {
 	log.Debug("New attempt of workflow run %d started with status %v", run.ID, run.Status)
 
-	// Supports deprecated Action Run triggers. Can be removed after Forgejo 19.
+	// Supports deprecated Action Run triggers. Can be removed after NovroForge 19.
 	if run.Status.IsDone() {
 		actionRunNowDone(ctx, run, actions_model.StatusUnknown)
 	}
@@ -957,7 +957,7 @@ func (m *webhookNotifier) WorkflowRunCompleted(
 ) {
 	log.Debug("Workflow run %d completed with status %v", run.ID, run.Status)
 
-	// Supports deprecated Action Run triggers. Can be removed after Forgejo 19.
+	// Supports deprecated Action Run triggers. Can be removed after NovroForge 19.
 	if run.Status.IsDone() {
 		actionRunNowDone(ctx, run, priorStatus)
 	}

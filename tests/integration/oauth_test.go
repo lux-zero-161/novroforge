@@ -2247,7 +2247,7 @@ func TestSignUpViaOAuthWithNicknameAsUsername(t *testing.T) {
 	addAuthSource(t, authSourcePayloadGitLabCustom(gitlabName))
 	userGitLabUserID := "5678"
 
-	// The Goth User contains the nickname that'll be used as the Forgejo user's username
+	// The Goth User contains the nickname that'll be used as the NovroForge user's username
 	defer mockCompleteUserAuth(func(res http.ResponseWriter, req *http.Request) (goth.User, error) {
 		return goth.User{
 			Provider: gitlabName,
@@ -2277,7 +2277,7 @@ func TestSignUpViaOAuthWithUserIdAsUsername(t *testing.T) {
 	addAuthSource(t, authSourcePayloadGitLabCustom(gitlabName))
 	userGitLabUserID := "5678"
 
-	// The Goth User's UserID will be used as the Forgejo user's username
+	// The Goth User's UserID will be used as the NovroForge user's username
 	defer mockCompleteUserAuth(func(res http.ResponseWriter, req *http.Request) (goth.User, error) {
 		return goth.User{
 			Provider: gitlabName,
@@ -2307,7 +2307,7 @@ func TestSignUpViaOAuthWithEmailAsUsername(t *testing.T) {
 	addAuthSource(t, authSourcePayloadGitLabCustom(gitlabName))
 	userGitLabUserID := "5678"
 
-	// The Goth User's email local part will be used as the Forgejo user's username
+	// The Goth User's email local part will be used as the NovroForge user's username
 	defer mockCompleteUserAuth(func(res http.ResponseWriter, req *http.Request) (goth.User, error) {
 		return goth.User{
 			Provider: gitlabName,
@@ -2337,7 +2337,7 @@ func TestSignUpViaOAuthWithPreferredUsernameAsUsername(t *testing.T) {
 	addAuthSource(t, authSourcePayloadGitLabCustom(gitlabName))
 	userGitLabUserID := "5678"
 
-	// The Goth User's preferred_username claim will be used as the Forgejo user's username
+	// The Goth User's preferred_username claim will be used as the NovroForge user's username
 	defer mockCompleteUserAuth(func(res http.ResponseWriter, req *http.Request) (goth.User, error) {
 		return goth.User{
 			Provider: gitlabName,

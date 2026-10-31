@@ -208,6 +208,6 @@ onDomReady(() => {
   initPreviewServiceMessageButton();
   initDeleteServiceMessageButton();
 
-  // no-js helper class is currently unused by UI components in Forgejo, but it is left for compatibility
+  // no-js helper class is currently unused by UI components in NovroForge, but it is left for compatibility
   document.body.classList.remove('no-js');
 });

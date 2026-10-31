@@ -492,7 +492,7 @@ func (p *PackagePayload) JSONPayload() ([]byte, error) {
 // /_/   \_\___|\__|_|\___/|_| |_|
 
 // this name is ridiculous, yes
-// it's the sub-type of hook that has something to do with Forgejo Actions
+// it's the sub-type of hook that has something to do with NovroForge Actions
 type HookActionAction string
 
 const (

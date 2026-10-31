@@ -11,12 +11,12 @@ import (
 )
 
 func init() {
-	db.RegisterModel(new(ForgejoSemVer))
+	db.RegisterModel(new(NovroForgeSemVer))
 }
 
 var DefaultVersionString = "1.0.0"
 
-type ForgejoSemVer struct {
+type NovroForgeSemVer struct {
 	Version string
 }
 
@@ -32,7 +32,7 @@ func GetVersionWithEngine(e db.Engine) (*version.Version, error) {
 		return nil, err
 	}
 	if exists {
-		var semver ForgejoSemVer
+		var semver NovroForgeSemVer
 		has, err := e.Get(&semver)
 		if err != nil {
 			return nil, err
@@ -65,7 +65,7 @@ func SetVersion(ctx context.Context, v *version.Version) error {
 }
 
 func SetVersionWithEngine(e db.Engine, v *version.Version) error {
-	var semver ForgejoSemVer
+	var semver NovroForgeSemVer
 	has, err := e.Get(&semver)
 	if err != nil {
 		return err

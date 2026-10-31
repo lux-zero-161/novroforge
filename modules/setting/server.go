@@ -1,5 +1,5 @@
 // Copyright 2023 The Gitea Authors. All rights reserved.
-// Copyright 2024 The Forgejo Authors.
+// Copyright 2024 The NovroForge Authors.
 // SPDX-License-Identifier: MIT
 
 package setting
@@ -144,7 +144,7 @@ func generateDisplayName() string {
 
 func loadServerFrom(rootCfg ConfigProvider) {
 	sec := rootCfg.Section("server")
-	AppName = rootCfg.Section("").Key("APP_NAME").MustString("Forgejo: Beyond coding. We Forge.")
+	AppName = rootCfg.Section("").Key("APP_NAME").MustString("NovroForge: Beyond coding. We Forge.")
 	AppSlogan = rootCfg.Section("").Key("APP_SLOGAN").MustString("")
 	AppDisplayNameFormat = rootCfg.Section("").Key("APP_DISPLAY_NAME_FORMAT").MustString("{APP_NAME}: {APP_SLOGAN}")
 	AppDisplayName = generateDisplayName()

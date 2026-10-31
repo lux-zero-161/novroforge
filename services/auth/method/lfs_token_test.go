@@ -141,13 +141,13 @@ type namedCfg struct {
 var iniCommon = `[security]
 INSTALL_LOCK = true
 [oauth2]
-JWT_SECRET = ForgejoForgejoForgejoForgejoForgejoForgejo_	# don't use in prod
+JWT_SECRET = NovroForgeNovroForgeNovroForgeNovroForgeNovroForgeNovroForge_	# don't use in prod
 [server]
 LFS_START_SERVER = true
 	`
 
 var cfgVariants = []namedCfg{
-	{name: "HS256_default", cfg: `LFS_JWT_SECRET = ForgejoForgejoForgejoForgejoForgejoForgejo_`},
+	{name: "HS256_default", cfg: `LFS_JWT_SECRET = NovroForgeNovroForgeNovroForgeNovroForgeNovroForgeNovroForge_`},
 	{name: "RS256", cfg: `LFS_JWT_SIGNING_ALGORITHM = RS256`},
 }
 

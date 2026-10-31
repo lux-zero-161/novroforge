@@ -107,12 +107,12 @@ func fail(ctx context.Context, userMessage, logMsgFmt string, args ...any) error
 	// There appears to be a chance to cause a zombie process and failure to read the Exit status
 	// if nothing is outputted on stdout.
 	_, _ = fmt.Fprintln(os.Stdout, "")
-	_, _ = fmt.Fprintln(os.Stderr, "Forgejo:", userMessage)
+	_, _ = fmt.Fprintln(os.Stderr, "NovroForge:", userMessage)
 
 	if logMsgFmt != "" {
 		logMsg := fmt.Sprintf(logMsgFmt, args...)
 		if !setting.IsProd {
-			_, _ = fmt.Fprintln(os.Stderr, "Forgejo:", logMsg)
+			_, _ = fmt.Fprintln(os.Stderr, "NovroForge:", logMsg)
 		}
 		if userMessage != "" {
 			if unicode.IsPunct(rune(userMessage[len(userMessage)-1])) {
@@ -142,7 +142,7 @@ func handleCliResponseExtra(extra private.ResponseExtra) error {
 func getKeyCheckMessage(
 	key *asymkey_model.PublicKey, user *user_model.User, appName string,
 ) string {
-	instanceName := "this Forgejo instance"
+	instanceName := "this NovroForge instance"
 	appNameParts := strings.Split(strings.TrimSpace(appName), " ")
 	if len(appNameParts) <= 2 {
 		instanceName = strings.Join(appNameParts, " ")
@@ -173,7 +173,7 @@ func runServ(ctx context.Context, c *cli.Command) error {
 	setup(ctx, c.Bool("debug"), true)
 
 	if setting.SSH.Disabled {
-		fmt.Println("Forgejo: SSH has been disabled")
+		fmt.Println("NovroForge: SSH has been disabled")
 		return nil
 	}
 

@@ -1,4 +1,4 @@
-// Copyright 2023 The Forgejo Authors. All rights reserved.
+// Copyright 2023 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: MIT
 
 package v1
@@ -13,7 +13,7 @@ func Routes() *web.Route {
 
 	m.Use(shared.Middlewares()...)
 
-	forgejo := NewForgejo()
+	forgejo := NewNovroForge()
 	m.Get("", Root)
 	m.Get("/version", forgejo.GetVersion)
 	return m

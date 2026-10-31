@@ -1,4 +1,4 @@
-// Copyright 2026 Forgejo Authors. All rights reserved.
+// Copyright 2026 NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 package automerge

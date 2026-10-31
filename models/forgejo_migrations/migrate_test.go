@@ -1,4 +1,4 @@
-// Copyright 2025 The Forgejo Authors. All rights reserved.
+// Copyright 2025 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 package forgejo_migrations
@@ -105,7 +105,7 @@ func TestResolveMigrations(t *testing.T) {
 }
 
 func TestGetInDBMigrationIDs(t *testing.T) {
-	x, deferable := migration_tests.PrepareTestEnv(t, 0, new(ForgejoMigration))
+	x, deferable := migration_tests.PrepareTestEnv(t, 0, new(NovroForgeMigration))
 	defer deferable()
 	require.NotNil(t, x)
 
@@ -114,9 +114,9 @@ func TestGetInDBMigrationIDs(t *testing.T) {
 	require.NotNil(t, migrationIDs)
 	assert.Empty(t, migrationIDs)
 
-	_, err = x.Insert(&ForgejoMigration{ID: "v77a_neat_migration"})
+	_, err = x.Insert(&NovroForgeMigration{ID: "v77a_neat_migration"})
 	require.NoError(t, err)
-	_, err = x.Insert(&ForgejoMigration{ID: "v99b_neat_migration"})
+	_, err = x.Insert(&NovroForgeMigration{ID: "v99b_neat_migration"})
 	require.NoError(t, err)
 
 	migrationIDs, err = getInDBMigrationIDs(x)
@@ -143,20 +143,20 @@ func TestEnsureUpToDate(t *testing.T) {
 			desc:     "invalid-migration",
 			inMemory: []string{},
 			inDB:     []string{"v77a_neat_migration"},
-			err:      "current Forgejo database has migration(s) v77a_neat_migration applied, which are not registered migrations",
+			err:      "current NovroForge database has migration(s) v77a_neat_migration applied, which are not registered migrations",
 		},
 		{
 			desc:     "missing-migration",
 			inMemory: []string{"v77a_neat_migration"},
 			inDB:     []string{},
-			err:      "current Forgejo database is missing migration(s) v77a_neat_migration",
+			err:      "current NovroForge database is missing migration(s) v77a_neat_migration",
 		},
 	}
 
 	for _, tc := range tests {
 		t.Run(tc.desc, func(t *testing.T) {
 			resetMigrations()
-			x, deferable := migration_tests.PrepareTestEnv(t, 0, new(ForgejoMigration))
+			x, deferable := migration_tests.PrepareTestEnv(t, 0, new(NovroForgeMigration))
 			defer deferable()
 			require.NotNil(t, x)
 
@@ -167,7 +167,7 @@ func TestEnsureUpToDate(t *testing.T) {
 				registerMigration(nilMigration())
 			}
 			for _, inDB := range tc.inDB {
-				x.Insert(&ForgejoMigration{ID: inDB})
+				x.Insert(&NovroForgeMigration{ID: inDB})
 			}
 
 			err := EnsureUpToDate(x)
@@ -182,7 +182,7 @@ func TestEnsureUpToDate(t *testing.T) {
 
 func TestMigrate(t *testing.T) {
 	resetMigrations()
-	x, deferable := migration_tests.PrepareTestEnv(t, 0, new(ForgejoMigration))
+	x, deferable := migration_tests.PrepareTestEnv(t, 0, new(NovroForgeMigration))
 	defer deferable()
 	require.NotNil(t, x)
 
@@ -198,7 +198,7 @@ func TestMigrate(t *testing.T) {
 		},
 	})
 	// v77a_neat_migration will already be marked as already run
-	_, err := x.Insert(&ForgejoMigration{ID: "v77a_neat_migration"})
+	_, err := x.Insert(&NovroForgeMigration{ID: "v77a_neat_migration"})
 	require.NoError(t, err)
 
 	v99bRun := false
@@ -209,11 +209,11 @@ func TestMigrate(t *testing.T) {
 		Description: "nothing",
 		Upgrade: func(x *xorm.Engine) error {
 			v99bRun = true
-			type ForgejoMagicFunctionality struct {
+			type NovroForgeMagicFunctionality struct {
 				ID   int64 `xorm:"pk autoincr"`
 				Name string
 			}
-			return x.Sync(new(ForgejoMagicFunctionality))
+			return x.Sync(new(NovroForgeMagicFunctionality))
 		},
 	})
 
@@ -225,10 +225,10 @@ func TestMigrate(t *testing.T) {
 		Description: "nothing",
 		Upgrade: func(x *xorm.Engine) error {
 			v99cRun = true
-			type ForgejoMagicFunctionality struct {
+			type NovroForgeMagicFunctionality struct {
 				NewField string
 			}
-			return x.Sync(new(ForgejoMagicFunctionality))
+			return x.Sync(new(NovroForgeMagicFunctionality))
 		},
 	})
 
@@ -253,7 +253,7 @@ func TestMigrate(t *testing.T) {
 
 func TestMigrateFreshDB(t *testing.T) {
 	resetMigrations()
-	x, deferable := migration_tests.PrepareTestEnv(t, 0, new(ForgejoMigration))
+	x, deferable := migration_tests.PrepareTestEnv(t, 0, new(NovroForgeMigration))
 	defer deferable()
 	require.NotNil(t, x)
 
@@ -277,11 +277,11 @@ func TestMigrateFreshDB(t *testing.T) {
 		Description: "nothing",
 		Upgrade: func(x *xorm.Engine) error {
 			v99bRun = true
-			type ForgejoMagicFunctionality struct {
+			type NovroForgeMagicFunctionality struct {
 				ID   int64 `xorm:"pk autoincr"`
 				Name string
 			}
-			return x.Sync(new(ForgejoMagicFunctionality))
+			return x.Sync(new(NovroForgeMagicFunctionality))
 		},
 	})
 
@@ -293,10 +293,10 @@ func TestMigrateFreshDB(t *testing.T) {
 		Description: "nothing",
 		Upgrade: func(x *xorm.Engine) error {
 			v99cRun = true
-			type ForgejoMagicFunctionality struct {
+			type NovroForgeMagicFunctionality struct {
 				NewField string
 			}
-			return x.Sync(new(ForgejoMagicFunctionality))
+			return x.Sync(new(NovroForgeMagicFunctionality))
 		},
 	})
 

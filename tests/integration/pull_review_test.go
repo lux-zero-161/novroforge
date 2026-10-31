@@ -1,5 +1,5 @@
 // Copyright 2019 The Gitea Authors. All rights reserved.
-// Copyright 2024 The Forgejo Authors. All rights reserved.
+// Copyright 2024 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: MIT
 
 package integration
@@ -853,7 +853,7 @@ func TestPullRequestStaleReview(t *testing.T) {
 		// Create temporary repository.
 		repo := forgery.CreateRepository(t, user2, &forgery.CreateRepositoryOptions{
 			Files: forgery.MapFS{
-				"FUNFACT": forgery.MapFile("Smithy was the runner up to be Forgejo's name"),
+				"FUNFACT": forgery.MapFile("Smithy was the runner up to be NovroForge's name"),
 			},
 		})
 		forgery.EnableRepoUnits(t, repo, unit_model.TypePullRequests)
@@ -2590,7 +2590,7 @@ func (tester *PullRequestCommentPlacementTester) assertFilesChangedDiff(expected
 		}, 10*time.Second, time.Second, "expected to find PR diff page with commit ID %s", expectedCommitID)
 	} else {
 		// For some tests we don't know the expected commit ID for rendering the page, typically when a force push is
-		// used and we're not using Forgejo's API which provides the commit ID.  No retry loop here.
+		// used and we're not using NovroForge's API which provides the commit ID.  No retry loop here.
 		doc = fetchPage()
 	}
 

@@ -80,7 +80,7 @@ func (b *Basic) Verify(req *http.Request, w http.ResponseWriter, _ auth.SessionS
 
 func getOtpHeader(header http.Header) string {
 	otpHeader := header.Get("X-Gitea-OTP")
-	if forgejoHeader := header.Get("X-Forgejo-OTP"); forgejoHeader != "" {
+	if forgejoHeader := header.Get("X-NovroForge-OTP"); forgejoHeader != "" {
 		otpHeader = forgejoHeader
 	}
 	return otpHeader

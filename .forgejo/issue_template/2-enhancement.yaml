@@ -7,13 +7,13 @@ body:
   attributes:
     value: |
       - Please speak English, as this is the language all maintainers can speak and write.
-      - Be civil, and follow the [Forgejo Code of Conduct](https://codeberg.org/forgejo/code-of-conduct).
+      - Be civil, and follow the [NovroForge Code of Conduct](https://codeberg.org/forgejo/code-of-conduct).
 - type: markdown
   attributes:
     value: |
       ### New workflow
       
-      We are currently experimenting with a new workflow to manage issues and better understand your problems and needs. This is step 2 of the workflow, which is intended for Forgejo contributors: If you just want to raise a problem or need you have, please refer to step 1.
+      We are currently experimenting with a new workflow to manage issues and better understand your problems and needs. This is step 2 of the workflow, which is intended for NovroForge contributors: If you just want to raise a problem or need you have, please refer to step 1.
       
       This step allows to document a solution to one or multiple problems. It allows developers to focus on actionable implementation tasks without the clutter of previous discussions or triaging work.
       
@@ -29,7 +29,7 @@ body:
   id: description
   attributes:
     label: Enhancement description
-    description: Describe the changes you suggest for Forgejo and explain how they address the problems.
+    description: Describe the changes you suggest for NovroForge and explain how they address the problems.
   validations:
     required: true
 - type: textarea

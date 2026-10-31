@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: MIT
-name: 'Forgejo Actions to setup Go and cache dependencies'
-author: 'Forgejo authors'
+name: 'NovroForge Actions to setup Go and cache dependencies'
+author: 'NovroForge authors'
 description: |
   Wrap the setup-go with improved dependency caching.
 inputs:

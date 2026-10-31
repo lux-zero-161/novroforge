@@ -1,4 +1,4 @@
-// Copyright 2026 The Forgejo Authors.
+// Copyright 2026 The NovroForge Authors.
 // SPDX-License-Identifier: GPLv3-or-later
 
 package tests
@@ -19,7 +19,7 @@ var _ = registerFunctionTest(apiv1_permissions.ReqToken, functionTest{
 			),
 		},
 		{
-			// pass because the Forgejo Actions doer is authenticated with a token
+			// pass because the NovroForge Actions doer is authenticated with a token
 			data: newTestData(map[string]string{}, newSharedData().
 				SetDoer().SetDoerName(user_model.ActionsUserName).
 				SetDoerActions(true),

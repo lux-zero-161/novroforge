@@ -1,4 +1,4 @@
-// Copyright 2025 The Forgejo Authors. All rights reserved.
+// Copyright 2025 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 package db
@@ -90,7 +90,7 @@ func calculateReferencingTables(tables []schemaWithDefaultBean) map[string][]str
 // the list.  This order can be used in reverse as a safe deletion order as well.
 //
 // An ordered list of tables is incompatible with tables that have self-referencing foreign keys and circular referenced
-// foreign keys; however neither of those cases are in-use in Forgejo.
+// foreign keys; however neither of those cases are in-use in NovroForge.
 func calculateTableForeignKeyOrder(tables []schemaWithDefaultBean) ([]schemaWithDefaultBean, error) {
 	remainingTables := slices.Clone(tables)
 

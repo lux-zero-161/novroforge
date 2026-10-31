@@ -61,7 +61,7 @@ func TestAPITwoFactor(t *testing.T) {
 
 	req = NewRequestf(t, "GET", "/api/v1/user").
 		AddBasicAuth(user.Name)
-	req.Header.Set("X-Forgejo-OTP", passcode)
+	req.Header.Set("X-NovroForge-OTP", passcode)
 	MakeRequest(t, req, http.StatusOK)
 }
 
@@ -136,7 +136,7 @@ func TestAPIWithRequiredTwoFactor(t *testing.T) {
 
 			req = NewRequestf(t, "GET", "/api/v1/user").
 				AddBasicAuth(user.Name)
-			req.Header.Set("X-Forgejo-OTP", passcode)
+			req.Header.Set("X-NovroForge-OTP", passcode)
 		}
 
 		resp := MakeRequest(t, req, status)

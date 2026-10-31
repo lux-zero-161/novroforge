@@ -1,5 +1,5 @@
 #
-# See also https://forgejo.org/docs/next/contributor/release/#stable-release-process
+# See also https://novroforge.xyz/docs/next/contributor/release/#stable-release-process
 #
 # https://codeberg.org/forgejo-integration/forgejo
 #
@@ -185,7 +185,7 @@ jobs:
           binary-name: forgejo
           binary-path: /app/gitea/gitea
           override: "${{ steps.release-info.outputs.override }}"
-          verify-labels: "maintainer=contact@forgejo.org,org.opencontainers.image.version=${{ steps.release-info.outputs.version }}"
+          verify-labels: "maintainer=contact@novroforge.xyz,org.opencontainers.image.version=${{ steps.release-info.outputs.version }}"
           verbose: ${{ vars.VERBOSE || secrets.VERBOSE || 'false' }}
 
       - name: build rootless container
@@ -203,7 +203,7 @@ jobs:
           suffix: -rootless
           dockerfile: Dockerfile.rootless
           override: "${{ steps.release-info.outputs.override }}"
-          verify-labels: "maintainer=contact@forgejo.org,org.opencontainers.image.version=${{ steps.release-info.outputs.version }}"
+          verify-labels: "maintainer=contact@novroforge.xyz,org.opencontainers.image.version=${{ steps.release-info.outputs.version }}"
           verbose: ${{ vars.VERBOSE || secrets.VERBOSE || 'false' }}
 
   e2e:

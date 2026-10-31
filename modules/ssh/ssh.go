@@ -72,11 +72,11 @@ func sessionHandler(session ssh.Session) {
 	// stdin being closed and stdout being unwritable (EPIPE) to indicate that the subprocess should finish.  As an
 	// effect of that, `forgejo serv` subprocesses would be killed, and their `git` subprocesses would be killed (due to
 	// `SetupCancellableCommand`), and `git`'s subprocess post-receive hooks would be killed, all resulting in a desync
-	// between the on-disk repository and Forgejo's knowledge about the repository branches.
+	// between the on-disk repository and NovroForge's knowledge about the repository branches.
 	//
 	// Instead of that, we try to mirror OpenSSH's behaviour -- create a context that won't automatically kill the
 	// subprocesses, and rely on the stdin/stdout pipes to signal to subprocesses their cancellation.  We still
-	// terminate those processes if Forgejo's graceful shutdown hits the hammer timeout -- during a graceful shutdown
+	// terminate those processes if NovroForge's graceful shutdown hits the hammer timeout -- during a graceful shutdown
 	// the SSH server still stop accepting new connections, and these connections just need to finish before the hammer
 	// timeout, or, be terminated at that timeout.
 	ctx, cancel := context.WithCancel(graceful.GetManager().HammerContext())

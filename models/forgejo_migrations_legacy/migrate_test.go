@@ -1,4 +1,4 @@
-// Copyright 2023 The Forgejo Authors. All rights reserved.
+// Copyright 2023 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: MIT
 
 package forgejo_migrations_legacy
@@ -20,18 +20,18 @@ func TestEnsureUpToDate(t *testing.T) {
 		return nil
 	})()
 
-	x, deferable := migration_tests.PrepareTestEnv(t, 0, new(ForgejoVersion))
+	x, deferable := migration_tests.PrepareTestEnv(t, 0, new(NovroForgeVersion))
 	defer deferable()
 	if x == nil || t.Failed() {
 		return
 	}
 
-	// Ensure error if there's no row in Forgejo Version.
+	// Ensure error if there's no row in NovroForge Version.
 	err := EnsureUpToDate(x)
 	require.Error(t, err)
 
-	// Insert 'good' Forgejo Version row.
-	_, err = x.Insert(&ForgejoVersion{ID: 1, Version: ExpectedVersion()})
+	// Insert 'good' NovroForge Version row.
+	_, err = x.Insert(&NovroForgeVersion{ID: 1, Version: ExpectedVersion()})
 	require.NoError(t, err)
 
 	err = EnsureUpToDate(x)
@@ -46,14 +46,14 @@ func TestEnsureUpToDate(t *testing.T) {
 }
 
 func TestMigrateFreshDB(t *testing.T) {
-	x, deferable := migration_tests.PrepareTestEnv(t, 0, new(ForgejoVersion))
+	x, deferable := migration_tests.PrepareTestEnv(t, 0, new(NovroForgeVersion))
 	defer deferable()
 	require.NotNil(t, x)
 
 	err := Migrate(x)
 	require.NoError(t, err)
 
-	var versionRecords []*ForgejoVersion
+	var versionRecords []*NovroForgeVersion
 	err = x.Find(&versionRecords)
 	require.NoError(t, err)
 	require.Len(t, versionRecords, 1)
@@ -63,18 +63,18 @@ func TestMigrateFreshDB(t *testing.T) {
 }
 
 func TestMigrateFailWithCorruption(t *testing.T) {
-	x, deferable := migration_tests.PrepareTestEnv(t, 0, new(ForgejoVersion))
+	x, deferable := migration_tests.PrepareTestEnv(t, 0, new(NovroForgeVersion))
 	defer deferable()
 	require.NotNil(t, x)
 
 	// ID != 1
-	_, err := x.Insert(&ForgejoVersion{ID: 100, Version: 100})
+	_, err := x.Insert(&NovroForgeVersion{ID: 100, Version: 100})
 	require.NoError(t, err)
 	err = Migrate(x)
 	require.ErrorContains(t, err, "corrupted records in the table `forgejo_version`")
 
 	// Two versions...
-	_, err = x.Insert(&ForgejoVersion{ID: 1, Version: 1000})
+	_, err = x.Insert(&NovroForgeVersion{ID: 1, Version: 1000})
 	require.NoError(t, err)
 	err = Migrate(x)
 	require.ErrorContains(t, err, "unexpected records in the table `forgejo_version`")

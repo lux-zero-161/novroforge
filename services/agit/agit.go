@@ -96,7 +96,7 @@ func ProcReceive(ctx context.Context, repo *repo_model.Repository, gitRepo *git.
 					OriginalRef: opts.RefFullNames[i],
 					OldOID:      opts.OldCommitIDs[i],
 					NewOID:      opts.OldCommitIDs[i],
-					Ref:         "(Forgejo ignored PR deletion attempt)",
+					Ref:         "(NovroForge ignored PR deletion attempt)",
 				})
 				continue
 			}

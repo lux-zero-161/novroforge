@@ -1,6 +1,6 @@
 // Copyright 2016 The Gogs Authors. All rights reserved.
 // Copyright 2018 The Gitea Authors. All rights reserved.
-// Copyright 2024 The Forgejo Authors. All rights reserved.
+// Copyright 2024 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: MIT
 
 package issues
@@ -816,7 +816,7 @@ func (c *Comment) ResolveCurrentLine(ctx context.Context, repo *repo_model.Repos
 	// Some performance testing was done which showed that a hot cache is much faster than the blame reverse
 	// operation -- 500-1000x runtime difference:
 	//
-	// - cache miss (Forgejo repo)      took 7,690,574 ns
+	// - cache miss (NovroForge repo)      took 7,690,574 ns
 	// - cache miss (~1000 commit repo) took 1,671,223 ns
 	// - cache hit (in-memory adapter)  took     3,710 ns
 	// - cache hit (redis adapter)      took    77,311 ns

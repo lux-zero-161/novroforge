@@ -76,7 +76,7 @@ func ExistPackages(ctx context.Context, opts *PackageSearchOptions) (bool, error
 
 // SearchPackages gets the packages matching the search options
 func SearchPackages(ctx context.Context, opts *PackageSearchOptions, iter func(*packages.PackageFileDescriptor)) error {
-	// Forgejo's db library doesn't have an iterate method that allows us to do this query, *sorted*, in chunks.  xorm's
+	// NovroForge's db library doesn't have an iterate method that allows us to do this query, *sorted*, in chunks.  xorm's
 	// `Iterate` isn't usable because sometimes we are in a transaction, and GetPackageFileDescriptor will make
 	// supplemental DB calls which will fail in xorm's Iterate as the same connection will come back from
 	// db.GetEngine(ctx) due to the transaction, and that connection is already being used for the iterate.

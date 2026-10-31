@@ -1,4 +1,4 @@
-// Copyright 2024 The Forgejo Authors. All rights reserved.
+// Copyright 2024 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: MIT
 
 package setting
@@ -13,27 +13,27 @@ import (
 )
 
 func TestDisplayNameDefault(t *testing.T) {
-	defer test.MockVariableValue(&AppName, "Forgejo")()
+	defer test.MockVariableValue(&AppName, "NovroForge")()
 	defer test.MockVariableValue(&AppSlogan, "Beyond coding. We Forge.")()
 	defer test.MockVariableValue(&AppDisplayNameFormat, "{APP_NAME}: {APP_SLOGAN}")()
 	displayName := generateDisplayName()
-	assert.Equal(t, "Forgejo: Beyond coding. We Forge.", displayName)
+	assert.Equal(t, "NovroForge: Beyond coding. We Forge.", displayName)
 }
 
 func TestDisplayNameEmptySlogan(t *testing.T) {
-	defer test.MockVariableValue(&AppName, "Forgejo")()
+	defer test.MockVariableValue(&AppName, "NovroForge")()
 	defer test.MockVariableValue(&AppSlogan, "")()
 	defer test.MockVariableValue(&AppDisplayNameFormat, "{APP_NAME}: {APP_SLOGAN}")()
 	displayName := generateDisplayName()
-	assert.Equal(t, "Forgejo", displayName)
+	assert.Equal(t, "NovroForge", displayName)
 }
 
 func TestDisplayNameCustomFormat(t *testing.T) {
-	defer test.MockVariableValue(&AppName, "Forgejo")()
+	defer test.MockVariableValue(&AppName, "NovroForge")()
 	defer test.MockVariableValue(&AppSlogan, "Beyond coding. We Forge.")()
 	defer test.MockVariableValue(&AppDisplayNameFormat, "{APP_NAME} - {APP_SLOGAN}")()
 	displayName := generateDisplayName()
-	assert.Equal(t, "Forgejo - Beyond coding. We Forge.", displayName)
+	assert.Equal(t, "NovroForge - Beyond coding. We Forge.", displayName)
 }
 
 func TestMaxUserRedirectsDefault(t *testing.T) {

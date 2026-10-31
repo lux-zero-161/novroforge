@@ -10,13 +10,13 @@ import (
 
 // GetRunnerRegistrationToken returns a token to register global runners
 //
-// Deprecated: This operation has been deprecated in Forgejo 15. Use the web UI or RegisterRunner instead.
+// Deprecated: This operation has been deprecated in NovroForge 15. Use the web UI or RegisterRunner instead.
 func GetRunnerRegistrationToken(ctx *context.APIContext) {
 	// swagger:operation GET /admin/actions/runners/registration-token admin adminGetRunnerRegistrationToken
 	// ---
 	// summary: Get a runner registration token for registering global runners
 	// description: >
-	//   This operation has been deprecated in Forgejo 15.
+	//   This operation has been deprecated in NovroForge 15.
 	//   Use the web UI or [`/admin/actions/runners`](#/admin/registerAdminRunner) instead.
 	// deprecated: true
 	// produces:
@@ -31,13 +31,13 @@ func GetRunnerRegistrationToken(ctx *context.APIContext) {
 
 // GetRegistrationToken returns the token to register global runners
 //
-// Deprecated: This operation has been deprecated in Forgejo 15. Use the web UI or RegisterRunner instead.
+// Deprecated: This operation has been deprecated in NovroForge 15. Use the web UI or RegisterRunner instead.
 func GetRegistrationToken(ctx *context.APIContext) {
 	// swagger:operation GET /admin/runners/registration-token admin adminGetRegistrationToken
 	// ---
 	// summary: Get a runner registration token for registering global runners
 	// description: >
-	//   This operation has been deprecated in Forgejo 15.
+	//   This operation has been deprecated in NovroForge 15.
 	//   Use the web UI or [`/admin/actions/runners`](#/admin/registerAdminRunner) instead.
 	// deprecated: true
 	// produces:
@@ -72,13 +72,13 @@ func GetActionRunJobs(ctx *context.APIContext) {
 
 // SearchActionRunJobs returns a list of actions jobs filtered by the provided parameters
 //
-// Deprecated: This operation has been deprecated in Forgejo 15. Use GetActionRunJobs instead.
+// Deprecated: This operation has been deprecated in NovroForge 15. Use GetActionRunJobs instead.
 func SearchActionRunJobs(ctx *context.APIContext) {
 	// swagger:operation GET /admin/runners/jobs admin adminSearchRunJobs
 	// ---
 	// summary: Search action jobs according to filter conditions
 	// description: >
-	//   This operation has been deprecated in Forgejo 15.
+	//   This operation has been deprecated in NovroForge 15.
 	//   Use [`/admin/actions/runners/jobs`](#/admin/adminGetActionRunJobs) instead.
 	// deprecated: true
 	// produces:

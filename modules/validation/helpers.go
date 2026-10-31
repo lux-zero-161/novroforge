@@ -104,7 +104,7 @@ var (
 	// through `:12345`.
 	//
 	// This is intended to cover username cases from distant servers in the fediverse, which
-	// can have much laxer requirements than those of Forgejo. It is not intended to check for
+	// can have much laxer requirements than those of NovroForge. It is not intended to check for
 	// invalid, non-standard compliant domains.
 	//
 	// For instance, the following should work:
@@ -128,7 +128,7 @@ func IsValidUsername(name string) bool {
 
 // IsValidActivityPubUsername checks whether the username can be a valid ActivityPub handle.
 //
-// Username refers to the Forgejo user account's username for consistency, and not
+// Username refers to the NovroForge user account's username for consistency, and not
 // e.g. "username" in @username@example.tld.
 func IsValidActivityPubUsername(name string) bool {
 	return validFediverseUsernamePattern.MatchString(name)

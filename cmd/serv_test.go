@@ -1,4 +1,4 @@
-// Copyright 2026 The Forgejo Authors. All rights reserved.
+// Copyright 2026 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 package cmd
@@ -44,10 +44,10 @@ func TestGetKeyCheckMessage(t *testing.T) {
 			user: &user_model.User{
 				Name: "test-user",
 			},
-			appName: "Forgejo: Beyond coding. We forge.",
+			appName: "NovroForge: Beyond coding. We forge.",
 			expectedMsg: "Hi there! You've successfully authenticated with the principal " +
-				"key contents, but this Forgejo instance does not provide shell access.\n" +
-				"If this is unexpected, please log in with password and setup this Forgejo " +
+				"key contents, but this NovroForge instance does not provide shell access.\n" +
+				"If this is unexpected, please log in with password and setup this NovroForge " +
 				"instance under another user.",
 		},
 		{

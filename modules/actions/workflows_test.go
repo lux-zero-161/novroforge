@@ -282,7 +282,7 @@ jobs:
 	assert.Empty(t, workflows)
 }
 
-func TestActionsWorkflowsListWorkflowsReturnsForgejoWorkflowsOnly(t *testing.T) {
+func TestActionsWorkflowsListWorkflowsReturnsNovroForgeWorkflowsOnly(t *testing.T) {
 	t.Cleanup(test.MockVariableValue(&setting.Git.HomePath, t.TempDir()))
 	require.NoError(t, git.InitSimple(t.Context()))
 
@@ -292,14 +292,14 @@ func TestActionsWorkflowsListWorkflowsReturnsForgejoWorkflowsOnly(t *testing.T) 
 		When:  time.Now(),
 	}
 	forgejoWorkflow := []byte(`
-name: Forgejo Workflow
+name: NovroForge Workflow
 on:
   push:
 jobs:
   do-something:
     runs-on: ubuntu-latest
     steps:
-      - run: echo 'Hello Forgejo'
+      - run: echo 'Hello NovroForge'
 `)
 	githubWorkflow := []byte(`
 name: GitHub Workflow
@@ -344,7 +344,7 @@ jobs:
 	assert.Equal(t, "forgejo.yaml", workflows[0].Name())
 }
 
-func TestActionsWorkflowsListWorkflowsReturnsGitHubWorkflowsIfForgejoWorkflowsAbsent(t *testing.T) {
+func TestActionsWorkflowsListWorkflowsReturnsGitHubWorkflowsIfNovroForgeWorkflowsAbsent(t *testing.T) {
 	t.Cleanup(test.MockVariableValue(&setting.Git.HomePath, t.TempDir()))
 	require.NoError(t, git.InitSimple(t.Context()))
 

@@ -1,4 +1,4 @@
-// Copyright 2026 The Forgejo Authors. All rights reserved.
+// Copyright 2026 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 package actions
@@ -23,7 +23,7 @@ type RunPrioritizationStrategy interface {
 	// It is the responsibility of each implementation to handle the ActionRun's Prioritized field appropriately.
 	// Ignoring it is explicitly allowed.
 	//
-	// Forgejo sorts jobs by the ActionRun's priority followed by the time they were last updated and their ID, which
+	// NovroForge sorts jobs by the ActionRun's priority followed by the time they were last updated and their ID, which
 	// results in FIFO order. That behaviour cannot be influenced by implementations. It also means that they only have
 	// to change an ActionRun's priority if FIFO order is not desired.
 	//

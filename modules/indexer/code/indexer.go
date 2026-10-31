@@ -171,7 +171,7 @@ func Init() {
 				if err := recover(); err != nil {
 					log.Error("PANIC whilst initializing repository indexer: %v\nStacktrace: %s", err, log.Stack(2))
 					log.Error("The indexer files are likely corrupted and may need to be deleted")
-					log.Error("You can completely remove the \"%s\" directory to make Forgejo recreate the indexes", setting.Indexer.RepoPath)
+					log.Error("You can completely remove the \"%s\" directory to make NovroForge recreate the indexes", setting.Indexer.RepoPath)
 				}
 			}()
 
@@ -189,7 +189,7 @@ func Init() {
 				if err := recover(); err != nil {
 					log.Error("PANIC whilst initializing repository indexer: %v\nStacktrace: %s", err, log.Stack(2))
 					log.Error("The indexer files are likely corrupted and may need to be deleted")
-					log.Error("You can completely remove the \"%s\" index to make Forgejo recreate the indexes", util.SanitizeCredentialURLs(setting.Indexer.RepoConnStr))
+					log.Error("You can completely remove the \"%s\" index to make NovroForge recreate the indexes", util.SanitizeCredentialURLs(setting.Indexer.RepoConnStr))
 				}
 			}()
 

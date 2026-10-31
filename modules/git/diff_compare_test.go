@@ -1,4 +1,4 @@
-// Copyright 2025 The Forgejo Authors. All rights reserved.
+// Copyright 2025 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: GPL-3.0-or-later
 package git
 
@@ -123,9 +123,9 @@ func TestCheckIfDiffDiffers(t *testing.T) {
 
 		// D commit, where A is `main`.
 		require.NoError(t, NewCommand(t.Context(), "switch", "-c", "main-D", "main").Run(&RunOpts{Dir: tmpDir}))
-		require.NoError(t, os.WriteFile(filepath.Join(tmpDir, "FUNFACT"), []byte("Smithy was the runner up to be Forgejo's name"), 0o600))
+		require.NoError(t, os.WriteFile(filepath.Join(tmpDir, "FUNFACT"), []byte("Smithy was the runner up to be NovroForge's name"), 0o600))
 		require.NoError(t, NewCommand(t.Context(), "add", "FUNFACT").Run(&RunOpts{Dir: tmpDir}))
-		require.NoError(t, NewCommand(t.Context(), "commit", "-m", "Forgejo history").Run(&RunOpts{Dir: tmpDir}))
+		require.NoError(t, NewCommand(t.Context(), "commit", "-m", "NovroForge history").Run(&RunOpts{Dir: tmpDir}))
 
 		t.Run("Different diff", func(t *testing.T) {
 			// B commit
@@ -231,10 +231,10 @@ func TestCheckIfDiffDiffers(t *testing.T) {
 
 		// D commit.
 		require.NoError(t, NewCommand(t.Context(), "switch", "-c", "main-D-2", "main").Run(&RunOpts{Dir: tmpDir}))
-		require.NoError(t, os.WriteFile(filepath.Join(tmpDir, "FUNFACT"), []byte("Smithy was the runner up to be Forgejo's name"), 0o600))
+		require.NoError(t, os.WriteFile(filepath.Join(tmpDir, "FUNFACT"), []byte("Smithy was the runner up to be NovroForge's name"), 0o600))
 		require.NoError(t, os.WriteFile(filepath.Join(tmpDir, "README"), []byte("ccc"), 0o600))
 		require.NoError(t, NewCommand(t.Context(), "add", "FUNFACT", "README").Run(&RunOpts{Dir: tmpDir}))
-		require.NoError(t, NewCommand(t.Context(), "commit", "-m", "Forgejo history").Run(&RunOpts{Dir: tmpDir}))
+		require.NoError(t, NewCommand(t.Context(), "commit", "-m", "NovroForge history").Run(&RunOpts{Dir: tmpDir}))
 
 		// B commit
 		require.NoError(t, NewCommand(t.Context(), "switch", "-c", "e-1", "main").Run(&RunOpts{Dir: tmpDir}))

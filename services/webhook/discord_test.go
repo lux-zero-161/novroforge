@@ -655,8 +655,8 @@ var escapedMarkdownTests = map[string]struct {
 		expected: "\\| Table \\| Example \\|\n\\|-\\|-\\|\n\\| Lorem \\| Ipsum \\|",
 	},
 	"Escape link": {
-		input:    "[Link to Forgejo](https://novroforge.xyz/)",
-		expected: "\\[Link to Forgejo\\]\\(https://novroforge.xyz/\\)",
+		input:    "[Link to NovroForge](https://novroforge.xyz/)",
+		expected: "\\[Link to NovroForge\\]\\(https://novroforge.xyz/\\)",
 	},
 	"Escape Alt text for an image": {
 		input:    "![Alt text for an image](https://novroforge.xyz/_astro/mascot-dark.1omhhgvT_Zm0N2n.webp)",

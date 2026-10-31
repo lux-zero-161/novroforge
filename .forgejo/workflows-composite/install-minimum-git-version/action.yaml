@@ -1,5 +1,5 @@
 #
-# Install the minimal version of Git supported by Forgejo
+# Install the minimal version of Git supported by NovroForge
 #
 runs:
   using: "composite"

@@ -1,4 +1,4 @@
-// Copyright The Forgejo Authors.
+// Copyright The NovroForge Authors.
 // SPDX-License-Identifier: MIT
 
 package integration
@@ -17,7 +17,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestAPIForgejoVersion(t *testing.T) {
+func TestAPINovroForgeVersion(t *testing.T) {
 	defer tests.PrepareTestEnv(t)()
 
 	t.Run("Version", func(t *testing.T) {

@@ -1,6 +1,6 @@
 // Copyright 2014 The Gogs Authors. All rights reserved.
 // Copyright 2017 The Gitea Authors. All rights reserved.
-// Copyright 2025 The Forgejo Authors. All rights reserved
+// Copyright 2025 The NovroForge Authors. All rights reserved
 // SPDX-License-Identifier: MIT
 
 package setting
@@ -21,17 +21,17 @@ import (
 	"github.com/hashicorp/go-version"
 )
 
-var ForgejoVersion = "1.0.0"
+var NovroForgeVersion = "1.0.0"
 
 // settings
 var (
-	// AppVer is the version of the current build of Forgejo. It is set in main.go from main.Version.
+	// AppVer is the version of the current build of NovroForge. It is set in main.go from main.Version.
 	AppVer string
-	// AppDocsVer returns the Forgejo Docs version string corresponding to the current build of Forgejo.
+	// AppDocsVer returns the NovroForge Docs version string corresponding to the current build of NovroForge.
 	AppDocsVer = sync.OnceValue(initialAppDocsVer)
 	// AppBuiltWith represents a human-readable version go runtime build version and build tags. (See main.go formatBuiltWith().)
 	AppBuiltWith string
-	// AppStartTime stores the time at which Forgejo started.
+	// AppStartTime stores the time at which NovroForge started.
 	AppStartTime time.Time
 
 	// Other global setting objects
@@ -55,7 +55,7 @@ func init() {
 	log.SetConsoleLogger(log.DEFAULT, "console", log.INFO)
 }
 
-// Parses AppVer as a semver string and returns a version string compatible with Forgejo Docs.
+// Parses AppVer as a semver string and returns a version string compatible with NovroForge Docs.
 func initialAppDocsVer() string {
 	result := "latest"
 
@@ -73,12 +73,12 @@ func initialAppDocsVer() string {
 	return result
 }
 
-// Returns a URL string to Forgejo docs for the current app version.
+// Returns a URL string to NovroForge docs for the current app version.
 func AppDocsURL(path string) string {
 	return AppVersionDocsURL(AppDocsVer(), path)
 }
 
-// Returns a URL string to Forgejo docs for the given app version.
+// Returns a URL string to NovroForge docs for the given app version.
 func AppVersionDocsURL(version, path string) string {
 	path, hash, hasHash := strings.Cut(path, "#")
 	version = util.PathEscapeSegments(version)
@@ -111,8 +111,8 @@ func IsRunUserMatchCurrentUser(runUser string) (string, bool) {
 // PrepareAppDataPath creates app data directory if necessary
 func PrepareAppDataPath() error {
 	// FIXME: There are too many calls to MkdirAll in old code. It is incorrect.
-	// For example, if someDir=/mnt/vol1/gitea-home/data, if the mount point /mnt/vol1 is not mounted when Forgejo runs,
-	// then Forgejo will make new empty directories in /mnt/vol1, all are stored in the root filesystem.
+	// For example, if someDir=/mnt/vol1/gitea-home/data, if the mount point /mnt/vol1 is not mounted when NovroForge runs,
+	// then NovroForge will make new empty directories in /mnt/vol1, all are stored in the root filesystem.
 	// The correct behavior should be: creating parent directories is end users' duty. We only create sub-directories in existing parent directories.
 	// For quickstart, the parent directories should be created automatically for first startup (eg: a flag or a check of INSTALL_LOCK).
 	// Now we can take the first step to do correctly (using Mkdir) in other packages, and prepare the AppDataPath here, then make a refactor in future.
@@ -148,9 +148,9 @@ func InitCfgProvider(file string) {
 func MustInstalled() {
 	if !InstallLock {
 		log.Fatal(`
-Unable to load a config file for an installed Forgejo instance.
-If you have installed Forgejo already, you might need to provide the path to your config file via the "--config" option.
-If you haven't installed Forgejo already, please run "forgejo web" command first to finish the installation.
+Unable to load a config file for an installed NovroForge instance.
+If you have installed NovroForge already, you might need to provide the path to your config file via the "--config" option.
+If you haven't installed NovroForge already, please run "forgejo web" command first to finish the installation.
 `)
 	}
 }
@@ -218,7 +218,7 @@ func loadRunModeFrom(rootCfg ConfigProvider) {
 	rootSec := rootCfg.Section("")
 	RunUser = rootSec.Key("RUN_USER").MustString(user.CurrentUsername())
 
-	// The following is a purposefully undocumented option. Please do not run Forgejo as root. It will only cause future headaches.
+	// The following is a purposefully undocumented option. Please do not run NovroForge as root. It will only cause future headaches.
 	// Please don't use root as a bandaid to "fix" something that is broken, instead the broken thing should instead be fixed properly.
 	unsafeAllowRunAsRoot := ConfigSectionKeyBool(rootSec, "I_AM_BEING_UNSAFE_RUNNING_AS_ROOT")
 	unsafeAllowRunAsRoot = unsafeAllowRunAsRoot || optional.ParseBool(os.Getenv("GITEA_I_AM_BEING_UNSAFE_RUNNING_AS_ROOT")).ValueOrDefault(false)
@@ -238,9 +238,9 @@ func loadRunModeFrom(rootCfg ConfigProvider) {
 	if os.Getuid() == 0 {
 		if !unsafeAllowRunAsRoot {
 			// Special thanks to VLC which inspired the wording of this messaging.
-			log.Fatal("Forgejo is not supposed to be run as root. Sorry. If you need to use privileged TCP ports please instead use setcap and the `cap_net_bind_service` permission")
+			log.Fatal("NovroForge is not supposed to be run as root. Sorry. If you need to use privileged TCP ports please instead use setcap and the `cap_net_bind_service` permission")
 		}
-		log.Critical("You are running Forgejo using the root user, and have purposely chosen to skip built-in protections around this. You have been warned against this.")
+		log.Critical("You are running NovroForge using the root user, and have purposely chosen to skip built-in protections around this. You have been warned against this.")
 	}
 }
 

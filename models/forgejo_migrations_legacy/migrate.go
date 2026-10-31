@@ -1,4 +1,4 @@
-// Copyright 2023 The Forgejo Authors. All rights reserved.
+// Copyright 2023 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: MIT
 
 package forgejo_migrations_legacy
@@ -21,8 +21,8 @@ import (
 	"code.forgejo.org/xorm/xorm/names"
 )
 
-// ForgejoVersion describes the Forgejo version table. Should have only one row with id = 1.
-type ForgejoVersion struct {
+// NovroForgeVersion describes the NovroForge version table. Should have only one row with id = 1.
+type NovroForgeVersion struct {
 	ID      int64 `xorm:"pk autoincr"`
 	Version int64
 }
@@ -37,11 +37,11 @@ func NewMigration(desc string, fn func(*xorm.Engine) error) *Migration {
 	return &Migration{desc, fn}
 }
 
-// This is a sequence of additional Forgejo migrations.
+// This is a sequence of additional NovroForge migrations.
 // Add new migrations to the bottom of the list.
 var migrations = []*Migration{
 	// v0 -> v1
-	NewMigration("Create the `forgejo_blocked_user` table", forgejo_v1_20.AddForgejoBlockedUser),
+	NewMigration("Create the `forgejo_blocked_user` table", forgejo_v1_20.AddNovroForgeBlockedUser),
 	// v1 -> v2
 	NewMigration("Create the `forgejo_sem_ver` table", forgejo_v1_20.CreateSemVerTable),
 	// v2 -> v3
@@ -87,7 +87,7 @@ var migrations = []*Migration{
 	// v22 -> v23
 	NewMigration("Add `delete_branch_after_merge` to `auto_merge` table", AddDeleteBranchAfterMergeToAutoMerge),
 	// v23 -> v24
-	NewMigration("Add `purpose` column to `forgejo_auth_token` table", AddPurposeToForgejoAuthToken),
+	NewMigration("Add `purpose` column to `forgejo_auth_token` table", AddPurposeToNovroForgeAuthToken),
 	// v24 -> v25
 	NewMigration("Migrate `secret` column to store keying material", MigrateTwoFactorToKeying),
 	// v25 -> v26
@@ -130,13 +130,13 @@ var migrations = []*Migration{
 	NewMigration("Add foreign keys to access", AddForeignKeysAccess),
 }
 
-// GetCurrentDBVersion returns the current Forgejo database version.
+// GetCurrentDBVersion returns the current NovroForge database version.
 func GetCurrentDBVersion(x *xorm.Engine) (int64, error) {
-	if err := x.Sync(new(ForgejoVersion)); err != nil {
+	if err := x.Sync(new(NovroForgeVersion)); err != nil {
 		return -1, fmt.Errorf("sync: %w", err)
 	}
 
-	currentVersion := &ForgejoVersion{ID: 1}
+	currentVersion := &NovroForgeVersion{ID: 1}
 	has, err := x.Get(currentVersion)
 	if err != nil {
 		return -1, fmt.Errorf("get: %w", err)
@@ -147,12 +147,12 @@ func GetCurrentDBVersion(x *xorm.Engine) (int64, error) {
 	return currentVersion.Version, nil
 }
 
-// ExpectedVersion returns the expected Forgejo database version.
+// ExpectedVersion returns the expected NovroForge database version.
 func ExpectedVersion() int64 {
 	return int64(len(migrations))
 }
 
-// EnsureUpToDate will check if the Forgejo database is at the correct version.
+// EnsureUpToDate will check if the NovroForge database is at the correct version.
 func EnsureUpToDate(x *xorm.Engine) error {
 	currentDB, err := GetCurrentDBVersion(x)
 	if err != nil {
@@ -166,7 +166,7 @@ func EnsureUpToDate(x *xorm.Engine) error {
 	expected := ExpectedVersion()
 
 	if currentDB != expected {
-		return fmt.Errorf(`current Forgejo database version %d is not equal to the expected version %d. Please run "forgejo [--config /path/to/app.ini] migrate" to update the database version`, currentDB, expected)
+		return fmt.Errorf(`current NovroForge database version %d is not equal to the expected version %d. Please run "forgejo [--config /path/to/app.ini] migrate" to update the database version`, currentDB, expected)
 	}
 
 	return forgejoMigrationsEnsureUpToDate(x)
@@ -174,49 +174,49 @@ func EnsureUpToDate(x *xorm.Engine) error {
 
 var forgejoMigrationsEnsureUpToDate = forgejo_migrations.EnsureUpToDate
 
-// Migrate Forgejo database to current version.
+// Migrate NovroForge database to current version.
 func Migrate(x *xorm.Engine) error {
 	// Set a new clean the default mapper to GonicMapper as that is the default for .
 	x.SetMapper(names.GonicMapper{})
-	if err := x.Sync(new(ForgejoVersion)); err != nil {
+	if err := x.Sync(new(NovroForgeVersion)); err != nil {
 		return fmt.Errorf("sync: %w", err)
 	}
 
 	freshDB := false
-	var versionRecords []*ForgejoVersion
+	var versionRecords []*NovroForgeVersion
 	if err := x.Find(&versionRecords); err != nil {
 		return fmt.Errorf("find: %w", err)
 	}
 	if len(versionRecords) == 0 {
 		// If the version record does not exist we think it is a fresh installation and we can skip all migrations;
 		// engine init calls `SyncAllTables` which will create the fresh database.
-		upToDate := &ForgejoVersion{ID: 1, Version: ExpectedVersion()}
+		upToDate := &NovroForgeVersion{ID: 1, Version: ExpectedVersion()}
 		if _, err := x.Insert(upToDate); err != nil {
 			return fmt.Errorf("insert: %w", err)
 		}
 		// continue with the migration routine, but nothing will be applied; this allows transition into the newer
 		// forgejo_migration library and for it to be configured and populated.
-		versionRecords = []*ForgejoVersion{upToDate}
+		versionRecords = []*NovroForgeVersion{upToDate}
 		freshDB = true
 	} else if len(versionRecords) > 1 {
 		return fmt.Errorf(
-			"corrupt migrations: Forgejo database has unexpected records in the table `forgejo_version`; a single record is expected w/ ID=1, but %d records were found",
+			"corrupt migrations: NovroForge database has unexpected records in the table `forgejo_version`; a single record is expected w/ ID=1, but %d records were found",
 			len(versionRecords),
 		)
 	}
 	currentVersion := versionRecords[0]
 	if currentVersion.ID != 1 {
 		return fmt.Errorf(
-			"corrupt migrations: Forgejo database has corrupted records in the table `forgejo_version`; a single record with ID=1 is expected, but a record with ID=%d was found instead", currentVersion.ID,
+			"corrupt migrations: NovroForge database has corrupted records in the table `forgejo_version`; a single record with ID=1 is expected, but a record with ID=%d was found instead", currentVersion.ID,
 		)
 	}
 
 	v := currentVersion.Version
 
-	// Downgrading Forgejo's database version not supported
+	// Downgrading NovroForge's database version not supported
 	if v > ExpectedVersion() {
-		msg := fmt.Sprintf("Your Forgejo database (migration version: %d) is for a newer version of Forgejo, you cannot use the newer database for this old Forgejo release (%d).", v, ExpectedVersion())
-		msg += "\nForgejo will exit to keep your database safe and unchanged. Please use the correct Forgejo release, do not change the migration version manually (incorrect manual operation may cause data loss)."
+		msg := fmt.Sprintf("Your NovroForge database (migration version: %d) is for a newer version of NovroForge, you cannot use the newer database for this old NovroForge release (%d).", v, ExpectedVersion())
+		msg += "\nNovroForge will exit to keep your database safe and unchanged. Please use the correct NovroForge release, do not change the migration version manually (incorrect manual operation may cause data loss)."
 		if !setting.IsProd {
 			msg += fmt.Sprintf("\nIf you are in development and really know what you're doing, you can force changing the migration version by executing: UPDATE forgejo_version SET version=%d WHERE id=1;", ExpectedVersion())
 		}
@@ -246,11 +246,11 @@ func Migrate(x *xorm.Engine) error {
 		}
 	}
 
-	if err := x.Sync(new(semver.ForgejoSemVer)); err != nil {
+	if err := x.Sync(new(semver.NovroForgeSemVer)); err != nil {
 		return fmt.Errorf("sync: %w", err)
 	}
 
-	if err := semver.SetVersionStringWithEngine(x, setting.ForgejoVersion); err != nil {
+	if err := semver.SetVersionStringWithEngine(x, setting.NovroForgeVersion); err != nil {
 		return fmt.Errorf("SetVersionStringWithEngine: %w", err)
 	}
 

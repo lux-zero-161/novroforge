@@ -1,4 +1,4 @@
-// Copyright 2024 The Forgejo Authors. All rights reserved.
+// Copyright 2024 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: MIT
 
 package shared
@@ -29,7 +29,7 @@ func Middlewares() (stack []any) {
 			AllowedOrigins:   setting.CORSConfig.AllowDomain,
 			AllowedMethods:   setting.CORSConfig.Methods,
 			AllowCredentials: setting.CORSConfig.AllowCredentials,
-			AllowedHeaders:   append([]string{"Authorization", "X-Gitea-OTP", "X-Forgejo-OTP"}, setting.CORSConfig.Headers...),
+			AllowedHeaders:   append([]string{"Authorization", "X-Gitea-OTP", "X-NovroForge-OTP"}, setting.CORSConfig.Headers...),
 			MaxAge:           int(setting.CORSConfig.MaxAge.Seconds()),
 		}))
 	}
@@ -189,7 +189,7 @@ func verifyAuthWithOptions(options *common.VerifyOptions) func(ctx *context.APIC
 // check for and warn against deprecated authentication options
 func checkDeprecatedAuthMethods(ctx *context.APIContext) {
 	if ctx.FormString("token") != "" || ctx.FormString("access_token") != "" {
-		ctx.Resp.Header().Set("Warning", "token and access_token API authentication is deprecated and will be removed in Forgejo v13.0.0. Please use AuthorizationHeaderToken instead. Existing queries will continue to work but without authorization.")
+		ctx.Resp.Header().Set("Warning", "token and access_token API authentication is deprecated and will be removed in NovroForge v13.0.0. Please use AuthorizationHeaderToken instead. Existing queries will continue to work but without authorization.")
 	}
 }
 

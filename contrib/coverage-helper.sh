@@ -8,12 +8,12 @@ PS4='${BASH_SOURCE[0]}:$LINENO: ${FUNCNAME[0]}:  '
 # Those must be explicitly required and are excluded from the full list of packages because they
 # would interfere with the testing fixtures.
 #
-excluded+='forgejo.org/models/gitea_migrations|'          # must be run before database specific tests
-excluded+='forgejo.org/models/forgejo_migrations|'        # must be run before database specific tests
-excluded+='forgejo.org/models/forgejo_migrations_legacy|' # must be run before database specific tests
-excluded+='forgejo.org/tests/integration/migration-test|' # must be run before database specific tests
-excluded+='forgejo.org/tests|'                            # only tests, no coverage to get there
-excluded+='forgejo.org/tests/e2e|'                        # JavaScript is not in scope here and if it adds coverage it should not be counted
+excluded+='novroforge.xyz/models/gitea_migrations|'          # must be run before database specific tests
+excluded+='novroforge.xyz/models/forgejo_migrations|'        # must be run before database specific tests
+excluded+='novroforge.xyz/models/forgejo_migrations_legacy|' # must be run before database specific tests
+excluded+='novroforge.xyz/tests/integration/migration-test|' # must be run before database specific tests
+excluded+='novroforge.xyz/tests|'                            # only tests, no coverage to get there
+excluded+='novroforge.xyz/tests/e2e|'                        # JavaScript is not in scope here and if it adds coverage it should not be counted
 excluded+='FAKETERMINATOR'                                # do not modify
 
 : ${COVERAGEDIR:=$(pwd)/coverage/data}
@@ -22,7 +22,7 @@ excluded+='FAKETERMINATOR'                                # do not modify
 
 DEFAULT_TEST_PACKAGES=$($GO list ./... | grep -E -v "$excluded")
 
-COVERED_PACKAGES=forgejo.org/cmd/...,forgejo.org/models/...,forgejo.org/modules/...,forgejo.org/routers/...,forgejo.org/services/...
+COVERED_PACKAGES=novroforge.xyz/cmd/...,novroforge.xyz/models/...,novroforge.xyz/modules/...,novroforge.xyz/routers/...,novroforge.xyz/services/...
 
 function run_verbose() {
   echo "$@"

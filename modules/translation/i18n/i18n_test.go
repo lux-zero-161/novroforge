@@ -1,4 +1,4 @@
-// Copyright 2024-2025 The Forgejo Authors. All rights reserved.
+// Copyright 2024-2025 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 package i18n
@@ -132,7 +132,7 @@ func TestMissingTranslationHandling(t *testing.T) {
 
 	require.NoError(t, ls.AddToLocaleFromJSON("en-US", []byte(`
 {
-	"incorrect_root_url": "This Forgejo instance...",
+	"incorrect_root_url": "This NovroForge instance...",
 	"meta.last_line": "Hi there!"
 }`)))
 	require.NoError(t, ls.AddToLocaleFromJSON("fun", []byte(`
@@ -150,5 +150,5 @@ func TestMissingTranslationHandling(t *testing.T) {
 	s := funLocale.TrString("incorrect_root_url")
 
 	// Verify fallback to English
-	assert.True(t, strings.HasPrefix(s, "This Forgejo instance..."))
+	assert.True(t, strings.HasPrefix(s, "This NovroForge instance..."))
 }

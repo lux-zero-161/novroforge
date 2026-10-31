@@ -1154,7 +1154,7 @@ func createMSTeamsPayload(r *api.Repository, s *api.User, actionTitle string, bo
 	// Create action button for navigation
 	actionButton := MSTeamsAction{
 		Type:  "Action.OpenUrl",
-		Title: "View in Forgejo",
+		Title: "View in NovroForge",
 		URL:   actionTarget,
 	}
 

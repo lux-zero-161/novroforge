@@ -1,4 +1,4 @@
-// Copyright The Forgejo Authors.
+// Copyright The NovroForge Authors.
 // SPDX-License-Identifier: MIT
 
 package forgejo

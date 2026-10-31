@@ -102,7 +102,7 @@ func InitTest() {
 	if projectConf == "" {
 		// By default, use sqlite.ini for testing, then IDE like GoLand can start the test process with debugger.
 		// It's easier for developers to debug bugs step by step with a debugger.
-		// Notice: when doing "ssh push", Forgejo executes sub processes, debugger won't work for the sub processes.
+		// Notice: when doing "ssh push", NovroForge executes sub processes, debugger won't work for the sub processes.
 		projectConf = "tests/sqlite.ini"
 		_ = os.Setenv("PROJECT_CONF", projectConf)
 		fmt.Printf("Environment variable $PROJECT_CONF not set, use default: %s\n", projectConf)

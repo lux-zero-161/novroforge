@@ -1,5 +1,5 @@
 // Copyright 2021 The Gitea Authors. All rights reserved.
-// Copyright 2025 The Forgejo Authors. All rights reserved.
+// Copyright 2025 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: MIT
 
 package integration
@@ -218,7 +218,7 @@ func TestGitHTTPSends401(t *testing.T) {
 	MakeRequest(t, getReq, http.StatusUnauthorized)
 
 	// Simulating a rare case here where a web browser extension is performing git operations on behalf of a user, which
-	// was reported with the extension Floccus.  When Floccus is configured with auth token access to Forgejo, it must
+	// was reported with the extension Floccus.  When Floccus is configured with auth token access to NovroForge, it must
 	// receive a 401 response before it switches over to ending the "Authorization" header.  Session authentication
 	// isn't permitted to git endpoints, but because Floccus operates in a browser it also may send the
 	// CookieRememberName, which previously caused this request to 303 over to /user/login rather than 401'ing.  The

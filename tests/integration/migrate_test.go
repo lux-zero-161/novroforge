@@ -1,5 +1,5 @@
 // Copyright 2021 The Gitea Authors. All rights reserved.
-// Copyright 2024 The Forgejo Authors. All rights reserved.
+// Copyright 2024 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: MIT
 
 package integration
@@ -76,7 +76,7 @@ func TestMigrate(t *testing.T) {
 			svc structs.GitServiceType
 		}{
 			{svc: structs.GiteaService},
-			{svc: structs.ForgejoService},
+			{svc: structs.NovroForgeService},
 		} {
 			t.Run(s.svc.Name(), func(t *testing.T) {
 				defer tests.PrintCurrentTest(t)()
@@ -151,7 +151,7 @@ func TestMigrateWithIssueComments(t *testing.T) {
 			svc structs.GitServiceType
 		}{
 			{svc: structs.GiteaService},
-			{svc: structs.ForgejoService},
+			{svc: structs.NovroForgeService},
 		} {
 			t.Run(s.svc.Name(), func(t *testing.T) {
 				defer tests.PrintCurrentTest(t)()
@@ -210,7 +210,7 @@ func TestMigrateWithWiki(t *testing.T) {
 			svc structs.GitServiceType
 		}{
 			{svc: structs.GiteaService},
-			{svc: structs.ForgejoService},
+			{svc: structs.NovroForgeService},
 		} {
 			t.Run(s.svc.Name(), func(t *testing.T) {
 				defer tests.PrintCurrentTest(t)()
@@ -266,7 +266,7 @@ func TestMigrateWithReleases(t *testing.T) {
 			svc structs.GitServiceType
 		}{
 			{svc: structs.GiteaService},
-			{svc: structs.ForgejoService},
+			{svc: structs.NovroForgeService},
 		} {
 			t.Run(s.svc.Name(), func(t *testing.T) {
 				defer tests.PrintCurrentTest(t)()

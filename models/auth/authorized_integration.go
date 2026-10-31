@@ -1,4 +1,4 @@
-// Copyright 2026 The Forgejo Authors. All rights reserved.
+// Copyright 2026 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 package auth
@@ -19,9 +19,9 @@ import (
 )
 
 // An Authorized Integration allow users to define external systems which can generate JSON Web Tokens (JWTs) that
-// Forgejo will trust in order to perform API access on behalf of a user defined by the UserID field.
+// NovroForge will trust in order to perform API access on behalf of a user defined by the UserID field.
 //
-// When a JWT is received by Forgejo, the issuer (iss) and audience (aud) claims are used to lookup an authorized
+// When a JWT is received by NovroForge, the issuer (iss) and audience (aud) claims are used to lookup an authorized
 // integration with an exact match.  Together these fields serve as a unique key for the authorized issuer.  Duplicates
 // cannot be permitted because we would not know which user to authenticate the JWT as.
 type AuthorizedIntegration struct {
@@ -36,7 +36,7 @@ type AuthorizedIntegration struct {
 
 	// Which UI to use for view/edit of this Authorized Integration.  Authorized Integrations' functional behaviour is
 	// defined by other fields, such as the Issuer, Audience, ClaimRules.  The UI field only defines how this record can
-	// be interacted with by the user in order to provide user-friendly access for specific systems -- like Forgejo
+	// be interacted with by the user in order to provide user-friendly access for specific systems -- like NovroForge
 	// Actions.  Within the potential scope of the UI is any user interaction with the Authorized Integration -- web
 	// create, read, update, API, CLI.
 	//
@@ -71,13 +71,13 @@ func init() {
 //
 // Validating the claims from a JWT issuer is a critical part of creating a secure [AuthorizedIssuer].  For example,
 // assume that we receive a JWT from a public hosting platform like Codeberg.  We will validate that it is a claim
-// created by the correct Issuer, Codeberg -- but anyone can do that through Forgejo Actions.  We will validate that it
-// has the correct audience -- but that's an *input* to Forgejo Actions, so anyone can create a claim on Codeberg with
-// an arbitrary audience.  The rest of the claims contain the critical information about who ran a Forgejo Action, on
+// created by the correct Issuer, Codeberg -- but anyone can do that through NovroForge Actions.  We will validate that it
+// has the correct audience -- but that's an *input* to NovroForge Actions, so anyone can create a claim on Codeberg with
+// an arbitrary audience.  The rest of the claims contain the critical information about who ran a NovroForge Action, on
 // which repository, and in response to which events, and those must be validated to ensure that an authorized issuer is
 // correctly authorized.
 //
-// Following that an example, a minimum claim rule that would be required for securely using Forgejo Actions would be
+// Following that an example, a minimum claim rule that would be required for securely using NovroForge Actions would be
 // something like:
 //
 //	{
@@ -89,7 +89,7 @@ func init() {
 //	}
 //
 // This defines a single rule which says that the `sub` claim must be exactly equal to
-// "repo:forgejo/website:pull_request".  Forgejo Actions would generate this subject when an Action is running on the
+// "repo:forgejo/website:pull_request".  NovroForge Actions would generate this subject when an Action is running on the
 // repo forgejo/website in response to the pull_request event.
 //
 // Some JWT claims are JSON objects.  The [ClaimNested] comparison operator can be used to define rules that inspect the
@@ -144,12 +144,12 @@ const (
 type AuthorizedIntegrationUI string
 
 const (
-	// Generic UI which allows the user to view and edit claim rules directly to support integrations that Forgejo
+	// Generic UI which allows the user to view and edit claim rules directly to support integrations that NovroForge
 	// doesn't have a user-friendly UI to support.
 	AuthorizedIntegrationUIGeneric AuthorizedIntegrationUI = "generic"
 
-	// UI specific to Actions that are running on this local Forgejo instance accessing itself.
-	AuthorizedIntegrationUIForgejoActionsLocal AuthorizedIntegrationUI = "forgejo-actions-local"
+	// UI specific to Actions that are running on this local NovroForge instance accessing itself.
+	AuthorizedIntegrationUINovroForgeActionsLocal AuthorizedIntegrationUI = "forgejo-actions-local"
 )
 
 func GetAuthorizedIntegration(ctx context.Context, issuer, audience string) (*AuthorizedIntegration, error) {
@@ -214,14 +214,14 @@ func (ai *AuthorizedIntegration) UpdateLastUsed(ctx context.Context) error {
 }
 
 // Generates the `aud` claim that the remote JWT generator must use to match this authorized integration.  The `aud`
-// claim is an arbitrary value in a JWT claim, but Forgejo is faced with a few hard and soft requirements:
+// claim is an arbitrary value in a JWT claim, but NovroForge is faced with a few hard and soft requirements:
 //
 //   - Hard requirement: each authorized integration must have a unique `aud`, as it is used to find the DB record that
 //     authenticates a request.
 //   - If authentication is failing, being able to inspect the `aud` claim can be useful to identify the intent.
 //   - Inspection should have a stable meaning -- eg. if it included the username, and the user was renamed, the `aud`
 //     value which can't be changed would continue to reference the old username causing confusion when inspecting it.
-//   - Forgejo & GitHub Actions uses a URL $ACTIONS_ID_TOKEN_REQUEST_URL&audience=... to generate a JWT for the running
+//   - NovroForge & GitHub Actions uses a URL $ACTIONS_ID_TOKEN_REQUEST_URL&audience=... to generate a JWT for the running
 //     action, so it should only consist of safe characters for URL encoding.
 //   - It should be relatively short, as it's encoded into the JWT and increases its size.
 //
@@ -264,8 +264,8 @@ func ParseAuthorizedIntegrationUI(ui string) (AuthorizedIntegrationUI, error) {
 	switch ui {
 	case string(AuthorizedIntegrationUIGeneric):
 		return AuthorizedIntegrationUIGeneric, nil
-	case string(AuthorizedIntegrationUIForgejoActionsLocal):
-		return AuthorizedIntegrationUIForgejoActionsLocal, nil
+	case string(AuthorizedIntegrationUINovroForgeActionsLocal):
+		return AuthorizedIntegrationUINovroForgeActionsLocal, nil
 	}
 	return AuthorizedIntegrationUI(""), fmt.Errorf("invalid authorized integration UI: %q", ui)
 }

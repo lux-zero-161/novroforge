@@ -54,12 +54,12 @@ linters:
             - pkg: "novroforge.xyz/models"
               desc: >
                 Migrations must not import application models. Application models will be the most recent schema for
-                Forgejo, while migrations will be operating against the database schema that existed when they were
+                NovroForge, while migrations will be operating against the database schema that existed when they were
                 authored.
             - pkg: "novroforge.xyz/services"
               desc: >
                 Migrations must not import application services. Application services will reference application
-                models which will use the most recent schema for Forgejo, while migrations will be operating against the
+                models which will use the most recent schema for NovroForge, while migrations will be operating against the
                 database schema that existed when they were authored.
           allow:
             - "novroforge.xyz/models/db"

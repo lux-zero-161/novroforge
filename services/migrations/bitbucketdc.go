@@ -1,4 +1,4 @@
-// Copyright 2026 The Forgejo Authors. All rights reserved.
+// Copyright 2026 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: MIT
 
 package migrations
@@ -533,7 +533,7 @@ func (d *BitbucketDataCenterDownloader) fetchPullRequestActivities(prID int64) (
 			if act.CommentAnchor != nil {
 				line := act.CommentAnchor.Line
 				extraLines := int64(0)
-				// Bitbucket anchors a range on its last line, Forgejo on its first.
+				// Bitbucket anchors a range on its last line, NovroForge on its first.
 				if m := act.CommentAnchor.MultilineMarker; m != nil && m.StartLine > 0 && m.StartLine <= line {
 					extraLines = line - m.StartLine
 					line = m.StartLine

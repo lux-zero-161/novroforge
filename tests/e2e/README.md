@@ -1,8 +1,8 @@
 # End to end tests
 
-Thank you for your effort to provide good software tests for Forgejo.
+Thank you for your effort to provide good software tests for NovroForge.
 Please also read the general testing instructions in the
-[Forgejo contributor documentation](https://forgejo.org/docs/next/contributor/testing/)
+[NovroForge contributor documentation](https://novroforge.xyz/docs/next/contributor/testing/)
 and make sure to also check the
 [Playwright documentation](https://playwright.dev/docs/intro)
 for further information.
@@ -24,7 +24,7 @@ Whenever you modify frontend code (i.e. JavaScript and CSS files),
 you need to create a new frontend build.
 
 For tests that require interactive Git repos,
-you also need to ensure a Forgejo binary is ready to be used by Git hooks.
+you also need to ensure a NovroForge binary is ready to be used by Git hooks.
 For this, you additionally need to run
 
 ```sh
@@ -203,9 +203,9 @@ await page.waitForURL('**/target.html');
 
 ### Visual testing
 
-Due to size and frequent updates, we do not host screenshots in the Forgejo repository.
+Due to size and frequent updates, we do not host screenshots in the NovroForge repository.
 However, it is good practice to ensure that your test is capable of generating relevant and stable screenshots.
-Forgejo is regularly tested against visual regressions in a dedicated repository which contains the screenshots:
+NovroForge is regularly tested against visual regressions in a dedicated repository which contains the screenshots:
 https://code.forgejo.org/forgejo/visual-browser-testing/
 
 For tests that consume only the `page`,
@@ -231,7 +231,7 @@ The following environment variables control visual testing:
 
 `VISUAL_TEST=1` will create screenshots in tests/e2e/test-snapshots.
   The test will fail the first time,
-  because the screenshots are not included with Forgejo.
+  because the screenshots are not included with NovroForge.
   Subsequent runs will compare against your local copy of the screenshots.
 
 `ACCEPT_VISUAL=1` will overwrite the snapshot images with new images.

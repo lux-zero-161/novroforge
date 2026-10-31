@@ -32,7 +32,7 @@ import (
 
 const (
 	giteaObjectTypeHeader   = "X-Gitea-Object-Type"
-	forgejoObjectTypeHeader = "X-Forgejo-Object-Type"
+	forgejoObjectTypeHeader = "X-NovroForge-Object-Type"
 )
 
 // GetRawFile get a file by path on a repository

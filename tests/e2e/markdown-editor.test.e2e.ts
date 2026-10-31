@@ -1,4 +1,4 @@
-// Copyright 2024 The Forgejo Authors. All rights reserved.
+// Copyright 2024 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 // @watch start
@@ -33,7 +33,7 @@ test('Markdown image preview behaviour', async ({page}) => {
   // Clear all the content
   await page.keyboard.press('ControlOrMeta+KeyA');
   // Add the image
-  await page.keyboard.type('![Logo of Forgejo](./assets/logo.svg "Logo of Forgejo")');
+  await page.keyboard.type('![Logo of NovroForge](./assets/logo.svg "Logo of NovroForge")');
 
   // Click 'Preview' tab
   await page.locator('button[data-tab="preview"]').click();

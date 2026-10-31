@@ -1,6 +1,6 @@
 // Copyright 2014 The Gogs Authors. All rights reserved.
 // Copyright 2019 The Gitea Authors. All rights reserved.
-// Copyright 2024, 2025 The Forgejo Authors. All rights reserved.
+// Copyright 2024, 2025 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: MIT
 
 package user
@@ -759,7 +759,7 @@ func createUser(ctx context.Context, u *User, createdByAdmin bool, overwriteDefa
 	// If a username is invalid as-is, check whether the username is meant
 	// for an ActivityPub account. Username constraints that belong to "foreign"
 	// ActivityPub servers, whose implementations we cannot control, are expected
-	// to be much less restrictive than those of Forgejo itself.
+	// to be much less restrictive than those of NovroForge itself.
 	if overwriteDefaultPresent && overwriteDefault[0].IsActivityPub.Has() {
 		if err = IsActivityPubUsername(u.Name); err != nil {
 			return err

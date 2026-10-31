@@ -1,4 +1,4 @@
-// Copyright 2024-2025 The Forgejo Authors. All rights reserved.
+// Copyright 2024-2025 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 package integration
@@ -68,7 +68,7 @@ func TestRepoMigrationUI(t *testing.T) {
 			true,
 		},
 		9: {
-			"Forgejo",
+			"NovroForge",
 			[]string{"issues", "pull_requests", "labels", "milestones", "releases"},
 			true,
 		},

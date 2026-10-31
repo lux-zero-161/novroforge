@@ -1,4 +1,4 @@
-// Copyright 2024 The Forgejo Authors. All rights reserved.
+// Copyright 2024 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: MIT
 
 package keying
@@ -47,7 +47,7 @@ func TestKeying(t *testing.T) {
 	})
 
 	key := deriveKey("TESTING PURPOSES")
-	plainText := []byte("Forgejo is run by [Redacted]")
+	plainText := []byte("NovroForge is run by [Redacted]")
 	var cipherText []byte
 	t.Run("Encrypt", func(t *testing.T) {
 		cipherText = key.Encrypt(plainText, []byte{0x05, 0x06})

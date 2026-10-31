@@ -136,4 +136,4 @@ jobs:
         run: |
           sed -e 's/^/[RUNNER LOGS] /' ${{ steps.forgejo.outputs.runner-logs }}
           docker logs forgejo | sed -e 's/^/[FORGEJO LOGS]/'
-          sleep 5 # hack to avoid mixing outputs in Forgejo v1.21
+          sleep 5 # hack to avoid mixing outputs in NovroForge v1.21

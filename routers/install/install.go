@@ -111,7 +111,7 @@ func Install(ctx *context.Context) {
 	ctx.Data["CurDbType"] = curDBType
 
 	// Application general settings
-	form.AppName = "Forgejo"
+	form.AppName = "NovroForge"
 	form.AppSlogan = "Beyond coding. We Forge."
 	form.RepoRootPath = setting.RepoRootPath
 	form.LFSRootPath = setting.LFS.Storage.Path
@@ -199,7 +199,7 @@ func checkDatabase(ctx *context.Context, form *forms.InstallForm) bool {
 	}
 
 	if hasPostInstallationUser && dbMigrationVersion > 0 {
-		log.Error("The database is likely to have been used by Forgejo before, database migration version=%d", dbMigrationVersion)
+		log.Error("The database is likely to have been used by NovroForge before, database migration version=%d", dbMigrationVersion)
 		confirmed := form.ReinstallConfirmFirst && form.ReinstallConfirmSecond && form.ReinstallConfirmThird
 		if !confirmed {
 			ctx.Data["Err_DbInstalledBefore"] = true
@@ -207,11 +207,11 @@ func checkDatabase(ctx *context.Context, form *forms.InstallForm) bool {
 			return false
 		}
 
-		log.Info("User confirmed re-installation of Forgejo into a pre-existing database")
+		log.Info("User confirmed re-installation of NovroForge into a pre-existing database")
 	}
 
 	if hasPostInstallationUser || dbMigrationVersion > 0 {
-		log.Info("Forgejo will be installed in a database with: hasPostInstallationUser=%v, dbMigrationVersion=%v", hasPostInstallationUser, dbMigrationVersion)
+		log.Info("NovroForge will be installed in a database with: hasPostInstallationUser=%v, dbMigrationVersion=%v", hasPostInstallationUser, dbMigrationVersion)
 	}
 
 	return true
@@ -408,7 +408,7 @@ func SubmitInstall(ctx *context.Context) {
 		var authorizedKeysWillCauseFatalError bool
 		for _, finding := range sshKeyErrors {
 			if finding.Type == asymkey.InspectionResultUnexpectedKey {
-				// Any single finding of this type would cause `ssh.Init` to have a fatal error on Forgejo startup, so
+				// Any single finding of this type would cause `ssh.Init` to have a fatal error on NovroForge startup, so
 				// let's note it here while the install page is still usable and allow users to deal with it.
 				authorizedKeysWillCauseFatalError = true
 			}
@@ -579,7 +579,7 @@ func SubmitInstall(ctx *context.Context) {
 
 	go func() {
 		// Sleep for a while to make sure the user's browser has loaded the post-install page and its assets (images, css, js)
-		// What if this duration is not long enough? That's impossible -- if the user can't load the simple page in time, how could they install or use Forgejo in the future ....
+		// What if this duration is not long enough? That's impossible -- if the user can't load the simple page in time, how could they install or use NovroForge in the future ....
 		time.Sleep(3 * time.Second)
 
 		// Now get the http.Server from this request and shut it down

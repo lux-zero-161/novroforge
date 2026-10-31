@@ -36,13 +36,13 @@ type ActionTaskResponse struct {
 type RunnerStatus int
 
 const (
-	// RunnerStatusOffline signals that the runner is not connected to Forgejo.
+	// RunnerStatusOffline signals that the runner is not connected to NovroForge.
 	RunnerStatusOffline RunnerStatus = iota
 
-	// RunnerStatusIdle means that the runner is connected to Forgejo and waiting for jobs to run.
+	// RunnerStatusIdle means that the runner is connected to NovroForge and waiting for jobs to run.
 	RunnerStatusIdle
 
-	// RunnerStatusActive signifies that the runner is connected to Forgejo and running a job.
+	// RunnerStatusActive signifies that the runner is connected to NovroForge and running a job.
 	RunnerStatusActive
 )
 
@@ -74,7 +74,7 @@ type ActionRunner struct {
 	// Status indicates whether this runner is offline, or active, for example.
 	// enum: ["offline", "idle", "active"]
 	Status string `json:"status"`
-	// Version is the self-reported version string of Forgejo Runner.
+	// Version is the self-reported version string of NovroForge Runner.
 	Version string `json:"version"`
 	// Labels is a list of labels attached to this runner.
 	Labels []string `json:"labels"`

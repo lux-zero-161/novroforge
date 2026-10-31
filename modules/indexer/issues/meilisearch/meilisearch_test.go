@@ -19,7 +19,7 @@ import (
 )
 
 func TestMeilisearchIndexer(t *testing.T) {
-	t.Skip("meilisearch not found in Forgejo test yet")
+	t.Skip("meilisearch not found in NovroForge test yet")
 	// The meilisearch instance started by pull-db-tests.yml > test-unit > services > meilisearch
 	url := "http://meilisearch:7700"
 	key := "" // auth has been disabled in test environment

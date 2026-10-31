@@ -12,7 +12,7 @@ on:
 # for debugging purposes, uncomment to only run a subset of the tests
 #env:
 #  INTEGRATION_TESTS_ENV: COVERAGE_TEST_ARGS=-run=TestAPIListRepoComments
-#  UNIT_TESTS_ENV: COVERAGE_TEST_PACKAGES=forgejo.org/modules/actions
+#  UNIT_TESTS_ENV: COVERAGE_TEST_PACKAGES=novroforge.xyz/modules/actions
 #  E2E_TESTS_ENV: COVERAGE_E2E_RUN="-test.run TestE2e/user-events"
 
 jobs:
@@ -161,7 +161,7 @@ jobs:
           RUN_ALL: ${{steps.run-all.all}}
       - name: Upload test artifacts on failure
         if: failure()
-        # upload-artifact must not be updated to a commit that doesn't have Forgejo's hack (for lack of GHES support in
+        # upload-artifact must not be updated to a commit that doesn't have NovroForge's hack (for lack of GHES support in
         # the action), https://code.forgejo.org/forgejo/upload-artifact/src/commit/cb8afe72b42edc798abfb8fcb556cf660d894245 or a
         # later revision with this commit's specific patch.
         uses: https://data.forgejo.org/forgejo/upload-artifact@cb8afe72b42edc798abfb8fcb556cf660d894245
@@ -348,7 +348,7 @@ jobs:
           token: ${{ forgejo.TOKEN }}
       - if: forgejo.event_name != 'pull_request' && (steps.coverage-unit.outputs.cache-hit && steps.coverage-e2e.outputs.cache-hit && steps.coverage-sqlite.outputs.cache-hit)
         name: upload the converted coverage data (textfmt.out)
-        # upload-artifact must not be updated to a commit that doesn't have Forgejo's hack (for lack of GHES support in
+        # upload-artifact must not be updated to a commit that doesn't have NovroForge's hack (for lack of GHES support in
         # the action), https://code.forgejo.org/forgejo/upload-artifact/src/commit/cb8afe72b42edc798abfb8fcb556cf660d894245 or a
         # later revision with this commit's specific patch.
         uses: https://data.forgejo.org/forgejo/upload-artifact@cb8afe72b42edc798abfb8fcb556cf660d894245

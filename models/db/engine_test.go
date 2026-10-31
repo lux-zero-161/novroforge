@@ -44,7 +44,7 @@ func TestDeleteOrphanedObjects(t *testing.T) {
 	countBefore, err := db.GetEngine(db.DefaultContext).Count(&issues_model.PullRequest{})
 	require.NoError(t, err)
 
-	// As progress is made in adding foreign keys to Forgejo's schema, eventually this test will have to be removed or
+	// As progress is made in adding foreign keys to NovroForge's schema, eventually this test will have to be removed or
 	// changed to something completely illogical... in the mean time, `head_repo_id` has no foreign key yet:
 	_, err = db.GetEngine(db.DefaultContext).Insert(
 		&issues_model.PullRequest{IssueID: 2, BaseRepoID: 1, HeadRepoID: 1000},

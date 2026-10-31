@@ -1,4 +1,4 @@
-// Copyright 2025 The Forgejo Authors. All rights reserved.
+// Copyright 2025 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 package actions
@@ -103,7 +103,7 @@ var lazyRepoExpandLocalReusableWorkflow = func(ctx context.Context, repoID int64
 }
 
 // Standard function for `jobparser.ExpandInstanceReusableWorkflows` which resolves reusable workflow references on the
-// same Forgejo instance, but in a specific repo. For example, `uses:
+// same NovroForge instance, but in a specific repo. For example, `uses:
 // some-org/some-repo/.forgejo/workflows/some-path.yaml@ref`. Resolving it involves reading the target file in the
 // target repo & commit and returning the file contents.
 //

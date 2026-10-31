@@ -1,6 +1,6 @@
 // Copyright 2015 The Gogs Authors. All rights reserved.
 // Copyright 2016 The Gitea Authors. All rights reserved.
-// Copyright 2023-2024 The Forgejo Authors. All rights reserved.
+// Copyright 2023-2024 The NovroForge Authors. All rights reserved.
 // SPDX-License-Identifier: MIT
 
 // Package v1 Gitea API

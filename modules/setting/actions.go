@@ -32,7 +32,7 @@ var (
 		IDTokenKeyCfg *jwtx.KeyCfg
 	}{
 		Enabled:                      true,
-		DefaultActionsURL:            defaultActionsURLForgejo,
+		DefaultActionsURL:            defaultActionsURLNovroForge,
 		SkipWorkflowStrings:          []string{"[skip ci]", "[ci skip]", "[no ci]", "[skip actions]", "[actions skip]"},
 		LimitDispatchInputs:          100,
 		ConcurrencyGroupQueueEnabled: true,
@@ -54,7 +54,7 @@ func (url defaultActionsURL) URL() string {
 }
 
 const (
-	defaultActionsURLForgejo = "https://data.forgejo.org"
+	defaultActionsURLNovroForge = "https://data.forgejo.org"
 	defaultActionsURLGitHub  = "github" // https://github.com
 	defaultActionsURLSelf    = "self"   // the root URL of the self-hosted instance
 )

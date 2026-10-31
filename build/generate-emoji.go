@@ -1,4 +1,4 @@
-// Copyright 2026 The Forgejo Authors. All rights reserved.
+// Copyright 2026 The NovroForge Authors. All rights reserved.
 // Copyright 2020 The Gitea Authors. All rights reserved.
 // Copyright 2015 Kenneth Shaw
 // SPDX-License-Identifier: MIT
@@ -114,7 +114,7 @@ func generate() ([]byte, error) {
 		}
 	}
 
-	// Forgejo customizations
+	// NovroForge customizations
 	i, ok := aliasMap["tada"]
 	if ok {
 		data[i].Aliases = append(data[i].Aliases, "hooray")
