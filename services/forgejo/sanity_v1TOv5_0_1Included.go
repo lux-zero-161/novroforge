@@ -85,7 +85,7 @@ func v1TOv5_0_1Included(e db.Engine, dbVersion int64, cfg setting.ConfigProvider
 	}
 
 	if len(messages) > 0 {
-		return fatal(fmt.Errorf("%s\nThese issues need to be manually fixed in the app.ini file at %s. Please read https://forgejo.org/2023-08-release-v1-20-3-0/ for instructions", strings.Join(messages, "\n"), cfg.GetFile()))
+		return fatal(fmt.Errorf("%s\nThese issues need to be manually fixed in the app.ini file at %s. Please read https://novroforge.xyz/2023-08-release-v1-20-3-0/ for instructions", strings.Join(messages, "\n"), cfg.GetFile()))
 	}
 	return nil
 }

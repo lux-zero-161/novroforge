@@ -1,4 +1,4 @@
-{{/* Forgejo's repository options with GitHub's settings checkboxes for Template and Visibility. */}}
+{{/* NovroForge's repository options with GitHub's settings checkboxes for Template and Visibility. */}}
 {{template "repo/settings/layout_head" (dict "ctxData" . "pageClass" "repository settings options")}}
 	<div class="user-main-content twelve wide column">
 		<h4 class="ui top attached header">
@@ -16,7 +16,7 @@
 					<label>{{ctx.Locale.Tr "repo.repo_size"}}</label>
 					<span {{if not (eq .Repository.Size 0)}} data-tooltip-content="{{.Repository.SizeDetailsString ctx.Locale}}"{{end}}>{{ctx.Locale.TrSize .Repository.Size}}</span>
 				</div>
-				{{/* GitHub's checkboxes: a semibold title with Forgejo's description as the note beneath it. */}}
+				{{/* GitHub's checkboxes: a semibold title with NovroForge's description as the note beneath it. */}}
 				{{template "components/common/settings/checkbox" dict "ID" "repo-template" "Name" "template" "Checked" .Repository.IsTemplate "Title" (ctx.Locale.Tr "repo.template_helper") "Note" (ctx.Locale.Tr "repo.template_description")}}
 				{{if not .Repository.IsFork}}
 					{{$forced := and (not .IsAdmin) $.ForcePrivate .Repository.IsPrivate}}
@@ -277,7 +277,7 @@
 											<div class="field {{if .Err_PushMirrorBranchFilter}}error{{end}}">
 												<label for="push_mirror_branch_filter">{{ctx.Locale.Tr "repo.settings.push_mirror.branch_filter.label"}}</label>
 												<input id="push_mirror_branch_filter" name="push_mirror_branch_filter" value="{{.push_mirror_branch_filter}}" maxlength="2048">
-												<p class="help">{{ctx.Locale.Tr "repo.settings.push_mirror.branch_filter.description" (AppDocsURL "user/repo-mirror/#branch-filter") "Forgejo"}}</p>
+												<p class="help">{{ctx.Locale.Tr "repo.settings.push_mirror.branch_filter.description" (AppDocsURL "user/repo-mirror/#branch-filter") "NovroForge"}}</p>
 											</div>
 											<details class="ui optional field" {{if or .Err_PushMirrorAuth .push_mirror_username}}open{{end}}>
 												<summary class="tw-p-1">

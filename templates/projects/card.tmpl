@@ -1,5 +1,5 @@
 {{/* GitHub-style project card: the repository and number above the title with the card menu beside them, assignees in
-	the corner, then labels and compact details. Forgejo's repo/issue/card stays untouched for the pinned issues it also
+	the corner, then labels and compact details. NovroForge's repo/issue/card stays untouched for the pinned issues it also
 	renders. */}}
 {{$canWrite := and $.Page.CanWriteProjects (or (not $.Page.Repository) (not $.Page.Repository.IsArchived))}}
 {{with .Issue}}

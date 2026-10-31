@@ -546,7 +546,7 @@ func TestRender_ShortLinks(t *testing.T) {
 	otherImgurlWiki := util.URLJoin(markup.TestRepoURL, "wiki", "raw", "Link+Other.jpg")
 	encodedImgurlWiki := util.URLJoin(markup.TestRepoURL, "wiki", "raw", "Link+%23.jpg")
 	notencodedImgurlWiki := util.URLJoin(markup.TestRepoURL, "wiki", "raw", "some", "path", "Link+#.jpg")
-	favicon := "https://forgejo.org/favicon.ico"
+	favicon := "https://novroforge.xyz/favicon.ico"
 
 	test(
 		"[[Link]]",

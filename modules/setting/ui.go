@@ -94,7 +94,7 @@ var UI = struct {
 	DefaultTheme:        `github-auto`,
 	Themes:              []string{`github-auto`, `github-light`, `github-dark`, `github-soft-dark`},
 	Reactions:           []string{`+1`, `-1`, `laugh`, `hooray`, `confused`, `heart`, `rocket`, `eyes`},
-	CustomEmojis:        []string{`git`, `gitea`, `codeberg`, `gitlab`, `github`, `gogs`, `forgejo`},
+	CustomEmojis:        []string{`git`, `gitea`, `codeberg`, `gitlab`, `github`, `gogs`},
 	ExploreDefaultSort:  "recentupdate",
 
 	AmbiguousUnicodeDetection: true,

@@ -1,7 +1,7 @@
 {{/*
-	GitHub-style project board, shared by repository, organization and user projects. Forgejo's board script needs
+	GitHub-style project board, shared by repository, organization and user projects. NovroForge's board script needs
 	.project-column, .cards, .issue-card[data-issue], the .project-column-issue-count inside each column and the column
-	modals inside .project-column-header, so those keep Forgejo's classes. Column colours become GitHub's status dot;
+	modals inside .project-column-header, so those keep NovroForge's classes. Column colours become GitHub's status dot;
 	columns without one named like GitHub's default statuses get GitHub's colour (see pages/projects.css).
 */}}
 {{$canWriteProject := and .CanWriteProjects (or (not .Repository) (not .Repository.IsArchived))}}
@@ -16,7 +16,7 @@
 			<a class="ui primary button theme-control" href="{{.RepoLink}}/issues/new/choose?project={{.Project.ID}}" data-project-panel-link>{{ctx.Locale.Tr "repo.issues.new"}}</a>
 		{{else if and (not .Repository) .IsSigned (not .Project.IsClosed)}}
 			{{/* Organization and user projects have no repository of their own: pick one of the owner's repositories,
-				then Forgejo's new issue form opens with this project already set. The board script lists them. */}}
+				then NovroForge's new issue form opens with this project already set. The board script lists them. */}}
 			<details class="theme-menu github-project-new-issue" data-owner-id="{{.ContextUser.ID}}" data-project-id="{{.Project.ID}}">
 				<summary class="ui primary button theme-control" aria-haspopup="menu">
 					{{ctx.Locale.Tr "repo.issues.new"}}

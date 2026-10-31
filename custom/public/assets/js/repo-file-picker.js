@@ -121,7 +121,7 @@
           for (let i = 1; i < parts.length; i++) paths.add(`${parts.slice(0, i).join("/")}/`);
         }
         files = [...paths];
-        // Include dotfiles present in Forgejo's visible list even when its finder excludes them.
+        // Include dotfiles present in NovroForge's visible list even when its finder excludes them.
         for (const link of document.querySelectorAll("#repo-files-table .repo-file-cell.name a")) {
           const prefix = `${picker.dataset.sourceUrl}/`;
           const href = link.getAttribute("href");

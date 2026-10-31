@@ -1,6 +1,6 @@
 {{/* GitHub commits an edit, a new file, a patch, a cherry-pick or a deletion from a dialog that Commit changes… at the
 top right opens (components/repository/editor/actions); the upload page keeps the commit box under the files, as on
-GitHub. Both are Forgejo's commit form inside the page's <form>: the same fields, choices and #commit-button, and the
+GitHub. Both are NovroForge's commit form inside the page's <form>: the same fields, choices and #commit-button, and the
 commit-form-wrapper class that keeps them out of the editor's unsaved-changes check. */}}
 {{$dialog := not .PageIsUpload}}
 {{if $dialog}}
@@ -23,7 +23,7 @@ commit-form-wrapper class that keeps them out of the editor's unsaved-changes ch
 			{{end}}
 		</header>
 		<div class="theme-commit-body">
-			{{/* Forgejo's alert for a refused branch name or email sits behind the reopened dialog; repeat it here. */}}
+			{{/* NovroForge's alert for a refused branch name or email sits behind the reopened dialog; repeat it here. */}}
 			{{if and $dialog (or .Err_NewBranchName .Err_CommitMailID) .Flash.ErrorMsg}}
 				<div class="ui negative message theme-commit-error" role="alert"><p>{{.Flash.ErrorMsg | SanitizeHTML}}</p></div>
 			{{end}}

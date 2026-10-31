@@ -83,7 +83,7 @@
 				<div class="diff-content-controls-right diff-detail-actions button-row">
 					{{if and .PageIsPullFiles $.SignedUserID (not .IsArchived) (not .DiffNotAvailable)}}
 						<div class="diff-viewed-summary not-mobile">
-							{{/* Forgejo updates the hidden progress; diff-view.js mirrors its value onto the ring. */}}
+							{{/* NovroForge updates the hidden progress; diff-view.js mirrors its value onto the ring. */}}
 							<span class="diff-viewed-ring" aria-hidden="true"></span>
 							<label for="viewed-files-summary" id="viewed-files-summary-label" data-text-changed-template="{{ctx.Locale.Tr "repo.pulls.viewed_files_label"}}">
 								{{ctx.Locale.Tr "repo.pulls.viewed_files_label" .DiffMetadata.NumberOfViewedFiles .DiffMetadata.TotalNumberOfFiles}}
@@ -166,7 +166,7 @@
 								{{if or $file.IsIncomplete $file.IsBin}}
 									<div class="diff-file-body binary{{if $file.IsIncomplete}} diff-suppressed-placeholder{{end}}">
 										{{if $file.IsIncomplete}}
-											{{/* GitHub's large diff placeholder. Forgejo replaces the parent of a.diff-load-button with the loaded
+											{{/* GitHub's large diff placeholder. NovroForge replaces the parent of a.diff-load-button with the loaded
 												diff and reads data-href from the clicked element, so the link stays a direct child holding text only. */}}
 											<div class="diff-deleted-skeleton" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
 											{{if $file.IsIncompleteLineTooLong}}

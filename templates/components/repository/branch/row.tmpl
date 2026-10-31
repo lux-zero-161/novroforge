@@ -1,5 +1,5 @@
 {{- /* One branch of components/repository/branch/table: its name, who pushed when, its checks, how far it is behind
-and ahead of the default branch, its pull request, then delete or restore and a menu with Forgejo's other actions. */ -}}
+and ahead of the default branch, its pull request, then delete or restore and a menu with NovroForge's other actions. */ -}}
 {{$page := .Page}}{{$branch := .Branch}}{{$db := $branch.DBBranch}}
 {{$canWrite := and $page.IsWriter (not $page.Repository.IsArchived) (not $page.IsMirror)}}
 {{$compareLink := ""}}

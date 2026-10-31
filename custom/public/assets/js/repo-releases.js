@@ -1,6 +1,6 @@
 // The latest release shows its badge. The shared sidebar controller marks
 // the release in view in "On this page".
-// Ask Forgejo for the actual latest release, including on filtered/paginated pages.
+// Ask NovroForge for the actual latest release, including on filtered/paginated pages.
 const latest = document.querySelector(".github-release-latest");
 if (latest)
   fetch(latest.href, { method: "HEAD" })

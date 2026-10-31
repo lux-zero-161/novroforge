@@ -1,5 +1,5 @@
 /* GitHub's NavList, as in settings and Insights: an icon per page, collapsible groups and a blue bar beside the current
-   page. Add theme-nav-list to Forgejo's vertical menu. */
+   page. Add theme-nav-list to NovroForge's vertical menu. */
 .ui.vertical.menu.theme-nav-list {
   border: 0;
   background: transparent;

@@ -42,7 +42,7 @@
 										{{template "shared/user/authorlink" .Issue.Poster}}
 										{{ctx.Locale.Tr "repo.issues.commented_at" .Issue.HashTag $createdStr}}
 									{{else}}
-										{{/* GitHub says an issue was opened; Forgejo's translation places the author itself. */}}
+										{{/* GitHub says an issue was opened; NovroForge's translation places the author itself. */}}
 										{{ctx.Locale.Tr "repo.issues.opened_by" (HTMLFormat `<a href="#%s">%s</a>` .Issue.HashTag $createdStr) .Issue.Poster.HomeLink .Issue.Poster.GetDisplayName}}
 									{{end}}
 								</span>

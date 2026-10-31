@@ -1,5 +1,5 @@
 {{template "base/head" .}}
-{{/* Forgejo 17 compare.tmpl, laid out like GitHub's "Comparing changes": the Subhead, the range editor with the base and
+{{/* NovroForge 17 compare.tmpl, laid out like GitHub's "Comparing changes": the Subhead, the range editor with the base and
      compare pickers, the create box with what the pull request would merge and its button on the right, the pull
      request form (repo/issue/new_form, shared with new issues), GitHub's open pull request row, a blank slate for equal
      branches, then the commit and file summary over the commits and the diff. */}}
@@ -161,7 +161,7 @@
 		</div>
 	</div>
 
-	{{/* What a new pull request would merge, in Forgejo's words from the pull request header. */}}
+	{{/* What a new pull request would merge, in NovroForge's words from the pull request header. */}}
 	{{$headRef := $.HeadBranch}}{{if not $.PullRequestCtx.SameRepo}}{{$headRef = printf "%s:%s" $HeadCompareName $.HeadBranch}}{{end}}
 	{{$baseRef := $.BaseBranch}}{{if not $.PullRequestCtx.SameRepo}}{{$baseRef = printf "%s:%s" $BaseCompareName $.BaseBranch}}{{end}}
 	{{if .IsNothingToCompare}}

@@ -1,7 +1,7 @@
 /* GitHub's form groups, in settings, on the create pages (repository, organization, migration, fork, milestone) and on
-   the abuse report, whose fields stay Forgejo's. The label sits on its own line (14px semibold, 6px above the
+   the abuse report, whose fields stay NovroForge's. The label sits on its own line (14px semibold, 6px above the
    control), controls are 32px and no wider than 440px with an inset shadow and an accent focus ring, notes are muted
-   12px. Forgejo writes fields as .field with a label beside the control, or as a label wrapping its control inside a
+   12px. NovroForge writes fields as .field with a label beside the control, or as a label wrapping its control inside a
    fieldset or straight in the form; all get the same look. */
 :is(
     .page-content > .ui.container.flex-container.theme-settings > .flex-container-main,
@@ -90,8 +90,8 @@
     padding: 8px 12px;
     line-height: 21px;
   }
-  /* A field Forgejo marks invalid keeps a danger border, the shared select's too; the look above would otherwise hide
-     Forgejo's own. */
+  /* A field NovroForge marks invalid keeps a danger border, the shared select's too; the look above would otherwise hide
+     NovroForge's own. */
   &
     :is(.field.error, label.error)
     > :is(
@@ -182,7 +182,7 @@
     width: 13px;
     height: 13px;
     margin: 4px 7px 0 0;
-    /* Forgejo zeroes the top margin with !important; the box lines up with the 21px title line. */
+    /* NovroForge zeroes the top margin with !important; the box lines up with the 21px title line. */
     margin-block-start: 4px !important;
     border-radius: 3px;
     accent-color: var(--github-bgColor-accent-emphasis);
@@ -200,7 +200,7 @@
     accent-color: var(--github-bgColor-accent-emphasis);
     vertical-align: top;
   }
-  /* Forgejo draws its own check mark as the input's ::after; the browser's box draws it instead. */
+  /* NovroForge draws its own check mark as the input's ::after; the browser's box draws it instead. */
   & input:is([type="checkbox"], [type="radio"])::after {
     display: none;
   }
@@ -302,7 +302,7 @@
     &.disabled > label {
       color: var(--color-text-light-1);
     }
-    /* Notes Forgejo puts inside the checkbox (the signing trust models) sit under the title, not in the box's
+    /* Notes NovroForge puts inside the checkbox (the signing trust models) sit under the title, not in the box's
        gutter. */
     & > :not(input, label) {
       grid-column: 2;
@@ -310,7 +310,7 @@
     }
   }
 
-  /* A field that only shows a value (Forgejo's repository size) keeps label and value on one line. */
+  /* A field that only shows a value (NovroForge's repository size) keeps label and value on one line. */
   & .inline.field:not(:has(input, select, textarea, .ui.checkbox, .ui.dropdown)) {
     display: flex;
     align-items: baseline;
@@ -319,12 +319,12 @@
       margin: 0;
     }
   }
-  /* Forgejo separates some labels from their choices with a line break; the field spacing does that. */
+  /* NovroForge separates some labels from their choices with a line break; the field spacing does that. */
   & .field > br {
     display: none;
   }
 
-  /* Radio groups Forgejo lays out in a row (.inline.fields) become GitHub's list: the group label above, one choice
+  /* Radio groups NovroForge lays out in a row (.inline.fields) become GitHub's list: the group label above, one choice
      per line. */
   & .inline.fields {
     display: flex;
@@ -349,14 +349,14 @@
     }
   }
 
-  /* Forgejo keeps an empty label in front of some controls to line them up with its label column (the migration
+  /* NovroForge keeps an empty label in front of some controls to line them up with its label column (the migration
      items, the create buttons); the stacked layout has no such column. */
   & .inline.field > label:first-child:empty {
     display: none;
   }
 
-  /* Forgejo's checkbox fields join one grid without changing their markup (scripts rely on it): the box in the
-     gutter, the title beside it, notes beneath. A field label in front of the checkbox (Forgejo's "Issues" before
+  /* NovroForge's checkbox fields join one grid without changing their markup (scripts rely on it): the box in the
+     gutter, the title beside it, notes beneath. A field label in front of the checkbox (NovroForge's "Issues" before
      "Enable repository issues") becomes the title and the checkbox's own label its note, as in GitHub's feature
      list. */
   & .inline.field:has(> label:first-child + .ui.checkbox),

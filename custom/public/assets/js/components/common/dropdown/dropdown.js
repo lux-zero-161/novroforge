@@ -11,7 +11,7 @@
     dropdown.open = false;
     if (restoreFocus) dropdown.querySelector("summary")?.focus();
   };
-  // Capture: Forgejo's own handlers on menu actions (Edit label, for one) stop the click from bubbling.
+  // Capture: NovroForge's own handlers on menu actions (Edit label, for one) stop the click from bubbling.
   document.addEventListener(
     "click",
     event => {

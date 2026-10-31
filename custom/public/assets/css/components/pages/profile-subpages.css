@@ -349,7 +349,7 @@
   height: 75px;
 }
 
-/* Forgejo's container leaves 8px on phones; GitHub's gutter there is 16px, as the repository header's. */
+/* NovroForge's container leaves 8px on phones; GitHub's gutter there is 16px, as the repository header's. */
 @media (max-width: 767.98px) {
   .theme-people {
     padding-inline: 8px;

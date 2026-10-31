@@ -1,5 +1,5 @@
 /*
- * Action menu: GitHub's menu of plain 32px rows with no divider lines, applied to menus Forgejo
+ * Action menu: GitHub's menu of plain 32px rows with no divider lines, applied to menus NovroForge
  * renders itself and that cannot take a class. To style another menu, add it to these lists.
  *
  * Two kinds: an action menu (each row does something) and a single-choice menu (the current

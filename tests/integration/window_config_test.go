@@ -16,5 +16,5 @@ func TestWindowConfig(t *testing.T) {
 	defer tests.PrepareTestEnv(t)()
 
 	resp := MakeRequest(t, NewRequest(t, "GET", "/"), http.StatusOK)
-	assert.Contains(t, resp.Body.String(), `customEmojis: new Set(["git","gitea","codeberg","gitlab","github","gogs","forgejo"]),`)
+	assert.Contains(t, resp.Body.String(), `customEmojis: new Set(["git","gitea","codeberg","gitlab","github","gogs"]),`)
 }

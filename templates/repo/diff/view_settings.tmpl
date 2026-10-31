@@ -6,7 +6,7 @@
 		<a href="?style=split&amp;whitespace={{.WhitespaceBehavior}}&amp;show-outdated={{.ShowOutdatedComments}}"><input type="radio" tabindex="-1" {{if .IsSplitStyle}}checked{{end}}>Split</a>
 		{{if .PageIsPullFiles}}<hr><label><input type="checkbox" id="diff-minimize-comments">Minimize comments</label>{{end}}
 		<hr>
-		{{/* GitHub has one "Hide whitespace" toggle; Forgejo's four whitespace modes stay a choice. */}}
+		{{/* GitHub has one "Hide whitespace" toggle; NovroForge's four whitespace modes stay a choice. */}}
 		{{$style := "unified"}}{{if .IsSplitStyle}}{{$style = "split"}}{{end}}
 		<span class="theme-menu-title">{{ctx.Locale.Tr "repo.diff.whitespace_button"}}</span>
 		<a href="?style={{$style}}&amp;whitespace=show-all&amp;show-outdated={{.ShowOutdatedComments}}"><input type="radio" tabindex="-1" {{if eq .WhitespaceBehavior "show-all"}}checked{{end}}>{{ctx.Locale.Tr "repo.diff.whitespace_show_everything"}}</a>

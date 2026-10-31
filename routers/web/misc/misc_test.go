@@ -16,6 +16,6 @@ func TestDefaultRobotsTxt(t *testing.T) {
 	defer test.MockVariableValue(&setting.AppDocsVer, func() string { return "v0.0" })()
 
 	robotsTxt := string(defaultRobotsTxt())
-	assert.Contains(t, robotsTxt, "https://forgejo.org/docs/v0.0/admin/advanced/search-engines/") // derived from setting.AppDocsVer
+	assert.Contains(t, robotsTxt, "https://novroforge.xyz/docs/v0.0/admin/advanced/search-engines/") // derived from setting.AppDocsVer
 	assert.Equal(t, robotsTxt, string(defaultRobotsTxt()), "subsequent call still works")
 }

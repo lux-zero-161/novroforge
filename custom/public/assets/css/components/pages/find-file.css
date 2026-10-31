@@ -1,5 +1,5 @@
 /* Find a file, in the look of the Go to file picker: the repository name and the shared search field, then a box
-   of paths with a file icon, the path muted and the characters that match the query in bold. Forgejo's find-file
+   of paths with a file icon, the path muted and the characters that match the query in bold. NovroForge's find-file
    script fills the table and marks matches with "ui text red". */
 .theme-find-file-bar {
   display: flex;
@@ -14,7 +14,7 @@
   }
 }
 
-/* The shared field styles its search input; Forgejo's find-file input is a text input, given the same look. */
+/* The shared field styles its search input; NovroForge's find-file input is a text input, given the same look. */
 :is(.ui.form, body) .theme-find-file-bar .theme-search-field input[type="text"] {
   flex: 1;
   width: 100%;
@@ -90,7 +90,7 @@
     margin: 0 8px 0 0 !important;
     vertical-align: text-bottom;
   }
-  /* Forgejo's .text.red colour is !important. */
+  /* NovroForge's .text.red colour is !important. */
   & > tbody > tr > td > a > .ui.text.red {
     color: var(--color-text) !important;
     font-weight: 600;

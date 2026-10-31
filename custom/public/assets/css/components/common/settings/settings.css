@@ -1,5 +1,5 @@
 /* GitHub's settings layout, shared by repository, personal, organization and site administration settings. The
-   area layouts mark their container with .theme-settings; Forgejo's own menu and form markup stays underneath. */
+   area layouts mark their container with .theme-settings; NovroForge's own menu and form markup stays underneath. */
 
 /* Context header: who or what the settings belong to. */
 .theme-settings-context {
@@ -164,7 +164,7 @@
       margin-bottom: 0;
     }
   }
-  /* In lists the box is drawn by the rows with content, so a row Forgejo uses for the description stays a flat
+  /* In lists the box is drawn by the rows with content, so a row NovroForge uses for the description stays a flat
      paragraph above the box, and a list with only its description shows no empty box. Rows carry the padding, so
      separators span the box. */
   & .ui.attached.segment:not(.error) > .flex-list {
@@ -236,7 +236,7 @@
       }
     }
   }
-  /* An add form below its list (Forgejo's bottom attached segment) sits 16px under the box. */
+  /* An add form below its list (NovroForge's bottom attached segment) sits 16px under the box. */
   & .ui.attached.segment + .ui.bottom.attached.segment {
     margin-top: 16px;
   }
@@ -332,7 +332,7 @@
   }
 
   /* A form of one field and its button (adding an email, a security key or an OpenID) puts the button beside the
-     input, as on GitHub. Overridden templates mark it with .theme-settings-field-row; Forgejo's own are recognised by
+     input, as on GitHub. Overridden templates mark it with .theme-settings-field-row; NovroForge's own are recognised by
      their structure. */
   & .ui.form.theme-settings-field-row,
   & form.ui.form:has(> .field:first-child + .ui.button:last-child) {
@@ -629,7 +629,7 @@
     align-items: start;
   }
   & .theme-settings-aside {
-    /* Forgejo caps avatar images in forms; the picture here is GitHub's 200px circle, with Edit on its lower left
+    /* NovroForge caps avatar images in forms; the picture here is GitHub's 200px circle, with Edit on its lower left
        opening a menu below it. */
     & .theme-avatar-edit {
       position: relative;
@@ -685,7 +685,7 @@
       gap: 8px;
     }
   }
-  /* Forgejo's form groups ("About you", "Privacy") read as small section titles. A legend is drawn across its
+  /* NovroForge's form groups ("About you", "Privacy") read as small section titles. A legend is drawn across its
      fieldset's top border, which put "Privacy" on the divider above it; floated, it sits inside the fieldset like any
      heading, 16px below the divider. The profile picture's title in the aside matches it. */
   & .ui.form fieldset {
@@ -715,7 +715,7 @@
     border-top: 1px solid color-mix(in srgb, var(--color-light-border) 70%, transparent);
   }
 
-  /* Buttons: GitHub's 32px controls with 500-weight labels, for Fomantic's .ui.button and Forgejo's newer .button. */
+  /* Buttons: GitHub's 32px controls with 500-weight labels, for Fomantic's .ui.button and NovroForge's newer .button. */
   & :is(.ui.button, .button:not(.ui)):not(.tiny, .mini, .compact, .icon) {
     min-height: 32px;
     padding: 5px 16px;

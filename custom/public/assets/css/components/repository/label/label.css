@@ -1,7 +1,7 @@
 /*
  * Repository label: GitHub's issue label pill, drawn by components/repository/label/label.
  *
- * The template passes the label's colour as --repository-label-color and Forgejo's contrast text colour as
+ * The template passes the label's colour as --repository-label-color and NovroForge's contrast text colour as
  * --repository-label-foreground. Light mode fills the pill with the colour. Dark mode tints it and lightens the text of
  * dark labels by how far their perceived lightness falls below 60%; the luma variant carries that lightness in its
  * alpha channel so one relative colour can use it as a number.

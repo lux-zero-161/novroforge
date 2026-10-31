@@ -1,7 +1,7 @@
-{{/* Forgejo 17's release form as GitHub's New release page: the tag menu and the target in one row, the title, the
+{{/* NovroForge 17's release form as GitHub's New release page: the tag menu and the target in one row, the title, the
 description with Write and Preview, the assets and the binaries drop area, the options as checkboxes with their notes,
 then Publish release and Save draft (and Delete on an edit). The field names, JS hooks and the delete confirmation
-stay Forgejo's. */}}
+stay NovroForge's. */}}
 {{template "base/head" .}}
 <div role="main" aria-label="{{.Title}}" class="page-content repository new release">
 	{{template "repo/header" .}}
@@ -118,7 +118,7 @@ stay Forgejo's. */}}
 					{{template "components/common/settings/checkbox" dict "ID" "release-hide-archive-links" "Name" "hide_archive_links" "Checked" .hide_archive_links "Title" (ctx.Locale.Tr "repo.release.hide_archive_links") "Note" (ctx.Locale.Tr "repo.release.hide_archive_links_helper")}}
 				{{end}}
 			</fieldset>
-			{{/* The buttons keep Forgejo's order, which decides the submit button Enter uses; the stylesheet shows the
+			{{/* The buttons keep NovroForge's order, which decides the submit button Enter uses; the stylesheet shows the
 			primary action first, as GitHub does. */}}
 			<div class="theme-release-actions">
 				{{if .PageIsEditRelease}}

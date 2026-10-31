@@ -579,7 +579,7 @@ func TestAPIReleaseExternalAsset(t *testing.T) {
 
 	assert.Equal(t, "test-asset", attachment.Name)
 	assert.EqualValues(t, 0, attachment.Size)
-	assert.Equal(t, "https://forgejo.org/", attachment.DownloadURL)
+	assert.Equal(t, "https://novroforge.xyz/", attachment.DownloadURL)
 	assert.Equal(t, "external", attachment.Type)
 }
 

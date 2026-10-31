@@ -73,7 +73,7 @@
     track();
   };
   const init = page => {
-    // A page Forgejo replaced would keep its listeners on the document, window and media query; drop them first.
+    // A page NovroForge replaced would keep its listeners on the document, window and media query; drop them first.
     for (const [previous, instance] of instances)
       if (previous === page || previous.isConnected === false) {
         instance.abort();
@@ -93,7 +93,7 @@
       for (const button of page.querySelectorAll("[data-theme-sidebar-toggle]"))
         button.setAttribute("aria-expanded", String(!collapsed));
     };
-    // Delegated, so toggles inside content that Forgejo refreshes in place (the Actions run list) keep working.
+    // Delegated, so toggles inside content that NovroForge refreshes in place (the Actions run list) keep working.
     page.addEventListener(
       "click",
       event => {
@@ -149,7 +149,7 @@
     fit();
   };
   for (const page of document.querySelectorAll("[data-theme-sidebar]")) init(page);
-  // Forgejo replaces the whole notifications page element after an action; watch only its parent for the new one.
+  // NovroForge replaces the whole notifications page element after an action; watch only its parent for the new one.
   const replaceable = document.querySelector("#notification_div[data-theme-sidebar]")?.parentElement;
   if (typeof MutationObserver === "undefined" || !replaceable) return;
   new MutationObserver(records => {

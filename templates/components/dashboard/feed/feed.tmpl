@@ -1,7 +1,7 @@
 {{- /* Home's activity feed: one compact row per event in a box, the event's icon, what happened and when on the first
 line and the issue title, commit message or comment beneath. feed.js groups the rows by day and loads older pages in
 place; without it the rows stay in one list and "Load older activity" opens the next page. The sentences are
-Forgejo's own, so every event type and language reads as on the profile. Data is the page context. */ -}}
+NovroForge's own, so every event type and language reads as on the profile. Data is the page context. */ -}}
 {{$data := .}}
 {{$link := $data.Link}}{{if eq $link AppSubUrl}}{{$link = print $link "/"}}{{end}}
 {{$params := $data.Page.GetParams}}

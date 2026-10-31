@@ -578,7 +578,7 @@
   }
 }
 
-/* Forgejo teleports the job panel outside the run mount in fullscreen mode. */
+/* NovroForge teleports the job panel outside the run mount in fullscreen mode. */
 .full.height:has(.github-actions-run) > .action-view-right {
   position: fixed;
   inset: 0;

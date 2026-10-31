@@ -59,7 +59,7 @@
     }
   };
 
-  // Capture before Forgejo's native change handler, which navigates the entire page.
+  // Capture before NovroForge's native change handler, which navigates the entire page.
   form.addEventListener(
     "change",
     event => {

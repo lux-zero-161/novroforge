@@ -153,7 +153,7 @@
       sidebar.append(make("h3", "actions-details-heading", "Run details"), source);
     }
     sidebar.querySelector(".actions-summary-link").setAttribute("aria-current", isSummary ? "page" : "false");
-    // GitHub keeps Delete in the run's "…" menu beside the re-run buttons; the menu drives Forgejo's own button.
+    // GitHub keeps Delete in the run's "…" menu beside the re-run buttons; the menu drives NovroForge's own button.
     const actions = header.querySelector(".action-info-summary-actions");
     if (actions && !actions.querySelector(".actions-run-menu")) {
       const menu = make("details", "theme-dropdown actions-run-menu");
@@ -163,7 +163,7 @@
       const kebab = document.querySelector("#actions-nav-icons")?.content.querySelector('[data-icon="kebab"] svg');
       if (kebab) summary.append(kebab.cloneNode(true));
       const panel = make("div", "theme-dropdown-panel");
-      // Forgejo renders Delete only once it knows the permissions, so the items are built when the menu opens.
+      // NovroForge renders Delete only once it knows the permissions, so the items are built when the menu opens.
       menu.addEventListener("toggle", () => {
         if (!menu.open) return;
         const source = make("a", "theme-dropdown-action", "Workflow file");
@@ -255,7 +255,7 @@
     body.querySelector(".actions-run-overview")?.remove();
     body.append(overview);
   }
-  // Forgejo re-renders the run on every poll and appends log lines as they stream in; one render a frame is enough.
+  // NovroForge re-renders the run on every poll and appends log lines as they stream in; one render a frame is enough.
   let frame = 0;
   new MutationObserver(() => {
     frame ||= requestAnimationFrame(() => {

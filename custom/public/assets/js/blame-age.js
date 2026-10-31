@@ -1,4 +1,4 @@
-// GitHub's blame colours each hunk's age bar on a scale of ten from the file's oldest commit to its newest. Forgejo
+// GitHub's blame colours each hunk's age bar on a scale of ten from the file's oldest commit to its newest. NovroForge
 // renders each hunk's date in its first row, so this reads those dates and gives every row of the hunk its step.
 (() => {
   const hunks = [];

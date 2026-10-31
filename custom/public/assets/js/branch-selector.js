@@ -1,5 +1,5 @@
 (() => {
-  // Forgejo's branch/tag selector is a Vue component; add GitHub's "Switch branches/tags" title with a close button
+  // NovroForge's branch/tag selector is a Vue component; add GitHub's "Switch branches/tags" title with a close button
   // and the "View all branches/tags" footer around its menu. Vue only patches the nodes it rendered, so these stay.
   if (!document.querySelector(".js-branch-tag-selector")) return;
   const closeIcon =

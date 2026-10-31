@@ -3,7 +3,7 @@
 	so the page only keeps the repository tabs. The New issue button moves to the project toolbar.
 */}}
 {{template "base/head" .}}
-{{/* Forgejo returns to a user project after creating an issue through the repository's project route, which shows the
+{{/* NovroForge returns to a user project after creating an issue through the repository's project route, which shows the
 	user's board inside the repository. Open the project at its own address instead. */}}
 {{if not .Project.IsRepositoryProject}}
 	<script>window.location.replace({{.Project.Link ctx}});</script>

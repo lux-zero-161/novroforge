@@ -157,13 +157,13 @@ func TestRelease_Create(t *testing.T) {
 			Action:      "add",
 			Type:        "external",
 			Name:        "test",
-			ExternalURL: "https://forgejo.org/",
+			ExternalURL: "https://novroforge.xyz/",
 		},
 	}))
 	assert.NoError(t, repo_model.GetReleaseAttachments(db.DefaultContext, &release))
 	assert.Len(t, release.Attachments, 1)
 	assert.Equal(t, "test", release.Attachments[0].Name)
-	assert.Equal(t, "https://forgejo.org/", release.Attachments[0].ExternalURL)
+	assert.Equal(t, "https://novroforge.xyz/", release.Attachments[0].ExternalURL)
 
 	release = repo_model.Release{
 		RepoID:       repo.ID,
@@ -353,14 +353,14 @@ func TestRelease_Update(t *testing.T) {
 			Action:      "add",
 			Type:        "external",
 			Name:        "test",
-			ExternalURL: "https://forgejo.org/",
+			ExternalURL: "https://novroforge.xyz/",
 		},
 	}))
 	assert.NoError(t, repo_model.GetReleaseAttachments(db.DefaultContext, release))
 	assert.Len(t, release.Attachments, 1)
 	assert.Equal(t, release.ID, release.Attachments[0].ReleaseID)
 	assert.Equal(t, "test", release.Attachments[0].Name)
-	assert.Equal(t, "https://forgejo.org/", release.Attachments[0].ExternalURL)
+	assert.Equal(t, "https://novroforge.xyz/", release.Attachments[0].ExternalURL)
 	externalAttachmentUUID := release.Attachments[0].UUID
 
 	// update the attachment name

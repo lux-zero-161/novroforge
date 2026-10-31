@@ -100,7 +100,7 @@
   font: 12px/20px var(--fonts-monospace);
 }
 
-/* Signed-out home: a centred hero over Forgejo's feature blocks, which become a grid of cards. */
+/* Signed-out home: a centred hero over NovroForge's feature blocks, which become a grid of cards. */
 .page-content.home {
   padding-bottom: 48px;
 }
@@ -283,7 +283,7 @@
   border-top: 1px solid var(--color-secondary);
 }
 
-/* Forgejo's .ui.form .ui.button sets a normal weight; GitHub's buttons are medium. */
+/* NovroForge's .ui.form .ui.button sets a normal weight; GitHub's buttons are medium. */
 .page-content.moderation.new-report .theme-report-actions > .ui.button {
   margin: 0;
   font-weight: 500;

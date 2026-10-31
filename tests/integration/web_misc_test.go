@@ -131,5 +131,5 @@ func TestRobotsTxt(t *testing.T) {
 	resp := MakeRequest(t, req, http.StatusOK)
 
 	robotsTxt := resp.Body.String()
-	assert.Contains(t, robotsTxt, "https://forgejo.org/docs/v0.1/admin/advanced/search-engines/") // derived from setting.AppDocsVer
+	assert.Contains(t, robotsTxt, "https://novroforge.xyz/docs/v0.1/admin/advanced/search-engines/") // derived from setting.AppDocsVer
 }

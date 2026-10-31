@@ -1,6 +1,6 @@
 {{- /* GitHub's label list: a box headed by the label count and Sort, with a row per label holding the label, its
 description, its open issues and, for writers, a menu with Edit and Delete. The repository labels page and the
-organization's label settings both render it; Forgejo's label scripts find the edit and delete buttons by class. */ -}}
+organization's label settings both render it; NovroForge's label scripts find the edit and delete buttons by class. */ -}}
 {{$canWrite := or .PageIsOrgSettingsLabels (and (not .Repository.IsArchived) (or .CanWriteIssues .CanWritePulls))}}
 {{$issuesLink := print .RepoLink "/issues"}}{{if .PageIsOrgSettingsLabels}}{{$issuesLink = print AppSubUrl "/issues"}}{{end}}
 <div class="theme-box-list theme-label-list">

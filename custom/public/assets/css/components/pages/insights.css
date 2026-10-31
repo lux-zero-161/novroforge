@@ -1,4 +1,4 @@
-/* Insights (Forgejo's activity pages): GitHub's 256px nav list beside the page, 40px apart. Kept as a page stylesheet,
+/* Insights (NovroForge's activity pages): GitHub's 256px nav list beside the page, 40px apart. Kept as a page stylesheet,
    outside the size-limited theme files. */
 .ui.container.flex-container.github-insights {
   gap: 40px;

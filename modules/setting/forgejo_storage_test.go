@@ -3,7 +3,7 @@
 //
 // Tests verifying the Forgejo documentation on storage settings is correct
 //
-// https://forgejo.org/docs/v1.20/admin/storage/
+// https://novroforge.xyz/docs/v1.20/admin/storage/
 //
 
 package setting

@@ -162,7 +162,7 @@ func (mock *FederationServerMock) DistantServer(t *testing.T) *httptest.Server {
 		func(res http.ResponseWriter, req *http.Request) {
 			// curl -H "Accept: application/json" https://federated-repo.prod.meissa.de/api/v1/nodeinfo
 			fmt.Fprint(res, `{"version":"2.1","software":{"name":"forgejo","version":"1.20.0+dev-3183-g976d79044",`+
-				`"repository":"https://codeberg.org/forgejo/forgejo.git","homepage":"https://forgejo.org/"},`+
+				`"repository":"https://codeberg.org/forgejo/forgejo.git","homepage":"https://novroforge.xyz/"},`+
 				`"protocols":["activitypub"],"services":{"inbound":[],"outbound":["rss2.0"]},`+
 				`"openRegistrations":true,"usage":{"users":{"total":14,"activeHalfyear":2}},"metadata":{}}`)
 		})

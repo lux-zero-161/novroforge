@@ -1,7 +1,7 @@
 /*
- * Label: GitHub's pill-shaped outline label. Add theme-label to a Forgejo ".ui label".
+ * Label: GitHub's pill-shaped outline label. Add theme-label to a NovroForge ".ui label".
  *
- * By default the outline takes the label's own text colour, so Forgejo's coloured labels (green,
+ * By default the outline takes the label's own text colour, so NovroForge's coloured labels (green,
  * orange) keep their meaning. Modifiers:
  *   theme-label-muted  grey text and border, for neutral facts such as visibility
  *   theme-label-solid  filled grey with white text, for a draft

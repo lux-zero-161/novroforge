@@ -1,4 +1,4 @@
-{{/* GitHub-style repository overview sidebar adapted to Forgejo 15 data and endpoints. */}}
+{{/* GitHub-style repository overview sidebar adapted to NovroForge 15 data and endpoints. */}}
 <aside class="repo-home-sidebar-top" aria-label="About">
 	<div id="repo-topics" class="repo-about-block flex-relaxed-list">
 		<div class="repo-home-sidebar-header repo-about-heading">
@@ -90,7 +90,7 @@
 
 					<div class="field">
 						<label for="repo-about-topics">Topics</label>
-						{{/* Forgejo 17 passes topics as plain strings; the save handler posts this comma-separated value. */}}
+						{{/* NovroForge 17 passes topics as plain strings; the save handler posts this comma-separated value. */}}
 						<input id="repo-about-topics" class="repo-about-topics-input" name="topics" type="text" value="{{StringUtils.Join .Topics ","}}" placeholder="topic-one, topic-two">
 					</div>
 

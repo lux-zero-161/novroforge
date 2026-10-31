@@ -1,6 +1,6 @@
 {{/* GitHub's Owner / Repository name row on the forms that create a repository. Owner is the account selected first,
 	Personal the signed-in user when they may own the repository (nil when not), Orgs the organizations offered;
-	Name, ErrOwner and ErrName are the form's value and errors. Forgejo's scripts read #uid (the template search and
+	Name, ErrOwner and ErrName are the form's value and errors. NovroForge's scripts read #uid (the template search and
 	the owner menu) and #repo_name (filled in from a migration's clone address). */}}
 <div class="theme-create-owner-name">
 	<div class="required field theme-create-owner{{if .ErrOwner}} error{{end}}">

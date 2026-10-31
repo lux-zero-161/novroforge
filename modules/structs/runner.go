@@ -16,7 +16,7 @@ type RegisterRunnerOptions struct {
 	// required: false
 	Description string `json:"description"`
 
-	// Register as ephemeral runner https://forgejo.org/docs/latest/admin/actions/security/#ephemeral-runners
+	// Register as ephemeral runner https://novroforge.xyz/docs/latest/admin/actions/security/#ephemeral-runners
 	//
 	// required: false
 	Ephemeral bool `json:"ephemeral"`

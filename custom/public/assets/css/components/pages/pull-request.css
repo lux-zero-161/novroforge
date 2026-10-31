@@ -1,7 +1,7 @@
 /* Pull request page rules kept out of the theme files, which are at their size limit. */
 
 /*
- * A merge scheduled for when checks succeed. Forgejo prints a blue notice above the merge button;
+ * A merge scheduled for when checks succeed. NovroForge prints a blue notice above the merge button;
  * here it is one more section of the merge box, like the rows above it: a round status icon, the
  * sentence, and the bar with the merge button and "Cancel" below. Its measurements are the merge
  * box's own (--merge-section-*), set where the other rows are styled.
@@ -57,7 +57,7 @@
 }
 
 /*
- * "Close pull request" uses Forgejo's closed-issue icon, which the theme colours as done (purple). GitHub shows a red
+ * "Close pull request" uses NovroForge's closed-issue icon, which the theme colours as done (purple). GitHub shows a red
  * closed pull request icon; issues keep theirs.
  */
 .page-content.github-pull-review #status-button[value="close"] > svg {
@@ -355,7 +355,7 @@
 
 /*
  * GitHub's Code menu on a pull request's title row: the clone URL with its HTTPS/SSH choice, then the commands that
- * check out the pull request. The protocol buttons and URL field are Forgejo's clone_buttons, driven by its scripts.
+ * check out the pull request. The protocol buttons and URL field are NovroForge's clone_buttons, driven by its scripts.
  */
 .pull-code-menu.theme-dropdown[data-theme-dropdown] > .theme-dropdown-panel {
   width: 400px;
@@ -420,7 +420,7 @@
   background: var(--github-control-transparent-bgColor-hover);
 }
 
-/* Forgejo marks the chosen protocol primary and the other basic. */
+/* NovroForge marks the chosen protocol primary and the other basic. */
 .pull-code-menu .pull-code-clone > .primary:is(#repo-clone-https, #repo-clone-ssh) {
   border-color: var(--color-secondary);
   background: var(--color-hover);

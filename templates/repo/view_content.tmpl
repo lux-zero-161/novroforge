@@ -1,6 +1,6 @@
 {{/*
-	The theme's repository content layout adapted to Forgejo 15.
-	Newer file-tree/search partials are replaced with Forgejo 15's branch
+	The theme's repository content layout adapted to NovroForge 15.
+	Newer file-tree/search partials are replaced with NovroForge 15's branch
 	selector and find-file route. The native clone controls are retained inside
 	a compact details dropdown so the two toolbar groups fit on one line.
 */}}
@@ -105,8 +105,8 @@
 							</div>
 							<div class="clone-panel ui action tiny input">
 								{{template "repo/clone_buttons" .}}
-								<button class="ui small basic button" id="repo-clone-fj" type="button" data-fj-repo="{{.Repository.OwnerName}}/{{.Repository.Name}}">Forgejo CLI</button>
-								<p class="repo-clone-hint" id="repo-clone-fj-hint" hidden>Work fast with the Forgejo CLI. <a href="https://codeberg.org/forgejo-contrib/forgejo-cli" target="_blank" rel="noopener noreferrer">Learn more</a></p>
+								<button class="ui small basic button" id="repo-clone-fj" type="button" data-fj-repo="{{.Repository.OwnerName}}/{{.Repository.Name}}">NovroForge CLI</button>
+								<p class="repo-clone-hint" id="repo-clone-fj-hint" hidden>Work fast with the NovroForge CLI. <a href="https://novroforge.xyz" target="_blank" rel="noopener noreferrer">Learn more</a></p>
 							</div>
 						</div>
                         {{if and (not (StringUtils.HasPrefix .BranchNameSubURL "commit")) (or .CodeIndexerDisabled (and (not .TagName) (eq .Repository.DefaultBranch .BranchName)))}}
@@ -145,7 +145,7 @@
 				</div>
 				{{template "repo/clone_script" .}}{{/* Updates .js-clone-url and related elements. */}}
 				<script>
-					// GitHub offers its CLI next to HTTPS and SSH; Forgejo's is fj (forgejo-cli). Forgejo keeps the choice in
+					// GitHub offers its CLI next to HTTPS and SSH; NovroForge's is fj (forgejo-cli). NovroForge keeps the choice in
 					// localStorage and repaints through window.updateCloneStates, so wrap it to show the fj command instead.
 					(() => {
 						const fjButton = document.getElementById('repo-clone-fj');

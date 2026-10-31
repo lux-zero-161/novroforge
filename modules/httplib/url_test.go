@@ -109,7 +109,7 @@ func TestIsRiskyRedirectURLWithoutSubURL(t *testing.T) {
 		{"//example.com", true},
 		{"http://example.com", true},
 		{"://missing protocol scheme", true},
-		{"https://forgejo.org", true},
+		{"https://novroforge.xyz", true},
 		{"https://example.org?url=https://next.forgejo.org", true},
 		// FIXME: should probably be false
 		{"https://next.forgejo.org", true},

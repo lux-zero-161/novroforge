@@ -19,7 +19,7 @@
     query = event.target.value;
     filter();
   });
-  // Preserve the filter when Forgejo's native polling morphs the run list.
+  // Preserve the filter when NovroForge's native polling morphs the run list.
   new MutationObserver(filter).observe(page, { childList: true, subtree: true });
   filter();
 })();

@@ -168,7 +168,7 @@
 }
 
 .org-repository-view .profile-repositories .flex-item-title > a.name {
-  /* Forgejo's text-primary utility fixes link color with !important. */
+  /* NovroForge's text-primary utility fixes link color with !important. */
   color: var(--color-text) !important;
 }
 

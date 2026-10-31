@@ -1,8 +1,8 @@
 /*
- * Markdown editor: GitHub's comment editor, written once for every place Forgejo renders its own
+ * Markdown editor: GitHub's comment editor, written once for every place NovroForge renders its own
  * markdown editor: a bordered box whose toolbar carries the Write/Preview tabs, and a plain
  * attachment line instead of a dashed drop area. To style another editor, add its container to
- * the list. The release form keeps Forgejo's drop area and only takes the editor.
+ * the list. The release form keeps NovroForge's drop area and only takes the editor.
  */
 :is(
     .page-content.repository.view.issue.github-conversation .comment.form,
@@ -53,7 +53,7 @@
       margin: 0 auto -1px 0;
       min-height: 38px;
     }
-    /* Forgejo overlaps neighbouring switch items with negative margins and paints the first one. */
+    /* NovroForge overlaps neighbouring switch items with negative margins and paints the first one. */
     & .switch .item {
       height: 38px;
       min-height: 38px;

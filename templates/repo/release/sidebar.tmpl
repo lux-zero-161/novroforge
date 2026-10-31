@@ -1,6 +1,6 @@
 {{/* GitHub's releases sidebar, shared by the release list, a single release and the tag list: Releases and Tags,
 	then, on a list of releases, "On this page" with the release in view marked (the shared sidebar controller tracks
-	it). Forgejo hides either page when its unit cannot be read. */}}
+	it). NovroForge hides either page when its unit cannot be read. */}}
 {{$single := StringUtils.Contains .Link "/releases/tag/"}}
 {{$tags := or .PageIsTagList .PageIsSingleTag}}
 <aside class="theme-sidebar" aria-label="{{ctx.Locale.Tr "repo.releases"}}">

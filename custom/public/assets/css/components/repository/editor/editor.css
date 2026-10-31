@@ -1,4 +1,4 @@
-/* GitHub's file editor around Forgejo's form (templates/repo/editor): the path, the branch and the actions on one row,
+/* GitHub's file editor around NovroForge's form (templates/repo/editor): the path, the branch and the actions on one row,
    the commit dialog that Commit changes… opens, and on the upload page the drop zone and the commit box. */
 
 /* The path on the left, Cancel changes and Commit changes… at the right; the actions wrap below on a narrow page. */
@@ -28,7 +28,7 @@
   font-weight: 600;
 }
 
-/* Forgejo's filename field: a 32px control as wide as a file name, never wider than the page. */
+/* NovroForge's filename field: a 32px control as wide as a file name, never wider than the page. */
 .page-content.repository.file.editor .repo-editor-header #file-name:not([type="hidden"]) {
   width: 240px !important;
   max-width: 100%;
@@ -91,7 +91,7 @@
 }
 
 /* GitHub's commit dialog: a 480px overlay with a titled header, the fields, and Cancel and the commit button at the
-   bottom right. Forgejo styles every <dialog> (padding, a 1.43rem header and a grey actions bar); this replaces it. */
+   bottom right. NovroForge styles every <dialog> (padding, a 1.43rem header and a grey actions bar); this replaces it. */
 .page-content.repository.file.editor dialog.theme-commit-dialog {
   width: min(480px, calc(100vw - 32px));
   min-width: 0;
@@ -110,7 +110,7 @@
   background: var(--color-overlay-backdrop);
 }
 
-/* Forgejo's commit box (border, padding, the avatar's 64px indent) does not apply inside the dialog. */
+/* NovroForge's commit box (border, padding, the avatar's 64px indent) does not apply inside the dialog. */
 .page-content.repository.file.editor dialog.theme-commit-dialog > .commit-form {
   margin: 0;
   padding: 0;
@@ -265,7 +265,7 @@
     min-height: 100px;
     resize: vertical;
   }
-  /* A field Forgejo refused (the branch exists, the email is not the user's). */
+  /* A field NovroForge refused (the branch exists, the email is not the user's). */
   & .field.error :is(input, .theme-select) {
     border-color: var(--github-bgColor-danger-emphasis);
   }
@@ -295,7 +295,7 @@
     opacity: 1;
   }
   /* The theme's checkbox rows indent the label past an absolutely placed box and lay it out as flex, which splits
-     Forgejo's sentences with <strong> into columns. */
+     NovroForge's sentences with <strong> into columns. */
   & .ui.checkbox > label {
     display: block;
     margin: 0;
@@ -337,7 +337,7 @@
       left: 12px;
       color: var(--color-text-light-1);
     }
-    /* Forgejo fixes this field at 240px with a 26px indent, both !important. */
+    /* NovroForge fixes this field at 240px with a 26px indent, both !important. */
     & > input {
       width: 100% !important;
       padding-inline-start: 36px !important;

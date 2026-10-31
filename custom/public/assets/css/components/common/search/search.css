@@ -16,7 +16,7 @@
   outline-offset: -1px;
 }
 
-/* :is() keeps one specificity for fields inside and outside Forgejo's .ui.form. */
+/* :is() keeps one specificity for fields inside and outside NovroForge's .ui.form. */
 :is(.ui.form, body) .theme-search-field input[type="search"] {
   flex: 1;
   width: 100%;
@@ -240,7 +240,7 @@
   color: var(--github-fgColor-accent);
 }
 
-/* Forgejo's native query/mode/submit group (shared/search/combo_multi), opted in on its form. */
+/* NovroForge's native query/mode/submit group (shared/search/combo_multi), opted in on its form. */
 .ui.form.theme-search-control > .ui.action.input {
   display: flex;
   align-items: stretch;

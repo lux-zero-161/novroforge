@@ -115,7 +115,7 @@
   min-width: 0;
 }
 
-/* Forgejo's search through the wiki's content, which GitHub's wiki has no counterpart for. */
+/* NovroForge's search through the wiki's content, which GitHub's wiki has no counterpart for. */
 .page-content.repository.wiki .theme-wiki-search {
   display: block;
   margin-bottom: 16px;
@@ -268,7 +268,7 @@
   text-align: center;
 }
 
-/* Forgejo's link to the pages index closes the box, where GitHub offers the rest of a long list. */
+/* NovroForge's link to the pages index closes the box, where GitHub offers the rest of a long list. */
 .page-content.repository.wiki .theme-wiki-pages-all {
   display: block;
   padding: 8px;
@@ -327,7 +327,7 @@
   white-space: nowrap;
 }
 
-/* Clone this wiki: GitHub's small heading over the URL and its copy button; Forgejo's HTTP and SSH switch leads. */
+/* Clone this wiki: GitHub's small heading over the URL and its copy button; NovroForge's HTTP and SSH switch leads. */
 .page-content.repository.wiki .theme-wiki-clone > h3 {
   margin: 0 0 8px;
   font-size: 14px;

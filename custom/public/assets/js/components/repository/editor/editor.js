@@ -8,7 +8,7 @@
   const commit = document.getElementById("commit-button");
   const openers = document.querySelectorAll("[data-theme-commit-open]");
 
-  // Forgejo's editor disables its commit button until the file or its path changes; Commit changes… follows it.
+  // NovroForge's editor disables its commit button until the file or its path changes; Commit changes… follows it.
   const follow = () => {
     for (const opener of openers) opener.disabled = Boolean(commit?.disabled);
   };
@@ -37,7 +37,7 @@
     invalid.reportValidity();
   });
 
-  // Enter in the file name submits the form through its default button, Forgejo's commit button in the closed dialog.
+  // Enter in the file name submits the form through its default button, NovroForge's commit button in the closed dialog.
   // GitHub opens the dialog instead, so the message and the branch are chosen before anything is committed.
   form?.addEventListener("submit", event => {
     if (dialog.open) return;
@@ -54,7 +54,7 @@
     });
   }
 
-  // Forgejo answers a refused commit (a branch name that is taken, an email that is not the user's) with the page
+  // NovroForge answers a refused commit (a branch name that is taken, an email that is not the user's) with the page
   // again and the field marked; open the dialog with the refused field focused.
   if (dialog.querySelector(".field.error")) {
     dialog.showModal();

@@ -109,13 +109,13 @@
     box.toggleAttribute("data-context-expanded", expanded);
     if (!button) return;
     const label = button.dataset[expanded ? "collapseLabel" : "expandLabel"];
-    // Forgejo moves title into its own tooltip attribute, so keep both in sync.
+    // NovroForge moves title into its own tooltip attribute, so keep both in sync.
     button.title = label;
     if (button.hasAttribute("data-tooltip-content")) button.setAttribute("data-tooltip-content", label);
     button.setAttribute("aria-label", `${label}: ${box.dataset.newFilename}`);
     if (expanded) button.hidden = false;
   }
-  // GitHub's "Collapse non-diff lines": reload the file's original diff through Forgejo's own "Load diff"
+  // GitHub's "Collapse non-diff lines": reload the file's original diff through NovroForge's own "Load diff"
   // handler, which also re-enables htmx on the restored expander buttons.
   function collapseContext(box, button) {
     const source = box.querySelector(".diff-file-body > .file-body");
@@ -183,7 +183,7 @@
       if (expand) {
         const expanders = Boolean(box.querySelector(".code-expander-button"));
         expand.hidden = !expanders && !box.hasAttribute("data-context-expanded");
-        // Re-enabled once Forgejo has restored the collapsed diff.
+        // Re-enabled once NovroForge has restored the collapsed diff.
         if (expanders && box.hasAttribute("data-context-reloading")) {
           box.removeAttribute("data-context-reloading");
           expand.disabled = false;
@@ -196,7 +196,7 @@
       button.setAttribute("aria-label", expanded ? "Collapse file" : "Expand file");
     }
   }
-  // Forgejo hides a folded file body at once. Keep it shown while its height slides to or from zero; past the
+  // NovroForge hides a folded file body at once. Keep it shown while its height slides to or from zero; past the
   // viewport the motion is not visible, so long diffs only animate their first screen.
   function animateFold(box) {
     const body = box.querySelector(":scope > .diff-file-body");
@@ -241,7 +241,7 @@
       attributeFilter: ["data-folded", "data-tree-filtered"],
     });
   updateFoldLabels();
-  // GitHub loads the next files while scrolling. Press Forgejo's hidden "Show more" link before the end comes into
+  // GitHub loads the next files while scrolling. Press NovroForge's hidden "Show more" link before the end comes into
   // view; its handler swaps in a new #diff-incomplete for each page. A loader still there after a while failed or is
   // slow, so it is watched again and retried once in view.
   const content = document.getElementById("diff-content-container");
@@ -264,7 +264,7 @@
     new MutationObserver(watchIncomplete).observe(content, { childList: true });
     watchIncomplete();
   }
-  // Forgejo writes the viewed count into a hidden <progress>; draw it as GitHub's progress ring.
+  // NovroForge writes the viewed count into a hidden <progress>; draw it as GitHub's progress ring.
   const viewedProgress = document.getElementById("viewed-files-summary");
   const viewedRing = document.querySelector(".diff-viewed-ring");
   if (viewedProgress && viewedRing) {
@@ -277,7 +277,7 @@
     new MutationObserver(updateRing).observe(viewedProgress, { attributes: true, attributeFilter: ["value", "max"] });
     updateRing();
   }
-  // Let Forgejo load the actual referencing branches using its existing handler.
+  // Let NovroForge load the actual referencing branches using its existing handler.
   window.addEventListener("load", () => document.querySelector(".commit-card .load-branches-and-tags")?.click(), {
     once: true,
   });

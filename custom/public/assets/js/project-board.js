@@ -10,7 +10,7 @@
   window.addEventListener("resize", fitBoard);
 
   // New issue for organization and user projects: list the owner's repositories that take issues. Each opens
-  // Forgejo's new issue form with this project set, and Forgejo returns to the board once the issue is created.
+  // NovroForge's new issue form with this project set, and NovroForge returns to the board once the issue is created.
   const newIssue = document.querySelector(".github-project-new-issue");
   if (newIssue) {
     const appSubUrl = window.config?.appSubUrl ?? "";
@@ -71,7 +71,7 @@
     });
   }
 
-  // Forgejo paints an edited column's colour as its background. Show it as the column's status dot instead.
+  // NovroForge paints an edited column's colour as its background. Show it as the column's status dot instead.
   const adoptColumnColor = column => {
     const color = column.style.getPropertyValue("background");
     if (!color) return;
@@ -107,7 +107,7 @@
   };
   if (filter) {
     filter.addEventListener("input", applyFilter);
-    // Forgejo rewrites the counts when a card moves between columns.
+    // NovroForge rewrites the counts when a card moves between columns.
     const cardsObserver = new MutationObserver(() => filter.value && applyFilter());
     for (const cards of board.querySelectorAll(".project-column > .cards"))
       cardsObserver.observe(cards, { childList: true });
@@ -143,7 +143,7 @@
   board.addEventListener("scroll", event => event.target.closest?.(".theme-dropdown-panel") || closeCardMenus(), true);
   window.addEventListener("resize", closeCardMenus);
 
-  // Move to top, bottom or another column, then save the target column's order the way Forgejo's drag and drop does.
+  // Move to top, bottom or another column, then save the target column's order the way NovroForge's drag and drop does.
   board.addEventListener("click", async event => {
     const button = event.target.closest("[data-project-card-move]");
     if (!button || button.disabled) return;
@@ -191,7 +191,7 @@
   let closing = false;
   function closePanel() {
     if (panel.hidden) return;
-    // Unload the page first, so Forgejo can ask about an unsaved issue or comment. Cancelling keeps the panel open.
+    // Unload the page first, so NovroForge can ask about an unsaved issue or comment. Cancelling keeps the panel open.
     closing = true;
     frame.src = "about:blank";
   }
@@ -246,7 +246,7 @@
     panel.removeAttribute("data-loading");
     loads++;
     try {
-      // Forgejo returns to the project once an issue is created from it: show the new card on the board.
+      // NovroForge returns to the project once an issue is created from it: show the new card on the board.
       const trimmed = path => path.replace(/\/+$/, "");
       if (trimmed(frame.contentWindow.location.pathname) === trimmed(window.location.pathname)) {
         window.location.reload();
@@ -259,7 +259,7 @@
     }
   });
 
-  // New issue opens Forgejo's form in the panel too, with the project set.
+  // New issue opens NovroForge's form in the panel too, with the project set.
   document.addEventListener("click", event => {
     const link = event.target.closest("a[data-project-panel-link]");
     if (!link || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;

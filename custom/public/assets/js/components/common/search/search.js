@@ -23,7 +23,7 @@
     input.focus();
   });
 
-  // Qualifiers Forgejo's issue search understands; their values are highlighted like GitHub's.
+  // Qualifiers NovroForge's issue search understands; their values are highlighted like GitHub's.
   const qualifiers = new Set(["is", "author", "assignee", "review", "mentions", "sort", "modified"]);
 
   function setup(input) {

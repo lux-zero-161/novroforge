@@ -48,7 +48,7 @@
 			<td class="lines-type-marker"><span class="tw-font-mono" data-type-marker="{{$line.GetLineTypeMarker}}"></span></td>
 			{{if eq .GetType 4}}
 				<td class="chroma lines-code blob-hunk">{{/*
-					*/}}{{/* Forgejo's inline diff drops the first character of a hunk header as if it were the +/- marker. */}}{{template "repo/diff/section_code" dict "diff" (dict "Content" $line.Content "EscapeStatus" $inlineDiff.EscapeStatus)}}{{/*
+					*/}}{{/* NovroForge's inline diff drops the first character of a hunk header as if it were the +/- marker. */}}{{template "repo/diff/section_code" dict "diff" (dict "Content" $line.Content "EscapeStatus" $inlineDiff.EscapeStatus)}}{{/*
 				*/}}</td>
 			{{else}}
 				<td class="chroma lines-code{{if (not $line.RightIdx)}} lines-code-old{{end}}">{{/*

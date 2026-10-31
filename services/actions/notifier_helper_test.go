@@ -434,5 +434,5 @@ func TestActionsNotifier_PermissionsWarning(t *testing.T) {
 	assert.EqualValues(t, 0, run.PreExecutionErrorCode, "pre execution error details: %#v", run.PreExecutionErrorDetails)
 
 	assert.Equal(t, []actions_model.PreExecutionWarning{1}, run.PreExecutionWarningCodes)
-	assert.Equal(t, [][]any{{"j1", "https://forgejo.org/docs/v0.0/user/api/authorized-integrations/"}}, run.PreExecutionWarningDetails) // derived from setting.AppDocsVer
+	assert.Equal(t, [][]any{{"j1", "https://novroforge.xyz/docs/v0.0/user/api/authorized-integrations/"}}, run.PreExecutionWarningDetails) // derived from setting.AppDocsVer
 }

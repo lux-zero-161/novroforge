@@ -54,7 +54,7 @@ func TestCSRFProtection(t *testing.T) {
 		t.Helper()
 
 		req := NewRequest(t, method, urlStr)
-		req.Header.Set("Origin", "https://forgejo.org")
+		req.Header.Set("Origin", "https://novroforge.xyz")
 		// Cannot set Host as header, `req.Host` is used (which is normally parsed)
 		// from the Host header, but in testing we can't do this.
 		req.Host = "forgejo.org"

@@ -1,6 +1,6 @@
-{{/* The release form's tag menu, as GitHub's "Choose a tag": Forgejo's tag name field filters the repository's tags
+{{/* The release form's tag menu, as GitHub's "Choose a tag": NovroForge's tag name field filters the repository's tags
 and names a new one, the tags below pick an existing one, and the last row offers to create the typed tag.
-public/assets/js/repo-release-editor.js drives it; Forgejo's own handler on #tag-name still updates the helper text,
+public/assets/js/repo-release-editor.js drives it; NovroForge's own handler on #tag-name still updates the helper text,
 the target and the title. */}}
 <div class="theme-release-tag-filter">
 	<input id="tag-name" name="tag_name" value="{{.tag_name}}" aria-label="{{ctx.Locale.Tr "repo.release.tag_name"}}" placeholder="{{ctx.Locale.Tr "repo.release.tag_name"}}" autofocus required maxlength="255" autocomplete="off" spellcheck="false">

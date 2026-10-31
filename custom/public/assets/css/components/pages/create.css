@@ -1,4 +1,4 @@
-/* Create pages (repository, fork, migration, organization, milestone): GitHub's page instead of Forgejo's box. An
+/* Create pages (repository, fork, migration, organization, milestone): GitHub's page instead of NovroForge's box. An
    800px column, the shared form header (components/common/form/header) over the form, sections divided by lines and
    the submit on the right. Kept as a page stylesheet, outside the size-limited theme files. */
 .page-content.new:is(.repo, .org, .migrate, .fork) > .ui.grid {
@@ -36,7 +36,7 @@
   }
 }
 
-/* Forgejo lays these forms out with right-aligned labels in a 250px column and indents the notes to match, all with
+/* NovroForge lays these forms out with right-aligned labels in a 250px column and indents the notes to match, all with
    !important, and stretches dropdowns to half the form; GitHub stacks the label over the control. */
 .page-content.new:is(.repo, .org, .migrate, .fork) .ui.form {
   width: 100% !important;
@@ -147,7 +147,7 @@
   flex: none;
 }
 
-/* The template's items: Forgejo's checkboxes in two columns. */
+/* The template's items: NovroForge's checkboxes in two columns. */
 .page-content.new.repo .theme-create-box .theme-create-units {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));

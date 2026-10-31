@@ -381,8 +381,8 @@
   height: 100%;
   width: 100%;
 }
-/* While an issue loads, hide the frame and show a loader like Forgejo's .is-loading. That class would block the
-   panel's buttons, so the loader is drawn here with Forgejo's spin animation. */
+/* While an issue loads, hide the frame and show a loader like NovroForge's .is-loading. That class would block the
+   panel's buttons, so the loader is drawn here with NovroForge's spin animation. */
 .github-project-panel[data-loading] .github-project-panel-sheet > iframe {
   visibility: hidden;
 }

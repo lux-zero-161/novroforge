@@ -1,5 +1,5 @@
 {{template "base/head" .}}
-{{/* GitHub lists runs beside the shared sidebar layout; the sidebar stays outside the part Forgejo refreshes. */}}
+{{/* GitHub lists runs beside the shared sidebar layout; the sidebar stays outside the part NovroForge refreshes. */}}
 <div class="page-content repository actions github-actions-list{{if .HasWorkflowsOrRuns}} theme-sidebar-layout{{end}}"{{if .HasWorkflowsOrRuns}} data-theme-sidebar="actions_sidebar_collapsed"{{end}}>
 <link rel="stylesheet" href="{{AssetUrlPrefix}}/css/actions-list.css">
 	{{if .HasWorkflowsOrRuns}}{{template "repo/actions/sidebar" .}}{{end}}

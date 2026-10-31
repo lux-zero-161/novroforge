@@ -16,7 +16,7 @@
   pointer-events: none;
 }
 
-/* :is() keeps one specificity for selects inside and outside Forgejo's .ui.form. */
+/* :is() keeps one specificity for selects inside and outside NovroForge's .ui.form. */
 :is(.ui.form, body) .theme-select-wrap > .theme-select {
   appearance: none;
   transition-property: border-color, box-shadow, background-color, color;

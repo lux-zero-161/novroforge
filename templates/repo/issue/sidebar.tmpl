@@ -18,7 +18,7 @@
     </nav>
     <hr>
     <nav aria-label="Pages">
-        {{/* GitHub lists Projects, Milestones and Labels; Forgejo's extra pages follow them. */}}
+        {{/* GitHub lists Projects, Milestones and Labels; NovroForge's extra pages follow them. */}}
         {{if and (not .UnitProjectsGlobalDisabled) (.Permission.CanRead $.UnitTypeProjects)}}<a class="{{if .IsProjectsPage}}active{{end}}" href="{{.RepoLink}}/projects">{{svg "octicon-table" 16}}{{ctx.Locale.Tr "repo.projects"}}</a>{{end}}
         <a class="{{if $isMilestonePage}}active{{end}}" href="{{.RepoLink}}/milestones">{{svg "octicon-milestone" 16}}{{ctx.Locale.Tr "repo.milestones"}}</a>
         <a class="{{if .PageIsLabels}}active{{end}}" href="{{.RepoLink}}/labels">{{svg "octicon-tag" 16}}{{ctx.Locale.Tr "repo.labels"}}</a>

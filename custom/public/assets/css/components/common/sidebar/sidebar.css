@@ -5,7 +5,7 @@
   padding-top: 0;
 }
 
-/* Forgejo keeps 80px between the page and the footer; with a sidebar that space showed as a gap under its border.
+/* NovroForge keeps 80px between the page and the footer; with a sidebar that space showed as a gap under its border.
    The sidebar runs down to the footer, as on GitHub, and the main column keeps 40px (its 24px margin and this). */
 .full.height:has(> .page-content.theme-sidebar-layout[data-theme-sidebar]) {
   padding-bottom: 0;

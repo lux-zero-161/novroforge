@@ -59,7 +59,7 @@
   color: var(--color-text-light-1);
 }
 
-/* Forgejo sizes buttons in dropdown summaries through --button-min-height on more specific rules. */
+/* NovroForge sizes buttons in dropdown summaries through --button-min-height on more specific rules. */
 details > summary.button.theme-control {
   min-height: 32px;
 }
@@ -113,7 +113,7 @@ details > summary.button.theme-control-small {
 }
 
 /*
- * Native controls: Forgejo's own buttons that cannot take the theme-control class get the same
+ * Native controls: NovroForge's own buttons that cannot take the theme-control class get the same
  * 32px control size here. To size another native button, add it to the list.
  */
 :is(
@@ -135,9 +135,9 @@ details > summary.button.theme-control-small {
   line-height: 20px;
 }
 
-/* The branch selector is a Forgejo Vue component: GitHub sets its branch name in the button's weight and uses a
+/* The branch selector is a NovroForge Vue component: GitHub sets its branch name in the button's weight and uses a
    16px caret. */
-/* Its spacing comes from Forgejo's Tailwind utilities, which are !important. */
+/* Its spacing comes from NovroForge's Tailwind utilities, which are !important. */
 .js-branch-tag-selector .ui.ui.ui.ui.button.branch-dropdown-button {
   padding: 5px 12px !important;
 }

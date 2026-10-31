@@ -190,7 +190,7 @@
       align-items: center;
       gap: 8px;
       margin: 0 0 -1px;
-      /* Forgejo pads tabular items with !important. */
+      /* NovroForge pads tabular items with !important. */
       padding: 8px 12px !important;
       border: 0;
       border-bottom: 2px solid transparent;
@@ -264,7 +264,7 @@
 }
 
 /* Repository units: what a unit's checkbox enables sits under its title, and the choices under a radio under that.
-   Forgejo indents the inner choices by 16px with !important utilities; GitHub's step is the checkbox gutter. */
+   NovroForge indents the inner choices by 16px with !important utilities; GitHub's step is the checkbox gutter. */
 .page-content
   > .ui.container.flex-container.theme-settings
   > .flex-container-main

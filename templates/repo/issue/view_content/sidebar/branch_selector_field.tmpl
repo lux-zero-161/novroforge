@@ -1,5 +1,5 @@
-{{/* Forgejo 17's branch and tag selector as GitHub's Development section: a heading with the gear like the other
-sidebar sections, then the linked branch or tag. The menu and its scripts are Forgejo's; the caller places the
+{{/* NovroForge 17's branch and tag selector as GitHub's Development section: a heading with the gear like the other
+sidebar sections, then the linked branch or tag. The menu and its scripts are NovroForge's; the caller places the
 dividers. */}}
 {{if and (not .Issue.IsPull) (not .PageIsComparePull)}}
 {{$hasIssuesOrPullsWritePermission := and .HasIssuesOrPullsWritePermission (not .Repository.IsArchived)}}
@@ -13,7 +13,7 @@ dividers. */}}
 		<strong>Development</strong>
 		{{if $hasIssuesOrPullsWritePermission}}{{svg "octicon-gear" 16 "tw-ml-1"}}{{end}}
 	</a>
-	{{/* Forgejo's script writes the chosen branch or tag into .branch-name inside a .ui element of this dropdown. */}}
+	{{/* NovroForge's script writes the chosen branch or tag into .branch-name inside a .ui element of this dropdown. */}}
 	<div class="ui theme-issue-development-ref">
 		{{svg "octicon-git-branch" 16}}
 		<span class="text branch-name gt-ellipsis">{{if .Reference}}{{$.RefEndName}}{{else}}{{ctx.Locale.Tr "repo.issues.no_ref"}}{{end}}</span>

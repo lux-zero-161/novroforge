@@ -97,7 +97,7 @@ func TestNavbarItems(t *testing.T) {
 			{`.dialog-dropdown a[href="/user/settings"]`, true},
 			{`.dialog-dropdown a[href="/admin"]`, false},
 			{`.dialog-dropdown a[href="/-/demo"]`, false},
-			{`.dialog-dropdown a[href="https://forgejo.org/docs/v0.0/"]`, true}, // derived from setting.AppDocsVer
+			{`.dialog-dropdown a[href="https://novroforge.xyz/docs/v0.0/"]`, true}, // derived from setting.AppDocsVer
 			{`.dialog-dropdown button[form="logout-user-action"]`, true},
 			{`form#logout-user-action[action="/user/logout"]`, true},
 		}
@@ -117,7 +117,7 @@ func TestNavbarItems(t *testing.T) {
 			{`.dialog-dropdown a[href="/user/settings"]`, true},
 			{`.dialog-dropdown a[href="/admin"]`, true},
 			{`.dialog-dropdown a[href="/-/demo"]`, false},
-			{`.dialog-dropdown a[href="https://forgejo.org/docs/v0.0/"]`, true},
+			{`.dialog-dropdown a[href="https://novroforge.xyz/docs/v0.0/"]`, true},
 			{`.dialog-dropdown button[form="logout-user-action"]`, true},
 			{`form#logout-user-action[action="/user/logout"]`, true},
 		}

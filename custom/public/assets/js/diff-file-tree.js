@@ -7,7 +7,7 @@
   const container = document.getElementById("diff-container");
   const toggle = document.querySelector(".diff-toggle-file-tree-button");
   const mobile = matchMedia("(max-width: 767.98px)");
-  // Forgejo shows and hides the tree with tw-hidden; the template sets the first state before paint and this keeps the
+  // NovroForge shows and hides the tree with tw-hidden; the template sets the first state before paint and this keeps the
   // layout and the toggle in step. On phones the toggle opens the tree above the files instead.
   const updateToggle = () => {
     const treeHidden = tree.classList.contains("tw-hidden");
@@ -48,7 +48,7 @@
   const children = directory =>
     directory.nextElementSibling?.matches(".sub-items") ? directory.nextElementSibling : null;
   // Large pull requests have thousands of rows, so only touch attributes that change: every write invalidates styles
-  // and wakes Forgejo's document-wide observers.
+  // and wakes NovroForge's document-wide observers.
   const setAttribute = (element, name, value) => {
     if (element.getAttribute(name) !== String(value)) element.setAttribute(name, value);
   };
@@ -115,8 +115,8 @@
           // Reveal matching descendants when searching, including Vue's lazy subtrees.
           if (revealMatches && visible && row.getAttribute("aria-expanded") === "false") row.click();
         } else if (row.matches(".item-file")) {
-          // Forgejo 17 tree items have no href, so remember the path they stand for. Their title is left alone:
-          // Forgejo turns every title change into an eagerly created tooltip.
+          // NovroForge 17 tree items have no href, so remember the path they stand for. Their title is left alone:
+          // NovroForge turns every title change into an eagerly created tooltip.
           row.dataset.diffPath ||= prefix + (row.querySelector("span")?.textContent.trim() || row.title);
           const file = byName.get(row.dataset.diffPath);
           toggleAttribute(row, "data-tree-filtered", file ? !matches(file) : false);

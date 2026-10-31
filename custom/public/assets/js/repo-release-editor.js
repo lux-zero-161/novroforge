@@ -1,6 +1,6 @@
-// GitHub's "Choose a tag" menu on the new release form (templates/repo/release/tag_menu.tmpl). Forgejo's tag name field
+// GitHub's "Choose a tag" menu on the new release form (templates/repo/release/tag_menu.tmpl). NovroForge's tag name field
 // sits at the top of the menu: typing filters the repository's tags and offers to create the typed one, a tag row fills
-// the field. Forgejo listens for keyup on the field to update the helper text, the target and the title, so a picked tag
+// the field. NovroForge listens for keyup on the field to update the helper text, the target and the title, so a picked tag
 // sends one too. The shared dropdown controller closes the menu after a row is clicked.
 (() => {
   const input = document.getElementById("tag-name");
@@ -31,12 +31,12 @@
     if (label) label.textContent = value || picker.dataset.emptyLabel || "";
   };
 
-  const notifyForgejo = () => input.dispatchEvent(new KeyboardEvent("keyup"));
+  const notifyNovroForge = () => input.dispatchEvent(new KeyboardEvent("keyup"));
 
-  // Forgejo only listens for keyup; a pasted or dropped name reaches it too.
+  // NovroForge only listens for keyup; a pasted or dropped name reaches it too.
   input.addEventListener("input", () => {
     update();
-    notifyForgejo();
+    notifyNovroForge();
   });
   input.addEventListener("keydown", event => {
     // Enter keeps the typed name instead of submitting the form, as GitHub's menu does.
@@ -57,7 +57,7 @@
     if (!tag) return;
     input.value = tag.dataset.tag;
     update();
-    notifyForgejo();
+    notifyNovroForge();
     details.querySelector("summary")?.focus();
   });
   update();

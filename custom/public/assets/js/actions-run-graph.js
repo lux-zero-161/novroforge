@@ -1,4 +1,4 @@
-// GitHub's job graph for the Actions run summary. Forgejo's run data has no job dependencies, so they come from the
+// GitHub's job graph for the Actions run summary. NovroForge's run data has no job dependencies, so they come from the
 // workflow file itself; the run page builds the cards and uses this to place them in stages and draw the links.
 window.themeActionsGraph = (() => {
   const unquote = value => value.trim().replace(/^(["'])(.*)\1$/, "$2");

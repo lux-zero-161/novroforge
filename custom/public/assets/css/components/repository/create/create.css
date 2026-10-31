@@ -18,7 +18,7 @@
   max-width: 50%;
 }
 
-/* Forgejo sizes the fork and migration dropdowns to half the form with !important. */
+/* NovroForge sizes the fork and migration dropdowns to half the form with !important. */
 .theme-create-owner-name > .theme-create-owner > .ui.selection.owner.dropdown {
   display: inline-flex !important;
   align-items: center;

@@ -63,10 +63,10 @@ func NodeInfo(ctx *context.APIContext) {
 	nodeInfo := &structs.NodeInfo{
 		Version: "2.1",
 		Software: structs.NodeInfoSoftware{
-			Name:       "forgejo",
+			Name:       "novroforge",
 			Version:    setting.AppVer,
-			Repository: "https://codeberg.org/forgejo/forgejo.git",
-			Homepage:   "https://forgejo.org/",
+			Repository: "https://novroforge.xyz/",
+			Homepage:   "https://novroforge.xyz/",
 		},
 		Protocols: []string{"activitypub"},
 		Services: structs.NodeInfoServices{

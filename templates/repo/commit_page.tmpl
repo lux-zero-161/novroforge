@@ -1,4 +1,4 @@
-{{/* GitHub-style commit page using Forgejo commit and diff data directly. */}}
+{{/* GitHub-style commit page using NovroForge commit and diff data directly. */}}
 {{template "base/head" .}}
 <div role="main" aria-label="{{.Title}}" class="page-content repository diff commit-page">
 	<div class="ui container fluid padded commit-page-container">
@@ -182,7 +182,7 @@
 					</div>
 				</div>
 				{{if .Commit.Signature}}
-					{{/* Forgejo's signature details from commit_header: who signed the commit with which key, or why it is not verified. */}}
+					{{/* NovroForge's signature details from commit_header: who signed the commit with which key, or why it is not verified. */}}
 					{{$signClass := "sign-unverified"}}
 					{{if .Verification.Verified}}
 						{{if eq .Verification.TrustStatus "trusted"}}

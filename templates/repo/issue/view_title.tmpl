@@ -1,4 +1,4 @@
-{{/* Forgejo 17 view_title.tmpl; a pull request's title row has GitHub's Edit button and Code menu. */}}
+{{/* NovroForge 17 view_title.tmpl; a pull request's title row has GitHub's Edit button and Code menu. */}}
 {{if .Flash}}
 	<div class="sixteen wide column tw-mb-2">
 		{{template "base/alert" .}}
@@ -17,7 +17,7 @@
 			{{if and (not .Issue.IsPull) (not .Repository.IsArchived)}}
 			<a role="button" class="ui small primary button" href="{{.RepoLink}}/issues/new{{if .NewIssueChooseTemplate}}/choose{{end}}">{{ctx.Locale.Tr "repo.issues.new"}}</a>
 			{{end}}
-			{{/* GitHub's green Code menu: clone the repository and check out the pull request, with Forgejo's command
+			{{/* GitHub's green Code menu: clone the repository and check out the pull request, with NovroForge's command
 				line instructions, shown under the same conditions as at the bottom of the conversation. */}}
 			{{if and .Issue.IsPull .Issue.PullRequest.HeadRepo (not .Issue.PullRequest.HasMerged) (not .Issue.IsClosed) (.Permission.CanRead $.UnitTypeCode)}}
 				{{template "components/common/dropdown/dropdown" dict "Kind" "actions" "Label" (ctx.Locale.Tr "repo.code") "Icon" "octicon-code" "Primary" true "Class" "pull-code-menu" "Items" "repo/issue/view_title_code" "Data" $}}
@@ -65,7 +65,7 @@
 					{{$headHref = HTMLFormat `<a href="%s">%s</a>` .HeadBranchLink $headHref}}
 				{{end}}
 				{{/* GitHub's English sentence reads "into <base> from <head>", with the copy button outside the branch label.
-					Other languages keep Forgejo's translated sentence, which needs the button inside the head argument. */}}
+					Other languages keep NovroForge's translated sentence, which needs the button inside the head argument. */}}
 				{{$githubOrder := eq (slice ctx.Locale.Lang 0 2) "en"}}
 				{{$copyBranch := ""}}
 				{{if not .MadeUsingAGit}}

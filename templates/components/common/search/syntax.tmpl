@@ -1,5 +1,5 @@
-{{/* GitHub lists the search qualifiers by name when the field gets focus; these are the ones Forgejo's issue search
-     understands (the entries of Forgejo's shared/search/issue/syntax dialog), with its hint as the tooltip.
+{{/* GitHub lists the search qualifiers by name when the field gets focus; these are the ones NovroForge's issue search
+     understands (the entries of NovroForge's shared/search/issue/syntax dialog), with its hint as the tooltip.
      search.js inserts data-insert at the caret and matches typing against the name or the qualifier. */}}
 <div class="theme-search-syntax" role="listbox" aria-label="{{ctx.Locale.Tr "search.syntax"}}" hidden>
 	<button type="button" class="theme-search-syntax-item" role="option" data-insert="is:open " title="is:open">{{svg "octicon-issue-opened" 16}}<span>{{ctx.Locale.Tr "repo.issues.open_title"}}</span></button>

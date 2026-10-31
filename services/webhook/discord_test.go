@@ -655,16 +655,16 @@ var escapedMarkdownTests = map[string]struct {
 		expected: "\\| Table \\| Example \\|\n\\|-\\|-\\|\n\\| Lorem \\| Ipsum \\|",
 	},
 	"Escape link": {
-		input:    "[Link to Forgejo](https://forgejo.org/)",
-		expected: "\\[Link to Forgejo\\]\\(https://forgejo.org/\\)",
+		input:    "[Link to Forgejo](https://novroforge.xyz/)",
+		expected: "\\[Link to Forgejo\\]\\(https://novroforge.xyz/\\)",
 	},
 	"Escape Alt text for an image": {
-		input:    "![Alt text for an image](https://forgejo.org/_astro/mascot-dark.1omhhgvT_Zm0N2n.webp)",
-		expected: "\\!\\[Alt text for an image\\]\\(https://forgejo.org/\\_astro/mascot-dark.1omhhgvT\\_Zm0N2n.webp\\)",
+		input:    "![Alt text for an image](https://novroforge.xyz/_astro/mascot-dark.1omhhgvT_Zm0N2n.webp)",
+		expected: "\\!\\[Alt text for an image\\]\\(https://novroforge.xyz/\\_astro/mascot-dark.1omhhgvT\\_Zm0N2n.webp\\)",
 	},
 	"Escape URL if it has markdown character": {
-		input:    "https://forgejo.org/_astro/mascot-dark.1omhhgvT_Zm0N2n.webp",
-		expected: "https://forgejo.org/\\_astro/mascot-dark.1omhhgvT\\_Zm0N2n.webp",
+		input:    "https://novroforge.xyz/_astro/mascot-dark.1omhhgvT_Zm0N2n.webp",
+		expected: "https://novroforge.xyz/\\_astro/mascot-dark.1omhhgvT\\_Zm0N2n.webp",
 	},
 	"Escape blockquote text": {
 		input:    "> Blockquote text.",

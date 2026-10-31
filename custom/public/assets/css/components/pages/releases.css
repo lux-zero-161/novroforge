@@ -109,7 +109,7 @@
   height: 28px;
 }
 /* GitHub's small Compare button. The shared native-button size rule weighs as much as its most specific selector, and
-   Forgejo's Tailwind padding is !important. */
+   NovroForge's Tailwind padding is !important. */
 .github-release-controls .js-branch-tag-selector .ui.ui.ui.ui.button.branch-dropdown-button {
   height: 28px !important;
   min-height: 28px !important;
@@ -366,7 +366,7 @@
   }
 }
 /* New and edit release (templates/repo/release/new.tmpl): GitHub's New release page. One column under the title: the
-   tag menu and the target as buttons over Forgejo's helper text, the title as a large field, the editor, the assets
+   tag menu and the target as buttons over NovroForge's helper text, the title as a large field, the editor, the assets
    and the drop area for binaries, the options as GitHub's checkboxes with their notes, then the actions with the
    primary one first and Delete apart on the right. */
 .page-content.repository.new.release {
@@ -455,7 +455,7 @@
     border-color: var(--color-error-border);
   }
 
-  /* The tag menu opens under its button, Forgejo's tag name field on top as the filter. */
+  /* The tag menu opens under its button, NovroForge's tag name field on top as the filter. */
   .theme-release-tag-picker .theme-dropdown-panel {
     inset: calc(100% + 4px) auto auto 0;
     width: 320px;
@@ -507,7 +507,7 @@
     }
   }
 
-  /* Forgejo's target selector as GitHub's "Target" button; its menu opens under it. */
+  /* NovroForge's target selector as GitHub's "Target" button; its menu opens under it. */
   #tag-target-selector > .ui.selection.dropdown {
     display: inline-flex;
     align-items: center;
@@ -654,7 +654,7 @@
     position: relative;
     margin: 0;
     padding-left: 20px;
-    /* The browser's own box, as in the settings forms (components/common/form); Forgejo's drawn box is round here. */
+    /* The browser's own box, as in the settings forms (components/common/form); NovroForge's drawn box is round here. */
     & > input[type="checkbox"] {
       position: absolute;
       top: 4px;
@@ -686,7 +686,7 @@
     line-height: 18px;
   }
 
-  /* Actions after a divider: the primary one first (the template keeps Forgejo's order for Enter), Delete apart. */
+  /* Actions after a divider: the primary one first (the template keeps NovroForge's order for Enter), Delete apart. */
   .theme-release-actions {
     display: flex;
     flex-wrap: wrap;
