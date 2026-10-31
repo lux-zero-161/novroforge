@@ -12,7 +12,7 @@ import (
 	"novroforge.xyz/models/db"
 	"novroforge.xyz/modules/util"
 
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 	"xorm.io/builder"
 )
 

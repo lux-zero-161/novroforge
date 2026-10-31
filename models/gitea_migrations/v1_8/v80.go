@@ -3,7 +3,7 @@
 
 package v1_8
 
-import "code.forgejo.org/xorm/xorm"
+import "novroforge/xorm/xorm"
 
 func AddIsLockedToIssues(x *xorm.Engine) error {
 	// Issue see models/issue.go

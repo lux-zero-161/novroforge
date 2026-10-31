@@ -20,8 +20,8 @@ import (
 	"novroforge.xyz/modules/timeutil"
 	webhook_module "novroforge.xyz/modules/webhook"
 
-	"code.forgejo.org/forgejo/runner/v13/act/jobparser"
-	act_model "code.forgejo.org/forgejo/runner/v13/act/model"
+	"novroforge/runner/v13/act/jobparser"
+	act_model "novroforge/runner/v13/act/model"
 	"github.com/gdgvda/cron"
 )
 

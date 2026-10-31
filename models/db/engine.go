@@ -19,10 +19,10 @@ import (
 	"novroforge.xyz/modules/log"
 	"novroforge.xyz/modules/setting"
 
-	"code.forgejo.org/xorm/xorm"
-	"code.forgejo.org/xorm/xorm/contexts"
-	"code.forgejo.org/xorm/xorm/names"
-	"code.forgejo.org/xorm/xorm/schemas"
+	"novroforge/xorm/xorm"
+	"novroforge/xorm/xorm/contexts"
+	"novroforge/xorm/xorm/names"
+	"novroforge/xorm/xorm/schemas"
 
 	_ "github.com/go-sql-driver/mysql" // Needed for the MySQL driver
 )

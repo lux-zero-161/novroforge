@@ -3,7 +3,7 @@
 
 package novroforge_migrations
 
-import "code.forgejo.org/xorm/xorm"
+import "novroforge/xorm/xorm"
 
 func init() {
 	registerMigration(&Migration{

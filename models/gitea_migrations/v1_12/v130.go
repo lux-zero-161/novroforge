@@ -7,7 +7,7 @@ import (
 	"novroforge.xyz/modules/json"
 	"novroforge.xyz/modules/setting"
 
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 )
 
 func ExpandWebhooks(x *xorm.Engine) error {

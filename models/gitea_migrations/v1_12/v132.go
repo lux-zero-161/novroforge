@@ -6,7 +6,7 @@ package v1_12
 import (
 	"fmt"
 
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 )
 
 func AddBranchProtectionProtectedFilesColumn(x *xorm.Engine) error {

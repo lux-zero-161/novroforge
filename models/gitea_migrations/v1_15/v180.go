@@ -7,7 +7,7 @@ import (
 	"novroforge.xyz/modules/json"
 	"novroforge.xyz/modules/util"
 
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 	"xorm.io/builder"
 )
 

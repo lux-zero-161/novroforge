@@ -9,7 +9,7 @@ import (
 	"novroforge.xyz/modules/log"
 	"novroforge.xyz/modules/timeutil"
 
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 )
 
 func dropOldFederationHostIndexes(x *xorm.Engine) {

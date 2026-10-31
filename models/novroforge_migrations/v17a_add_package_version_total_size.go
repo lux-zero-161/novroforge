@@ -8,7 +8,7 @@ import (
 
 	"novroforge.xyz/models/db"
 
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 )
 
 func init() {

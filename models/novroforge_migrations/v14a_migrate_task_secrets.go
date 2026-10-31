@@ -18,7 +18,7 @@ import (
 	"novroforge.xyz/modules/structs"
 	"novroforge.xyz/modules/timeutil"
 
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 	"xorm.io/builder"
 )
 

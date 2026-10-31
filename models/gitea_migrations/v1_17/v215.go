@@ -7,7 +7,7 @@ import (
 	"novroforge.xyz/models/pull"
 	"novroforge.xyz/modules/timeutil"
 
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 )
 
 func AddReviewViewedFiles(x *xorm.Engine) error {

@@ -4,7 +4,7 @@
 package v1_11
 
 import (
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 )
 
 func ExtendTrackedTimes(x *xorm.Engine) error {

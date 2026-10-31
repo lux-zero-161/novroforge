@@ -3,7 +3,7 @@
 
 package v1_22
 
-import "code.forgejo.org/xorm/xorm"
+import "novroforge/xorm/xorm"
 
 func DropWronglyCreatedTable(x *xorm.Engine) error {
 	return x.DropTables("o_auth2_application")

@@ -6,7 +6,7 @@ package v1_14
 import (
 	"fmt"
 
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 )
 
 func AddTimeIDCommentColumn(x *xorm.Engine) error {

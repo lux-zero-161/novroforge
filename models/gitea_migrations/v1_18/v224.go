@@ -4,7 +4,7 @@
 package v1_18
 
 import (
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 )
 
 func CreateUserBadgesTable(x *xorm.Engine) error {

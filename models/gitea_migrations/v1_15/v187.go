@@ -6,7 +6,7 @@ package v1_15
 import (
 	"novroforge.xyz/models/gitea_migrations/base"
 
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 )
 
 func DropWebhookColumns(x *xorm.Engine) error {

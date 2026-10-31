@@ -28,7 +28,7 @@ import (
 	"novroforge.xyz/services/forms"
 	webhook_service "novroforge.xyz/services/webhook"
 
-	"code.forgejo.org/go-chi/binding"
+	"novroforge/go-chi/binding"
 )
 
 const (

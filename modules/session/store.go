@@ -6,7 +6,7 @@ package session
 import (
 	"net/http"
 
-	"code.forgejo.org/go-chi/session"
+	"novroforge/go-chi/session"
 )
 
 // Store represents a session store

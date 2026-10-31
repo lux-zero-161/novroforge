@@ -16,9 +16,9 @@ import (
 	api "novroforge.xyz/modules/structs"
 	webhook_module "novroforge.xyz/modules/webhook"
 
-	"code.forgejo.org/forgejo/runner/v13/act/jobparser"
-	"code.forgejo.org/forgejo/runner/v13/act/model"
-	"code.forgejo.org/forgejo/runner/v13/act/workflowpattern"
+	"novroforge/runner/v13/act/jobparser"
+	"novroforge/runner/v13/act/model"
+	"novroforge/runner/v13/act/workflowpattern"
 	"github.com/gobwas/glob"
 	"go.yaml.in/yaml/v3"
 )

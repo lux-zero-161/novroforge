@@ -17,7 +17,7 @@ import (
 	"novroforge.xyz/modules/container"
 	"novroforge.xyz/modules/optional"
 
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 	"xorm.io/builder"
 )
 

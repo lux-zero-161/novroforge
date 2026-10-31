@@ -7,7 +7,7 @@ import (
 	"novroforge.xyz/models/gitea_migrations/base"
 	"novroforge.xyz/modules/timeutil"
 
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 )
 
 func AddPrimaryKeyToRepoTopic(x *xorm.Engine) error {

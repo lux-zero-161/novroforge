@@ -6,7 +6,7 @@ package v1_19
 import (
 	"novroforge.xyz/modules/setting"
 
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 )
 
 func AlterPackageVersionMetadataToLongText(x *xorm.Engine) error {

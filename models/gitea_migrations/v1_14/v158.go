@@ -10,7 +10,7 @@ import (
 	"novroforge.xyz/modules/log"
 	"novroforge.xyz/modules/setting"
 
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 )
 
 func UpdateCodeCommentReplies(x *xorm.Engine) error {

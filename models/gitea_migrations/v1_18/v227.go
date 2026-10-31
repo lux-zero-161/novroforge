@@ -6,7 +6,7 @@ package v1_18
 import (
 	"novroforge.xyz/modules/timeutil"
 
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 )
 
 type SystemSetting struct {

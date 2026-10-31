@@ -6,7 +6,7 @@ package v1_16
 import (
 	"novroforge.xyz/models/gitea_migrations/base"
 
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 )
 
 func RecreateIssueResourceIndexTable(x *xorm.Engine) error {

@@ -6,8 +6,8 @@ package novroforge_migrations
 import (
 	"fmt"
 
-	"code.forgejo.org/xorm/xorm"
-	"code.forgejo.org/xorm/xorm/schemas"
+	"novroforge/xorm/xorm"
+	"novroforge/xorm/xorm/schemas"
 )
 
 func init() {

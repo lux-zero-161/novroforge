@@ -6,8 +6,8 @@ package v1_8
 import (
 	"fmt"
 
-	"code.forgejo.org/xorm/xorm"
-	"code.forgejo.org/xorm/xorm/schemas"
+	"novroforge/xorm/xorm"
+	"novroforge/xorm/xorm/schemas"
 )
 
 func ChangeU2FCounterType(x *xorm.Engine) error {

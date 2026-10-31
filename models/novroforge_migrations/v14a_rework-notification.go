@@ -6,7 +6,7 @@ package novroforge_migrations
 import (
 	"novroforge.xyz/modules/setting"
 
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 )
 
 func init() {

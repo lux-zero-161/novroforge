@@ -6,7 +6,7 @@ package v1_16
 import (
 	"fmt"
 
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 )
 
 func CreateUserSettingsTable(x *xorm.Engine) error {

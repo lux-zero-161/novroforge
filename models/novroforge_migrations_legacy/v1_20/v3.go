@@ -6,7 +6,7 @@ package novroforge_v1_20
 import (
 	"novroforge.xyz/modules/timeutil"
 
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 )
 
 type AuthorizationToken struct {

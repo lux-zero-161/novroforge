@@ -25,7 +25,7 @@ import (
 	"novroforge.xyz/modules/graceful"
 	"novroforge.xyz/modules/nosql"
 
-	"code.forgejo.org/go-chi/session"
+	"novroforge/go-chi/session"
 )
 
 // RedisStore represents a redis session store implementation.

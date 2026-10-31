@@ -6,7 +6,7 @@ package v1_10
 import (
 	"novroforge.xyz/modules/timeutil"
 
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 )
 
 func AddTaskTable(x *xorm.Engine) error {

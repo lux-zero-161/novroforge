@@ -24,7 +24,7 @@ import (
 	"novroforge.xyz/modules/storage"
 	"novroforge.xyz/modules/util"
 
-	"code.forgejo.org/go-chi/session"
+	"novroforge/go-chi/session"
 	"github.com/mholt/archives"
 	"github.com/urfave/cli/v3"
 )

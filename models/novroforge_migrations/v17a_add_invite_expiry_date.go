@@ -7,7 +7,7 @@ import (
 	"novroforge.xyz/modules/optional"
 	"novroforge.xyz/modules/timeutil"
 
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 )
 
 func init() {

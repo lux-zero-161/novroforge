@@ -13,7 +13,7 @@ import (
 	"novroforge.xyz/modules/optional"
 	"novroforge.xyz/modules/structs"
 
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 	"xorm.io/builder"
 )
 

@@ -21,7 +21,7 @@ import (
 	"novroforge.xyz/services/forms"
 	"novroforge.xyz/services/webhook/shared"
 
-	"code.forgejo.org/go-chi/binding"
+	"novroforge/go-chi/binding"
 )
 
 type slackHandler struct{}

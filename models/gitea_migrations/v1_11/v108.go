@@ -4,7 +4,7 @@
 package v1_11
 
 import (
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 )
 
 func AddCommentIDOnNotification(x *xorm.Engine) error {

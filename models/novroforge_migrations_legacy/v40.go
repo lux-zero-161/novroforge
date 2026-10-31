@@ -3,7 +3,7 @@
 
 package novroforge_migrations_legacy
 
-import "code.forgejo.org/xorm/xorm"
+import "novroforge/xorm/xorm"
 
 func AddIndexForReleaseSha1(x *xorm.Engine) error {
 	type Release struct {

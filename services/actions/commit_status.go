@@ -20,7 +20,7 @@ import (
 	webhook_module "novroforge.xyz/modules/webhook"
 	commitstatus_service "novroforge.xyz/services/repository/commitstatus"
 
-	"code.forgejo.org/forgejo/runner/v13/act/jobparser"
+	"novroforge/runner/v13/act/jobparser"
 )
 
 // CreateCommitStatus creates a commit status for the given job.

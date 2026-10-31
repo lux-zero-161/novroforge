@@ -14,8 +14,8 @@ import (
 	"novroforge.xyz/modules/log"
 	"novroforge.xyz/modules/setting"
 
-	"code.forgejo.org/xorm/xorm"
-	"code.forgejo.org/xorm/xorm/schemas"
+	"novroforge/xorm/xorm"
+	"novroforge/xorm/xorm/schemas"
 )
 
 // RecreateTables returns a function that will recreate the tables for the provided beans using the newly provided bean

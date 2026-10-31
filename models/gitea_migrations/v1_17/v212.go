@@ -6,7 +6,7 @@ package v1_17
 import (
 	"novroforge.xyz/modules/timeutil"
 
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 )
 
 func AddPackageTables(x *xorm.Engine) error {

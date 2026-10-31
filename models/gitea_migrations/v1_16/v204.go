@@ -3,7 +3,7 @@
 
 package v1_16
 
-import "code.forgejo.org/xorm/xorm"
+import "novroforge/xorm/xorm"
 
 func AddSSHKeyIsVerified(x *xorm.Engine) error {
 	type PublicKey struct {

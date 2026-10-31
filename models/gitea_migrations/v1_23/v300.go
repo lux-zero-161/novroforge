@@ -3,7 +3,7 @@
 
 package v1_23
 
-import "code.forgejo.org/xorm/xorm"
+import "novroforge/xorm/xorm"
 
 func AddForcePushBranchProtection(x *xorm.Engine) error {
 	type ProtectedBranch struct {

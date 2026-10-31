@@ -9,7 +9,7 @@ import (
 	"novroforge.xyz/modules/setting"
 	"novroforge.xyz/modules/util"
 
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 )
 
 func DeleteOrphanedAttachments(x *xorm.Engine) error {

@@ -6,7 +6,7 @@ package novroforge_migrations_legacy
 import (
 	"novroforge.xyz/modules/timeutil"
 
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 )
 
 func AddResolvedUnixToAbuseReport(x *xorm.Engine) error {

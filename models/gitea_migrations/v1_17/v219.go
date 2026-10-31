@@ -9,7 +9,7 @@ import (
 	"novroforge.xyz/models/repo"
 	"novroforge.xyz/modules/timeutil"
 
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 )
 
 func AddSyncOnCommitColForPushMirror(x *xorm.Engine) error {

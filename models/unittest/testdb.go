@@ -25,8 +25,8 @@ import (
 	"novroforge.xyz/modules/util"
 	"novroforge.xyz/services/stats"
 
-	"code.forgejo.org/xorm/xorm"
-	"code.forgejo.org/xorm/xorm/names"
+	"novroforge/xorm/xorm"
+	"novroforge/xorm/xorm/names"
 	"github.com/stretchr/testify/require"
 )
 

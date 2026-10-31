@@ -4,8 +4,8 @@
 package v1_11
 
 import (
-	"code.forgejo.org/xorm/xorm"
-	"code.forgejo.org/xorm/xorm/schemas"
+	"novroforge/xorm/xorm"
+	"novroforge/xorm/xorm/schemas"
 )
 
 func ChangeReviewContentToText(x *xorm.Engine) error {

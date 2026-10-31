@@ -12,7 +12,7 @@ import (
 	"novroforge.xyz/modules/git"
 	"novroforge.xyz/modules/util"
 
-	"code.forgejo.org/go-chi/binding"
+	"novroforge/go-chi/binding"
 	"github.com/gobwas/glob"
 )
 

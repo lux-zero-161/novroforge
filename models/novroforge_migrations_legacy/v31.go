@@ -4,8 +4,8 @@
 package novroforge_migrations_legacy
 
 import (
-	"code.forgejo.org/xorm/xorm"
-	"code.forgejo.org/xorm/xorm/schemas"
+	"novroforge/xorm/xorm"
+	"novroforge/xorm/xorm/schemas"
 )
 
 func SetTopicsAsEmptySlice(x *xorm.Engine) error {

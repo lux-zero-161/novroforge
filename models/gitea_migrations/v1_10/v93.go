@@ -3,7 +3,7 @@
 
 package v1_10
 
-import "code.forgejo.org/xorm/xorm"
+import "novroforge/xorm/xorm"
 
 func AddEmailNotificationEnabledToUser(x *xorm.Engine) error {
 	// User see models/user.go

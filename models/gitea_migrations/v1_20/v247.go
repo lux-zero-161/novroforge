@@ -6,7 +6,7 @@ package v1_20
 import (
 	"novroforge.xyz/modules/log"
 
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 )
 
 // FixIncorrectProjectType: set individual project's type from 3(TypeOrganization) to 1(TypeIndividual)

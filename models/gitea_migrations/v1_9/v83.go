@@ -6,7 +6,7 @@ package v1_9
 import (
 	"novroforge.xyz/modules/timeutil"
 
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 )
 
 func AddUploaderIDForAttachment(x *xorm.Engine) error {

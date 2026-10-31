@@ -18,9 +18,9 @@ import (
 	"novroforge.xyz/modules/timeutil"
 	"novroforge.xyz/modules/util"
 
-	runnerv1 "code.forgejo.org/forgejo/actions-proto/runner/v1"
-	"code.forgejo.org/forgejo/runner/v13/act/jobparser"
-	"code.forgejo.org/xorm/xorm"
+	runnerv1 "novroforge/actions-proto/runner/v1"
+	"novroforge/runner/v13/act/jobparser"
+	"novroforge/xorm/xorm"
 	"google.golang.org/protobuf/types/known/structpb"
 	"google.golang.org/protobuf/types/known/timestamppb"
 	"xorm.io/builder"

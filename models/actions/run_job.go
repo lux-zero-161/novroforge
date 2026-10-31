@@ -15,7 +15,7 @@ import (
 	"novroforge.xyz/modules/timeutil"
 	"novroforge.xyz/modules/util"
 
-	"code.forgejo.org/forgejo/runner/v13/act/jobparser"
+	"novroforge/runner/v13/act/jobparser"
 	gouuid "github.com/google/uuid"
 	"go.yaml.in/yaml/v3"
 	"xorm.io/builder"

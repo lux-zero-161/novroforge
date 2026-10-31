@@ -15,8 +15,8 @@ import (
 	"novroforge.xyz/modules/timeutil"
 	"novroforge.xyz/modules/util"
 
-	"code.forgejo.org/xorm/xorm"
-	"code.forgejo.org/xorm/xorm/convert"
+	"novroforge/xorm/xorm"
+	"novroforge/xorm/xorm/convert"
 	"xorm.io/builder"
 )
 

@@ -15,8 +15,8 @@ import (
 	"novroforge.xyz/modules/container"
 	"novroforge.xyz/modules/setting"
 
-	"code.forgejo.org/xorm/xorm"
-	"code.forgejo.org/xorm/xorm/schemas"
+	"novroforge/xorm/xorm"
+	"novroforge/xorm/xorm/schemas"
 )
 
 var fixturesLoader *loader

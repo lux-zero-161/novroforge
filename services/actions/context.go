@@ -16,7 +16,7 @@ import (
 	"novroforge.xyz/modules/json"
 	"novroforge.xyz/modules/setting"
 
-	"code.forgejo.org/forgejo/runner/v13/act/model"
+	"novroforge/runner/v13/act/model"
 )
 
 func generateGiteaContextForRun(run *actions_model.ActionRun) *model.GithubContext {

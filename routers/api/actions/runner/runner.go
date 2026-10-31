@@ -18,8 +18,8 @@ import (
 	"novroforge.xyz/modules/util"
 	actions_service "novroforge.xyz/services/actions"
 
-	runnerv1 "code.forgejo.org/forgejo/actions-proto/runner/v1"
-	"code.forgejo.org/forgejo/actions-proto/runner/v1/runnerv1connect"
+	runnerv1 "novroforge/actions-proto/runner/v1"
+	"novroforge/actions-proto/runner/v1/runnerv1connect"
 	"connectrpc.com/connect"
 	gouuid "github.com/google/uuid"
 )

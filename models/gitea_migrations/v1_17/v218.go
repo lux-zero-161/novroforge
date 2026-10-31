@@ -7,8 +7,8 @@ import (
 	"novroforge.xyz/modules/setting"
 	"novroforge.xyz/modules/timeutil"
 
-	"code.forgejo.org/xorm/xorm"
-	"code.forgejo.org/xorm/xorm/schemas"
+	"novroforge/xorm/xorm"
+	"novroforge/xorm/xorm/schemas"
 )
 
 type improveActionTableIndicesAction struct {

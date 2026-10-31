@@ -1,0 +1,6 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["local>forgejo/renovate-config"],
+  "prConcurrentLimit": 1,
+  "assignees": ["mfenniak"]
+}

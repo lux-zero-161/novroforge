@@ -6,7 +6,7 @@ package v1_8
 import (
 	"novroforge.xyz/models/gitea_migrations/base"
 
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 )
 
 func RenameRepoIsBareToIsEmpty(x *xorm.Engine) error {

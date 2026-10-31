@@ -6,7 +6,7 @@ package v1_14
 import (
 	"novroforge.xyz/modules/timeutil"
 
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 )
 
 func AddSessionTable(x *xorm.Engine) error {

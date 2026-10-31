@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"slices"
 
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 )
 
 func AddBranchProtectionCanPushAndEnableWhitelist(x *xorm.Engine) error {

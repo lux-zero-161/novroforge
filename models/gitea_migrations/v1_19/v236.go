@@ -6,7 +6,7 @@ package v1_19
 import (
 	"novroforge.xyz/modules/timeutil"
 
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 )
 
 func CreateSecretsTable(x *xorm.Engine) error {

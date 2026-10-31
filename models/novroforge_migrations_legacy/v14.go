@@ -6,7 +6,7 @@ package novroforge_migrations_legacy
 import (
 	"novroforge.xyz/models/gitea_migrations/base"
 
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 )
 
 func RemoveGiteaSpecificColumnsFromRepositoryAndBadge(x *xorm.Engine) error {

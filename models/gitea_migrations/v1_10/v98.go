@@ -3,7 +3,7 @@
 
 package v1_10
 
-import "code.forgejo.org/xorm/xorm"
+import "novroforge/xorm/xorm"
 
 func AddOriginalAuthorOnMigratedReleases(x *xorm.Engine) error {
 	type Release struct {

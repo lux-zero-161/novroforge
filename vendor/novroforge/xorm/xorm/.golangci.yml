@@ -1,0 +1,65 @@
+version: "2"
+output:
+  sort-order:
+    - file
+linters:
+  default: none
+  enable:
+    - bidichk
+    - dupl
+    - errcheck
+    - gocritic
+    - govet
+    - modernize
+    - ineffassign
+    - modernize
+    - misspell
+    - revive
+    - staticcheck
+    - unconvert
+    - unparam
+    - unused
+    - usetesting
+    - wastedassign
+  exclusions:
+    generated: lax
+    presets:
+      - comments
+      - common-false-positives
+      - legacy
+      - std-error-handling
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
+    rules:
+      - linters:
+        - revive
+        text: "(var-naming|unused-parameter|exported):"
+      - linters:
+        - staticcheck
+        text: "(ST1005|ST1003|QF1001):"
+      - linters:
+          - dupl
+          - errcheck
+          - staticcheck
+          - revive
+          - unparam
+        path: _test\.go
+      - linters:
+          - gocritic
+        text: '(exitAfterDefer|singleCaseSwitch|ifElseChain):'
+formatters:
+  enable:
+    - gofmt
+    - gofumpt
+  settings:
+    gofumpt:
+      extra-rules: true
+
+  exclusions:
+    generated: lax
+    paths:
+      - third_party$
+      - builtin$
+      - examples$

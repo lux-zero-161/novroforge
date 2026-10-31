@@ -4,7 +4,7 @@
 package v1_9
 
 import (
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 )
 
 func AddAvatarFieldToRepository(x *xorm.Engine) error {

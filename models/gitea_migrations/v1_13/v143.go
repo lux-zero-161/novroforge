@@ -6,7 +6,7 @@ package v1_13
 import (
 	"novroforge.xyz/modules/log"
 
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 )
 
 func RecalculateStars(x *xorm.Engine) (err error) {

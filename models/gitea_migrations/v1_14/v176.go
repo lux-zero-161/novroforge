@@ -4,7 +4,7 @@
 package v1_14
 
 import (
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 )
 
 // RemoveInvalidLabels looks through the database to look for comments and issue_labels

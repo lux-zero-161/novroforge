@@ -3,7 +3,7 @@
 
 package novroforge_migrations_legacy
 
-import "code.forgejo.org/xorm/xorm"
+import "novroforge/xorm/xorm"
 
 func AddHashBlake2bToPackageBlob(x *xorm.Engine) error {
 	type PackageBlob struct {

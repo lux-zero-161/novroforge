@@ -3,7 +3,7 @@
 package novroforge_v1_20
 
 import (
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 )
 
 func CreateSemVerTable(x *xorm.Engine) error {

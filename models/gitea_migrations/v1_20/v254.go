@@ -4,7 +4,7 @@
 package v1_20
 
 import (
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 )
 
 func AddActionTaskOutputTable(x *xorm.Engine) error {

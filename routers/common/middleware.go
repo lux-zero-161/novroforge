@@ -16,7 +16,7 @@ import (
 	"novroforge.xyz/modules/web/routing"
 	"novroforge.xyz/services/context"
 
-	"code.forgejo.org/go-chi/session"
+	"novroforge/go-chi/session"
 	"github.com/chi-middleware/proxy"
 	chi "github.com/go-chi/chi/v5"
 )

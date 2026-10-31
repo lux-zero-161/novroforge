@@ -3,7 +3,7 @@
 
 package v1_12
 
-import "code.forgejo.org/xorm/xorm"
+import "novroforge/xorm/xorm"
 
 func AddEmailHashTable(x *xorm.Engine) error {
 	// EmailHash represents a pre-generated hash map

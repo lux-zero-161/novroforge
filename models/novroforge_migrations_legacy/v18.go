@@ -3,7 +3,7 @@
 
 package novroforge_migrations_legacy
 
-import "code.forgejo.org/xorm/xorm"
+import "novroforge/xorm/xorm"
 
 type FollowingRepo struct {
 	ID               int64  `xorm:"pk autoincr"`

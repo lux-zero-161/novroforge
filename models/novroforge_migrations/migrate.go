@@ -16,8 +16,8 @@ import (
 	"novroforge.xyz/modules/setting"
 	"novroforge.xyz/modules/timeutil"
 
-	"code.forgejo.org/xorm/xorm"
-	"code.forgejo.org/xorm/xorm/names"
+	"novroforge/xorm/xorm"
+	"novroforge/xorm/xorm/names"
 )
 
 // NovroForgeMigration table contains a record of migrations applied to the database.  (Note that there are older

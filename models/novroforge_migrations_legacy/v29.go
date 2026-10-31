@@ -6,7 +6,7 @@ package novroforge_migrations_legacy
 import (
 	"database/sql"
 
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 )
 
 func AddPublicKeyInformationForFederation(x *xorm.Engine) error {

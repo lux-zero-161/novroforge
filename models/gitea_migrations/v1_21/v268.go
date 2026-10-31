@@ -4,7 +4,7 @@
 package v1_21
 
 import (
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 )
 
 // UpdateActionsRefIndex updates the index of actions ref field

@@ -10,7 +10,7 @@ import (
 	"novroforge.xyz/models/gitea_migrations/base"
 	"novroforge.xyz/modules/setting"
 
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 )
 
 func RenameWebhookOrgToOwner(x *xorm.Engine) error {

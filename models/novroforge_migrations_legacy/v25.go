@@ -15,8 +15,8 @@ import (
 	"novroforge.xyz/modules/secret"
 	"novroforge.xyz/modules/setting"
 
-	"code.forgejo.org/xorm/xorm"
-	"code.forgejo.org/xorm/xorm/schemas"
+	"novroforge/xorm/xorm"
+	"novroforge/xorm/xorm/schemas"
 )
 
 func MigrateTwoFactorToKeying(x *xorm.Engine) error {

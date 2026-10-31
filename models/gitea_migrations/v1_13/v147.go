@@ -6,7 +6,7 @@ package v1_13
 import (
 	"novroforge.xyz/modules/timeutil"
 
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 )
 
 func CreateReviewsForCodeComments(x *xorm.Engine) error {

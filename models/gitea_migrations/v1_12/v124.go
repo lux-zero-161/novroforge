@@ -4,7 +4,7 @@
 package v1_12
 
 import (
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 )
 
 func AddUserRepoMissingColumns(x *xorm.Engine) error {

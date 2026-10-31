@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 )
 
 func UpdateMigrationServiceTypes(x *xorm.Engine) error {

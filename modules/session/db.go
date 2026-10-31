@@ -11,7 +11,7 @@ import (
 	"novroforge.xyz/models/db"
 	"novroforge.xyz/modules/timeutil"
 
-	"code.forgejo.org/go-chi/session"
+	"novroforge/go-chi/session"
 )
 
 // DBStore represents a session store implementation based on the DB.

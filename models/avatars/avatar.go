@@ -20,7 +20,7 @@ import (
 	"novroforge.xyz/modules/log"
 	"novroforge.xyz/modules/setting"
 
-	"code.forgejo.org/forgejo-contrib/go-libravatar"
+	"novroforge/contrib/go-libravatar"
 )
 
 const (

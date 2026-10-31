@@ -11,7 +11,7 @@ import (
 	"novroforge.xyz/modules/setting"
 	"novroforge.xyz/modules/timeutil"
 
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 )
 
 func RenameCredentialIDBytes(x *xorm.Engine) error {

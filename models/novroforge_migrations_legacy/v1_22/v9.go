@@ -3,7 +3,7 @@
 
 package v1_22
 
-import "code.forgejo.org/xorm/xorm"
+import "novroforge/xorm/xorm"
 
 func AddApplyToAdminsSetting(x *xorm.Engine) error {
 	type ProtectedBranch struct {

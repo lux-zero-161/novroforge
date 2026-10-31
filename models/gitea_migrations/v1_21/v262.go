@@ -4,7 +4,7 @@
 package v1_21
 
 import (
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 )
 
 func AddTriggerEventToActionRun(x *xorm.Engine) error {

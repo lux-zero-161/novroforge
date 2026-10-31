@@ -7,7 +7,7 @@ import (
 	service_message "novroforge.xyz/modules/service_message"
 	"novroforge.xyz/modules/timeutil"
 
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 )
 
 func init() {

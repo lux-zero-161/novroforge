@@ -10,7 +10,7 @@ import (
 	"novroforge.xyz/modules/web/middleware"
 	"novroforge.xyz/services/context"
 
-	"code.forgejo.org/go-chi/binding"
+	"novroforge/go-chi/binding"
 )
 
 // AdminCreateUserForm form for admin to create user

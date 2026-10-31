@@ -4,7 +4,7 @@
 package novroforge_migrations_legacy
 
 import (
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 )
 
 // see https://codeberg.org/novroforge/novroforge/issues/8373

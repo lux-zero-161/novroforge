@@ -58,7 +58,7 @@ import (
 	repo_service "novroforge.xyz/services/repository"
 	files_service "novroforge.xyz/services/repository/files"
 
-	"code.forgejo.org/forgejo/runner/v13/act/model"
+	"novroforge/runner/v13/act/model"
 
 	_ "golang.org/x/image/bmp"  // for processing bmp images
 	_ "golang.org/x/image/webp" // for processing webp images

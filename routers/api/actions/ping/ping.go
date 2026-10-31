@@ -10,8 +10,8 @@ import (
 
 	"novroforge.xyz/modules/log"
 
-	pingv1 "code.forgejo.org/forgejo/actions-proto/ping/v1"
-	"code.forgejo.org/forgejo/actions-proto/ping/v1/pingv1connect"
+	pingv1 "novroforge/actions-proto/ping/v1"
+	"novroforge/actions-proto/ping/v1/pingv1connect"
 	"connectrpc.com/connect"
 )
 

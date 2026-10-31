@@ -20,7 +20,7 @@ import (
 	"novroforge.xyz/modules/packages/maven"
 	packages_service "novroforge.xyz/services/packages"
 
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 )
 
 var getPackage = packages_service.GetPackageFileStream

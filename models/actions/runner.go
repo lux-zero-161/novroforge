@@ -22,7 +22,7 @@ import (
 	"novroforge.xyz/modules/translation"
 	"novroforge.xyz/modules/util"
 
-	runnerv1 "code.forgejo.org/forgejo/actions-proto/runner/v1"
+	runnerv1 "novroforge/actions-proto/runner/v1"
 	"xorm.io/builder"
 )
 

@@ -5,7 +5,7 @@
 package cache
 
 import (
-	"code.forgejo.org/go-chi/cache"
+	"novroforge/go-chi/cache"
 	mock "github.com/stretchr/testify/mock"
 )
 

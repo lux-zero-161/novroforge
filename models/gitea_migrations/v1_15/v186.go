@@ -6,7 +6,7 @@ package v1_15
 import (
 	"novroforge.xyz/modules/timeutil"
 
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 )
 
 func CreateProtectedTagTable(x *xorm.Engine) error {

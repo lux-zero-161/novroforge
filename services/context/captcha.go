@@ -16,8 +16,8 @@ import (
 	"novroforge.xyz/modules/setting"
 	"novroforge.xyz/modules/turnstile"
 
-	mc "code.forgejo.org/go-chi/cache"
-	"code.forgejo.org/go-chi/captcha"
+	mc "novroforge/go-chi/cache"
+	"novroforge/go-chi/captcha"
 )
 
 var (

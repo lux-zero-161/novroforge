@@ -6,7 +6,7 @@ package v1_11
 import (
 	"novroforge.xyz/models/gitea_migrations/base"
 
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 )
 
 func DropColumnHeadUserNameOnPullRequest(x *xorm.Engine) error {

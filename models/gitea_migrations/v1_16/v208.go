@@ -4,7 +4,7 @@
 package v1_16
 
 import (
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 )
 
 func UseBase32HexForCredIDInWebAuthnCredential(x *xorm.Engine) error {

@@ -21,7 +21,7 @@ import (
 	"novroforge.xyz/modules/timeutil"
 	"novroforge.xyz/modules/util"
 
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 	uuid "github.com/google/uuid"
 	"golang.org/x/crypto/bcrypt"
 	"xorm.io/builder"

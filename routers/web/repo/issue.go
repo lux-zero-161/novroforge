@@ -61,7 +61,7 @@ import (
 	pull_service "novroforge.xyz/services/pull"
 	repo_service "novroforge.xyz/services/repository"
 
-	"code.forgejo.org/go-chi/binding"
+	"novroforge/go-chi/binding"
 )
 
 const (

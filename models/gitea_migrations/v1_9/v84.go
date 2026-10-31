@@ -4,7 +4,7 @@
 package v1_9
 
 import (
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 )
 
 func AddGPGKeyImport(x *xorm.Engine) error {

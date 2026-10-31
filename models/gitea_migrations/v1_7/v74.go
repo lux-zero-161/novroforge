@@ -3,7 +3,7 @@
 
 package v1_7
 
-import "code.forgejo.org/xorm/xorm"
+import "novroforge/xorm/xorm"
 
 func AddApprovalWhitelistsToProtectedBranches(x *xorm.Engine) error {
 	type ProtectedBranch struct {

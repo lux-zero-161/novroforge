@@ -17,8 +17,8 @@ import (
 	"novroforge.xyz/modules/log"
 	"novroforge.xyz/modules/setting"
 
-	"code.forgejo.org/xorm/xorm"
-	"code.forgejo.org/xorm/xorm/names"
+	"novroforge/xorm/xorm"
+	"novroforge/xorm/xorm/names"
 )
 
 // NovroForgeVersion describes the NovroForge version table. Should have only one row with id = 1.

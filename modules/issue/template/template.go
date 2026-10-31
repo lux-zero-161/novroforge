@@ -15,7 +15,7 @@ import (
 	"novroforge.xyz/modules/container"
 	api "novroforge.xyz/modules/structs"
 
-	"code.forgejo.org/go-chi/binding"
+	"novroforge/go-chi/binding"
 )
 
 // Validate checks whether an IssueTemplate is considered valid, and returns the first error

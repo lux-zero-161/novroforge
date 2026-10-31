@@ -12,8 +12,8 @@ import (
 
 	"novroforge.xyz/modules/timeutil"
 
-	"code.forgejo.org/xorm/xorm"
-	"code.forgejo.org/xorm/xorm/schemas"
+	"novroforge/xorm/xorm"
+	"novroforge/xorm/xorm/schemas"
 )
 
 func parseU2FRegistration(raw []byte) (pubKey *ecdh.PublicKey, keyHandle []byte, err error) {

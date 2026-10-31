@@ -11,7 +11,7 @@ import (
 	"novroforge.xyz/modules/log"
 	"novroforge.xyz/modules/timeutil"
 
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 	"xorm.io/builder"
 )
 

@@ -16,7 +16,7 @@ import (
 
 	"novroforge.xyz/modules/log"
 
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 )
 
 var (

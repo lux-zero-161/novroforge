@@ -6,7 +6,7 @@ package v1_21
 import (
 	"novroforge.xyz/modules/timeutil"
 
-	"code.forgejo.org/xorm/xorm"
+	"novroforge/xorm/xorm"
 )
 
 func AddArchivedUnixColumnInLabelTable(x *xorm.Engine) error {

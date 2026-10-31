@@ -1,0 +1,23 @@
+package common
+
+import (
+	"errors"
+	"os"
+	"os/exec"
+	"syscall"
+)
+
+func RunCmdInGroup(cmd *exec.Cmd, cmdline string) error {
+	cmd.SysProcAttr = &syscall.SysProcAttr{
+		Setpgid: true,
+	}
+	cmd.Cancel = func() error {
+		pgid := cmd.Process.Pid
+		return syscall.Kill(-pgid, syscall.SIGKILL)
+	}
+	return cmd.Run()
+}
+
+func OpenPty() (*os.File, *os.File, error) {
+	return nil, nil, errors.New("Unsupported")
+}

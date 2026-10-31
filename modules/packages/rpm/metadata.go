@@ -11,7 +11,7 @@ import (
 	"novroforge.xyz/modules/timeutil"
 	"novroforge.xyz/modules/validation"
 
-	"code.forgejo.org/forgejo/go-rpmutils"
+	"novroforge/go-rpmutils"
 )
 
 const (

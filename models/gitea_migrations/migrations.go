@@ -34,8 +34,8 @@ import (
 	"novroforge.xyz/modules/setting"
 	novroforge_service "novroforge.xyz/services/novroforge"
 
-	"code.forgejo.org/xorm/xorm"
-	"code.forgejo.org/xorm/xorm/names"
+	"novroforge/xorm/xorm"
+	"novroforge/xorm/xorm/names"
 )
 
 const minDBVersion = 70 // Gitea 1.5.3

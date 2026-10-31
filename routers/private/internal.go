@@ -9,7 +9,7 @@ import (
 	"novroforge.xyz/modules/web"
 	"novroforge.xyz/services/context"
 
-	"code.forgejo.org/go-chi/binding"
+	"novroforge/go-chi/binding"
 	chi_middleware "github.com/go-chi/chi/v5/middleware"
 )
 

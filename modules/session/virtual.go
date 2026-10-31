@@ -10,10 +10,10 @@ import (
 	"novroforge.xyz/modules/json"
 	"novroforge.xyz/modules/log"
 
-	"code.forgejo.org/go-chi/session"
-	memcache "code.forgejo.org/go-chi/session/memcache"
-	mysql "code.forgejo.org/go-chi/session/mysql"
-	postgres "code.forgejo.org/go-chi/session/postgres"
+	"novroforge/go-chi/session"
+	memcache "novroforge/go-chi/session/memcache"
+	mysql "novroforge/go-chi/session/mysql"
+	postgres "novroforge/go-chi/session/postgres"
 )
 
 // VirtualSessionProvider represents a shadowed session provider implementation.
