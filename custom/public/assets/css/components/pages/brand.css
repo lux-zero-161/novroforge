@@ -1,0 +1,35 @@
+#navbar-logo img,
+.navbar-drawer-header img,
+.signin-logo,
+.theme-home-hero .logo,
+.status-page-500 #navbar-logo img {
+  box-sizing: border-box;
+  object-fit: contain;
+  border-radius: 8px;
+  background: #0d1117;
+}
+
+#navbar-logo img {
+  width: 30px;
+  height: 30px;
+  padding: 2px;
+}
+
+.navbar-drawer-header img {
+  width: 32px;
+  height: 32px;
+  padding: 2px;
+}
+
+.signin-logo {
+  width: 48px;
+  height: 48px;
+  padding: 4px;
+}
+
+.theme-home-hero .logo {
+  width: 64px;
+  height: 64px;
+  padding: 6px;
+  border-radius: 12px;
+}

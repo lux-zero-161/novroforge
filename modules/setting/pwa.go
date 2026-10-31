@@ -44,14 +44,19 @@ func GetManifestJSON() ([]byte, error) {
 		StartURL:  AppURL,
 		Icons: []manifestIcon{
 			{
-				Src:   AbsoluteAssetURL + "/assets/img/logo.png",
+				Src:   AbsoluteAssetURL + "/assets/img/icon-192.png",
+				Type:  "image/png",
+				Sizes: "192x192",
+			},
+			{
+				Src:   AbsoluteAssetURL + "/assets/img/icon-512.png",
 				Type:  "image/png",
 				Sizes: "512x512",
 			},
 			{
-				Src:   AbsoluteAssetURL + "/assets/img/logo.svg",
-				Type:  "image/svg+xml",
-				Sizes: "512x512",
+				Src:   AbsoluteAssetURL + "/assets/img/logo_app.png",
+				Type:  "image/png",
+				Sizes: "1024x1024",
 			},
 		},
 	}

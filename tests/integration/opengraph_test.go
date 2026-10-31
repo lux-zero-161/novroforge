@@ -18,7 +18,7 @@ import (
 
 func TestOpenGraphProperties(t *testing.T) {
 	defer tests.PrepareTestEnv(t)()
-	siteName := "Forgejo: Beyond coding. We Forge."
+	siteName := setting.AppDisplayName
 
 	cases := []struct {
 		name     string
@@ -31,7 +31,7 @@ func TestOpenGraphProperties(t *testing.T) {
 			expected: map[string]string{
 				"og:title":       siteName,
 				"og:url":         setting.AppURL,
-				"og:description": "Forgejo is a self-hosted lightweight software forge. Easy to install and low maintenance, it just does the job.",
+				"og:description": setting.UI.Meta.Description,
 				"og:type":        "website",
 				"og:image":       "/assets/img/logo.png",
 				"og:site_name":   siteName,

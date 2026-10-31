@@ -1,25 +1,25 @@
 openapi: 3.0.0
 info:
-  title: Forgejo API
+  title: NovroForge API
   description: |-
-    Forgejo REST API
+    NovroForge REST API
 
   contact:
-    email: contact@forgejo.org
+    email: zero@novroforge.xyz
   license:
     name: MIT
-    url: https://codeberg.org/forgejo/forgejo/src/branch/forgejo/LICENSE
+    url: http://opensource.org/licenses/MIT
   version: 1.0.0
 externalDocs:
-  description: Find out more about Forgejo
-  url: http://forgejo.org
+  description: Find out more about NovroForge
+  url: https://novroforge.xyz
 servers:
-  - url: /api/forgejo/v1
+  - url: /api/v1
 paths:
   /version:
     get:
       summary: API version
-      description: Semantic version of the Forgejo API
+      description: Semantic version of the NovroForge API
       operationId: getVersion
       responses:
         '200':

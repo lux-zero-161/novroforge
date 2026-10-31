@@ -3,7 +3,7 @@ actions, then Forgejo's feature blocks (home_forgejo, which admins may replace) 
 {{template "base/head" .}}
 <div role="main" aria-label="{{if .IsSigned}}{{ctx.Locale.Tr "dashboard"}}{{else}}{{ctx.Locale.Tr "home"}}{{end}}" class="page-content home">
 	<section class="theme-home-hero">
-		<img class="logo" width="64" height="64" src="{{AssetUrlPrefix}}/img/logo.svg" alt="{{ctx.Locale.Tr "logo"}}">
+		<img class="logo" width="64" height="64" src="{{AssetUrlPrefix}}/img/logo-white.png" alt="{{ctx.Locale.Tr "logo"}}">
 		<h1>{{AppDisplayName}}</h1>
 		<p>{{ctx.Locale.Tr "startpage.app_desc"}}</p>
 		{{if not .IsSigned}}

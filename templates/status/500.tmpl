@@ -13,8 +13,10 @@ page loads no navbar assets, so it links the stylesheet with that layout itself.
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>{{ctx.Locale.Tr "error.server_internal"}} - {{AppDisplayName}}</title>
-	<link rel="icon" href="{{AssetUrlPrefix}}/img/favicon.svg" type="image/svg+xml">
-	<link rel="alternate icon" href="{{AssetUrlPrefix}}/img/favicon.png" type="image/png">
+	<link rel="icon" href="{{AssetUrlPrefix}}/img/favicon.ico" sizes="any">
+	<link rel="icon" type="image/png" sizes="192x192" href="{{AssetUrlPrefix}}/img/icon-192.png">
+	<link rel="icon" type="image/png" sizes="512x512" href="{{AssetUrlPrefix}}/img/icon-512.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="{{AssetUrlPrefix}}/img/apple-touch-icon.png">
 	{{template "base/head_style" .}}
 	<link rel="stylesheet" href="{{AssetUrlPrefix}}/css/components/pages/site.css?v=295182c2d7">
 </head>
@@ -23,7 +25,7 @@ page loads no navbar assets, so it links the stylesheet with that layout itself.
 		<nav id="navbar" aria-label="{{ctx.Locale.Tr "aria.navbar"}}">
 			<div class="navbar-left ui secondary menu">
 				<a class="item" id="navbar-logo" href="{{AppSubUrl}}/" aria-label="{{ctx.Locale.Tr "home"}}">
-					<img width="30" height="30" src="{{AssetUrlPrefix}}/img/logo.svg" alt="{{ctx.Locale.Tr "logo"}}" aria-hidden="true">
+					<img width="30" height="30" src="{{AssetUrlPrefix}}/img/logo-white.png" alt="{{ctx.Locale.Tr "logo"}}" aria-hidden="true">
 				</a>
 			</div>
 		</nav>
@@ -46,7 +48,7 @@ page loads no navbar assets, so it links the stylesheet with that layout itself.
 					<a href="{{AppSubUrl}}/">{{ctx.Locale.Tr "home"}}</a>
 				</div>
 				{{if or .SignedUser.IsAdmin .ShowFooterVersion}}<p class="theme-status-version">{{ctx.Locale.Tr "admin.config.app_ver"}}: {{AppVer}}</p>{{end}}
-				{{if .SignedUser.IsAdmin}}<p class="theme-status-version">{{ctx.Locale.Tr "error.report_message" "https://codeberg.org/forgejo/forgejo/issues"}}</p>{{end}}
+				{{if .SignedUser.IsAdmin}}<p class="theme-status-version">{{ctx.Locale.Tr "error.report_message" "https://github.com/lux-zero-161/novroforge/issues"}}</p>{{end}}
 			</section>
 		</div>
 	</div>
