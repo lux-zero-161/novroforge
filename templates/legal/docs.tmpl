@@ -1,0 +1,88 @@
+{{define "legal/docs_start"}}
+<div role="main" aria-label="{{.Title}}" class="page-content legal">
+	<div class="legal-docs">
+		<div class="legal-docs-topbar">
+			<a class="legal-docs-brand" href="{{AppSubUrl}}/">
+				<span class="legal-docs-brand-mark">{{svg "octicon-book" 18}}</span>
+				<span>NovroForge <strong>Docs</strong></span>
+			</a>
+			<span class="legal-docs-topbar-divider"></span>
+			<span class="legal-docs-topbar-context">Legal</span>
+			<a class="legal-docs-topbar-back" href="{{AppSubUrl}}/">Back to NovroForge</a>
+		</div>
+
+		<div class="legal-docs-shell">
+			<aside class="legal-docs-sidebar" aria-label="Site policy">
+				<p class="legal-docs-sidebar-title">Site policy</p>
+				<nav>
+					<a href="{{AppSubUrl}}/legal/tos">Terms of Service</a>
+					<a href="{{AppSubUrl}}/legal/privacy">Privacy Policy</a>
+					<a href="{{AppSubUrl}}/legal/imprint">Imprint</a>
+				</nav>
+			</aside>
+
+			<main class="legal-docs-main">
+				<nav class="legal-docs-breadcrumb" aria-label="Breadcrumb">
+					<a href="{{AppSubUrl}}/">Home</a>
+					<span>/</span>
+					<span>Site policy</span>
+					<span>/</span>
+					<span>{{.Title}}</span>
+				</nav>
+				<article class="legal-docs-article">
+{{end}}
+
+{{define "legal/docs_end"}}
+				</article>
+			</main>
+
+			<aside class="legal-docs-toc" aria-label="On this page">
+				<p class="legal-docs-toc-title">On this page</p>
+				<nav data-legal-toc></nav>
+			</aside>
+		</div>
+	</div>
+</div>
+<script>
+(() => {
+	const article = document.querySelector('.legal-docs-article');
+	const toc = document.querySelector('[data-legal-toc]');
+	if (!article || !toc) return;
+
+	const path = window.location.pathname.replace(/\/$/, '');
+	for (const link of document.querySelectorAll('.legal-docs-sidebar nav a')) {
+		if (new URL(link.href).pathname.replace(/\/$/, '') === path) {
+			link.classList.add('active');
+			link.setAttribute('aria-current', 'page');
+		}
+	}
+
+	const used = new Set();
+	for (const heading of article.querySelectorAll('h2')) {
+		let id = heading.textContent.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || 'section';
+		let unique = id;
+		let n = 2;
+		while (used.has(unique)) unique = `${id}-${n++}`;
+		used.add(unique);
+		heading.id = unique;
+		const link = document.createElement('a');
+		link.href = `#${unique}`;
+		link.textContent = heading.textContent.trim();
+		toc.append(link);
+	}
+
+	const links = [...toc.querySelectorAll('a')];
+	const setActive = () => {
+		let current = links[0];
+		for (const link of links) {
+			const heading = document.getElementById(link.hash.slice(1));
+			if (heading && heading.getBoundingClientRect().top <= 140) current = link;
+		}
+		for (const link of links) link.classList.toggle('active', link === current);
+	};
+	window.addEventListener('scroll', setActive, {passive: true});
+	setActive();
+})();
+</script>
+{{template "base/footer" .}}
+{{end}}
