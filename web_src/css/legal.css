@@ -356,3 +356,6 @@ body:has(.legal-docs) #navbar {
 		padding-inline: 16px;
 	}
 }
+.page-content.legal > .legal-docs {
+	margin-top: 0 !important;
+}
