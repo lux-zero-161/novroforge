@@ -30,11 +30,13 @@ const (
 	maxCommandLength   = 4096
 	maxDirectoryPath   = 4096
 	maxFilePreviewSize = 1 << 20
+	maxFileNameLength  = 255
 )
 
 var (
 	ErrInvalidDirectory    = errors.New("invalid Wings directory path")
 	ErrInvalidFilePath     = errors.New("invalid Wings file path")
+	ErrInvalidDirectoryName = errors.New("invalid Wings directory name")
 	ErrFileTooLarge        = errors.New("Wings file exceeds the preview size limit")
 	ErrUnsupportedFileType = errors.New("Wings file is not a supported text type")
 )
@@ -210,10 +212,7 @@ func (c *Client) FileContents(ctx context.Context, serverID, filePath string) (s
 	if err != nil {
 		return "", errors.New("invalid Wings server UUID")
 	}
-	if strings.HasSuffix(filePath, "/") {
-		return "", ErrInvalidFilePath
-	}
-	filePath, err = NormalizeDirectoryPath(filePath)
+	filePath, err = normalizeFilePath(filePath)
 	if err != nil || filePath == "/" {
 		return "", ErrInvalidFilePath
 	}
@@ -245,6 +244,66 @@ func (c *Client) FileContents(ctx context.Context, serverID, filePath string) (s
 		return "", ErrUnsupportedFileType
 	}
 	return string(content), nil
+}
+
+// FileDownload opens a file response for streaming. The caller must close the
+// response body; request cancellation controls the lifetime of the download.
+func (c *Client) FileDownload(ctx context.Context, serverID, filePath string) (*http.Response, error) {
+	id, err := uuid.Parse(serverID)
+	if err != nil {
+		return nil, errors.New("invalid Wings server UUID")
+	}
+	filePath, err = normalizeFilePath(filePath)
+	if err != nil || filePath == "/" {
+		return nil, ErrInvalidFilePath
+	}
+
+	requestPath := "/api/servers/" + id.String() + "/files/contents?" + url.Values{
+		"file": []string{filePath},
+	}.Encode()
+	downloadClient := *c.httpClient
+	downloadClient.Timeout = 0
+	return c.doRequestWithClient(ctx, &downloadClient, http.MethodGet, requestPath, nil, http.StatusOK)
+}
+
+// CreateDirectory creates a new directory without replacing existing files.
+func (c *Client) CreateDirectory(ctx context.Context, serverID, name, directory string) error {
+	id, err := uuid.Parse(serverID)
+	if err != nil {
+		return errors.New("invalid Wings server UUID")
+	}
+	if !isValidDirectoryName(name) {
+		return ErrInvalidDirectoryName
+	}
+	directory, err = NormalizeDirectoryPath(directory)
+	if err != nil {
+		return err
+	}
+
+	body := struct {
+		Name string `json:"name"`
+		Path string `json:"path"`
+	}{Name: name, Path: directory}
+	return c.doJSON(ctx, http.MethodPost, "/api/servers/"+id.String()+"/files/create-directory", body, nil, http.StatusNoContent)
+}
+
+func isValidDirectoryName(name string) bool {
+	if name == "" || name == "." || name == ".." || len(name) > maxFileNameLength || !utf8.ValidString(name) || strings.TrimSpace(name) != name || strings.ContainsAny(name, "/\\\x00") {
+		return false
+	}
+	for _, char := range name {
+		if char < 0x20 || char == 0x7f {
+			return false
+		}
+	}
+	return true
+}
+
+func normalizeFilePath(filePath string) (string, error) {
+	if strings.HasSuffix(filePath, "/") {
+		return "", ErrInvalidFilePath
+	}
+	return NormalizeDirectoryPath(filePath)
 }
 
 func isSupportedTextMime(contentType string) bool {
@@ -322,6 +381,10 @@ func (c *Client) doJSON(ctx context.Context, method, requestPath string, body, r
 }
 
 func (c *Client) doRequest(ctx context.Context, method, requestPath string, body any, expectedStatus int) (*http.Response, error) {
+	return c.doRequestWithClient(ctx, c.httpClient, method, requestPath, body, expectedStatus)
+}
+
+func (c *Client) doRequestWithClient(ctx context.Context, client *http.Client, method, requestPath string, body any, expectedStatus int) (*http.Response, error) {
 	var requestBody io.Reader
 	if body != nil {
 		encoded, err := json.Marshal(body)
@@ -347,7 +410,7 @@ func (c *Client) doRequest(ctx context.Context, method, requestPath string, body
 		request.Header.Set("Content-Type", "application/json")
 	}
 
-	response, err := c.httpClient.Do(request)
+	response, err := client.Do(request)
 	if err != nil {
 		return nil, fmt.Errorf("request to Wings failed: %w", err)
 	}

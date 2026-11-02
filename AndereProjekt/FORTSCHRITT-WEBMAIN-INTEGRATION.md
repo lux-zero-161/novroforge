@@ -19,9 +19,9 @@ Diese Datei dokumentiert den Fortschritt bei der Integration der Panel-Funktione
 
 Status: **In Arbeit**
 
-### Gesamtfortschritt: ca. 37 % (Schätzung)
+### Gesamtfortschritt: ca. 39 % (Schätzung)
 
-`[####......] 37 %`
+`[####......] 39 %`
 
 - Die Schätzung bezieht sich auf den geplanten Gesamtumfang eines Panel-Integrationsprojekts (Analyse, sichere Wings-Anbindung, Nodes/Server, Benutzerzugriff und weitere Panel-Funktionen), nicht auf die Anzahl der geänderten Dateien. Die vollständige Funktionsinventur und Nutzerberechtigungen fehlen noch.
 
@@ -32,7 +32,7 @@ Status: **In Arbeit**
 - [ ] Tests, Linter und Builds ausgeführt
 - [ ] Abschlussbericht erstellt
 
-Aktueller Umsetzungsschritt: sichere Wings-Node-Konfiguration, Admin-Verwaltung und Benutzeransicht mit expliziter Serverzuordnung. Node-Tokens werden mit WebMain-Verschlüsselung gespeichert und können nach erfolgreichem Verbindungstest rotiert werden. Admins können Serveranzeigenamen verwalten und getrennte Power-, Konsolen-, Dateibrowser- und Dateivorschau-Rechte vergeben. Zugewiesene Nutzer sehen Status, Ressourcen und Konsolenlogs; diese werden alle fünf Sekunden aktualisiert. Der Dateibrowser ist read-only; kleine UTF-8-Textdateien benötigen eine eigene Vorschau-Freigabe. Dateiänderungen, Downloads und weitere Panel-Funktionen fehlen weiterhin.
+Aktueller Umsetzungsschritt: sichere Wings-Node-Konfiguration, Admin-Verwaltung und Benutzeransicht mit expliziter Serverzuordnung. Node-Tokens werden mit WebMain-Verschlüsselung gespeichert und können nach erfolgreichem Verbindungstest rotiert werden. Admins vergeben getrennte Power-, Konsolen-, Dateibrowser-, Dateivorschau-, Download- und Verzeichnis-Erstellungsrechte. Zugewiesene Nutzer sehen Status, Ressourcen und Konsolenlogs; diese werden alle fünf Sekunden aktualisiert. Der Dateibereich bleibt auf Anzeigen, begrenzte Textvorschau, Downloads und das Anlegen einzelner Verzeichnisse beschränkt. Uploads, Dateiänderungen und weitere Panel-Funktionen fehlen weiterhin.
 
 ## Erste Architekturprüfung
 
@@ -100,3 +100,5 @@ Mögliche Statuswerte: **Noch zu prüfen**, **Offen**, **In Arbeit**, **Erledigt
 | 2026-11-02 | Serverdetails erweitert: Nutzer sehen zusätzlich Suspendierungsstatus, Laufzeit und empfangene/gesendete Netzwerkbytes. Die Werte werden mit Status, CPU, Speicher, Datenträger und Konsole im Fünf-Sekunden-Takt aktualisiert. | Nutzer-Servertemplate, Live-Aktualisierung und englische Locale. | Frontend-Lint/Build erneut prüfen; Go-Tests bleiben bis zur Verfügbarkeit der Go-Toolchain offen. |
 | 2026-11-02 | Read-only Dateibrowser ergänzt: Wings-Verzeichniseinträge und Metadaten werden angezeigt; Pfade werden bereinigt und Traversal-Versuche abgewiesen. Der Zugriff benötigt ein neues, standardmäßig deaktiviertes Serverrecht; Migration ergänzt dieses Recht für bestehende Zuordnungen. Symlink-Verzeichnisse sind nicht navigierbar. | Wings-Client und Tests, Migration `v18e`, Zugriffsmodell/Admin-Freigabe, Nutzerroute und Dateiliste-Template, Locale. | Go-Tests/Migration prüfen, sobald die Go-Toolchain verfügbar ist; danach Datei-Downloads und Änderungen nur mit expliziten Rechten planen. |
 | 2026-11-02 | Read-only Textvorschau ergänzt: separates, standardmäßig verweigertes Recht; nur UTF-8-Text mit unterstütztem MIME-Typ und maximal 1 MiB. Pfade werden geprüft, Symlinks nicht als Vorschau verlinkt, Inhalte im HTML escaped und Antworten nicht gecacht. | Wings-Client und Tests, Migration `v18f`, Zugriffsmodell/Admin-Freigabe, Nutzerroute/Templates, Locale. Gezielter ESLint, Markdownlint, Locale-Prüfung, isolierter Produktions-Webpack-Build und `git diff --check` erfolgreich. | Go-Tests sowie Template-/Migrationsvalidierung nach Bereitstellung der Go-Toolchain ausführen; anschließend Downloads/Änderungen getrennt planen. |
+| 2026-11-02 | Read-only Datei-Download ergänzt. Separates, standardmäßig deaktiviertes Recht, Prüfung auf reguläre Datei und Symlink-Ausschluss, sicherer Attachment-Dateiname sowie gestreamte Wings-Antwort ohne Inhalts-Pufferung. Neue Migration `v18g`; Download-Requests laufen bis zum Abbruch des Clients statt mit dem kurzen API-Timeout. | Wings-Client und Tests, Migration `v18g`, Zugriffsmodell/Admin-Freigabe, Nutzerroute, Dateiliste und Servertemplate, Locale. | Go-Tests sowie Template-/Migrationsvalidierung nach Bereitstellung der Go-Toolchain ausführen; danach weitere Dateioperationen planen. |
+| 2026-11-02 | Anlegen einzelner Verzeichnisse ergänzt, ohne Upload, Überschreiben oder Löschen. Separates, standardmäßig deaktiviertes Recht, Validierung von Verzeichnisnamen und Zielpfaden sowie Bestätigung nach erfolgreichem Wings-Aufruf. Neue Migration `v18h`. Gezielter ESLint, Markdownlint, Locale-Prüfung, isolierter Produktions-Webpack-Build und `git diff --check` erfolgreich. | Wings-Client und Tests, Migration `v18h`, Zugriffsmodell/Admin-Freigabe, Nutzerroute und Dateiliste, Locale. | Go-Tests und gofmt sowie Template-/Migrationsvalidierung nach Bereitstellung der Go-Toolchain ausführen; anschließend weitere Dateioperationen nur mit eigener Berechtigung ergänzen. |

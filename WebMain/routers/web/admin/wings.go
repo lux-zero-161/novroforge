@@ -174,6 +174,8 @@ func GrantWingsServerAccess(ctx *context.Context) {
 		ctx.FormBool("can_console"),
 		ctx.FormBool("can_files"),
 		ctx.FormBool("can_read_files"),
+		ctx.FormBool("can_download_files"),
+		ctx.FormBool("can_manage_files"),
 	); err != nil {
 		if errors.Is(err, wings_model.ErrInvalidAccessUser) {
 			ctx.Flash.Error(ctx.Tr("admin.wings_servers.invalid_access_user"))

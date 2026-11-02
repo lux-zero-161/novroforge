@@ -6,11 +6,13 @@ package wings
 import (
 	"context"
 	"encoding/json"
+	"io"
 	"net/http"
 	"net/http/httptest"
 	"strings"
 	"sync/atomic"
 	"testing"
+	"time"
 
 	"github.com/stretchr/testify/require"
 )
@@ -222,7 +224,7 @@ func TestFileContentsReturnsTextPreview(t *testing.T) {
 		if got := r.URL.Query().Get("file"); got != "/server.properties" {
 			t.Errorf("file query = %q, want %q", got, "/server.properties")
 		}
-		if got := r.Header.Get("Authorization"); got != "******" {
+		if got := r.Header.Get("Authorization"); got != "Bearer node-token" {
 			t.Errorf("authorization header = %q, want bearer token", got)
 		}
 		w.Header().Set("X-Mime-Type", "text/plain; charset=utf-8")
@@ -235,6 +237,87 @@ func TestFileContentsReturnsTextPreview(t *testing.T) {
 	content, err := client.FileContents(context.Background(), testServerID, "server.properties")
 	require.NoError(t, err)
 	require.Equal(t, "motd=hello", content)
+}
+
+func TestFileDownloadStreamsFile(t *testing.T) {
+	t.Parallel()
+
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if got := r.URL.Path; got != "/api/servers/"+testServerID+"/files/contents" {
+			t.Errorf("request path = %q, want server file contents path", got)
+		}
+		if got := r.URL.Query().Get("file"); got != "/logs/server.log" {
+			t.Errorf("file query = %q, want %q", got, "/logs/server.log")
+		}
+		if got := r.Header.Get("Authorization"); got != "Bearer node-token" {
+			t.Errorf("authorization header = %q, want bearer token", got)
+		}
+		time.Sleep(30 * time.Millisecond)
+		_, _ = w.Write([]byte("server log contents"))
+	}))
+	defer server.Close()
+
+	client, err := NewClient(server.URL, "node-token")
+	require.NoError(t, err)
+	client.httpClient.Timeout = time.Millisecond
+	response, err := client.FileDownload(context.Background(), testServerID, "logs/server.log")
+	require.NoError(t, err)
+	defer response.Body.Close()
+
+	content, err := io.ReadAll(response.Body)
+	require.NoError(t, err)
+	require.Equal(t, "server log contents", string(content))
+}
+
+func TestFileDownloadRejectsInvalidPaths(t *testing.T) {
+	t.Parallel()
+
+	client, err := NewClient("http://localhost:8080", "node-token")
+	require.NoError(t, err)
+	for _, filePath := range []string{"../outside", "configs/", `configs\file.txt`, "/"} {
+		_, err := client.FileDownload(context.Background(), testServerID, filePath)
+		require.ErrorIs(t, err, ErrInvalidFilePath)
+	}
+}
+
+func TestCreateDirectorySendsValidatedRequest(t *testing.T) {
+	t.Parallel()
+
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if got := r.URL.Path; got != "/api/servers/"+testServerID+"/files/create-directory" {
+			t.Errorf("request path = %q, want create-directory path", got)
+		}
+		if got := r.Header.Get("Authorization"); got != "Bearer node-token" {
+			t.Errorf("authorization header = %q, want bearer token", got)
+		}
+		var body struct {
+			Name string `json:"name"`
+			Path string `json:"path"`
+		}
+		if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
+			t.Errorf("decode create-directory body: %v", err)
+		}
+		if body.Name != "new folder" || body.Path != "/worlds/survival" {
+			t.Errorf("create-directory body = %#v, want normalized path and name", body)
+		}
+		w.WriteHeader(http.StatusNoContent)
+	}))
+	defer server.Close()
+
+	client, err := NewClient(server.URL, "node-token")
+	require.NoError(t, err)
+	require.NoError(t, client.CreateDirectory(context.Background(), testServerID, "new folder", "worlds//survival/"))
+}
+
+func TestCreateDirectoryRejectsInvalidInput(t *testing.T) {
+	t.Parallel()
+
+	client, err := NewClient("http://localhost:8080", "node-token")
+	require.NoError(t, err)
+	for _, name := range []string{"", ".", "..", "has/slash", `has\slash`, " trailing", "trailing ", strings.Repeat("a", maxFileNameLength+1)} {
+		require.ErrorIs(t, client.CreateDirectory(context.Background(), testServerID, name, "/"), ErrInvalidDirectoryName)
+	}
+	require.ErrorIs(t, client.CreateDirectory(context.Background(), testServerID, "valid", "../outside"), ErrInvalidDirectory)
 }
 
 func TestFileContentsRejectsInvalidOrUnsupportedFiles(t *testing.T) {

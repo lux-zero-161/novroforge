@@ -23,7 +23,7 @@
 				<button class="ui primary button" type="submit">{{ctx.Locale.Tr "wings.send_action"}}</button>
 			</form>
 		{{end}}
-		{{if or .Access.CanFiles .Access.CanReadFiles}}
+		{{if or .Access.CanFiles .Access.CanReadFiles .Access.CanDownloadFiles .Access.CanManageFiles}}
 			<p><a class="ui button" href="{{AppSubUrl}}/user/servers/{{.Server.ID}}/files">{{ctx.Locale.Tr "wings.files"}}</a></p>
 		{{end}}
 		<h2 class="ui header">{{ctx.Locale.Tr "wings.console"}}</h2>

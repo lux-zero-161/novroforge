@@ -10,6 +10,20 @@
 				<a class="ui button" href="{{AppSubUrl}}/user/servers/{{.Server.ID}}/files?directory={{.ParentDirectory}}">{{ctx.Locale.Tr "wings.parent_directory"}}</a>
 			{{end}}
 		</p>
+		{{if .CanManageFiles}}
+			<form class="ui form" method="post" action="{{AppSubUrl}}/user/servers/{{.Server.ID}}/files/directory">
+				<input type="hidden" name="directory" value="{{.Directory}}">
+				<div class="inline fields">
+					<div class="field">
+						<label for="wings-new-directory">{{ctx.Locale.Tr "wings.new_directory_name"}}</label>
+						<input id="wings-new-directory" name="name" maxlength="255" required>
+					</div>
+					<div class="field">
+						<button class="ui button" type="submit">{{ctx.Locale.Tr "wings.create_directory"}}</button>
+					</div>
+				</div>
+			</form>
+		{{end}}
 		{{if .Files}}
 			<div class="overflow menu">
 				<table class="ui very basic striped table">
@@ -20,6 +34,7 @@
 							<th>{{ctx.Locale.Tr "wings.file_size"}}</th>
 							<th>{{ctx.Locale.Tr "wings.file_modified"}}</th>
 							<th>{{ctx.Locale.Tr "wings.file_mode"}}</th>
+							{{if .CanDownloadFiles}}<th>{{ctx.Locale.Tr "wings.file_download"}}</th>{{end}}
 						</tr>
 					</thead>
 					<tbody>
@@ -38,6 +53,9 @@
 								<td>{{.Size}}</td>
 								<td>{{.Modified}}</td>
 								<td><code>{{.ModeBits}}</code></td>
+								{{if $.CanDownloadFiles}}
+									<td>{{if .DownloadPath}}<a class="ui button" href="{{AppSubUrl}}/user/servers/{{$.Server.ID}}/files/download?file={{.DownloadPath}}">{{ctx.Locale.Tr "wings.file_download"}}</a>{{end}}</td>
+								{{end}}
 							</tr>
 						{{end}}
 					</tbody>

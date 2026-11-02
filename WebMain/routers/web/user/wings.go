@@ -5,6 +5,8 @@ package user
 
 import (
 	"errors"
+	"io"
+	"mime"
 	"net/http"
 	"net/url"
 	"path"
@@ -109,16 +111,17 @@ func WingsServerLogs(ctx *context.Context) {
 }
 
 type wingsFileListEntry struct {
-	Name        string
-	ModeBits    string
-	Modified    string
-	Mime        string
-	Size        int64
-	Directory   bool
-	File        bool
-	Symlink     bool
-	Path        string
-	PreviewPath string
+	Name         string
+	ModeBits     string
+	Modified     string
+	Mime         string
+	Size         int64
+	Directory    bool
+	File         bool
+	Symlink      bool
+	Path         string
+	PreviewPath  string
+	DownloadPath string
 }
 
 func WingsServerFiles(ctx *context.Context) {
@@ -131,7 +134,7 @@ func WingsServerFiles(ctx *context.Context) {
 		ctx.ServerError("GetUserWingsServerFiles", err)
 		return
 	}
-	if !access.CanFiles && !access.CanReadFiles {
+	if !access.CanFiles && !access.CanReadFiles && !access.CanDownloadFiles && !access.CanManageFiles {
 		ctx.Error(http.StatusForbidden, ctx.Locale.TrString("wings.files_denied"))
 		return
 	}
@@ -173,6 +176,9 @@ func WingsServerFiles(ctx *context.Context) {
 		if access.CanReadFiles && file.File && !file.Symlink {
 			entry.PreviewPath = url.QueryEscape(path.Join(directory, file.Name))
 		}
+		if access.CanDownloadFiles && file.File && !file.Symlink {
+			entry.DownloadPath = url.QueryEscape(path.Join(directory, file.Name))
+		}
 		entries = append(entries, entry)
 	}
 
@@ -186,8 +192,131 @@ func WingsServerFiles(ctx *context.Context) {
 	ctx.Data["HasParentDirectory"] = directory != "/"
 	ctx.Data["RootDirectory"] = url.QueryEscape("/")
 	ctx.Data["CanReadFiles"] = access.CanReadFiles
+	ctx.Data["CanDownloadFiles"] = access.CanDownloadFiles
+	ctx.Data["CanManageFiles"] = access.CanManageFiles
 	ctx.Data["Files"] = entries
 	ctx.HTML(http.StatusOK, tplWingsFiles)
+}
+
+func CreateWingsServerDirectory(ctx *context.Context) {
+	server, access, err := getAuthorizedWingsServer(ctx)
+	if errors.Is(err, wings_model.ErrServerAccessDenied) {
+		ctx.NotFound("CreateWingsServerDirectory", nil)
+		return
+	}
+	if err != nil {
+		ctx.ServerError("CreateUserWingsServerDirectory", err)
+		return
+	}
+	if !access.CanManageFiles {
+		ctx.Error(http.StatusForbidden, ctx.Locale.TrString("wings.file_manage_denied"))
+		return
+	}
+
+	directory, err := wings_service.NormalizeDirectoryPath(ctx.FormString("directory"))
+	if err != nil {
+		ctx.Flash.Error(ctx.Tr("wings.invalid_directory"))
+		ctx.Redirect(wingsServerFilesURL(server.ID, ctx.FormString("directory")))
+		return
+	}
+	name := ctx.FormString("name")
+	client, err := server.GetServerClient(ctx)
+	if err != nil {
+		ctx.ServerError("CreateUserWingsServerDirectoryClient", err)
+		return
+	}
+	if err := client.CreateDirectory(ctx, server.UUID, name, directory); err != nil {
+		if errors.Is(err, wings_service.ErrInvalidDirectoryName) {
+			ctx.Flash.Error(ctx.Tr("wings.invalid_directory_name"))
+			ctx.Redirect(wingsServerFilesURL(server.ID, directory))
+			return
+		}
+		if errors.Is(err, wings_service.ErrInvalidDirectory) {
+			ctx.Flash.Error(ctx.Tr("wings.invalid_directory"))
+			ctx.Redirect(wingsServerFilesURL(server.ID, directory))
+			return
+		}
+		log.Error("CreateUserWingsServerDirectory[%d]: %v", server.ID, err)
+		ctx.Flash.Error(ctx.Tr("wings.file_operation_failed"))
+		ctx.Redirect(wingsServerFilesURL(server.ID, directory))
+		return
+	}
+
+	ctx.Flash.Success(ctx.Tr("wings.directory_created"))
+	ctx.Redirect(wingsServerFilesURL(server.ID, directory))
+}
+
+func wingsServerFilesURL(serverID int64, directory string) string {
+	return setting.AppSubURL + "/user/servers/" + strconv.FormatInt(serverID, 10) + "/files?directory=" + url.QueryEscape(directory)
+}
+
+func WingsServerFileDownload(ctx *context.Context) {
+	server, access, err := getAuthorizedWingsServer(ctx)
+	if errors.Is(err, wings_model.ErrServerAccessDenied) {
+		ctx.NotFound("WingsServerFileDownload", nil)
+		return
+	}
+	if err != nil {
+		ctx.ServerError("GetUserWingsServerFileDownload", err)
+		return
+	}
+	if !access.CanDownloadFiles {
+		ctx.Error(http.StatusForbidden, ctx.Locale.TrString("wings.file_download_denied"))
+		return
+	}
+
+	filePath, err := wings_service.NormalizeDirectoryPath(ctx.Req.URL.Query().Get("file"))
+	if err != nil || filePath == "/" || strings.HasSuffix(ctx.Req.URL.Query().Get("file"), "/") {
+		ctx.Error(http.StatusBadRequest, ctx.Locale.TrString("wings.invalid_directory"))
+		return
+	}
+	client, err := server.GetServerClient(ctx)
+	if err != nil {
+		ctx.ServerError("GetUserWingsServerFileDownloadClient", err)
+		return
+	}
+	entries, err := client.ListDirectory(ctx, server.UUID, path.Dir(filePath))
+	if err != nil {
+		ctx.ServerError("GetUserWingsServerFileDownloadDirectory", err)
+		return
+	}
+	var isRegularFile bool
+	for _, entry := range entries {
+		if entry.Name == path.Base(filePath) && entry.File && !entry.Symlink {
+			isRegularFile = true
+			break
+		}
+	}
+	if !isRegularFile {
+		ctx.NotFound("WingsServerFileDownload", nil)
+		return
+	}
+
+	response, err := client.FileDownload(ctx, server.UUID, filePath)
+	if err != nil {
+		ctx.ServerError("GetUserWingsServerFileDownload", err)
+		return
+	}
+	defer response.Body.Close()
+
+	filename := mime.FormatMediaType("attachment", map[string]string{"filename": path.Base(filePath)})
+	if filename == "" {
+		ctx.Error(http.StatusBadRequest, ctx.Locale.TrString("wings.invalid_directory"))
+		return
+	}
+	header := ctx.Resp.Header()
+	header.Set("Content-Type", "application/octet-stream")
+	header.Set("Content-Disposition", filename)
+	header.Set("Cache-Control", "no-store")
+	header.Set("X-Content-Type-Options", "nosniff")
+	header.Set("X-Accel-Buffering", "no")
+	if response.ContentLength >= 0 {
+		header.Set("Content-Length", strconv.FormatInt(response.ContentLength, 10))
+	}
+	ctx.Resp.WriteHeader(http.StatusOK)
+	if _, err := io.Copy(ctx.Resp, response.Body); err != nil {
+		log.Error("GetUserWingsServerFileDownload[%d]: %v", server.ID, err)
+	}
 }
 
 func WingsServerFilePreview(ctx *context.Context) {

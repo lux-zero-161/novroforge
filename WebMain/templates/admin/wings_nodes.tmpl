@@ -152,6 +152,8 @@
 											<span>{{if .CanConsole}}{{ctx.Locale.Tr "admin.wings_servers.console_permission"}}{{end}}</span>
 											<span>{{if .CanFiles}}{{ctx.Locale.Tr "admin.wings_servers.files_permission"}}{{end}}</span>
 											<span>{{if .CanReadFiles}}{{ctx.Locale.Tr "admin.wings_servers.file_preview_permission"}}{{end}}</span>
+											<span>{{if .CanDownloadFiles}}{{ctx.Locale.Tr "admin.wings_servers.file_download_permission"}}{{end}}</span>
+											<span>{{if .CanManageFiles}}{{ctx.Locale.Tr "admin.wings_servers.file_manage_permission"}}{{end}}</span>
 											<form method="post" action="{{AppSubUrl}}/admin/wings/nodes/servers/{{$server.ID}}/users/{{.ID}}/delete">
 												<button class="ui red button" type="submit">{{ctx.Locale.Tr "admin.wings_servers.revoke_access"}}</button>
 											</form>
@@ -186,6 +188,18 @@
 											<div class="ui checkbox">
 												<input type="checkbox" name="can_read_files" value="true">
 												<label>{{ctx.Locale.Tr "admin.wings_servers.grant_file_preview"}}</label>
+											</div>
+										</div>
+										<div class="field">
+											<div class="ui checkbox">
+												<input type="checkbox" name="can_download_files" value="true">
+												<label>{{ctx.Locale.Tr "admin.wings_servers.grant_file_download"}}</label>
+											</div>
+										</div>
+										<div class="field">
+											<div class="ui checkbox">
+												<input type="checkbox" name="can_manage_files" value="true">
+												<label>{{ctx.Locale.Tr "admin.wings_servers.grant_file_manage"}}</label>
 											</div>
 										</div>
 										<button class="ui button" type="submit">{{ctx.Locale.Tr "admin.wings_servers.grant_access"}}</button>

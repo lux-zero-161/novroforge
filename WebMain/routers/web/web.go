@@ -1071,6 +1071,8 @@ func registerRoutes(m *web.Route) {
 		m.Get("/{id}/logs", user.WingsServerLogs)
 		m.Get("/{id}/files", user.WingsServerFiles)
 		m.Get("/{id}/files/preview", user.WingsServerFilePreview)
+		m.Get("/{id}/files/download", user.WingsServerFileDownload)
+		m.Post("/{id}/files/directory", user.CreateWingsServerDirectory)
 		m.Post("/{id}/power", user.ControlWingsServer)
 		m.Post("/{id}/command", user.SendWingsServerCommand)
 	}, reqSignIn)
