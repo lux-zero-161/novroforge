@@ -1,0 +1,18 @@
+{{template "base/head" .}}
+<div role="main" aria-label="{{ctx.Locale.Tr "wings.file_edit"}}" class="page-content">
+	<div class="ui container">
+		<h1 class="ui header">{{ctx.Locale.Tr "wings.file_edit"}}: {{.Server.Name}}</h1>
+		<p><a href="{{.DirectoryURL}}">{{ctx.Locale.Tr "wings.back_to_files"}}</a></p>
+		<p><code>{{.FilePath}}</code></p>
+		<div class="ui warning message">{{ctx.Locale.Tr "wings.file_edit_help"}}</div>
+		<form class="ui form" method="post" action="{{AppSubUrl}}/user/servers/{{.Server.ID}}/files/edit">
+			<input type="hidden" name="file" value="{{.FilePath}}">
+			<div class="field">
+				<label for="wings-file-content">{{ctx.Locale.Tr "wings.file_edit"}}</label>
+				<textarea id="wings-file-content" name="content" rows="24">{{.FileContent}}</textarea>
+			</div>
+			<button class="ui primary button" type="submit">{{ctx.Locale.Tr "wings.save_file"}}</button>
+		</form>
+	</div>
+</div>
+{{template "base/footer" .}}

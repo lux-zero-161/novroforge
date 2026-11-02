@@ -154,6 +154,9 @@
 											<span>{{if .CanReadFiles}}{{ctx.Locale.Tr "admin.wings_servers.file_preview_permission"}}{{end}}</span>
 											<span>{{if .CanDownloadFiles}}{{ctx.Locale.Tr "admin.wings_servers.file_download_permission"}}{{end}}</span>
 											<span>{{if .CanManageFiles}}{{ctx.Locale.Tr "admin.wings_servers.file_manage_permission"}}{{end}}</span>
+											<span>{{if .CanEditFiles}}{{ctx.Locale.Tr "admin.wings_servers.file_edit_permission"}}{{end}}</span>
+											<span>{{if .CanDeleteFiles}}{{ctx.Locale.Tr "admin.wings_servers.file_delete_permission"}}{{end}}</span>
+											<span>{{if .CanUploadFiles}}{{ctx.Locale.Tr "admin.wings_servers.file_upload_permission"}}{{end}}</span>
 											<form method="post" action="{{AppSubUrl}}/admin/wings/nodes/servers/{{$server.ID}}/users/{{.ID}}/delete">
 												<button class="ui red button" type="submit">{{ctx.Locale.Tr "admin.wings_servers.revoke_access"}}</button>
 											</form>
@@ -200,6 +203,24 @@
 											<div class="ui checkbox">
 												<input type="checkbox" name="can_manage_files" value="true">
 												<label>{{ctx.Locale.Tr "admin.wings_servers.grant_file_manage"}}</label>
+											</div>
+										</div>
+										<div class="field">
+											<div class="ui checkbox">
+												<input type="checkbox" name="can_edit_files" value="true">
+												<label>{{ctx.Locale.Tr "admin.wings_servers.grant_file_edit"}}</label>
+											</div>
+										</div>
+										<div class="field">
+											<div class="ui checkbox">
+												<input type="checkbox" name="can_delete_files" value="true">
+												<label>{{ctx.Locale.Tr "admin.wings_servers.grant_file_delete"}}</label>
+											</div>
+										</div>
+										<div class="field">
+											<div class="ui checkbox">
+												<input type="checkbox" name="can_upload_files" value="true">
+												<label>{{ctx.Locale.Tr "admin.wings_servers.grant_file_upload"}}</label>
 											</div>
 										</div>
 										<button class="ui button" type="submit">{{ctx.Locale.Tr "admin.wings_servers.grant_access"}}</button>

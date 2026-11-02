@@ -5,6 +5,9 @@ package wings
 
 import (
 	"context"
+	"crypto/hmac"
+	"crypto/sha256"
+	"encoding/base64"
 	"encoding/json"
 	"io"
 	"net/http"
@@ -280,6 +283,49 @@ func TestFileDownloadRejectsInvalidPaths(t *testing.T) {
 	}
 }
 
+func TestWriteFileSendsBoundedRawContent(t *testing.T) {
+	t.Parallel()
+
+	const expectedContent = "server-name=novroforge\nmax-players=20\n"
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if got := r.Method; got != http.MethodPost {
+			t.Errorf("request method = %q, want POST", got)
+		}
+		if got := r.URL.Path; got != "/api/servers/"+testServerID+"/files/write" {
+			t.Errorf("request path = %q, want file write path", got)
+		}
+		if got := r.URL.Query().Get("file"); got != "/server.properties" {
+			t.Errorf("file query = %q, want %q", got, "/server.properties")
+		}
+		if got := r.Header.Get("Content-Type"); got != "application/octet-stream" {
+			t.Errorf("content type = %q, want application/octet-stream", got)
+		}
+		body, err := io.ReadAll(r.Body)
+		if err != nil {
+			t.Errorf("read request body: %v", err)
+		}
+		if string(body) != expectedContent {
+			t.Errorf("request body = %q, want exact file content", body)
+		}
+		w.WriteHeader(http.StatusNoContent)
+	}))
+	defer server.Close()
+
+	client, err := NewClient(server.URL, "node-token")
+	require.NoError(t, err)
+	require.NoError(t, client.WriteFile(context.Background(), testServerID, "server.properties", expectedContent))
+}
+
+func TestWriteFileRejectsInvalidContentAndPaths(t *testing.T) {
+	t.Parallel()
+
+	client, err := NewClient("http://localhost:8080", "node-token")
+	require.NoError(t, err)
+	require.ErrorIs(t, client.WriteFile(context.Background(), testServerID, "../outside", "content"), ErrInvalidFilePath)
+	require.ErrorIs(t, client.WriteFile(context.Background(), testServerID, "file.txt", string([]byte{0xff})), ErrUnsupportedFileType)
+	require.ErrorIs(t, client.WriteFile(context.Background(), testServerID, "large.txt", strings.Repeat("a", maxFilePreviewSize+1)), ErrFileTooLarge)
+}
+
 func TestCreateDirectorySendsValidatedRequest(t *testing.T) {
 	t.Parallel()
 
@@ -318,6 +364,313 @@ func TestCreateDirectoryRejectsInvalidInput(t *testing.T) {
 		require.ErrorIs(t, client.CreateDirectory(context.Background(), testServerID, name, "/"), ErrInvalidDirectoryName)
 	}
 	require.ErrorIs(t, client.CreateDirectory(context.Background(), testServerID, "valid", "../outside"), ErrInvalidDirectory)
+}
+
+func TestRenameFileSendsValidatedRequest(t *testing.T) {
+	t.Parallel()
+
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if got := r.Method; got != http.MethodPut {
+			t.Errorf("request method = %q, want PUT", got)
+		}
+		if got := r.URL.Path; got != "/api/servers/"+testServerID+"/files/rename" {
+			t.Errorf("request path = %q, want file rename path", got)
+		}
+		var body struct {
+			Root  string `json:"root"`
+			Files []struct {
+				From string `json:"from"`
+				To   string `json:"to"`
+			} `json:"files"`
+		}
+		if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
+			t.Errorf("decode rename body: %v", err)
+		}
+		if body.Root != "/worlds/survival" || len(body.Files) != 1 || body.Files[0].From != "old.txt" || body.Files[0].To != "new.txt" {
+			t.Errorf("rename body = %#v, want normalized directory and single rename", body)
+		}
+		w.WriteHeader(http.StatusNoContent)
+	}))
+	defer server.Close()
+
+	client, err := NewClient(server.URL, "node-token")
+	require.NoError(t, err)
+	require.NoError(t, client.RenameFile(context.Background(), testServerID, "worlds//survival/", "old.txt", "new.txt"))
+}
+
+func TestRenameFileRejectsInvalidInput(t *testing.T) {
+	t.Parallel()
+
+	client, err := NewClient("http://localhost:8080", "node-token")
+	require.NoError(t, err)
+	require.ErrorIs(t, client.RenameFile(context.Background(), testServerID, "../outside", "old.txt", "new.txt"), ErrInvalidDirectory)
+	require.ErrorIs(t, client.RenameFile(context.Background(), testServerID, "/", "../outside", "new.txt"), ErrInvalidDirectoryName)
+	require.ErrorIs(t, client.RenameFile(context.Background(), testServerID, "/", "old.txt", "old.txt"), ErrInvalidDirectoryName)
+}
+
+func TestDeleteFileSendsOneValidatedFile(t *testing.T) {
+	t.Parallel()
+
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if got := r.Method; got != http.MethodPost {
+			t.Errorf("request method = %q, want POST", got)
+		}
+		if got := r.URL.Path; got != "/api/servers/"+testServerID+"/files/delete" {
+			t.Errorf("request path = %q, want file delete path", got)
+		}
+		var body struct {
+			Root  string   `json:"root"`
+			Files []string `json:"files"`
+		}
+		if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
+			t.Errorf("decode delete body: %v", err)
+		}
+		if body.Root != "/worlds/survival" || len(body.Files) != 1 || body.Files[0] != "old.txt" {
+			t.Errorf("delete body = %#v, want normalized directory and one file", body)
+		}
+		w.WriteHeader(http.StatusNoContent)
+	}))
+	defer server.Close()
+
+	client, err := NewClient(server.URL, "node-token")
+	require.NoError(t, err)
+	require.NoError(t, client.DeleteFile(context.Background(), testServerID, "worlds//survival/", "old.txt"))
+}
+
+func TestDeleteFileRejectsInvalidInput(t *testing.T) {
+	t.Parallel()
+
+	client, err := NewClient("http://localhost:8080", "node-token")
+	require.NoError(t, err)
+	require.Error(t, client.DeleteFile(context.Background(), "invalid", "/", "old.txt"))
+	require.ErrorIs(t, client.DeleteFile(context.Background(), testServerID, "../outside", "old.txt"), ErrInvalidDirectory)
+	for _, name := range []string{"", ".", "..", "has/slash", `has\slash`, " trailing", "trailing ", strings.Repeat("a", maxFileNameLength+1)} {
+		require.ErrorIs(t, client.DeleteFile(context.Background(), testServerID, "/", name), ErrInvalidDirectoryName)
+	}
+}
+
+func TestCopyFileSendsValidatedRequest(t *testing.T) {
+	t.Parallel()
+
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if got := r.Method; got != http.MethodPost {
+			t.Errorf("request method = %q, want POST", got)
+		}
+		if got := r.URL.Path; got != "/api/servers/"+testServerID+"/files/copy" {
+			t.Errorf("request path = %q, want file copy path", got)
+		}
+		var body struct {
+			Location string `json:"location"`
+		}
+		if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
+			t.Errorf("decode copy body: %v", err)
+		}
+		if body.Location != "/worlds/survival/world.tar.gz" {
+			t.Errorf("copy location = %q, want normalized file path", body.Location)
+		}
+		w.WriteHeader(http.StatusNoContent)
+	}))
+	defer server.Close()
+
+	client, err := NewClient(server.URL, "node-token")
+	require.NoError(t, err)
+	require.NoError(t, client.CopyFile(context.Background(), testServerID, "worlds//survival/world.tar.gz"))
+}
+
+func TestCopyFileRejectsInvalidInput(t *testing.T) {
+	t.Parallel()
+
+	client, err := NewClient("http://localhost:8080", "node-token")
+	require.NoError(t, err)
+	require.Error(t, client.CopyFile(context.Background(), "invalid", "file.txt"))
+	require.ErrorIs(t, client.CopyFile(context.Background(), testServerID, "../outside"), ErrInvalidFilePath)
+	require.ErrorIs(t, client.CopyFile(context.Background(), testServerID, "/"), ErrInvalidFilePath)
+}
+
+func TestCompressFileSendsOneValidatedFile(t *testing.T) {
+	t.Parallel()
+
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if got := r.Method; got != http.MethodPost {
+			t.Errorf("request method = %q, want POST", got)
+		}
+		if got := r.URL.Path; got != "/api/servers/"+testServerID+"/files/compress" {
+			t.Errorf("request path = %q, want file compress path", got)
+		}
+		var body struct {
+			Root  string   `json:"root"`
+			Files []string `json:"files"`
+		}
+		if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
+			t.Errorf("decode compress body: %v", err)
+		}
+		if body.Root != "/worlds/survival" || len(body.Files) != 1 || body.Files[0] != "server.properties" {
+			t.Errorf("compress body = %#v, want normalized directory and one file", body)
+		}
+		time.Sleep(20 * time.Millisecond)
+		if err := json.NewEncoder(w).Encode(FileEntry{Name: "archive-2026.tar.gz", File: true, Size: 128}); err != nil {
+			t.Errorf("encode archive response: %v", err)
+		}
+	}))
+	defer server.Close()
+
+	client, err := NewClient(server.URL, "node-token")
+	require.NoError(t, err)
+	client.httpClient.Timeout = time.Millisecond
+	archive, err := client.CompressFile(context.Background(), testServerID, "worlds//survival/", "server.properties")
+	require.NoError(t, err)
+	require.Equal(t, "archive-2026.tar.gz", archive.Name)
+	require.Equal(t, int64(128), archive.Size)
+}
+
+func TestCompressFileRejectsInvalidInput(t *testing.T) {
+	t.Parallel()
+
+	client, err := NewClient("http://localhost:8080", "node-token")
+	require.NoError(t, err)
+	_, err = client.CompressFile(context.Background(), "invalid", "/", "server.properties")
+	require.Error(t, err)
+	_, err = client.CompressFile(context.Background(), testServerID, "../outside", "server.properties")
+	require.ErrorIs(t, err, ErrInvalidDirectory)
+	_, err = client.CompressFile(context.Background(), testServerID, "/", "../outside")
+	require.ErrorIs(t, err, ErrInvalidDirectoryName)
+}
+
+func TestUploadFileUsesScopedTokenAndDoesNotOverwrite(t *testing.T) {
+	t.Parallel()
+
+	const (
+		userID  = "f1b3d5a7-1234-4567-89ab-cdef01234567"
+		content = "uploaded safely"
+	)
+	var requestCount atomic.Int32
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		switch requestCount.Add(1) {
+		case 1:
+			if got := r.Method; got != http.MethodPost {
+				t.Errorf("upload method = %q, want POST", got)
+			}
+			if got := r.URL.Path; got != "/upload/file" {
+				t.Errorf("upload path = %q, want /upload/file", got)
+			}
+			if got := r.URL.Query().Get("directory"); got != "/worlds/survival" {
+				t.Errorf("upload directory = %q, want normalized path", got)
+			}
+			if got := r.Header.Get("Authorization"); got != "" {
+				t.Errorf("upload authorization header = %q, want none", got)
+			}
+			claims := decodeTestUploadClaims(t, r.URL.Query().Get("token"), "node-token")
+			if claims.Scope != "file-upload" || claims.ServerUUID != testServerID || claims.UserUUID != userID || claims.UniqueID == "" {
+				t.Errorf("upload claims = %#v, want scoped server/user token", claims)
+			}
+			if claims.ExpirationTime <= claims.IssuedAt || claims.ExpirationTime-claims.IssuedAt > 60 {
+				t.Errorf("upload token lifetime = %d seconds, want at most 60", claims.ExpirationTime-claims.IssuedAt)
+			}
+			require.NoError(t, r.ParseMultipartForm(1<<20))
+			defer r.MultipartForm.RemoveAll()
+			files := r.MultipartForm.File["files"]
+			require.Len(t, files, 1)
+			require.True(t, strings.HasPrefix(files[0].Filename, ".novroforge-upload-"))
+			uploaded, err := files[0].Open()
+			require.NoError(t, err)
+			defer uploaded.Close()
+			got, err := io.ReadAll(uploaded)
+			require.NoError(t, err)
+			require.Equal(t, content, string(got))
+			w.WriteHeader(http.StatusOK)
+		case 2:
+			if got := r.Method; got != http.MethodPut {
+				t.Errorf("finalize method = %q, want PUT", got)
+			}
+			var body struct {
+				Root  string `json:"root"`
+				Files []struct {
+					From string `json:"from"`
+					To   string `json:"to"`
+				} `json:"files"`
+			}
+			require.NoError(t, json.NewDecoder(r.Body).Decode(&body))
+			require.Equal(t, "/worlds/survival", body.Root)
+			require.Len(t, body.Files, 1)
+			require.True(t, strings.HasPrefix(body.Files[0].From, ".novroforge-upload-"))
+			require.Equal(t, "config.json", body.Files[0].To)
+			w.WriteHeader(http.StatusNoContent)
+		default:
+			t.Errorf("unexpected request %d: %s %s", requestCount.Load(), r.Method, r.URL.Path)
+		}
+	}))
+	defer server.Close()
+
+	client, err := NewClient(server.URL, "node-token")
+	require.NoError(t, err)
+	require.NoError(t, client.UploadFile(context.Background(), testServerID, userID, "worlds//survival/", "config.json", []byte(content)))
+	require.Equal(t, int32(2), requestCount.Load())
+}
+
+func TestUploadFileRejectsInvalidInput(t *testing.T) {
+	t.Parallel()
+
+	client, err := NewClient("http://localhost:8080", "node-token")
+	require.NoError(t, err)
+	require.Error(t, client.UploadFile(context.Background(), "invalid", "f1b3d5a7-1234-4567-89ab-cdef01234567", "/", "file.txt", []byte("content")))
+	require.Error(t, client.UploadFile(context.Background(), testServerID, "invalid", "/", "file.txt", []byte("content")))
+	require.ErrorIs(t, client.UploadFile(context.Background(), testServerID, "f1b3d5a7-1234-4567-89ab-cdef01234567", "../outside", "file.txt", []byte("content")), ErrInvalidDirectory)
+	require.ErrorIs(t, client.UploadFile(context.Background(), testServerID, "f1b3d5a7-1234-4567-89ab-cdef01234567", "/", "../file.txt", []byte("content")), ErrInvalidDirectoryName)
+	require.ErrorIs(t, client.UploadFile(context.Background(), testServerID, "f1b3d5a7-1234-4567-89ab-cdef01234567", "/", "large.bin", make([]byte, MaxFileUploadSize+1)), ErrFileUploadTooLarge)
+}
+
+func TestUploadFileCleansStagingAfterWingsRejectsUpload(t *testing.T) {
+	t.Parallel()
+
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		switch r.URL.Path {
+		case "/upload/file":
+			w.WriteHeader(http.StatusBadRequest)
+		case "/api/servers/" + testServerID + "/files/delete":
+			w.WriteHeader(http.StatusNoContent)
+		default:
+			t.Errorf("unexpected request: %s %s", r.Method, r.URL.Path)
+		}
+	}))
+	defer server.Close()
+
+	client, err := NewClient(server.URL, "node-token")
+	require.NoError(t, err)
+	err = client.UploadFile(context.Background(), testServerID, "f1b3d5a7-1234-4567-89ab-cdef01234567", "/", "file.txt", []byte("content"))
+	require.Error(t, err)
+	require.Contains(t, err.Error(), "HTTP status 400")
+	require.NotContains(t, err.Error(), "token=")
+}
+
+func decodeTestUploadClaims(t *testing.T, token, secret string) struct {
+	IssuedAt       int64  `json:"iat"`
+	ExpirationTime int64  `json:"exp"`
+	Scope          string `json:"scope"`
+	ServerUUID     string `json:"server_uuid"`
+	UserUUID       string `json:"user_uuid"`
+	UniqueID       string `json:"unique_id"`
+} {
+	t.Helper()
+	parts := strings.Split(token, ".")
+	require.Len(t, parts, 3)
+	signature, err := base64.RawURLEncoding.DecodeString(parts[2])
+	require.NoError(t, err)
+	mac := hmac.New(sha256.New, []byte(secret))
+	_, err = mac.Write([]byte(parts[0] + "." + parts[1]))
+	require.NoError(t, err)
+	require.True(t, hmac.Equal(signature, mac.Sum(nil)))
+	payload, err := base64.RawURLEncoding.DecodeString(parts[1])
+	require.NoError(t, err)
+	var claims struct {
+		IssuedAt       int64  `json:"iat"`
+		ExpirationTime int64  `json:"exp"`
+		Scope          string `json:"scope"`
+		ServerUUID     string `json:"server_uuid"`
+		UserUUID       string `json:"user_uuid"`
+		UniqueID       string `json:"unique_id"`
+	}
+	require.NoError(t, json.Unmarshal(payload, &claims))
+	return claims
 }
 
 func TestFileContentsRejectsInvalidOrUnsupportedFiles(t *testing.T) {

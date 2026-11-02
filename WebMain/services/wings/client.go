@@ -6,11 +6,15 @@ package wings
 import (
 	"bytes"
 	"context"
+	"crypto/hmac"
+	"crypto/sha256"
+	"encoding/base64"
 	"encoding/json"
 	"errors"
 	"fmt"
 	"io"
 	"mime"
+	"mime/multipart"
 	"net"
 	"net/http"
 	"net/url"
@@ -29,7 +33,11 @@ const (
 	maxCommands        = 32
 	maxCommandLength   = 4096
 	maxDirectoryPath   = 4096
-	maxFilePreviewSize = 1 << 20
+	// MaxFileContentSize bounds text that can be previewed or edited.
+	MaxFileContentSize = 1 << 20
+	// MaxFileUploadSize bounds files uploaded through the WebMain panel.
+	MaxFileUploadSize = 10 << 20
+	maxFilePreviewSize  = MaxFileContentSize
 	maxFileNameLength  = 255
 )
 
@@ -38,7 +46,8 @@ var (
 	ErrInvalidFilePath     = errors.New("invalid Wings file path")
 	ErrInvalidDirectoryName = errors.New("invalid Wings directory name")
 	ErrFileTooLarge        = errors.New("Wings file exceeds the preview size limit")
-	ErrUnsupportedFileType = errors.New("Wings file is not a supported text type")
+	ErrFileUploadTooLarge   = errors.New("Wings file exceeds the upload size limit")
+	ErrUnsupportedFileType  = errors.New("Wings file is not a supported text type")
 )
 
 // Client sends authenticated requests to a Wings daemon.
@@ -246,6 +255,34 @@ func (c *Client) FileContents(ctx context.Context, serverID, filePath string) (s
 	return string(content), nil
 }
 
+// WriteFile replaces a bounded UTF-8 text file through the Wings file API.
+func (c *Client) WriteFile(ctx context.Context, serverID, filePath, content string) error {
+	id, err := uuid.Parse(serverID)
+	if err != nil {
+		return errors.New("invalid Wings server UUID")
+	}
+	filePath, err = normalizeFilePath(filePath)
+	if err != nil || filePath == "/" {
+		return ErrInvalidFilePath
+	}
+	if len(content) > maxFilePreviewSize {
+		return ErrFileTooLarge
+	}
+	if !utf8.ValidString(content) {
+		return ErrUnsupportedFileType
+	}
+
+	requestPath := "/api/servers/" + id.String() + "/files/write?" + url.Values{
+		"file": []string{filePath},
+	}.Encode()
+	response, err := c.doRequest(ctx, http.MethodPost, requestPath, []byte(content), http.StatusNoContent)
+	if err != nil {
+		return err
+	}
+	defer response.Body.Close()
+	return nil
+}
+
 // FileDownload opens a file response for streaming. The caller must close the
 // response body; request cancellation controls the lifetime of the download.
 func (c *Client) FileDownload(ctx context.Context, serverID, filePath string) (*http.Response, error) {
@@ -287,6 +324,215 @@ func (c *Client) CreateDirectory(ctx context.Context, serverID, name, directory 
 	return c.doJSON(ctx, http.MethodPost, "/api/servers/"+id.String()+"/files/create-directory", body, nil, http.StatusNoContent)
 }
 
+// RenameFile renames one entry within its current directory. Wings rejects an
+// existing destination instead of replacing it.
+func (c *Client) RenameFile(ctx context.Context, serverID, directory, from, to string) error {
+	id, err := uuid.Parse(serverID)
+	if err != nil {
+		return errors.New("invalid Wings server UUID")
+	}
+	directory, err = NormalizeDirectoryPath(directory)
+	if err != nil {
+		return err
+	}
+	if !isValidDirectoryName(from) || !isValidDirectoryName(to) || from == to {
+		return ErrInvalidDirectoryName
+	}
+
+	body := struct {
+		Root  string `json:"root"`
+		Files []struct {
+			From string `json:"from"`
+			To   string `json:"to"`
+		} `json:"files"`
+	}{Root: directory, Files: []struct {
+		From string `json:"from"`
+		To   string `json:"to"`
+	}{{From: from, To: to}}}
+	return c.doJSON(ctx, http.MethodPut, "/api/servers/"+id.String()+"/files/rename", body, nil, http.StatusNoContent)
+}
+
+// DeleteFile deletes one named entry under its parent directory.
+func (c *Client) DeleteFile(ctx context.Context, serverID, directory, name string) error {
+	id, err := uuid.Parse(serverID)
+	if err != nil {
+		return errors.New("invalid Wings server UUID")
+	}
+	directory, err = NormalizeDirectoryPath(directory)
+	if err != nil {
+		return err
+	}
+	if !isValidDirectoryName(name) {
+		return ErrInvalidDirectoryName
+	}
+
+	body := struct {
+		Root  string   `json:"root"`
+		Files []string `json:"files"`
+	}{Root: directory, Files: []string{name}}
+	return c.doJSON(ctx, http.MethodPost, "/api/servers/"+id.String()+"/files/delete", body, nil, http.StatusNoContent)
+}
+
+// CopyFile creates a copy of one regular file in the same directory.
+func (c *Client) CopyFile(ctx context.Context, serverID, filePath string) error {
+	id, err := uuid.Parse(serverID)
+	if err != nil {
+		return errors.New("invalid Wings server UUID")
+	}
+	filePath, err = normalizeFilePath(filePath)
+	if err != nil || filePath == "/" {
+		return ErrInvalidFilePath
+	}
+
+	body := struct {
+		Location string `json:"location"`
+	}{Location: filePath}
+	return c.doJSON(ctx, http.MethodPost, "/api/servers/"+id.String()+"/files/copy", body, nil, http.StatusNoContent)
+}
+
+// CompressFile creates a tar.gz archive containing one file in its directory.
+func (c *Client) CompressFile(ctx context.Context, serverID, directory, name string) (FileEntry, error) {
+	id, err := uuid.Parse(serverID)
+	if err != nil {
+		return FileEntry{}, errors.New("invalid Wings server UUID")
+	}
+	directory, err = NormalizeDirectoryPath(directory)
+	if err != nil {
+		return FileEntry{}, err
+	}
+	if !isValidDirectoryName(name) {
+		return FileEntry{}, ErrInvalidDirectoryName
+	}
+
+	body := struct {
+		Root  string   `json:"root"`
+		Files []string `json:"files"`
+	}{Root: directory, Files: []string{name}}
+	var archive FileEntry
+	compressClient := *c.httpClient
+	compressClient.Timeout = 0
+	err = c.doJSONWithClient(ctx, &compressClient, http.MethodPost, "/api/servers/"+id.String()+"/files/compress", body, &archive, http.StatusOK)
+	return archive, err
+}
+
+// UploadFile uploads one bounded file using a short-lived, single-use Wings token.
+// The file is staged under a random name and renamed so an existing destination
+// cannot be overwritten.
+func (c *Client) UploadFile(ctx context.Context, serverID, userID, directory, name string, content []byte) error {
+	serverUUID, err := uuid.Parse(serverID)
+	if err != nil {
+		return errors.New("invalid Wings server UUID")
+	}
+	userUUID, err := uuid.Parse(userID)
+	if err != nil {
+		return errors.New("invalid Wings user UUID")
+	}
+	directory, err = NormalizeDirectoryPath(directory)
+	if err != nil {
+		return err
+	}
+	if !isValidDirectoryName(name) {
+		return ErrInvalidDirectoryName
+	}
+	if len(content) > MaxFileUploadSize {
+		return ErrFileUploadTooLarge
+	}
+
+	stagingName := ".novroforge-upload-" + uuid.NewString() + ".tmp"
+	token, err := c.createFileUploadToken(serverUUID.String(), userUUID.String())
+	if err != nil {
+		return fmt.Errorf("create Wings upload token: %w", err)
+	}
+	var body bytes.Buffer
+	writer := multipart.NewWriter(&body)
+	part, err := writer.CreateFormFile("files", stagingName)
+	if err != nil {
+		return fmt.Errorf("create Wings upload part: %w", err)
+	}
+	if _, err := part.Write(content); err != nil {
+		return fmt.Errorf("write Wings upload part: %w", err)
+	}
+	if err := writer.Close(); err != nil {
+		return fmt.Errorf("finish Wings upload body: %w", err)
+	}
+
+	requestURL := *c.baseURL
+	requestURL.Path = "/upload/file"
+	requestURL.RawPath = ""
+	requestURL.RawQuery = url.Values{
+		"directory": []string{directory},
+		"token":     []string{token},
+	}.Encode()
+	request, err := http.NewRequestWithContext(ctx, http.MethodPost, requestURL.String(), &body)
+	if err != nil {
+		return errors.New("create Wings upload request failed")
+	}
+	request.Header.Set("Content-Type", writer.FormDataContentType())
+	uploadClient := *c.httpClient
+	uploadClient.Timeout = 0
+	response, err := uploadClient.Do(request)
+	if err != nil {
+		requestErr := errors.New("upload file to Wings request failed")
+		if ctxErr := ctx.Err(); ctxErr != nil {
+			requestErr = fmt.Errorf("upload file to Wings request failed: %w", ctxErr)
+		}
+		return cleanupWingsUpload(ctx, c, serverUUID.String(), directory, stagingName, requestErr)
+	}
+	closeErr := response.Body.Close()
+	if response.StatusCode != http.StatusOK {
+		return cleanupWingsUpload(ctx, c, serverUUID.String(), directory, stagingName, fmt.Errorf("Wings file upload returned unexpected HTTP status %d", response.StatusCode))
+	}
+	if closeErr != nil {
+		return cleanupWingsUpload(ctx, c, serverUUID.String(), directory, stagingName, errors.New("close Wings upload response failed"))
+	}
+
+	if err := c.RenameFile(ctx, serverUUID.String(), directory, stagingName, name); err != nil {
+		return cleanupWingsUpload(ctx, c, serverUUID.String(), directory, stagingName, fmt.Errorf("finalize Wings file upload: %w", err))
+	}
+	return nil
+}
+
+func cleanupWingsUpload(ctx context.Context, client *Client, serverID, directory, stagingName string, cause error) error {
+	if cleanupErr := client.DeleteFile(ctx, serverID, directory, stagingName); cleanupErr != nil {
+		return fmt.Errorf("%w (temporary file cleanup failed: %v)", cause, cleanupErr)
+	}
+	return cause
+}
+
+func (c *Client) createFileUploadToken(serverID, userID string) (string, error) {
+	now := time.Now()
+	uniqueID := uuid.NewString()
+	payload := struct {
+		IssuedAt       int64  `json:"iat"`
+		ExpirationTime int64  `json:"exp"`
+		JWTID          string `json:"jti"`
+		Scope          string `json:"scope"`
+		ServerUUID     string `json:"server_uuid"`
+		UserUUID       string `json:"user_uuid"`
+		UniqueID       string `json:"unique_id"`
+	}{
+		IssuedAt:       now.Add(time.Second).Unix(), // Wings rejects tokens issued before its boot time.
+		ExpirationTime: now.Add(time.Minute).Unix(),
+		JWTID:          uniqueID,
+		Scope:          "file-upload",
+		ServerUUID:     serverID,
+		UserUUID:       userID,
+		UniqueID:       uniqueID,
+	}
+	payloadJSON, err := json.Marshal(payload)
+	if err != nil {
+		return "", fmt.Errorf("encode upload claims: %w", err)
+	}
+	header := base64.RawURLEncoding.EncodeToString([]byte(`{"alg":"HS256","typ":"JWT"}`))
+	encodedPayload := base64.RawURLEncoding.EncodeToString(payloadJSON)
+	unsignedToken := header + "." + encodedPayload
+	signature := hmac.New(sha256.New, []byte(c.token))
+	if _, err := signature.Write([]byte(unsignedToken)); err != nil {
+		return "", fmt.Errorf("sign upload claims: %w", err)
+	}
+	return unsignedToken + "." + base64.RawURLEncoding.EncodeToString(signature.Sum(nil)), nil
+}
+
 func isValidDirectoryName(name string) bool {
 	if name == "" || name == "." || name == ".." || len(name) > maxFileNameLength || !utf8.ValidString(name) || strings.TrimSpace(name) != name || strings.ContainsAny(name, "/\\\x00") {
 		return false
@@ -297,6 +543,14 @@ func isValidDirectoryName(name string) bool {
 		}
 	}
 	return true
+}
+
+// ValidateFileName validates one file or directory entry name.
+func ValidateFileName(name string) error {
+	if !isValidDirectoryName(name) {
+		return ErrInvalidDirectoryName
+	}
+	return nil
 }
 
 func normalizeFilePath(filePath string) (string, error) {
@@ -358,7 +612,11 @@ func (c *Client) Commands(ctx context.Context, serverID string, commands []strin
 }
 
 func (c *Client) doJSON(ctx context.Context, method, requestPath string, body, result any, expectedStatus int) error {
-	response, err := c.doRequest(ctx, method, requestPath, body, expectedStatus)
+	return c.doJSONWithClient(ctx, c.httpClient, method, requestPath, body, result, expectedStatus)
+}
+
+func (c *Client) doJSONWithClient(ctx context.Context, client *http.Client, method, requestPath string, body, result any, expectedStatus int) error {
+	response, err := c.doRequestWithClient(ctx, client, method, requestPath, body, expectedStatus)
 	if err != nil {
 		return err
 	}
@@ -386,12 +644,17 @@ func (c *Client) doRequest(ctx context.Context, method, requestPath string, body
 
 func (c *Client) doRequestWithClient(ctx context.Context, client *http.Client, method, requestPath string, body any, expectedStatus int) (*http.Response, error) {
 	var requestBody io.Reader
-	if body != nil {
+	contentType := ""
+	if rawBody, ok := body.([]byte); ok {
+		requestBody = bytes.NewReader(rawBody)
+		contentType = "application/octet-stream"
+	} else if body != nil {
 		encoded, err := json.Marshal(body)
 		if err != nil {
 			return nil, fmt.Errorf("encode Wings request: %w", err)
 		}
 		requestBody = bytes.NewReader(encoded)
+		contentType = "application/json"
 	}
 
 	requestURL := *c.baseURL
@@ -406,8 +669,8 @@ func (c *Client) doRequestWithClient(ctx context.Context, client *http.Client, m
 	}
 	request.Header.Set("Authorization", "Bearer "+c.token)
 	request.Header.Set("Accept", "application/json")
-	if body != nil {
-		request.Header.Set("Content-Type", "application/json")
+	if contentType != "" {
+		request.Header.Set("Content-Type", contentType)
 	}
 
 	response, err := client.Do(request)

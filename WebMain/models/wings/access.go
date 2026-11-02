@@ -21,7 +21,7 @@ var (
 
 // WingsServerAccess grants one WebMain user narrowly-scoped access to a server.
 // Status and recent logs are readable by assigned users; power and console
-// commands, file browsing, previews, downloads, and directory creation require explicit permissions.
+// commands, file browsing, previews, downloads, uploads, edits, and deletion require explicit permissions.
 type WingsServerAccess struct {
 	ID               int64              `xorm:"pk autoincr"`
 	ServerID         int64              `xorm:"UNIQUE(server_user) INDEX NOT NULL"`
@@ -32,6 +32,9 @@ type WingsServerAccess struct {
 	CanReadFiles     bool               `xorm:"NOT NULL DEFAULT false"`
 	CanDownloadFiles bool               `xorm:"NOT NULL DEFAULT false"`
 	CanManageFiles   bool               `xorm:"NOT NULL DEFAULT false"`
+	CanEditFiles     bool               `xorm:"NOT NULL DEFAULT false"`
+	CanDeleteFiles   bool               `xorm:"NOT NULL DEFAULT false"`
+	CanUploadFiles   bool               `xorm:"NOT NULL DEFAULT false"`
 	CreatedUnix      timeutil.TimeStamp `xorm:"created"`
 }
 
@@ -46,6 +49,9 @@ type ServerUserListItem struct {
 	CanReadFiles     bool
 	CanDownloadFiles bool
 	CanManageFiles   bool
+	CanEditFiles     bool
+	CanDeleteFiles   bool
+	CanUploadFiles   bool
 }
 
 // UserServerListItem contains only server data visible to an assigned user.
@@ -59,6 +65,9 @@ type UserServerListItem struct {
 	CanReadFiles     bool
 	CanDownloadFiles bool
 	CanManageFiles   bool
+	CanEditFiles     bool
+	CanDeleteFiles   bool
+	CanUploadFiles   bool
 }
 
 func init() {
@@ -66,7 +75,7 @@ func init() {
 }
 
 // GrantServerAccess assigns an existing active individual account to a server.
-func GrantServerAccess(ctx context.Context, serverID int64, username string, canPower, canConsole, canFiles, canReadFiles, canDownloadFiles, canManageFiles bool) error {
+func GrantServerAccess(ctx context.Context, serverID int64, username string, canPower, canConsole, canFiles, canReadFiles, canDownloadFiles, canManageFiles, canEditFiles, canDeleteFiles, canUploadFiles bool) error {
 	if serverID <= 0 {
 		return errors.New("invalid Wings server ID")
 	}
@@ -100,8 +109,11 @@ func GrantServerAccess(ctx context.Context, serverID int64, username string, can
 	access.CanReadFiles = canReadFiles
 	access.CanDownloadFiles = canDownloadFiles
 	access.CanManageFiles = canManageFiles
+	access.CanEditFiles = canEditFiles
+	access.CanDeleteFiles = canDeleteFiles
+	access.CanUploadFiles = canUploadFiles
 	if has {
-		if _, err := engine.ID(access.ID).Cols("can_power", "can_console", "can_files", "can_read_files", "can_download_files", "can_manage_files").Update(&access); err != nil {
+		if _, err := engine.ID(access.ID).Cols("can_power", "can_console", "can_files", "can_read_files", "can_download_files", "can_manage_files", "can_edit_files", "can_delete_files", "can_upload_files").Update(&access); err != nil {
 			return fmt.Errorf("update Wings server access: %w", err)
 		}
 		return nil
@@ -149,6 +161,9 @@ func ListServerAccess(ctx context.Context, serverIDs []int64) (map[int64][]Serve
 			CanReadFiles:     row.CanReadFiles,
 			CanDownloadFiles: row.CanDownloadFiles,
 			CanManageFiles:   row.CanManageFiles,
+			CanEditFiles:     row.CanEditFiles,
+			CanDeleteFiles:   row.CanDeleteFiles,
+			CanUploadFiles:   row.CanUploadFiles,
 		})
 	}
 	return items, nil
@@ -186,6 +201,9 @@ func ListUserServers(ctx context.Context, userID int64) ([]UserServerListItem, e
 			CanReadFiles:     access.CanReadFiles,
 			CanDownloadFiles: access.CanDownloadFiles,
 			CanManageFiles:   access.CanManageFiles,
+			CanEditFiles:     access.CanEditFiles,
+			CanDeleteFiles:   access.CanDeleteFiles,
+			CanUploadFiles:   access.CanUploadFiles,
 		})
 	}
 	return items, nil

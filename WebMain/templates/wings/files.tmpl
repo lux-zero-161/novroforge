@@ -24,6 +24,23 @@
 				</div>
 			</form>
 		{{end}}
+		{{if .CanUploadFiles}}
+			<div class="ui segment">
+				<p>{{ctx.Locale.Tr "wings.file_upload_help"}}</p>
+				<form class="ui form" method="post" enctype="multipart/form-data" action="{{AppSubUrl}}/user/servers/{{.Server.ID}}/files/upload">
+					<input type="hidden" name="directory" value="{{.Directory}}">
+					<div class="inline fields">
+						<div class="field">
+							<label for="wings-file-upload">{{ctx.Locale.Tr "wings.upload_file"}}</label>
+							<input id="wings-file-upload" type="file" name="file" required>
+						</div>
+						<div class="field">
+							<button class="ui button" type="submit">{{ctx.Locale.Tr "wings.upload_file"}}</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		{{end}}
 		{{if .Files}}
 			<div class="overflow menu">
 				<table class="ui very basic striped table">
@@ -35,6 +52,7 @@
 							<th>{{ctx.Locale.Tr "wings.file_modified"}}</th>
 							<th>{{ctx.Locale.Tr "wings.file_mode"}}</th>
 							{{if .CanDownloadFiles}}<th>{{ctx.Locale.Tr "wings.file_download"}}</th>{{end}}
+							{{if or .CanManageFiles .CanEditFiles .CanDeleteFiles}}<th>{{ctx.Locale.Tr "wings.file_actions"}}</th>{{end}}
 						</tr>
 					</thead>
 					<tbody>
@@ -55,6 +73,57 @@
 								<td><code>{{.ModeBits}}</code></td>
 								{{if $.CanDownloadFiles}}
 									<td>{{if .DownloadPath}}<a class="ui button" href="{{AppSubUrl}}/user/servers/{{$.Server.ID}}/files/download?file={{.DownloadPath}}">{{ctx.Locale.Tr "wings.file_download"}}</a>{{end}}</td>
+								{{end}}
+								{{if or $.CanManageFiles $.CanEditFiles $.CanDeleteFiles}}
+									<td>
+										{{if .EditPath}}
+											<a class="ui button" href="{{AppSubUrl}}/user/servers/{{$.Server.ID}}/files/edit?file={{.EditPath}}">{{ctx.Locale.Tr "wings.edit_file"}}</a>
+										{{end}}
+										{{if and (not .Symlink) (or .File .Directory)}}
+											{{if $.CanManageFiles}}
+												<form class="ui form" method="post" action="{{AppSubUrl}}/user/servers/{{$.Server.ID}}/files/rename">
+													<input type="hidden" name="directory" value="{{$.Directory}}">
+													<input type="hidden" name="from" value="{{.Name}}">
+													<div class="inline fields">
+														<div class="field">
+															<input name="to" value="{{.Name}}" maxlength="255" required aria-label="{{ctx.Locale.Tr "wings.new_file_name"}}">
+														</div>
+														<div class="field">
+															<button class="ui button" type="submit">{{ctx.Locale.Tr "wings.rename_file"}}</button>
+														</div>
+													</div>
+												</form>
+											{{end}}
+										{{end}}
+										{{if and $.CanDeleteFiles .DeletePath}}
+											<form class="ui form" method="post" action="{{AppSubUrl}}/user/servers/{{$.Server.ID}}/files/delete">
+												<input type="hidden" name="file" value="{{.DeletePath}}">
+												<div class="inline fields">
+													<div class="field">
+														<div class="ui checkbox">
+															<input type="checkbox" name="confirm_delete" value="true" required>
+															<label>{{ctx.Locale.Tr "wings.file_delete_confirm"}}</label>
+														</div>
+													</div>
+													<div class="field">
+														<button class="ui red button" type="submit">{{ctx.Locale.Tr "wings.delete_file"}}</button>
+													</div>
+												</div>
+											</form>
+										{{end}}
+										{{if .CopyPath}}
+											<form class="ui form" method="post" action="{{AppSubUrl}}/user/servers/{{$.Server.ID}}/files/copy">
+												<input type="hidden" name="file" value="{{.CopyPath}}">
+												<button class="ui button" type="submit">{{ctx.Locale.Tr "wings.copy_file"}}</button>
+											</form>
+										{{end}}
+										{{if .CopyPath}}
+											<form class="ui form" method="post" action="{{AppSubUrl}}/user/servers/{{$.Server.ID}}/files/compress">
+												<input type="hidden" name="file" value="{{.CopyPath}}">
+												<button class="ui button" type="submit">{{ctx.Locale.Tr "wings.compress_file"}}</button>
+											</form>
+										{{end}}
+									</td>
 								{{end}}
 							</tr>
 						{{end}}
