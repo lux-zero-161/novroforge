@@ -946,8 +946,11 @@ func registerRoutes(m *web.Route) {
 			m.Post("/{id}/delete", admin.DeleteWingsNode)
 			m.Post("/servers", admin.CreateWingsServer)
 			m.Post("/servers/{id}/test", admin.TestWingsServer)
+			m.Get("/servers/{id}/logs", admin.WingsServerLogs)
 			m.Post("/servers/{id}/power", admin.ControlWingsServer)
 			m.Post("/servers/{id}/command", admin.SendWingsServerCommand)
+			m.Post("/servers/{id}/users", admin.GrantWingsServerAccess)
+			m.Post("/servers/{id}/users/{access_id}/delete", admin.RevokeWingsServerAccess)
 			m.Post("/servers/{id}/delete", admin.DeleteWingsServer)
 		})
 
@@ -1059,6 +1062,13 @@ func registerRoutes(m *web.Route) {
 		}
 	}, adminReq, ctxDataSet("EnableOAuth2", setting.OAuth2.Enabled, "EnablePackages", setting.Packages.Enabled, "EnableModeration", setting.Moderation.Enabled))
 	// ***** END: Admin *****
+
+	m.Group("/user/servers", func() {
+		m.Get("", user.WingsServers)
+		m.Get("/{id}", user.WingsServer)
+		m.Post("/{id}/power", user.ControlWingsServer)
+		m.Post("/{id}/command", user.SendWingsServerCommand)
+	}, reqSignIn)
 
 	m.Group("", func() {
 		m.Get("/{username}", user.UsernameSubRoute)

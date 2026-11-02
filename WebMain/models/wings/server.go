@@ -40,6 +40,7 @@ type ServerListItem struct {
 	NodeName string
 	Name     string
 	UUID     string
+	Accesses []ServerUserListItem
 }
 
 func init() {
@@ -97,6 +98,14 @@ func ListServers(ctx context.Context) ([]ServerListItem, error) {
 		nodeNames[node.ID] = node.Name
 	}
 
+	serverIDs := make([]int64, 0, len(servers))
+	for _, server := range servers {
+		serverIDs = append(serverIDs, server.ID)
+	}
+	accessByServer, err := ListServerAccess(ctx, serverIDs)
+	if err != nil {
+		return nil, err
+	}
 	items := make([]ServerListItem, 0, len(servers))
 	for _, server := range servers {
 		items = append(items, ServerListItem{
@@ -105,6 +114,7 @@ func ListServers(ctx context.Context) ([]ServerListItem, error) {
 			NodeName: nodeNames[server.NodeID],
 			Name:     server.Name,
 			UUID:     server.UUID,
+			Accesses: accessByServer[server.ID],
 		})
 	}
 	return items, nil
@@ -140,12 +150,17 @@ func DeleteServerRegistration(ctx context.Context, id int64) error {
 	if id <= 0 {
 		return errors.New("invalid Wings server ID")
 	}
-	affected, err := db.GetEngine(ctx).ID(id).Delete(&WingsServer{})
-	if err != nil {
-		return fmt.Errorf("remove Wings server registration %d: %w", id, err)
-	}
-	if affected == 0 {
-		return fmt.Errorf("Wings server registration %d does not exist", id)
-	}
-	return nil
+	return db.WithTx(ctx, func(ctx context.Context) error {
+		if _, err := db.GetEngine(ctx).Where("server_id = ?", id).Delete(&WingsServerAccess{}); err != nil {
+			return fmt.Errorf("remove Wings server access for registration %d: %w", id, err)
+		}
+		affected, err := db.GetEngine(ctx).ID(id).Delete(&WingsServer{})
+		if err != nil {
+			return fmt.Errorf("remove Wings server registration %d: %w", id, err)
+		}
+		if affected == 0 {
+			return fmt.Errorf("Wings server registration %d does not exist", id)
+		}
+		return nil
+	})
 }

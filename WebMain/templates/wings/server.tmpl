@@ -1,0 +1,36 @@
+{{template "base/head" .}}
+<div role="main" aria-label="{{.Server.Name}}" class="page-content">
+	<div class="ui container">
+		<h1 class="ui header">{{.Server.Name}}</h1>
+		<p><a href="{{AppSubUrl}}/user/servers">{{ctx.Locale.Tr "wings.back_to_servers"}}</a></p>
+		<div class="ui segment">
+			<p>{{ctx.Locale.Tr "wings.server_state"}}: <strong>{{.Details.State}}</strong></p>
+			<p>{{ctx.Locale.Tr "wings.server_cpu"}}: {{.Details.Utilization.CPUAbsolute}} %</p>
+			<p>{{ctx.Locale.Tr "wings.server_memory"}}: {{.Details.Utilization.MemoryBytes}} / {{.Details.Utilization.MemoryLimit}} {{ctx.Locale.Tr "wings.bytes"}}</p>
+			<p>{{ctx.Locale.Tr "wings.server_disk"}}: {{.Details.Utilization.DiskBytes}} {{ctx.Locale.Tr "wings.bytes"}}</p>
+		</div>
+		{{if .Access.CanPower}}
+			<form class="ui form" method="post" action="{{AppSubUrl}}/user/servers/{{.Server.ID}}/power">
+				<label for="wings-user-power">{{ctx.Locale.Tr "wings.power_action"}}</label>
+				<select id="wings-user-power" name="action">
+					<option value="start">{{ctx.Locale.Tr "wings.start"}}</option>
+					<option value="stop">{{ctx.Locale.Tr "wings.stop"}}</option>
+					<option value="restart">{{ctx.Locale.Tr "wings.restart"}}</option>
+				</select>
+				<button class="ui primary button" type="submit">{{ctx.Locale.Tr "wings.send_action"}}</button>
+			</form>
+		{{end}}
+		<h2 class="ui header">{{ctx.Locale.Tr "wings.console"}}</h2>
+		<pre class="code-block">{{if .Logs}}{{range .Logs}}{{.}}{{"\n"}}{{end}}{{else}}{{ctx.Locale.Tr "wings.no_logs"}}{{end}}</pre>
+		{{if .Access.CanConsole}}
+			<form class="ui form" method="post" action="{{AppSubUrl}}/user/servers/{{.Server.ID}}/command">
+				<div class="required field">
+					<label for="wings-user-command">{{ctx.Locale.Tr "wings.command"}}</label>
+					<input id="wings-user-command" name="command" maxlength="4096" required>
+				</div>
+				<button class="ui button" type="submit">{{ctx.Locale.Tr "wings.send_command"}}</button>
+			</form>
+		{{end}}
+	</div>
+</div>
+{{template "base/footer" .}}

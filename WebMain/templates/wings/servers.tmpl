@@ -1,0 +1,24 @@
+{{template "base/head" .}}
+<div role="main" aria-label="{{ctx.Locale.Tr "wings.servers"}}" class="page-content">
+	<div class="ui container">
+		<h1 class="ui header">{{ctx.Locale.Tr "wings.servers"}}</h1>
+		{{if .Servers}}
+			<div class="ui cards">
+				{{range .Servers}}
+					<div class="ui card">
+						<div class="content">
+							<div class="header">{{.Name}}</div>
+							<div class="description"><code>{{.UUID}}</code></div>
+						</div>
+						<div class="extra content">
+							<a class="ui primary button" href="{{AppSubUrl}}/user/servers/{{.ID}}">{{ctx.Locale.Tr "wings.open_server"}}</a>
+						</div>
+					</div>
+				{{end}}
+			</div>
+		{{else}}
+			<div class="ui message">{{ctx.Locale.Tr "wings.no_servers"}}</div>
+		{{end}}
+	</div>
+</div>
+{{template "base/footer" .}}

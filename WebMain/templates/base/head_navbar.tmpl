@@ -136,6 +136,10 @@
 						{{svg "octicon-person"}}
 						{{ctx.Locale.Tr "your_profile"}}
 					</a>
+					<a class="{{if .PageIsWingsServers}}active {{end}}item" href="{{AppSubUrl}}/user/servers">
+						{{svg "octicon-server"}}
+						{{ctx.Locale.Tr "wings.servers"}}
+					</a>
 					{{if not .DisableStars}}
 						<a class="item" href="{{.SignedUser.HomeLink}}?tab=stars">
 							{{svg "octicon-star"}}

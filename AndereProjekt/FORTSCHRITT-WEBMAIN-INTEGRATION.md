@@ -19,7 +19,9 @@ Diese Datei dokumentiert den Fortschritt bei der Integration der Panel-Funktione
 
 Status: **In Arbeit**
 
-- **Gesamtfortschritt: ca. 20 % (Schätzung)** — `[##........]`
+### Gesamtfortschritt: ca. 30 % (Schätzung)
+
+`[###.......] 30 %`
 - Die Schätzung bezieht sich auf den geplanten Gesamtumfang eines Panel-Integrationsprojekts (Analyse, sichere Wings-Anbindung, Nodes/Server, Benutzerzugriff und weitere Panel-Funktionen), nicht auf die Anzahl der geänderten Dateien. Die vollständige Funktionsinventur und Nutzerberechtigungen fehlen noch.
 
 - [ ] Analyse beider Projekte abgeschlossen
@@ -29,7 +31,7 @@ Status: **In Arbeit**
 - [ ] Tests, Linter und Builds ausgeführt
 - [ ] Abschlussbericht erstellt
 
-Aktueller Umsetzungsschritt: sichere Wings-Node-Konfiguration sowie eine Admin-Verwaltung für vorhandene Server. Node-Tokens werden mit WebMain-Verschlüsselung gespeichert. Server können einer Node zugeordnet, auf Status geprüft und durch Administratoren gestartet, gestoppt, neugestartet oder mit Konsolenbefehlen angesprochen werden. Benutzerzuordnungen, Zugriffsrechte, Live-Konsole und Nutzeroberfläche für Server fehlen; das ist noch kein vollständiges Serverpanel.
+Aktueller Umsetzungsschritt: sichere Wings-Node-Konfiguration, Admin-Verwaltung und erste Benutzeransicht mit expliziter Serverzuordnung. Node-Tokens werden mit WebMain-Verschlüsselung gespeichert. Zugewiesene Nutzer sehen Serverstatus und letzte Konsolenzeilen; Power-Aktionen und Konsolenbefehle erfordern jeweils gesonderte Admin-Freigaben. Live-Konsole und umfangreiche Panel-Funktionen fehlen weiterhin.
 
 ## Erste Architekturprüfung
 
@@ -39,22 +41,22 @@ Aktueller Umsetzungsschritt: sichere Wings-Node-Konfiguration sowie eine Admin-V
 - Eine passende Pterodactyl-/Wings-Integration wurde bei der ersten Suche in `WebMain` nicht gefunden. Die vollständige Prüfung des Zielprojekts steht noch aus.
 - Wegen der unterschiedlichen Architekturen ist eine vollständige Integration eine umfangreiche, schrittweise Neuumsetzung. Das Referenzprojekt darf nicht einfach in `WebMain` kopiert werden; das bestehende WebMain-Design bleibt unverändert.
 - Das vorhandene `Wings`-Projekt stellt Server-Endpunkte für Status, Konsole, Power-Aktionen und weitere Ressourcen bereit. Administrative Wings-Aufrufe erfordern ein konfiguriertes Bearer-Token pro Node.
-- Vor Beginn dieser Integration hatte WebMain weder eine Wings-Node-Konfiguration noch Server-Zugriffsmodelle für Panel-Benutzer. Die Node-Konfiguration ist nun implementiert; Zuordnungen zu Servern und Benutzerberechtigungen fehlen weiterhin. Es werden keine echten Tokens in Quellcode oder Dokumentation eingetragen.
-- Node- und Serververwaltung sind derzeit ausschließlich im Admin-Bereich verfügbar; sie geben normalen Benutzern noch keinen Zugriff auf Server.
+- Vor Beginn dieser Integration hatte WebMain weder eine Wings-Node-Konfiguration noch Server-Zugriffsmodelle für Panel-Benutzer. Die Node-Konfiguration, Serverregistrierung und eine erste explizite Benutzerzuordnung mit getrennten Power-/Konsolenrechten sind nun implementiert. Es werden keine echten Tokens in Quellcode oder Dokumentation eingetragen.
+- Node-Verwaltung und Rechtevergabe bleiben Admin-only. Normale Nutzer sehen ausschließlich explizit zugewiesene Server.
 
 ## Funktions- und Umsetzungsübersicht
 
 | Bereich/Funktion | Im Referenzprojekt vorhanden | Status in WebMain | Umsetzung / Datei / Hinweis |
 |---|---|---|---|
-| Wings-Kommunikation: Serverdetails, Logs, Power und Konsole | Ja | In Arbeit | `WebMain/services/wings/client.go`; Serverstatus, Power und Befehle in Admin-Handler eingebunden; Logs noch nicht in einer Live-Konsole dargestellt |
+| Wings-Kommunikation: Serverdetails, Logs, Power und Konsole | Ja | In Arbeit | `WebMain/services/wings/client.go`; Status, letzte 100 Logs, Power und Befehle in Admin- und berechtigungsgeprüften Nutzerseiten; Live-Streaming fehlt |
 | Nodes in der Admin-Oberfläche registrieren, Verbindung testen und entfernen | Ja | In Arbeit | `WebMain/models/wings/node.go`, Migration `v18b_add-wings-nodes.go`, `/admin/wings/nodes`; Token wird verschlüsselt gespeichert |
-| Serverübersicht und Serverdetails | Ja | In Arbeit (Admin) | Registrierung vorhandener Wings-Server, Statusabfrage und Übersicht; keine Nutzeransicht |
+| Serverübersicht und Serverdetails | Ja | In Arbeit | Adminübersicht und Nutzeransicht unter `/user/servers`, nur explizit zugewiesene Server; Status und Ressourcen |
 | Server erstellen, bearbeiten und verwalten | Ja | Noch zu prüfen | |
 | Status und Ressourcenübersicht | Ja | Noch zu prüfen | |
-| Live-Konsole und Befehle | Ja | In Arbeit (Admin) | Konsolenbefehle können gesendet werden; Live-Log/Streaming-Konsole fehlt |
-| Starten, Stoppen und Neustarten | Ja | In Arbeit (Admin) | Admin-Aktionen an Wings; keine Benutzerrechte/Serverzuordnung |
+| Live-Konsole und Befehle | Ja | In Arbeit | Letzte 100 Konsolenzeilen; Befehle nur für explizit berechtigte Nutzer oder Administratoren; Live-/Streaming-Konsole fehlt |
+| Starten, Stoppen und Neustarten | Ja | In Arbeit | Power-Aktionen nur für explizit berechtigte Nutzer oder Administratoren |
 | Konfigurationen und Umgebungen | Ja | Noch zu prüfen | |
-| Benutzer, Rollen und Berechtigungen | Ja | Noch zu prüfen | |
+| Benutzer, Rollen und Berechtigungen | Ja | In Arbeit | Admin kann WebMain-Nutzern Serverzugriff sowie getrennte Power-/Konsolenrechte vergeben oder entziehen; vollständiges Rollenmodell fehlt |
 | Aktivitätsverlauf und Benachrichtigungen | Ja | Noch zu prüfen | |
 | Dateien, Backups, Datenbanken, Netzwerke und Zeitpläne | Ja | Noch zu prüfen | |
 | Nodes, Allocations und Eggs | Ja | Noch zu prüfen | |
@@ -67,7 +69,7 @@ Mögliche Statuswerte: **Noch zu prüfen**, **Offen**, **In Arbeit**, **Erledigt
 
 | Prüfung | Ergebnis | Hinweise |
 |---|---|---|
-| Tests | Nicht ausführbar | `go test ./services/wings` wurde versucht; Go-Toolchain ist in der aktuellen Shell nicht installiert/verfügbar. |
+| Tests | Nicht ausführbar | `go test ./services/wings` wurde erneut versucht; Go-Toolchain ist in der aktuellen Shell nicht installiert/verfügbar. Für das Abrufen der Konsolenzeilen wurde ein gezielter Test ergänzt, konnte aber ebenfalls nicht ausgeführt werden. |
 | Linter / Formatierer | Nicht ausführbar | `gofmt` wurde versucht; Go-Toolchain ist in der aktuellen Shell nicht installiert/verfügbar. |
 | Localization JSON | Bestanden | `options/locale_next/locale_en-US.json` mit PowerShell-JSON-Parser eingelesen. |
 | Git whitespace check | Bestanden | `git diff --check` meldet keine Fehler. |
@@ -75,9 +77,9 @@ Mögliche Statuswerte: **Noch zu prüfen**, **Offen**, **In Arbeit**, **Erledigt
 
 ## Blocker und nicht umgesetzte Funktionen
 
-- **Noch offen:** Rotation der Wings-Node-Tokens sowie Zuordnung von Nodes/Servern zu WebMain-Benutzern und deren Berechtigungen.
+- **Noch offen:** Rotation der Wings-Node-Tokens sowie weitergehende Rollen-, Datei- und Ressourcenberechtigungen.
 - Die aktuelle Umgebung stellt `go` und `gofmt` nicht bereit. Daher konnten die hinzugefügten Go-Änderungen hier noch nicht kompiliert oder getestet werden.
-- Die aktuelle Node-Verwaltung speichert nun Wings-Servermetadaten. Benutzerkonten sind jedoch noch nicht einzelnen Servern zugeordnet; Serveraktionen sind deshalb vorerst nur für Administratoren verfügbar.
+- Benutzerkonten können Servern explizit zugeordnet werden. Status/Logs sind für zugewiesene Nutzer lesbar; Power-Aktionen und Konsolenbefehle sind per separater Freigabe geschützt.
 
 ## Fortschrittsprotokoll
 
@@ -88,4 +90,5 @@ Mögliche Statuswerte: **Noch zu prüfen**, **Offen**, **In Arbeit**, **Erledigt
 | 2026-11-02 | Wings-HTTP-Client ergänzt: HTTPS für externe Nodes, HTTP nur für Loopback, keine Redirects, begrenzte Antworten und validierte UUIDs/Aktionen. Go-Tests und Formatierung konnten wegen fehlender Go-Toolchain nicht ausgeführt werden. | `WebMain/services/wings/client.go`, `WebMain/services/wings/client_test.go` | Go-Toolchain bereitstellen, Tests/Formatierung ausführen, anschließend verschlüsselte Node-Verwaltung und autorisierte WebMain-Endpunkte ergänzen. |
 | 2026-11-02 | Admin-Verwaltung für Wings-Nodes ergänzt: Migration und Modell mit XChaCha20-Poly1305-Verschlüsselung, HTTPS-Validierung sowie Registrierung/Löschung unter `/admin/wings/nodes`. Token wird nicht in der Liste angezeigt. | Modelle, Migration, Admin-Handler/Routen, Admin-Navigation und `wings_nodes.tmpl`; Locale-JSON validiert und `git diff --check` bestanden. | Go-Toolchain bereitstellen und alle Änderungen kompilieren/testen; danach Wings-Serverzuordnung und Rechteprüfung aufbauen. |
 | 2026-11-02 | Admin-Verbindungstest ergänzt: authentifizierter Aufruf von Wings `/api/system`; Fehler werden nutzerverständlich angezeigt, Token wird nicht ausgegeben. Requests und Konsolenbefehle im Client zusätzlich begrenzt. | Wings-Client, Node-Modell, Admin-Handler/Routen und Nodes-Ansicht. | Erneute Build-/Testvalidierung nach Verfügbarkeit von Go; anschließend sichere Serverzuordnung und Rechteprüfung. |
-| Weiterführung | Serverseitige Zuordnung vorhandener Wings-Server zu Nodes ergänzt; Registrierung prüft den Server über Wings. Admin-Oberfläche bietet Statusprüfung, Start/Stop/Restart und Befehle. Node-Konfiguration kann bei zugeordneten Servern nicht versehentlich gelöscht werden. Gesamtfortschritt auf ca. 20 % geschätzt. | Wings-Servermodell und Migration, Admin-Handler/Routen, Nodes-/Serveransicht und englische Locale. | Go-Toolchain bereitstellen und kompilieren/testen; danach Benutzerzuordnung, Rechteprüfung und eine Nutzer-Serveransicht entwickeln. |
+| 2026-11-02 | Benutzerzuordnung ergänzt: Admins können aktive WebMain-Konten einem Server zuweisen und Power-/Konsolenrechte separat vergeben. Nutzer sehen unter `/user/servers` nur ihre zugewiesenen Server und können je nach Freigabe Aktionen ausführen. Beim Entfernen einer Serverregistrierung werden ihre Zugriffszuordnungen in einer Transaktion gelöscht. Fortschritt auf ca. 30 % aktualisiert. | Wings-Zugriffsmodell und Migration `v18d`, Admin-/Nutzerrouten, Berechtigungsprüfungen, Benutzeransichten, Navigation und Locale. | Go-Toolchain für Build/Tests bereitstellen; danach Live-Konsole, Datei- und Backup-Funktionen sowie weitere Panel-Bereiche implementieren. |
+| 2026-11-02 | Nutzer-Serverseiten in die normale Desktop- und mobile Navigation aufgenommen; Serverrouten liegen unter `/user/servers`, um Konflikte mit öffentlichen Benutzernamen-Routen zu vermeiden. | Navbar und mobile Navbar-Drawer, Nutzerrouten und Servertemplates. | Go-Tests und Template-Rendering ausführen, sobald die Go-Toolchain verfügbar ist. |

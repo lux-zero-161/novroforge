@@ -19,22 +19,30 @@ import (
 const tplWingsNodes base.TplName = "admin/wings_nodes"
 
 func WingsNodes(ctx *context.Context) {
+	if !prepareWingsNodesPage(ctx) {
+		return
+	}
+	ctx.HTML(http.StatusOK, tplWingsNodes)
+}
+
+func prepareWingsNodesPage(ctx *context.Context) bool {
 	nodes, err := wings_model.ListNodes(ctx)
 	if err != nil {
 		ctx.ServerError("ListWingsNodes", err)
-		return
+		return false
 	}
 
 	ctx.Data["Title"] = ctx.Tr("admin.wings_nodes")
 	ctx.Data["PageIsAdminWingsNodes"] = true
 	ctx.Data["Nodes"] = nodes
+	ctx.Data["LogsServerID"] = int64(0)
 	servers, err := wings_model.ListServers(ctx)
 	if err != nil {
 		ctx.ServerError("ListWingsServers", err)
-		return
+		return false
 	}
 	ctx.Data["Servers"] = servers
-	ctx.HTML(http.StatusOK, tplWingsNodes)
+	return true
 }
 
 func CreateWingsNode(ctx *context.Context) {
@@ -116,6 +124,39 @@ func DeleteWingsServer(ctx *context.Context) {
 	ctx.Redirect(setting.AppSubURL + "/admin/wings/nodes")
 }
 
+func GrantWingsServerAccess(ctx *context.Context) {
+	serverID := ctx.ParamsInt64("id")
+	if err := wings_model.GrantServerAccess(
+		ctx,
+		serverID,
+		ctx.FormString("username"),
+		ctx.FormBool("can_power"),
+		ctx.FormBool("can_console"),
+	); err != nil {
+		if errors.Is(err, wings_model.ErrInvalidAccessUser) {
+			ctx.Flash.Error(ctx.Tr("admin.wings_servers.invalid_access_user"))
+		} else {
+			log.Error("GrantWingsServerAccess[%d]: %v", serverID, err)
+			ctx.Flash.Error(ctx.Tr("admin.wings_servers.access_failed"))
+		}
+	} else {
+		ctx.Flash.Success(ctx.Tr("admin.wings_servers.access_granted"))
+	}
+	ctx.Redirect(setting.AppSubURL + "/admin/wings/nodes")
+}
+
+func RevokeWingsServerAccess(ctx *context.Context) {
+	serverID := ctx.ParamsInt64("id")
+	accessID := ctx.ParamsInt64("access_id")
+	if err := wings_model.RevokeServerAccess(ctx, serverID, accessID); err != nil {
+		log.Error("RevokeWingsServerAccess[server=%d,access=%d]: %v", serverID, accessID, err)
+		ctx.Flash.Error(ctx.Tr("admin.wings_servers.access_revoke_failed"))
+	} else {
+		ctx.Flash.Success(ctx.Tr("admin.wings_servers.access_revoked"))
+	}
+	ctx.Redirect(setting.AppSubURL + "/admin/wings/nodes")
+}
+
 func TestWingsServer(ctx *context.Context) {
 	id, err := strconv.ParseInt(ctx.Params("id"), 10, 64)
 	if err != nil || id <= 0 {
@@ -146,6 +187,45 @@ func TestWingsServer(ctx *context.Context) {
 	log.Error("TestWingsServer[%d]: %v", id, err)
 	ctx.Flash.Error(ctx.Tr("admin.wings_servers.status_failed"))
 	ctx.Redirect(setting.AppSubURL + "/admin/wings/nodes")
+}
+
+func WingsServerLogs(ctx *context.Context) {
+	id, err := strconv.ParseInt(ctx.Params("id"), 10, 64)
+	if err != nil || id <= 0 {
+		ctx.Flash.Error(ctx.Tr("admin.wings_nodes.invalid_id"))
+		ctx.Redirect(setting.AppSubURL + "/admin/wings/nodes")
+		return
+	}
+	server, exists, err := wings_model.GetServerByID(ctx, id)
+	if err != nil {
+		ctx.ServerError("GetWingsServer", err)
+		return
+	}
+	if !exists {
+		ctx.Flash.Error(ctx.Tr("admin.wings_servers.not_found"))
+		ctx.Redirect(setting.AppSubURL + "/admin/wings/nodes")
+		return
+	}
+	client, err := server.GetServerClient(ctx)
+	if err != nil {
+		log.Error("GetWingsServerLogs[%d]: %v", id, err)
+		ctx.Flash.Error(ctx.Tr("admin.wings_servers.logs_failed"))
+		ctx.Redirect(setting.AppSubURL + "/admin/wings/nodes")
+		return
+	}
+	logs, err := client.Logs(ctx, server.UUID, 100)
+	if err != nil {
+		log.Error("GetWingsServerLogs[%d]: %v", id, err)
+		ctx.Flash.Error(ctx.Tr("admin.wings_servers.logs_failed"))
+		ctx.Redirect(setting.AppSubURL + "/admin/wings/nodes")
+		return
+	}
+	if !prepareWingsNodesPage(ctx) {
+		return
+	}
+	ctx.Data["Logs"] = logs
+	ctx.Data["LogsServerID"] = id
+	ctx.HTML(http.StatusOK, tplWingsNodes)
 }
 
 func ControlWingsServer(ctx *context.Context) {

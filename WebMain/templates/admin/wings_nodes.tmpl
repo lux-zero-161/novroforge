@@ -99,11 +99,13 @@
 					</thead>
 					<tbody>
 						{{range .Servers}}
+							{{$server := .}}
 							<tr>
 								<td>{{.Name}}</td>
 								<td>{{.NodeName}}</td>
 								<td><code>{{.UUID}}</code></td>
 								<td>
+									<a class="ui button" href="{{AppSubUrl}}/admin/wings/nodes/servers/{{.ID}}/logs">{{ctx.Locale.Tr "admin.wings_servers.view_logs"}}</a>
 									<form method="post" action="{{AppSubUrl}}/admin/wings/nodes/servers/{{.ID}}/test">
 										<button class="ui button" type="submit">{{ctx.Locale.Tr "admin.wings_servers.check_status"}}</button>
 									</form>
@@ -121,6 +123,42 @@
 									</form>
 									<form method="post" action="{{AppSubUrl}}/admin/wings/nodes/servers/{{.ID}}/delete">
 										<button class="ui red button" type="submit">{{ctx.Locale.Tr "admin.wings_servers.remove_registration"}}</button>
+									</form>
+									{{if eq $.LogsServerID .ID}}
+										<pre class="code-block">{{if $.Logs}}{{range $.Logs}}{{.}}{{"\n"}}{{end}}{{else}}{{ctx.Locale.Tr "admin.wings_servers.no_logs"}}{{end}}</pre>
+									{{end}}
+									<div class="ui divider"></div>
+									<strong>{{ctx.Locale.Tr "admin.wings_servers.user_access"}}</strong>
+									{{range .Accesses}}
+										<div class="ui segment">
+											<strong>{{.Username}}</strong>
+											<span>{{if .CanPower}}{{ctx.Locale.Tr "admin.wings_servers.power_permission"}}{{end}}</span>
+											<span>{{if .CanConsole}}{{ctx.Locale.Tr "admin.wings_servers.console_permission"}}{{end}}</span>
+											<form method="post" action="{{AppSubUrl}}/admin/wings/nodes/servers/{{$server.ID}}/users/{{.ID}}/delete">
+												<button class="ui red button" type="submit">{{ctx.Locale.Tr "admin.wings_servers.revoke_access"}}</button>
+											</form>
+										</div>
+									{{else}}
+										<p>{{ctx.Locale.Tr "admin.wings_servers.no_assigned_users"}}</p>
+									{{end}}
+									<form class="ui form" method="post" action="{{AppSubUrl}}/admin/wings/nodes/servers/{{$server.ID}}/users">
+										<div class="required field">
+											<label>{{ctx.Locale.Tr "admin.wings_servers.username"}}</label>
+											<input name="username" maxlength="255" required>
+										</div>
+										<div class="field">
+											<div class="ui checkbox">
+												<input type="checkbox" name="can_power" value="true">
+												<label>{{ctx.Locale.Tr "admin.wings_servers.grant_power"}}</label>
+											</div>
+										</div>
+										<div class="field">
+											<div class="ui checkbox">
+												<input type="checkbox" name="can_console" value="true">
+												<label>{{ctx.Locale.Tr "admin.wings_servers.grant_console"}}</label>
+											</div>
+										</div>
+										<button class="ui button" type="submit">{{ctx.Locale.Tr "admin.wings_servers.grant_access"}}</button>
 									</form>
 								</td>
 							</tr>

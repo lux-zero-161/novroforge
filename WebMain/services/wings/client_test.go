@@ -147,6 +147,35 @@ func TestLogsValidatesLineLimit(t *testing.T) {
 	require.Error(t, err)
 }
 
+func TestLogsRequestsAndDecodesRecentLines(t *testing.T) {
+	t.Parallel()
+
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if r.Method != http.MethodGet {
+			t.Errorf("method = %q, want GET", r.Method)
+		}
+		if r.URL.Path != "/api/servers/"+testServerID+"/logs" {
+			t.Errorf("request path = %q, want server logs path", r.URL.Path)
+		}
+		if got := r.URL.Query().Get("size"); got != "100" {
+			t.Errorf("log size = %q, want 100", got)
+		}
+		if got := r.Header.Get("Authorization"); got != "Bearer node-token" {
+			t.Errorf("authorization header = %q, want bearer token", got)
+		}
+		if _, err := w.Write([]byte(`{"data":["server started","ready"]}`)); err != nil {
+			t.Errorf("write test response: %v", err)
+		}
+	}))
+	defer server.Close()
+
+	client, err := NewClient(server.URL, "node-token")
+	require.NoError(t, err)
+	lines, err := client.Logs(context.Background(), testServerID, 100)
+	require.NoError(t, err)
+	require.Equal(t, []string{"server started", "ready"}, lines)
+}
+
 func TestCommandsRejectsEmptyCommands(t *testing.T) {
 	t.Parallel()
 
