@@ -3,12 +3,25 @@
 	<div class="ui container">
 		<h1 class="ui header">{{ctx.Locale.Tr "wings.servers"}}</h1>
 		{{if .Servers}}
+			<div class="ui form">
+				<div class="field">
+					<label for="wings-server-filter">{{ctx.Locale.Tr "wings.server_filter"}}</label>
+					<input id="wings-server-filter" type="search" data-wings-server-filter autocomplete="off">
+				</div>
+			</div>
 			<div class="ui cards">
 				{{range .Servers}}
-					<div class="ui card">
+					<div class="ui card" data-wings-server-card data-status-url="{{AppSubUrl}}/user/servers/{{.ID}}/status" data-error="{{ctx.Locale.Tr "wings.server_status_unavailable"}}" data-suspended="{{ctx.Locale.Tr "wings.suspended"}}" data-not-suspended="{{ctx.Locale.Tr "wings.not_suspended"}}">
 						<div class="content">
 							<div class="header">{{.Name}}</div>
 							<div class="description"><code>{{.UUID}}</code></div>
+							<div class="description" aria-live="polite">
+								<p>{{ctx.Locale.Tr "wings.server_state"}}: <strong data-server-state>{{ctx.Locale.Tr "wings.logs_loading"}}</strong></p>
+								<p>{{ctx.Locale.Tr "wings.server_cpu"}}: <span data-server-cpu>-</span> %</p>
+								<p>{{ctx.Locale.Tr "wings.server_memory"}}: <span data-server-memory>-</span> {{ctx.Locale.Tr "wings.bytes"}}</p>
+								<p>{{ctx.Locale.Tr "wings.server_disk"}}: <span data-server-disk>-</span> {{ctx.Locale.Tr "wings.bytes"}}</p>
+								<p>{{ctx.Locale.Tr "wings.server_suspended"}}: <span data-server-suspended>-</span></p>
+							</div>
 						</div>
 						<div class="extra content">
 							<a class="ui primary button" href="{{AppSubUrl}}/user/servers/{{.ID}}">{{ctx.Locale.Tr "wings.open_server"}}</a>
@@ -16,6 +29,7 @@
 					</div>
 				{{end}}
 			</div>
+			<p class="ui message" data-wings-server-filter-empty hidden>{{ctx.Locale.Tr "wings.server_filter_no_results"}}</p>
 		{{else}}
 			<div class="ui message">{{ctx.Locale.Tr "wings.no_servers"}}</div>
 		{{end}}

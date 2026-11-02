@@ -4,6 +4,8 @@
 package context
 
 import (
+	"bufio"
+	"net"
 	"net/http"
 
 	web_types "novroforge.xyz/modules/web/types"
@@ -22,6 +24,7 @@ type ResponseWriter interface {
 }
 
 var _ ResponseWriter = &Response{}
+var _ http.Hijacker = &Response{}
 
 // Response represents a response
 type Response struct {
@@ -78,6 +81,18 @@ func (r *Response) Flush() {
 	if f, ok := r.ResponseWriter.(http.Flusher); ok {
 		f.Flush()
 	}
+}
+
+func (r *Response) Hijack() (net.Conn, *bufio.ReadWriter, error) {
+	connection, buffered, err := http.NewResponseController(r.ResponseWriter).Hijack()
+	if err == nil && r.status == 0 {
+		r.status = http.StatusSwitchingProtocols
+	}
+	return connection, buffered, err
+}
+
+func (r *Response) Unwrap() http.ResponseWriter {
+	return r.ResponseWriter
 }
 
 // WrittenStatus returned status code written

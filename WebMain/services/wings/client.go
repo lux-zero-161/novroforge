@@ -25,6 +25,7 @@ import (
 	"unicode/utf8"
 
 	"github.com/google/uuid"
+	"github.com/gorilla/websocket"
 )
 
 const (
@@ -179,6 +180,7 @@ func (c *Client) Logs(ctx context.Context, serverID string, lines int) ([]string
 	if err != nil {
 		return nil, errors.New("invalid Wings server UUID")
 	}
+
 	if lines < 1 || lines > 100 {
 		return nil, errors.New("log line count must be between 1 and 100")
 	}
@@ -188,6 +190,74 @@ func (c *Client) Logs(ctx context.Context, serverID string, lines int) ([]string
 	}
 	err = c.doJSON(ctx, http.MethodGet, "/api/servers/"+id.String()+"/logs?size="+strconv.Itoa(lines), nil, &response, http.StatusOK)
 	return response.Data, err
+}
+
+// OpenConsoleWebSocket connects to the server's event stream using a short-lived,
+// read-only token. The daemon credential is never sent as a websocket message.
+func (c *Client) OpenConsoleWebSocket(ctx context.Context, serverID, userID, origin string) (*websocket.Conn, error) {
+	serverUUID, err := uuid.Parse(serverID)
+	if err != nil {
+		return nil, errors.New("invalid Wings server UUID")
+	}
+	userUUID, err := uuid.Parse(userID)
+	if err != nil {
+		return nil, errors.New("invalid WebMain user UUID")
+	}
+	token, err := c.createConsoleWebSocketToken(serverUUID.String(), userUUID.String())
+	if err != nil {
+		return nil, err
+	}
+
+	requestURL := *c.baseURL
+	if requestURL.Scheme == "https" {
+		requestURL.Scheme = "wss"
+	} else {
+		requestURL.Scheme = "ws"
+	}
+	requestURL.Path = "/api/servers/" + serverUUID.String() + "/ws"
+	requestURL.RawPath = ""
+
+	dialer := websocket.Dialer{
+		HandshakeTimeout: 10 * time.Second,
+		Proxy:            http.ProxyFromEnvironment,
+	}
+	if c.httpClient.Transport != nil {
+		transport, ok := c.httpClient.Transport.(*http.Transport)
+		if !ok {
+			return nil, errors.New("unsupported Wings HTTP transport for websocket")
+		}
+		dialer.NetDialContext = transport.DialContext
+		dialer.TLSClientConfig = transport.TLSClientConfig
+	}
+	connection, response, err := dialer.DialContext(ctx, requestURL.String(), http.Header{"Origin": []string{origin}})
+	if err != nil {
+		if response != nil {
+			response.Body.Close()
+			return nil, &HTTPStatusError{StatusCode: response.StatusCode}
+		}
+		if ctxErr := ctx.Err(); ctxErr != nil {
+			return nil, fmt.Errorf("connect to Wings console websocket: %w", ctxErr)
+		}
+		return nil, errors.New("connect to Wings console websocket failed")
+	}
+	connection.SetReadLimit(1 << 20)
+	_ = connection.SetReadDeadline(time.Now().Add(10 * time.Second))
+	if err := connection.WriteJSON(struct {
+		Event string   `json:"event"`
+		Args  []string `json:"args"`
+	}{Event: "auth", Args: []string{token}}); err != nil {
+		connection.Close()
+		return nil, errors.New("authenticate Wings console websocket failed")
+	}
+	var message struct {
+		Event string `json:"event"`
+	}
+	if err := connection.ReadJSON(&message); err != nil || message.Event != "auth success" {
+		connection.Close()
+		return nil, errors.New("Wings rejected console websocket authentication")
+	}
+	_ = connection.SetReadDeadline(time.Time{})
+	return connection, nil
 }
 
 // ListDirectory retrieves metadata for entries in a server directory.
@@ -617,6 +687,27 @@ func (c *Client) createBackupDownloadToken(serverID, userID, backupID string) (s
 		UniqueID:       uniqueID,
 	}
 	return c.signToken(payload)
+}
+
+func (c *Client) createConsoleWebSocketToken(serverID, userID string) (string, error) {
+	now := time.Now()
+	return c.signToken(struct {
+		IssuedAt       int64    `json:"iat"`
+		ExpirationTime int64    `json:"exp"`
+		JWTID          string   `json:"jti"`
+		Scope          string   `json:"scope"`
+		ServerUUID     string   `json:"server_uuid"`
+		UserUUID       string   `json:"user_uuid"`
+		Permissions    []string `json:"permissions"`
+	}{
+		IssuedAt:       now.Add(2 * time.Second).Unix(),
+		ExpirationTime: now.Add(10 * time.Minute).Unix(),
+		JWTID:          uuid.NewString(),
+		Scope:          "websocket",
+		ServerUUID:     serverID,
+		UserUUID:       userID,
+		Permissions:    []string{"websocket.connect"},
+	})
 }
 
 func (c *Client) signToken(payload any) (string, error) {

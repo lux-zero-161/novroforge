@@ -46,6 +46,31 @@ func WingsServers(ctx *context.Context) {
 	ctx.HTML(http.StatusOK, tplWingsServers)
 }
 
+func WingsServerOverviewStatus(ctx *context.Context) {
+	ctx.RespHeader().Set("Cache-Control", "no-store")
+	server, _, err := getAuthorizedWingsServer(ctx)
+	if errors.Is(err, wings_model.ErrServerAccessDenied) {
+		ctx.NotFound("WingsServerOverviewStatus", nil)
+		return
+	}
+	if err != nil {
+		ctx.ServerError("GetUserWingsServerOverviewStatus", err)
+		return
+	}
+	client, err := server.GetServerClient(ctx)
+	if err != nil {
+		ctx.ServerError("GetUserWingsServerOverviewStatusClient", err)
+		return
+	}
+	details, err := client.GetServer(ctx, server.UUID)
+	if err != nil {
+		log.Error("GetUserWingsServerOverviewStatus[%d]: %v", server.ID, err)
+		ctx.Error(http.StatusBadGateway, ctx.Locale.TrString("wings.server_status_unavailable"))
+		return
+	}
+	ctx.JSON(http.StatusOK, details)
+}
+
 func WingsServer(ctx *context.Context) {
 	server, access, err := getAuthorizedWingsServer(ctx)
 	if errors.Is(err, wings_model.ErrServerAccessDenied) {

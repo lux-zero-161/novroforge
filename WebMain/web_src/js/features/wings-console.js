@@ -1,6 +1,7 @@
 import {GET} from '../modules/fetch.ts';
 
 const refreshInterval = 5000;
+const maxConsoleLines = 500;
 
 export function initWingsConsole() {
   const container = document.getElementById('wings-console');
@@ -27,6 +28,13 @@ export function initWingsConsole() {
     !serverNetworkRx ||
     !serverNetworkTx
   ) return;
+
+  let consoleConnected = false;
+  let reconnectDelay = 1000;
+  let reconnectTimer;
+  let stopped = false;
+  let socket;
+  let connect;
 
   const refresh = async () => {
     if (!document.hidden) {
@@ -62,7 +70,9 @@ export function initWingsConsole() {
         }
 
         const wasAtBottom = output.scrollHeight - output.scrollTop - output.clientHeight < 24;
-        output.textContent = payload.logs.length ? payload.logs.join('\n') : container.dataset.empty;
+        if (!consoleConnected) {
+          output.textContent = payload.logs.length ? payload.logs.join('\n') : container.dataset.empty;
+        }
         if (wasAtBottom) output.scrollTop = output.scrollHeight;
         serverState.textContent = details.state;
         serverSuspended.textContent = details.is_suspended ? container.dataset.suspended : container.dataset.notSuspended;
@@ -72,7 +82,7 @@ export function initWingsConsole() {
         serverUptime.textContent = `${utilization.uptime}`;
         serverNetworkRx.textContent = `${utilization.network.rx_bytes}`;
         serverNetworkTx.textContent = `${utilization.network.tx_bytes}`;
-        status.textContent = container.dataset.updated;
+        status.textContent = consoleConnected ? container.dataset.live : container.dataset.updated;
       } catch (error) {
         console.error('Could not refresh Wings server status and console:', error);
         status.textContent = container.dataset.error;
@@ -82,5 +92,65 @@ export function initWingsConsole() {
     window.setTimeout(refresh, refreshInterval);
   };
 
+  const scheduleReconnect = () => {
+    if (stopped || typeof window.WebSocket !== 'function') return;
+    reconnectTimer = window.setTimeout(() => connect(), reconnectDelay);
+    reconnectDelay = Math.min(reconnectDelay * 2, 30000);
+  };
+
+  connect = () => {
+    if (stopped || typeof window.WebSocket !== 'function') return;
+    try {
+      const url = new URL(container.dataset.websocketUrl, window.location.href);
+      url.protocol = url.protocol === 'https:' ? 'wss:' : 'ws:';
+      socket = new window.WebSocket(url);
+    } catch (error) {
+      console.error('Could not connect to Wings console websocket:', error);
+      status.textContent = container.dataset.reconnecting;
+      scheduleReconnect();
+      return;
+    }
+
+    const activeSocket = socket;
+    let openedAt = 0;
+    activeSocket.addEventListener('open', () => {
+      consoleConnected = true;
+      openedAt = Date.now();
+      status.textContent = container.dataset.live;
+    });
+    activeSocket.addEventListener('message', (message) => {
+      if (activeSocket !== socket) return;
+      try {
+        const event = JSON.parse(message.data);
+        if (event.event !== 'console output' || !Array.isArray(event.args) || typeof event.args[0] !== 'string') return;
+
+        const wasAtBottom = output.scrollHeight - output.scrollTop - output.clientHeight < 24;
+        const current = output.textContent === container.dataset.empty ? '' : output.textContent;
+        output.textContent = `${current}${current && !current.endsWith('\n') ? '\n' : ''}${event.args[0]}`
+          .split('\n')
+          .slice(-maxConsoleLines)
+          .join('\n');
+        if (wasAtBottom) output.scrollTop = output.scrollHeight;
+      } catch (error) {
+        console.error('Could not parse Wings console event:', error);
+      }
+    });
+    activeSocket.addEventListener('close', () => {
+      if (activeSocket !== socket) return;
+      consoleConnected = false;
+      if (openedAt && Date.now() - openedAt >= 10000) reconnectDelay = 1000;
+      status.textContent = container.dataset.reconnecting;
+      scheduleReconnect();
+    });
+    activeSocket.addEventListener('error', () => activeSocket.close());
+  };
+
+  window.addEventListener('pagehide', () => {
+    stopped = true;
+    window.clearTimeout(reconnectTimer);
+    socket?.close();
+  }, {once: true});
+
   window.setTimeout(refresh, refreshInterval);
+  connect();
 }

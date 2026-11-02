@@ -18,6 +18,7 @@ import (
 	"testing"
 	"time"
 
+	"github.com/gorilla/websocket"
 	"github.com/stretchr/testify/require"
 )
 
@@ -620,7 +621,7 @@ func TestDownloadBackupUsesScopedSingleUseTokenWithoutDaemonAuthorization(t *tes
 		if authorization := r.Header.Get("Authorization"); authorization != "" {
 			t.Errorf("download authorization = %q, want no daemon credential", authorization)
 		}
-		claims := decodeTestBackupDownloadClaims(t, r.URL.Query().Get("token"), "node-token")
+		claims := decodeTestTokenClaims(t, r.URL.Query().Get("token"), "node-token")
 		if claims.Scope != "backup-download" || claims.ServerUUID != testServerID || claims.UserUUID != userID || claims.BackupUUID != backupID || claims.UniqueID == "" || claims.JWTID != claims.UniqueID {
 			t.Errorf("backup download claims = %#v, want scoped single-use server/user/backup token", claims)
 		}
@@ -670,6 +671,61 @@ func TestDownloadBackupRedactsSignedTokenFromNetworkErrors(t *testing.T) {
 	require.NotContains(t, err.Error(), "backup-download")
 }
 
+func TestOpenConsoleWebSocketUsesShortLivedReadOnlyToken(t *testing.T) {
+	t.Parallel()
+
+	const (
+		userID = "f1b3d5a7-1234-4567-89ab-cdef01234567"
+		origin = "https://panel.example.test"
+	)
+	tokenResult := make(chan string, 1)
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if r.URL.Path != "/api/servers/"+testServerID+"/ws" || r.Header.Get("Origin") != origin || r.Header.Get("Authorization") != "" {
+			t.Errorf("websocket request path/origin/authorization = %q/%q/%q", r.URL.Path, r.Header.Get("Origin"), r.Header.Get("Authorization"))
+			http.Error(w, "unexpected websocket request", http.StatusBadRequest)
+			return
+		}
+		connection, err := websocket.Upgrader{}.Upgrade(w, r, nil)
+		if err != nil {
+			t.Errorf("upgrade websocket: %v", err)
+			return
+		}
+		defer connection.Close()
+
+		var message struct {
+			Event string   `json:"event"`
+			Args  []string `json:"args"`
+		}
+		if err := connection.ReadJSON(&message); err != nil {
+			t.Errorf("read websocket auth message: %v", err)
+			return
+		}
+		if message.Event != "auth" || len(message.Args) != 1 {
+			t.Errorf("websocket auth message = %#v", message)
+			return
+		}
+		tokenResult <- message.Args[0]
+		if err := connection.WriteJSON(map[string]string{"event": "auth success"}); err != nil {
+			t.Errorf("write websocket auth response: %v", err)
+		}
+	}))
+	defer server.Close()
+
+	client, err := NewClient(server.URL, "node-token")
+	require.NoError(t, err)
+	connection, err := client.OpenConsoleWebSocket(context.Background(), testServerID, userID, origin)
+	require.NoError(t, err)
+	require.NoError(t, connection.Close())
+	claims := decodeTestTokenClaims(t, <-tokenResult, "node-token")
+	require.Equal(t, "websocket", claims.Scope)
+	require.Equal(t, testServerID, claims.ServerUUID)
+	require.Equal(t, userID, claims.UserUUID)
+	require.NotEmpty(t, claims.JWTID)
+	require.Equal(t, []string{"websocket.connect"}, claims.Permissions)
+	require.Greater(t, claims.IssuedAt, time.Now().Add(-time.Second).Unix())
+	require.LessOrEqual(t, claims.ExpirationTime-claims.IssuedAt, int64(600))
+}
+
 func TestDeleteBackupTreatsMissingArchiveAsDeleted(t *testing.T) {
 	t.Parallel()
 
@@ -683,15 +739,16 @@ func TestDeleteBackupTreatsMissingArchiveAsDeleted(t *testing.T) {
 	require.NoError(t, client.DeleteBackup(context.Background(), testServerID, "9a7b3db9-0630-4b61-8cec-cda7e0ca4453"))
 }
 
-func decodeTestBackupDownloadClaims(t *testing.T, token, secret string) struct {
-	IssuedAt       int64  `json:"iat"`
-	ExpirationTime int64  `json:"exp"`
-	JWTID          string `json:"jti"`
-	Scope          string `json:"scope"`
-	ServerUUID     string `json:"server_uuid"`
-	UserUUID       string `json:"user_uuid"`
-	BackupUUID     string `json:"backup_uuid"`
-	UniqueID       string `json:"unique_id"`
+func decodeTestTokenClaims(t *testing.T, token, secret string) struct {
+	IssuedAt       int64    `json:"iat"`
+	ExpirationTime int64    `json:"exp"`
+	JWTID          string   `json:"jti"`
+	Scope          string   `json:"scope"`
+	ServerUUID     string   `json:"server_uuid"`
+	UserUUID       string   `json:"user_uuid"`
+	BackupUUID     string   `json:"backup_uuid"`
+	UniqueID       string   `json:"unique_id"`
+	Permissions    []string `json:"permissions"`
 } {
 	t.Helper()
 	parts := strings.Split(token, ".")
@@ -705,14 +762,15 @@ func decodeTestBackupDownloadClaims(t *testing.T, token, secret string) struct {
 	payload, err := base64.RawURLEncoding.DecodeString(parts[1])
 	require.NoError(t, err)
 	var claims struct {
-		IssuedAt       int64  `json:"iat"`
-		ExpirationTime int64  `json:"exp"`
-		JWTID          string `json:"jti"`
-		Scope          string `json:"scope"`
-		ServerUUID     string `json:"server_uuid"`
-		UserUUID       string `json:"user_uuid"`
-		BackupUUID     string `json:"backup_uuid"`
-		UniqueID       string `json:"unique_id"`
+		IssuedAt       int64    `json:"iat"`
+		ExpirationTime int64    `json:"exp"`
+		JWTID          string   `json:"jti"`
+		Scope          string   `json:"scope"`
+		ServerUUID     string   `json:"server_uuid"`
+		UserUUID       string   `json:"user_uuid"`
+		BackupUUID     string   `json:"backup_uuid"`
+		UniqueID       string   `json:"unique_id"`
+		Permissions    []string `json:"permissions"`
 	}
 	require.NoError(t, json.Unmarshal(payload, &claims))
 	return claims

@@ -33,10 +33,13 @@
 		<div
 			id="wings-console"
 			data-logs-url="{{AppSubUrl}}/user/servers/{{.Server.ID}}/logs"
+			data-websocket-url="{{AppSubUrl}}/user/servers/{{.Server.ID}}/console/ws"
 			data-loading="{{ctx.Locale.Tr "wings.logs_loading"}}"
 			data-error="{{ctx.Locale.Tr "wings.server_update_unavailable"}}"
 			data-empty="{{ctx.Locale.Tr "wings.no_logs"}}"
 			data-updated="{{ctx.Locale.Tr "wings.logs_updated"}}"
+			data-live="{{ctx.Locale.Tr "wings.logs_live"}}"
+			data-reconnecting="{{ctx.Locale.Tr "wings.logs_reconnecting"}}"
 			data-suspended="{{ctx.Locale.Tr "wings.suspended"}}"
 			data-not-suspended="{{ctx.Locale.Tr "wings.not_suspended"}}"
 			aria-live="polite"
