@@ -10,21 +10,33 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"mime"
 	"net"
 	"net/http"
 	"net/url"
+	"path"
 	"strconv"
 	"strings"
 	"time"
+	"unicode/utf8"
 
 	"github.com/google/uuid"
 )
 
 const (
-	maxResponseSize   = 4 << 20
-	maxTokenLength    = 4096
-	maxCommands       = 32
-	maxCommandLength  = 4096
+	maxResponseSize    = 4 << 20
+	maxTokenLength     = 4096
+	maxCommands        = 32
+	maxCommandLength   = 4096
+	maxDirectoryPath   = 4096
+	maxFilePreviewSize = 1 << 20
+)
+
+var (
+	ErrInvalidDirectory    = errors.New("invalid Wings directory path")
+	ErrInvalidFilePath     = errors.New("invalid Wings file path")
+	ErrFileTooLarge        = errors.New("Wings file exceeds the preview size limit")
+	ErrUnsupportedFileType = errors.New("Wings file is not a supported text type")
 )
 
 // Client sends authenticated requests to a Wings daemon.
@@ -98,6 +110,20 @@ type ServerDetails struct {
 	Utilization Utilization `json:"utilization"`
 }
 
+// FileEntry describes one item in a Wings server directory.
+type FileEntry struct {
+	Name      string `json:"name"`
+	Created   string `json:"created"`
+	Modified  string `json:"modified"`
+	Mode      string `json:"mode"`
+	ModeBits  string `json:"mode_bits"`
+	Size      int64  `json:"size"`
+	Directory bool   `json:"directory"`
+	File      bool   `json:"file"`
+	Symlink   bool   `json:"symlink"`
+	Mime      string `json:"mime"`
+}
+
 // SystemInformation is returned by Wings when testing a node connection.
 type SystemInformation struct {
 	Architecture  string `json:"architecture"`
@@ -143,6 +169,96 @@ func (c *Client) Logs(ctx context.Context, serverID string, lines int) ([]string
 	return response.Data, err
 }
 
+// ListDirectory retrieves metadata for entries in a server directory.
+func (c *Client) ListDirectory(ctx context.Context, serverID, directory string) ([]FileEntry, error) {
+	id, err := uuid.Parse(serverID)
+	if err != nil {
+		return nil, errors.New("invalid Wings server UUID")
+	}
+	directory, err = NormalizeDirectoryPath(directory)
+	if err != nil {
+		return nil, err
+	}
+
+	requestPath := "/api/servers/" + id.String() + "/files/list-directory?" + url.Values{
+		"directory": []string{directory},
+	}.Encode()
+	var entries []FileEntry
+	err = c.doJSON(ctx, http.MethodGet, requestPath, nil, &entries, http.StatusOK)
+	return entries, err
+}
+
+// NormalizeDirectoryPath validates and normalizes a path within a server root.
+func NormalizeDirectoryPath(directory string) (string, error) {
+	if len(directory) > maxDirectoryPath || strings.ContainsAny(directory, "\\\x00") {
+		return "", ErrInvalidDirectory
+	}
+	for _, segment := range strings.Split(directory, "/") {
+		if segment == ".." {
+			return "", ErrInvalidDirectory
+		}
+	}
+	if directory == "" {
+		return "/", nil
+	}
+	return path.Clean("/" + strings.TrimLeft(directory, "/")), nil
+}
+
+// FileContents retrieves a bounded UTF-8 text preview from a server file.
+func (c *Client) FileContents(ctx context.Context, serverID, filePath string) (string, error) {
+	id, err := uuid.Parse(serverID)
+	if err != nil {
+		return "", errors.New("invalid Wings server UUID")
+	}
+	if strings.HasSuffix(filePath, "/") {
+		return "", ErrInvalidFilePath
+	}
+	filePath, err = NormalizeDirectoryPath(filePath)
+	if err != nil || filePath == "/" {
+		return "", ErrInvalidFilePath
+	}
+
+	requestPath := "/api/servers/" + id.String() + "/files/contents?" + url.Values{
+		"file": []string{filePath},
+	}.Encode()
+	response, err := c.doRequest(ctx, http.MethodGet, requestPath, nil, http.StatusOK)
+	if err != nil {
+		return "", err
+	}
+	defer response.Body.Close()
+
+	contentType, _, err := mime.ParseMediaType(response.Header.Get("X-Mime-Type"))
+	if err != nil || !isSupportedTextMime(contentType) {
+		return "", ErrUnsupportedFileType
+	}
+	if response.ContentLength > maxFilePreviewSize {
+		return "", ErrFileTooLarge
+	}
+	content, err := io.ReadAll(io.LimitReader(response.Body, maxFilePreviewSize+1))
+	if err != nil {
+		return "", fmt.Errorf("read Wings file preview: %w", err)
+	}
+	if len(content) > maxFilePreviewSize {
+		return "", ErrFileTooLarge
+	}
+	if !utf8.Valid(content) {
+		return "", ErrUnsupportedFileType
+	}
+	return string(content), nil
+}
+
+func isSupportedTextMime(contentType string) bool {
+	if strings.HasPrefix(contentType, "text/") {
+		return true
+	}
+	switch contentType {
+	case "application/json", "application/javascript", "application/xml", "application/x-yaml", "application/toml":
+		return true
+	default:
+		return false
+	}
+}
+
 // Power sends a power action to a server.
 func (c *Client) Power(ctx context.Context, serverID, action string) error {
 	id, err := uuid.Parse(serverID)
@@ -183,39 +299,11 @@ func (c *Client) Commands(ctx context.Context, serverID string, commands []strin
 }
 
 func (c *Client) doJSON(ctx context.Context, method, requestPath string, body, result any, expectedStatus int) error {
-	var requestBody io.Reader
-	if body != nil {
-		encoded, err := json.Marshal(body)
-		if err != nil {
-			return fmt.Errorf("encode Wings request: %w", err)
-		}
-		requestBody = bytes.NewReader(encoded)
-	}
-
-	requestURL := *c.baseURL
-	parsedPath, err := url.Parse(requestPath)
-	if err != nil || parsedPath.IsAbs() || parsedPath.Host != "" {
-		return errors.New("invalid Wings API path")
-	}
-	requestURL = *requestURL.ResolveReference(parsedPath)
-	request, err := http.NewRequestWithContext(ctx, method, requestURL.String(), requestBody)
+	response, err := c.doRequest(ctx, method, requestPath, body, expectedStatus)
 	if err != nil {
-		return fmt.Errorf("create Wings request: %w", err)
-	}
-	request.Header.Set("Authorization", "Bearer "+c.token)
-	request.Header.Set("Accept", "application/json")
-	if body != nil {
-		request.Header.Set("Content-Type", "application/json")
-	}
-
-	response, err := c.httpClient.Do(request)
-	if err != nil {
-		return fmt.Errorf("request to Wings failed: %w", err)
+		return err
 	}
 	defer response.Body.Close()
-	if response.StatusCode != expectedStatus {
-		return fmt.Errorf("Wings returned unexpected HTTP status %d", response.StatusCode)
-	}
 	if result == nil {
 		return nil
 	}
@@ -231,4 +319,41 @@ func (c *Client) doJSON(ctx context.Context, method, requestPath string, body, r
 		return fmt.Errorf("decode Wings response: %w", err)
 	}
 	return nil
+}
+
+func (c *Client) doRequest(ctx context.Context, method, requestPath string, body any, expectedStatus int) (*http.Response, error) {
+	var requestBody io.Reader
+	if body != nil {
+		encoded, err := json.Marshal(body)
+		if err != nil {
+			return nil, fmt.Errorf("encode Wings request: %w", err)
+		}
+		requestBody = bytes.NewReader(encoded)
+	}
+
+	requestURL := *c.baseURL
+	parsedPath, err := url.Parse(requestPath)
+	if err != nil || parsedPath.IsAbs() || parsedPath.Host != "" {
+		return nil, errors.New("invalid Wings API path")
+	}
+	requestURL = *requestURL.ResolveReference(parsedPath)
+	request, err := http.NewRequestWithContext(ctx, method, requestURL.String(), requestBody)
+	if err != nil {
+		return nil, fmt.Errorf("create Wings request: %w", err)
+	}
+	request.Header.Set("Authorization", "Bearer "+c.token)
+	request.Header.Set("Accept", "application/json")
+	if body != nil {
+		request.Header.Set("Content-Type", "application/json")
+	}
+
+	response, err := c.httpClient.Do(request)
+	if err != nil {
+		return nil, fmt.Errorf("request to Wings failed: %w", err)
+	}
+	if response.StatusCode != expectedStatus {
+		response.Body.Close()
+		return nil, fmt.Errorf("Wings returned unexpected HTTP status %d", response.StatusCode)
+	}
+	return response, nil
 }

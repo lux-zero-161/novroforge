@@ -63,6 +63,26 @@ func CreateWingsNode(ctx *context.Context) {
 	ctx.Redirect(setting.AppSubURL + "/admin/wings/nodes")
 }
 
+func RotateWingsNodeToken(ctx *context.Context) {
+	id, err := strconv.ParseInt(ctx.Params("id"), 10, 64)
+	if err != nil || id <= 0 {
+		ctx.Flash.Error(ctx.Tr("admin.wings_nodes.invalid_id"))
+		ctx.Redirect(setting.AppSubURL + "/admin/wings/nodes")
+		return
+	}
+	err = wings_model.RotateNodeToken(ctx, id, ctx.FormString("token"))
+	switch {
+	case errors.Is(err, wings_model.ErrInvalidNodeToken):
+		ctx.Flash.Error(ctx.Tr("admin.wings_nodes.invalid_token"))
+	case err != nil:
+		log.Error("RotateWingsNodeToken[%d]: %v", id, err)
+		ctx.Flash.Error(ctx.Tr("admin.wings_nodes.token_rotation_failed"))
+	default:
+		ctx.Flash.Success(ctx.Tr("admin.wings_nodes.token_rotated"))
+	}
+	ctx.Redirect(setting.AppSubURL + "/admin/wings/nodes")
+}
+
 func DeleteWingsNode(ctx *context.Context) {
 	id, err := strconv.ParseInt(ctx.Params("id"), 10, 64)
 	if err != nil || id <= 0 {
@@ -108,6 +128,26 @@ func CreateWingsServer(ctx *context.Context) {
 	ctx.Redirect(setting.AppSubURL + "/admin/wings/nodes")
 }
 
+func RenameWingsServer(ctx *context.Context) {
+	id, err := strconv.ParseInt(ctx.Params("id"), 10, 64)
+	if err != nil || id <= 0 {
+		ctx.Flash.Error(ctx.Tr("admin.wings_nodes.invalid_id"))
+		ctx.Redirect(setting.AppSubURL + "/admin/wings/nodes")
+		return
+	}
+	err = wings_model.RenameServer(ctx, id, ctx.FormString("name"))
+	switch {
+	case errors.Is(err, wings_model.ErrInvalidServerName):
+		ctx.Flash.Error(ctx.Tr("admin.wings_servers.invalid_name"))
+	case err != nil:
+		log.Error("RenameWingsServer[%d]: %v", id, err)
+		ctx.Flash.Error(ctx.Tr("admin.wings_servers.rename_failed"))
+	default:
+		ctx.Flash.Success(ctx.Tr("admin.wings_servers.renamed"))
+	}
+	ctx.Redirect(setting.AppSubURL + "/admin/wings/nodes")
+}
+
 func DeleteWingsServer(ctx *context.Context) {
 	id, err := strconv.ParseInt(ctx.Params("id"), 10, 64)
 	if err != nil || id <= 0 {
@@ -132,6 +172,8 @@ func GrantWingsServerAccess(ctx *context.Context) {
 		ctx.FormString("username"),
 		ctx.FormBool("can_power"),
 		ctx.FormBool("can_console"),
+		ctx.FormBool("can_files"),
+		ctx.FormBool("can_read_files"),
 	); err != nil {
 		if errors.Is(err, wings_model.ErrInvalidAccessUser) {
 			ctx.Flash.Error(ctx.Tr("admin.wings_servers.invalid_access_user"))

@@ -49,8 +49,8 @@ func init() {
 
 // CreateServer registers an existing Wings server after verifying it on its node.
 func CreateServer(ctx context.Context, nodeID int64, name, serverUUID string) error {
-	name = strings.TrimSpace(name)
-	if name == "" || utf8.RuneCountInString(name) > 64 {
+	name, err := normalizeServerName(name)
+	if err != nil {
 		return ErrInvalidServerName
 	}
 	parsedUUID, err := uuid.Parse(strings.TrimSpace(serverUUID))
@@ -81,6 +81,43 @@ func CreateServer(ctx context.Context, nodeID int64, name, serverUUID string) er
 		return fmt.Errorf("register Wings server: %w", err)
 	}
 	return nil
+}
+
+// RenameServer changes only the server's display name in WebMain.
+func RenameServer(ctx context.Context, id int64, name string) error {
+	if id <= 0 {
+		return errors.New("invalid Wings server ID")
+	}
+	name, err := normalizeServerName(name)
+	if err != nil {
+		return err
+	}
+	server, exists, err := GetServerByID(ctx, id)
+	if err != nil {
+		return err
+	}
+	if !exists {
+		return fmt.Errorf("Wings server registration %d does not exist", id)
+	}
+	if server.Name == name {
+		return nil
+	}
+	affected, err := db.GetEngine(ctx).ID(id).Cols("name").Update(&WingsServer{Name: name})
+	if err != nil {
+		return fmt.Errorf("rename Wings server registration %d: %w", id, err)
+	}
+	if affected != 1 {
+		return fmt.Errorf("rename Wings server registration %d: expected to update one row, updated %d", id, affected)
+	}
+	return nil
+}
+
+func normalizeServerName(name string) (string, error) {
+	name = strings.TrimSpace(name)
+	if name == "" || utf8.RuneCountInString(name) > 64 {
+		return "", ErrInvalidServerName
+	}
+	return name, nil
 }
 
 // ListServers returns registered servers without node credentials.

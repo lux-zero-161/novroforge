@@ -53,13 +53,8 @@ func CreateNode(ctx context.Context, name, nodeURL, token string) error {
 	if name == "" || utf8.RuneCountInString(name) > 64 {
 		return ErrInvalidNodeName
 	}
-	if token == "" || len(token) > 4096 || strings.TrimSpace(token) != token {
-		return ErrInvalidNodeToken
-	}
-	for _, char := range token {
-		if char < '!' || char > '~' {
-			return ErrInvalidNodeToken
-		}
+	if err := validateNodeToken(token); err != nil {
+		return err
 	}
 	if _, err := wings_service.NewClient(nodeURL, token); err != nil {
 		return fmt.Errorf("%w: %v", ErrInvalidNodeURL, err)
@@ -81,6 +76,51 @@ func CreateNode(ctx context.Context, name, nodeURL, token string) error {
 		}
 		return nil
 	})
+}
+
+// RotateNodeToken replaces a node's encrypted bearer token without exposing it.
+func RotateNodeToken(ctx context.Context, id int64, token string) error {
+	if id <= 0 {
+		return errors.New("invalid Wings node ID")
+	}
+	if err := validateNodeToken(token); err != nil {
+		return err
+	}
+	node, exists, err := GetNodeByID(ctx, id)
+	if err != nil {
+		return err
+	}
+	if !exists {
+		return fmt.Errorf("Wings node %d does not exist", id)
+	}
+	client, err := wings_service.NewClient(node.URL, token)
+	if err != nil {
+		return fmt.Errorf("%w: %v", ErrInvalidNodeToken, err)
+	}
+	if _, err := client.GetSystem(ctx); err != nil {
+		return fmt.Errorf("verify replacement token for Wings node %d: %w", id, err)
+	}
+	encryptedToken := keying.WingsNode.Encrypt([]byte(token), keying.ColumnAndID("encrypted_token", node.ID))
+	affected, err := db.GetEngine(ctx).ID(node.ID).Cols("encrypted_token").Update(&WingsNode{EncryptedToken: encryptedToken})
+	if err != nil {
+		return fmt.Errorf("rotate Wings node %d token: %w", id, err)
+	}
+	if affected != 1 {
+		return fmt.Errorf("rotate Wings node %d token: expected to update one row, updated %d", id, affected)
+	}
+	return nil
+}
+
+func validateNodeToken(token string) error {
+	if token == "" || len(token) > 4096 || strings.TrimSpace(token) != token {
+		return ErrInvalidNodeToken
+	}
+	for _, char := range token {
+		if char < '!' || char > '~' {
+			return ErrInvalidNodeToken
+		}
+	}
+	return nil
 }
 
 // ListNodes returns node details without encrypted credentials.

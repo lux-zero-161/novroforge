@@ -21,32 +21,38 @@ var (
 
 // WingsServerAccess grants one WebMain user narrowly-scoped access to a server.
 // Status and recent logs are readable by assigned users; power and console
-// commands require their corresponding explicit permissions.
+// commands, file browsing, and file previews require explicit permissions.
 type WingsServerAccess struct {
-	ID          int64              `xorm:"pk autoincr"`
-	ServerID    int64              `xorm:"UNIQUE(server_user) INDEX NOT NULL"`
-	UserID      int64              `xorm:"UNIQUE(server_user) INDEX NOT NULL"`
-	CanPower    bool               `xorm:"NOT NULL DEFAULT false"`
-	CanConsole  bool               `xorm:"NOT NULL DEFAULT false"`
-	CreatedUnix timeutil.TimeStamp `xorm:"created"`
+	ID           int64              `xorm:"pk autoincr"`
+	ServerID     int64              `xorm:"UNIQUE(server_user) INDEX NOT NULL"`
+	UserID       int64              `xorm:"UNIQUE(server_user) INDEX NOT NULL"`
+	CanPower     bool               `xorm:"NOT NULL DEFAULT false"`
+	CanConsole   bool               `xorm:"NOT NULL DEFAULT false"`
+	CanFiles     bool               `xorm:"NOT NULL DEFAULT false"`
+	CanReadFiles bool               `xorm:"NOT NULL DEFAULT false"`
+	CreatedUnix  timeutil.TimeStamp `xorm:"created"`
 }
 
 // ServerUserListItem is the non-sensitive admin display of assigned access.
 type ServerUserListItem struct {
-	ID         int64
-	UserID     int64
-	Username   string
-	CanPower   bool
-	CanConsole bool
+	ID           int64
+	UserID       int64
+	Username     string
+	CanPower     bool
+	CanConsole   bool
+	CanFiles     bool
+	CanReadFiles bool
 }
 
 // UserServerListItem contains only server data visible to an assigned user.
 type UserServerListItem struct {
-	ID         int64
-	Name       string
-	UUID       string
-	CanPower   bool
-	CanConsole bool
+	ID           int64
+	Name         string
+	UUID         string
+	CanPower     bool
+	CanConsole   bool
+	CanFiles     bool
+	CanReadFiles bool
 }
 
 func init() {
@@ -54,7 +60,7 @@ func init() {
 }
 
 // GrantServerAccess assigns an existing active individual account to a server.
-func GrantServerAccess(ctx context.Context, serverID int64, username string, canPower, canConsole bool) error {
+func GrantServerAccess(ctx context.Context, serverID int64, username string, canPower, canConsole, canFiles, canReadFiles bool) error {
 	if serverID <= 0 {
 		return errors.New("invalid Wings server ID")
 	}
@@ -84,8 +90,10 @@ func GrantServerAccess(ctx context.Context, serverID int64, username string, can
 	access.UserID = user.ID
 	access.CanPower = canPower
 	access.CanConsole = canConsole
+	access.CanFiles = canFiles
+	access.CanReadFiles = canReadFiles
 	if has {
-		if _, err := engine.ID(access.ID).Cols("can_power", "can_console").Update(&access); err != nil {
+		if _, err := engine.ID(access.ID).Cols("can_power", "can_console", "can_files", "can_read_files").Update(&access); err != nil {
 			return fmt.Errorf("update Wings server access: %w", err)
 		}
 		return nil
@@ -127,8 +135,10 @@ func ListServerAccess(ctx context.Context, serverIDs []int64) (map[int64][]Serve
 			ID:         row.ID,
 			UserID:     row.UserID,
 			Username:   username,
-			CanPower:   row.CanPower,
-			CanConsole: row.CanConsole,
+			CanPower:     row.CanPower,
+			CanConsole:   row.CanConsole,
+			CanFiles:     row.CanFiles,
+			CanReadFiles: row.CanReadFiles,
 		})
 	}
 	return items, nil
@@ -157,11 +167,13 @@ func ListUserServers(ctx context.Context, userID int64) ([]UserServerListItem, e
 	for _, server := range servers {
 		access := accessByServer[server.ID]
 		items = append(items, UserServerListItem{
-			ID:         server.ID,
-			Name:       server.Name,
-			UUID:       server.UUID,
-			CanPower:   access.CanPower,
-			CanConsole: access.CanConsole,
+			ID:           server.ID,
+			Name:         server.Name,
+			UUID:         server.UUID,
+			CanPower:     access.CanPower,
+			CanConsole:   access.CanConsole,
+			CanFiles:     access.CanFiles,
+			CanReadFiles: access.CanReadFiles,
 		})
 	}
 	return items, nil

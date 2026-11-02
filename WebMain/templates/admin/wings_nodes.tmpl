@@ -36,11 +36,27 @@
 					<tbody>
 						{{range .Nodes}}
 							<tr>
-								<td>{{.Name}}</td>
+								<td>
+									<form method="post" action="{{AppSubUrl}}/admin/wings/nodes/servers/{{.ID}}/name">
+										<div class="field">
+											<label for="wings-server-name-{{.ID}}">{{ctx.Locale.Tr "admin.wings_servers.name"}}</label>
+											<input id="wings-server-name-{{.ID}}" name="name" value="{{.Name}}" maxlength="64" required>
+										</div>
+										<button class="ui button" type="submit">{{ctx.Locale.Tr "admin.wings_servers.rename"}}</button>
+									</form>
+								</td>
 								<td><code>{{.URL}}</code></td>
 								<td>
 									<form method="post" action="{{AppSubUrl}}/admin/wings/nodes/{{.ID}}/test">
 										<button class="ui button" type="submit">{{ctx.Locale.Tr "admin.wings_nodes.test_connection"}}</button>
+									</form>
+									<form class="ui form" method="post" action="{{AppSubUrl}}/admin/wings/nodes/{{.ID}}/token">
+										<div class="field">
+											<label for="wings-node-token-{{.ID}}">{{ctx.Locale.Tr "admin.wings_nodes.rotate_token"}}</label>
+											<input id="wings-node-token-{{.ID}}" name="token" type="password" autocomplete="new-password" maxlength="4096" required>
+										</div>
+										<button class="ui button" type="submit">{{ctx.Locale.Tr "admin.wings_nodes.rotate_token"}}</button>
+										<p>{{ctx.Locale.Tr "admin.wings_nodes.rotate_token_help"}}</p>
 									</form>
 									<form method="post" action="{{AppSubUrl}}/admin/wings/nodes/{{.ID}}/delete">
 										<button class="ui red button" type="submit">{{ctx.Locale.Tr "admin.wings_nodes.delete"}}</button>
@@ -134,6 +150,8 @@
 											<strong>{{.Username}}</strong>
 											<span>{{if .CanPower}}{{ctx.Locale.Tr "admin.wings_servers.power_permission"}}{{end}}</span>
 											<span>{{if .CanConsole}}{{ctx.Locale.Tr "admin.wings_servers.console_permission"}}{{end}}</span>
+											<span>{{if .CanFiles}}{{ctx.Locale.Tr "admin.wings_servers.files_permission"}}{{end}}</span>
+											<span>{{if .CanReadFiles}}{{ctx.Locale.Tr "admin.wings_servers.file_preview_permission"}}{{end}}</span>
 											<form method="post" action="{{AppSubUrl}}/admin/wings/nodes/servers/{{$server.ID}}/users/{{.ID}}/delete">
 												<button class="ui red button" type="submit">{{ctx.Locale.Tr "admin.wings_servers.revoke_access"}}</button>
 											</form>
@@ -156,6 +174,18 @@
 											<div class="ui checkbox">
 												<input type="checkbox" name="can_console" value="true">
 												<label>{{ctx.Locale.Tr "admin.wings_servers.grant_console"}}</label>
+											</div>
+										</div>
+										<div class="field">
+											<div class="ui checkbox">
+												<input type="checkbox" name="can_files" value="true">
+												<label>{{ctx.Locale.Tr "admin.wings_servers.grant_files"}}</label>
+											</div>
+										</div>
+										<div class="field">
+											<div class="ui checkbox">
+												<input type="checkbox" name="can_read_files" value="true">
+												<label>{{ctx.Locale.Tr "admin.wings_servers.grant_file_preview"}}</label>
 											</div>
 										</div>
 										<button class="ui button" type="submit">{{ctx.Locale.Tr "admin.wings_servers.grant_access"}}</button>

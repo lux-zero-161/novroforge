@@ -943,6 +943,7 @@ func registerRoutes(m *web.Route) {
 			m.Get("", admin.WingsNodes)
 			m.Post("", admin.CreateWingsNode)
 			m.Post("/{id}/test", admin.TestWingsNode)
+			m.Post("/{id}/token", admin.RotateWingsNodeToken)
 			m.Post("/{id}/delete", admin.DeleteWingsNode)
 			m.Post("/servers", admin.CreateWingsServer)
 			m.Post("/servers/{id}/test", admin.TestWingsServer)
@@ -951,6 +952,7 @@ func registerRoutes(m *web.Route) {
 			m.Post("/servers/{id}/command", admin.SendWingsServerCommand)
 			m.Post("/servers/{id}/users", admin.GrantWingsServerAccess)
 			m.Post("/servers/{id}/users/{access_id}/delete", admin.RevokeWingsServerAccess)
+			m.Post("/servers/{id}/name", admin.RenameWingsServer)
 			m.Post("/servers/{id}/delete", admin.DeleteWingsServer)
 		})
 
@@ -1066,6 +1068,9 @@ func registerRoutes(m *web.Route) {
 	m.Group("/user/servers", func() {
 		m.Get("", user.WingsServers)
 		m.Get("/{id}", user.WingsServer)
+		m.Get("/{id}/logs", user.WingsServerLogs)
+		m.Get("/{id}/files", user.WingsServerFiles)
+		m.Get("/{id}/files/preview", user.WingsServerFilePreview)
 		m.Post("/{id}/power", user.ControlWingsServer)
 		m.Post("/{id}/command", user.SendWingsServerCommand)
 	}, reqSignIn)

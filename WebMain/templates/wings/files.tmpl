@@ -1,0 +1,51 @@
+{{template "base/head" .}}
+<div role="main" aria-label="{{ctx.Locale.Tr "wings.files"}}" class="page-content">
+	<div class="ui container">
+		<h1 class="ui header">{{ctx.Locale.Tr "wings.files"}}: {{.Server.Name}}</h1>
+		<p><a href="{{AppSubUrl}}/user/servers/{{.Server.ID}}">{{ctx.Locale.Tr "wings.back_to_server"}}</a></p>
+		<p>{{ctx.Locale.Tr "wings.directory"}}: <code>{{.Directory}}</code></p>
+		<p>
+			<a class="ui button" href="{{AppSubUrl}}/user/servers/{{.Server.ID}}/files?directory={{.RootDirectory}}">{{ctx.Locale.Tr "wings.root_directory"}}</a>
+			{{if .HasParentDirectory}}
+				<a class="ui button" href="{{AppSubUrl}}/user/servers/{{.Server.ID}}/files?directory={{.ParentDirectory}}">{{ctx.Locale.Tr "wings.parent_directory"}}</a>
+			{{end}}
+		</p>
+		{{if .Files}}
+			<div class="overflow menu">
+				<table class="ui very basic striped table">
+					<thead>
+						<tr>
+							<th>{{ctx.Locale.Tr "wings.file_name"}}</th>
+							<th>{{ctx.Locale.Tr "wings.file_type"}}</th>
+							<th>{{ctx.Locale.Tr "wings.file_size"}}</th>
+							<th>{{ctx.Locale.Tr "wings.file_modified"}}</th>
+							<th>{{ctx.Locale.Tr "wings.file_mode"}}</th>
+						</tr>
+					</thead>
+					<tbody>
+						{{range .Files}}
+							<tr>
+								<td>
+									{{if and .Directory (not .Symlink)}}
+										<a href="{{AppSubUrl}}/user/servers/{{$.Server.ID}}/files?directory={{.Path}}">{{.Name}}</a>
+									{{else if and $.CanReadFiles .File (not .Symlink)}}
+										<a href="{{AppSubUrl}}/user/servers/{{$.Server.ID}}/files/preview?file={{.PreviewPath}}">{{.Name}}</a>
+									{{else}}
+										{{.Name}}
+									{{end}}
+								</td>
+								<td>{{if .Directory}}{{ctx.Locale.Tr "wings.directory"}}{{else}}{{.Mime}}{{end}}{{if .Symlink}} ({{ctx.Locale.Tr "wings.symlink"}}){{end}}</td>
+								<td>{{.Size}}</td>
+								<td>{{.Modified}}</td>
+								<td><code>{{.ModeBits}}</code></td>
+							</tr>
+						{{end}}
+					</tbody>
+				</table>
+			</div>
+		{{else}}
+			<div class="ui message">{{ctx.Locale.Tr "wings.no_files"}}</div>
+		{{end}}
+	</div>
+</div>
+{{template "base/footer" .}}

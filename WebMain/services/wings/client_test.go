@@ -176,6 +176,116 @@ func TestLogsRequestsAndDecodesRecentLines(t *testing.T) {
 	require.Equal(t, []string{"server started", "ready"}, lines)
 }
 
+func TestListDirectoryRequestsAndDecodesEntries(t *testing.T) {
+	t.Parallel()
+
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if got := r.URL.Path; got != "/api/servers/"+testServerID+"/files/list-directory" {
+			t.Errorf("request path = %q, want server file listing path", got)
+		}
+		if got := r.URL.Query().Get("directory"); got != "/world one" {
+			t.Errorf("directory query = %q, want %q", got, "/world one")
+		}
+		if _, err := w.Write([]byte(`[{"name":"world one","directory":true,"file":false,"symlink":false,"size":0}]`)); err != nil {
+			t.Errorf("write test response: %v", err)
+		}
+	}))
+	defer server.Close()
+
+	client, err := NewClient(server.URL, "node-token")
+	require.NoError(t, err)
+	entries, err := client.ListDirectory(context.Background(), testServerID, "world one")
+	require.NoError(t, err)
+	require.Len(t, entries, 1)
+	require.Equal(t, "world one", entries[0].Name)
+	require.True(t, entries[0].Directory)
+}
+
+func TestListDirectoryRejectsUnsafePaths(t *testing.T) {
+	t.Parallel()
+
+	client, err := NewClient("http://localhost:8080", "node-token")
+	require.NoError(t, err)
+	for _, directory := range []string{"../outside", "world/../../outside", `world\outside`, strings.Repeat("a", maxDirectoryPath+1)} {
+		_, err := client.ListDirectory(context.Background(), testServerID, directory)
+		require.ErrorIs(t, err, ErrInvalidDirectory)
+	}
+}
+
+func TestFileContentsReturnsTextPreview(t *testing.T) {
+	t.Parallel()
+
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if got := r.URL.Path; got != "/api/servers/"+testServerID+"/files/contents" {
+			t.Errorf("request path = %q, want server file contents path", got)
+		}
+		if got := r.URL.Query().Get("file"); got != "/server.properties" {
+			t.Errorf("file query = %q, want %q", got, "/server.properties")
+		}
+		if got := r.Header.Get("Authorization"); got != "******" {
+			t.Errorf("authorization header = %q, want bearer token", got)
+		}
+		w.Header().Set("X-Mime-Type", "text/plain; charset=utf-8")
+		_, _ = w.Write([]byte("motd=hello"))
+	}))
+	defer server.Close()
+
+	client, err := NewClient(server.URL, "node-token")
+	require.NoError(t, err)
+	content, err := client.FileContents(context.Background(), testServerID, "server.properties")
+	require.NoError(t, err)
+	require.Equal(t, "motd=hello", content)
+}
+
+func TestFileContentsRejectsInvalidOrUnsupportedFiles(t *testing.T) {
+	t.Parallel()
+
+	for _, test := range []struct {
+		name        string
+		filePath    string
+		contentType string
+		content     []byte
+		wantErr     error
+	}{
+		{name: "path traversal", filePath: "../outside", wantErr: ErrInvalidFilePath},
+		{name: "directory path", filePath: "configs/", wantErr: ErrInvalidFilePath},
+		{name: "binary MIME", filePath: "image.bin", contentType: "application/octet-stream", content: []byte{0, 1}, wantErr: ErrUnsupportedFileType},
+		{name: "invalid UTF-8", filePath: "text.txt", contentType: "text/plain", content: []byte{0xff}, wantErr: ErrUnsupportedFileType},
+		{name: "oversized preview", filePath: "large.txt", contentType: "text/plain", content: make([]byte, maxFilePreviewSize+1), wantErr: ErrFileTooLarge},
+	} {
+		t.Run(test.name, func(t *testing.T) {
+			server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, _ *http.Request) {
+				w.Header().Set("X-Mime-Type", test.contentType)
+				_, _ = w.Write(test.content)
+			}))
+			defer server.Close()
+
+			client, err := NewClient(server.URL, "node-token")
+			require.NoError(t, err)
+			_, err = client.FileContents(context.Background(), testServerID, test.filePath)
+			require.ErrorIs(t, err, test.wantErr)
+		})
+	}
+}
+
+func TestNormalizeDirectoryPath(t *testing.T) {
+	t.Parallel()
+
+	for _, test := range []struct {
+		input string
+		want  string
+	}{
+		{input: "", want: "/"},
+		{input: "/", want: "/"},
+		{input: "worlds/survival", want: "/worlds/survival"},
+		{input: "/worlds//survival/", want: "/worlds/survival"},
+	} {
+		got, err := NormalizeDirectoryPath(test.input)
+		require.NoError(t, err)
+		require.Equal(t, test.want, got)
+	}
+}
+
 func TestCommandsRejectsEmptyCommands(t *testing.T) {
 	t.Parallel()
 

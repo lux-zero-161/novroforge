@@ -4,10 +4,13 @@
 		<h1 class="ui header">{{.Server.Name}}</h1>
 		<p><a href="{{AppSubUrl}}/user/servers">{{ctx.Locale.Tr "wings.back_to_servers"}}</a></p>
 		<div class="ui segment">
-			<p>{{ctx.Locale.Tr "wings.server_state"}}: <strong>{{.Details.State}}</strong></p>
-			<p>{{ctx.Locale.Tr "wings.server_cpu"}}: {{.Details.Utilization.CPUAbsolute}} %</p>
-			<p>{{ctx.Locale.Tr "wings.server_memory"}}: {{.Details.Utilization.MemoryBytes}} / {{.Details.Utilization.MemoryLimit}} {{ctx.Locale.Tr "wings.bytes"}}</p>
-			<p>{{ctx.Locale.Tr "wings.server_disk"}}: {{.Details.Utilization.DiskBytes}} {{ctx.Locale.Tr "wings.bytes"}}</p>
+			<p>{{ctx.Locale.Tr "wings.server_state"}}: <strong id="wings-server-state">{{.Details.State}}</strong></p>
+			<p>{{ctx.Locale.Tr "wings.server_suspended"}}: <span id="wings-server-suspended">{{if .Details.IsSuspended}}{{ctx.Locale.Tr "wings.suspended"}}{{else}}{{ctx.Locale.Tr "wings.not_suspended"}}{{end}}</span></p>
+			<p>{{ctx.Locale.Tr "wings.server_cpu"}}: <span id="wings-server-cpu">{{.Details.Utilization.CPUAbsolute}}</span> %</p>
+			<p>{{ctx.Locale.Tr "wings.server_memory"}}: <span id="wings-server-memory">{{.Details.Utilization.MemoryBytes}} / {{.Details.Utilization.MemoryLimit}}</span> {{ctx.Locale.Tr "wings.bytes"}}</p>
+			<p>{{ctx.Locale.Tr "wings.server_disk"}}: <span id="wings-server-disk">{{.Details.Utilization.DiskBytes}}</span> {{ctx.Locale.Tr "wings.bytes"}}</p>
+			<p>{{ctx.Locale.Tr "wings.server_uptime"}}: <span id="wings-server-uptime">{{.Details.Utilization.Uptime}}</span> {{ctx.Locale.Tr "wings.seconds"}}</p>
+			<p>{{ctx.Locale.Tr "wings.server_network"}}: {{ctx.Locale.Tr "wings.server_network_rx"}} <span id="wings-server-network-rx">{{.Details.Utilization.Network.RxBytes}}</span> {{ctx.Locale.Tr "wings.bytes"}}, {{ctx.Locale.Tr "wings.server_network_tx"}} <span id="wings-server-network-tx">{{.Details.Utilization.Network.TxBytes}}</span> {{ctx.Locale.Tr "wings.bytes"}}</p>
 		</div>
 		{{if .Access.CanPower}}
 			<form class="ui form" method="post" action="{{AppSubUrl}}/user/servers/{{.Server.ID}}/power">
@@ -20,8 +23,24 @@
 				<button class="ui primary button" type="submit">{{ctx.Locale.Tr "wings.send_action"}}</button>
 			</form>
 		{{end}}
+		{{if or .Access.CanFiles .Access.CanReadFiles}}
+			<p><a class="ui button" href="{{AppSubUrl}}/user/servers/{{.Server.ID}}/files">{{ctx.Locale.Tr "wings.files"}}</a></p>
+		{{end}}
 		<h2 class="ui header">{{ctx.Locale.Tr "wings.console"}}</h2>
-		<pre class="code-block">{{if .Logs}}{{range .Logs}}{{.}}{{"\n"}}{{end}}{{else}}{{ctx.Locale.Tr "wings.no_logs"}}{{end}}</pre>
+		<div
+			id="wings-console"
+			data-logs-url="{{AppSubUrl}}/user/servers/{{.Server.ID}}/logs"
+			data-loading="{{ctx.Locale.Tr "wings.logs_loading"}}"
+			data-error="{{ctx.Locale.Tr "wings.server_update_unavailable"}}"
+			data-empty="{{ctx.Locale.Tr "wings.no_logs"}}"
+			data-updated="{{ctx.Locale.Tr "wings.logs_updated"}}"
+			data-suspended="{{ctx.Locale.Tr "wings.suspended"}}"
+			data-not-suspended="{{ctx.Locale.Tr "wings.not_suspended"}}"
+			aria-live="polite"
+		>
+			<pre class="code-block" id="wings-console-output">{{if .Logs}}{{range .Logs}}{{.}}{{"\n"}}{{end}}{{else}}{{ctx.Locale.Tr "wings.no_logs"}}{{end}}</pre>
+			<p id="wings-console-status" class="muted">{{ctx.Locale.Tr "wings.logs_loading"}}</p>
+		</div>
 		{{if .Access.CanConsole}}
 			<form class="ui form" method="post" action="{{AppSubUrl}}/user/servers/{{.Server.ID}}/command">
 				<div class="required field">

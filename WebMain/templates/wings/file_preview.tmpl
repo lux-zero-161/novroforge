@@ -1,0 +1,11 @@
+{{template "base/head" .}}
+<div role="main" aria-label="{{ctx.Locale.Tr "wings.file_preview"}}" class="page-content">
+	<div class="ui container">
+		<h1 class="ui header">{{ctx.Locale.Tr "wings.file_preview"}}: {{.Server.Name}}</h1>
+		<p><a href="{{.DirectoryURL}}">{{ctx.Locale.Tr "wings.back_to_files"}}</a></p>
+		<p><code>{{.FilePath}}</code></p>
+		<p>{{ctx.Locale.Tr "wings.file_preview_help"}}</p>
+		<pre class="code-block">{{.FileContent}}</pre>
+	</div>
+</div>
+{{template "base/footer" .}}
