@@ -117,10 +117,44 @@
 												<button class="ui button" type="submit">{{ctx.Locale.Tr "wings.copy_file"}}</button>
 											</form>
 										{{end}}
-										{{if .CopyPath}}
+										{{if .CompressPath}}
 											<form class="ui form" method="post" action="{{AppSubUrl}}/user/servers/{{$.Server.ID}}/files/compress">
-												<input type="hidden" name="file" value="{{.CopyPath}}">
+												<input type="hidden" name="file" value="{{.CompressPath}}">
 												<button class="ui button" type="submit">{{ctx.Locale.Tr "wings.compress_file"}}</button>
+											</form>
+										{{end}}
+										{{if .CopyPath}}
+											<form class="ui form" method="post" action="{{AppSubUrl}}/user/servers/{{$.Server.ID}}/files/decompress">
+												<input type="hidden" name="file" value="{{.CopyPath}}">
+												<div class="inline fields">
+													<div class="field">
+														<div class="ui checkbox">
+															<input type="checkbox" name="confirm_decompress" value="true" required>
+															<label>{{ctx.Locale.Tr "wings.file_decompress_confirm"}}</label>
+														</div>
+													</div>
+													<div class="field">
+														<button class="ui button" type="submit">{{ctx.Locale.Tr "wings.decompress_file"}}</button>
+													</div>
+												</div>
+											</form>
+											<form class="ui form" method="post" action="{{AppSubUrl}}/user/servers/{{$.Server.ID}}/files/chmod">
+												<input type="hidden" name="file" value="{{.CopyPath}}">
+												<div class="inline fields">
+													<div class="field">
+														<label>{{ctx.Locale.Tr "wings.file_mode"}}</label>
+														<input name="mode" value="{{.ModeBits}}" inputmode="numeric" pattern="[0-7]{3,4}" maxlength="4" required aria-label="{{ctx.Locale.Tr "wings.file_mode"}}">
+													</div>
+													<div class="field">
+														<div class="ui checkbox">
+															<input type="checkbox" name="confirm_mode_change" value="true" required>
+															<label>{{ctx.Locale.Tr "wings.file_mode_confirm"}}</label>
+														</div>
+													</div>
+													<div class="field">
+														<button class="ui button" type="submit">{{ctx.Locale.Tr "wings.update_file_mode"}}</button>
+													</div>
+												</div>
 											</form>
 										{{end}}
 									</td>

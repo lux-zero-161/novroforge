@@ -4,9 +4,12 @@
 package wings
 
 import (
+	"bytes"
 	"context"
+	"crypto/subtle"
 	"errors"
 	"fmt"
+	"regexp"
 	"strings"
 	"unicode/utf8"
 
@@ -17,28 +20,46 @@ import (
 )
 
 var (
-	ErrInvalidNodeName  = errors.New("node name must be between 1 and 64 characters")
-	ErrInvalidNodeURL   = errors.New("node URL is invalid")
-	ErrInvalidNodeToken = errors.New("node token is invalid")
+	ErrInvalidNodeName          = errors.New("node name must be between 1 and 64 characters")
+	ErrInvalidNodeURL           = errors.New("node URL is invalid")
+	ErrInvalidNodeToken         = errors.New("node token is invalid")
+	ErrInvalidRemoteCredentials = errors.New("Wings remote API credentials are invalid")
 )
 
+var remoteTokenIDPattern = regexp.MustCompile(`^[A-Za-z0-9]{16}$`)
+
+func validateRemoteCredentials(tokenID, token string) error {
+	if !remoteTokenIDPattern.MatchString(tokenID) || len(token) != 64 || strings.Contains(token, ".") {
+		return ErrInvalidRemoteCredentials
+	}
+	for _, char := range token {
+		if char < '!' || char > '~' {
+			return ErrInvalidRemoteCredentials
+		}
+	}
+	return nil
+}
+
 // WingsNode stores connection details for a Wings daemon. The bearer token is
-// encrypted at rest and is never included in the node's normal fields.
+// encrypted at rest and is never included in the node's normal fields. Its
+// token ID authenticates Wings callbacks to WebMain.
 type WingsNode struct {
 	ID             int64
 	Name           string             `xorm:"UNIQUE NOT NULL VARCHAR(64)"`
 	URL            string             `xorm:"TEXT NOT NULL"`
 	EncryptedToken []byte             `xorm:"BLOB"`
+	RemoteTokenID  string             `xorm:"VARCHAR(16)"`
 	CreatedUnix    timeutil.TimeStamp `xorm:"created"`
 	UpdatedUnix    timeutil.TimeStamp `xorm:"updated"`
 }
 
 // NodeListItem is the non-sensitive node information shown in admin pages.
 type NodeListItem struct {
-	ID        int64
-	Name      string
-	URL       string
-	CreatedAt timeutil.TimeStamp
+	ID                   int64
+	Name                 string
+	URL                  string
+	HasRemoteCredentials bool
+	CreatedAt            timeutil.TimeStamp
 }
 
 func init() {
@@ -93,6 +114,9 @@ func RotateNodeToken(ctx context.Context, id int64, token string) error {
 	if !exists {
 		return fmt.Errorf("Wings node %d does not exist", id)
 	}
+	if node.RemoteTokenID != "" && validateRemoteCredentials(node.RemoteTokenID, token) != nil {
+		return ErrInvalidNodeToken
+	}
 	client, err := wings_service.NewClient(node.URL, token)
 	if err != nil {
 		return fmt.Errorf("%w: %v", ErrInvalidNodeToken, err)
@@ -101,14 +125,89 @@ func RotateNodeToken(ctx context.Context, id int64, token string) error {
 		return fmt.Errorf("verify replacement token for Wings node %d: %w", id, err)
 	}
 	encryptedToken := keying.WingsNode.Encrypt([]byte(token), keying.ColumnAndID("encrypted_token", node.ID))
-	affected, err := db.GetEngine(ctx).ID(node.ID).Cols("encrypted_token").Update(&WingsNode{EncryptedToken: encryptedToken})
+	affected, err := db.GetEngine(ctx).ID(node.ID).
+		Where("encrypted_token = ? AND remote_token_id = ?", node.EncryptedToken, node.RemoteTokenID).
+		Cols("encrypted_token").Update(&WingsNode{EncryptedToken: encryptedToken})
 	if err != nil {
 		return fmt.Errorf("rotate Wings node %d token: %w", id, err)
 	}
 	if affected != 1 {
-		return fmt.Errorf("rotate Wings node %d token: expected to update one row, updated %d", id, affected)
+		return fmt.Errorf("rotate Wings node %d token: configuration changed during rotation (updated %d rows)", id, affected)
 	}
 	return nil
+}
+
+// SetNodeRemoteTokenID stores the token ID used by Wings when calling the
+// WebMain remote API. The shared secret is the node bearer token already stored
+// encrypted on the node.
+func SetNodeRemoteTokenID(ctx context.Context, id int64, tokenID string) error {
+	if id <= 0 {
+		return errors.New("invalid Wings node ID")
+	}
+	if !remoteTokenIDPattern.MatchString(tokenID) {
+		return ErrInvalidRemoteCredentials
+	}
+
+	node, exists, err := GetNodeByID(ctx, id)
+	if err != nil {
+		return err
+	}
+	if !exists {
+		return fmt.Errorf("Wings node %d does not exist", id)
+	}
+	token, err := keying.WingsNode.Decrypt(node.EncryptedToken, keying.ColumnAndID("encrypted_token", node.ID))
+	if err != nil {
+		return fmt.Errorf("decrypt Wings node token for remote API configuration on node %d: %w", node.ID, err)
+	}
+	if err := validateRemoteCredentials(tokenID, string(token)); err != nil {
+		return err
+	}
+	if node.RemoteTokenID == tokenID {
+		return nil
+	}
+	affected, err := db.GetEngine(ctx).ID(id).Where("encrypted_token = ?", node.EncryptedToken).
+		Cols("remote_token_id").Update(&WingsNode{RemoteTokenID: tokenID})
+	if err != nil {
+		return fmt.Errorf("store Wings remote API credentials for node %d: %w", id, err)
+	}
+	if affected != 1 {
+		current, exists, err := GetNodeByID(ctx, id)
+		if err != nil {
+			return err
+		}
+		if exists && current.RemoteTokenID == tokenID && bytes.Equal(current.EncryptedToken, node.EncryptedToken) {
+			return nil
+		}
+		return fmt.Errorf("store Wings remote API token ID for node %d: configuration changed while saving (updated %d rows)", id, affected)
+	}
+	return nil
+}
+
+// AuthenticateRemoteCallback verifies the standard Wings daemon token pair.
+func (node *WingsNode) AuthenticateRemoteCallback(tokenID, token string) (bool, error) {
+	if !remoteTokenIDPattern.MatchString(node.RemoteTokenID) || len(node.EncryptedToken) == 0 ||
+		validateRemoteCredentials(tokenID, token) != nil || len(node.RemoteTokenID) != len(tokenID) {
+		return false, nil
+	}
+	storedToken, err := keying.WingsNode.Decrypt(node.EncryptedToken, keying.ColumnAndID("encrypted_token", node.ID))
+	if err != nil {
+		return false, fmt.Errorf("decrypt Wings node token for remote API callback on node %d: %w", node.ID, err)
+	}
+	idMatch := subtle.ConstantTimeCompare([]byte(node.RemoteTokenID), []byte(tokenID))
+	tokenMatch := subtle.ConstantTimeCompare(storedToken, []byte(token))
+	return idMatch&tokenMatch == 1, nil
+}
+
+// HasRemoteCallbackCredentials verifies that the shared callback credentials are valid.
+func (node *WingsNode) HasRemoteCallbackCredentials() (bool, error) {
+	if !remoteTokenIDPattern.MatchString(node.RemoteTokenID) || len(node.EncryptedToken) == 0 {
+		return false, nil
+	}
+	token, err := keying.WingsNode.Decrypt(node.EncryptedToken, keying.ColumnAndID("encrypted_token", node.ID))
+	if err != nil {
+		return false, fmt.Errorf("decrypt Wings node token for remote API callback on node %d: %w", node.ID, err)
+	}
+	return validateRemoteCredentials(node.RemoteTokenID, string(token)) == nil, nil
 }
 
 func validateNodeToken(token string) error {
@@ -133,10 +232,11 @@ func ListNodes(ctx context.Context) ([]NodeListItem, error) {
 	items := make([]NodeListItem, 0, len(nodes))
 	for _, node := range nodes {
 		items = append(items, NodeListItem{
-			ID:        node.ID,
-			Name:      node.Name,
-			URL:       node.URL,
-			CreatedAt: node.CreatedUnix,
+			ID:                    node.ID,
+			Name:                  node.Name,
+			URL:                   node.URL,
+			HasRemoteCredentials: remoteTokenIDPattern.MatchString(node.RemoteTokenID) && len(node.EncryptedToken) > 0,
+			CreatedAt:             node.CreatedUnix,
 		})
 	}
 	return items, nil

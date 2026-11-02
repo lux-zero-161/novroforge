@@ -58,6 +58,15 @@
 										<button class="ui button" type="submit">{{ctx.Locale.Tr "admin.wings_nodes.rotate_token"}}</button>
 										<p>{{ctx.Locale.Tr "admin.wings_nodes.rotate_token_help"}}</p>
 									</form>
+									<form class="ui form" method="post" action="{{AppSubUrl}}/admin/wings/nodes/{{.ID}}/remote-credentials">
+										<div class="field">
+											<label for="wings-remote-token-id-{{.ID}}">{{ctx.Locale.Tr "admin.wings_nodes.remote_token_id"}}</label>
+											<input id="wings-remote-token-id-{{.ID}}" name="token_id" autocomplete="off" minlength="16" maxlength="16" pattern="[A-Za-z0-9]{16}" required>
+										</div>
+										<button class="ui button" type="submit">{{ctx.Locale.Tr "admin.wings_nodes.save_remote_credentials"}}</button>
+										<p>{{if .HasRemoteCredentials}}{{ctx.Locale.Tr "admin.wings_nodes.remote_credentials_configured"}}{{else}}{{ctx.Locale.Tr "admin.wings_nodes.remote_credentials_missing"}}{{end}}</p>
+										<p>{{ctx.Locale.Tr "admin.wings_nodes.remote_credentials_help"}}</p>
+									</form>
 									<form method="post" action="{{AppSubUrl}}/admin/wings/nodes/{{.ID}}/delete">
 										<button class="ui red button" type="submit">{{ctx.Locale.Tr "admin.wings_nodes.delete"}}</button>
 									</form>
@@ -157,6 +166,8 @@
 											<span>{{if .CanEditFiles}}{{ctx.Locale.Tr "admin.wings_servers.file_edit_permission"}}{{end}}</span>
 											<span>{{if .CanDeleteFiles}}{{ctx.Locale.Tr "admin.wings_servers.file_delete_permission"}}{{end}}</span>
 											<span>{{if .CanUploadFiles}}{{ctx.Locale.Tr "admin.wings_servers.file_upload_permission"}}{{end}}</span>
+											<span>{{if .CanBackups}}{{ctx.Locale.Tr "admin.wings_servers.backup_permission"}}{{end}}</span>
+											<span>{{if .CanDownloadBackups}}{{ctx.Locale.Tr "admin.wings_servers.backup_download_permission"}}{{end}}</span>
 											<form method="post" action="{{AppSubUrl}}/admin/wings/nodes/servers/{{$server.ID}}/users/{{.ID}}/delete">
 												<button class="ui red button" type="submit">{{ctx.Locale.Tr "admin.wings_servers.revoke_access"}}</button>
 											</form>
@@ -221,6 +232,18 @@
 											<div class="ui checkbox">
 												<input type="checkbox" name="can_upload_files" value="true">
 												<label>{{ctx.Locale.Tr "admin.wings_servers.grant_file_upload"}}</label>
+											</div>
+										</div>
+										<div class="field">
+											<div class="ui checkbox">
+												<input type="checkbox" name="can_backups" value="true">
+												<label>{{ctx.Locale.Tr "admin.wings_servers.grant_backups"}}</label>
+											</div>
+										</div>
+										<div class="field">
+											<div class="ui checkbox">
+												<input type="checkbox" name="can_download_backups" value="true">
+												<label>{{ctx.Locale.Tr "admin.wings_servers.grant_backup_download"}}</label>
 											</div>
 										</div>
 										<button class="ui button" type="submit">{{ctx.Locale.Tr "admin.wings_servers.grant_access"}}</button>

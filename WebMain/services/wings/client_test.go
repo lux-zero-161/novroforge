@@ -12,6 +12,7 @@ import (
 	"io"
 	"net/http"
 	"net/http/httptest"
+	"strconv"
 	"strings"
 	"sync/atomic"
 	"testing"
@@ -487,7 +488,7 @@ func TestCopyFileRejectsInvalidInput(t *testing.T) {
 	require.ErrorIs(t, client.CopyFile(context.Background(), testServerID, "/"), ErrInvalidFilePath)
 }
 
-func TestCompressFileSendsOneValidatedFile(t *testing.T) {
+func TestCompressFileSendsOneValidatedEntry(t *testing.T) {
 	t.Parallel()
 
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -504,8 +505,8 @@ func TestCompressFileSendsOneValidatedFile(t *testing.T) {
 		if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
 			t.Errorf("decode compress body: %v", err)
 		}
-		if body.Root != "/worlds/survival" || len(body.Files) != 1 || body.Files[0] != "server.properties" {
-			t.Errorf("compress body = %#v, want normalized directory and one file", body)
+		if body.Root != "/worlds/survival" || len(body.Files) != 1 || body.Files[0] != "server-config" {
+			t.Errorf("compress body = %#v, want normalized directory and one selected entry", body)
 		}
 		time.Sleep(20 * time.Millisecond)
 		if err := json.NewEncoder(w).Encode(FileEntry{Name: "archive-2026.tar.gz", File: true, Size: 128}); err != nil {
@@ -517,7 +518,7 @@ func TestCompressFileSendsOneValidatedFile(t *testing.T) {
 	client, err := NewClient(server.URL, "node-token")
 	require.NoError(t, err)
 	client.httpClient.Timeout = time.Millisecond
-	archive, err := client.CompressFile(context.Background(), testServerID, "worlds//survival/", "server.properties")
+	archive, err := client.CompressFile(context.Background(), testServerID, "worlds//survival/", "server-config")
 	require.NoError(t, err)
 	require.Equal(t, "archive-2026.tar.gz", archive.Name)
 	require.Equal(t, int64(128), archive.Size)
@@ -534,6 +535,273 @@ func TestCompressFileRejectsInvalidInput(t *testing.T) {
 	require.ErrorIs(t, err, ErrInvalidDirectory)
 	_, err = client.CompressFile(context.Background(), testServerID, "/", "../outside")
 	require.ErrorIs(t, err, ErrInvalidDirectoryName)
+}
+
+func TestBackupOperationsUseLocalWingsEndpoints(t *testing.T) {
+	t.Parallel()
+
+	const backupID = "9a7b3db9-0630-4b61-8cec-cda7e0ca4453"
+	requests := 0
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		requests++
+		switch requests {
+		case 1:
+			if r.Method != http.MethodPost || r.URL.Path != "/api/servers/"+testServerID+"/backup" {
+				t.Errorf("create backup request = %s %s", r.Method, r.URL.Path)
+			}
+			var body struct {
+				Adapter string `json:"adapter"`
+				UUID    string `json:"uuid"`
+			}
+			if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
+				t.Errorf("decode create backup request: %v", err)
+			}
+			if body.Adapter != "wings" || body.UUID != backupID {
+				t.Errorf("create backup body = %#v", body)
+			}
+			w.WriteHeader(http.StatusAccepted)
+		case 2:
+			if r.Method != http.MethodPost || r.URL.Path != "/api/servers/"+testServerID+"/backup/"+backupID+"/restore" {
+				t.Errorf("restore backup request = %s %s", r.Method, r.URL.Path)
+			}
+			var body struct {
+				Adapter           string `json:"adapter"`
+				TruncateDirectory bool   `json:"truncate_directory"`
+			}
+			if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
+				t.Errorf("decode restore backup request: %v", err)
+			}
+			if body.Adapter != "wings" || body.TruncateDirectory {
+				t.Errorf("restore backup body = %#v, want local adapter without truncation", body)
+			}
+			w.WriteHeader(http.StatusAccepted)
+		case 3:
+			if r.Method != http.MethodDelete || r.URL.Path != "/api/servers/"+testServerID+"/backup/"+backupID {
+				t.Errorf("delete backup request = %s %s", r.Method, r.URL.Path)
+			}
+			w.WriteHeader(http.StatusNoContent)
+		default:
+			t.Errorf("unexpected backup request %s %s", r.Method, r.URL.Path)
+			w.WriteHeader(http.StatusInternalServerError)
+		}
+	}))
+	defer server.Close()
+
+	client, err := NewClient(server.URL, "node-token")
+	require.NoError(t, err)
+	require.NoError(t, client.CreateBackup(context.Background(), testServerID, backupID))
+	require.NoError(t, client.RestoreBackup(context.Background(), testServerID, backupID))
+	require.NoError(t, client.DeleteBackup(context.Background(), testServerID, backupID))
+	require.Equal(t, 3, requests)
+}
+
+func TestBackupOperationsRejectInvalidUUIDs(t *testing.T) {
+	t.Parallel()
+
+	client, err := NewClient("http://localhost:8080", "node-token")
+	require.NoError(t, err)
+	require.Error(t, client.CreateBackup(context.Background(), "invalid", "invalid"))
+	require.Error(t, client.RestoreBackup(context.Background(), testServerID, "invalid"))
+	require.Error(t, client.DeleteBackup(context.Background(), "invalid", testServerID))
+}
+
+func TestDownloadBackupUsesScopedSingleUseTokenWithoutDaemonAuthorization(t *testing.T) {
+	t.Parallel()
+
+	const (
+		userID   = "f1b3d5a7-1234-4567-89ab-cdef01234567"
+		backupID = "9a7b3db9-0630-4b61-8cec-cda7e0ca4453"
+		content  = "backup archive"
+	)
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if r.Method != http.MethodGet || r.URL.Path != "/download/backup" {
+			t.Errorf("download request = %s %s, want GET /download/backup", r.Method, r.URL.Path)
+		}
+		if authorization := r.Header.Get("Authorization"); authorization != "" {
+			t.Errorf("download authorization = %q, want no daemon credential", authorization)
+		}
+		claims := decodeTestBackupDownloadClaims(t, r.URL.Query().Get("token"), "node-token")
+		if claims.Scope != "backup-download" || claims.ServerUUID != testServerID || claims.UserUUID != userID || claims.BackupUUID != backupID || claims.UniqueID == "" || claims.JWTID != claims.UniqueID {
+			t.Errorf("backup download claims = %#v, want scoped single-use server/user/backup token", claims)
+		}
+		if claims.ExpirationTime <= claims.IssuedAt || claims.ExpirationTime-claims.IssuedAt > 60 {
+			t.Errorf("backup download token lifetime = %d seconds, want at most 60", claims.ExpirationTime-claims.IssuedAt)
+		}
+		w.Header().Set("Content-Length", strconv.Itoa(len(content)))
+		_, _ = w.Write([]byte(content))
+	}))
+	defer server.Close()
+
+	client, err := NewClient(server.URL, "node-token")
+	require.NoError(t, err)
+	response, err := client.DownloadBackup(context.Background(), testServerID, userID, backupID)
+	require.NoError(t, err)
+	defer response.Body.Close()
+	got, err := io.ReadAll(response.Body)
+	require.NoError(t, err)
+	require.Equal(t, content, string(got))
+	require.Equal(t, int64(len(content)), response.ContentLength)
+}
+
+func TestDownloadBackupRejectsInvalidUUIDs(t *testing.T) {
+	t.Parallel()
+
+	client, err := NewClient("http://localhost:8080", "node-token")
+	require.NoError(t, err)
+	_, err = client.DownloadBackup(context.Background(), "invalid", testServerID, testServerID)
+	require.Error(t, err)
+	_, err = client.DownloadBackup(context.Background(), testServerID, "invalid", testServerID)
+	require.Error(t, err)
+	_, err = client.DownloadBackup(context.Background(), testServerID, testServerID, "invalid")
+	require.Error(t, err)
+}
+
+func TestDownloadBackupRedactsSignedTokenFromNetworkErrors(t *testing.T) {
+	t.Parallel()
+
+	server := httptest.NewServer(http.NotFoundHandler())
+	server.Close()
+
+	client, err := NewClient(server.URL, "node-token")
+	require.NoError(t, err)
+	_, err = client.DownloadBackup(context.Background(), testServerID, "f1b3d5a7-1234-4567-89ab-cdef01234567", "9a7b3db9-0630-4b61-8cec-cda7e0ca4453")
+	require.Error(t, err)
+	require.NotContains(t, err.Error(), "token=")
+	require.NotContains(t, err.Error(), "backup-download")
+}
+
+func TestDeleteBackupTreatsMissingArchiveAsDeleted(t *testing.T) {
+	t.Parallel()
+
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, _ *http.Request) {
+		w.WriteHeader(http.StatusNotFound)
+	}))
+	defer server.Close()
+
+	client, err := NewClient(server.URL, "node-token")
+	require.NoError(t, err)
+	require.NoError(t, client.DeleteBackup(context.Background(), testServerID, "9a7b3db9-0630-4b61-8cec-cda7e0ca4453"))
+}
+
+func decodeTestBackupDownloadClaims(t *testing.T, token, secret string) struct {
+	IssuedAt       int64  `json:"iat"`
+	ExpirationTime int64  `json:"exp"`
+	JWTID          string `json:"jti"`
+	Scope          string `json:"scope"`
+	ServerUUID     string `json:"server_uuid"`
+	UserUUID       string `json:"user_uuid"`
+	BackupUUID     string `json:"backup_uuid"`
+	UniqueID       string `json:"unique_id"`
+} {
+	t.Helper()
+	parts := strings.Split(token, ".")
+	require.Len(t, parts, 3)
+	signature, err := base64.RawURLEncoding.DecodeString(parts[2])
+	require.NoError(t, err)
+	mac := hmac.New(sha256.New, []byte(secret))
+	_, err = mac.Write([]byte(parts[0] + "." + parts[1]))
+	require.NoError(t, err)
+	require.True(t, hmac.Equal(signature, mac.Sum(nil)))
+	payload, err := base64.RawURLEncoding.DecodeString(parts[1])
+	require.NoError(t, err)
+	var claims struct {
+		IssuedAt       int64  `json:"iat"`
+		ExpirationTime int64  `json:"exp"`
+		JWTID          string `json:"jti"`
+		Scope          string `json:"scope"`
+		ServerUUID     string `json:"server_uuid"`
+		UserUUID       string `json:"user_uuid"`
+		BackupUUID     string `json:"backup_uuid"`
+		UniqueID       string `json:"unique_id"`
+	}
+	require.NoError(t, json.Unmarshal(payload, &claims))
+	return claims
+}
+
+func TestDecompressFileSendsOneValidatedArchive(t *testing.T) {
+	t.Parallel()
+
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if got := r.Method; got != http.MethodPost {
+			t.Errorf("request method = %q, want POST", got)
+		}
+		if got := r.URL.Path; got != "/api/servers/"+testServerID+"/files/decompress" {
+			t.Errorf("request path = %q, want file decompress path", got)
+		}
+		var body struct {
+			Root string `json:"root"`
+			File string `json:"file"`
+		}
+		if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
+			t.Errorf("decode decompress body: %v", err)
+		}
+		if body.Root != "/worlds/survival" || body.File != "archive.tar.gz" {
+			t.Errorf("decompress body = %#v, want normalized directory and archive", body)
+		}
+		time.Sleep(20 * time.Millisecond)
+		w.WriteHeader(http.StatusNoContent)
+	}))
+	defer server.Close()
+
+	client, err := NewClient(server.URL, "node-token")
+	require.NoError(t, err)
+	client.httpClient.Timeout = time.Millisecond
+	require.NoError(t, client.DecompressFile(context.Background(), testServerID, "worlds//survival/", "archive.tar.gz"))
+}
+
+func TestDecompressFileRejectsInvalidInput(t *testing.T) {
+	t.Parallel()
+
+	client, err := NewClient("http://localhost:8080", "node-token")
+	require.NoError(t, err)
+	require.Error(t, client.DecompressFile(context.Background(), "invalid", "/", "archive.zip"))
+	require.ErrorIs(t, client.DecompressFile(context.Background(), testServerID, "../outside", "archive.zip"), ErrInvalidDirectory)
+	require.ErrorIs(t, client.DecompressFile(context.Background(), testServerID, "/", "../outside"), ErrInvalidDirectoryName)
+}
+
+func TestChmodFileSendsOneValidatedRegularFile(t *testing.T) {
+	t.Parallel()
+
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if got := r.Method; got != http.MethodPost {
+			t.Errorf("request method = %q, want POST", got)
+		}
+		if got := r.URL.Path; got != "/api/servers/"+testServerID+"/files/chmod" {
+			t.Errorf("request path = %q, want file chmod path", got)
+		}
+		var body struct {
+			Root  string `json:"root"`
+			Files []struct {
+				File string `json:"file"`
+				Mode string `json:"mode"`
+			} `json:"files"`
+		}
+		if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
+			t.Errorf("decode chmod body: %v", err)
+		}
+		if body.Root != "/worlds/survival" || len(body.Files) != 1 || body.Files[0].File != "start.sh" || body.Files[0].Mode != "755" {
+			t.Errorf("chmod body = %#v, want normalized directory, one file, and canonical mode", body)
+		}
+		w.WriteHeader(http.StatusNoContent)
+	}))
+	defer server.Close()
+
+	client, err := NewClient(server.URL, "node-token")
+	require.NoError(t, err)
+	require.NoError(t, client.ChmodFile(context.Background(), testServerID, "worlds//survival/", "start.sh", "0755"))
+}
+
+func TestChmodFileRejectsInvalidInput(t *testing.T) {
+	t.Parallel()
+
+	client, err := NewClient("http://localhost:8080", "node-token")
+	require.NoError(t, err)
+	require.Error(t, client.ChmodFile(context.Background(), "invalid", "/", "start.sh", "0755"))
+	require.ErrorIs(t, client.ChmodFile(context.Background(), testServerID, "../outside", "start.sh", "0755"), ErrInvalidDirectory)
+	require.ErrorIs(t, client.ChmodFile(context.Background(), testServerID, "/", "../outside", "0755"), ErrInvalidDirectoryName)
+	for _, mode := range []string{"", "7", "07555", "0788", "-755", "1777", "1000"} {
+		require.ErrorIs(t, client.ChmodFile(context.Background(), testServerID, "/", "start.sh", mode), ErrInvalidFileMode)
+	}
 }
 
 func TestUploadFileUsesScopedTokenAndDoesNotOverwrite(t *testing.T) {

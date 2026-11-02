@@ -131,6 +131,7 @@ type wingsFileListEntry struct {
 	EditPath     string
 	DeletePath   string
 	CopyPath     string
+	CompressPath string
 }
 
 func WingsServerFiles(ctx *context.Context) {
@@ -196,6 +197,9 @@ func WingsServerFiles(ctx *context.Context) {
 		}
 		if access.CanManageFiles && file.File && !file.Symlink {
 			entry.CopyPath = path.Join(directory, file.Name)
+		}
+		if access.CanManageFiles && (file.File || file.Directory) && !file.Symlink {
+			entry.CompressPath = path.Join(directory, file.Name)
 		}
 		entries = append(entries, entry)
 	}
@@ -657,12 +661,12 @@ func CompressWingsServerFile(ctx *context.Context) {
 		ctx.ServerError("CompressUserWingsServerFileClient", err)
 		return
 	}
-	isRegularFile, err := isWingsRegularFile(ctx, client, server.UUID, filePath)
+	isCompressible, err := isWingsCompressibleEntry(ctx, client, server.UUID, filePath)
 	if err != nil {
 		ctx.ServerError("CompressUserWingsServerFileDirectory", err)
 		return
 	}
-	if !isRegularFile {
+	if !isCompressible {
 		ctx.Flash.Error(ctx.Tr("wings.file_not_found"))
 		ctx.Redirect(wingsServerFilesURL(server.ID, directory))
 		return
@@ -680,6 +684,138 @@ func CompressWingsServerFile(ctx *context.Context) {
 	}
 
 	ctx.Flash.Success(ctx.Tr("wings.file_compressed"))
+	ctx.Redirect(wingsServerFilesURL(server.ID, directory))
+}
+
+func isWingsCompressibleEntry(ctx *context.Context, client *wings_service.Client, serverUUID, entryPath string) (bool, error) {
+	entries, err := client.ListDirectory(ctx, serverUUID, path.Dir(entryPath))
+	if err != nil {
+		return false, err
+	}
+	for _, entry := range entries {
+		if entry.Name == path.Base(entryPath) && !entry.Symlink && (entry.File || entry.Directory) {
+			return true, nil
+		}
+	}
+	return false, nil
+}
+
+func DecompressWingsServerFile(ctx *context.Context) {
+	server, access, err := getAuthorizedWingsServer(ctx)
+	if errors.Is(err, wings_model.ErrServerAccessDenied) {
+		ctx.NotFound("DecompressWingsServerFile", nil)
+		return
+	}
+	if err != nil {
+		ctx.ServerError("DecompressUserWingsServerFile", err)
+		return
+	}
+	if !access.CanManageFiles {
+		ctx.Error(http.StatusForbidden, ctx.Locale.TrString("wings.file_manage_denied"))
+		return
+	}
+	if !ctx.FormBool("confirm_decompress") {
+		ctx.Error(http.StatusBadRequest, ctx.Locale.TrString("wings.file_decompress_confirmation_required"))
+		return
+	}
+
+	filePath, err := normalizeWingsFilePath(ctx.FormString("file"))
+	if err != nil {
+		ctx.Flash.Error(ctx.Tr("wings.invalid_directory"))
+		ctx.Redirect(wingsServerFilesURL(server.ID, "/"))
+		return
+	}
+	directory := path.Dir(filePath)
+	client, err := server.GetServerClient(ctx)
+	if err != nil {
+		ctx.ServerError("DecompressUserWingsServerFileClient", err)
+		return
+	}
+	isRegularFile, err := isWingsRegularFile(ctx, client, server.UUID, filePath)
+	if err != nil {
+		ctx.ServerError("DecompressUserWingsServerFileDirectory", err)
+		return
+	}
+	if !isRegularFile {
+		ctx.Flash.Error(ctx.Tr("wings.file_not_found"))
+		ctx.Redirect(wingsServerFilesURL(server.ID, directory))
+		return
+	}
+	if err := client.DecompressFile(ctx, server.UUID, directory, path.Base(filePath)); err != nil {
+		if errors.Is(err, wings_service.ErrInvalidDirectory) || errors.Is(err, wings_service.ErrInvalidDirectoryName) {
+			ctx.Flash.Error(ctx.Tr("wings.invalid_directory"))
+			ctx.Redirect(wingsServerFilesURL(server.ID, directory))
+			return
+		}
+		log.Error("DecompressUserWingsServerFile[%d]: %v", server.ID, err)
+		ctx.Flash.Error(ctx.Tr("wings.file_decompress_failed"))
+		ctx.Redirect(wingsServerFilesURL(server.ID, directory))
+		return
+	}
+
+	ctx.Flash.Success(ctx.Tr("wings.file_decompressed"))
+	ctx.Redirect(wingsServerFilesURL(server.ID, directory))
+}
+
+func ChmodWingsServerFile(ctx *context.Context) {
+	server, access, err := getAuthorizedWingsServer(ctx)
+	if errors.Is(err, wings_model.ErrServerAccessDenied) {
+		ctx.NotFound("ChmodWingsServerFile", nil)
+		return
+	}
+	if err != nil {
+		ctx.ServerError("ChmodUserWingsServerFile", err)
+		return
+	}
+	if !access.CanManageFiles {
+		ctx.Error(http.StatusForbidden, ctx.Locale.TrString("wings.file_manage_denied"))
+		return
+	}
+	if !ctx.FormBool("confirm_mode_change") {
+		ctx.Error(http.StatusBadRequest, ctx.Locale.TrString("wings.file_mode_confirmation_required"))
+		return
+	}
+
+	filePath, err := normalizeWingsFilePath(ctx.FormString("file"))
+	if err != nil {
+		ctx.Flash.Error(ctx.Tr("wings.invalid_directory"))
+		ctx.Redirect(wingsServerFilesURL(server.ID, "/"))
+		return
+	}
+	directory := path.Dir(filePath)
+	client, err := server.GetServerClient(ctx)
+	if err != nil {
+		ctx.ServerError("ChmodUserWingsServerFileClient", err)
+		return
+	}
+	isRegularFile, err := isWingsRegularFile(ctx, client, server.UUID, filePath)
+	if err != nil {
+		ctx.ServerError("ChmodUserWingsServerFileDirectory", err)
+		return
+	}
+	if !isRegularFile {
+		ctx.Flash.Error(ctx.Tr("wings.file_not_found"))
+		ctx.Redirect(wingsServerFilesURL(server.ID, directory))
+		return
+	}
+	if err := client.ChmodFile(ctx, server.UUID, directory, path.Base(filePath), ctx.FormString("mode")); err != nil {
+		if errors.Is(err, wings_service.ErrInvalidFileMode) {
+			ctx.Flash.Error(ctx.Tr("wings.invalid_file_mode"))
+			ctx.Redirect(wingsServerFilesURL(server.ID, directory))
+			return
+		}
+		if errors.Is(err, wings_service.ErrInvalidDirectory) || errors.Is(err, wings_service.ErrInvalidDirectoryName) {
+			ctx.Flash.Error(ctx.Tr("wings.invalid_directory"))
+			ctx.Redirect(wingsServerFilesURL(server.ID, directory))
+			return
+		}
+		log.Error("ChmodUserWingsServerFile[%d]: %v", server.ID, err)
+		ctx.Flash.Error(ctx.Tr("wings.file_operation_failed"))
+		ctx.Redirect(wingsServerFilesURL(server.ID, directory))
+		return
+	}
+
+	ctx.Flash.Success(ctx.Tr("wings.file_mode_updated"))
 	ctx.Redirect(wingsServerFilesURL(server.ID, directory))
 }
 

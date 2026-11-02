@@ -83,6 +83,26 @@ func RotateWingsNodeToken(ctx *context.Context) {
 	ctx.Redirect(setting.AppSubURL + "/admin/wings/nodes")
 }
 
+func SetWingsNodeRemoteCredentials(ctx *context.Context) {
+	id, err := strconv.ParseInt(ctx.Params("id"), 10, 64)
+	if err != nil || id <= 0 {
+		ctx.Flash.Error(ctx.Tr("admin.wings_nodes.invalid_id"))
+		ctx.Redirect(setting.AppSubURL + "/admin/wings/nodes")
+		return
+	}
+	err = wings_model.SetNodeRemoteTokenID(ctx, id, ctx.FormString("token_id"))
+	switch {
+	case errors.Is(err, wings_model.ErrInvalidRemoteCredentials):
+		ctx.Flash.Error(ctx.Tr("admin.wings_nodes.invalid_remote_credentials"))
+	case err != nil:
+		log.Error("SetWingsNodeRemoteCredentials[%d]: %v", id, err)
+		ctx.Flash.Error(ctx.Tr("admin.wings_nodes.remote_credentials_failed"))
+	default:
+		ctx.Flash.Success(ctx.Tr("admin.wings_nodes.remote_credentials_saved"))
+	}
+	ctx.Redirect(setting.AppSubURL + "/admin/wings/nodes")
+}
+
 func DeleteWingsNode(ctx *context.Context) {
 	id, err := strconv.ParseInt(ctx.Params("id"), 10, 64)
 	if err != nil || id <= 0 {
@@ -179,6 +199,8 @@ func GrantWingsServerAccess(ctx *context.Context) {
 		ctx.FormBool("can_edit_files"),
 		ctx.FormBool("can_delete_files"),
 		ctx.FormBool("can_upload_files"),
+		ctx.FormBool("can_backups"),
+		ctx.FormBool("can_download_backups"),
 	); err != nil {
 		if errors.Is(err, wings_model.ErrInvalidAccessUser) {
 			ctx.Flash.Error(ctx.Tr("admin.wings_servers.invalid_access_user"))

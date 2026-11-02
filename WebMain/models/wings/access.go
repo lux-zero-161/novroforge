@@ -23,51 +23,57 @@ var (
 // Status and recent logs are readable by assigned users; power and console
 // commands, file browsing, previews, downloads, uploads, edits, and deletion require explicit permissions.
 type WingsServerAccess struct {
-	ID               int64              `xorm:"pk autoincr"`
-	ServerID         int64              `xorm:"UNIQUE(server_user) INDEX NOT NULL"`
-	UserID           int64              `xorm:"UNIQUE(server_user) INDEX NOT NULL"`
-	CanPower         bool               `xorm:"NOT NULL DEFAULT false"`
-	CanConsole       bool               `xorm:"NOT NULL DEFAULT false"`
-	CanFiles         bool               `xorm:"NOT NULL DEFAULT false"`
-	CanReadFiles     bool               `xorm:"NOT NULL DEFAULT false"`
-	CanDownloadFiles bool               `xorm:"NOT NULL DEFAULT false"`
-	CanManageFiles   bool               `xorm:"NOT NULL DEFAULT false"`
-	CanEditFiles     bool               `xorm:"NOT NULL DEFAULT false"`
-	CanDeleteFiles   bool               `xorm:"NOT NULL DEFAULT false"`
-	CanUploadFiles   bool               `xorm:"NOT NULL DEFAULT false"`
-	CreatedUnix      timeutil.TimeStamp `xorm:"created"`
+	ID                 int64              `xorm:"pk autoincr"`
+	ServerID           int64              `xorm:"UNIQUE(server_user) INDEX NOT NULL"`
+	UserID             int64              `xorm:"UNIQUE(server_user) INDEX NOT NULL"`
+	CanPower           bool               `xorm:"NOT NULL DEFAULT false"`
+	CanConsole         bool               `xorm:"NOT NULL DEFAULT false"`
+	CanFiles           bool               `xorm:"NOT NULL DEFAULT false"`
+	CanReadFiles       bool               `xorm:"NOT NULL DEFAULT false"`
+	CanDownloadFiles   bool               `xorm:"NOT NULL DEFAULT false"`
+	CanManageFiles     bool               `xorm:"NOT NULL DEFAULT false"`
+	CanEditFiles       bool               `xorm:"NOT NULL DEFAULT false"`
+	CanDeleteFiles     bool               `xorm:"NOT NULL DEFAULT false"`
+	CanUploadFiles     bool               `xorm:"NOT NULL DEFAULT false"`
+	CanBackups         bool               `xorm:"NOT NULL DEFAULT false"`
+	CanDownloadBackups bool               `xorm:"NOT NULL DEFAULT false"`
+	CreatedUnix        timeutil.TimeStamp `xorm:"created"`
 }
 
 // ServerUserListItem is the non-sensitive admin display of assigned access.
 type ServerUserListItem struct {
-	ID               int64
-	UserID           int64
-	Username         string
-	CanPower         bool
-	CanConsole       bool
-	CanFiles         bool
-	CanReadFiles     bool
-	CanDownloadFiles bool
-	CanManageFiles   bool
-	CanEditFiles     bool
-	CanDeleteFiles   bool
-	CanUploadFiles   bool
+	ID                 int64
+	UserID             int64
+	Username           string
+	CanPower           bool
+	CanConsole         bool
+	CanFiles           bool
+	CanReadFiles       bool
+	CanDownloadFiles   bool
+	CanManageFiles     bool
+	CanEditFiles       bool
+	CanDeleteFiles     bool
+	CanUploadFiles     bool
+	CanBackups         bool
+	CanDownloadBackups bool
 }
 
 // UserServerListItem contains only server data visible to an assigned user.
 type UserServerListItem struct {
-	ID               int64
-	Name             string
-	UUID             string
-	CanPower         bool
-	CanConsole       bool
-	CanFiles         bool
-	CanReadFiles     bool
-	CanDownloadFiles bool
-	CanManageFiles   bool
-	CanEditFiles     bool
-	CanDeleteFiles   bool
-	CanUploadFiles   bool
+	ID                 int64
+	Name               string
+	UUID               string
+	CanPower           bool
+	CanConsole         bool
+	CanFiles           bool
+	CanReadFiles       bool
+	CanDownloadFiles   bool
+	CanManageFiles     bool
+	CanEditFiles       bool
+	CanDeleteFiles     bool
+	CanUploadFiles     bool
+	CanBackups         bool
+	CanDownloadBackups bool
 }
 
 func init() {
@@ -75,7 +81,7 @@ func init() {
 }
 
 // GrantServerAccess assigns an existing active individual account to a server.
-func GrantServerAccess(ctx context.Context, serverID int64, username string, canPower, canConsole, canFiles, canReadFiles, canDownloadFiles, canManageFiles, canEditFiles, canDeleteFiles, canUploadFiles bool) error {
+func GrantServerAccess(ctx context.Context, serverID int64, username string, canPower, canConsole, canFiles, canReadFiles, canDownloadFiles, canManageFiles, canEditFiles, canDeleteFiles, canUploadFiles, canBackups, canDownloadBackups bool) error {
 	if serverID <= 0 {
 		return errors.New("invalid Wings server ID")
 	}
@@ -112,8 +118,10 @@ func GrantServerAccess(ctx context.Context, serverID int64, username string, can
 	access.CanEditFiles = canEditFiles
 	access.CanDeleteFiles = canDeleteFiles
 	access.CanUploadFiles = canUploadFiles
+	access.CanBackups = canBackups
+	access.CanDownloadBackups = canDownloadBackups
 	if has {
-		if _, err := engine.ID(access.ID).Cols("can_power", "can_console", "can_files", "can_read_files", "can_download_files", "can_manage_files", "can_edit_files", "can_delete_files", "can_upload_files").Update(&access); err != nil {
+		if _, err := engine.ID(access.ID).Cols("can_power", "can_console", "can_files", "can_read_files", "can_download_files", "can_manage_files", "can_edit_files", "can_delete_files", "can_upload_files", "can_backups", "can_download_backups").Update(&access); err != nil {
 			return fmt.Errorf("update Wings server access: %w", err)
 		}
 		return nil
@@ -164,6 +172,8 @@ func ListServerAccess(ctx context.Context, serverIDs []int64) (map[int64][]Serve
 			CanEditFiles:     row.CanEditFiles,
 			CanDeleteFiles:   row.CanDeleteFiles,
 			CanUploadFiles:   row.CanUploadFiles,
+			CanBackups:       row.CanBackups,
+			CanDownloadBackups: row.CanDownloadBackups,
 		})
 	}
 	return items, nil
@@ -204,6 +214,8 @@ func ListUserServers(ctx context.Context, userID int64) ([]UserServerListItem, e
 			CanEditFiles:     access.CanEditFiles,
 			CanDeleteFiles:   access.CanDeleteFiles,
 			CanUploadFiles:   access.CanUploadFiles,
+			CanBackups:       access.CanBackups,
+			CanDownloadBackups: access.CanDownloadBackups,
 		})
 	}
 	return items, nil

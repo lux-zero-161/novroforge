@@ -1,0 +1,89 @@
+{{template "base/head" .}}
+<div role="main" aria-label="{{ctx.Locale.Tr "wings.backups"}}" class="page-content">
+	<div class="ui container">
+		<h1 class="ui header">{{ctx.Locale.Tr "wings.backups"}}</h1>
+		<p><a href="{{AppSubUrl}}/user/servers/{{.Server.ID}}">{{ctx.Locale.Tr "wings.back_to_server"}}</a></p>
+		<div
+			id="wings-backups"
+			data-status-url="{{AppSubUrl}}/user/servers/{{.Server.ID}}/backups/status"
+			data-error="{{ctx.Locale.Tr "wings.backup_status_refresh_failed"}}"
+			data-status-pending="{{ctx.Locale.Tr "wings.backup_status_pending"}}"
+			data-status-completed="{{ctx.Locale.Tr "wings.backup_status_completed"}}"
+			data-status-failed="{{ctx.Locale.Tr "wings.backup_status_failed"}}"
+			data-restore-status-pending="{{ctx.Locale.Tr "wings.backup_restore_status_pending"}}"
+			data-restore-status-completed="{{ctx.Locale.Tr "wings.backup_restore_status_completed"}}"
+			data-restore-status-failed="{{ctx.Locale.Tr "wings.backup_restore_status_failed"}}"
+			data-backup-management-enabled="{{.Access.CanBackups}}"
+			data-callbacks-configured="{{.CallbacksConfigured}}"
+			data-backup-download-enabled="{{.Access.CanDownloadBackups}}"
+		>
+		{{if .Access.CanBackups}}
+			{{if not .CallbacksConfigured}}
+				<div class="ui warning message">{{ctx.Locale.Tr "wings.backup_callbacks_not_configured"}}</div>
+			{{end}}
+			<form class="ui form" method="post" action="{{AppSubUrl}}/user/servers/{{.Server.ID}}/backups">
+				<div class="required field">
+					<label for="wings-backup-name">{{ctx.Locale.Tr "wings.backup_name"}}</label>
+					<input id="wings-backup-name" name="name" maxlength="64" required>
+				</div>
+				<button class="ui primary button" type="submit" {{if not .CallbacksConfigured}}disabled{{end}}>{{ctx.Locale.Tr "wings.backup_create"}}</button>
+			</form>
+		{{end}}
+		<h2 class="ui header">{{ctx.Locale.Tr "wings.backup_list"}}</h2>
+		{{if .Backups}}
+			<div class="overflow menu">
+				<table class="ui very basic striped table">
+					<thead>
+						<tr>
+							<th>{{ctx.Locale.Tr "wings.backup_name"}}</th>
+							<th>{{ctx.Locale.Tr "wings.backup_status"}}</th>
+							<th>{{ctx.Locale.Tr "wings.backup_size"}}</th>
+							<th>{{ctx.Locale.Tr "wings.backup_created"}}</th>
+							<th>{{ctx.Locale.Tr "wings.backup_actions"}}</th>
+						</tr>
+					</thead>
+					<tbody>
+						{{range .Backups}}
+							<tr data-backup-id="{{.UUID}}">
+								<td>{{.Name}}</td>
+								<td aria-live="polite">
+									<span data-backup-status>{{if eq .Status "pending"}}{{ctx.Locale.Tr "wings.backup_status_pending"}}{{else if eq .Status "completed"}}{{ctx.Locale.Tr "wings.backup_status_completed"}}{{else}}{{ctx.Locale.Tr "wings.backup_status_failed"}}{{end}}</span>
+									<span data-backup-restore-status>{{if eq .RestoreStatus "pending"}} | {{ctx.Locale.Tr "wings.backup_restore_status_pending"}}{{else if eq .RestoreStatus "completed"}} | {{ctx.Locale.Tr "wings.backup_restore_status_completed"}}{{else if eq .RestoreStatus "failed"}} | {{ctx.Locale.Tr "wings.backup_restore_status_failed"}}{{end}}</span>
+								</td>
+								<td><span data-backup-size>{{.Size}}</span> {{ctx.Locale.Tr "wings.bytes"}}</td>
+								<td>{{.CreatedUnix.AsLocalTime.Format "2006-01-02 15:04:05"}}</td>
+								<td>
+									<a class="ui button" href="{{AppSubUrl}}/user/servers/{{$.Server.ID}}/backups/{{.UUID}}/download" data-backup-download-link {{if or (ne .Status "completed") (not $.Access.CanDownloadBackups)}}hidden{{end}}>{{ctx.Locale.Tr "wings.backup_download"}}</a>
+									<form class="ui form" method="post" action="{{AppSubUrl}}/user/servers/{{$.Server.ID}}/backups/{{.UUID}}/restore" data-backup-restore-form {{if not (and $.Access.CanBackups (eq .Status "completed") $.CallbacksConfigured (ne .RestoreStatus "pending"))}}hidden{{end}}>
+										<div class="field">
+											<div class="ui checkbox">
+												<input type="checkbox" name="confirm_restore" value="true" required>
+												<label>{{ctx.Locale.Tr "wings.backup_restore_confirm"}}</label>
+											</div>
+										</div>
+										<button class="ui button" type="submit">{{ctx.Locale.Tr "wings.backup_restore"}}</button>
+									</form>
+									<form class="ui form" method="post" action="{{AppSubUrl}}/user/servers/{{$.Server.ID}}/backups/{{.UUID}}/delete" data-backup-delete-form {{if not (and $.Access.CanBackups (ne .Status "pending") (ne .RestoreStatus "pending"))}}hidden{{end}}>
+										<div class="field">
+											<div class="ui checkbox">
+												<input type="checkbox" name="confirm_delete" value="true" required>
+												<label>{{ctx.Locale.Tr "wings.backup_delete_confirm"}}</label>
+											</div>
+										</div>
+										<button class="ui red button" type="submit">{{ctx.Locale.Tr "wings.backup_delete"}}</button>
+									</form>
+								</td>
+							</tr>
+						{{end}}
+					</tbody>
+				</table>
+			</div>
+		{{else}}
+			<div class="ui message">{{ctx.Locale.Tr "wings.backup_empty"}}</div>
+		{{end}}
+		<p>{{ctx.Locale.Tr "wings.backup_limit_note"}}</p>
+		<p id="wings-backup-status" class="muted" role="status"></p>
+		</div>
+	</div>
+</div>
+{{template "base/footer" .}}

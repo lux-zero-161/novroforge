@@ -26,6 +26,9 @@
 		{{if or .Access.CanFiles .Access.CanReadFiles .Access.CanDownloadFiles .Access.CanManageFiles .Access.CanEditFiles .Access.CanDeleteFiles .Access.CanUploadFiles}}
 			<p><a class="ui button" href="{{AppSubUrl}}/user/servers/{{.Server.ID}}/files">{{ctx.Locale.Tr "wings.files"}}</a></p>
 		{{end}}
+		{{if or .Access.CanBackups .Access.CanDownloadBackups}}
+			<p><a class="ui button" href="{{AppSubUrl}}/user/servers/{{.Server.ID}}/backups">{{ctx.Locale.Tr "wings.backups"}}</a></p>
+		{{end}}
 		<h2 class="ui header">{{ctx.Locale.Tr "wings.console"}}</h2>
 		<div
 			id="wings-console"

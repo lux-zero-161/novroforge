@@ -28,27 +28,37 @@ import (
 )
 
 const (
-	maxResponseSize    = 4 << 20
-	maxTokenLength     = 4096
-	maxCommands        = 32
-	maxCommandLength   = 4096
-	maxDirectoryPath   = 4096
+	maxResponseSize     = 4 << 20
+	maxTokenLength      = 4096
+	maxCommands         = 32
+	maxCommandLength    = 4096
+	maxDirectoryPath    = 4096
 	// MaxFileContentSize bounds text that can be previewed or edited.
 	MaxFileContentSize = 1 << 20
 	// MaxFileUploadSize bounds files uploaded through the WebMain panel.
 	MaxFileUploadSize = 10 << 20
 	maxFilePreviewSize  = MaxFileContentSize
-	maxFileNameLength  = 255
+	maxFileNameLength   = 255
 )
 
 var (
-	ErrInvalidDirectory    = errors.New("invalid Wings directory path")
-	ErrInvalidFilePath     = errors.New("invalid Wings file path")
+	ErrInvalidDirectory     = errors.New("invalid Wings directory path")
+	ErrInvalidFilePath      = errors.New("invalid Wings file path")
 	ErrInvalidDirectoryName = errors.New("invalid Wings directory name")
-	ErrFileTooLarge        = errors.New("Wings file exceeds the preview size limit")
+	ErrInvalidFileMode      = errors.New("invalid Wings file mode")
+	ErrFileTooLarge         = errors.New("Wings file exceeds the preview size limit")
 	ErrFileUploadTooLarge   = errors.New("Wings file exceeds the upload size limit")
 	ErrUnsupportedFileType  = errors.New("Wings file is not a supported text type")
 )
+
+// HTTPStatusError reports a non-success status returned by Wings.
+type HTTPStatusError struct {
+	StatusCode int
+}
+
+func (err *HTTPStatusError) Error() string {
+	return fmt.Sprintf("Wings returned unexpected HTTP status %d", err.StatusCode)
+}
 
 // Client sends authenticated requests to a Wings daemon.
 type Client struct {
@@ -390,7 +400,7 @@ func (c *Client) CopyFile(ctx context.Context, serverID, filePath string) error 
 	return c.doJSON(ctx, http.MethodPost, "/api/servers/"+id.String()+"/files/copy", body, nil, http.StatusNoContent)
 }
 
-// CompressFile creates a tar.gz archive containing one file in its directory.
+// CompressFile creates a tar.gz archive containing one file or directory.
 func (c *Client) CompressFile(ctx context.Context, serverID, directory, name string) (FileEntry, error) {
 	id, err := uuid.Parse(serverID)
 	if err != nil {
@@ -413,6 +423,68 @@ func (c *Client) CompressFile(ctx context.Context, serverID, directory, name str
 	compressClient.Timeout = 0
 	err = c.doJSONWithClient(ctx, &compressClient, http.MethodPost, "/api/servers/"+id.String()+"/files/compress", body, &archive, http.StatusOK)
 	return archive, err
+}
+
+// DecompressFile extracts one archive in its containing directory.
+func (c *Client) DecompressFile(ctx context.Context, serverID, directory, name string) error {
+	id, err := uuid.Parse(serverID)
+	if err != nil {
+		return errors.New("invalid Wings server UUID")
+	}
+	directory, err = NormalizeDirectoryPath(directory)
+	if err != nil {
+		return err
+	}
+	if !isValidDirectoryName(name) {
+		return ErrInvalidDirectoryName
+	}
+
+	body := struct {
+		Root string `json:"root"`
+		File string `json:"file"`
+	}{Root: directory, File: name}
+	decompressClient := *c.httpClient
+	decompressClient.Timeout = 0
+	return c.doJSONWithClient(ctx, &decompressClient, http.MethodPost, "/api/servers/"+id.String()+"/files/decompress", body, nil, http.StatusNoContent)
+}
+
+// ChmodFile changes permission bits on one regular file.
+func (c *Client) ChmodFile(ctx context.Context, serverID, directory, name, mode string) error {
+	id, err := uuid.Parse(serverID)
+	if err != nil {
+		return errors.New("invalid Wings server UUID")
+	}
+	directory, err = NormalizeDirectoryPath(directory)
+	if err != nil {
+		return err
+	}
+	if !isValidDirectoryName(name) {
+		return ErrInvalidDirectoryName
+	}
+	if len(mode) < 3 || len(mode) > 4 {
+		return ErrInvalidFileMode
+	}
+	for _, digit := range mode {
+		if digit < '0' || digit > '7' {
+			return ErrInvalidFileMode
+		}
+	}
+	parsedMode, err := strconv.ParseUint(mode, 8, 32)
+	if err != nil || parsedMode > 0o777 {
+		return ErrInvalidFileMode
+	}
+
+	body := struct {
+		Root  string `json:"root"`
+		Files []struct {
+			File string `json:"file"`
+			Mode string `json:"mode"`
+		} `json:"files"`
+	}{Root: directory, Files: []struct {
+		File string `json:"file"`
+		Mode string `json:"mode"`
+	}{{File: name, Mode: strconv.FormatUint(parsedMode, 8)}}}
+	return c.doJSON(ctx, http.MethodPost, "/api/servers/"+id.String()+"/files/chmod", body, nil, http.StatusNoContent)
 }
 
 // UploadFile uploads one bounded file using a short-lived, single-use Wings token.
@@ -519,16 +591,45 @@ func (c *Client) createFileUploadToken(serverID, userID string) (string, error) 
 		UserUUID:       userID,
 		UniqueID:       uniqueID,
 	}
+	return c.signToken(payload)
+}
+
+func (c *Client) createBackupDownloadToken(serverID, userID, backupID string) (string, error) {
+	now := time.Now()
+	uniqueID := uuid.NewString()
+	payload := struct {
+		IssuedAt       int64  `json:"iat"`
+		ExpirationTime int64  `json:"exp"`
+		JWTID          string `json:"jti"`
+		Scope          string `json:"scope"`
+		ServerUUID     string `json:"server_uuid"`
+		UserUUID       string `json:"user_uuid"`
+		BackupUUID     string `json:"backup_uuid"`
+		UniqueID       string `json:"unique_id"`
+	}{
+		IssuedAt:       now.Add(time.Second).Unix(),
+		ExpirationTime: now.Add(time.Minute).Unix(),
+		JWTID:          uniqueID,
+		Scope:          "backup-download",
+		ServerUUID:     serverID,
+		UserUUID:       userID,
+		BackupUUID:     backupID,
+		UniqueID:       uniqueID,
+	}
+	return c.signToken(payload)
+}
+
+func (c *Client) signToken(payload any) (string, error) {
 	payloadJSON, err := json.Marshal(payload)
 	if err != nil {
-		return "", fmt.Errorf("encode upload claims: %w", err)
+		return "", fmt.Errorf("encode Wings token claims: %w", err)
 	}
 	header := base64.RawURLEncoding.EncodeToString([]byte(`{"alg":"HS256","typ":"JWT"}`))
 	encodedPayload := base64.RawURLEncoding.EncodeToString(payloadJSON)
 	unsignedToken := header + "." + encodedPayload
 	signature := hmac.New(sha256.New, []byte(c.token))
 	if _, err := signature.Write([]byte(unsignedToken)); err != nil {
-		return "", fmt.Errorf("sign upload claims: %w", err)
+		return "", fmt.Errorf("sign Wings token claims: %w", err)
 	}
 	return unsignedToken + "." + base64.RawURLEncoding.EncodeToString(signature.Sum(nil)), nil
 }
@@ -611,6 +712,103 @@ func (c *Client) Commands(ctx context.Context, serverID string, commands []strin
 	return c.doJSON(ctx, http.MethodPost, "/api/servers/"+id.String()+"/commands", body, nil, http.StatusNoContent)
 }
 
+// CreateBackup starts an asynchronous local Wings backup.
+func (c *Client) CreateBackup(ctx context.Context, serverID, backupID string) error {
+	serverUUID, err := uuid.Parse(serverID)
+	if err != nil {
+		return errors.New("invalid Wings server UUID")
+	}
+	backupUUID, err := uuid.Parse(backupID)
+	if err != nil {
+		return errors.New("invalid Wings backup UUID")
+	}
+	body := struct {
+		Adapter string `json:"adapter"`
+		UUID    string `json:"uuid"`
+	}{Adapter: "wings", UUID: backupUUID.String()}
+	return c.doJSON(ctx, http.MethodPost, "/api/servers/"+serverUUID.String()+"/backup", body, nil, http.StatusAccepted)
+}
+
+// DownloadBackup opens a streaming download using a short-lived, single-use token.
+// The daemon credential is not sent to Wings' public download endpoint.
+func (c *Client) DownloadBackup(ctx context.Context, serverID, userID, backupID string) (*http.Response, error) {
+	serverUUID, err := uuid.Parse(serverID)
+	if err != nil {
+		return nil, errors.New("invalid Wings server UUID")
+	}
+	userUUID, err := uuid.Parse(userID)
+	if err != nil {
+		return nil, errors.New("invalid WebMain user UUID")
+	}
+	backupUUID, err := uuid.Parse(backupID)
+	if err != nil {
+		return nil, errors.New("invalid Wings backup UUID")
+	}
+	token, err := c.createBackupDownloadToken(serverUUID.String(), userUUID.String(), backupUUID.String())
+	if err != nil {
+		return nil, err
+	}
+	requestURL := *c.baseURL
+	requestURL.Path = "/download/backup"
+	requestURL.RawQuery = url.Values{"token": []string{token}}.Encode()
+	request, err := http.NewRequestWithContext(ctx, http.MethodGet, requestURL.String(), nil)
+	if err != nil {
+		return nil, errors.New("create Wings backup download request failed")
+	}
+	downloadClient := *c.httpClient
+	downloadClient.Timeout = 0
+	response, err := downloadClient.Do(request)
+	if err != nil {
+		if ctxErr := ctx.Err(); ctxErr != nil {
+			return nil, fmt.Errorf("request Wings backup download failed: %w", ctxErr)
+		}
+		return nil, errors.New("request Wings backup download failed")
+	}
+	if response.StatusCode != http.StatusOK {
+		response.Body.Close()
+		return nil, &HTTPStatusError{StatusCode: response.StatusCode}
+	}
+	return response, nil
+}
+
+// RestoreBackup starts restoring a local backup without truncating server files.
+func (c *Client) RestoreBackup(ctx context.Context, serverID, backupID string) error {
+	serverUUID, err := uuid.Parse(serverID)
+	if err != nil {
+		return errors.New("invalid Wings server UUID")
+	}
+	backupUUID, err := uuid.Parse(backupID)
+	if err != nil {
+		return errors.New("invalid Wings backup UUID")
+	}
+	body := struct {
+		Adapter           string `json:"adapter"`
+		TruncateDirectory bool   `json:"truncate_directory"`
+	}{Adapter: "wings"}
+	return c.doJSON(ctx, http.MethodPost, "/api/servers/"+serverUUID.String()+"/backup/"+backupUUID.String()+"/restore", body, nil, http.StatusAccepted)
+}
+
+// DeleteBackup removes a local backup archive from Wings.
+func (c *Client) DeleteBackup(ctx context.Context, serverID, backupID string) error {
+	serverUUID, err := uuid.Parse(serverID)
+	if err != nil {
+		return errors.New("invalid Wings server UUID")
+	}
+	backupUUID, err := uuid.Parse(backupID)
+	if err != nil {
+		return errors.New("invalid Wings backup UUID")
+	}
+	response, err := c.doRequest(ctx, http.MethodDelete, "/api/servers/"+serverUUID.String()+"/backup/"+backupUUID.String(), nil, http.StatusNoContent)
+	if err != nil {
+		var statusErr *HTTPStatusError
+		if errors.As(err, &statusErr) && statusErr.StatusCode == http.StatusNotFound {
+			return nil
+		}
+		return err
+	}
+	return response.Body.Close()
+}
+
 func (c *Client) doJSON(ctx context.Context, method, requestPath string, body, result any, expectedStatus int) error {
 	return c.doJSONWithClient(ctx, c.httpClient, method, requestPath, body, result, expectedStatus)
 }
@@ -679,7 +877,7 @@ func (c *Client) doRequestWithClient(ctx context.Context, client *http.Client, m
 	}
 	if response.StatusCode != expectedStatus {
 		response.Body.Close()
-		return nil, fmt.Errorf("Wings returned unexpected HTTP status %d", response.StatusCode)
+		return nil, &HTTPStatusError{StatusCode: response.StatusCode}
 	}
 	return response, nil
 }

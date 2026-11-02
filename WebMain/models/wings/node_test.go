@@ -31,3 +31,28 @@ func TestValidateNodeToken(t *testing.T) {
 		})
 	}
 }
+
+func TestValidateRemoteCredentials(t *testing.T) {
+	tests := []struct {
+		name    string
+		tokenID string
+		token   string
+		wantErr bool
+	}{
+		{name: "valid", tokenID: "abcdefghijklmnop", token: strings.Repeat("a", 64)},
+		{name: "invalid token id length", tokenID: "short", token: strings.Repeat("a", 64), wantErr: true},
+		{name: "invalid token id character", tokenID: "abcdefghijklmno.", token: strings.Repeat("a", 64), wantErr: true},
+		{name: "short token", tokenID: "abcdefghijklmnop", token: "secret", wantErr: true},
+		{name: "separator in token", tokenID: "abcdefghijklmnop", token: strings.Repeat("a", 32) + "." + strings.Repeat("b", 31), wantErr: true},
+		{name: "non-visible token character", tokenID: "abcdefghijklmnop", token: strings.Repeat("a", 63) + "\n", wantErr: true},
+	}
+
+	for _, test := range tests {
+		t.Run(test.name, func(t *testing.T) {
+			err := validateRemoteCredentials(test.tokenID, test.token)
+			if (err != nil) != test.wantErr {
+				t.Errorf("validateRemoteCredentials() error = %v, wantErr %v", err, test.wantErr)
+			}
+		})
+	}
+}

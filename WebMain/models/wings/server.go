@@ -181,6 +181,18 @@ func (server *WingsServer) GetServerClient(ctx context.Context) (*wings_service.
 	return node.GetClient()
 }
 
+// HasRemoteCallbackCredentials reports whether Wings can authenticate callbacks.
+func (server *WingsServer) HasRemoteCallbackCredentials(ctx context.Context) (bool, error) {
+	node, exists, err := GetNodeByID(ctx, server.NodeID)
+	if err != nil {
+		return false, err
+	}
+	if !exists {
+		return false, fmt.Errorf("Wings node %d for server %d does not exist", server.NodeID, server.ID)
+	}
+	return node.HasRemoteCallbackCredentials()
+}
+
 // DeleteServerRegistration removes the WebMain registration without deleting
 // the server data or container from Wings.
 func DeleteServerRegistration(ctx context.Context, id int64) error {
@@ -188,6 +200,9 @@ func DeleteServerRegistration(ctx context.Context, id int64) error {
 		return errors.New("invalid Wings server ID")
 	}
 	return db.WithTx(ctx, func(ctx context.Context) error {
+		if _, err := db.GetEngine(ctx).Where("server_id = ?", id).Delete(&WingsBackup{}); err != nil {
+			return fmt.Errorf("remove Wings backup metadata for registration %d: %w", id, err)
+		}
 		if _, err := db.GetEngine(ctx).Where("server_id = ?", id).Delete(&WingsServerAccess{}); err != nil {
 			return fmt.Errorf("remove Wings server access for registration %d: %w", id, err)
 		}
