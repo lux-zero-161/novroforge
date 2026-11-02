@@ -129,5 +129,8 @@
 			{{svg "octicon-report" 16}}{{ctx.Locale.Tr "admin.moderation.moderation_reports"}}
 		</a>
 		{{end}}
+		<a class="{{if .PageIsAdminWingsNodes}}active {{end}}item" href="{{AppSubUrl}}/admin/wings/nodes">
+			{{svg "octicon-server" 16}}{{ctx.Locale.Tr "admin.wings_nodes"}}
+		</a>
 	</div>
 </div>

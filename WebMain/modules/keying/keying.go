@@ -43,6 +43,8 @@ var (
 	Webhook = deriveKey("webhook")
 	// Used for the `mirror` table.
 	PullMirror = deriveKey("pullmirror")
+	// Used for credentials for Wings nodes.
+	WingsNode = deriveKey("wings_node")
 )
 
 var (

@@ -1,0 +1,136 @@
+{{template "admin/layout_head" (dict "ctxData" . "pageClass" "admin wings-nodes")}}
+
+<div class="ui container">
+	<h4 class="ui top attached header">{{ctx.Locale.Tr "admin.wings_nodes"}}</h4>
+	<div class="ui attached segment">
+		<p>{{ctx.Locale.Tr "admin.wings_nodes.description"}}</p>
+		<form class="ui form" method="post" action="{{AppSubUrl}}/admin/wings/nodes">
+			<div class="required field">
+				<label for="wings-node-name">{{ctx.Locale.Tr "admin.wings_nodes.name"}}</label>
+				<input id="wings-node-name" name="name" maxlength="64" required>
+			</div>
+			<div class="required field">
+				<label for="wings-node-url">{{ctx.Locale.Tr "admin.wings_nodes.url"}}</label>
+				<input id="wings-node-url" name="url" type="url" placeholder="https://node.example.com:8080" maxlength="512" required>
+			</div>
+			<div class="required field">
+				<label for="wings-node-token">{{ctx.Locale.Tr "admin.wings_nodes.token"}}</label>
+				<input id="wings-node-token" name="token" type="password" autocomplete="new-password" maxlength="4096" required>
+			</div>
+			<button class="ui primary button" type="submit">{{ctx.Locale.Tr "admin.wings_nodes.add"}}</button>
+		</form>
+	</div>
+
+	<h4 class="ui top attached header">{{ctx.Locale.Tr "admin.wings_nodes.saved_nodes"}}</h4>
+	<div class="ui attached segment">
+		{{if .Nodes}}
+			<div class="overflow menu">
+				<table class="ui very basic striped table">
+					<thead>
+						<tr>
+							<th>{{ctx.Locale.Tr "admin.wings_nodes.name"}}</th>
+							<th>{{ctx.Locale.Tr "admin.wings_nodes.url"}}</th>
+							<th>{{ctx.Locale.Tr "admin.wings_nodes.actions"}}</th>
+						</tr>
+					</thead>
+					<tbody>
+						{{range .Nodes}}
+							<tr>
+								<td>{{.Name}}</td>
+								<td><code>{{.URL}}</code></td>
+								<td>
+									<form method="post" action="{{AppSubUrl}}/admin/wings/nodes/{{.ID}}/test">
+										<button class="ui button" type="submit">{{ctx.Locale.Tr "admin.wings_nodes.test_connection"}}</button>
+									</form>
+									<form method="post" action="{{AppSubUrl}}/admin/wings/nodes/{{.ID}}/delete">
+										<button class="ui red button" type="submit">{{ctx.Locale.Tr "admin.wings_nodes.delete"}}</button>
+									</form>
+								</td>
+							</tr>
+						{{end}}
+					</tbody>
+				</table>
+			</div>
+		{{else}}
+			<p>{{ctx.Locale.Tr "admin.wings_nodes.empty"}}</p>
+		{{end}}
+	</div>
+
+	<h4 class="ui top attached header">{{ctx.Locale.Tr "admin.wings_servers.register"}}</h4>
+	<div class="ui attached segment">
+		{{if .Nodes}}
+			<p>{{ctx.Locale.Tr "admin.wings_servers.description"}}</p>
+			<form class="ui form" method="post" action="{{AppSubUrl}}/admin/wings/nodes/servers">
+				<div class="required field">
+					<label for="wings-server-node">{{ctx.Locale.Tr "admin.wings_servers.node"}}</label>
+					<select id="wings-server-node" name="node_id" required>
+						{{range .Nodes}}
+							<option value="{{.ID}}">{{.Name}}</option>
+						{{end}}
+					</select>
+				</div>
+				<div class="required field">
+					<label for="wings-server-name">{{ctx.Locale.Tr "admin.wings_servers.name"}}</label>
+					<input id="wings-server-name" name="server_name" maxlength="64" required>
+				</div>
+				<div class="required field">
+					<label for="wings-server-uuid">{{ctx.Locale.Tr "admin.wings_servers.uuid"}}</label>
+					<input id="wings-server-uuid" name="server_uuid" maxlength="36" required>
+				</div>
+				<button class="ui primary button" type="submit">{{ctx.Locale.Tr "admin.wings_servers.register_button"}}</button>
+			</form>
+		{{else}}
+			<p>{{ctx.Locale.Tr "admin.wings_servers.require_node"}}</p>
+		{{end}}
+	</div>
+
+	<h4 class="ui top attached header">{{ctx.Locale.Tr "admin.wings_servers.registered"}}</h4>
+	<div class="ui attached segment">
+		{{if .Servers}}
+			<div class="overflow menu">
+				<table class="ui very basic striped table">
+					<thead>
+						<tr>
+							<th>{{ctx.Locale.Tr "admin.wings_servers.name"}}</th>
+							<th>{{ctx.Locale.Tr "admin.wings_servers.node"}}</th>
+							<th>{{ctx.Locale.Tr "admin.wings_servers.uuid"}}</th>
+							<th>{{ctx.Locale.Tr "admin.wings_nodes.actions"}}</th>
+						</tr>
+					</thead>
+					<tbody>
+						{{range .Servers}}
+							<tr>
+								<td>{{.Name}}</td>
+								<td>{{.NodeName}}</td>
+								<td><code>{{.UUID}}</code></td>
+								<td>
+									<form method="post" action="{{AppSubUrl}}/admin/wings/nodes/servers/{{.ID}}/test">
+										<button class="ui button" type="submit">{{ctx.Locale.Tr "admin.wings_servers.check_status"}}</button>
+									</form>
+									<form method="post" action="{{AppSubUrl}}/admin/wings/nodes/servers/{{.ID}}/power">
+										<select name="action" aria-label="{{ctx.Locale.Tr "admin.wings_servers.power_action"}}">
+											<option value="start">{{ctx.Locale.Tr "admin.wings_servers.start"}}</option>
+											<option value="stop">{{ctx.Locale.Tr "admin.wings_servers.stop"}}</option>
+											<option value="restart">{{ctx.Locale.Tr "admin.wings_servers.restart"}}</option>
+										</select>
+										<button class="ui button" type="submit">{{ctx.Locale.Tr "admin.wings_servers.send_action"}}</button>
+									</form>
+									<form method="post" action="{{AppSubUrl}}/admin/wings/nodes/servers/{{.ID}}/command">
+										<input name="command" maxlength="4096" required aria-label="{{ctx.Locale.Tr "admin.wings_servers.command"}}">
+										<button class="ui button" type="submit">{{ctx.Locale.Tr "admin.wings_servers.send_command"}}</button>
+									</form>
+									<form method="post" action="{{AppSubUrl}}/admin/wings/nodes/servers/{{.ID}}/delete">
+										<button class="ui red button" type="submit">{{ctx.Locale.Tr "admin.wings_servers.remove_registration"}}</button>
+									</form>
+								</td>
+							</tr>
+						{{end}}
+					</tbody>
+				</table>
+			</div>
+		{{else}}
+			<p>{{ctx.Locale.Tr "admin.wings_servers.empty"}}</p>
+		{{end}}
+	</div>
+</div>
+{{template "admin/layout_footer" .}}

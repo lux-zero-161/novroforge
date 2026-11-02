@@ -939,6 +939,18 @@ func registerRoutes(m *web.Route) {
 			m.Post("/markup", web.Bind(structs.MarkupOption{}), misc.Markup)
 		})
 
+		m.Group("/wings/nodes", func() {
+			m.Get("", admin.WingsNodes)
+			m.Post("", admin.CreateWingsNode)
+			m.Post("/{id}/test", admin.TestWingsNode)
+			m.Post("/{id}/delete", admin.DeleteWingsNode)
+			m.Post("/servers", admin.CreateWingsServer)
+			m.Post("/servers/{id}/test", admin.TestWingsServer)
+			m.Post("/servers/{id}/power", admin.ControlWingsServer)
+			m.Post("/servers/{id}/command", admin.SendWingsServerCommand)
+			m.Post("/servers/{id}/delete", admin.DeleteWingsServer)
+		})
+
 		m.Group("/monitor", func() {
 			m.Get("/stats", admin.MonitorStats)
 			m.Get("/cron", admin.CronTasks)
