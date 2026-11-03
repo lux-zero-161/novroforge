@@ -434,6 +434,8 @@
 	"admin.wings_servers.name": "Server name",
 	"admin.wings_servers.uuid": "Server UUID",
 	"admin.wings_servers.registered": "Registered servers",
+	"admin.wings_servers.filter": "Find a server by name, node, or UUID",
+	"admin.wings_servers.filter_no_results": "No registered servers match your search.",
 	"admin.wings_servers.registered_success": "Wings server registered.",
 	"admin.wings_servers.register_button": "Register server",
 	"admin.wings_servers.require_node": "Register a Wings node before adding a server.",

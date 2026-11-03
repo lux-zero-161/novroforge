@@ -112,6 +112,12 @@
 	<h4 class="ui top attached header">{{ctx.Locale.Tr "admin.wings_servers.registered"}}</h4>
 	<div class="ui attached segment">
 		{{if .Servers}}
+			<div class="ui form">
+				<div class="field">
+					<label for="wings-admin-server-filter">{{ctx.Locale.Tr "admin.wings_servers.filter"}}</label>
+					<input id="wings-admin-server-filter" type="search" data-wings-admin-server-filter autocomplete="off">
+				</div>
+			</div>
 			<div class="overflow menu">
 				<table class="ui very basic striped table">
 					<thead>
@@ -125,7 +131,7 @@
 					<tbody>
 						{{range .Servers}}
 							{{$server := .}}
-							<tr>
+							<tr data-wings-admin-server-row>
 								<td>{{.Name}}</td>
 								<td>{{.NodeName}}</td>
 								<td><code>{{.UUID}}</code></td>
@@ -261,6 +267,7 @@
 					</tbody>
 				</table>
 			</div>
+			<p class="ui message" data-wings-admin-server-filter-empty hidden>{{ctx.Locale.Tr "admin.wings_servers.filter_no_results"}}</p>
 		{{else}}
 			<p>{{ctx.Locale.Tr "admin.wings_servers.empty"}}</p>
 		{{end}}
