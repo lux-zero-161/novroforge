@@ -1,4 +1,5 @@
 import {GET} from '../modules/fetch.ts';
+import {formatWingsBytes} from './wings-format.js';
 
 const refreshInterval = 10000;
 const maxConcurrentRequests = 4;
@@ -29,8 +30,8 @@ async function updateCard({card, state, cpu, memory, disk, suspended}) {
 
     state.textContent = details.state;
     cpu.textContent = `${utilization.cpu_absolute}`;
-    memory.textContent = `${utilization.memory_bytes} / ${utilization.memory_limit_bytes}`;
-    disk.textContent = `${utilization.disk_bytes}`;
+    memory.textContent = `${formatWingsBytes(utilization.memory_bytes)} / ${formatWingsBytes(utilization.memory_limit_bytes)}`;
+    disk.textContent = formatWingsBytes(utilization.disk_bytes);
     suspended.textContent = details.is_suspended ? card.dataset.suspended : card.dataset.notSuspended;
     card.removeAttribute('data-status-error');
   } catch (error) {

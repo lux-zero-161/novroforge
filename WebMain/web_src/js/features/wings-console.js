@@ -1,4 +1,5 @@
 import {GET} from '../modules/fetch.ts';
+import {formatWingsBytes} from './wings-format.js';
 
 const refreshInterval = 5000;
 const maxConsoleLines = 500;
@@ -28,6 +29,15 @@ export function initWingsConsole() {
     !serverNetworkRx ||
     !serverNetworkTx
   ) return;
+
+  const initialMemory = serverMemory.textContent.split('/').map((value) => Number(value.trim()));
+  if (initialMemory.length === 2 && initialMemory.every(Number.isFinite)) {
+    serverMemory.textContent = `${formatWingsBytes(initialMemory[0])} / ${formatWingsBytes(initialMemory[1])}`;
+  }
+  for (const element of [serverDisk, serverNetworkRx, serverNetworkTx]) {
+    const bytes = Number(element.textContent);
+    if (Number.isFinite(bytes)) element.textContent = formatWingsBytes(bytes);
+  }
 
   let consoleConnected = false;
   let reconnectDelay = 1000;
@@ -77,11 +87,11 @@ export function initWingsConsole() {
         serverState.textContent = details.state;
         serverSuspended.textContent = details.is_suspended ? container.dataset.suspended : container.dataset.notSuspended;
         serverCpu.textContent = `${utilization.cpu_absolute}`;
-        serverMemory.textContent = `${utilization.memory_bytes} / ${utilization.memory_limit_bytes}`;
-        serverDisk.textContent = `${utilization.disk_bytes}`;
+        serverMemory.textContent = `${formatWingsBytes(utilization.memory_bytes)} / ${formatWingsBytes(utilization.memory_limit_bytes)}`;
+        serverDisk.textContent = formatWingsBytes(utilization.disk_bytes);
         serverUptime.textContent = `${utilization.uptime}`;
-        serverNetworkRx.textContent = `${utilization.network.rx_bytes}`;
-        serverNetworkTx.textContent = `${utilization.network.tx_bytes}`;
+        serverNetworkRx.textContent = formatWingsBytes(utilization.network.rx_bytes);
+        serverNetworkTx.textContent = formatWingsBytes(utilization.network.tx_bytes);
         status.textContent = consoleConnected ? container.dataset.live : container.dataset.updated;
       } catch (error) {
         console.error('Could not refresh Wings server status and console:', error);
