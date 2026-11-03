@@ -107,9 +107,10 @@
 					<label for="wings-server-name">{{ctx.Locale.Tr "admin.wings_servers.name"}}</label>
 					<input id="wings-server-name" name="server_name" maxlength="64" required>
 				</div>
-				<div class="required field">
+				<div class="field">
 					<label for="wings-server-uuid">{{ctx.Locale.Tr "admin.wings_servers.uuid"}}</label>
-					<input id="wings-server-uuid" name="server_uuid" maxlength="36" required>
+					<input id="wings-server-uuid" name="server_uuid" maxlength="36" placeholder="{{ctx.Locale.Tr "admin.wings_servers.uuid_auto"}}">
+					<p class="help">{{ctx.Locale.Tr "admin.wings_servers.uuid_help"}}</p>
 				</div>
 				<div class="field">
 					<label for="wings-server-egg">{{ctx.Locale.Tr "admin.wings_nests.egg"}}</label>
@@ -128,6 +129,10 @@
 						<option value="{{.ID}}">{{.IP}}:{{.Port}}</option>
 						{{end}}
 					</select>
+				</div>
+				<div class="field">
+					<label for="wings-server-access-user">{{ctx.Locale.Tr "admin.wings_servers.access_username"}}</label>
+					<input id="wings-server-access-user" name="access_username" placeholder="{{ctx.Locale.Tr "admin.wings_servers.access_username_help"}}">
 				</div>
 				<button class="ui primary button" type="submit">{{ctx.Locale.Tr "admin.wings_servers.register_button"}}</button>
 			</form>

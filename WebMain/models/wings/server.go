@@ -28,6 +28,8 @@ type WingsServer struct {
 	ID             int64
 	NodeID         int64              `xorm:"UNIQUE(node_uuid) INDEX NOT NULL"`
 	UUID           string             `xorm:"UNIQUE(node_uuid) CHAR(36) NOT NULL"`
+	EggID          int64              `xorm:"INDEX NOT NULL DEFAULT 0"`
+	AllocationID   int64              `xorm:"INDEX NOT NULL DEFAULT 0"`
 	Name           string             `xorm:"VARCHAR(64) NOT NULL"`
 	CreatedUnix    timeutil.TimeStamp `xorm:"created"`
 	UpdatedUnix    timeutil.TimeStamp `xorm:"updated"`
@@ -48,39 +50,69 @@ func init() {
 }
 
 // CreateServer registers an existing Wings server after verifying it on its node.
-func CreateServer(ctx context.Context, nodeID int64, name, serverUUID string) error {
+func CreateServer(ctx context.Context, nodeID, eggID, allocationID int64, name, serverUUID string) (int64, error) {
 	name, err := normalizeServerName(name)
 	if err != nil {
-		return ErrInvalidServerName
+		return 0, ErrInvalidServerName
 	}
 	parsedUUID, err := uuid.Parse(strings.TrimSpace(serverUUID))
 	if err != nil {
-		return ErrInvalidServerUUID
+		return 0, ErrInvalidServerUUID
 	}
 	node, exists, err := GetNodeByID(ctx, nodeID)
 	if err != nil {
-		return err
+		return 0, err
 	}
 	if !exists {
-		return fmt.Errorf("Wings node %d does not exist", nodeID)
+		return 0, fmt.Errorf("Wings node %d does not exist", nodeID)
 	}
 	client, err := node.GetClient()
 	if err != nil {
-		return err
+		return 0, err
 	}
 	if _, err := client.GetServer(ctx, parsedUUID.String()); err != nil {
-		return fmt.Errorf("verify server on Wings node: %w", err)
+		return 0, fmt.Errorf("verify server on Wings node: %w", err)
 	}
 
 	server := &WingsServer{
-		NodeID: nodeID,
-		UUID:   parsedUUID.String(),
-		Name:   name,
+		NodeID:       nodeID,
+		EggID:        eggID,
+		AllocationID: allocationID,
+		UUID:         parsedUUID.String(),
+		Name:         name,
 	}
 	if _, err := db.GetEngine(ctx).Insert(server); err != nil {
-		return fmt.Errorf("register Wings server: %w", err)
+		return 0, fmt.Errorf("register Wings server: %w", err)
 	}
-	return nil
+	return server.ID, nil
+}
+
+// CreateServerRecord stores server metadata without verifying against Wings.
+// Used for locally defined servers; provisioning on Wings requires the remote API.
+func CreateServerRecord(ctx context.Context, nodeID, eggID, allocationID int64, name string) (int64, error) {
+	name, err := normalizeServerName(name)
+	if err != nil {
+		return 0, ErrInvalidServerName
+	}
+	node, exists, err := GetNodeByID(ctx, nodeID)
+	if err != nil {
+		return 0, err
+	}
+	if !exists {
+		return 0, fmt.Errorf("Wings node %d does not exist", nodeID)
+	}
+	_ = node
+	server := &WingsServer{
+		NodeID:       nodeID,
+		EggID:        eggID,
+		AllocationID: allocationID,
+		UUID:         uuid.New().String(),
+		Name:         name,
+	}
+	if _, err := db.GetEngine(ctx).Insert(server); err != nil {
+		return 0, fmt.Errorf("create Wings server record: %w", err)
+	}
+	return server.ID, nil
 }
 
 // RenameServer changes only the server's display name in WebMain.
@@ -167,6 +199,23 @@ func GetServerByID(ctx context.Context, id int64) (*WingsServer, bool, error) {
 		return nil, false, fmt.Errorf("get registered Wings server %d: %w", id, err)
 	}
 	return server, exists, nil
+}
+
+// GetServerByUUID returns a registered Wings server by its Wings UUID.
+func GetServerByUUID(ctx context.Context, serverUUID string) (*WingsServer, bool, error) {
+	serverUUID = strings.TrimSpace(serverUUID)
+	if serverUUID == "" {
+		return nil, false, fmt.Errorf("invalid Wings server UUID")
+	}
+	var server WingsServer
+	exists, err := db.GetEngine(ctx).Where("uuid = ?", serverUUID).Get(&server)
+	if err != nil {
+		return nil, false, fmt.Errorf("get Wings server by UUID %s: %w", serverUUID, err)
+	}
+	if !exists {
+		return nil, false, nil
+	}
+	return &server, true, nil
 }
 
 // GetServerClient retrieves the daemon client for a registered server.

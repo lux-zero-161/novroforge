@@ -7,6 +7,7 @@ import (
 	"errors"
 	"net/http"
 	"strconv"
+	"strings"
 
 	wings_model "novroforge.xyz/models/wings"
 	"novroforge.xyz/modules/base"
@@ -38,6 +39,18 @@ func prepareWingsNodesPage(ctx *context.Context) bool {
 	ctx.Data["Locations"] = func() []*wings_model.WingsLocation {
 		locs, _ := wings_model.ListLocations(ctx)
 		return locs
+	}()
+	ctx.Data["Eggs"] = func() []*wings_model.WingsEgg {
+		eggs, _ := wings_model.ListEggs(ctx, 0)
+		return eggs
+	}()
+	ctx.Data["Allocations"] = func() []*wings_model.WingsAllocation {
+		allocs := make([]*wings_model.WingsAllocation, 0)
+		for _, n := range nodes {
+			a, _ := wings_model.ListAllocations(ctx, n.ID)
+			allocs = append(allocs, a...)
+		}
+		return allocs
 	}()
 	ctx.Data["LogsServerID"] = int64(0)
 	servers, err := wings_model.ListServers(ctx)
@@ -147,7 +160,34 @@ func CreateWingsServer(ctx *context.Context) {
 		ctx.Redirect(setting.AppSubURL + "/admin/wings/nodes")
 		return
 	}
-	err = wings_model.CreateServer(ctx, nodeID, ctx.FormString("server_name"), ctx.FormString("server_uuid"))
+	eggID, _ := strconv.ParseInt(ctx.FormString("egg_id"), 10, 64)
+	allocationID, _ := strconv.ParseInt(ctx.FormString("allocation_id"), 10, 64)
+	serverUUID := strings.TrimSpace(ctx.FormString("server_uuid"))
+	if serverUUID == "" {
+		// Auto-generate a UUID and store a local metadata record. Provisioning
+		// on Wings requires the Pterodactyl remote API (not yet implemented).
+		recordID, err := wings_model.CreateServerRecord(ctx, nodeID, eggID, allocationID, ctx.FormString("server_name"))
+		if err != nil {
+			if errors.Is(err, wings_model.ErrInvalidServerName) {
+				ctx.Flash.Error(ctx.Tr("admin.wings_servers.invalid_name"))
+			} else {
+				log.Error("CreateWingsServerRecord[node=%d]: %v", nodeID, err)
+				ctx.Flash.Error(ctx.Tr("admin.wings_servers.register_failed"))
+			}
+			ctx.Redirect(setting.AppSubURL + "/admin/wings/nodes")
+			return
+		}
+		recordWingsActivity(ctx, nodeID, 0, wings_model.ActivityRegister, ctx.FormString("server_name"))
+		if username := strings.TrimSpace(ctx.FormString("access_username")); username != "" && recordID > 0 {
+			if err := wings_model.GrantServerAccess(ctx, recordID, username, true, true, true, true, true, true, true, true, true, true, true); err != nil {
+				log.Error("GrantWingsServerAccess during register: %v", err)
+			}
+		}
+		ctx.Flash.Success(ctx.Tr("admin.wings_servers.registered_success"))
+		ctx.Redirect(setting.AppSubURL + "/admin/wings/nodes")
+		return
+	}
+	serverID, err := wings_model.CreateServer(ctx, nodeID, eggID, allocationID, ctx.FormString("server_name"), serverUUID)
 	switch {
 	case errors.Is(err, wings_model.ErrInvalidServerName):
 		ctx.Flash.Error(ctx.Tr("admin.wings_servers.invalid_name"))
@@ -158,6 +198,12 @@ func CreateWingsServer(ctx *context.Context) {
 		ctx.Flash.Error(ctx.Tr("admin.wings_servers.register_failed"))
 	default:
 		recordWingsActivity(ctx, nodeID, 0, wings_model.ActivityRegister, ctx.FormString("server_uuid"))
+		// Optionally grant access to a user right away.
+		if username := strings.TrimSpace(ctx.FormString("access_username")); username != "" && serverID > 0 {
+			if err := wings_model.GrantServerAccess(ctx, serverID, username, true, true, true, true, true, true, true, true, true, true, true); err != nil {
+				log.Error("GrantWingsServerAccess during register: %v", err)
+			}
+		}
 		ctx.Flash.Success(ctx.Tr("admin.wings_servers.registered_success"))
 	}
 	ctx.Redirect(setting.AppSubURL + "/admin/wings/nodes")
