@@ -59,12 +59,12 @@ import (
 
 	_ "novroforge.xyz/modules/session" // to registers all internal adapters
 
-	"novroforge/go-chi/binding"
-	"novroforge/go-chi/captcha"
 	chi_middleware "github.com/go-chi/chi/v5/middleware"
 	"github.com/go-chi/cors"
 	"github.com/klauspost/compress/gzhttp"
 	"github.com/prometheus/client_golang/prometheus"
+	"novroforge/go-chi/binding"
+	"novroforge/go-chi/captcha"
 )
 
 var GzipMinSize = gzhttp.DefaultMinSize
@@ -953,6 +953,10 @@ func registerRoutes(m *web.Route) {
 			m.Get("/servers/{id}/logs", admin.WingsServerLogs)
 			m.Post("/servers/{id}/power", admin.ControlWingsServer)
 			m.Post("/servers/{id}/command", admin.SendWingsServerCommand)
+			m.Post("/servers/{id}/install", admin.InstallWingsServer)
+			m.Post("/servers/{id}/reinstall", admin.ReinstallWingsServer)
+			m.Post("/servers/{id}/sync", admin.SyncWingsServer)
+			m.Post("/servers/{id}/delete-on-node", admin.DeleteWingsServerFromNode)
 			m.Post("/servers/{id}/users", admin.GrantWingsServerAccess)
 			m.Post("/servers/{id}/users/{access_id}/delete", admin.RevokeWingsServerAccess)
 			m.Post("/servers/{id}/name", admin.RenameWingsServer)

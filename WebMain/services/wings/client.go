@@ -29,13 +29,13 @@ import (
 )
 
 const (
-	maxResponseSize      = 4 << 20
-	maxTokenLength       = 4096
-	maxCommands          = 32
-	maxCommandLength     = 4096
-	maxDirectoryPath     = 4096
+	maxResponseSize  = 4 << 20
+	maxTokenLength   = 4096
+	maxCommands      = 32
+	maxCommandLength = 4096
+	maxDirectoryPath = 4096
 	// MaxFileContentSize bounds text that can be previewed or edited.
-	MaxFileContentSize   = 1 << 20
+	MaxFileContentSize = 1 << 20
 	// MaxFileUploadSize bounds files uploaded through the WebMain panel.
 	MaxFileUploadSize    = 10 << 20
 	maxFilePreviewSize   = MaxFileContentSize
@@ -804,6 +804,47 @@ func (c *Client) Commands(ctx context.Context, serverID string, commands []strin
 		Commands []string `json:"commands"`
 	}{Commands: commands}
 	return c.doJSON(ctx, http.MethodPost, "/api/servers/"+id.String()+"/commands", body, nil, http.StatusNoContent)
+}
+
+// InstallServer starts a fresh installation on the Wings daemon. Wings fetches
+// the server configuration from the panel and runs the install script in the
+// background, so this only reports that the request was accepted.
+func (c *Client) InstallServer(ctx context.Context, serverID string) error {
+	id, err := uuid.Parse(serverID)
+	if err != nil {
+		return errors.New("invalid Wings server UUID")
+	}
+	return c.doJSON(ctx, http.MethodPost, "/api/servers/"+id.String()+"/install", nil, nil, http.StatusAccepted)
+}
+
+// ReinstallServer asks Wings to run the install script again. Existing files
+// may be overwritten depending on the install script.
+func (c *Client) ReinstallServer(ctx context.Context, serverID string) error {
+	id, err := uuid.Parse(serverID)
+	if err != nil {
+		return errors.New("invalid Wings server UUID")
+	}
+	return c.doJSON(ctx, http.MethodPost, "/api/servers/"+id.String()+"/reinstall", nil, nil, http.StatusAccepted)
+}
+
+// SyncServer forces Wings to re-fetch the server configuration from the panel.
+func (c *Client) SyncServer(ctx context.Context, serverID string) error {
+	id, err := uuid.Parse(serverID)
+	if err != nil {
+		return errors.New("invalid Wings server UUID")
+	}
+	return c.doJSON(ctx, http.MethodPost, "/api/servers/"+id.String()+"/sync", nil, nil, http.StatusNoContent)
+}
+
+// DeleteServer removes the server from the Wings daemon, stops its container,
+// and deletes its files. This is irreversible and must be confirmed by an
+// administrator before it is called.
+func (c *Client) DeleteServer(ctx context.Context, serverID string) error {
+	id, err := uuid.Parse(serverID)
+	if err != nil {
+		return errors.New("invalid Wings server UUID")
+	}
+	return c.doJSON(ctx, http.MethodDelete, "/api/servers/"+id.String(), nil, nil, http.StatusNoContent)
 }
 
 // CreateBackup starts an asynchronous local Wings backup.

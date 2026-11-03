@@ -172,6 +172,87 @@ func TestPowerSendsKillAction(t *testing.T) {
 	require.NoError(t, client.Power(context.Background(), testServerID, "kill"))
 }
 
+func TestServerLifecycleRequestsExpectedEndpoints(t *testing.T) {
+	t.Parallel()
+
+	tests := []struct {
+		name   string
+		method string
+		suffix string
+		status int
+		call   func(*Client) error
+	}{
+		{"install", http.MethodPost, "/install", http.StatusAccepted, func(c *Client) error {
+			return c.InstallServer(context.Background(), testServerID)
+		}},
+		{"reinstall", http.MethodPost, "/reinstall", http.StatusAccepted, func(c *Client) error {
+			return c.ReinstallServer(context.Background(), testServerID)
+		}},
+		{"sync", http.MethodPost, "/sync", http.StatusNoContent, func(c *Client) error {
+			return c.SyncServer(context.Background(), testServerID)
+		}},
+		{"delete", http.MethodDelete, "", http.StatusNoContent, func(c *Client) error {
+			return c.DeleteServer(context.Background(), testServerID)
+		}},
+	}
+
+	for _, tc := range tests {
+		tc := tc
+		t.Run(tc.name, func(t *testing.T) {
+			t.Parallel()
+
+			server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+				if r.Method != tc.method {
+					t.Errorf("method = %q, want %q", r.Method, tc.method)
+				}
+				wantPath := "/api/servers/" + testServerID + tc.suffix
+				if r.URL.Path != wantPath {
+					t.Errorf("request path = %q, want %q", r.URL.Path, wantPath)
+				}
+				if got := r.Header.Get("Authorization"); got != "Bearer node-token" {
+					t.Errorf("authorization header = %q, want bearer token", got)
+				}
+				if r.ContentLength != 0 {
+					t.Errorf("content length = %d, want an empty body", r.ContentLength)
+				}
+				w.WriteHeader(tc.status)
+			}))
+			defer server.Close()
+
+			client, err := NewClient(server.URL, "node-token")
+			require.NoError(t, err)
+			require.NoError(t, tc.call(client))
+		})
+	}
+}
+
+func TestServerLifecycleRejectsInvalidUUIDs(t *testing.T) {
+	t.Parallel()
+
+	client, err := NewClient("http://127.0.0.1:8080", "node-token")
+	require.NoError(t, err)
+	require.Error(t, client.InstallServer(context.Background(), "not-a-uuid"))
+	require.Error(t, client.ReinstallServer(context.Background(), "not-a-uuid"))
+	require.Error(t, client.SyncServer(context.Background(), "not-a-uuid"))
+	require.Error(t, client.DeleteServer(context.Background(), "not-a-uuid"))
+}
+
+func TestServerLifecycleReportsUnexpectedStatus(t *testing.T) {
+	t.Parallel()
+
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusConflict)
+	}))
+	defer server.Close()
+
+	client, err := NewClient(server.URL, "node-token")
+	require.NoError(t, err)
+
+	var statusErr *HTTPStatusError
+	require.ErrorAs(t, client.ReinstallServer(context.Background(), testServerID), &statusErr)
+	require.Equal(t, http.StatusConflict, statusErr.StatusCode)
+}
+
 func TestLogsValidatesLineLimit(t *testing.T) {
 	t.Parallel()
 
@@ -712,7 +793,8 @@ func TestOpenConsoleWebSocketUsesShortLivedReadOnlyToken(t *testing.T) {
 			http.Error(w, "unexpected websocket request", http.StatusBadRequest)
 			return
 		}
-		connection, err := websocket.Upgrader{}.Upgrade(w, r, nil)
+		upgrader := websocket.Upgrader{CheckOrigin: func(*http.Request) bool { return true }}
+		connection, err := upgrader.Upgrade(w, r, nil)
 		if err != nil {
 			t.Errorf("upgrade websocket: %v", err)
 			return

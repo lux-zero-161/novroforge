@@ -369,6 +369,107 @@ func SendWingsServerCommand(ctx *context.Context) {
 	ctx.Redirect(setting.AppSubURL + "/admin/wings/nodes")
 }
 
+// getWingsServerClient loads a registered server and the Wings client for its
+// node. It writes the flash message and redirect itself when the lookup fails.
+func getWingsServerClient(ctx *context.Context) (*wings_model.WingsServer, *wings_service.Client, bool) {
+	id := ctx.ParamsInt64("id")
+	if id <= 0 {
+		ctx.Flash.Error(ctx.Tr("admin.wings_nodes.invalid_id"))
+		ctx.Redirect(setting.AppSubURL + "/admin/wings/nodes")
+		return nil, nil, false
+	}
+	server, exists, err := wings_model.GetServerByID(ctx, id)
+	if err != nil {
+		ctx.ServerError("GetWingsServer", err)
+		return nil, nil, false
+	}
+	if !exists {
+		ctx.Flash.Error(ctx.Tr("admin.wings_servers.not_found"))
+		ctx.Redirect(setting.AppSubURL + "/admin/wings/nodes")
+		return nil, nil, false
+	}
+	client, err := server.GetServerClient(ctx)
+	if err != nil {
+		log.Error("GetWingsServerClient[%d]: %v", id, err)
+		ctx.Flash.Error(ctx.Tr("admin.wings_servers.action_failed"))
+		ctx.Redirect(setting.AppSubURL + "/admin/wings/nodes")
+		return nil, nil, false
+	}
+	return server, client, true
+}
+
+func InstallWingsServer(ctx *context.Context) {
+	server, client, ok := getWingsServerClient(ctx)
+	if !ok {
+		return
+	}
+	if err := client.InstallServer(ctx, server.UUID); err != nil {
+		log.Error("InstallWingsServer[%d]: %v", server.ID, err)
+		ctx.Flash.Error(ctx.Tr("admin.wings_servers.install_failed"))
+	} else {
+		ctx.Flash.Success(ctx.Tr("admin.wings_servers.install_started"))
+	}
+	ctx.Redirect(setting.AppSubURL + "/admin/wings/nodes")
+}
+
+func ReinstallWingsServer(ctx *context.Context) {
+	if !ctx.FormBool("confirm_reinstall") {
+		ctx.Flash.Error(ctx.Tr("admin.wings_servers.reinstall_confirmation_required"))
+		ctx.Redirect(setting.AppSubURL + "/admin/wings/nodes")
+		return
+	}
+	server, client, ok := getWingsServerClient(ctx)
+	if !ok {
+		return
+	}
+	if err := client.ReinstallServer(ctx, server.UUID); err != nil {
+		log.Error("ReinstallWingsServer[%d]: %v", server.ID, err)
+		ctx.Flash.Error(ctx.Tr("admin.wings_servers.reinstall_failed"))
+	} else {
+		ctx.Flash.Success(ctx.Tr("admin.wings_servers.reinstall_started"))
+	}
+	ctx.Redirect(setting.AppSubURL + "/admin/wings/nodes")
+}
+
+func SyncWingsServer(ctx *context.Context) {
+	server, client, ok := getWingsServerClient(ctx)
+	if !ok {
+		return
+	}
+	if err := client.SyncServer(ctx, server.UUID); err != nil {
+		log.Error("SyncWingsServer[%d]: %v", server.ID, err)
+		ctx.Flash.Error(ctx.Tr("admin.wings_servers.sync_failed"))
+	} else {
+		ctx.Flash.Success(ctx.Tr("admin.wings_servers.sync_succeeded"))
+	}
+	ctx.Redirect(setting.AppSubURL + "/admin/wings/nodes")
+}
+
+func DeleteWingsServerFromNode(ctx *context.Context) {
+	if !ctx.FormBool("confirm_delete") {
+		ctx.Flash.Error(ctx.Tr("admin.wings_servers.delete_on_node_confirmation_required"))
+		ctx.Redirect(setting.AppSubURL + "/admin/wings/nodes")
+		return
+	}
+	server, client, ok := getWingsServerClient(ctx)
+	if !ok {
+		return
+	}
+	if err := client.DeleteServer(ctx, server.UUID); err != nil {
+		log.Error("DeleteWingsServerFromNode[%d]: %v", server.ID, err)
+		ctx.Flash.Error(ctx.Tr("admin.wings_servers.delete_on_node_failed"))
+		ctx.Redirect(setting.AppSubURL + "/admin/wings/nodes")
+		return
+	}
+	if err := wings_model.DeleteServerRegistration(ctx, server.ID); err != nil {
+		log.Error("DeleteWingsServerFromNode[%d]: remove registration: %v", server.ID, err)
+		ctx.Flash.Error(ctx.Tr("admin.wings_servers.delete_on_node_partial"))
+	} else {
+		ctx.Flash.Success(ctx.Tr("admin.wings_servers.delete_on_node_succeeded"))
+	}
+	ctx.Redirect(setting.AppSubURL + "/admin/wings/nodes")
+}
+
 func TestWingsNode(ctx *context.Context) {
 	id, err := strconv.ParseInt(ctx.Params("id"), 10, 64)
 	if err != nil || id <= 0 {

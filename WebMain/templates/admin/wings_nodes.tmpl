@@ -159,6 +159,35 @@
 										<input name="command" maxlength="4096" required aria-label="{{ctx.Locale.Tr "admin.wings_servers.command"}}">
 										<button class="ui button" type="submit">{{ctx.Locale.Tr "admin.wings_servers.send_command"}}</button>
 									</form>
+									<div class="ui divider"></div>
+									<strong>{{ctx.Locale.Tr "admin.wings_servers.lifecycle"}}</strong>
+									<form method="post" action="{{AppSubUrl}}/admin/wings/nodes/servers/{{.ID}}/install">
+										<button class="ui button" type="submit">{{ctx.Locale.Tr "admin.wings_servers.install"}}</button>
+										<p>{{ctx.Locale.Tr "admin.wings_servers.install_help"}}</p>
+									</form>
+									<form method="post" action="{{AppSubUrl}}/admin/wings/nodes/servers/{{.ID}}/reinstall">
+										<div class="field">
+											<div class="ui checkbox">
+												<input type="checkbox" name="confirm_reinstall" value="true" required>
+												<label>{{ctx.Locale.Tr "admin.wings_servers.reinstall_confirm"}}</label>
+											</div>
+										</div>
+										<button class="ui button" type="submit">{{ctx.Locale.Tr "admin.wings_servers.reinstall"}}</button>
+									</form>
+									<form method="post" action="{{AppSubUrl}}/admin/wings/nodes/servers/{{.ID}}/sync">
+										<button class="ui button" type="submit">{{ctx.Locale.Tr "admin.wings_servers.sync"}}</button>
+										<p>{{ctx.Locale.Tr "admin.wings_servers.sync_help"}}</p>
+									</form>
+									<form method="post" action="{{AppSubUrl}}/admin/wings/nodes/servers/{{.ID}}/delete-on-node">
+										<div class="field">
+											<div class="ui checkbox">
+												<input type="checkbox" name="confirm_delete" value="true" required>
+												<label>{{ctx.Locale.Tr "admin.wings_servers.delete_on_node_confirm"}}</label>
+											</div>
+										</div>
+										<button class="ui red button" type="submit">{{ctx.Locale.Tr "admin.wings_servers.delete_on_node"}}</button>
+									</form>
+									<div class="ui divider"></div>
 									<form method="post" action="{{AppSubUrl}}/admin/wings/nodes/servers/{{.ID}}/delete">
 										<button class="ui red button" type="submit">{{ctx.Locale.Tr "admin.wings_servers.remove_registration"}}</button>
 									</form>
