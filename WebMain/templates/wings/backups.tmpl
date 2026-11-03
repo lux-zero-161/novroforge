@@ -31,6 +31,12 @@
 		{{end}}
 		<h2 class="ui header">{{ctx.Locale.Tr "wings.backup_list"}}</h2>
 		{{if .Backups}}
+			<div class="ui form">
+				<div class="field">
+					<label for="wings-backup-filter">{{ctx.Locale.Tr "wings.backup_filter"}}</label>
+					<input id="wings-backup-filter" type="search" data-wings-backup-filter autocomplete="off">
+				</div>
+			</div>
 			<div class="overflow menu">
 				<table class="ui very basic striped table">
 					<thead>
@@ -44,7 +50,7 @@
 					</thead>
 					<tbody>
 						{{range .Backups}}
-							<tr data-backup-id="{{.UUID}}">
+							<tr data-backup-id="{{.UUID}}" data-wings-backup-row>
 								<td>{{.Name}}</td>
 								<td aria-live="polite">
 									<span data-backup-status>{{if eq .Status "pending"}}{{ctx.Locale.Tr "wings.backup_status_pending"}}{{else if eq .Status "completed"}}{{ctx.Locale.Tr "wings.backup_status_completed"}}{{else}}{{ctx.Locale.Tr "wings.backup_status_failed"}}{{end}}</span>
@@ -78,6 +84,7 @@
 					</tbody>
 				</table>
 			</div>
+			<p class="ui message" data-wings-backup-filter-empty hidden>{{ctx.Locale.Tr "wings.backup_filter_no_results"}}</p>
 		{{else}}
 			<div class="ui message">{{ctx.Locale.Tr "wings.backup_empty"}}</div>
 		{{end}}

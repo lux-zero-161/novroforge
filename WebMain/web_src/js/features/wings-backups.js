@@ -12,6 +12,23 @@ export function initWingsBackups() {
   const rows = new Map(
     Array.from(container.querySelectorAll('[data-backup-id]'), (row) => [row.dataset.backupId, row]),
   );
+  const filterInput = container.querySelector('[data-wings-backup-filter]');
+  const filterEmpty = container.querySelector('[data-wings-backup-filter-empty]');
+  const filterRows = () => {
+    if (!filterInput || !filterEmpty) return;
+    const query = filterInput.value.trim().toLowerCase();
+    let matches = 0;
+    for (const row of rows.values()) {
+      const searchText = `${row.cells[0].textContent} ${row.querySelector('[data-backup-status]').textContent}`.toLowerCase();
+      const isMatch = searchText.includes(query);
+      row.hidden = !isMatch;
+      if (isMatch) matches++;
+    }
+    filterEmpty.hidden = matches > 0;
+  };
+  filterInput?.addEventListener('input', filterRows);
+  filterRows();
+
   const statusLabels = {
     pending: container.dataset.statusPending,
     completed: container.dataset.statusCompleted,
@@ -71,6 +88,7 @@ export function initWingsBackups() {
             backup.status === 'pending' || backup.restore_status === 'pending'
           );
         }
+        filterRows();
         status.textContent = '';
       } catch (error) {
         console.error('Could not refresh Wings backup statuses:', error);

@@ -87,6 +87,7 @@ import {initRepoCodeFrequency} from './features/code-frequency.js';
 import {initRepoRecentCommits} from './features/recent-commits.js';
 import {initWingsConsole} from './features/wings-console.js';
 import {initWingsServers} from './features/wings-servers.js';
+import {initWingsFiles} from './features/wings-files.js';
 import {initWingsBackups} from './features/wings-backups.js';
 import {initRepoDiffCommitBranchesAndTags} from './features/repo-diff-commit.js';
 import {initDirAuto} from './modules/dirauto.js';
@@ -194,6 +195,7 @@ onDomReady(() => {
   initRepoRecentCommits();
   initWingsConsole();
   initWingsServers();
+  initWingsFiles();
   initWingsBackups();
   initRepoMilestoneEditor();
 
