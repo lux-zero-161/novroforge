@@ -73,6 +73,23 @@
 			<button class="ui primary button" type="submit">{{ctx.Locale.Tr "admin.wings_nests.create"}}</button>
 		</form>
 
+		<h5 class="ui header">{{ctx.Locale.Tr "admin.wings_nests.import_egg"}}</h5>
+		<form class="ui form" method="post" action="{{AppSubUrl}}/admin/wings/nests/eggs/import">
+			<div class="required field">
+				<label for="wings-import-nest">{{ctx.Locale.Tr "admin.wings_nests.nest"}}</label>
+				<select id="wings-import-nest" name="nest_id" required>
+					{{range .Nests}}
+					<option value="{{.ID}}">{{.Name}}</option>
+					{{end}}
+				</select>
+			</div>
+			<div class="required field">
+				<label for="wings-import-json">{{ctx.Locale.Tr "admin.wings_nests.import_egg"}}</label>
+				<textarea id="wings-import-json" name="egg_json" rows="10" required placeholder='{"name":"...","docker_image":"...","startup":"...","variables":[...]}'></textarea>
+			</div>
+			<button class="ui primary button" type="submit">{{ctx.Locale.Tr "admin.wings_nests.import"}}</button>
+		</form>
+
 		<h5 class="ui header">{{ctx.Locale.Tr "admin.wings_nests.saved_eggs"}}</h5>
 		{{if .Eggs}}
 		<table class="ui celled table">

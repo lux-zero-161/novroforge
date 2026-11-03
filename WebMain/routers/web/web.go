@@ -956,6 +956,7 @@ m.Group("/wings/nests", func() {
 	m.Post("/{id}/delete", admin.DeleteWingsNest)
 	m.Post("/eggs", admin.CreateWingsEgg)
 	m.Post("/eggs/{id}/delete", admin.DeleteWingsEgg)
+m.Post("/eggs/import", admin.ImportWingsEgg)
 m.Post("/eggs/variables", admin.CreateWingsEggVariable)
 m.Post("/eggs/variables/{id}/delete", admin.DeleteWingsEggVariable)
 })
