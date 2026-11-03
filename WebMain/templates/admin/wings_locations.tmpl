@@ -1,0 +1,95 @@
+{{template "admin/layout_head" (dict "ctxData" . "pageClass" "admin wings-locations")}}
+
+<div class="ui container">
+	<h4 class="ui top attached header">{{ctx.Locale.Tr "admin.wings_locations"}}</h4>
+	<div class="ui attached segment">
+		<p>{{ctx.Locale.Tr "admin.wings_locations.description"}}</p>
+
+		<h5 class="ui header">{{ctx.Locale.Tr "admin.wings_locations.create_location"}}</h5>
+		<form class="ui form" method="post" action="{{AppSubUrl}}/admin/wings/locations">
+			<div class="required field">
+				<label for="wings-location-short">{{ctx.Locale.Tr "admin.wings_locations.short"}}</label>
+				<input id="wings-location-short" name="short" maxlength="191" required>
+			</div>
+			<div class="field">
+				<label for="wings-location-long">{{ctx.Locale.Tr "admin.wings_locations.long"}}</label>
+				<input id="wings-location-long" name="long" maxlength="1000">
+			</div>
+			<button class="ui primary button" type="submit">{{ctx.Locale.Tr "admin.wings_locations.create"}}</button>
+		</form>
+
+		<h5 class="ui header">{{ctx.Locale.Tr "admin.wings_locations.saved_locations"}}</h5>
+		{{if .Locations}}
+		<table class="ui celled table">
+			<thead><tr><th>{{ctx.Locale.Tr "admin.wings_locations.short"}}</th><th>{{ctx.Locale.Tr "admin.wings_locations.long"}}</th><th>{{ctx.Locale.Tr "admin.wings_locations.actions"}}</th></tr></thead>
+			<tbody>
+				{{range .Locations}}
+				<tr>
+					<td>{{.Short}}</td>
+					<td>{{.Long}}</td>
+					<td>
+						<form method="post" action="{{AppSubUrl}}/admin/wings/locations/{{.ID}}/delete" style="display:inline">
+							<button class="ui red button" type="submit">{{ctx.Locale.Tr "admin.wings_locations.delete"}}</button>
+						</form>
+					</td>
+				</tr>
+				{{end}}
+			</tbody>
+		</table>
+		{{else}}
+		<p>{{ctx.Locale.Tr "admin.wings_locations.empty"}}</p>
+		{{end}}
+
+		<h5 class="ui header">{{ctx.Locale.Tr "admin.wings_locations.create_allocation"}}</h5>
+		<form class="ui form" method="post" action="{{AppSubUrl}}/admin/wings/locations/allocations">
+			<div class="required field">
+				<label for="wings-alloc-node">{{ctx.Locale.Tr "admin.wings_locations.node"}}</label>
+				<select id="wings-alloc-node" name="node_id" required>
+					{{range .Nodes}}
+					<option value="{{.ID}}">{{.Name}}</option>
+					{{end}}
+				</select>
+			</div>
+			<div class="required field">
+				<label for="wings-alloc-ip">{{ctx.Locale.Tr "admin.wings_locations.ip"}}</label>
+				<input id="wings-alloc-ip" name="ip" required>
+			</div>
+			<div class="required field">
+				<label for="wings-alloc-port">{{ctx.Locale.Tr "admin.wings_locations.port"}}</label>
+				<input id="wings-alloc-port" name="port" type="number" min="1" max="65535" required>
+			</div>
+			<div class="field">
+				<label for="wings-alloc-alias">{{ctx.Locale.Tr "admin.wings_locations.alias"}}</label>
+				<input id="wings-alloc-alias" name="alias">
+			</div>
+			<button class="ui primary button" type="submit">{{ctx.Locale.Tr "admin.wings_locations.create"}}</button>
+		</form>
+
+		<h5 class="ui header">{{ctx.Locale.Tr "admin.wings_locations.saved_allocations"}}</h5>
+		{{if .Allocations}}
+		<table class="ui celled table">
+			<thead><tr><th>Node</th><th>IP</th><th>Port</th><th>Assigned</th><th>{{ctx.Locale.Tr "admin.wings_locations.actions"}}</th></tr></thead>
+			<tbody>
+				{{range .Allocations}}
+				<tr>
+					<td>{{.NodeID}}</td>
+					<td>{{.IP}}</td>
+					<td>{{.Port}}</td>
+					<td>{{if .Assigned}}Yes{{else}}No{{end}}</td>
+					<td>
+						{{if not .Assigned}}
+						<form method="post" action="{{AppSubUrl}}/admin/wings/locations/allocations/{{.ID}}/delete" style="display:inline">
+							<button class="ui red button" type="submit">{{ctx.Locale.Tr "admin.wings_locations.delete"}}</button>
+						</form>
+						{{end}}
+					</td>
+				</tr>
+				{{end}}
+			</tbody>
+		</table>
+		{{else}}
+		<p>{{ctx.Locale.Tr "admin.wings_locations.empty"}}</p>
+		{{end}}
+	</div>
+</div>
+{{template "admin/layout_footer" .}}

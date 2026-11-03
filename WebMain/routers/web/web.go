@@ -943,7 +943,14 @@ func registerRoutes(m *web.Route) {
 			m.Post("/markup", web.Bind(structs.MarkupOption{}), misc.Markup)
 		})
 
-		m.Group("/wings/nests", func() {
+		m.Group("/wings/locations", func() {
+	m.Get("", admin.WingsLocations)
+	m.Post("", admin.CreateWingsLocation)
+	m.Post("/{id}/delete", admin.DeleteWingsLocation)
+	m.Post("/allocations", admin.CreateWingsAllocation)
+	m.Post("/allocations/{id}/delete", admin.DeleteWingsAllocation)
+})
+m.Group("/wings/nests", func() {
 	m.Get("", admin.WingsNests)
 	m.Post("", admin.CreateWingsNest)
 	m.Post("/{id}/delete", admin.DeleteWingsNest)
