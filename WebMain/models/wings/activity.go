@@ -41,6 +41,8 @@ const (
 	ActivityBackupCreate      = "backup_create"
 	ActivityBackupRestore     = "backup_restore"
 	ActivityBackupDelete      = "backup_delete"
+	ActivityBackupLock        = "backup_lock"
+	ActivityBackupUnlock      = "backup_unlock"
 	activityEventMaxRunes     = 64
 	activityDetailMaxRunes    = 255
 	activityActorNameMaxRunes = 255

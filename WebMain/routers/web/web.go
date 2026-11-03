@@ -1089,6 +1089,7 @@ func registerRoutes(m *web.Route) {
 		m.Post("/{id}/backups", user.CreateWingsServerBackup)
 		m.Post("/{id}/backups/{backup}/restore", user.RestoreWingsServerBackup)
 		m.Post("/{id}/backups/{backup}/delete", user.DeleteWingsServerBackup)
+m.Post("/{id}/backups/{backup}/lock", user.ToggleWingsServerBackupLock)
 		m.Post("/{id}/files/directory", user.CreateWingsServerDirectory)
 		m.Post("/{id}/files/rename", user.RenameWingsServerFile)
 		m.Post("/{id}/files/delete", user.DeleteWingsServerFile)

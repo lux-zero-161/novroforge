@@ -78,6 +78,12 @@
 										</div>
 										<button class="ui red button" type="submit">{{ctx.Locale.Tr "wings.backup_delete"}}</button>
 									</form>
+									{{if $.Access.CanBackups}}
+									<form class="ui form" method="post" action="{{AppSubUrl}}/user/servers/{{$.Server.ID}}/backups/{{.UUID}}/lock">
+										<button class="ui button" type="submit">{{if .Locked}}{{ctx.Locale.Tr "wings.backup_unlock"}}{{else}}{{ctx.Locale.Tr "wings.backup_lock"}}{{end}}</button>
+										{{if .Locked}}<span class="ui label">{{ctx.Locale.Tr "wings.backup_locked"}}</span>{{end}}
+									</form>
+									{{end}}
 								</td>
 							</tr>
 						{{end}}

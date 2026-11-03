@@ -321,6 +321,11 @@ func DeleteWingsServerBackup(ctx *context.Context) {
 		ctx.Redirect(wingsServerBackupsURL(server.ID))
 		return
 	}
+	if backup.Locked {
+		ctx.Flash.Error(ctx.Tr("wings.backup_locked_delete_denied"))
+		ctx.Redirect(wingsServerBackupsURL(server.ID))
+		return
+	}
 	client, err := server.GetServerClient(ctx)
 	if err != nil {
 		ctx.ServerError("DeleteUserWingsServerBackupClient", err)
@@ -340,6 +345,50 @@ func DeleteWingsServerBackup(ctx *context.Context) {
 	}
 	recordWingsActivity(ctx, server, wings_model.ActivityBackupDelete, backup.Name)
 	ctx.Flash.Success(ctx.Tr("wings.backup_deleted"))
+	ctx.Redirect(wingsServerBackupsURL(server.ID))
+}
+
+func ToggleWingsServerBackupLock(ctx *context.Context) {
+	server, access, err := getAuthorizedWingsServer(ctx)
+	if errors.Is(err, wings_model.ErrServerAccessDenied) {
+		ctx.NotFound("ToggleWingsServerBackupLock", nil)
+		return
+	}
+	if err != nil {
+		ctx.ServerError("ToggleWingsServerBackupLock", err)
+		return
+	}
+	if !access.CanBackups {
+		ctx.Error(http.StatusForbidden, ctx.Locale.TrString("wings.backups_denied"))
+		return
+	}
+	backup, exists, err := wings_model.GetBackupByUUID(ctx, ctx.Params("backup"))
+	if errors.Is(err, wings_model.ErrBackupNotFound) {
+		ctx.NotFound("ToggleWingsServerBackupLock", nil)
+		return
+	}
+	if err != nil {
+		ctx.ServerError("GetUserWingsServerBackup", err)
+		return
+	}
+	if !exists || backup.ServerID != server.ID {
+		ctx.NotFound("ToggleWingsServerBackupLock", nil)
+		return
+	}
+	updated, err := wings_model.ToggleBackupLock(ctx, backup.UUID)
+	if err != nil {
+		log.Error("ToggleWingsServerBackupLock[%d]: %v", server.ID, err)
+		ctx.Flash.Error(ctx.Tr("wings.backup_lock_failed"))
+		ctx.Redirect(wingsServerBackupsURL(server.ID))
+		return
+	}
+	if updated.Locked {
+		recordWingsActivity(ctx, server, wings_model.ActivityBackupLock, backup.Name)
+		ctx.Flash.Success(ctx.Tr("wings.backup_lock_success"))
+	} else {
+		recordWingsActivity(ctx, server, wings_model.ActivityBackupUnlock, backup.Name)
+		ctx.Flash.Success(ctx.Tr("wings.backup_unlock_success"))
+	}
 	ctx.Redirect(wingsServerBackupsURL(server.ID))
 }
 

@@ -49,6 +49,7 @@ type WingsBackup struct {
 	ChecksumType  string             `xorm:"VARCHAR(16)"`
 	Size          int64              `xorm:"NOT NULL DEFAULT 0"`
 	RestoreStatus string             `xorm:"VARCHAR(16) NOT NULL DEFAULT 'none'"`
+	Locked        bool               `xorm:"NOT NULL DEFAULT false"`
 	CreatedUnix   timeutil.TimeStamp `xorm:"created"`
 	UpdatedUnix   timeutil.TimeStamp `xorm:"updated"`
 }
@@ -304,4 +305,24 @@ func DeleteBackupRecord(ctx context.Context, backupID int64) error {
 		return ErrBackupNotReady
 	}
 	return nil
+}
+
+// ToggleBackupLock flips the locked flag of a backup and returns the updated record.
+func ToggleBackupLock(ctx context.Context, backupUUID string) (*WingsBackup, error) {
+	backup, exists, err := GetBackupByUUID(ctx, backupUUID)
+	if err != nil {
+		return nil, err
+	}
+	if !exists {
+		return nil, ErrBackupNotFound
+	}
+	backup.Locked = !backup.Locked
+	affected, err := db.GetEngine(ctx).ID(backup.ID).Cols("locked").Update(&WingsBackup{Locked: backup.Locked})
+	if err != nil {
+		return nil, fmt.Errorf("toggle Wings backup lock %s: %w", backupUUID, err)
+	}
+	if affected != 1 {
+		return nil, ErrBackupNotFound
+	}
+	return backup, nil
 }
