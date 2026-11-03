@@ -111,6 +111,24 @@
 					<label for="wings-server-uuid">{{ctx.Locale.Tr "admin.wings_servers.uuid"}}</label>
 					<input id="wings-server-uuid" name="server_uuid" maxlength="36" required>
 				</div>
+				<div class="field">
+					<label for="wings-server-egg">{{ctx.Locale.Tr "admin.wings_nests.egg"}}</label>
+					<select id="wings-server-egg" name="egg_id">
+						<option value="0">{{ctx.Locale.Tr "admin.wings_nests.no_egg"}}</option>
+						{{range .Eggs}}
+						<option value="{{.ID}}">{{.Name}}</option>
+						{{end}}
+					</select>
+				</div>
+				<div class="field">
+					<label for="wings-server-allocation">{{ctx.Locale.Tr "admin.wings_locations.allocation"}}</label>
+					<select id="wings-server-allocation" name="allocation_id">
+						<option value="0">{{ctx.Locale.Tr "admin.wings_locations.no_allocation"}}</option>
+						{{range .Allocations}}
+						<option value="{{.ID}}">{{.IP}}:{{.Port}}</option>
+						{{end}}
+					</select>
+				</div>
 				<button class="ui primary button" type="submit">{{ctx.Locale.Tr "admin.wings_servers.register_button"}}</button>
 			</form>
 		{{else}}
