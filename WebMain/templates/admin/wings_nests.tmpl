@@ -102,6 +102,78 @@
 		{{else}}
 		<p>{{ctx.Locale.Tr "admin.wings_nests.empty"}}</p>
 		{{end}}
+
+		<h5 class="ui header">{{ctx.Locale.Tr "admin.wings_nests.create_variable"}}</h5>
+		<form class="ui form" method="post" action="{{AppSubUrl}}/admin/wings/nests/eggs/variables">
+			<div class="required field">
+				<label for="wings-variable-egg">{{ctx.Locale.Tr "admin.wings_nests.egg"}}</label>
+				<select id="wings-variable-egg" name="egg_id" required>
+					{{range .Eggs}}
+					<option value="{{.ID}}">{{.Name}}</option>
+					{{end}}
+				</select>
+			</div>
+			<div class="required field">
+				<label for="wings-variable-name">{{ctx.Locale.Tr "admin.wings_nests.name"}}</label>
+				<input id="wings-variable-name" name="name" maxlength="191" required>
+			</div>
+			<div class="required field">
+				<label for="wings-variable-env">{{ctx.Locale.Tr "admin.wings_nests.env_variable"}}</label>
+				<input id="wings-variable-env" name="env_variable" maxlength="191" required>
+			</div>
+			<div class="field">
+				<label for="wings-variable-default">{{ctx.Locale.Tr "admin.wings_nests.default_value"}}</label>
+				<input id="wings-variable-default" name="default_value">
+			</div>
+			<div class="field">
+				<label for="wings-variable-rules">{{ctx.Locale.Tr "admin.wings_nests.rules"}}</label>
+				<input id="wings-variable-rules" name="rules" placeholder="required|string|max:255">
+			</div>
+			<div class="field">
+				<div class="ui checkbox">
+					<input type="checkbox" name="user_viewable" value="true" checked>
+					<label>{{ctx.Locale.Tr "admin.wings_nests.user_viewable"}}</label>
+				</div>
+			</div>
+			<div class="field">
+				<div class="ui checkbox">
+					<input type="checkbox" name="user_editable" value="true" checked>
+					<label>{{ctx.Locale.Tr "admin.wings_nests.user_editable"}}</label>
+				</div>
+			</div>
+			<button class="ui primary button" type="submit">{{ctx.Locale.Tr "admin.wings_nests.create"}}</button>
+		</form>
+
+		<h5 class="ui header">{{ctx.Locale.Tr "admin.wings_nests.saved_variables"}}</h5>
+		{{range .Eggs}}
+		{{if (index $.Variables .ID)}}
+		<p><strong>{{.Name}}</strong></p>
+		<table class="ui celled table">
+			<thead>
+				<tr>
+					<th>{{ctx.Locale.Tr "admin.wings_nests.name"}}</th>
+					<th>{{ctx.Locale.Tr "admin.wings_nests.env_variable"}}</th>
+					<th>{{ctx.Locale.Tr "admin.wings_nests.default_value"}}</th>
+					<th>{{ctx.Locale.Tr "admin.wings_nests.actions"}}</th>
+				</tr>
+			</thead>
+			<tbody>
+				{{range (index $.Variables .ID)}}
+				<tr>
+					<td>{{.Name}}</td>
+					<td>{{.EnvVariable}}</td>
+					<td>{{.DefaultValue}}</td>
+					<td>
+						<form method="post" action="{{AppSubUrl}}/admin/wings/nests/eggs/variables/{{.ID}}/delete" style="display:inline">
+							<button class="ui red button" type="submit">{{ctx.Locale.Tr "admin.wings_nests.delete"}}</button>
+						</form>
+					</td>
+				</tr>
+				{{end}}
+			</tbody>
+		</table>
+		{{end}}
+		{{end}}
 	</div>
 </div>
 {{template "admin/layout_footer" .}}

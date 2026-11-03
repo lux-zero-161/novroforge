@@ -949,6 +949,8 @@ func registerRoutes(m *web.Route) {
 	m.Post("/{id}/delete", admin.DeleteWingsNest)
 	m.Post("/eggs", admin.CreateWingsEgg)
 	m.Post("/eggs/{id}/delete", admin.DeleteWingsEgg)
+m.Post("/eggs/variables", admin.CreateWingsEggVariable)
+m.Post("/eggs/variables/{id}/delete", admin.DeleteWingsEggVariable)
 })
 m.Group("/wings/nodes", func() {
 			m.Get("", admin.WingsNodes)
