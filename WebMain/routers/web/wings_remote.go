@@ -109,6 +109,79 @@ func WingsRemoteBackupRestoreStatus(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusNoContent)
 }
 
+// WingsRemoteServers returns the (currently empty) list of servers registered on
+// this node. WebMain does not provision servers onto Wings, so the list is
+// always empty; this endpoint exists so the Wings daemon can boot.
+func WingsRemoteServers(w http.ResponseWriter, r *http.Request) {
+	tokenID, token, ok := parseWingsRemoteAuthorization(r.Header.Get("Authorization"))
+	if !ok {
+		http.Error(w, "unauthorized", http.StatusUnauthorized)
+		return
+	}
+	node, exists, err := wings_model.GetNodeByRemoteTokenID(r.Context(), tokenID)
+	if err != nil {
+		log.Error("Get Wings node by remote token ID: %v", err)
+		http.Error(w, "internal server error", http.StatusInternalServerError)
+		return
+	}
+	if !exists || node == nil {
+		http.Error(w, "unauthorized", http.StatusUnauthorized)
+		return
+	}
+	ok2, err := node.AuthenticateRemoteCallback(tokenID, token)
+	if err != nil {
+		log.Error("Authenticate Wings remote request: %v", err)
+		http.Error(w, "internal server error", http.StatusInternalServerError)
+		return
+	}
+	if !ok2 {
+		http.Error(w, "unauthorized", http.StatusUnauthorized)
+		return
+	}
+	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Cache-Control", "no-store")
+	resp := map[string]any{
+		"data": []any{},
+		"meta": map[string]any{
+			"pagination": map[string]any{
+				"current_page": 1,
+				"from":         0,
+				"last_page":    1,
+				"per_page":     50,
+				"to":           0,
+				"total":        0,
+			},
+		},
+	}
+	_ = json.NewEncoder(w).Encode(resp)
+}
+
+// WingsRemoteServersReset acknowledges Wings' request to reset server states.
+func WingsRemoteServersReset(w http.ResponseWriter, r *http.Request) {
+	tokenID, token, ok := parseWingsRemoteAuthorization(r.Header.Get("Authorization"))
+	if !ok {
+		http.Error(w, "unauthorized", http.StatusUnauthorized)
+		return
+	}
+	node, exists, err := wings_model.GetNodeByRemoteTokenID(r.Context(), tokenID)
+	if err != nil {
+		log.Error("Get Wings node by remote token ID: %v", err)
+		http.Error(w, "internal server error", http.StatusInternalServerError)
+		return
+	}
+	if !exists || node == nil {
+		http.Error(w, "unauthorized", http.StatusUnauthorized)
+		return
+	}
+	ok2, err := node.AuthenticateRemoteCallback(tokenID, token)
+	if err != nil || !ok2 {
+		http.Error(w, "unauthorized", http.StatusUnauthorized)
+		return
+	}
+	w.Header().Set("Cache-Control", "no-store")
+	w.WriteHeader(http.StatusNoContent)
+}
+
 func parseWingsRemoteAuthorization(header string) (string, string, bool) {
 	scheme, credentials, ok := strings.Cut(header, " ")
 	if !ok || !strings.EqualFold(scheme, "Bearer") || strings.ContainsAny(credentials, " \t\r\n") {

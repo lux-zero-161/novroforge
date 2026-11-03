@@ -254,6 +254,22 @@ func GetNodeByID(ctx context.Context, id int64) (*WingsNode, bool, error) {
 	return node, exists, nil
 }
 
+// GetNodeByRemoteTokenID looks up a node by its remote API token ID.
+func GetNodeByRemoteTokenID(ctx context.Context, tokenID string) (*WingsNode, bool, error) {
+	if !remoteTokenIDPattern.MatchString(tokenID) {
+		return nil, false, ErrInvalidRemoteCredentials
+	}
+	var node WingsNode
+	exists, err := db.GetEngine(ctx).Where("remote_token_id = ?", tokenID).Get(&node)
+	if err != nil {
+		return nil, false, fmt.Errorf("get Wings node by remote token ID: %w", err)
+	}
+	if !exists {
+		return nil, false, nil
+	}
+	return &node, true, nil
+}
+
 // GetClient decrypts the node credential and returns a configured Wings client.
 func (node *WingsNode) GetClient() (*wings_service.Client, error) {
 	token, err := keying.WingsNode.Decrypt(node.EncryptedToken, keying.ColumnAndID("encrypted_token", node.ID))
