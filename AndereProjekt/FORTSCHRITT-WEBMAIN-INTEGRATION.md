@@ -1,4 +1,4 @@
-# Fortschritt: WebMain-Integration
+﻿# Fortschritt: WebMain-Integration
 
 Diese Datei dokumentiert den Fortschritt bei der Integration der Panel-Funktionen aus dem Referenzprojekt in `WebMain`.
 
@@ -60,10 +60,10 @@ Seit dem letzten Schritt können Admins registrierte Server zusätzlich direkt a
 | Starten, Stoppen, Neustarten und Force-Stop | Ja | In Arbeit | Power-Aktionen nur für explizit berechtigte Nutzer oder Administratoren; Force-Stop verlangt zusätzlich eine serverseitig geprüfte Bestätigung |
 | Konfigurationen und Umgebungen | Ja | Nicht umgesetzt | Wings liefert über `GET /api/servers/{uuid}` auch `configuration.environment` samt Werten, aber stellt hier keinen Endpunkt zum Ändern der Server-Startkonfiguration bereit. `/api/update` ändert die Wings-Daemon-Konfiguration, nicht die einzelne Serverumgebung. Werte oder Startbefehle daher nicht ungefiltert anzeigen; Integration erst mit passender Panel-API und expliziter Geheimnisredaktion. |
 | Benutzer, Rollen und Berechtigungen | Ja | In Arbeit | Admin kann WebMain-Nutzern Serverzugriff sowie getrennte Power-, Konsolen-, Datei-, Upload-, Backupverwaltungs- und Backup-Downloadrechte vergeben oder entziehen; Rechte sind standardmäßig deaktiviert. Ein vollständiges Rollenmodell fehlt. |
-| Aktivitätsverlauf und Benachrichtigungen | Ja | Noch zu prüfen | |
+| Aktivitätsverlauf und Benachrichtigungen | Ja | In Arbeit | Admin- und Nutzeransicht zeigen die neuesten Wings-Aktivitäten (Zeit, Akteur, Ereignis, Detail) für Node- und Serveraktionen. Konsolentexte und Tokens werden nicht protokolliert; Benachrichtigungen (E-Mail/Push) bleiben offen. |
 | Dateien, Backups, Datenbanken, Netzwerke und Zeitpläne | Ja | In Arbeit | Dateibrowser mit Suche nach Name/Typ und separaten Vorschau-, Download- und Schreibrechten unter `/user/servers/{id}/files`. Lokale Wings-Backups können unter `/user/servers/{id}/backups` nach Name/Status gefiltert, erstellt, wiederhergestellt und gelöscht werden; Downloads haben eine separate Berechtigung und laufen über kurzlebige Einmal-Tokens als Stream. S3-Backups, Datenbanken, Netzwerke und Zeitpläne fehlen; die Panel-verwalteten Bereiche haben keine passenden Wings-Endpunkte. |
-| Nodes, Allocations und Eggs | Ja | Noch zu prüfen | |
-| Administration und Systemeinstellungen | Ja | Noch zu prüfen | |
+| Nodes, Allocations und Eggs | Ja | Nicht umgesetzt | Wings stellt keine Endpunkte für Allocations oder Eggs bereit; diese werden in Pterodactyl durch die Panel-API verwaltet. |
+| Administration und Systemeinstellungen | Ja | Nicht umgesetzt | Wings-Daemon-Konfiguration (/api/update) betrifft den Daemon selbst, nicht WebMain; panel-seitige Einstellungen haben keine Wings-Entsprechung. |
 | Weitere relevante Funktionen | Noch zu prüfen | Noch zu prüfen | |
 
 Mögliche Statuswerte: **Noch zu prüfen**, **Offen**, **In Arbeit**, **Erledigt**, **Nicht umgesetzt**.
