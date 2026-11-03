@@ -29,17 +29,18 @@ import (
 )
 
 const (
-	maxResponseSize     = 4 << 20
-	maxTokenLength      = 4096
-	maxCommands         = 32
-	maxCommandLength    = 4096
-	maxDirectoryPath    = 4096
+	maxResponseSize      = 4 << 20
+	maxTokenLength       = 4096
+	maxCommands          = 32
+	maxCommandLength     = 4096
+	maxDirectoryPath     = 4096
 	// MaxFileContentSize bounds text that can be previewed or edited.
-	MaxFileContentSize = 1 << 20
+	MaxFileContentSize   = 1 << 20
 	// MaxFileUploadSize bounds files uploaded through the WebMain panel.
-	MaxFileUploadSize = 10 << 20
-	maxFilePreviewSize  = MaxFileContentSize
-	maxFileNameLength   = 255
+	MaxFileUploadSize    = 10 << 20
+	maxFilePreviewSize   = MaxFileContentSize
+	maxFileNameLength    = 255
+	uploadCleanupTimeout = 5 * time.Second
 )
 
 var (
@@ -635,7 +636,9 @@ func (c *Client) UploadFile(ctx context.Context, serverID, userID, directory, na
 }
 
 func cleanupWingsUpload(ctx context.Context, client *Client, serverID, directory, stagingName string, cause error) error {
-	if cleanupErr := client.DeleteFile(ctx, serverID, directory, stagingName); cleanupErr != nil {
+	cleanupCtx, cancel := context.WithTimeout(context.WithoutCancel(ctx), uploadCleanupTimeout)
+	defer cancel()
+	if cleanupErr := client.DeleteFile(cleanupCtx, serverID, directory, stagingName); cleanupErr != nil {
 		return fmt.Errorf("%w (temporary file cleanup failed: %v)", cause, cleanupErr)
 	}
 	return cause

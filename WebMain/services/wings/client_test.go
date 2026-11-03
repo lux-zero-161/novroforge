@@ -968,6 +968,42 @@ func TestUploadFileCleansStagingAfterWingsRejectsUpload(t *testing.T) {
 	require.NotContains(t, err.Error(), "token=")
 }
 
+func TestUploadFileCleansStagingAfterRequestCancellation(t *testing.T) {
+	t.Parallel()
+
+	ctx, cancel := context.WithCancel(context.Background())
+	defer cancel()
+	var cleanupCalled atomic.Bool
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		switch r.URL.Path {
+		case "/upload/file":
+			w.WriteHeader(http.StatusBadRequest)
+			flusher, ok := w.(http.Flusher)
+			if !ok {
+				t.Error("upload response writer does not support flushing")
+				return
+			}
+			flusher.Flush()
+			cancel()
+		case "/api/servers/" + testServerID + "/files/delete":
+			cleanupCalled.Store(true)
+			if err := r.Context().Err(); err != nil {
+				t.Errorf("cleanup request context error = %v, want active context", err)
+			}
+			w.WriteHeader(http.StatusNoContent)
+		default:
+			t.Errorf("unexpected request: %s %s", r.Method, r.URL.Path)
+		}
+	}))
+	defer server.Close()
+
+	client, err := NewClient(server.URL, "node-token")
+	require.NoError(t, err)
+	err = client.UploadFile(ctx, testServerID, "f1b3d5a7-1234-4567-89ab-cdef01234567", "/", "file.txt", []byte("content"))
+	require.Error(t, err)
+	require.True(t, cleanupCalled.Load(), "staged upload should be removed after cancellation")
+}
+
 func decodeTestUploadClaims(t *testing.T, token, secret string) struct {
 	IssuedAt       int64  `json:"iat"`
 	ExpirationTime int64  `json:"exp"`
