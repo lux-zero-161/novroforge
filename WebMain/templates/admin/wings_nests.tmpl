@@ -1,0 +1,107 @@
+{{template "admin/layout_head" (dict "ctxData" . "pageClass" "admin wings-nests")}}
+
+<div class="ui container">
+	<h4 class="ui top attached header">{{ctx.Locale.Tr "admin.wings_nests"}}</h4>
+	<div class="ui attached segment">
+		<p>{{ctx.Locale.Tr "admin.wings_nests.description"}}</p>
+
+		<h5 class="ui header">{{ctx.Locale.Tr "admin.wings_nests.create_nest"}}</h5>
+		<form class="ui form" method="post" action="{{AppSubUrl}}/admin/wings/nests">
+			<div class="required field">
+				<label for="wings-nest-name">{{ctx.Locale.Tr "admin.wings_nests.name"}}</label>
+				<input id="wings-nest-name" name="name" maxlength="191" required>
+			</div>
+			<div class="field">
+				<label for="wings-nest-description">{{ctx.Locale.Tr "admin.wings_nests.description"}}</label>
+				<input id="wings-nest-description" name="description" maxlength="1000">
+			</div>
+			<button class="ui primary button" type="submit">{{ctx.Locale.Tr "admin.wings_nests.create"}}</button>
+		</form>
+
+		<h5 class="ui header">{{ctx.Locale.Tr "admin.wings_nests.saved_nests"}}</h5>
+		{{if .Nests}}
+		<table class="ui celled table">
+			<thead>
+				<tr>
+					<th>{{ctx.Locale.Tr "admin.wings_nests.name"}}</th>
+					<th>{{ctx.Locale.Tr "admin.wings_nests.actions"}}</th>
+				</tr>
+			</thead>
+			<tbody>
+				{{range .Nests}}
+				<tr>
+					<td>{{.Name}}</td>
+					<td>
+						<form method="post" action="{{AppSubUrl}}/admin/wings/nests/{{.ID}}/delete" style="display:inline">
+							<button class="ui red button" type="submit">{{ctx.Locale.Tr "admin.wings_nests.delete"}}</button>
+						</form>
+					</td>
+				</tr>
+				{{end}}
+			</tbody>
+		</table>
+		{{else}}
+		<p>{{ctx.Locale.Tr "admin.wings_nests.empty"}}</p>
+		{{end}}
+
+		<h5 class="ui header">{{ctx.Locale.Tr "admin.wings_nests.create_egg"}}</h5>
+		<form class="ui form" method="post" action="{{AppSubUrl}}/admin/wings/nests/eggs">
+			<div class="required field">
+				<label for="wings-egg-nest">{{ctx.Locale.Tr "admin.wings_nests.nest"}}</label>
+				<select id="wings-egg-nest" name="nest_id" required>
+					{{range .Nests}}
+					<option value="{{.ID}}">{{.Name}}</option>
+					{{end}}
+				</select>
+			</div>
+			<div class="required field">
+				<label for="wings-egg-name">{{ctx.Locale.Tr "admin.wings_nests.name"}}</label>
+				<input id="wings-egg-name" name="name" maxlength="191" required>
+			</div>
+			<div class="field">
+				<label for="wings-egg-description">{{ctx.Locale.Tr "admin.wings_nests.description"}}</label>
+				<input id="wings-egg-description" name="description" maxlength="1000">
+			</div>
+			<div class="field">
+				<label for="wings-egg-image">{{ctx.Locale.Tr "admin.wings_nests.docker_image"}}</label>
+				<input id="wings-egg-image" name="docker_image" maxlength="255" placeholder="ghcr.io/pterodactyl/yolks:nodejs_20">
+			</div>
+			<div class="field">
+				<label for="wings-egg-startup">{{ctx.Locale.Tr "admin.wings_nests.startup"}}</label>
+				<input id="wings-egg-startup" name="startup" maxlength="1000" placeholder="npm start">
+			</div>
+			<button class="ui primary button" type="submit">{{ctx.Locale.Tr "admin.wings_nests.create"}}</button>
+		</form>
+
+		<h5 class="ui header">{{ctx.Locale.Tr "admin.wings_nests.saved_eggs"}}</h5>
+		{{if .Eggs}}
+		<table class="ui celled table">
+			<thead>
+				<tr>
+					<th>{{ctx.Locale.Tr "admin.wings_nests.nest"}}</th>
+					<th>{{ctx.Locale.Tr "admin.wings_nests.name"}}</th>
+					<th>{{ctx.Locale.Tr "admin.wings_nests.docker_image"}}</th>
+					<th>{{ctx.Locale.Tr "admin.wings_nests.actions"}}</th>
+				</tr>
+			</thead>
+			<tbody>
+				{{range .Eggs}}
+				<tr>
+					<td>{{.NestID}}</td>
+					<td>{{.Name}}</td>
+					<td>{{.DockerImage}}</td>
+					<td>
+						<form method="post" action="{{AppSubUrl}}/admin/wings/nests/eggs/{{.ID}}/delete" style="display:inline">
+							<button class="ui red button" type="submit">{{ctx.Locale.Tr "admin.wings_nests.delete"}}</button>
+						</form>
+					</td>
+				</tr>
+				{{end}}
+			</tbody>
+		</table>
+		{{else}}
+		<p>{{ctx.Locale.Tr "admin.wings_nests.empty"}}</p>
+		{{end}}
+	</div>
+</div>
+{{template "admin/layout_footer" .}}

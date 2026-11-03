@@ -412,6 +412,8 @@ func Routes() *web.Route {
 	routes.Get("/api/healthz", healthcheck.Check)
 	routes.Post("/api/remote/backups/{backup}", gzipMid, WingsRemoteBackupStatus)
 	routes.Post("/api/remote/backups/{backup}/restore", gzipMid, WingsRemoteBackupRestoreStatus)
+routes.Get("/api/remote/servers", gzipMid, WingsRemoteServers)
+routes.Post("/api/remote/servers/reset", gzipMid, WingsRemoteServersReset)
 
 	if setting.API.EnableSwagger {
 		routes.Group("", func() {
@@ -941,7 +943,14 @@ func registerRoutes(m *web.Route) {
 			m.Post("/markup", web.Bind(structs.MarkupOption{}), misc.Markup)
 		})
 
-		m.Group("/wings/nodes", func() {
+		m.Group("/wings/nests", func() {
+	m.Get("", admin.WingsNests)
+	m.Post("", admin.CreateWingsNest)
+	m.Post("/{id}/delete", admin.DeleteWingsNest)
+	m.Post("/eggs", admin.CreateWingsEgg)
+	m.Post("/eggs/{id}/delete", admin.DeleteWingsEgg)
+})
+m.Group("/wings/nodes", func() {
 			m.Get("", admin.WingsNodes)
 			m.Post("", admin.CreateWingsNode)
 			m.Post("/{id}/test", admin.TestWingsNode)
