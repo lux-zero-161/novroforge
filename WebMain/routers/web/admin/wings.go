@@ -305,8 +305,13 @@ func ControlWingsServer(ctx *context.Context) {
 		return
 	}
 	action := ctx.FormString("action")
-	if action != "start" && action != "stop" && action != "restart" {
+	if action != "start" && action != "stop" && action != "restart" && action != "kill" {
 		ctx.Flash.Error(ctx.Tr("admin.wings_servers.invalid_action"))
+		ctx.Redirect(setting.AppSubURL + "/admin/wings/nodes")
+		return
+	}
+	if action == "kill" && !ctx.FormBool("confirm_kill") {
+		ctx.Flash.Error(ctx.Tr("admin.wings_servers.kill_confirmation_required"))
 		ctx.Redirect(setting.AppSubURL + "/admin/wings/nodes")
 		return
 	}
@@ -382,14 +387,21 @@ func TestWingsNode(ctx *context.Context) {
 		return
 	}
 	client, err := node.GetClient()
+	var info wings_service.SystemInformation
 	if err == nil {
-		_, err = client.GetSystem(ctx)
+		info, err = client.GetSystem(ctx)
 	}
 	if err != nil {
 		log.Error("TestWingsNode[%d]: %v", id, err)
 		ctx.Flash.Error(ctx.Tr("admin.wings_nodes.connection_failed"))
 	} else {
-		ctx.Flash.Success(ctx.Tr("admin.wings_nodes.connection_succeeded"))
+		ctx.Flash.Success(ctx.Tr(
+			"admin.wings_nodes.connection_succeeded",
+			info.OS,
+			info.Architecture,
+			info.CPUCount,
+			info.Version,
+		))
 	}
 	ctx.Redirect(setting.AppSubURL + "/admin/wings/nodes")
 }

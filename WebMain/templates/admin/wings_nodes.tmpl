@@ -134,12 +134,19 @@
 									<form method="post" action="{{AppSubUrl}}/admin/wings/nodes/servers/{{.ID}}/test">
 										<button class="ui button" type="submit">{{ctx.Locale.Tr "admin.wings_servers.check_status"}}</button>
 									</form>
-									<form method="post" action="{{AppSubUrl}}/admin/wings/nodes/servers/{{.ID}}/power">
-										<select name="action" aria-label="{{ctx.Locale.Tr "admin.wings_servers.power_action"}}">
+									<form class="ui form" method="post" action="{{AppSubUrl}}/admin/wings/nodes/servers/{{.ID}}/power" data-wings-power-form>
+										<select name="action" aria-label="{{ctx.Locale.Tr "admin.wings_servers.power_action"}}" data-wings-power-action>
 											<option value="start">{{ctx.Locale.Tr "admin.wings_servers.start"}}</option>
 											<option value="stop">{{ctx.Locale.Tr "admin.wings_servers.stop"}}</option>
 											<option value="restart">{{ctx.Locale.Tr "admin.wings_servers.restart"}}</option>
+											<option value="kill">{{ctx.Locale.Tr "admin.wings_servers.kill"}}</option>
 										</select>
+										<div class="field" data-wings-kill-confirmation hidden>
+											<div class="ui checkbox">
+												<input type="checkbox" name="confirm_kill" value="true" required>
+												<label>{{ctx.Locale.Tr "admin.wings_servers.kill_confirm"}}</label>
+											</div>
+										</div>
 										<button class="ui button" type="submit">{{ctx.Locale.Tr "admin.wings_servers.send_action"}}</button>
 									</form>
 									<form method="post" action="{{AppSubUrl}}/admin/wings/nodes/servers/{{.ID}}/command">

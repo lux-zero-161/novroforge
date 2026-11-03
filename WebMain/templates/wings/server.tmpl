@@ -13,13 +13,20 @@
 			<p>{{ctx.Locale.Tr "wings.server_network"}}: {{ctx.Locale.Tr "wings.server_network_rx"}} <span id="wings-server-network-rx">{{.Details.Utilization.Network.RxBytes}}</span> {{ctx.Locale.Tr "wings.bytes"}}, {{ctx.Locale.Tr "wings.server_network_tx"}} <span id="wings-server-network-tx">{{.Details.Utilization.Network.TxBytes}}</span> {{ctx.Locale.Tr "wings.bytes"}}</p>
 		</div>
 		{{if .Access.CanPower}}
-			<form class="ui form" method="post" action="{{AppSubUrl}}/user/servers/{{.Server.ID}}/power">
+			<form class="ui form" method="post" action="{{AppSubUrl}}/user/servers/{{.Server.ID}}/power" data-wings-power-form>
 				<label for="wings-user-power">{{ctx.Locale.Tr "wings.power_action"}}</label>
-				<select id="wings-user-power" name="action">
+				<select id="wings-user-power" name="action" data-wings-power-action>
 					<option value="start">{{ctx.Locale.Tr "wings.start"}}</option>
 					<option value="stop">{{ctx.Locale.Tr "wings.stop"}}</option>
 					<option value="restart">{{ctx.Locale.Tr "wings.restart"}}</option>
+					<option value="kill">{{ctx.Locale.Tr "wings.kill"}}</option>
 				</select>
+				<div class="field" data-wings-kill-confirmation hidden>
+					<div class="ui checkbox">
+						<input type="checkbox" name="confirm_kill" value="true" required>
+						<label>{{ctx.Locale.Tr "wings.power_kill_confirm"}}</label>
+					</div>
+				</div>
 				<button class="ui primary button" type="submit">{{ctx.Locale.Tr "wings.send_action"}}</button>
 			</form>
 		{{end}}

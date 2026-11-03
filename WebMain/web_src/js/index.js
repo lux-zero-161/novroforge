@@ -89,6 +89,7 @@ import {initWingsConsole} from './features/wings-console.js';
 import {initWingsServers} from './features/wings-servers.js';
 import {initWingsFiles} from './features/wings-files.js';
 import {initWingsBackups} from './features/wings-backups.js';
+import {initWingsPower} from './features/wings-power.js';
 import {initRepoDiffCommitBranchesAndTags} from './features/repo-diff-commit.js';
 import {initDirAuto} from './modules/dirauto.js';
 import {initRepositorySearch} from './features/repo-search.js';
@@ -197,6 +198,7 @@ onDomReady(() => {
   initWingsServers();
   initWingsFiles();
   initWingsBackups();
+  initWingsPower();
   initRepoMilestoneEditor();
 
   initCommitStatuses();

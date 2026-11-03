@@ -1116,8 +1116,13 @@ func ControlWingsServer(ctx *context.Context) {
 		return
 	}
 	action := ctx.FormString("action")
-	if action != "start" && action != "stop" && action != "restart" {
+	if action != "start" && action != "stop" && action != "restart" && action != "kill" {
 		ctx.Flash.Error(ctx.Tr("wings.invalid_action"))
+		ctx.Redirect(setting.AppSubURL + "/user/servers/" + strconv.FormatInt(server.ID, 10))
+		return
+	}
+	if action == "kill" && !ctx.FormBool("confirm_kill") {
+		ctx.Flash.Error(ctx.Tr("wings.power_kill_confirmation_required"))
 		ctx.Redirect(setting.AppSubURL + "/user/servers/" + strconv.FormatInt(server.ID, 10))
 		return
 	}

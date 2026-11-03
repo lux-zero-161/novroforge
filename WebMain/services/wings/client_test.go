@@ -101,6 +101,8 @@ func TestGetSystemUsesBearerToken(t *testing.T) {
 	info, err := client.GetSystem(context.Background())
 	require.NoError(t, err)
 	require.Equal(t, "linux", info.OS)
+	require.Equal(t, "amd64", info.Architecture)
+	require.Equal(t, "test", info.KernelVersion)
 	require.Equal(t, "1.0", info.Version)
 	require.Equal(t, 8, info.CPUCount)
 }
@@ -143,6 +145,31 @@ func TestPowerSendsExpectedAction(t *testing.T) {
 	client, err := NewClient(server.URL, "node-token")
 	require.NoError(t, err)
 	require.NoError(t, client.Power(context.Background(), testServerID, "restart"))
+}
+
+func TestPowerSendsKillAction(t *testing.T) {
+	t.Parallel()
+
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if r.Method != http.MethodPost || r.URL.Path != "/api/servers/"+testServerID+"/power" {
+			t.Errorf("power request = %s %s", r.Method, r.URL.Path)
+		}
+		var body struct {
+			Action string `json:"action"`
+		}
+		if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
+			t.Errorf("decode request body: %v", err)
+		}
+		if body.Action != "kill" {
+			t.Errorf("action = %q, want kill", body.Action)
+		}
+		w.WriteHeader(http.StatusAccepted)
+	}))
+	defer server.Close()
+
+	client, err := NewClient(server.URL, "node-token")
+	require.NoError(t, err)
+	require.NoError(t, client.Power(context.Background(), testServerID, "kill"))
 }
 
 func TestLogsValidatesLineLimit(t *testing.T) {
