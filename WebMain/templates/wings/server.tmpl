@@ -63,6 +63,31 @@
 				<button class="ui button" type="submit">{{ctx.Locale.Tr "wings.send_command"}}</button>
 			</form>
 		{{end}}
+		<h2 class="ui header">{{ctx.Locale.Tr "wings.activity_header"}}</h2>
+		{{if .Activities}}
+		<table class="ui celled table">
+			<thead>
+				<tr>
+					<th>{{ctx.Locale.Tr "wings.activity_time"}}</th>
+					<th>{{ctx.Locale.Tr "wings.activity_actor"}}</th>
+					<th>{{ctx.Locale.Tr "wings.activity_event"}}</th>
+					<th>{{ctx.Locale.Tr "wings.activity_detail"}}</th>
+				</tr>
+			</thead>
+			<tbody>
+				{{range .Activities}}
+				<tr>
+					<td>{{DateUtils.TimeSince .CreatedUnix}}</td>
+					<td>{{.ActorName}}</td>
+					<td>{{ctx.Locale.Tr .EventLabelKey}}</td>
+					<td>{{.Detail}}</td>
+				</tr>
+				{{end}}
+			</tbody>
+		</table>
+		{{else}}
+		<p>{{ctx.Locale.Tr "wings.activity_empty"}}</p>
+		{{end}}
 	</div>
 </div>
 {{template "base/footer" .}}

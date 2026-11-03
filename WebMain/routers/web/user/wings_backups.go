@@ -207,6 +207,7 @@ func CreateWingsServerBackup(ctx *context.Context) {
 		ctx.Redirect(wingsServerBackupsURL(server.ID))
 		return
 	}
+	recordWingsActivity(ctx, server, wings_model.ActivityBackupCreate, backup.Name)
 	ctx.Flash.Success(ctx.Tr("wings.backup_create_started"))
 	ctx.Redirect(wingsServerBackupsURL(server.ID))
 }
@@ -279,6 +280,7 @@ func RestoreWingsServerBackup(ctx *context.Context) {
 		ctx.Redirect(wingsServerBackupsURL(server.ID))
 		return
 	}
+	recordWingsActivity(ctx, server, wings_model.ActivityBackupRestore, backup.Name)
 	ctx.Flash.Success(ctx.Tr("wings.backup_restore_started"))
 	ctx.Redirect(wingsServerBackupsURL(server.ID))
 }
@@ -336,6 +338,7 @@ func DeleteWingsServerBackup(ctx *context.Context) {
 		ctx.Redirect(wingsServerBackupsURL(server.ID))
 		return
 	}
+	recordWingsActivity(ctx, server, wings_model.ActivityBackupDelete, backup.Name)
 	ctx.Flash.Success(ctx.Tr("wings.backup_deleted"))
 	ctx.Redirect(wingsServerBackupsURL(server.ID))
 }

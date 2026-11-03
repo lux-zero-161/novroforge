@@ -301,5 +301,32 @@
 			<p>{{ctx.Locale.Tr "admin.wings_servers.empty"}}</p>
 		{{end}}
 	</div>
+	<div class="ui attached segment">
+		<h4 class="ui header">{{ctx.Locale.Tr "wings.activity_header"}}</h4>
+		{{if .Activities}}
+		<table class="ui celled table">
+			<thead>
+				<tr>
+					<th>{{ctx.Locale.Tr "wings.activity_time"}}</th>
+					<th>{{ctx.Locale.Tr "wings.activity_actor"}}</th>
+					<th>{{ctx.Locale.Tr "wings.activity_event"}}</th>
+					<th>{{ctx.Locale.Tr "wings.activity_detail"}}</th>
+				</tr>
+			</thead>
+			<tbody>
+				{{range .Activities}}
+				<tr>
+					<td>{{DateUtils.TimeSince .CreatedUnix}}</td>
+					<td>{{.ActorName}}</td>
+					<td>{{ctx.Locale.Tr .EventLabelKey}}</td>
+					<td>{{.Detail}}</td>
+				</tr>
+				{{end}}
+			</tbody>
+		</table>
+		{{else}}
+		<p>{{ctx.Locale.Tr "wings.activity_empty"}}</p>
+		{{end}}
+	</div>
 </div>
 {{template "admin/layout_footer" .}}

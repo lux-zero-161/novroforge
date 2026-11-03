@@ -103,6 +103,12 @@ func WingsServer(ctx *context.Context) {
 	ctx.Data["Access"] = access
 	ctx.Data["Details"] = details
 	ctx.Data["Logs"] = logs
+	activities, err := wings_model.ListServerActivity(ctx, server.ID, 20)
+	if err != nil {
+		ctx.ServerError("ListWingsServerActivity", err)
+		return
+	}
+	ctx.Data["Activities"] = activities
 	ctx.HTML(http.StatusOK, tplWingsServer)
 }
 
@@ -398,6 +404,7 @@ func SaveWingsServerFile(ctx *context.Context) {
 		return
 	}
 
+	recordWingsActivity(ctx, server, wings_model.ActivityFileEdit, filePath)
 	ctx.Flash.Success(ctx.Tr("wings.file_saved"))
 	ctx.Redirect(wingsServerFilesURL(server.ID, path.Dir(filePath)))
 }
@@ -472,6 +479,7 @@ func CreateWingsServerDirectory(ctx *context.Context) {
 		return
 	}
 
+	recordWingsActivity(ctx, server, wings_model.ActivityFileCreateDir, path.Join(directory, name))
 	ctx.Flash.Success(ctx.Tr("wings.directory_created"))
 	ctx.Redirect(wingsServerFilesURL(server.ID, directory))
 }
@@ -545,6 +553,7 @@ func RenameWingsServerFile(ctx *context.Context) {
 		return
 	}
 
+	recordWingsActivity(ctx, server, wings_model.ActivityFileRename, path.Join(directory, from)+" -> "+to)
 	ctx.Flash.Success(ctx.Tr("wings.file_renamed"))
 	ctx.Redirect(wingsServerFilesURL(server.ID, directory))
 }
@@ -602,6 +611,7 @@ func DeleteWingsServerFile(ctx *context.Context) {
 		return
 	}
 
+	recordWingsActivity(ctx, server, wings_model.ActivityFileDelete, filePath)
 	ctx.Flash.Success(ctx.Tr("wings.file_deleted"))
 	ctx.Redirect(wingsServerFilesURL(server.ID, directory))
 }
@@ -655,6 +665,7 @@ func CopyWingsServerFile(ctx *context.Context) {
 		return
 	}
 
+	recordWingsActivity(ctx, server, wings_model.ActivityFileCopy, filePath)
 	ctx.Flash.Success(ctx.Tr("wings.file_copied"))
 	ctx.Redirect(wingsServerFilesURL(server.ID, directory))
 }
@@ -708,6 +719,7 @@ func CompressWingsServerFile(ctx *context.Context) {
 		return
 	}
 
+	recordWingsActivity(ctx, server, wings_model.ActivityFileCompress, filePath)
 	ctx.Flash.Success(ctx.Tr("wings.file_compressed"))
 	ctx.Redirect(wingsServerFilesURL(server.ID, directory))
 }
@@ -778,6 +790,7 @@ func DecompressWingsServerFile(ctx *context.Context) {
 		return
 	}
 
+	recordWingsActivity(ctx, server, wings_model.ActivityFileDecompress, filePath)
 	ctx.Flash.Success(ctx.Tr("wings.file_decompressed"))
 	ctx.Redirect(wingsServerFilesURL(server.ID, directory))
 }
@@ -840,6 +853,7 @@ func ChmodWingsServerFile(ctx *context.Context) {
 		return
 	}
 
+	recordWingsActivity(ctx, server, wings_model.ActivityFileChmod, filePath+" "+ctx.FormString("mode"))
 	ctx.Flash.Success(ctx.Tr("wings.file_mode_updated"))
 	ctx.Redirect(wingsServerFilesURL(server.ID, directory))
 }
@@ -968,6 +982,7 @@ func UploadWingsServerFile(ctx *context.Context) {
 		return
 	}
 
+	recordWingsActivity(ctx, server, wings_model.ActivityFileUpload, path.Join(directory, filename))
 	ctx.Flash.Success(ctx.Tr("wings.file_uploaded"))
 	ctx.Redirect(wingsServerFilesURL(server.ID, directory))
 }
@@ -1134,6 +1149,7 @@ func ControlWingsServer(ctx *context.Context) {
 		log.Error("ControlUserWingsServer[%d]: %v", server.ID, err)
 		ctx.Flash.Error(ctx.Tr("wings.action_failed"))
 	} else {
+		recordWingsActivity(ctx, server, wings_model.ActivityPower, action)
 		ctx.Flash.Success(ctx.Tr("wings.action_sent"))
 	}
 	ctx.Redirect(setting.AppSubURL + "/user/servers/" + strconv.FormatInt(server.ID, 10))
@@ -1157,6 +1173,7 @@ func SendWingsServerCommand(ctx *context.Context) {
 		log.Error("SendUserWingsServerCommand[%d]: %v", server.ID, err)
 		ctx.Flash.Error(ctx.Tr("wings.command_failed"))
 	} else {
+		recordWingsActivity(ctx, server, wings_model.ActivityCommand, "")
 		ctx.Flash.Success(ctx.Tr("wings.command_sent"))
 	}
 	ctx.Redirect(setting.AppSubURL + "/user/servers/" + strconv.FormatInt(server.ID, 10))
@@ -1191,4 +1208,12 @@ func handleWingsServerActionError(ctx *context.Context, operation string, err er
 	}
 	log.Error("%s: %v", operation, err)
 	ctx.ServerError(operation, err)
+}
+
+// recordWingsActivity stores an audit entry for the current user action and
+// never fails the action itself when logging is unavailable.
+func recordWingsActivity(ctx *context.Context, server *wings_model.WingsServer, event, detail string) {
+	if err := wings_model.RecordActivity(ctx, server.NodeID, server.ID, ctx.Doer.ID, ctx.Doer.Name, event, detail); err != nil {
+		log.Error("RecordWingsActivity(event=%s, server=%d): %v", event, server.ID, err)
+	}
 }

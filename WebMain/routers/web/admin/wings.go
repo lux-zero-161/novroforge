@@ -42,6 +42,12 @@ func prepareWingsNodesPage(ctx *context.Context) bool {
 		return false
 	}
 	ctx.Data["Servers"] = servers
+	activities, err := wings_model.ListActivity(ctx, 50)
+	if err != nil {
+		ctx.ServerError("ListWingsActivity", err)
+		return false
+	}
+	ctx.Data["Activities"] = activities
 	return true
 }
 
@@ -78,6 +84,7 @@ func RotateWingsNodeToken(ctx *context.Context) {
 		log.Error("RotateWingsNodeToken[%d]: %v", id, err)
 		ctx.Flash.Error(ctx.Tr("admin.wings_nodes.token_rotation_failed"))
 	default:
+		recordWingsActivity(ctx, id, 0, wings_model.ActivityNodeTokenRotate, "")
 		ctx.Flash.Success(ctx.Tr("admin.wings_nodes.token_rotated"))
 	}
 	ctx.Redirect(setting.AppSubURL + "/admin/wings/nodes")
@@ -98,6 +105,7 @@ func SetWingsNodeRemoteCredentials(ctx *context.Context) {
 		log.Error("SetWingsNodeRemoteCredentials[%d]: %v", id, err)
 		ctx.Flash.Error(ctx.Tr("admin.wings_nodes.remote_credentials_failed"))
 	default:
+		recordWingsActivity(ctx, id, 0, wings_model.ActivityNodeRemoteCreds, "")
 		ctx.Flash.Success(ctx.Tr("admin.wings_nodes.remote_credentials_saved"))
 	}
 	ctx.Redirect(setting.AppSubURL + "/admin/wings/nodes")
@@ -123,6 +131,7 @@ func DeleteWingsNode(ctx *context.Context) {
 	}
 
 	ctx.Flash.Success(ctx.Tr("admin.wings_nodes.deleted"))
+	recordWingsActivity(ctx, id, 0, wings_model.ActivityNodeDelete, "")
 	ctx.Redirect(setting.AppSubURL + "/admin/wings/nodes")
 }
 
@@ -143,6 +152,7 @@ func CreateWingsServer(ctx *context.Context) {
 		log.Error("CreateWingsServer[node=%d]: %v", nodeID, err)
 		ctx.Flash.Error(ctx.Tr("admin.wings_servers.register_failed"))
 	default:
+		recordWingsActivity(ctx, nodeID, 0, wings_model.ActivityRegister, ctx.FormString("server_uuid"))
 		ctx.Flash.Success(ctx.Tr("admin.wings_servers.registered_success"))
 	}
 	ctx.Redirect(setting.AppSubURL + "/admin/wings/nodes")
@@ -163,6 +173,7 @@ func RenameWingsServer(ctx *context.Context) {
 		log.Error("RenameWingsServer[%d]: %v", id, err)
 		ctx.Flash.Error(ctx.Tr("admin.wings_servers.rename_failed"))
 	default:
+		recordWingsServerActivity(ctx, id, wings_model.ActivityRename, ctx.FormString("name"))
 		ctx.Flash.Success(ctx.Tr("admin.wings_servers.renamed"))
 	}
 	ctx.Redirect(setting.AppSubURL + "/admin/wings/nodes")
@@ -175,10 +186,21 @@ func DeleteWingsServer(ctx *context.Context) {
 		ctx.Redirect(setting.AppSubURL + "/admin/wings/nodes")
 		return
 	}
+	server, exists, err := wings_model.GetServerByID(ctx, id)
+	if err != nil {
+		ctx.ServerError("GetWingsServer", err)
+		return
+	}
+	if !exists {
+		ctx.Flash.Error(ctx.Tr("admin.wings_servers.not_found"))
+		ctx.Redirect(setting.AppSubURL + "/admin/wings/nodes")
+		return
+	}
 	if err := wings_model.DeleteServerRegistration(ctx, id); err != nil {
 		log.Error("DeleteWingsServer[%d]: %v", id, err)
 		ctx.Flash.Error(ctx.Tr("admin.wings_servers.remove_failed"))
 	} else {
+		recordWingsActivity(ctx, server.NodeID, server.ID, wings_model.ActivityRemove, server.Name)
 		ctx.Flash.Success(ctx.Tr("admin.wings_servers.removed"))
 	}
 	ctx.Redirect(setting.AppSubURL + "/admin/wings/nodes")
@@ -209,6 +231,7 @@ func GrantWingsServerAccess(ctx *context.Context) {
 			ctx.Flash.Error(ctx.Tr("admin.wings_servers.access_failed"))
 		}
 	} else {
+		recordWingsServerActivity(ctx, serverID, wings_model.ActivityGrantAccess, ctx.FormString("username"))
 		ctx.Flash.Success(ctx.Tr("admin.wings_servers.access_granted"))
 	}
 	ctx.Redirect(setting.AppSubURL + "/admin/wings/nodes")
@@ -221,6 +244,7 @@ func RevokeWingsServerAccess(ctx *context.Context) {
 		log.Error("RevokeWingsServerAccess[server=%d,access=%d]: %v", serverID, accessID, err)
 		ctx.Flash.Error(ctx.Tr("admin.wings_servers.access_revoke_failed"))
 	} else {
+		recordWingsServerActivity(ctx, serverID, wings_model.ActivityRevokeAccess, "")
 		ctx.Flash.Success(ctx.Tr("admin.wings_servers.access_revoked"))
 	}
 	ctx.Redirect(setting.AppSubURL + "/admin/wings/nodes")
@@ -333,6 +357,7 @@ func ControlWingsServer(ctx *context.Context) {
 		log.Error("ControlWingsServer[%d]: %v", id, err)
 		ctx.Flash.Error(ctx.Tr("admin.wings_servers.action_failed"))
 	} else {
+		recordWingsActivity(ctx, server.NodeID, server.ID, wings_model.ActivityPower, action)
 		ctx.Flash.Success(ctx.Tr("admin.wings_servers.action_sent"))
 	}
 	ctx.Redirect(setting.AppSubURL + "/admin/wings/nodes")
@@ -364,6 +389,7 @@ func SendWingsServerCommand(ctx *context.Context) {
 		log.Error("SendWingsServerCommand[%d]: %v", id, err)
 		ctx.Flash.Error(ctx.Tr("admin.wings_servers.command_failed"))
 	} else {
+		recordWingsActivity(ctx, server.NodeID, server.ID, wings_model.ActivityCommand, "")
 		ctx.Flash.Success(ctx.Tr("admin.wings_servers.command_sent"))
 	}
 	ctx.Redirect(setting.AppSubURL + "/admin/wings/nodes")
@@ -407,6 +433,7 @@ func InstallWingsServer(ctx *context.Context) {
 		log.Error("InstallWingsServer[%d]: %v", server.ID, err)
 		ctx.Flash.Error(ctx.Tr("admin.wings_servers.install_failed"))
 	} else {
+		recordWingsActivity(ctx, server.NodeID, server.ID, wings_model.ActivityInstall, server.Name)
 		ctx.Flash.Success(ctx.Tr("admin.wings_servers.install_started"))
 	}
 	ctx.Redirect(setting.AppSubURL + "/admin/wings/nodes")
@@ -426,6 +453,7 @@ func ReinstallWingsServer(ctx *context.Context) {
 		log.Error("ReinstallWingsServer[%d]: %v", server.ID, err)
 		ctx.Flash.Error(ctx.Tr("admin.wings_servers.reinstall_failed"))
 	} else {
+		recordWingsActivity(ctx, server.NodeID, server.ID, wings_model.ActivityReinstall, server.Name)
 		ctx.Flash.Success(ctx.Tr("admin.wings_servers.reinstall_started"))
 	}
 	ctx.Redirect(setting.AppSubURL + "/admin/wings/nodes")
@@ -440,6 +468,7 @@ func SyncWingsServer(ctx *context.Context) {
 		log.Error("SyncWingsServer[%d]: %v", server.ID, err)
 		ctx.Flash.Error(ctx.Tr("admin.wings_servers.sync_failed"))
 	} else {
+		recordWingsActivity(ctx, server.NodeID, server.ID, wings_model.ActivitySync, server.Name)
 		ctx.Flash.Success(ctx.Tr("admin.wings_servers.sync_succeeded"))
 	}
 	ctx.Redirect(setting.AppSubURL + "/admin/wings/nodes")
@@ -461,6 +490,7 @@ func DeleteWingsServerFromNode(ctx *context.Context) {
 		ctx.Redirect(setting.AppSubURL + "/admin/wings/nodes")
 		return
 	}
+	recordWingsActivity(ctx, server.NodeID, server.ID, wings_model.ActivityDelete, server.Name)
 	if err := wings_model.DeleteServerRegistration(ctx, server.ID); err != nil {
 		log.Error("DeleteWingsServerFromNode[%d]: remove registration: %v", server.ID, err)
 		ctx.Flash.Error(ctx.Tr("admin.wings_servers.delete_on_node_partial"))
@@ -468,6 +498,29 @@ func DeleteWingsServerFromNode(ctx *context.Context) {
 		ctx.Flash.Success(ctx.Tr("admin.wings_servers.delete_on_node_succeeded"))
 	}
 	ctx.Redirect(setting.AppSubURL + "/admin/wings/nodes")
+}
+
+// recordWingsActivity stores an audit entry without interrupting the user
+// action when logging fails.
+func recordWingsActivity(ctx *context.Context, nodeID, serverID int64, event, detail string) {
+	if err := wings_model.RecordActivity(ctx, nodeID, serverID, ctx.Doer.ID, ctx.Doer.Name, event, detail); err != nil {
+		log.Error("RecordWingsActivity(event=%s, node=%d, server=%d): %v", event, nodeID, serverID, err)
+	}
+}
+
+// recordWingsServerActivity looks up the node of a registered server and logs
+// an audit entry for it.
+func recordWingsServerActivity(ctx *context.Context, serverID int64, event, detail string) {
+	server, exists, err := wings_model.GetServerByID(ctx, serverID)
+	if err != nil {
+		log.Error("RecordWingsServerActivity[%d]: %v", serverID, err)
+		return
+	}
+	if !exists {
+		log.Error("RecordWingsServerActivity[%d]: server does not exist", serverID)
+		return
+	}
+	recordWingsActivity(ctx, server.NodeID, server.ID, event, detail)
 }
 
 func TestWingsNode(ctx *context.Context) {
