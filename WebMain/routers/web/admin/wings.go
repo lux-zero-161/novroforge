@@ -35,6 +35,10 @@ func prepareWingsNodesPage(ctx *context.Context) bool {
 	ctx.Data["Title"] = ctx.Tr("admin.wings_nodes")
 	ctx.Data["PageIsAdminWingsNodes"] = true
 	ctx.Data["Nodes"] = nodes
+	ctx.Data["Locations"] = func() []*wings_model.WingsLocation {
+		locs, _ := wings_model.ListLocations(ctx)
+		return locs
+	}()
 	ctx.Data["LogsServerID"] = int64(0)
 	servers, err := wings_model.ListServers(ctx)
 	if err != nil {
@@ -52,7 +56,8 @@ func prepareWingsNodesPage(ctx *context.Context) bool {
 }
 
 func CreateWingsNode(ctx *context.Context) {
-	err := wings_model.CreateNode(ctx, ctx.FormString("name"), ctx.FormString("url"), ctx.FormString("token"))
+	locationID, _ := strconv.ParseInt(ctx.FormString("location_id"), 10, 64)
+	err := wings_model.CreateNode(ctx, locationID, ctx.FormString("name"), ctx.FormString("url"), ctx.FormString("token"))
 	if errors.Is(err, wings_model.ErrInvalidNodeName) {
 		ctx.Flash.Error(ctx.Tr("admin.wings_nodes.invalid_name"))
 	} else if errors.Is(err, wings_model.ErrInvalidNodeToken) {

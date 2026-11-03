@@ -5,6 +5,15 @@
 	<div class="ui attached segment">
 		<p>{{ctx.Locale.Tr "admin.wings_nodes.description"}}</p>
 		<form class="ui form" method="post" action="{{AppSubUrl}}/admin/wings/nodes">
+			<div class="field">
+				<label for="wings-node-location">{{ctx.Locale.Tr "admin.wings_nodes.location"}}</label>
+				<select id="wings-node-location" name="location_id">
+					<option value="0">{{ctx.Locale.Tr "admin.wings_nodes.no_location"}}</option>
+					{{range .Locations}}
+					<option value="{{.ID}}">{{.Short}}</option>
+					{{end}}
+				</select>
+			</div>
 			<div class="required field">
 				<label for="wings-node-name">{{ctx.Locale.Tr "admin.wings_nodes.name"}}</label>
 				<input id="wings-node-name" name="name" maxlength="64" required>

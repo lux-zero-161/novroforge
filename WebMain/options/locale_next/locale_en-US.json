@@ -428,6 +428,8 @@
 	"admin.wings_nodes.connection_failed": "Could not connect to Wings. Check the URL, token, and daemon status.",
 	"admin.wings_nodes.delete_failed": "The Wings node configuration could not be removed.",
 	"admin.wings_nodes.has_servers": "Remove this node's server registrations before removing its configuration.",
+	"admin.wings_nodes.location": "Location",
+	"admin.wings_nodes.no_location": "No location",
 	"admin.wings_nests": "Wings nests and eggs",
 	"admin.wings_nests.description": "Nests group related Eggs (server types). Eggs define the Docker image and startup command used when creating servers.",
 	"admin.wings_nests.create_nest": "Create nest",

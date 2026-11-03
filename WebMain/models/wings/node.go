@@ -45,6 +45,7 @@ func validateRemoteCredentials(tokenID, token string) error {
 // token ID authenticates Wings callbacks to WebMain.
 type WingsNode struct {
 	ID             int64
+	LocationID     int64              `xorm:"INDEX NOT NULL DEFAULT 0"`
 	Name           string             `xorm:"UNIQUE NOT NULL VARCHAR(64)"`
 	URL            string             `xorm:"TEXT NOT NULL"`
 	EncryptedToken []byte             `xorm:"BLOB"`
@@ -68,7 +69,7 @@ func init() {
 
 // CreateNode validates and stores a Wings node, encrypting its token using
 // authenticated encryption tied to the database row.
-func CreateNode(ctx context.Context, name, nodeURL, token string) error {
+func CreateNode(ctx context.Context, locationID int64, name, nodeURL, token string) error {
 	name = strings.TrimSpace(name)
 	nodeURL = strings.TrimSpace(nodeURL)
 	if name == "" || utf8.RuneCountInString(name) > 64 {
@@ -82,7 +83,7 @@ func CreateNode(ctx context.Context, name, nodeURL, token string) error {
 	}
 
 	return db.WithTx(ctx, func(ctx context.Context) error {
-		node := &WingsNode{Name: name, URL: nodeURL}
+		node := &WingsNode{LocationID: locationID, Name: name, URL: nodeURL}
 		if _, err := db.GetEngine(ctx).Insert(node); err != nil {
 			return fmt.Errorf("insert Wings node: %w", err)
 		}
